@@ -57,7 +57,7 @@
             @yield('content')
         </div>
 
-        <footer class="pt-3 my-md-3 pt-md-3">
+        <footer class="pt-3 my-md-3 pt-md-3 bg-light">
             @include('front-end.footer.index')
         </footer>
     </div>

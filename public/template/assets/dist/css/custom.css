@@ -3,27 +3,54 @@
 	border-radius: 0;
 } */
 .content-wrapper-front-end {
-	padding-top: 57px;
+	padding-top: 60px;
+	background-color: white;
 }
 /*Navbar*/
-nav{
-	box-shadow: 0px 5px 5px -6px rgba(0,0,0,.2);
+.nav-fixed{
+	border-bottom: 1px solid #dee2e6;
+	/*box-shadow: 0px 5px 5px -6px rgba(0,0,0,.2);*/
+}
+.navbar-light .navbar-nav .nav-link{
+	color: black;
 }
 #welcome .jumbotron{
     border-radius: 0;
     background-color: transparent;
 }
 /*Product card */
+.product-card{
+	border-radius: 0;
+}
 .product-card:hover{
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .item-btn{
 	width: 100%;
 	border-radius: 0;
+	padding:0px;
+	margin:0px;
 }
-.store-info {
-    font-size: 13px;
+
+.item-btn span{
+	font-size: 18px;
 }
+.product-info .product-name{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Bottom right text */
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 /*Help centre*/
 .topic-card:hover{
 	cursor: pointer;

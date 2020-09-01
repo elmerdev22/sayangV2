@@ -3,7 +3,7 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             {{-- <h2 class="m-0 text-dark"> Login Page</h2> --}}
@@ -15,7 +15,7 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div><!-- /.container-fluid-fluid -->
     </div>
     <!-- /.content-header -->
 

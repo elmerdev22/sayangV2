@@ -3,7 +3,7 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             {{-- <h2 class="m-0 text-dark"> Login Page</h2> --}}
@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <div class="content">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="pb-5">
             <!-- /.login-logo -->
@@ -54,7 +54,7 @@
                             <input class="form-control" type="password">
                         </div> <!-- form-group end.// -->
                         <div class="form-group col-md-6">
-                            <label>Repeat password</label>
+                            <label>Confirm password</label>
                             <input class="form-control" type="password">
                         </div> <!-- form-group end.// -->
                     </div>
@@ -78,7 +78,7 @@
                     </a>
                   </div>
 
-                  <a href="{{url('/login')}}" class="text-center">I already have a membership</a>
+                  <a href="{{url('/login')}}" class="text-center">I already have a account</a>
                 </div>
                 <!-- /.form-box -->
               </div>

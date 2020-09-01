@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top nav-fixed">
+    <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="{{asset('images/logo/logo.png')}}" height="30" class="d-inline-block align-top" alt="">
+            <img src="{{asset('images/logo/logo.png')}}" height="45" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">Categories</a>
                 <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row rounded-0 m-0 shadow-sm">
                             <div class="col-lg-12">
                                 <div class="p-4">
