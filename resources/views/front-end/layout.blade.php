@@ -63,6 +63,7 @@
     </div>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
+  @livewireScripts
   <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -78,7 +79,6 @@
     AOS.init();
   </script>
   @yield('js')
-  @livewireScripts
   @stack('scripts')
 </body>
 </html>
