@@ -29,7 +29,7 @@
     </section>
 </div>
 <div class="py-3">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <h4 data-aos="fade-right">MOST POPULAR</h4>
