@@ -46,12 +46,25 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            @if(Auth::user())
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/register')}}">Register </a>
+              <a class="nav-link btn btn-outline-warning" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+              </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-outline-warning" href="{{url('/login')}}">Login</a>
-            </li>
+            @else
+              <li class="nav-item">
+                  <a class="nav-link" href="{{url('/register')}}">Register </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link btn btn-outline-warning" href="{{url('/login')}}">Login</a>
+              </li>
+            @endauth
             {{-- <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                   <i class="fas fa-bell"></i>
