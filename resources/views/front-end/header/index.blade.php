@@ -48,7 +48,6 @@
             @endif
         </ul>
         <ul class="navbar-nav ml-auto">
-          
             @if(Auth::user())
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3">
@@ -81,13 +80,17 @@
               </div>
 
               <div class="widget-header mr-3">
-                <a href="#" class="widget-view">
+                <a class="widget-view" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
                   <div class="icon-area">
                     <i class="fas fa-sign-out-alt"></i>
                   </div>
                   <small class="text"> Logout </small>
                 </a>
-                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
               </div>
             </div>
             @else
