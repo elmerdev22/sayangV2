@@ -2,6 +2,57 @@
 /* .btn{
 	border-radius: 0;
 } */
+.widget-header {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.widget-header .widget-view {
+	padding: 5px 7px;
+	display: inline-block;
+	position: relative;
+	text-align: center; 
+}
+.widget-header .icon-area {
+	font-size: 20px;
+	display: inline-block;
+	width: 36px;
+	height: 30px;
+	color: #969696; 
+}
+.widget-header .icon-area .notify {
+	position: absolute;
+	top: -10px;
+}
+.widget-header .icon-area .notify .badge{
+	border-radius:10px;
+	color: white;
+	font-size: 12px;
+}
+.widget-header .icon {
+	color: #969696; }
+	.widget-header .icon .notify {
+	position: absolute;
+	top: 0;
+	right: 0; 
+}
+.widget-header .text {
+	max-width: 80px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	line-height: 1.2; 
+}
+  .widget-header a {
+    color: #212529; 
+}
+  .widget-header form {
+    min-width: 280px; 
+}
+  .widget-header:hover i {
+    color: #212529; 
+}
 
 .form-control:focus{
 	border-color: #FFDE59;

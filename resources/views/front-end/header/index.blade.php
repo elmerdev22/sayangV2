@@ -48,85 +48,48 @@
             @endif
         </ul>
         <ul class="navbar-nav ml-auto">
+          
             @if(Auth::user())
-            {{-- <li class="nav-item">
-              <a class="nav-link btn btn-outline-warning">
-                 <span class="fa fa-shopping-cart"></span>
-                 Cart
-              </a>
-            </li> --}}
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-envelope mr-2"></i> 4 new messages
-                  <span class="float-right text-muted">3 mins</span>
+            <div class="widgets-wrap float-md-right">
+              <div class="widget-header mr-3">
+                <a href="#" class="widget-view">
+                  <div class="icon-area">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <small class="text"> My account </small>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-users mr-2"></i> 8 friend requests
-                  <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-file mr-2"></i> 3 new reports
-                  <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
               </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-envelope mr-2"></i> 4 new messages
-                  <span class="float-right text-muted">3 mins</span>
+
+              <div class="widget-header mr-3">
+                <a href="#" class="widget-view">
+                  <div class="icon-area">
+                    <i class="fas fa-bell"></i>
+                    <span class="notify"><span class="badge badge-warning">15</span></span>
+                  </div>
+                  <small class="text"> Notifications </small>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-users mr-2"></i> 8 friend requests
-                  <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="fas fa-file mr-2"></i> 3 new reports
-                  <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
               </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
-                    <span class="fa fa-user-circle"></span> 
+
+              <div class="widget-header mr-3">
+                <a href="#" class="widget-view">
+                  <div class="icon-area">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="notify"><span class="badge badge-warning">15</span></span>
+                  </div>
+                  <small class="text"> Cart </small>
                 </a>
-                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 dropdown-menu-right shadow">
-                    <li><a href="#" class="dropdown-item">Profile </a></li>
-                    <li data-toggle="modal" data-target="#changepass-modal"><a href="#" class="dropdown-item">Change Password </a></li>
-                    <li>
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                      </a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
-                    </li>
-                </ul>
-            </li>
+              </div>
+
+              <div class="widget-header mr-3">
+                <a href="#" class="widget-view">
+                  <div class="icon-area">
+                    <i class="fas fa-sign-out-alt"></i>
+                  </div>
+                  <small class="text"> Logout </small>
+                </a>
+                
+              </div>
+            </div>
             @else
               <li class="nav-item">
                   <a class="nav-link" href="{{url('/register')}}">Register </a>
@@ -135,58 +98,6 @@
                   <a class="nav-link btn btn-outline-warning" href="{{url('/login')}}">Login</a>
               </li>
             @endauth
-            {{-- <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                  <i class="fas fa-bell"></i>
-                  <span class="badge badge-warning navbar-badge float-left">15</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <span class="dropdown-item dropdown-header">15 Notifications</span>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span class="badge badge-warning navbar-badge">15</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <span class="dropdown-item dropdown-header">15 Notifications</span>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                </div>
-            </li> --}}
         </ul>
         </div>
     </div>

@@ -95,7 +95,7 @@
 
                         <div class="form-group">
                           <label for="business-email-address">Business Email Address*</label>
-                          <input type="text" class="form-control" id="business-email-address" placeholder="Enter Business Email Address">
+                          <input type="email" class="form-control" id="business-email-address" placeholder="Enter Business Email Address">
                         </div>
 
                         <div class="form-group">
