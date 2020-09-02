@@ -2,6 +2,10 @@
 /* .btn{
 	border-radius: 0;
 } */
+
+.form-control:focus{
+	border-color: #FFDE59;
+}
 .content-wrapper-front-end {
 	padding-top: 70px;
 	background-color: white;

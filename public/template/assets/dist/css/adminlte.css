@@ -5430,8 +5430,8 @@ a.badge-dark:focus, a.badge-dark.focus {
 .list-group-item.active {
   z-index: 2;
   color: #ffffff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #FFDE59;
+  border-color: #FFDE59;
 }
 
 .list-group-horizontal {

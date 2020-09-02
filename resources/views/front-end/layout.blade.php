@@ -36,18 +36,21 @@
     <!-- AOS animation-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <style type="text/css">
-      #welcome{
-        background: url('{{asset('images/default-photo/w2.jpg')}}');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-    </style>
     @yield('css')
     @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
     @yield('messenger-chat-plugin')
+        <!-- Preloader -->
+{{--     <div class="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-icon">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div> --}}
+    <!-- End Preloader -->
     <div class="wrapper">
         <header>
             @include('front-end.header.index')
@@ -57,7 +60,7 @@
             @yield('content')
         </div>
 
-        <footer class="pt-3 my-md-3 pt-md-3 bg-light">
+        <footer class="pt-5 bg-light">
             @include('front-end.footer.index')
         </footer>
     </div>
@@ -73,6 +76,8 @@
   <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
   <!-- Toast Alert -->
   <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script>
+  <!-- Preloader -->
+  <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
   <!-- AOS script-->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

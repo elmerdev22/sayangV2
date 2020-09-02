@@ -1,5 +1,14 @@
 @extends('front-end.layout')
 @section('title','Auctions for Every Juan!')
+@section('css')
+<style type="text/css">
+  #welcome{
+    background: url('{{asset('images/default-photo/w2.jpg')}}');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+@endsection
 @section('content')
 <div id="welcome">
     <section class="jumbotron">
