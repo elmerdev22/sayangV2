@@ -73,15 +73,36 @@
   <!-- overlayScrollbars -->
   <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
   <!-- SweetAlert2 -->
-  <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+  <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
   <!-- Toast Alert -->
   <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script>
   <!-- Preloader -->
   <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
   <!-- AOS script-->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
   <script>
     AOS.init();
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = false;
+
+    var pusher = new Pusher('ece5aa633d91650ce415', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(message) {
+      window.livewire.emit('notifications', message);
+    });
+    
+    toastr.options = {
+      "closeButton": true,
+      "newestOnTop": true,
+      "progressBar": true,
+    }
+    // window.livewire.on('notifications', message => {
+    //     toastr.success('New Notification');
+    // });
   </script>
   @yield('js')
   @stack('scripts')
