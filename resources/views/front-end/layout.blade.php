@@ -84,7 +84,7 @@
   <script>
     AOS.init();
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = false;
+    Pusher.logToConsole = true;
 
     var pusher = new Pusher('ece5aa633d91650ce415', {
       cluster: 'ap1'

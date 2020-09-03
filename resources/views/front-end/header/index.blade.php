@@ -49,15 +49,16 @@
         </ul>
         <ul class="navbar-nav ml-auto">
 
-            @livewire('front-end.notification')
+            
             @if(Auth::user())
+
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3">
                 <a href="#" class="widget-view">
                   <div class="icon-area">
                     <i class="fa fa-user"></i>
                   </div>
-                  {{-- <small class="text"> My account </small> --}}
+                  <small class="text"> My account </small>
                 </a>
               </div>
 
@@ -66,12 +67,16 @@
                 <a href="#" class="widget-view">
                   <div class="icon-area">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="notify"><span class="badge badge-warning">15</span></span>
+                    <span class="notify"><span class="badge badge-warning">0</span></span>
                   </div>
-                  {{-- <small class="text"> Cart </small> --}}
+                  <small class="text"> My Cart </small>
                 </a>
               </div>
 
+              <div class="widget-header mr-3">
+                 @livewire('front-end.notification')
+              </div>
+             
               <div class="widget-header mr-3">
                 <a class="widget-view" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
