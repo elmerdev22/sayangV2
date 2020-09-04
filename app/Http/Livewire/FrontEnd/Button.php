@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\FrontEnd;
 
 use Livewire\Component;
-use App\notifications;
+use App\notifications as notif;
 class Button extends Component
 {
     public function render()
@@ -12,7 +12,7 @@ class Button extends Component
     }
 
     public function add(){
-    	$notif = new notifications();
+    	$notif = new notif();
     	$notif->message = 'hello world!';
     	if($notif->save()){
     		event(new \App\Events\notifications('hello world!'));

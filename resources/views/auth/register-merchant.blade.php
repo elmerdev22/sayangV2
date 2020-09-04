@@ -11,7 +11,7 @@
   }
   .jumbotron{
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.9;
     width: 600px;
   }
 
@@ -28,7 +28,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active text-white">Be a partner</li>
+              <li class="breadcrumb-item active">Be a partner</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

@@ -24,38 +24,47 @@
     <div class="card card-solid">
       <div class="card-body">
         <div class="row">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-7">
             <h3 class="d-inline-block d-sm-none">Product Name</h3>
             <div class="col-12">
-              <img src="{{asset('template/assets/dist/img/prod-1.jpg')}}" class="product-image" alt="Product Image">
+              <img src="{{asset('images/default-photo/prod1.jpg')}}" class="product-image" alt="Product Image">
             </div>
             <div class="col-12 product-image-thumbs">
-              <div class="product-image-thumb active"><img src="{{asset('template/assets/dist/img/prod-1.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('template/assets/dist/img/prod-2.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('template/assets/dist/img/prod-3.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('template/assets/dist/img/prod-4.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('template/assets/dist/img/prod-5.jpg')}}" alt="Product Image"></div>
+              <div class="product-image-thumb active"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
+              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Product Image"></div>
+              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
+              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Product Image"></div>
+              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
             </div>
           </div>
-          <div class="col-12 col-sm-6">
-            <h3 class="my-3">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+          <div class="col-12 col-md-5">
+            <div class="row">
+              <div class="col-lg-8">
+                <h3 class="my-2">LOWA Men’s Renegade Boots</h3>
+              </div>
+              
+              <div class="col-lg-4">
+                <h3 class="my-2 text-danger">3 LEFT!</h3>
+              </div>
 
-            <hr>
-
-            <div class="bg-gray py-2 px-3 mt-4">
-              <h2 class="mb-0">
-                $80.00
-              </h2>
-              <h4 class="mt-0">
-                <small>Ex Tax: $80.00 </small>
-              </h4>
             </div>
 
+            <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+            <div class="bg-danger p-2 w-50 text-center">
+              <span class="fas fa-clock"></span> 4 hrs 3 mins
+            </div>
+            <hr>
+
+            <div class="card text-center">
+              @livewire('front-end.product.details')
+            </div>
+            
+{{-- 
             <div class="mt-4">
 
               @livewire('front-end.button')
-            </div>
+            </div> --}}
 
           </div>
         </div>
