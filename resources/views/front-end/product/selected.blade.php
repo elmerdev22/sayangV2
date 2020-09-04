@@ -59,12 +59,7 @@
             <div class="card text-center">
               @livewire('front-end.product.details')
             </div>
-            
-{{-- 
-            <div class="mt-4">
-
-              @livewire('front-end.button')
-            </div> --}}
+          
 
           </div>
         </div>

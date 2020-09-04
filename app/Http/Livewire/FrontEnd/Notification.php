@@ -10,7 +10,7 @@ class Notification extends Component
 	protected $listeners = ['notifications' => '$refresh'];
     public function render()
     {
-    	$data = notif_model::count();
+    	$data = notif_model::orderBy('created_at','desc')->get();
         return view('livewire.front-end.notification', compact('data'));
     }
 }

@@ -141,9 +141,9 @@ span.ends-in {
   background: white;
   width: 100%;
   height: 450px;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-       box-shadow: 0 10px 6px -6px #777;
+  -webkit-box-shadow: 0 5px 6px -6px #777;
+    -moz-box-shadow: 0 5px 6px -6px #777;
+       box-shadow: 0 5px 6px -6px #777;
 }
 .image{
     position:relative;
@@ -214,4 +214,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+/*Scrollable notification box*/
+.scrollable-notif {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }

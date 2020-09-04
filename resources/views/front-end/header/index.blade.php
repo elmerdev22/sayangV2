@@ -6,7 +6,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">Categories</a>
@@ -64,7 +64,7 @@
 
 
               <div class="widget-header mr-3">
-                <a href="#" class="widget-view">
+                <a href="{{route('account.cart')}}" class="widget-view">
                   <div class="icon-area">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="notify"><span class="badge badge-warning">0</span></span>

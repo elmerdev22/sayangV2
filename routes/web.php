@@ -18,6 +18,7 @@ Route::get('/account/complete-details', function () {
 });
 
 Route::get('/product/{slug}', 'FrontEnd\product\SelectedController@index')->name('selected.product');
+Route::get('/my-cart', 'FrontEnd\product\CartController@index')->name('account.cart');
 // Auth API login google,fb
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

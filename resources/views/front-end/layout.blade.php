@@ -78,6 +78,8 @@
   <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script>
   <!-- Preloader -->
   <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
+  <!-- Animate js -->
+  <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
   <!-- AOS script-->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
