@@ -87,8 +87,8 @@
     AOS.init();
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
-
-    var pusher = new Pusher('36e9cc6f189b952fa2d0', {
+    var key = '{{env('PUSHER_APP_KEY')}}';
+    var pusher = new Pusher(key, {
       cluster: 'ap1'
     });
 
