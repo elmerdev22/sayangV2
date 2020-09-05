@@ -2,7 +2,7 @@
 @section('title','Product Name')
 @section('content')
 
-<section class="content-header">
+<section class="content-header py-4">
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
