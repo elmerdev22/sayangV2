@@ -2,6 +2,12 @@
  .btn{
 	border-radius: 0;
 } 
+.btn-warning{
+  color: white;
+} 
+.btn-warning:hover{
+  color: white;
+}
 .widget-header {
 	display: inline-block;
 	vertical-align: middle;
@@ -54,9 +60,9 @@
     color: #212529; 
 }
 
-.form-control:focus{
+/*.form-control:focus{
 	border-color: #FFDE59;
-}
+}*/
 .content-wrapper-front-end {
 	padding-top: 70px;
 	background-color: white;
@@ -222,6 +228,24 @@ input:checked + .slider:before {
     overflow-x: hidden;
 }
 
-.quantity-input{
+/*PAgination*/
+.page-item.active .page-link{
+  background-color: #FFDE59;
+  border-color: #FFDE59;
+}
 
+/*all product list menu*/
+.list-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.list-menu li {
+  margin-bottom: 5px; 
+}
+.list-menu a {
+  color: #343a40; 
+}
+.list-menu a:hover {
+  color: #FFDE59; 
 }

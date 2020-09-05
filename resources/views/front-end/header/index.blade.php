@@ -20,11 +20,11 @@
                                         <div class="col-lg-3 col-md-6 mb-4">
                                             <h6 class="font-weight-bold text-uppercase">Category</h6>
                                             <ul class="list-unstyled">
-                                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="" class="nav-link text-small pb-0">Sub Category</a></li>
+                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
+                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
+                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
+                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
+                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
                                             </ul>
                                         </div>
                                         @endfor
@@ -40,6 +40,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list"></small> </a>
             </li>
             @if(!Auth::user())
             <li class="nav-item">

@@ -12,9 +12,12 @@ Route::get('/register/merchant/verify', function () {
     return view('auth.verify');
 });
 
-
 Route::get('/account/complete-details', function () {
     return view('front-end.account.merchant.index');
+});
+
+Route::get('/products', function () {
+    return view('front-end.product.all');
 });
 
 Route::get('/product/{slug}', 'FrontEnd\product\SelectedController@index')->name('selected.product');
