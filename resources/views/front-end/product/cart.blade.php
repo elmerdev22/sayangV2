@@ -25,67 +25,66 @@
     <div class="row">
       <main class="col-md-9">
         <div class="card">
-
-        <table class="table table-borderless table-shopping-cart">
-        <thead class="text-muted">
-        <tr class="small text-uppercase">
-          <th scope="col">Product/Items</th>
-          <th scope="col" width="100">Quantity</th>
-          <th scope="col" width="100">Price</th>
-          <th scope="col" class="text-right" width="100">Remove</th>
-        </tr>
-        </thead>
-        <tbody>
-          @for($x=0;$x < 3 ; $x++)
-          <tr>
-            <td>
-              <figure class="itemside">
-                <div class="aside"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-md mr-2"></div>
-                <figcaption class="info ml-2">
-                  <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                  <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                </figcaption>
-              </figure>
-            </td>
-            <td> 
-              <select class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-              </select>
-              {{-- <input type="number" name="" class="form-control" value="2" min="1"> --}}
-            </td>
-            <td> 
-              <div class="price-wrap"> 
-                <span class="price">₱1156.00</span> 
-                <small class="text-muted"> ₱315.20 each </small> 
-              </div> <!-- price-wrap .// -->
-            </td>
-            <td class="text-right"> 
-            
-            <a href="" class="btn btn-outline-danger"> <span class=" fas fa-trash"></span></a>
-            </td>
-          </tr>
-          @endfor
-        </tbody>
-        </table>
-        <div class="row justify-content-center mb-3">
-          <ul class="pagination pagination m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-          </ul>
-        </div>
-        <div class="card-body border-top">
-          <a href="#" class="btn btn-warning  text-white float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-          <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
-        </div>  
+          <table class="table table-borderless table-shopping-cart">
+          <thead >
+            <tr>
+              <th scope="col">Product/Items</th>
+              <th scope="col" width="100">Quantity</th>
+              <th scope="col" width="100">Price</th>
+              <th scope="col" class="text-right" width="100">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for($x=0;$x < 3 ; $x++)
+            <tr>
+              <td>
+                <figure class="itemside">
+                  <div class="aside"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-md mr-2"></div>
+                  <figcaption class="info ml-2">
+                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
+                    <p class="text-muted small">Category: Foods</p>
+                  </figcaption>
+                </figure>
+              </td>
+              <td> 
+                <select class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                </select>
+                {{-- <input type="number" name="" class="form-control" value="2" min="1"> --}}
+              </td>
+              <td> 
+                <div class="price-wrap"> 
+                  <span class="price">₱1156.00</span> 
+                  <small class="text-muted"> ₱315.20 each </small> 
+                </div> <!-- price-wrap .// -->
+              </td>
+              <td class="text-right"> 
+              
+              <a href="" class="btn btn-outline-danger"> <span class=" fas fa-trash"></span></a>
+              </td>
+            </tr>
+            @endfor
+          </tbody>
+          </table>
+          <div class="row justify-content-center mb-3">
+            <ul class="pagination pagination m-0 float-right">
+              <li class="page-item"><a class="page-link" href="#">«</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+          </div>
+          <div class="card-body border-top">
+            <a href="#" class="btn btn-warning  text-white float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+            <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+          </div>  
         </div> <!-- card.// -->
 
         </main> <!-- col.// -->
