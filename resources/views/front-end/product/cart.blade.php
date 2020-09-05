@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>My Cart</h1>
+        <h1><i class="fas fa-shopping-cart"></i> My Cart <small>(22)</small></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -19,79 +19,129 @@
 </section>
 
 <section class="content pb-5">
+    
   <div class="container">
-    {{-- <div class="row">
-      <div class="col-md-8">
-                  <!-- Shopping cart table -->
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="p-2 px-3 text-uppercase">Product</div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase">Price</div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase">Quantity</div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase">Remove</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row" class="border-0">
-                    <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                  <td class="border-0 align-middle"><input type="number" class="form-control w-50" value="1"></td>
-                  <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-3_cexmhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Lumix camera lense</a></h5><span class="text-muted font-weight-normal font-italic">Category: Electronics</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="align-middle"><strong>$79.00</strong></td>
-                  <td class="align-middle"><strong>3</strong></td>
-                  <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-2_qxjis2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Gray Nike running shoe</a></h5><span class="text-muted font-weight-normal font-italic">Category: Fashion</span>
-                      </div>
-                    </div>
-                    <td class="align-middle"><strong>$79.00</strong></td>
-                    <td class="align-middle"><strong>3</strong></td>
-                    <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
-              </tbody>
-            </table>
+
+    <div class="row">
+      <main class="col-md-9">
+        <div class="card">
+
+        <table class="table table-borderless table-shopping-cart">
+        <thead class="text-muted">
+        <tr class="small text-uppercase">
+          <th scope="col">Product/Items</th>
+          <th scope="col" width="100">Quantity</th>
+          <th scope="col" width="100">Price</th>
+          <th scope="col" class="text-right" width="100">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for($x=0;$x < 3 ; $x++)
+          <tr>
+            <td>
+              <figure class="itemside">
+                <div class="aside"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-md mr-2"></div>
+                <figcaption class="info ml-2">
+                  <a href="#" class="title text-dark">Some name of item goes here nice</a>
+                  <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+                </figcaption>
+              </figure>
+            </td>
+            <td> 
+              <input type="number" name="" class="form-control" value="2" min="1">
+            </td>
+            <td> 
+              <div class="price-wrap"> 
+                <span class="price">₱1156.00</span> 
+                <small class="text-muted"> ₱315.20 each </small> 
+              </div> <!-- price-wrap .// -->
+            </td>
+            <td class="text-right"> 
+            
+            <a href="" class="btn btn-outline-danger"> <span class=" fas fa-trash"></span></a>
+            </td>
+          </tr>
+          @endfor
+        </tbody>
+        </table>
+        <div class="row justify-content-center mb-3">
+          <ul class="pagination pagination m-0 float-right">
+            <li class="page-item"><a class="page-link" href="#">«</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">»</a></li>
+          </ul>
+        </div>
+        <div class="card-body border-top">
+          <a href="#" class="btn btn-warning  text-white float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+          <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+        </div>  
+        </div> <!-- card.// -->
+
+        </main> <!-- col.// -->
+
+        <aside class="col-md-3">
+          <div class="card mb-3">
+            <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Have coupon?</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="" placeholder="Coupon code">
+                  <span class="input-group-append"> 
+                    <button class="btn btn-primary">Apply</button>
+                  </span>
+                </div>
+              </div>
+            </form>
+            </div> <!-- card-body.// -->
           </div>
-          <!-- End -->
-      </div>
-    </div> --}}
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <dt>Total price:</dt>
+                </div>
+                <div class="col-6">
+                  <dd class="text-right">PHP 2,000</dd>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <dt>Discount:</dt>
+                </div>
+                <div class="col-6">
+                  <dd class="text-right">PHP 200</dd>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <dt>Total:</dt>
+                </div>
+                <div class="col-6">
+                  <dd class="text-right h5"><strong>₱1,800</strong></dd>
+                </div>
+              </div>
+              <hr>
+              <p class="text-center mb-3">
+                <img src="{{asset('images/default-photo/payments.png')}}" height="26">
+                {{-- <span class="fab fa-cc-visa fa-2x"></span>
+                <span class="fab fa-cc-stripe fa-2x"></span>
+                <span class="fab fa-cc-paypal fa-2x"></span>
+                <span class="fab fa-cc-mastercard fa-2x"></span>
+                <span class="fab fa-cc-amex fa-2x"></span> --}}
+              </p>  
+            </div> <!-- card-body.// -->
+          </div>  <!-- card .// -->
+        </aside> <!-- col.// -->
+    </div>
 
     <div class="mt-4">
       @livewire('front-end.button')
     </div>
-  </div>
+  </div> <!-- container .//  -->
+
+  
 </section>
 @endsection

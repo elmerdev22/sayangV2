@@ -56,73 +56,73 @@
                   </div>
                   <div class="row">
                     <div class="col-12">
-                    <form role="form">
-                      <div class="card-body">
-                        <div class="form-group">
-                          <label for="business-name">Business name*</label>
-                          <input type="text" class="form-control" id="business-name" placeholder="Enter Business name">
-                        </div>
-                        <div class="form-group">
-                          <div class="row">
-                            <div class="col-lg-4">
-                              <label for="business-name">Business Address*</label>
-                              <input type="text" class="form-control" id="business-name" placeholder="Enter Business name">
+                      <form role="form">
+                        <div class="card-body">
+                          <div class="form-group">
+                            <label for="business-name">Business name*</label>
+                            <input type="text" class="form-control" id="business-name" placeholder="Enter Business name">
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4">
+                                <label for="business-name">Business Address*</label>
+                                <input type="text" class="form-control" id="business-name" placeholder="Enter Business name">
+                              </div>
+                              <div class="col-lg-4">
+                                <label for="city">City* </label>
+                                <select class="form-control">
+                                  <option>Select</option>
+                                </select>
+                              </div>
+                              <div class="col-lg-4">
+                                <label for="province">Province*</label>
+                                <select class="form-control">
+                                  <option>Select</option>
+                                </select>
+                              </div>
                             </div>
-                            <div class="col-lg-4">
-                              <label for="city">City* </label>
-                              <select class="form-control">
-                                <option>Select</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-4">
-                              <label for="province">Province*</label>
-                              <select class="form-control">
-                                <option>Select</option>
-                              </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="map-link">Google Maps address link*</label>
+                            <input type="text" class="form-control" id="map-link" placeholder="Enter Google Maps address link">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="business-contact-number">Business Contact Number*</label>
+                            <input type="text" class="form-control" id="business-name" placeholder="Enter Business Contact Number">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="business-email-address">Business Email Address*</label>
+                            <input type="email" class="form-control" id="business-email-address" placeholder="Enter Business Email Address">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="dti-registration-number">DTI Registration Number*</label>
+                            <input type="text" class="form-control" id="dti-registration-number" placeholder="Enter DTI Registration Number">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="tin">TIN*</label>
+                            <input type="text" class="form-control" id="tin" placeholder="Enter TIN">
+                          </div>
+                          <div class="form-group">
+                            <label for="dti-certificate">Upload DTI Certificate Here*</label>
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="dti-certificate">
+                                <label class="custom-file-label" for="dti-certificate">Choose file</label>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <!-- /.card-body -->
 
-                        <div class="form-group">
-                          <label for="map-link">Google Maps address link*</label>
-                          <input type="text" class="form-control" id="map-link" placeholder="Enter Google Maps address link">
+                        <div class="card-footer bg-white">
+                          <button type="submit" class="btn btn-primary float-right">Proceed to next <span class="fas fa-arrow-right"></span></button>
                         </div>
-
-                        <div class="form-group">
-                          <label for="business-contact-number">Business Contact Number*</label>
-                          <input type="text" class="form-control" id="business-name" placeholder="Enter Business Contact Number">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="business-email-address">Business Email Address*</label>
-                          <input type="email" class="form-control" id="business-email-address" placeholder="Enter Business Email Address">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="dti-registration-number">DTI Registration Number*</label>
-                          <input type="text" class="form-control" id="dti-registration-number" placeholder="Enter DTI Registration Number">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="tin">TIN*</label>
-                          <input type="text" class="form-control" id="tin" placeholder="Enter TIN">
-                        </div>
-                        <div class="form-group">
-                          <label for="dti-certificate">Upload DTI Certificate Here*</label>
-                          <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="dti-certificate">
-                              <label class="custom-file-label" for="dti-certificate">Choose file</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /.card-body -->
-
-                      <div class="card-footer bg-white">
-                        <button type="submit" class="btn btn-primary float-right">Proceed to next <span class="fas fa-arrow-right"></span></button>
-                      </div>
-                    </form>
+                      </form>
                     </div>
                   </div>
                 </div> <!-- card-body .// -->
@@ -135,7 +135,5 @@
       </div><!-- /.container -->
     </div>
     <!-- /.content -->
-
-
 
 @endsection
