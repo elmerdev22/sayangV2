@@ -48,7 +48,16 @@
               </figure>
             </td>
             <td> 
-              <input type="number" name="" class="form-control" value="2" min="1">
+              <select class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select>
+              {{-- <input type="number" name="" class="form-control" value="2" min="1"> --}}
             </td>
             <td> 
               <div class="price-wrap"> 
@@ -90,7 +99,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control" name="" placeholder="Coupon code">
                   <span class="input-group-append"> 
-                    <button class="btn btn-primary">Apply</button>
+                    <button class="btn btn-warning text-white">Apply</button>
                   </span>
                 </div>
               </div>

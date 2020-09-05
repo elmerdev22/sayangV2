@@ -120,7 +120,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer bg-white">
-                          <button type="submit" class="btn btn-primary float-right">Proceed to next <span class="fas fa-arrow-right"></span></button>
+                          <button type="submit" class="btn btn-warning text-white float-right">Proceed to next <span class="fas fa-chevron-right"></span></button>
                         </div>
                       </form>
                     </div>
