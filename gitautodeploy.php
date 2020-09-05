@@ -3,8 +3,10 @@ const API_KEY = "8HS9xjfQGuvAVmf58BwVxlA1N3guRo";
 const API_URL = "https://api.cloudways.com/api/v1";
 const EMAIL = "ocbajohnchristian@gmail.com";
 
+/* examples
 const BranchName = "develop";
 const GitUrl = "git@github.com:elmerdev22/sayangV2.git";
+*/
 
 
 //Use this function to contact CW API
