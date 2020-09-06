@@ -57,22 +57,20 @@
 
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3">
-                <a href="#" class="widget-view">
+                <a href="#" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
                   <div class="icon-area">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user text-dark"></i>
                   </div>
-                  <small class="text"> My account </small>
                 </a>
               </div>
 
 
               <div class="widget-header mr-3">
-                <a href="{{route('account.cart')}}" class="widget-view">
+                <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
                   <div class="icon-area">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-shopping-cart text-dark"></i>
                     <span class="notify"><span class="badge badge-warning">0</span></span>
                   </div>
-                  <small class="text"> My Cart </small>
                 </a>
               </div>
 
@@ -83,11 +81,10 @@
               <div class="widget-header mr-3">
                 <a class="widget-view" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
+                               document.getElementById('logout-form').submit();" data-tooltip="logout" data-tooltip-location="bottom">
                   <div class="icon-area">
-                    <i class="fas fa-sign-out-alt"></i>
+                    <i class="fas fa-sign-out-alt text-dark"></i>
                   </div>
-                  <small class="text"> Logout </small>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

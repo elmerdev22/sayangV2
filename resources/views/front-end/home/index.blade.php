@@ -11,7 +11,7 @@
 @endsection
 @section('content')
 <div id="welcome">
-    <section class="jumbotron">
+    <section class="jumbotron pl-0">
       <div class="container-fluid">
         <h1 class="jumbotron-heading display-4 text-white" data-aos="fade-right" data-aos-duration="500">
           <b>Nothing goes to waste.</b>
@@ -38,13 +38,12 @@
     </section>
 </div>
 <div class="py-3">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <h4 data-aos="fade-right">MOST POPULAR</h4>
+      <div class="col-12 mb-3">
+        <h2 class="title" data-aos="fade-right">MOST POPULAR</h2>
       </div>
     </div>
-    <hr>
     <div class="row">
       @for($x=0;$x < 9; $x++)
       <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">

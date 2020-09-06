@@ -1,10 +1,9 @@
 <div>
-  <a href="#" class="widget-view" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a href="#" class="widget-view" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="Notifications" data-tooltip-location="bottom">
     <div class="icon-area">
-      <i class="fas fa-bell" id="notif"></i>
+      <i class="fas fa-bell text-dark" id="notif"></i>
       <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
     </div>
-    <small class="text"> Notifications </small>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" wire:ignore.self>
       <span class="dropdown-item dropdown-header">New Notifications</span>
         <div class="scrollable-notif">

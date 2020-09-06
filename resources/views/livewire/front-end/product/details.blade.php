@@ -18,10 +18,13 @@
   		<p>Grab this item now!</p>
   		<div class="col-12">
         <div class="row justify-content-center">
-          <div class="col-md-6">
-            <label>Php 40 X</label>
+          <div class="col-md-5">
+            <h4>Php 40.00</h4>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-2 text-center">
+            <span class="fas fa-times"></span>
+          </div>
+          <div class="col-md-5">
             <div class="input-group input-group-sm">
               <div class="input-group-prepend">
                 <button class="btn btn-default"><span class="fas fa-minus"></span></button>

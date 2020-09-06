@@ -1,31 +1,13 @@
 @extends('front-end.layout')
 @section('title','Product Name')
 @section('content')
-
-<section class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-6">
-        <h1>Product Name</h1>
-      </div>
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Product Name</li>
-        </ol>
-      </div>
-    </div>
-  </div><!-- /.container-fluid -->
-</section>
-
 <section class="content pb-5">
-  <div class="container-fluid">
+  <div class="container-fluid my-5">
     <!-- Default box -->
-    <div class="card card-solid">
-      <div class="card-body">
+    <div class="card border-0 shadow-none">
+      <div class="card-body p-0">
         <div class="row">
           <div class="col-12 col-md-7">
-            <h3 class="d-inline-block d-sm-none">Product Name</h3>
             <div class="col-12">
               <img src="{{asset('images/default-photo/prod1.jpg')}}" class="product-image" alt="Product Image">
             </div>
@@ -36,6 +18,10 @@
               <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Product Image"></div>
               <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
             </div>
+            <div class="col-12">
+              <h5 class="pt-3">Few Reminders</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
+            </div>
           </div>
           <div class="col-12 col-md-5">
             <div class="row">
@@ -44,7 +30,7 @@
               </div>
               
               <div class="col-lg-4">
-                <h3 class="my-2 text-danger">3 LEFT!</h3>
+                <h3 class="my-2 text-danger float-right">3 LEFT!</h3>
               </div>
 
             </div>
@@ -59,16 +45,15 @@
             <div class="card text-center">
               @livewire('front-end.product.details')
             </div>
-          
-
+        
           </div>
         </div>
         <div class="row mt-4">
           <nav class="w-100">
             <div class="nav nav-tabs" id="product-tab" role="tablist">
-              <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
-              <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Comments</a>
-              <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
+              <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Partner Ratings</a>
+              <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">About Product</a>
+              <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Other details</a>
             </div>
           </nav>
           <div class="tab-content p-3" id="nav-tabContent">

@@ -102,10 +102,9 @@
       "newestOnTop": true,
       "progressBar": true,
     }
-    // window.livewire.on('notifications', message => {
-    //     toastr.success('New Notification');
-    // });
+    
   </script>
+
   @yield('js')
   @stack('scripts')
 </body>
