@@ -65,8 +65,7 @@
                     Sign up using Google+
                   </a>
                 </div>
-
-                <a href="{{url('/login')}}" class="text-warning">I already have a account</a>
+                
             </div>
           </div>
         </div>

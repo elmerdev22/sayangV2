@@ -2,7 +2,7 @@
 @section('title','Product Name')
 @section('content')
 <section class="content pb-5">
-  <div class="container-fluid my-5">
+  <div class="container my-5">
     <!-- Default box -->
     <div class="card border-0 shadow-none">
       <div class="card-body p-0">

@@ -257,8 +257,10 @@ input:checked + .slider:before {
 .account-activation a:hover{
   color:#FFDE59;
 }
-
-/*tooltip*/
+/*cart footer*/
+.cart-footer .btn-warning{
+  float: right;
+}
 /* 
   You want a simple and fancy tooltip?
   Just copy all [data-tooltip] blocks:

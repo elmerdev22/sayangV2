@@ -3,11 +3,6 @@
     .item-info {
         font-size: 9px;
     }
-    .container-fluid{
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-
 }
 
 @media only screen and (max-width: 767px) {
@@ -15,9 +10,15 @@
     .product-info {
         font-size: 12px;
     }
-    .container-fluid{
-        padding-right: 10px;
-        padding-left: 10px;
+    .cart-img{
+        display: none;
+    }
+    .cart-footer{
+        text-align: center;
+    }
+    .cart-footer .btn{
+        width: 100%;
+        margin-top: 3px;
     }
 
 }
@@ -26,10 +27,16 @@
     .product-info {
       font-size: 10px;
     }
-
-    .container-fluid{
-        padding-right: 5px;
-        padding-left: 5px;
+    .cart-img{
+        display: none;
+    }
+    .cart-footer{
+        display: flex;
+        justify-content: center;
+    }
+    .cart-footer .btn{
+        width: 100%;
+        margin-top: 3px;
     }
   }
 

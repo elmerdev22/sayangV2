@@ -226,7 +226,7 @@
                 <p> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam... </p>
                 <div class="row">
                   <div class="col-md-6">
-                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
+                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
                       <button class="btn btn-sm btn-dark item-btn">
                         <span class="font-weight-bold">Buy Now</span><br>
                         <small class="text-white item-info">Php: 40.00 | 30%off</small>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top nav-fixed">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" href="/">
             <img src="{{asset('images/logo/logo.png')}}" height="45" class="d-inline-block align-top" alt="">
         </a>
