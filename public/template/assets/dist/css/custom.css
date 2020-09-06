@@ -1,4 +1,10 @@
 /* font */
+a{
+  color: black;
+}
+a:hover{
+  color: #FFDE59;
+}
  .btn{
 	border-radius: 0;
 } 
