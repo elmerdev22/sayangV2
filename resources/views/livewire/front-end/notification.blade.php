@@ -4,24 +4,25 @@
       <i class="fas fa-bell text-dark" id="notif"></i>
       <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
     </div>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" wire:ignore.self>
-      <span class="dropdown-item dropdown-header">New Notifications</span>
-        <div class="scrollable-notif">
-          @forelse($data as $notif)
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-bell mr-2"></i> {{ucfirst($notif->message)}}
-              <span class="float-right text-muted text-sm">{{$notif->created_at}}</span>
-            </a>
-          @empty
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> No new notifications.
-            </a>
-          @endforelse
-        </div>
-      <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-    </div>
   </a>
+  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" wire:ignore.self>
+    <span class="dropdown-item dropdown-header">15 Notifications</span>
+    <div class="dropdown-divider"></div>
+      <div class="scrollable-notif">
+        @forelse($data as $notif)
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-bell mr-2"></i> {{ucfirst($notif->message)}}
+            <span class="float-right text-muted text-sm">{{Carbon\Carbon::parse($notif->created_at)->diffForHumans()}}</span>
+          </a>
+        @empty
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> No new notifications.
+          </a>
+        @endforelse
+      </div>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+  </div>
   <audio id="NotifSound">
     <source src="{{asset('sounds/notification.mp3')}}" type="audio/mpeg">
   </audio>

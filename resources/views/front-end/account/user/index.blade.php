@@ -45,7 +45,7 @@
                   <div class="collapse" id="dashboard">
                     <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> To Pay </a>
                     <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Completed </a>
-                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> To Cancelled </a>
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a>
                   </div>
 
                   <a href="#notification" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
