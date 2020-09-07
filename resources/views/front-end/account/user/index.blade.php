@@ -28,9 +28,16 @@
               <!-- menu -->
               <div id="MainMenu">
                 <div class="list-group panel">
-                  <a href="#" class="list-group-item active" data-parent="#MainMenu">
-                    <span class="fas fa-user"></span> My Account  
-                  </a>
+                  
+                  <a href="#account" class="list-group-item active" data-toggle="collapse" data-parent="#MainMenu">
+                  <span class="nav-icon fas fa-user"></span> My Account 
+                  <i class="fa fa-caret-down"></i></a>
+                  <div class="collapse" id="account">
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
+                  </div>
 
                   <a href="#dashboard" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
                   <span class="nav-icon fas fa-shopping-bag"></span> My Purchase 
@@ -54,7 +61,7 @@
                   <a href="#" class="list-group-item" data-parent="#MainMenu">
                     <span class="fas fa-list-alt"></span> My Bids  
                   </a>
-                  
+
                   <a href="#" class="list-group-item" data-parent="#MainMenu">
                     <span class="fas fa-money-bill"></span> My Vouchers  
                   </a>
