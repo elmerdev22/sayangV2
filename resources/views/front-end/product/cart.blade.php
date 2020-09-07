@@ -40,14 +40,19 @@
               <tr>
                 <td>
                   <figure class="itemside">
-                    <div class="aside cart-img"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-md mr-2"></div>
+                    <div class="aside cart-img"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-lg mr-2"></div>
                     <figcaption class="info ml-2">
-                      <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                      <p class="text-muted small">Category: Foods</p>
+                      <a href="#" class="title text-dark">Product name</a>
+                      <p class="text-muted small">
+                        <span>Gordon Ramsey</span><br>
+                        <span>3 Left!</span><br>
+                        <span class="bg-danger p-1"><span class="fas fa-clock"></span> 4 hrs 3 mins</span>
+                      </p>
+                      
                     </figcaption>
                   </figure>
                 </td>
-                <td> 
+                <td class="pt-5"> 
                   {{-- <select class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                     <option>1</option>
                     <option>2</option>
@@ -59,13 +64,13 @@
                   </select> --}}
                   <input type="number" name="" class="form-control" value="2" min="1">
                 </td>
-                <td> 
+                <td class="pt-5"> 
                   <div class="price-wrap"> 
                     <span class="price">₱1156.00</span> 
                     <small class="text-muted"> ₱315.20 each </small> 
                   </div> <!-- price-wrap .// -->
                 </td>
-                <td class="text-right"> 
+                <td class="text-right pt-5"> 
                 
                 <a href="" class="btn btn-outline-danger"> <span class=" fas fa-trash"></span></a>
                 </td>
@@ -102,9 +107,9 @@
             <div class="card-body">
             <form>
               <div class="form-group">
-                <label>Have coupon?</label>
+                <label>Get a voucher?</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" name="" placeholder="Coupon code">
+                  <input type="text" class="form-control" name="" placeholder="Enter code here">
                   <span class="input-group-append"> 
                     <button class="btn btn-warning text-white">Apply</button>
                   </span>

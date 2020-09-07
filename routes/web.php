@@ -12,8 +12,14 @@ Route::get('/register/merchant/verify', function () {
     return view('auth.verify');
 });
 
+// Merchant Account
 Route::get('/account/complete-details', function () {
     return view('front-end.account.merchant.index');
+});
+
+// User Account
+Route::get('/my-account', function () {
+    return view('front-end.account.user.index');
 });
 
 Route::get('/products', function () {

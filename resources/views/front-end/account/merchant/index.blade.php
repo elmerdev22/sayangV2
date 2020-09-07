@@ -9,7 +9,7 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h2 class="m-0 text-dark"> Account</h2>
+            <h2 class="m-0 text-dark">My Account</h2>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,15 +28,32 @@
         <div class="section-content padding-y">
           <div class="row">
             <aside class="col-md-3">
-              <ul class="list-group account-activation">
-                <a class="list-group-item active" href="#"><span class="fas fa-lock"></span> Activate your account  </a>
-                <a class="list-group-item" href="#"><span class="nav-icon fas fa-tachometer-alt"></span> My Dashboard </a>
-                <a class="list-group-item" href="#"><span class="fas fa-chart-pie mr-1"></span> Ongoing sales </a>
-                <a class="list-group-item" href="#"><span class="fas fa-chart-pie mr-1"></span> Completed sales </a>
-                <a class="list-group-item" href="#"><span class="fas fa-list"></span> My Items </a>
-                <a class="list-group-item" href="#"><span class="fas fa-money-bill"></span> Payments and receipts </a>
-                <a class="list-group-item" href="#"><span class="fas fa-qrcode"></span> Scan QR CODE </a>
-              </ul>
+              <!-- menu -->
+              <div id="MainMenu">
+                <div class="list-group panel">
+                  <a href="#" class="list-group-item active" data-parent="#MainMenu">
+                    <span class="fas fa-lock"></span> Activate your account  
+                  </a>
+
+                  <a href="#dashboard" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
+                  <span class="nav-icon fas fa-tachometer-alt"></span> My Dashboard 
+                  <i class="fa fa-caret-down"></i></a>
+                  <div class="collapse" id="dashboard">
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Ongoing sales </a>
+                    <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Completed sales </a>
+                  </div>
+
+                  <a href="#" class="list-group-item" data-parent="#MainMenu">
+                    <span class="fas fa-list"></span> My Items  
+                  </a>
+                  <a href="#" class="list-group-item" data-parent="#MainMenu">
+                    <span class="fas fa-money-bill"></span> Payments and receipts 
+                  </a>
+                  <a href="#" class="list-group-item" data-parent="#MainMenu">
+                    <span class="fas fa-qrcode"></span> Scan QR CODE 
+                  </a>
+                </div>
+              </div>
             </aside> <!-- col.// -->
             <main class="col-md-9">
               <div class="card  mb-3">

@@ -42,7 +42,7 @@
               <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list"></small> </a>
+              <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list-alt"></small> </a>
             </li>
             @if(!Auth::user())
             <li class="nav-item">
@@ -57,7 +57,7 @@
 
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3">
-                <a href="#" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
+                <a href="{{url('/my-account')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
                   <div class="icon-area">
                     <i class="fa fa-user text-dark"></i>
                   </div>
@@ -81,7 +81,7 @@
               <div class="widget-header mr-3">
                 <a class="widget-view" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();" data-tooltip="logout" data-tooltip-location="bottom">
+                               document.getElementById('logout-form').submit();" data-tooltip="Logout" data-tooltip-location="bottom">
                   <div class="icon-area">
                     <i class="fas fa-sign-out-alt text-dark"></i>
                   </div>
