@@ -50,6 +50,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Illuminate\Foundation\Http\Exceptions\MaintenanceModeException) {
+            return response()
+                ->view('maintenance.down', [
+                    'message' => 'Come back later.'
+                ], 200)
+                ->header('Content-Type', 'text/html; charset=utf-8');
+        }
+
         return parent::render($request, $exception);
     }
 }

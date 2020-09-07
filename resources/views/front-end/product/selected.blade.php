@@ -1,6 +1,10 @@
 @extends('front-end.layout')
 @section('title','Product Name')
 @section('content')
+@section('css')
+<!-- Glasscase css-->
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.css')}}">
+@endsection
 <section class="content pb-5">
   <div class="container my-5">
     <!-- Default box -->
@@ -9,14 +13,10 @@
         <div class="row">
           <div class="col-12 col-md-7">
             <div class="col-12">
-              <img src="{{asset('images/default-photo/prod1.jpg')}}" class="product-image" alt="Product Image">
-            </div>
-            <div class="col-12 product-image-thumbs">
-              <div class="product-image-thumb active"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Product Image"></div>
-              <div class="product-image-thumb"><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Product Image"></div>
+              <ul id="glasscase" class="gc-start">
+                  <li><img src="{{asset('images/default-photo/prod2.jpg')}}" alt="Text" {{-- data-gc-caption="Your caption text"  --}}/></li>
+                  <li><img src="{{asset('images/default-photo/prod1.jpg')}}" alt="Text" /></li>
+              </ul>
             </div>
             <div class="col-12">
               <h5 class="pt-3">Few Reminders</h5>
@@ -127,4 +127,14 @@
     </div>
   </div>
 </section>
+@endsection
+@section('js')
+<!-- Glasscase -->
+<script src="{{asset('template/assets/dist/js/glasscase.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready( function () {
+        //If your <ul> has the id "glasscase"
+        $('#glasscase').glassCase({ 'thumbsPosition': 'bottom'});
+    });
+</script>
 @endsection
