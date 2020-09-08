@@ -3,7 +3,7 @@
 @section('content')
 @section('css')
 <!-- Glasscase css-->
-<link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.css')}}">
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
 @endsection
 <section class="content pb-5">
   <div class="container my-5">
@@ -130,7 +130,7 @@
 @endsection
 @section('js')
 <!-- Glasscase -->
-<script src="{{asset('template/assets/dist/js/glasscase.js')}}"></script>
+<script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         //If your <ul> has the id "glasscase"

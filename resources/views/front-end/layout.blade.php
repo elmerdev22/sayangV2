@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     @yield('css')
     <!-- Theme style -->
-    {{-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom-css-bootstrap.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
@@ -29,7 +28,7 @@
     <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}">
     <!-- Preloader -->
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}}
      <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
@@ -40,9 +39,32 @@
     @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
-    @yield('messenger-chat-plugin')
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v8.0'
+    });
+  };
+
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Your Chat Plugin code -->
+  <div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="100185501825589"
+  theme_color="#FFDE59">
+  </div> 
         <!-- Preloader -->
-{{--     <div class="preloader">
+    {{-- <div class="preloader">
       <div class="preloader-inner">
         <div class="preloader-icon">
           <span></span>
@@ -71,7 +93,7 @@
   <!-- Bootstrap 4 -->
   <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- overlayScrollbars -->
-  <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+  {{-- <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}}
   <!-- SweetAlert2 -->
   <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
   <!-- Toast Alert -->
