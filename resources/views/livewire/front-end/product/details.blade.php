@@ -115,7 +115,9 @@
     @if($buy_now)
       <div class="row">
         <div class="col-lg-6 col-md-12 p-1">
-          <button class="btn btn-default w-100"><span class="fas fa-shopping-cart"></span> Add to Cart</button>
+          <a href="{{url('my-cart')}}">
+            <button class="btn btn-default w-100"><span class="fas fa-shopping-cart"></span> Add to Cart</button>
+          </a>
         </div>
         <div class="col-lg-6 col-md-12 p-1">
           <button class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>

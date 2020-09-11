@@ -53,16 +53,16 @@
                   </figure>
                 </td>
                 <td class="pt-5"> 
-                  {{-- <select class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-                    <option>1</option>
+                  <select class="form-control">
+                    <option selected>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
                     <option>6</option>
                     <option>7</option>
-                  </select> --}}
-                  <input type="number" name="" class="form-control" value="2" min="1">
+                  </select>
+                  {{-- <input type="number" name="" class="form-control" value="2" min="1"> --}}
                 </td>
                 <td class="pt-5"> 
                   <div class="price-wrap"> 

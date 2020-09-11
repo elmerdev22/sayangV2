@@ -51,7 +51,6 @@
             @endif
         </ul>
         <ul class="navbar-nav ml-auto">
-
             
             @if(Auth::user())
 
