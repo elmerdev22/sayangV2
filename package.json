@@ -5,13 +5,14 @@
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",
+        "serve": "npm run watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.5.2",
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
@@ -24,7 +25,14 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "admin-lte": "^3.0.5",
+        "aos": "^2.3.4",
+        "icheck-bootstrap": "^3.0.1",
+        "jquery-ui-bundle": "^1.12.1-migrate",
         "laravel-echo": "^1.8.1",
-        "pusher-js": "^7.0.0"
+        "overlayscrollbars": "^1.13.0",
+        "pusher-js": "^7.0.0",
+        "toastr": "^2.1.4"
     }
 }

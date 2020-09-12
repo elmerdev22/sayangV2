@@ -1,8 +1,40 @@
+//Bootstrap
+@import '~bootstrap/scss/bootstrap';
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//font-awesome
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+//ionicons
+@import 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css';
+
+//icheck-bootstrap
+@import '~icheck-bootstrap/icheck-bootstrap.min.css';
+
+//toastr
+@import '~toastr/build/toastr.min.css';
+
+//Google Font: Source Sans Pro
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700';
+
+//Bootstrap & admin-lte
+@import '~admin-lte/build/scss/AdminLTE';
+
+//aos
+@import '~aos/src/sass/aos';
+
+//preloader
+@import 'preloader';
+
+//custom
+@import 'custom';
+
+//preloader
+@import 'responsive';
+
+//overlayscrollbars
+@import '~overlayscrollbars/css/OverlayScrollbars.min.css';

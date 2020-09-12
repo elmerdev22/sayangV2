@@ -12,27 +12,32 @@
     @else
       <title>@yield('title') | {{ env('APP_NAME') }}</title>
     @endif
-
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @yield('css')
+    <!-- Kindly removed once the packages need is working properly -->
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}"> -->
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    @yield('css')
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}"> -->
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}"> -->
     <!-- Toast Alert-->
-    <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}"> -->
+    <!-- Preloader -->
+    <!-- overlayScrollbars -->
+    <!-- {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}} -->
      <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}"> -->
     <!-- AOS animation-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+    <!-- end of to be removed packages -->
     @yield('css')
+    
     @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
@@ -85,21 +90,28 @@
     </div>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
+
   @livewireScripts
-  <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
+  <!-- Kindly removed once the packages need is working properly -->
+  <!-- <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script> -->
   <!-- Bootstrap 4 -->
-  <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script> -->
+  <!-- overlayScrollbars -->
+  <!-- {{-- <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}} -->
   <!-- SweetAlert2 -->
-  <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
+  <!-- <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script> -->
   <!-- Toast Alert -->
-  <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script>
+  <!-- <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script> -->
   <!-- Preloader -->
-  <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
+  <!-- <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script> -->
   <!-- Animate js -->
-  <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
+  <!-- <script src="{{asset('template/assets/dist/js/animate.js')}}"></script> -->
   <!-- AOS script-->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+  <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+  <!-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> -->
+  <!-- end of to be removed packages -->
+
   <script>
     AOS.init();
     // Enable pusher logging - don't include this in production
