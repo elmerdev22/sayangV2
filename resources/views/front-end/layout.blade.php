@@ -42,7 +42,7 @@
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
   <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
+{{--   <div id="fb-root"></div>
   <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -64,17 +64,17 @@
   attribution=setup_tool
   page_id="100185501825589"
   theme_color="#FFDE59">
-  </div> 
-        <!-- Preloader -->
-    {{-- <div class="preloader">
-      <div class="preloader-inner">
-        <div class="preloader-icon">
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div> --}}
-    <!-- End Preloader -->
+  </div>  --}}
+  <!-- Preloader -->
+{{-- <div class="preloader">
+<div class="preloader-inner">
+  <div class="preloader-icon">
+    <span></span>
+    <span></span>
+  </div>
+</div>
+</div> --}}
+<!-- End Preloader -->
     <div class="wrapper">
         <header>
             @include('front-end.header.index')
