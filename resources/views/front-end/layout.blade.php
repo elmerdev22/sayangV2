@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
     <!-- Toast Alert-->
     <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}">
-    <!-- Preloader -->
-    <!-- overlayScrollbars -->
-    {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}}
      <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
@@ -40,7 +37,7 @@
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
   <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
+{{--   <div id="fb-root"></div>
   <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -62,17 +59,17 @@
   attribution=setup_tool
   page_id="100185501825589"
   theme_color="#FFDE59">
-  </div> 
-        <!-- Preloader -->
-    {{-- <div class="preloader">
-      <div class="preloader-inner">
-        <div class="preloader-icon">
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div> --}}
-    <!-- End Preloader -->
+  </div>  --}}
+  <!-- Preloader -->
+{{-- <div class="preloader">
+<div class="preloader-inner">
+  <div class="preloader-icon">
+    <span></span>
+    <span></span>
+  </div>
+</div>
+</div> --}}
+<!-- End Preloader -->
     <div class="wrapper">
         <header>
             @include('front-end.header.index')
@@ -92,8 +89,6 @@
   <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <!-- overlayScrollbars -->
-  {{-- <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}}
   <!-- SweetAlert2 -->
   <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
   <!-- Toast Alert -->
