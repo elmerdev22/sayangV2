@@ -16,6 +16,10 @@ Route::get('/register/merchant/verify', function () {
 Route::get('/account/complete-details', function () {
     return view('front-end.account.merchant.index');
 });
+// Seller Profile
+Route::get('/seller-profile', function () {
+    return view('front-end.account.merchant.profile');
+});
 
 // User Account
 Route::get('/my-account', function () {

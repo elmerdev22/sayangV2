@@ -94,7 +94,7 @@
                 <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
               </div>
               <div class="col-sm-6">
-                <a href="#" class="btn btn-warning text-white float-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                <a href="#" class="btn btn-warning text-white float-right"> Checkout <i class="fa fa-chevron-right"></i> </a>
               </div>
             </div>
           </div>  

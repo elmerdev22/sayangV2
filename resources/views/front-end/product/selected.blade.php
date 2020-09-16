@@ -35,7 +35,9 @@
 
             </div>
 
-            <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
+            <a href="{{url('/seller-profile')}}">
+              <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
+            </a>
             <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
             <div class="bg-danger p-2 w-50 text-center">
               <span class="fas fa-clock"></span> 4 hrs 3 mins
