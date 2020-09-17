@@ -228,7 +228,8 @@ return [
         'Socialite'    => Laravel\Socialite\Facades\Socialite::class,
         
         //Utility
-        'Utility'             => App\Helpers\Utility::class,
+        'Utility'      => App\Helpers\Utility::class,
+        'QueryUtility' => App\Helpers\QueryUtility::class,
     ],
 
 ];
