@@ -15,12 +15,18 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->unique();
             $table->string('email')->nullable()->unique();
-            $table->string('provider')->nullable();
+            $table->enum('provider', ['default', 'facebook', 'google'])->default('default')->nullable();
             $table->string('provider_id')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('type', ['admin', 'user', 'partner']);
+            $table->enum('verification_type', ['email', 'sms'])->default('email');
+            $table->string('verification_code', 10)->nullable()->default(null);
+            $table->timestamp('verification_expired_at')->nullable()->default(null);
+            $table->timestamp('verified_at')->nullable()->default(null);
             $table->string('password')->nullable();
             $table->rememberToken();
+            $table->string('key_token')->unique();
             $table->timestamps();
         });
     }
