@@ -5,12 +5,9 @@
     <div class="content-header">
       <div class="container">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            {{-- <h2 class="m-0 text-dark"> Login Page</h2> --}}
-          </div><!-- /.col -->
-          <div class="col-sm-6">
+          <div class="col-sm-6 offset-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item active">Register</li>
             </ol>
           </div><!-- /.col -->
@@ -27,45 +24,10 @@
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body register-card-body">
-                  <h4 class="text-center">Register new user</h4>
+                  <h4 class="text-center">Register New User</h4>
                   <hr>
-                  <form>
-                    <div class="form-row">
-                        <div class="col form-group">
-                            <label>First name</label>
-                              <input type="text" class="form-control" placeholder="">
-                        </div> <!-- form-group end.// -->
-                        <div class="col form-group">
-                            <label>Last name</label>
-                              <input type="text" class="form-control" placeholder="">
-                        </div> <!-- form-group end.// -->
-                    </div> <!-- form-row end.// -->
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="">
-                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div> <!-- form-group end.// -->
-                    <div class="form-group">
-                        <label>Contact number</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div> <!-- form-group end.// -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Create password</label>
-                            <input class="form-control" type="password">
-                        </div> <!-- form-group end.// -->
-                        <div class="form-group col-md-6">
-                            <label>Confirm password</label>
-                            <input class="form-control" type="password">
-                        </div> <!-- form-group end.// -->
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-warning text-white  btn-block"> Register  </button>
-                    </div> <!-- form-group// -->
-                    <div class="form-group">
-                        <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </div> </label>
-                    </div> <!-- form-group end.// -->
-                </form>
+
+                  @livewire('auth.register')
 
                   <div class="social-auth-links text-center">
                     <p>- OR -</p>
@@ -79,7 +41,7 @@
                     </a>
                   </div>
 
-                  <a href="{{url('/login')}}" class="text-center">I already have a account</a>
+                  <a href="{{url('/login')}}" class="text-center text-blue">I already have a account</a>
                 </div>
                 <!-- /.form-box -->
               </div>
