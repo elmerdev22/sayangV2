@@ -11,19 +11,19 @@
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #FFDE59; 
+    background: $warning; 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #FFDE59; 
+    background: $warning; 
   }
   /**/
   a{
     color: black;
   }
   a:hover{
-    color: #FFDE59;
+    color: $warning;
   }
    .btn{
       border-radius: 0;
@@ -87,7 +87,7 @@
   }
   
   /*.form-control:focus{
-      border-color: #FFDE59;
+      border-color: $warning;
   }*/
   .content-wrapper-front-end {
       padding-top: 70px;
@@ -146,7 +146,7 @@
   
   /*Span timeer countdown*/
   span.ends-in {
-      background-color: #FFDE59 !important;
+      background-color: $warning !important;
       display: inline-block;
       font-size: 12px;
       color: #fff;
@@ -256,8 +256,8 @@
   
   /*PAgination*/
   .page-item.active .page-link{
-    background-color: #FFDE59;
-    border-color: #FFDE59;
+    background-color: $warning;
+    border-color: $warning;
   }
   
   /*all product list menu*/
@@ -273,7 +273,7 @@
     color: #343a40; 
   }
   .list-menu a:hover {
-    color: #FFDE59; 
+    color: $warning; 
   }
   
   /*Account Activation*/
@@ -281,7 +281,7 @@
     color: black;
   }
   .account-activation a:hover{
-    color:#FFDE59;
+    color:$warning;
   }
   /*cart footer*/
   .cart-footer .btn-warning{
@@ -449,4 +449,10 @@
     transform-origin: bottom;
   }
   
-  
+  .text-capitalize{
+    text-transform: capitalize;
+  }
+  .list-group-item.active{
+    background-color: $warning;
+    border-color: $warning;
+  }

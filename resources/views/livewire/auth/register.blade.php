@@ -1,36 +1,58 @@
 <div>
-    <form method="POST" wire:submit.prevent="">
+    <form method="POST" wire:submit.prevent="store">
         <div class="form-row">
             <div class="col form-group">
                 <label>First name</label>
-                <input type="text" class="form-control" wire:model="first_name">
+                <input type="text" class="form-control text-capitalize @error('first_name') is-invalid @enderror" wire:model="first_name">
+                @error('first_name') 
+                    <span class="invalid-feedback">{{$message}}</span>
+                @enderror
             </div>
             <div class="col form-group">
                 <label>Last name</label>
-                <input type="text" class="form-control" wire:model="last_name">
+                <input type="text" class="form-control text-capitalize @error('last_name') is-invalid @enderror" wire:model="last_name">
+                @error('last_name') 
+                    <span class="invalid-feedback">{{$message}}</span>
+                @enderror
             </div>
         </div>
         <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" wire:model="email">
-            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
+            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model="email">
+            @error('email') 
+                <span class="invalid-feedback">{{$message}}</span>
+            @enderror
         </div>
+        
         <div class="form-group">
-            <label>Contact number</label>
-            <input type="text" class="form-control" wire:model="contact_number">
+            <label>Contact no.</label>
+            <input type="text" class="form-control @error('contact_no') is-invalid @enderror" wire:model="contact_no" id="contact_no">
+            @error('contact_no') 
+                <span class="invalid-feedback">{{$message}}</span>
+            @enderror
         </div>
+
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Create password</label>
-                <input class="form-control" type="password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model="password">
+                @error('password') 
+                    <span class="invalid-feedback">{{$message}}</span>
+                @enderror
             </div>
             <div class="form-group col-md-6">
                 <label>Confirm password</label>
-                <input class="form-control" type="password">
+                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" wire:model="confirm_password">
+                @error('confirm_password') 
+                    <span class="invalid-feedback">{{$message}}</span>
+                @enderror
             </div>
         </div>
         <div class="form-group">
-            <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> I am agree with <a href="#">terms and contitions</a>  </div> </label>
+            <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" wire:model="agree"> <div class="custom-control-label"> I am agree with <a href="#">Terms & Conditions</a>  </div> </label>
+            @if(!$agree) 
+                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Please Agree on our Terms & Conditions</span>
+            @endif
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-warning text-white  btn-block"> Register  </button>

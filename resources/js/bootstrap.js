@@ -8,7 +8,7 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery'),require('jquery-ui-bundle');
+    window.$ = window.jQuery = require('jquery'),require('jquery-ui-bundle'); 
 
     require('bootstrap');
 } catch (e) {}
@@ -19,9 +19,10 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios  = require('axios');
-window.AOS    = require("aos");
-window.toastr = require('toastr');
+window.axios     = require('axios');
+window.AOS       = require("aos");
+window.toastr    = require('toastr');
+window.inputmask = require('inputmask');
 
 require('overlayscrollbars');
 require('sweetalert2');

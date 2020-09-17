@@ -56,7 +56,7 @@
 
             <div class="widgets-wrap float-md-right">
               <div class="widget-header mr-3">
-                <a href="{{url('/my-account')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
+                <a href="{{route('front-end.user.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
                   <div class="icon-area">
                     <i class="fa fa-user text-dark"></i>
                   </div>

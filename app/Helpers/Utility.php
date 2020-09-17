@@ -86,4 +86,32 @@ class Utility{
 
         return $text;
     }
+
+    public static function generate_username_from_email($email){
+        $username = explode('@', $email)[0];
+        
+        do{
+            $check_user   = User::where('name', $username)->first();
+            if($check_user){
+                $username = $username.''.rand(1,100);
+                $already_used = true;
+            }else{
+                $already_used = false;
+            }
+        }while($already_used);
+
+        return $username;
+    }
+    
+    public static function component_request($rules, $var){
+        $response = [];
+
+        foreach($rules as $key => $value){
+            $response[$key] = $var->$key;
+        }
+
+        return $response;
+    }
+
+    
 }
