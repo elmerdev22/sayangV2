@@ -28,6 +28,7 @@ class CreateUserAccountsTable extends Migration
             $table->string('zip_code', 10)->nullable();
             $table->string('barangay')->nullable();
             $table->string('photo')->nullable();
+            $table->string('photo_provider_link', 500)->nullable();
             $table->string('key_token')->unique();
             $table->timestamps();
 

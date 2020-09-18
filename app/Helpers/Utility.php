@@ -11,6 +11,10 @@ use Auth;
 use DB;
 
 class Utility{
+
+    public static function socialite_providers(){
+        return ['google', 'facebook'];
+    }
     
     public static function generate_unique_token($len = 13) {
         // uniqid gives 13 chars, but you could adjust it to your needs.
@@ -93,7 +97,25 @@ class Utility{
         do{
             $check_user   = User::where('name', $username)->first();
             if($check_user){
-                $username = $username.''.rand(1,100);
+                $username     = $username.'.'.rand(1,100);
+                $already_used = true;
+            }else{
+                $already_used = false;
+            }
+        }while($already_used);
+
+        return $username;
+    }
+
+    public static function generate_username_from_name($name){
+        $name     = str_replace('-', '', $name);
+        $name     = str_replace(' ', '', $name);
+        $username = strtolower($name);
+        
+        do{
+            $check_user   = User::where('name', $username)->first();
+            if($check_user){
+                $username     = $username.'.'.rand(1,10000);
                 $already_used = true;
             }else{
                 $already_used = false;
