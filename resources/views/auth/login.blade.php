@@ -28,7 +28,12 @@
             <div class="card">
               <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-
+                @if(\Session::has('login_provider_alert'))
+                  <p class="text-danger text-center">
+                    <i class="fas fa-exclamation-triangle"></i> {!!\Session::get('login_provider_alert')!!}
+                  </p>
+                @endif
+                
                 <form >
                   <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email">
@@ -65,10 +70,10 @@
 
                 <div class="social-auth-links text-center mb-3">
                   <p>- OR -</p>
-                  <a href="{{url('login/facebook')}}" class="btn btn-block btn-primary">
+                  <a href="{{route('login-redirect.socialite', ['provider' => 'facebook', 'type' => 'user'])}}" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
                   </a>
-                  <a href="{{url('login/google')}}" class="btn btn-block btn-danger">
+                  <a href="{{route('login-redirect.socialite', ['provider' => 'google', 'type' => 'user'])}}" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
                   </a>
                 </div>

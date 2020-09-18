@@ -31,11 +31,11 @@
 
                   <div class="social-auth-links text-center">
                     <p>- OR -</p>
-                    <a href="{{url('login/facebook')}}" class="btn btn-block btn-primary">
+                    <a href="{{route('login-redirect.socialite', ['provider' => 'facebook', 'type' => 'user'])}}" class="btn btn-block btn-primary">
                       <i class="fab fa-facebook mr-2"></i>
                       Sign up using Facebook
                     </a>
-                    <a href="{{url('login/google')}}" class="btn btn-block btn-danger">
+                    <a href="{{route('login-redirect.socialite', ['provider' => 'google', 'type' => 'user'])}}" class="btn btn-block btn-danger">
                       <i class="fab fa-google-plus mr-2"></i>
                       Sign up using Google+
                     </a>

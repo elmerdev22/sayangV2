@@ -81,7 +81,17 @@
         </header>
 
         <div class="content-wrapper content-wrapper-front-end">
-            @yield('content')
+          @yield('page_header')
+          
+          <!-- Main content -->
+          <div class="content">
+            <div class="container">
+              <div class="section-content padding-y">
+                @yield('content')
+              </div>
+            </div><!-- /.container -->
+          </div>
+          <!-- /.content -->
         </div>
 
         <footer class="pt-5 bg-light">

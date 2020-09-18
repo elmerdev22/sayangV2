@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use App\Model\User;
+use App\Model\UserAccount;
+use Session;
+use Utility;
 use Auth;
-use App\User;
+use Hash;
+use DB;
 
 class LoginController extends Controller
 {
@@ -41,46 +45,102 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+        if(Session::has('login_socialite_type')){
+            return Socialite::driver($provider)->redirect();
+        }else{
+            Session::flash('login_provider_alert', 'An error occured.');
+            return redirect(route('login'))->send();
+        }
     }
 
     public function handleProviderCallback($provider)
     {
+        if(Session::has('login_socialite_type')){
+            $user_type = Session::get('login_socialite_type');
+        }else{
+            Session::flash('login_provider_alert', 'An error occured.');
+            return redirect(route('login'))->send();
+        }
+        
+        $success = false;
+
+        DB::beginTransaction();
         try {
-    
-            $user = Socialite::driver($provider)->stateless()->user();
-     
-            $finduser = User::where('provider_id', $user->id)->first();
+            $socialite_user = Socialite::driver($provider)->stateless()->user();
+            $validate_email = User::where('email', $socialite_user->email)->first();
 
-            if($finduser){
-     
-                $updateUser = User::where('provider_id',$user->id)->first();
-                $updateUser->email = $user->email;
-                $updateUser->provider = $provider;
-                $updateUser->provider_id = $user->id;
-                if($updateUser->save()){
-                    Auth::login($updateUser);
-                    return redirect('/');
+            if($validate_email){
+                if($provider != $validate_email->provider){
+                    //Already used in other provider
+                    if($validate_email->provider != 'default'){
+                        $message = 'You are attempting to login with an email that is already registered to a '.ucfirst($validate_email->provider).' account login. Instead, please select "Sign in using '.ucfirst($validate_email->provider).'".';
+                    }else{
+                        $message = 'You are attempting to login with an email that is already registered to the system. Instead, please enter your email and password you\'ve registered last time.';
+                    }
+
+                    Session::flash('login_provider_alert', $message);
+                    DB::rollback();
+                    return redirect(route('login'))->send();
                 }
-     
-            }else{
+            }
 
-                $newUser = new User();
-                $newUser->email = $user->email;
-                $newUser->provider = $provider;
-                $newUser->provider_id = $user->id;
-                if($newUser->save()){
-                    Auth::login($newUser);
-                    return redirect('/');
+            $find_user = User::where('provider', $provider)
+                ->where('provider_id', $socialite_user->id)
+                ->first();
+
+            if(!$find_user){
+                $find_user              = new User();
+                $find_user->provider    = $provider;
+                $find_user->provider_id = $socialite_user->id;
+                $find_user->key_token   = Utility::generate_table_token('User');
+                $find_user->type        = $user_type;
+                $find_user->verified_at = date('Y-m-d H:i:s');
+                $is_new                 = true;
+            }else{
+                $is_new = false;
+            }
+
+            $find_user->email = $socialite_user->email;
+
+            if($socialite_user->email){
+                $find_user->name = Utility::generate_username_from_email($socialite_user->email);
+            }else{
+                $find_user->name = Utility::generate_username_from_name($socialite_user['given_name']);
+            }
+
+            if($find_user->save()){
+                if($is_new){
+                    $account            = new UserAccount();
+                    $account->user_id   = $find_user->id;
+                    $account->key_token = Utility::generate_table_token('UserAccount');
+                }else{
+                    $account = UserAccount::where('user_id', $find_user->id)->first();
+                }
+
+                $account->first_name          = $socialite_user['given_name'];
+                $account->last_name           = $socialite_user['family_name'];
+                $account->photo_provider_link = $socialite_user->avatar;
+
+                if($account->save()){
+                    $success = true;
                 }
             }
     
-        } catch (Exception $e) {
-            dd($e->getMessage());
+        }catch(\Exception $e) {
+            $success = false;
+        }
+
+        if($success){
+            DB::commit();
+            Session::flash('login_using_id', $find_user->id);
+            return redirect(route('login-redirect.index'))->send();
+        }else{
+            DB::rollback();
+            Session::flash('login_provider_alert', 'An error occured or Lost connection while logging in your account.');
+            return redirect(route('login'))->send();
         }
     }
 }

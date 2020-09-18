@@ -77,6 +77,6 @@ class Register extends Component
     public function login($user_id){
         Auth::loginUsingId($user_id);
 
-        return redirect(route('login.redirect'));
+        return redirect(route('login-redirect.index'));
     }
 }
