@@ -103,7 +103,7 @@ class LoginController extends Controller
                     $find_user->verification_type = 'sms';
                 }
 
-                $is_new                 = true;
+                $is_new = true;
             }else{
                 $is_new = false;
             }
