@@ -105,11 +105,14 @@ class LoginController extends Controller
 
             $find_user->email = $socialite_user->email;
 
-            if($socialite_user->email){
-                $find_user->name = Utility::generate_username_from_email($socialite_user->email);
-            }else{
-                $find_user->name = Utility::generate_username_from_name($socialite_user['given_name']);
+            if($is_new){
+                if($socialite_user->email){
+                    $find_user->name = Utility::generate_username_from_email($socialite_user->email);
+                }else{
+                    $find_user->name = Utility::generate_username_from_name($socialite_user['given_name']);
+                }
             }
+
 
             if($find_user->save()){
                 if($is_new){
