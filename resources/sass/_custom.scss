@@ -34,6 +34,12 @@
   .btn-warning:hover{
     color: white;
   }
+
+  /* TAB BACKGROUND COLOR */
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: $warning;
+  }
+  
   .widget-header {
       display: inline-block;
       vertical-align: middle;
