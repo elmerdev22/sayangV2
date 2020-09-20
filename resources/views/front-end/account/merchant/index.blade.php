@@ -49,7 +49,7 @@
                   <a href="#" class="list-group-item" data-parent="#MainMenu">
                     <span class="fas fa-money-bill"></span> Payments and receipts 
                   </a>
-                  <a href="#" class="list-group-item" data-parent="#MainMenu">
+                  <a href="/merchant/qr-code" class="list-group-item" data-parent="#MainMenu">
                     <span class="fas fa-qrcode"></span> Scan QR CODE 
                   </a>
                 </div>

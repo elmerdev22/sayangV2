@@ -35,7 +35,7 @@
 
             </div>
 
-            <a href="{{url('/merchant/profile')}}">
+            <a href="{{url('/profile/partner-name')}}">
               <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
             </a>
             <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>

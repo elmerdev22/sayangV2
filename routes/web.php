@@ -10,9 +10,10 @@ Route::get('/account/complete-details', function () {
 });
 
 // Merchant profile view
-Route::get('/merchant/profile', function () {
-    return view('front-end.account.merchant.profile');
+Route::get('/profile/partner-name', function () {
+    return view('front-end.profile.partner');
 });
+
 
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
@@ -23,6 +24,13 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/register/merchant/verify', function () {
         return view('auth.verify');
     });
+});
+
+// Partner menu tab temporary public agent
+
+// QR-code view
+Route::get('/partner/qr-code', function () {
+    return view('front-end.partner.my-account.qr-code');
 });
 
 // VERIFICATION CHECK
@@ -76,6 +84,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@index'
 		    ]);
         });
+
 
     });
 });

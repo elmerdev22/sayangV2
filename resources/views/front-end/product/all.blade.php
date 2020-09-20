@@ -220,7 +220,7 @@
                 </div>
                 
                 <div class="rating-wrap mb-3">
-                  <a href="{{url('/merchant/profile')}}">
+                  <a href="{{url('/profile/partner-name')}}">
                     <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
                   </a>
                 </div> <!-- rating-wrap.// -->
