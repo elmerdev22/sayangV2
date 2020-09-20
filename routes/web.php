@@ -25,6 +25,18 @@ Route::group(['middleware' => ['guest']], function(){
     });
 });
 
+// VERIFICATION CHECK
+Route::group(['middleware' => ['auth', 'verification.check']], function(){
+    Route::group(['prefix' => 'verification-check', 'as' => 'verification-check.', 'namespace' => 'Auth'], function () {
+        $c = 'VerificationCheckController';
+        
+        Route::get('/', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+    });
+});
+
 // USER or BUYER GROUP
 Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], function(){
     Route::group(['prefix' => 'user', 'as' => 'front-end.user.', 'namespace' => 'FrontEnd\User'], function () {
@@ -37,18 +49,34 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
 		    ]);
-        });
+        });        
+    });
+});
 
-        // Verification Check
-        Route::group(['prefix' => 'verification-check', 'as' => 'verification-check.'], function (){
-			$c = 'VerificationCheckController';
+// MERCHANT OR PARTNER GROUP
+Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], function(){
+    Route::group(['prefix' => 'partner', 'as' => 'front-end.partner.', 'namespace' => 'FrontEnd\Partner'], function () {
+        
+        // Account Activation
+        Route::group(['prefix' => 'account-activation', 'as' => 'account-activation.'], function (){
+			$c = 'AccountActivationController';
 			
 			Route::get('/', [
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
 		    ]);
         });
-        
+
+        // My Account
+        Route::group(['prefix' => 'my-account', 'as' => 'my-account.'], function (){
+			$c = 'MyAccountController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+		    ]);
+        });
+
     });
 });
 
