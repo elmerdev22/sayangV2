@@ -31,5 +31,6 @@ class RegisterMerchant extends Component
         $messages = [];
         $this->validate($rules, $messages);
 
+        
     }
 }
