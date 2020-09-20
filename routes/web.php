@@ -9,6 +9,11 @@ Route::get('/account/complete-details', function () {
     return view('front-end.account.merchant.index');
 });
 
+// Merchant profile view
+Route::get('/merchant/profile', function () {
+    return view('front-end.account.merchant.profile');
+});
+
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/register/merchant', function () {
