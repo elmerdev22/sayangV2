@@ -1,7 +1,7 @@
 <div class="list-group panel">
     @php $is_account_activated = false; @endphp
     @if(!$is_account_activated)
-        <a href="#" class="list-group-item active" data-parent="#MainMenu">
+        <a href="#" class="list-group-item {{\Request::is('partner/account-activation') ? 'active':''}}" data-parent="#MainMenu">
             <span class="fas fa-lock"></span> Activate your account  
         </a>
     @else
@@ -28,7 +28,7 @@
     <a href="#" class="list-group-item" data-parent="#MainMenu">
         <span class="fas fa-money-bill"></span> Payments and receipts 
     </a>
-    <a href="#" class="list-group-item" data-parent="#MainMenu">
+    <a href="{{url('/partner/qr-code')}}" class="list-group-item {{\Request::is('/partner/qr-code') ? 'active' : ''}}" data-parent="#MainMenu">
         <span class="fas fa-qrcode"></span> Scan QR CODE 
     </a>
 </div>
