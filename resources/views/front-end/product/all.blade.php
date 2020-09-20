@@ -220,7 +220,9 @@
                 </div>
                 
                 <div class="rating-wrap mb-3">
-                  <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
+                  <a href="{{url('/merchant/profile')}}">
+                    <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
+                  </a>
                 </div> <!-- rating-wrap.// -->
                 
                 <p> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam... </p>
