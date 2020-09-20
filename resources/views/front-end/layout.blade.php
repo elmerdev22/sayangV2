@@ -82,16 +82,23 @@
 
         <div class="content-wrapper content-wrapper-front-end">
           @yield('page_header')
+          @php 
+            $page_without_main_content = ['', '/'];
+          @endphp        
+          @if(in_array(\Request::segment(1), $page_without_main_content))
+            @yield('content')
+          @else
+            <!-- Main content -->
+            <div class="content">
+              <div class="container">
+                <div class="section-content padding-y">
+                  @yield('content')
+                </div>
+              </div><!-- /.container -->
+            </div>
+            <!-- /.content -->
+          @endif
           
-          <!-- Main content -->
-          <div class="content">
-            <div class="container">
-              <div class="section-content padding-y">
-                @yield('content')
-              </div>
-            </div><!-- /.container -->
-          </div>
-          <!-- /.content -->
         </div>
 
         <footer class="pt-5 bg-light">
