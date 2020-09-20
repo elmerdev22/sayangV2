@@ -22,7 +22,7 @@ class LoginRedirectController extends Controller
             }else if($user->type == 'user'){
                 return redirect(route('front-end.user.my-account.index'));
             }else if($user->type == 'partner'){
-                dd('redirect to partner & merchant dashboard');
+                return redirect(route('front-end.partner.my-account.index'));
             }else{
                 return redirect('/');
             }

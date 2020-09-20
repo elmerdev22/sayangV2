@@ -23,15 +23,6 @@
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
         </div>
-        
-        <div class="form-group">
-            <label>Contact no.</label>
-            <input type="text" class="form-control @error('contact_no') is-invalid @enderror" wire:model="contact_no" id="contact_no">
-            @error('contact_no') 
-                <span class="invalid-feedback">{{$message}}</span>
-            @enderror
-        </div>
-
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Create password</label>

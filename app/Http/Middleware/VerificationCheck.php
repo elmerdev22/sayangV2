@@ -22,12 +22,8 @@ class VerificationCheck
             
             if($user->type == 'user' || $user->type == 'partner'){
                 if(!$user->verified_at){
-                    if($user->type == 'user'){
-                        if(Request::segment(2) != 'verification-check'){
-                            return redirect(route('front-end.user.verification-check.index'));
-                        }
-                    }else{
-                        dd('merchant verification');
+                    if(Request::segment(1) != 'verification-check'){
+                        return redirect(route('verification-check.index'));
                     }
                 }
             }

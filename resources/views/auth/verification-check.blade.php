@@ -5,7 +5,7 @@
         $page_header = [
             'title'       => 'Verification',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Verification Check'],
+                ['url' => '', 'label' => 'Verification'],
             ],
         ];
     @endphp
@@ -17,7 +17,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                @livewire('front-end.user.verification')
+                @livewire('auth.verification-check')
             </div>
             <!-- /.login-card-body -->
         </div>

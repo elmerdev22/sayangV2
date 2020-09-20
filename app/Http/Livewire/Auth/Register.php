@@ -13,7 +13,7 @@ use DB;
 
 class Register extends Component
 {
-    public $first_name, $last_name, $email, $contact_no, $password, $confirm_password, $agree=true;
+    public $first_name, $last_name, $email, $contact_no, $password, $confirm_password, $agree=false;
 
     public function render(){
         return view('livewire.auth.register');

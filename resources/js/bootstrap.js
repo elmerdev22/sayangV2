@@ -26,6 +26,8 @@ window.inputmask = require('inputmask');
 
 require('overlayscrollbars');
 require('sweetalert2');
+window.Stepper = require('bs-stepper');
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

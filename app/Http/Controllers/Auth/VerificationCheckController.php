@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FrontEnd\User;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,8 +10,8 @@ class VerificationCheckController extends Controller
 {
     public function index(){
         if(Auth::user()->verified_at){
-            return redirect(route('front-end.user.my-account.index'));
+            return redirect(route('login-redirect.index'));
         }
-        return view('front-end.user.verification-check.index');
+        return view('auth.verification-check');
     }
 }
