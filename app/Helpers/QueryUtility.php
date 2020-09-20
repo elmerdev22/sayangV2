@@ -1,14 +1,6 @@
 <?php
 namespace App\Helpers;
 
-use App\Model\City;
-use App\Model\Notification;
-use App\Model\RegionProvince;
-use App\Model\User;
-use App\Model\UserAccount;
-use App\Model\UserAdmin;
-use App\Model\UserAdminRole;
-use App\Model\UserAdminRoleType;
 use DB;
 
 class QueryUtility{
@@ -66,7 +58,8 @@ class QueryUtility{
 			$select = '*';
 		}
 
-		$data = RegionProvince::select($select);
+		$data = DB::table('region_provinces')
+				->select($select);
 
 		$filtered = self::where($filter, $data);
 		if($filtered){
@@ -93,7 +86,8 @@ class QueryUtility{
 			$select = '*';
 		}
 
-		$data = City::select($select)
+		$data = DB::table('cities')
+			->select($select)
 			->join('region_provinces', 'region_provinces.id', '=', 'cities.region_province_id');
 
 		$filtered = self::where($filter, $data);
