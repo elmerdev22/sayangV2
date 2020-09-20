@@ -66,7 +66,7 @@
                             </div>
                             <div class="row">
                                 
-                                <div class="col-sm-6"><h4>Bank Details</h4></div>
+                                <div class="col-sm-6"><h4>Business Details</h4></div>
                                 <div class="col-sm-6"><p class="text-right">Please complete all fields <span class="fas fa-info-circle"></span></p></div>
 
                             </div>
@@ -235,7 +235,7 @@
                                     <label for="disagree">Disagree and cancel application</label><br>
                                 </div>
                                 <button class="btn btn-warning" onclick="stepper1.previous()"><span class="fas fa-chevron-left"></span> Previous</button>
-                                <button type="submit" class="btn btn-warning text-white float-right" onclick="stepper1.next()">Next <span class="fas fa-chevron-right"></span></button>
+                                <button type="submit" class="btn btn-warning text-white float-right" onclick="stepper1.next()">Proceed <span class="fas fa-chevron-right"></span></button>
 
                                 </div>
                             </div>
