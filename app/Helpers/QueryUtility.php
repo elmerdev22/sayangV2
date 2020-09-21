@@ -49,8 +49,8 @@ class QueryUtility{
 		}else{
 			return false;
 		}
-    }
-    
+	}
+
     public static function region_provinces(array $filter = []){
 		if(isset($filter['select'])){
 			$select = $filter['select'];
@@ -93,6 +93,48 @@ class QueryUtility{
 		$filtered = self::where($filter, $data);
 		if($filtered){
 			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
+
+	public static function user_accounts(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+		$data = DB::table('user_accounts')
+			->select($select)
+			->join('users', 'users.id', '=', 'user_accounts.user_id')
+			->leftjoin('cities', 'cities.id', '=', 'user_accounts.city_id');
+	
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+		if(isset($filter['search'])){
+			$data->orWhere('user_accounts.first_name','like',"%{$filter['search']}%");
+			$data->orWhere('user_accounts.last_name','like',"%{$filter['search']}%");
+			$data->orWhere('user_accounts.middle_name','like',"%{$filter['search']}%");
+			$data->orWhere('users.email','like',"%{$filter['search']}%");
+			$data->orWhere('users.name','like',"%{$filter['search']}%");
+			$data->orWhere('users.type','like',"%{$filter['search']}%");
 		}
 
 		$filtered = self::date_range($filter, $data);
