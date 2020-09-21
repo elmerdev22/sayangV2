@@ -27,6 +27,7 @@ class CreatePartnersTable extends Migration
             $table->string('tin');
             $table->string('dti_certificate_file')->nullable();
             $table->string('dti_certificate_file_name')->nullable();
+            $table->boolean('is_posted')->default(true);
             $table->string('slug')->unique();
             $table->string('key_token')->unique();
             $table->timestamps();
