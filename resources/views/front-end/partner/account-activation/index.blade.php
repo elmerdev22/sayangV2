@@ -80,7 +80,7 @@
                                         <div class="row">
                                         <div class="col-lg-4">
                                             <label for="business-name">Business Address*</label>
-                                            <input type="text" class="form-control" id="business-name" placeholder="Enter Business name">
+                                            <input type="text" class="form-control" id="business-name" placeholder="Business Address">
                                         </div>
                                         <div class="col-lg-4">
                                             <label for="city">City* </label>
