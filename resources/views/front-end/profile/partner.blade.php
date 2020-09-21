@@ -23,36 +23,48 @@
     <section class="content">
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
 
             <!-- Profile Image -->
-            <div class="card card-warning card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User profile picture">
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header">
+                <div class="widget-user-image">
+                  <img class="img-circle elevation-2" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
                 </div>
-
-                <p class="text-center">Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Active Product</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                </ul>
-
-                <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
+                <!-- /.widget-user-image -->
+                <h4 class="widget-user-username">Nadia Carmichael</h4>
+                <h6 class="widget-user-desc">Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</h6>
               </div>
-              <!-- /.card-body -->
+              <div class="card-footer p-0 bg-white">
+                <ul class="nav flex-column">
+                  <li class="nav-item border-top">
+                    <a href="#" class="nav-link">
+                      Ratings <span class="float-right"><span class="fas fa-star text-warning"></span> 4.5</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      Active Products <span class="float-right badge bg-success">5</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      Followers <span class="float-right badge bg-danger">842</span>
+                    </a>
+                  </li>
+                  <li class="nav-item p-2">
+                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
+                  </li>
+                  
+                </ul>
+              </div>
             </div>
-            <!-- /.card -->
 
             <!-- About Me Box -->
-            <div class="card card-warning">
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title text-white">About</h3>
+                <h3 class="card-title">About</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -74,7 +86,7 @@
             <!-- /.card -->
           </div>
           <!-- /.col -->
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
