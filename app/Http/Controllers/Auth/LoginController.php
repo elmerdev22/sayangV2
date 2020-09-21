@@ -60,6 +60,7 @@ class LoginController extends Controller
     {
         if(Session::has('login_socialite_type')){
             $user_type = Session::get('login_socialite_type');
+            Session::forget('login_socialite_type');
         }else{
             Session::flash('login_provider_alert', 'An error occured.');
             return redirect(route('login'))->send();
