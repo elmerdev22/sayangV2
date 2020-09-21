@@ -62,6 +62,8 @@
       <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
       <!-- Animate js -->
       <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
+       <!-- Admin lte -->
+     <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
       <!-- AOS script-->
       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
       <script src="https://js.pusher.com/7.0/pusher.min.js"></script>

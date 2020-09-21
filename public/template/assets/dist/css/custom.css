@@ -466,11 +466,12 @@ input:checked + .slider:before {
   background-color: #FFDE59;
 }
 
-.app-container{
-  @include media-breakpoint-up(lg) { 
+@media all {
+  .app-container{
     max-width: 1610px; 
   }
 }
+
 .table-custom td, .table-custom th{
   padding: 5px;
   vertical-align: middle;
