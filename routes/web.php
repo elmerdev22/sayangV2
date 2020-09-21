@@ -95,7 +95,8 @@ Route::group(['prefix' => 'admin'], function (){
         
             Route::get('/catalog', [
                 'as' 	=> 'admin.cms.catalog',
-                'uses'  => $c.'@catalog'
+                'uses'  => $c.'@catalog',
+                'name'  => 'Catalog'
             ]);
             
         });

@@ -17,7 +17,7 @@ class AdminController extends Controller
         return view('admin.views.accounts.account');
     }
     public function catalog() {
-        return view('admin.views.catalog');
+        return view('admin.views.products.catalog');
     }
     public function profile($key_token) {
         $filter['where']['user_accounts.key_token'] = $key_token;

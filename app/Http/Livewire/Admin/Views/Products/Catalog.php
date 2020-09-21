@@ -1,20 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Views\Accounts;
+namespace App\Http\Livewire\Admin\Views\Products;
 
 use Livewire\Component;
-use Livewire\WithPagination;
-use App\User;
-use QueryUtility;
-use Route;
-class Accounts extends Component
+
+class Catalog extends Component
 {
-    use WithPagination;
-
-    public $search;
-    public $paginate = 10;
-    public function user(){
-
+    public $input_category;
+    public function add_category(){
         if(Route::is('admin.cms.partner')){
             $filter['select'] = [
                 'user_accounts.first_name',
@@ -48,9 +41,6 @@ class Accounts extends Component
     }
     public function render()
     {
-        $user = $this->user();
-        return view('livewire.admin.views.accounts.accounts',compact('user'));
+        return view('livewire.admin.views.products.catalog');
     }
-    
-   
 }
