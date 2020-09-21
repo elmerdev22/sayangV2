@@ -465,3 +465,16 @@
   .active .bs-stepper-circle{
     background-color: $warning;
   }
+
+  .app-container{
+    @include media-breakpoint-up(lg) { 
+      max-width: 1610px; 
+    }
+  }
+  .table-custom td, .table-custom th{
+    padding: 5px;
+    vertical-align: middle;
+  }
+  .pagination{
+    justify-content: flex-end !important;
+  }
