@@ -3,11 +3,13 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Mail\VerificationCheck as MailVerificationCheck;
 use App\Model\Partner;
 use App\Model\User;
 use App\Model\UserAccount;
 use Carbon\Carbon;
 use Schema;
+use Mail;
 use Auth;
 use DB;
 
@@ -179,5 +181,36 @@ class Utility{
         }
     }
 
+    public static function generate_verification_expiration(int $minutes = 5){
+        $time = ($minutes * 60) + time();
+        return date('Y-m-d H:i:s', $time);
+    }
+
+    public static function is_date_time_expired($date_to, $current=null){
+        if(!$current){
+            $current = time();
+        }else{
+            $current = strtotime($current);
+        }
+
+        $date_to = strtotime($date_to);
+
+        if($current < $date_to){
+            return $date_to - $current;
+        }else{
+            return true;
+        }
+    }
+
+    public static function mail_verification_code($user){
+        $details = ['verification_code' => $user->verification_code];
+
+        Mail::to($user->email)->send(new MailVerificationCheck($details));
+        if(Mail::failures()){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
 }
