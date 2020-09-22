@@ -23,10 +23,10 @@ window.axios     = require('axios');
 window.AOS       = require("aos");
 window.toastr    = require('toastr');
 window.inputmask = require('inputmask');
+window.Swal      = require('sweetalert2');
 require('admin-lte/plugins/datatables/jquery.dataTables.js');
 require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js');
 require('overlayscrollbars');
-require('sweetalert2');
 window.Stepper = require('bs-stepper');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

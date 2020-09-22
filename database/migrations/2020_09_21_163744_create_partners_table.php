@@ -20,14 +20,15 @@ class CreatePartnersTable extends Migration
             $table->string('partner_no')->unique();
             $table->string('name');
             $table->string('address');
-            $table->string('map_address_link');
+            $table->string('map_address_link', 500);
             $table->string('contact_no', 11);
             $table->string('email');
             $table->string('dti_registration_no');
             $table->string('tin');
             $table->string('dti_certificate_file')->nullable();
-            $table->string('dti_certificate_file_name')->nullable();
+            $table->string('dti_certificate_file_name', 500)->nullable();
             $table->boolean('is_posted')->default(true);
+            $table->boolean('is_activated')->default(false);
             $table->string('slug')->unique();
             $table->string('key_token')->unique();
             $table->timestamps();
