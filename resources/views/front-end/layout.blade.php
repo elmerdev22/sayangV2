@@ -134,7 +134,7 @@
   @endif
 
 
-  <script>
+  <script type="text/javascript">
     AOS.init();
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
@@ -153,6 +153,25 @@
       "newestOnTop": true,
       "progressBar": true,
     }
+
+    window.livewire.on('alert', param => {
+      var config = {
+        position  : 'center',
+      };
+
+      if('title' in param)
+        config['title'] = param['title'];
+      if('type' in param)
+        config['icon'] = param['type'];
+      if('message' in param)
+        config['html'] = param['message'];
+      if('showConfirmButton' in param)
+        config['showConfirmButton'] = param['showConfirmButton'];
+      if('timer' in param)
+        config['timer'] = param['timer'];
+
+      Swal.fire(config);
+    });
     
   </script>
 

@@ -148,6 +148,42 @@ class QueryUtility{
 		}
 
 		return $data;
-    }
+	}
+	
+	public static function partners(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+
+		$data = DB::table('partners')
+			->select($select)
+			->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
+			->leftjoin('cities', 'cities.id', '=', 'partners.city_id')
+			->leftjoin('region_provinces', 'region_provinces.id', '=', 'cities.region_province_id');
+	
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
 
 }
