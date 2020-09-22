@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-md-2 offset-md-10 mb-2">
+        <div class="col-md-3 offset-md-9 mb-2">
             <div class="row">
                 <div class="col-4">
                     <select class="form-control" wire:model='paginate' wire:keypress='transaction'>

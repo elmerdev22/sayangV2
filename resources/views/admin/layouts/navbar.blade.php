@@ -10,10 +10,9 @@
           <i class="fas fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarVersionDropdown">
-        <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="#">Logout</a>
-          
         </div>
       </li>
     </ul>
