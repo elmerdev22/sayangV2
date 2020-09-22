@@ -104,6 +104,10 @@
         $(document).on('click', '.bs-stepper-previous', function () {
             stepper1.previous();
         });
+
+        @if($step_to)
+            stepper1.to({{$step_to}});
+        @endif
     });
 </script>
 @endsection
