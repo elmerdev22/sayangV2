@@ -172,6 +172,26 @@
 
       Swal.fire(config);
     });
+
+    window.livewire.on('alert_link', param => {
+      Swal.fire({
+          position         : 'center',
+          icon             : param['type'],
+          html             : param['message'],
+          title            : param['title'],
+          showConfirmButton: true,
+          allowOutsideClick: false,
+      }).then((result) => {
+          if(result.value){
+            if('redirect' in param){
+              window.location = param['redirect'];                       
+            }else{
+              window.location.reload();                       
+            }
+          }
+      });
+    });
+    
     
   </script>
 
