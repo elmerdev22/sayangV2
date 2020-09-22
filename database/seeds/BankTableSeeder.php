@@ -25,7 +25,6 @@ class BankTableSeeder extends Seeder
             'Citi Bank',
             'East West Bank',
             'GCash',
-            'Grab Pay',
             'Land bank of the Philippines (Landbank)',
             'Maybank Philippines',
             'Metropolitan Bank and Trust Company (Metrobank)',

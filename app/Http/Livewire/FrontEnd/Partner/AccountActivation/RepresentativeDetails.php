@@ -78,7 +78,7 @@ class RepresentativeDetails extends Component
             }
         }
 
-        $messages  = ['url.regex' => 'Invalid Link'];
+        $messages  = [];
         $requests  = Utility::component_request($rules, $this);
         $validator = Validator::make($requests, $rules, $messages);
         
