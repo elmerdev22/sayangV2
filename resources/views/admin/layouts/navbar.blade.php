@@ -9,7 +9,7 @@
         <a class="nav-link rounded dropdown-toggle" href="#" id="navbarVersionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>
         </a>
-        <div class="dropdown-menu py-0" aria-labelledby="navbarVersionDropdown">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarVersionDropdown">
         <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="#">Logout</a>

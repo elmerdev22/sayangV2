@@ -7,43 +7,49 @@ use Livewire\WithPagination;
 use App\User;
 use QueryUtility;
 use Route;
+use Session;
 class Accounts extends Component
 {
     use WithPagination;
-
     public $search;
+    public $type;
     public $paginate = 10;
+    public function mount($type){
+        $this->type = $type;
+    }
     public function user(){
+        
+        if($this->type === 'partner'){
+            $filter['select'] = [
+                'user_accounts.first_name',
+                'user_accounts.last_name',
+                'user_accounts.key_token',
+                'user_accounts.created_at',
+                'users.verified_at',
+                'users.email',
+            ];
+        }
 
-        if(Route::is('admin.cms.partner')){
+        if($this->type === 'user'){
             $filter['select'] = [
                 'user_accounts.first_name',
                 'user_accounts.last_name',
                 'user_accounts.key_token',
                 'user_accounts.created_at',
                 'users.verified_at',
+                'users.type',
                 'users.email',
             ];
-            $filter['where']['type'] = 'partner';
         }
-        if(Route::is('admin.cms.user')){
-            $filter['select'] = [
-                'user_accounts.first_name',
-                'user_accounts.last_name',
-                'user_accounts.key_token',
-                'user_accounts.created_at',
-                'users.verified_at',
-                'users.email',
-            ];
-            $filter['where']['type'] = 'user';
-        }
-        $user = QueryUtility::user_accounts($filter);
+        
+        $filter['where']['users.type'] = $this->type;
+
         if($this->search){
             $filter['search'] = $this->search;
-            $user = QueryUtility::user_accounts($filter);
         }
-       
-        $user = $user->paginate($this->paginate);
+
+        $user = QueryUtility::user_accounts($filter)->paginate($this->paginate);
+
         return $user;
     }
     public function render()

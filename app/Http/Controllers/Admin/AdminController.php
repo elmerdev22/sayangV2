@@ -11,15 +11,16 @@ class AdminController extends Controller
         return view('admin.views.dashboard');
     }
     public function user() {
-        return view('admin.views.accounts.account');
+        return view('admin.views.accounts.account',['type' => 'user']);
     }
     public function partner() {
-        return view('admin.views.accounts.account');
+        return view('admin.views.accounts.account',['type' => 'partner']);
     }
     public function catalog() {
         return view('admin.views.products.catalog');
     }
-    public function profile($key_token) {
+    public function profile($type,$key_token) {
+        $partner = [];
         $filter['where']['user_accounts.key_token'] = $key_token;
         $filter['select'] = [
             'user_accounts.first_name',
@@ -40,7 +41,28 @@ class AdminController extends Controller
             'users.verification_type',
             'users.verified_at',
         ];
+        if($type ==='partner'){
+            $partner = [
+                'partner_city.name as partner_city',
+                'partners.partner_no',
+                'partners.name as partner_name',
+                'partners.address as partner_address',
+                'partners.map_address_link as partner_map_address_link',
+                'partners.contact_no as partner_contact_no',
+                'partners.email as partner_email',
+                'partners.dti_registration_no',
+                'partners.tin',
+                'partners.dti_certificate_file',
+                'partners.dti_certificate_file_name',
+                'partners.is_posted',
+                'partners.key_token as partner_key_token',
+                'partners.created_at as partner_created_at',
+            ];
+            $filter['select'] = array_merge($filter['select'],$partner);
+        }
+     
         $user = QueryUtility::user_accounts($filter)->first();
-        return view('admin.views.accounts.profile',compact('user'));
+        
+        return view('admin.views.accounts.profile',compact('user','type'));
     }
 }

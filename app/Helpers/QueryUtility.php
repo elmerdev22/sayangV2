@@ -117,24 +117,31 @@ class QueryUtility{
 		$data = DB::table('user_accounts')
 			->select($select)
 			->join('users', 'users.id', '=', 'user_accounts.user_id')
-			->leftjoin('cities', 'cities.id', '=', 'user_accounts.city_id');
+			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id')
+			->leftjoin('cities', 'cities.id', '=', 'user_accounts.city_id')
+			->leftjoin('cities as partner_city', 'partner_city.id', '=', 'partners.city_id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){
 			$data = $filtered;
 		}
+		if(isset($filter['search'])){
+			$search = trim($filter['search']);
+			$search = explode(' ',$search);
+			$data = $data->where(function($query) use ($search) {
+				foreach($search as $value){
+					$query->orWhere('user_accounts.first_name','like',"%{$value}%")
+						->orWhere('user_accounts.last_name','like',"%{$value}%")
+						->orWhere('user_accounts.middle_name','like',"%{$value}%")
+						->orWhere('users.email','like',"%{$value}%")
+						->orWhere('users.name','like',"%{$value}%");
+				}
+            });
+		}
 
 		$filtered = self::where_in($filter, $data);
 		if($filtered){
 			$data = $filtered;
-		}
-		if(isset($filter['search'])){
-			$data->orWhere('user_accounts.first_name','like',"%{$filter['search']}%");
-			$data->orWhere('user_accounts.last_name','like',"%{$filter['search']}%");
-			$data->orWhere('user_accounts.middle_name','like',"%{$filter['search']}%");
-			$data->orWhere('users.email','like',"%{$filter['search']}%");
-			$data->orWhere('users.name','like',"%{$filter['search']}%");
-			$data->orWhere('users.type','like',"%{$filter['search']}%");
 		}
 
 		$filtered = self::date_range($filter, $data);

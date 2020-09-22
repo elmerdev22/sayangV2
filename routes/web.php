@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin'], function (){
                 'alter' => 'Merchant'
             ]);
             
-            Route::get('/partner/profile/{key_token}', [
+            Route::get('/partner/profile/{type}/{key_token}', [
                 'as' 	=> 'admin.cms.partner.profile',
                 'uses'  => $c.'@profile',
                 'name'  => 'Partner',
@@ -81,13 +81,12 @@ Route::group(['prefix' => 'admin'], function (){
                 'alter' => 'Buyer'
             ]);
 
-            Route::get('/user/profile/{key_token}', [
+            Route::get('/user/profile/{type}/{key_token}', [
                 'as' 	=> 'admin.cms.user.profile',
                 'uses'  => $c.'@profile',
                 'name'  => 'User',
                 'alter' => 'Buyer'
             ]);
-
     
         });
     

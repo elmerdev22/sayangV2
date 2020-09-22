@@ -8,6 +8,6 @@
 @endsection
 @section('view')
   <div class="container app-container">
-    @livewire('admin.views.accounts.accounts')
+    @livewire('admin.views.accounts.accounts',['type' => $type])
   </div>
 @endsection

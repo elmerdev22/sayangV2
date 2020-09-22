@@ -35,18 +35,18 @@
                     </span>
                   </a>
               </li>
+                <button class="btn btn-danger rounded">Block User</button>
             </ul>
             </div>
           </div>
         </div>
         <div class="col-md-9">
           <div class="card card-warning card-outline">
-            <div class="card-header">
-              <h4 class="text-center">Transaction History</h4>
-            </div>
-            <div class="card-body">
-              @livewire('admin.views.accounts.profile',['key_token' => $user->key_token])
-            </div>
+            @if($type == 'user')
+              @include('admin.views.accounts.components.user.transaction_history')
+            @else
+              @include('admin.views.accounts.components.partner.shop_info')
+            @endif
           </div>
         </div>
       </div>

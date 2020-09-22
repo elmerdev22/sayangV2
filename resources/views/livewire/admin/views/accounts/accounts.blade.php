@@ -2,7 +2,7 @@
     <div class="card card-warning card-outline">
         <div class="card-body">
            <div class="row">
-                <div class="col-md-2 offset-md-10 mb-2">
+                <div class="col-md-3 offset-md-9 mb-2">
                     <div class="row">
                         <div class="col-4">
                             <select class="form-control" wire:model='paginate' wire:keypress='user'>
@@ -43,7 +43,7 @@
                                             <td><span class='badge @if($data->verified_at) badge-success @else badge-danger @endif'>{{isset($data->verified_at) ? __('Verified At').' '.date('m-d-Y',strtotime($data->verified_at)) : __('Not Yet Verified')}}</span></td>
                                             <td>{{date('m-d-Y',strtotime($data->created_at))}}</td>
                                             <td class="text-center">
-                                                <a class="btn btn-outline-secondary rounded-circle" type="button" href="{{route('admin.cms.user.profile', ['key_token' => $data->key_token])}}">
+                                                <a class="btn btn-outline-secondary rounded-circle" type="button" href="{{route('admin.cms.'.$type.'.profile', ['key_token' => $data->key_token,'type' => $type])}}">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             </td>
