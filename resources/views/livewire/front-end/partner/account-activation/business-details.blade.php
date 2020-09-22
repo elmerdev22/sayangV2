@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form wire:submit.prevent="update">
+            <form class="business-details-form" wire:submit.prevent="update">
                 <div class="form-group">
                     <label for="business_name">Business name*</label>
                     <input type="text" class="form-control" id="business_name" wire:model.lazy="business_name" placeholder="Enter Business name">
@@ -85,11 +85,11 @@
 
 @push('scripts')
 <script type="text/javascript">
-    window.livewire.on('input_errors', param => {
-        $('.form-control').each(function () {
+    window.livewire.on('business_details_input_errors', param => {
+        $('.business-details-form .form-control').each(function () {
             $(this).removeClass('is-invalid');
         });
-        $('.invalid-feedback').each(function () {
+        $('.business-details-form .invalid-feedback').each(function () {
             $(this).remove();
         });
 

@@ -100,6 +100,10 @@
                 stepperForm.next();
             });
         });
+
+        $(document).on('click', '.bs-stepper-previous', function () {
+            stepper1.previous();
+        });
     });
 </script>
 @endsection

@@ -95,17 +95,15 @@ class BusinessDetails extends Component
                 $rules['dti_certificate_file'] = 'required|mimes:jpeg,jpg,png,gif,docx,pdf,dot,doc,docm|max:2048';
             }
         }
-        
 
         $messages  = ['url.regex' => 'Invalid Link'];
         $requests  = Utility::component_request($rules, $this);
         $validator = Validator::make($requests, $rules, $messages);
         
         if($validator->fails()){
-            $this->emit('input_errors', $validator->errors());
+            $this->emit('business_details_input_errors', $validator->errors());
             return false;
         }
-
         
         $response = ['success' => false, 'message' => ''];
         DB::beginTransaction();
