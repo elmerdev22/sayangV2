@@ -3,6 +3,7 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Model\Partner;
 use App\Model\User;
 use App\Model\UserAccount;
 use Carbon\Carbon;
@@ -29,6 +30,24 @@ class Utility{
         return substr(bin2hex($bytes), 0, $len);
     }
 
+    public static function generate_file_name($model_string, $key){
+        do{
+            $continue     = true;
+            $token        = self::generate_unique_token(10);
+            
+            $model_string = 'App\\Model\\'.ucfirst($model_string);
+            $model        = new $model_string();
+            $check        = $model::where($key, 'like', "%{$token}%")->count();
+
+            if($check == 0){
+                $continue = false;
+            }
+
+        }while($continue);
+        
+        return $token;
+    }
+    
     public static function generate_table_token($model_string, $key='key_token'){
         do{
             $continue     = true;
@@ -124,6 +143,19 @@ class Utility{
 
         return $username;
     }
+
+    public static function generate_partner_no(){
+        do{
+            $continue     = true;
+            $generated_id = date('ym').rand(1000,9999);
+            $check        = Partner::where('partner_no', $generated_id)->count();
+            if($check == 0){
+                $continue = false;
+            }
+        }while($continue);
+
+        return $generated_id;
+    }
     
     public static function component_request($rules, $var){
         $response = [];
@@ -133,6 +165,18 @@ class Utility{
         }
 
         return $response;
+    }
+
+    public static function auth_user_account(){
+        if(Auth::check()){
+            if(Auth::user()->type != 'admin'){
+                return UserAccount::where('user_id', Auth::user()->id)->first();
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
 
     
