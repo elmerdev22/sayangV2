@@ -12,7 +12,10 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarVersionDropdown">
           <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Change Password</a>
-          <a class="dropdown-item" href="#">Logout</a>
+          <form class="logout" action="{{route('logout')}}" method="post">
+            @csrf
+            <a class="dropdown-item btn-logout" type="submit">Logout</a>        
+          </form>
         </div>
       </li>
     </ul>

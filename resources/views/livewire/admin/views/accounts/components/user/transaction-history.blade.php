@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row small">
         <div class="col-12 mb-2">
             <div class="row">
                 <div class="col-sm-5 col-md-5 col-3">
@@ -53,7 +53,7 @@
                                     <td>data 4</td>
                                     <td>data 5</td>
                                     <td class="text-center">
-                                        <a class="btn btn-success" type="button" href="#">
+                                        <a class="btn btn-success btn-sm" type="button" href="#">
                                             View
                                         </a>
                                     </td>

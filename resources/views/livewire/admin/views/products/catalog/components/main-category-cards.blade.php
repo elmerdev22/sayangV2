@@ -1,16 +1,24 @@
 <div class="row">
     @foreach($main_categories as $data)
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-header" data-toggle="collapse" href="#{{$data->name}}" role="button" aria-expanded="false" aria-controls="{{$data->name}}">
-                        <h6 class="font-weight-bold ">{{$data->name}}<i class="fa fa-chevron-down float-right pt-1"></i></h6> 
-                </div>
-                <div class="collapse" id="{{$data->name}}">
-                    <div class="card-body">
+            <div class="card card-outline-side collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">{{$data->name}}</h3>
 
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                        </button>
                     </div>
+                    <!-- /.card-tools -->
                 </div>
+                <!-- /.card-header -->
+                <div class="card-body" style="display: none;">
+                    The body of the card
+                </div>
+                <!-- /.card-body -->
             </div>
         </div>
     @endforeach 
 </div>
+
+
