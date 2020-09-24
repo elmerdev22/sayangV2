@@ -32,10 +32,12 @@ Route::group(['middleware' => ['auth', 'verification.check']], function(){
         ]);
     });
 });
-Route::group(['prefix' => 'admin'], function (){
 
-    Route::get('/login', function () {
-        return view('admin.auth.login');
+Route::group(['prefix' => 'admin'], function (){
+    Route::group(['middleware' => ['guest']], function(){
+        Route::get('/login', function () {
+            return view('admin.auth.login');
+        });
     });
     
     Route::group(['middleware' => ['auth.admin']], function (){

@@ -19,16 +19,16 @@
                 <p class="text-muted text-sm"><b>Email: </b> {{$user->email}} </p>
                 <p class="text-muted text-sm"><b>Gender: </b> {{$user->gender}} </p>
                 <p class="text-muted text-sm"><b>Birthday: </b> {{$user->birth_date}} </p>
-                <p class="text-muted text-sm"><b>Account Status: </b> 
+                <p class="text-muted text-sm"><b>Verification Status: </b> 
                   <span class="badge @if($user->verified_at) badge-success @else badge-danger @endif">
                     {{isset($user->verified_at) ? 'Verified At'.' '.date('Y-m-d',strtotime($user->verified_at)) : 'Not Yet Verified'}}
                   </span> 
                 </p>
-                
               </div>
               <div class="col-3">
                 <img src="{{$user->photo_provider_link ?? asset('images/default-photo/account.png')}}" alt="" class="img-circle img-fluid">
               </div>
+              @livewire('admin.views.accounts.components.block-user',['id' => $user->user_id,'status' => $user->is_blocked])
             </div>
           </div>
         </div>

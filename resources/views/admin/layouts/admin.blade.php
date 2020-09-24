@@ -88,6 +88,7 @@
         }
     });
   });
+
 </script>
     yield('admin_js')
 @endsection
