@@ -3,7 +3,7 @@
     Admin Login
 @endsection
 @section('content')
-<section class="py-4">
+<section class="login-page">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="login-box">
