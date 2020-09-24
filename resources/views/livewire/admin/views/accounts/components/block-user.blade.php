@@ -1,5 +1,5 @@
 <div class="col-md-12 d-flex justify-content-end">
-    <button class="btn @if($status == 0 ) btn-danger @else btn-success @endif btn-sm" onclick="block({{$status}})">{{($status == 0 ? 'Blocked': 'Unblocked').' User'}}</button>
+    <button class="btn @if($status == 0 ) btn-danger @else btn-success @endif btn-sm" onclick="block({{$status}})">{{($status == 0 ? 'Blocked': 'Unblocked').' Account'}}</button>
 </div>
 @push('scripts')
 <script type="text/javascript">
