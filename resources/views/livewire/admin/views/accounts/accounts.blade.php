@@ -4,7 +4,13 @@
 <div>
     <div class="card">
         <div class="card-header">
-            {{__(ucwords($type.' '.'List'))}}
+            <div class="card-title">
+                {{__(ucwords($type.' '.'List'))}}
+            </div>
+            <div class="card-tools">
+                <!-- Maximize Button -->
+                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+            </div>
         </div>
         <div class="card-body">
            <div class="row">
@@ -61,7 +67,7 @@
                                             <td><span class='badge @if($data->verified_at) badge-success @else badge-danger @endif'>{{isset($data->verified_at) ? __('Verified At').' '.date('m-d-Y',strtotime($data->verified_at)) : __('Not Yet Verified')}}</span></td>
                                             <td>{{date('m-d-Y',strtotime($data->created_at))}}</td>
                                             <td class="text-center">
-                                                <a class="btn btn-success" type="button" href="{{route('admin.cms.accounts.'.$type.'.profile', ['key_token' => $data->key_token,'type' => $type])}}">
+                                                <a class="btn btn-success btn-sm" type="button" href="{{route('admin.cms.accounts.'.$type.'.profile', ['key_token' => $data->key_token,'type' => $type])}}">
                                                     View
                                                 </a>
                                             </td>

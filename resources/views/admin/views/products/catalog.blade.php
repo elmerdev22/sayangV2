@@ -10,9 +10,9 @@
   <div class="container app-container">
     <div class="row">
       <div class="col-md-3">
-        <div class="card">
+        <div class="card card-warning card-outline">
           <div class="card-header">
-            <h4 class="text-center">Add Main Category</h4>
+            <div class="text-center card-title">Add Main Category</div>
           </div>
           <div class="card-body">
               <div class="container">
