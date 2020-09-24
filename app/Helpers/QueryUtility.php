@@ -117,9 +117,7 @@ class QueryUtility{
 		$data = DB::table('user_accounts')
 			->select($select)
 			->join('users', 'users.id', '=', 'user_accounts.user_id')
-			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id')
-			->leftjoin('cities', 'cities.id', '=', 'user_accounts.city_id')
-			->leftjoin('cities as partner_city', 'partner_city.id', '=', 'partners.city_id');
+			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){
@@ -167,8 +165,10 @@ class QueryUtility{
 		$data = DB::table('partners')
 			->select($select)
 			->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
-			->leftjoin('cities', 'cities.id', '=', 'partners.city_id')
-			->leftjoin('region_provinces', 'region_provinces.id', '=', 'cities.region_province_id');
+			->join('philippine_barangays', 'philippine_barangays.id', '=', 'partners.barangay_id')
+			->leftJoin('philippine_cities', 'philippine_cities.id', '=', 'philippine_barangays.city_id')
+			->leftJoin('philippine_provinces', 'philippine_provinces.id', '=', 'philippine_cities.province_id')
+			->leftJoin('philippine_regions', 'philippine_regions.id', '=', 'philippine_provinces.region_id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){

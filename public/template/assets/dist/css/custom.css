@@ -479,3 +479,7 @@ input:checked + .slider:before {
 .pagination{
   justify-content: flex-end !important;
 }
+
+.link-active{
+  color: #FFDE59;
+}

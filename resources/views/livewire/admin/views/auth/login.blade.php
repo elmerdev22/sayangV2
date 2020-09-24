@@ -2,7 +2,7 @@
     <form wire:submit.prevent="authenticate">
         <div class="form-group">
             <div class="input-group">
-                <input type="text" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email">
+                <input type="text" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email" autofocus="true">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
