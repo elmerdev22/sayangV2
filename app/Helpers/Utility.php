@@ -212,5 +212,20 @@ class Utility{
             return true;
         }
     }
+
+    public static function partner_activated(){
+        $account = self::auth_user_account();
+        $partner = Partner::where('user_account_id', $account->id)->first();
+
+        if($partner){
+            if($partner->is_activated){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
     
 }

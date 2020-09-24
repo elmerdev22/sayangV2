@@ -16,7 +16,7 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_account_id')->index();
-            $table->unsignedBigInteger('city_id')->index();
+            $table->unsignedBigInteger('barangay_id')->index();
             $table->string('partner_no')->unique();
             $table->string('name');
             $table->string('address');
@@ -36,8 +36,7 @@ class CreatePartnersTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_account_id')->references('id')->on('user_accounts')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('restrict')->onUpdate('cascade');
-
+            $table->foreign('barangay_id')->references('id')->on('philippine_barangays')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 
@@ -50,7 +49,7 @@ class CreatePartnersTable extends Migration
     {
         Schema::table('partners', function (Blueprint $table){
             $table->dropForeign(['user_account_id']);
-            $table->dropForeign(['city_id']);
+            $table->dropForeign(['barangay_id']);
         });
         Schema::dropIfExists('partners');
     }

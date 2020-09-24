@@ -15,10 +15,7 @@
           
 <div class="row">
     <aside class="col-md-3">
-        <!-- menu -->
-        <div id="MainMenu">
-            @include('front-end.includes.partner.sidebar')
-        </div>
+        @include('front-end.includes.partner.sidebar')
     </aside> <!-- col.// -->
     <main class="col-md-9">
         <div class="card mb-3">
@@ -26,7 +23,28 @@
                 <h5 class="card-title"> My Account</h5> 
             </div>
             <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <p>Christian de Leon</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <p>cmdl.deleon02@gmail.com</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <p>09058054844</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Member Since</label>
+                            <p>September 2020</p>
+                        </div>
+                    </div>
+                </div>
                 
+
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
     </main> <!-- col.// -->

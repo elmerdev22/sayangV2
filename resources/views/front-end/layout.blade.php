@@ -88,7 +88,7 @@
         <div class="content-wrapper content-wrapper-front-end">
           @yield('page_header')
           <!-- Main content -->
-          <div class="content">
+          <div class="content p-0">
             <div class="@if(in_array(\Request::segment(1), $page_fluid)) container-fluid p-0 m-0 @else container @endif">
               <div class="section-content padding-y">
                 @yield('content')

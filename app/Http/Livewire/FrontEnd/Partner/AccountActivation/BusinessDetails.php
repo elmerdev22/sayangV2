@@ -4,10 +4,12 @@ namespace App\Http\Livewire\FrontEnd\Partner\AccountActivation;
 
 use Livewire\WithFileUploads;
 use Livewire\Component;
-use App\Model\RegionProvince;
+use App\Model\PhilippineRegion;
+use App\Model\PhilippineProvince;
+use App\Model\PhilippineCity;
+use App\Model\PhilippineBarangay;
 use App\Rules\MobileNo;
 use App\Model\Partner;
-use App\Model\City;
 use UploadUtility;
 use QueryUtility;
 use Validator;
@@ -19,8 +21,9 @@ class BusinessDetails extends Component
 {
     use WithFileUploads;
 
-    public $business_name, $business_address, $city, $region_province, $map_address_link, $business_contact_no;
+    public $business_name, $business_address, $map_address_link, $business_contact_no;
     public $business_email, $dti_registration_no, $tin, $dti_certificate_file, $old_dti_certificate_file;
+    public $region, $province, $city, $barangay;
     public $account, $is_new=true;
 
     public function mount(){
@@ -29,7 +32,9 @@ class BusinessDetails extends Component
         $filter = [];
         $filter['select'] = [
             'partners.*',
-            'cities.region_province_id'
+            'philippine_cities.id as city_id',
+            'philippine_provinces.id as province_id',
+            'philippine_regions.id as region_id',
         ];
         $filter['where']['partners.user_account_id'] = $this->account->id;
         
@@ -39,8 +44,10 @@ class BusinessDetails extends Component
             $this->is_new                   = false;
             $this->business_name            = $partner->name;
             $this->business_address         = $partner->address;
+            $this->region                   = $partner->region_id;
+            $this->province                 = $partner->province_id;
             $this->city                     = $partner->city_id;
-            $this->region_province          = $partner->region_province_id;
+            $this->barangay                 = $partner->barangay_id;
             $this->map_address_link         = $partner->map_address_link;
             $this->business_contact_no      = $partner->contact_no;
             $this->business_email           = $partner->email;
@@ -51,35 +58,57 @@ class BusinessDetails extends Component
         }
     }
 
-    public function cities($region_province_id){
-        if($region_province_id){
-            return City::where('region_province_id', $region_province_id)->orderBy('name', 'asc')->get();
+    public function barangays($city_id){
+        if($city_id){
+            return PhilippineBarangay::where('city_id', $city_id)->orderBy('name', 'asc')->get();
+        }else{
+            return [];
+        }
+    }
+    
+    public function cities($province_id){
+        if($province_id){
+            return PhilippineCity::where('province_id', $province_id)->orderBy('name', 'asc')->get();
         }else{
             return [];
         }
     }
 
-    public function region_provinces(){
-        return RegionProvince::orderBy('name', 'asc')->get();
+    public function provinces($region_id){
+        if($region_id){
+            return PhilippineProvince::where('region_id', $region_id)->orderBy('name', 'asc')->get();
+        }else{
+            return [];
+        }
+    }
+
+    public function regions(){
+        return PhilippineRegion::orderBy('name', 'asc')->get();
     }
 
     public function render(){
         $component = $this;
-        $cities    = $this->cities($this->region_province);
-        return view('livewire.front-end.partner.account-activation.business-details', compact('component', 'cities'));
+        $regions   = $this->regions();
+        $provinces = $this->provinces($this->region);
+        $cities    = $this->cities($this->province);
+        $barangays = $this->barangays($this->city);
+
+        return view('livewire.front-end.partner.account-activation.business-details', compact('component', 'regions', 'provinces', 'cities', 'barangays'));
     }
 
     public function update(){
         $rules = [
-            'business_name'        => 'required|max:190',
-            'business_address'     => 'required|max:190',
-            'business_contact_no'  => ['required', new MobileNo],
-            'business_email'       => 'required|max:190|email',
-            'region_province'      => 'required|numeric',
-            'city'                 => 'required|numeric',
-            'map_address_link'     => ['required', 'max:500', 'regex:/^((?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)$/'],
-            'dti_registration_no'  => 'required|max:100',
-            'tin'                  => 'required|max:20',
+            'business_name'       => 'required|max:190',
+            'business_address'    => 'required|max:190',
+            'business_contact_no' => ['required', new MobileNo],
+            'business_email'      => 'required|max:190|email',
+            'region'              => 'required|numeric',
+            'province'            => 'required|numeric',
+            'city'                => 'required|numeric',
+            'barangay'            => 'required|numeric',
+            'map_address_link'    => ['required', 'max:500', 'regex:/^((?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)$/'],
+            'dti_registration_no' => 'required|max:100',
+            'tin'                 => 'required|max:20',
         ];
 
         if($this->is_new){
@@ -152,7 +181,7 @@ class BusinessDetails extends Component
             $partner->address             = $this->business_address;
             $partner->contact_no          = $this->business_contact_no;
             $partner->email               = $this->business_email;
-            $partner->city_id             = $this->city;
+            $partner->barangay_id         = $this->barangay;
             $partner->map_address_link    = $this->map_address_link;
             $partner->dti_registration_no = $this->dti_registration_no;
             $partner->tin                 = $this->tin;

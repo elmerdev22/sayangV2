@@ -39,7 +39,6 @@ class AdminController extends Controller
             'user_accounts.barangay',
             'user_accounts.photo_provider_link',
             'user_accounts.key_token',
-            'cities.name as city',
             'users.id as user_id',
             'users.name',
             'users.email',
@@ -49,7 +48,6 @@ class AdminController extends Controller
         ];
         if($type ==='partner'){
             $partner = [
-                'partner_city.name as partner_city',
                 'partners.partner_no',
                 'partners.name as partner_name',
                 'partners.address as partner_address',

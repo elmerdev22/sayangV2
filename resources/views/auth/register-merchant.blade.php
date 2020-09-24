@@ -3,24 +3,22 @@
 @section('css')
 <style type="text/css">
   .content-wrapper-front-end{
-    background: url('{{asset('images/default-photo/be-a-partner.jpg')}}');
+    background: url('{{asset('images/default-photo/be-a-partner.jpg')}}') !important;
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
   }
 </style>
 @endsection
 @section('content')
 <div class="row mt-5 pb-5">
-  <div class="col-md-6">
-    <div class="row justify-content-center">
-      <div class="card">
-        <div class="card-body register-card-body">
-          <h4 class="text-center">Be a Partner</h4>
-          <hr>
-          @livewire('auth.register-merchant')
-        </div>
+  <div class="col-md-5 offset-md-1">
+    <div class="card">
+      <div class="card-body register-card-body">
+        <h4 class="text-center">Be a Partner</h4>
+        <hr>
+        @livewire('auth.register-merchant')
       </div>
     </div>
   </div>

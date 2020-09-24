@@ -19,19 +19,28 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <label for="business_address">Business Address*</label>
-                            <input type="text" class="form-control" id="business_address" wire:model.lazy="business_address" placeholder="Business Address">
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="region_province">Region/Province*</label>
-                            <select class="form-control" id="region_province" wire:model="region_province">
+                        <div class="col-lg-6">
+                            <label for="region">Region*</label>
+                            <select class="form-control" id="region" wire:model="region">
                                 <option value="">Select</option>
-                                @foreach($component->region_provinces() as $row)
+                                @foreach($regions as $row)
                                     <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-lg-6">
+                            <label for="province">Province*</label>
+                            <select class="form-control" id="province" wire:model="province">
+                                <option value="">Select</option>
+                                @foreach($provinces as $row)
+                                    <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
                         <div class="col-lg-4">
                             <label for="city">City* </label>
                             <select class="form-control" id="city" wire:model="city">
@@ -40,6 +49,19 @@
                                     <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="barangay">Barangay* </label>
+                            <select class="form-control" id="barangay" wire:model="barangay">
+                                <option value="">Select</option>
+                                @foreach($barangays as $row)
+                                    <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="business_address">Address*</label>
+                            <input type="text" class="form-control" id="business_address" wire:model.lazy="business_address" placeholder="Bldg., Street, Subdivision">
                         </div>
                     </div>
                 </div>
