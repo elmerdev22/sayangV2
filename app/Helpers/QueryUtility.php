@@ -117,9 +117,7 @@ class QueryUtility{
 		$data = DB::table('user_accounts')
 			->select($select)
 			->join('users', 'users.id', '=', 'user_accounts.user_id')
-			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id')
-			->leftjoin('cities', 'cities.id', '=', 'user_accounts.city_id')
-			->leftjoin('cities as partner_city', 'partner_city.id', '=', 'partners.city_id');
+			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){
@@ -166,9 +164,7 @@ class QueryUtility{
 
 		$data = DB::table('partners')
 			->select($select)
-			->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
-			->leftjoin('cities', 'cities.id', '=', 'partners.city_id')
-			->leftjoin('region_provinces', 'region_provinces.id', '=', 'cities.region_province_id');
+			->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){

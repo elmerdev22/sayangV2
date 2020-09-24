@@ -3,7 +3,6 @@ Route::get('/', function () {
     return view('front-end.home.index');
 });
 
-
 // Merchant Account
 Route::get('/account/complete-details', function () {
     return view('front-end.account.merchant.index');
@@ -24,13 +23,6 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/register/merchant/verify', function () {
         return view('auth.verify');
     });
-});
-
-// Partner menu tab temporary public agent
-
-// QR-code view
-Route::get('/partner/qr-code', function () {
-    return view('front-end.partner.my-account.qr-code');
 });
 
 // VERIFICATION CHECK
@@ -142,7 +134,19 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 			Route::get('/', [
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
-		    ]);
+            ]);
+            
+        });
+
+        // QR Code
+        Route::group(['prefix' => 'qr-code', 'as' => 'qr-code.'], function (){
+			$c = 'QRCodeController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+            
         });
 
 

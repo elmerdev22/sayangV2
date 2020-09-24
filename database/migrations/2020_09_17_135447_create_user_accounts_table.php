@@ -16,17 +16,12 @@ class CreateUserAccountsTable extends Migration
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index();
-            $table->unsignedBigInteger('city_id')->index()->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name')->nullable();
             $table->string('contact_no', 11)->nullable();
             $table->date('birth_date')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('building_no')->nullable();
-            $table->string('street')->nullable();
-            $table->string('zip_code', 10)->nullable();
-            $table->string('barangay')->nullable();
             $table->string('photo')->nullable();
             $table->string('photo_provider_link', 500)->nullable();
             $table->string('key_token')->unique();

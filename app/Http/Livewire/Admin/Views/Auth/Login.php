@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin\Views\Auth;
 
 use Livewire\Component;
 use Auth;
+use Session;
+
 class Login extends Component
 {
     public $email, $password, $remember=false;
