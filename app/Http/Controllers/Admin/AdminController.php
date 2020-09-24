@@ -40,8 +40,10 @@ class AdminController extends Controller
             'user_accounts.photo_provider_link',
             'user_accounts.key_token',
             'cities.name as city',
+            'users.id as user_id',
             'users.name',
             'users.email',
+            'users.is_blocked',
             'users.verification_type',
             'users.verified_at',
         ];
