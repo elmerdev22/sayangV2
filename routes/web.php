@@ -1,4 +1,16 @@
 <?php
+
+$regions = \App\Model\PhilippineRegion::select([
+    'id',
+    'psgc_code',
+    'name',
+    'code',
+    'created_at',
+    'updated_at',
+])->get()->toArray();
+$s = \Storage::put('database/philippines-addresses/regions.json', json_encode($regions));
+dd($s);
+
 Route::get('/', function () {
     return view('front-end.home.index');
 });
