@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use QueryUtility;
 use Route;
-class Transaction_history extends Component
+class TransactionHistory extends Component
 {
     use WithPagination;
     public $search;
@@ -43,6 +43,6 @@ class Transaction_history extends Component
     public function render()
     {
         $transaction = $this->transaction();
-        return view('livewire.admin.views.accounts.components.user.transaction_history',compact('transaction'));
+        return view('livewire.admin.views.accounts.components.user.transaction-history',compact('transaction'));
     }
 }

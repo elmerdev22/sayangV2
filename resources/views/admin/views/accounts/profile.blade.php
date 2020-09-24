@@ -9,8 +9,8 @@
 @section('view')
   <div class="container app-container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="card card-warning card-outline">
+      <div class="col-12 col-sm-4 col-md-4">
+        <div class="card">
           <div class="card-body box-profile">
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle" src="{{$user->photo_provider_link ?? asset('images/default-photo/account.png')}}" alt="User profile picture">
@@ -35,15 +35,15 @@
                     </span>
                   </a>
               </li>
-                <button class="btn btn-danger rounded">Block User</button>
+                <button class="btn btn-danger">Block User</button>
             </ul>
             </div>
           </div>
         </div>
-        <div class="col-md-9">
-          <div class="card card-warning card-outline">
+        <div class="col-12 col-sm-8 col-md-8">
+          <div class="card">
             @if($type == 'user')
-              @include('admin.views.accounts.components.user.transaction_history')
+              @include('admin.views.accounts.components.user.transaction-history')
             @else
               @include('admin.views.accounts.components.partner.shop_info')
             @endif
