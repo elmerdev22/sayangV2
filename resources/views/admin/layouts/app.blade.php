@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="100-vh" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,6 +34,8 @@
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
           <!-- AOS animation-->
           <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+          <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
         <!-- end of to be removed packages -->
       @else
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">

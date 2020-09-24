@@ -46,61 +46,62 @@ Route::group(['middleware' => ['auth', 'verification.check']], function(){
 });
 Route::group(['prefix' => 'admin'], function (){
 
-    Route::get('/', function () {
-        return view('admin.login');
+    Route::get('/login', function () {
+        return view('admin.auth.login');
     });
     
-    Route::group(['prefix' => 'cms'], function (){
-        $c = 'Admin\AdminController';
-        
-        Route::get('/', [
-            'as' 	=> 'admin.index',
-            'uses'  => $c.'@index'
-        ]);
-
-        Route::group(['prefix' => 'accounts'], function () use ($c){
-        
-            Route::get('/partner', [
-                'as' 	=> 'admin.cms.partner',
-                'uses'  => $c.'@partner',
-                'name'  => 'Partner',
-                'alter' => 'Merchant'
-            ]);
+    Route::group(['middleware' => ['auth.admin']], function (){
+        Route::group(['prefix' => 'cms'], function (){
+            $c = 'Admin\AdminController';
             
-            Route::get('/partner/profile/{key_token}', [
-                'as' 	=> 'admin.cms.partner.profile',
-                'uses'  => $c.'@profile',
-                'name'  => 'Partner',
-                'alter' => 'Merchant'
+            Route::get('/', [
+                'as' 	=> 'admin.index',
+                'uses'  => $c.'@index'
             ]);
 
-            Route::get('/user', [
-                'as' 	=> 'admin.cms.user',
-                'uses'  => $c.'@user',
-                'name'  => 'User',
-                'alter' => 'Buyer'
-            ]);
-
-            Route::get('/user/profile/{key_token}', [
-                'as' 	=> 'admin.cms.user.profile',
-                'uses'  => $c.'@profile',
-                'name'  => 'User',
-                'alter' => 'Buyer'
-            ]);
-
-    
-        });
-    
-        Route::group(['prefix' => 'products'], function () use ($c){
-        
-            Route::get('/catalog', [
-                'as' 	=> 'admin.cms.catalog',
-                'uses'  => $c.'@catalog',
-                'name'  => 'Catalog'
-            ]);
+            Route::group(['prefix' => 'accounts'], function () use ($c){
             
-        });
+                Route::get('/partner', [
+                    'as' 	=> 'admin.cms.accounts.partner',
+                    'uses'  => $c.'@partner',
+                    'name'  => 'Partner',
+                    'alter' => 'Merchant'
+                ]);
+                
+                Route::get('/partner/profile/{type}/{key_token}', [
+                    'as' 	=> 'admin.cms.accounts.partner.profile',
+                    'uses'  => $c.'@profile',
+                    'name'  => 'Partner',
+                    'alter' => 'Merchant'
+                ]);
 
+                Route::get('/user', [
+                    'as' 	=> 'admin.cms.accounts.user',
+                    'uses'  => $c.'@user',
+                    'name'  => 'User',
+                    'alter' => 'Buyer'
+                ]);
+
+                Route::get('/user/profile/{type}/{key_token}', [
+                    'as' 	=> 'admin.cms.accounts.user.profile',
+                    'uses'  => $c.'@profile',
+                    'name'  => 'User',
+                    'alter' => 'Buyer'
+                ]);
+        
+            });
+        
+            Route::group(['prefix' => 'products'], function () use ($c){
+            
+                Route::get('/catalog', [
+                    'as' 	=> 'admin.cms.products.catalog',
+                    'uses'  => $c.'@catalog',
+                    'name'  => 'Catalog'
+                ]);
+                
+            });
+
+        });
     });
 });
 

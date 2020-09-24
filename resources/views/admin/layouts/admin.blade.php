@@ -1,4 +1,11 @@
 @extends('admin.layouts.app')
+@section('css')
+<style>
+    .nav-link:(.active),{
+        background-color: #FFDE59 !important;
+    }
+</style>
+@endsection
 @section('title')
     Admin CMS
 @endsection
@@ -33,4 +40,46 @@
             <!--- End of Main content -->
         </div>
     </div>
+@endsection
+@section('js')
+<script>
+    window.livewire.on('alert', param => {
+      var config = {
+        position  : 'center',
+      };
+
+      if('title' in param)
+        config['title'] = param['title'];
+      if('type' in param)
+        config['icon'] = param['type'];
+      if('message' in param)
+        config['html'] = param['message'];
+      if('showConfirmButton' in param)
+        config['showConfirmButton'] = param['showConfirmButton'];
+      if('timer' in param)
+        config['timer'] = param['timer'];
+
+      Swal.fire(config);
+    });
+
+    window.livewire.on('alert_link', param => {
+      Swal.fire({
+          position         : 'center',
+          icon             : param['type'],
+          html             : param['message'],
+          title            : param['title'],
+          showConfirmButton: true,
+          allowOutsideClick: false,
+      }).then((result) => {
+          if(result.value){
+            if('redirect' in param){
+              window.location = param['redirect'];                       
+            }else{
+              window.location.reload();                       
+            }
+          }
+      });
+    });
+</script>
+    yield('admin_js')
 @endsection

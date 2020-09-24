@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Views\Accounts;
+namespace App\Http\Livewire\Admin\Views\Accounts\Components\User;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 use QueryUtility;
 use Route;
-class Profile extends Component
+class TransactionHistory extends Component
 {
     use WithPagination;
     public $search;
@@ -43,6 +43,6 @@ class Profile extends Component
     public function render()
     {
         $transaction = $this->transaction();
-        return view('livewire.admin.views.accounts.profile',compact('transaction'));
+        return view('livewire.admin.views.accounts.components.user.transaction-history',compact('transaction'));
     }
 }

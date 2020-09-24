@@ -1,16 +1,28 @@
 <div>
     <div class="row">
-        <div class="col-md-2 offset-md-10 mb-2">
+        <div class="col-12 mb-2">
             <div class="row">
-                <div class="col-4">
-                    <select class="form-control" wire:model='paginate' wire:keypress='transaction'>
-                        <option value="10">10</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
+                <div class="col-sm-5 col-md-5 col-3">
+                    <div class="form-group row">
+                        <label for="entries" class="col-sm-3 col-form-label text-lg-right">Show</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="entries" wire:model='paginate' wire:keypress='user'>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <label for="entries" class="col-sm-4 col-form-label text-left">Entries:</label>
+                    </div>
                 </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" wire:model='search' wire:keypress='transaction'>
+                <div class="col-sm-4 col-md-4 col-3 offset-sm-3 offset-md-3 offset-6">
+                    <div class="form-group row">
+                        <label for="search" class="col-sm-4 col-form-label text-right">Search:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="search" class="form-control" wire:model='search' wire:keypress='user'>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,8 +53,8 @@
                                     <td>data 4</td>
                                     <td>data 5</td>
                                     <td class="text-center">
-                                        <a class="btn btn-outline-secondary rounded-circle" type="submit">
-                                            <i class="fas fa-eye"></i>
+                                        <a class="btn btn-success" type="button" href="#">
+                                            View
                                         </a>
                                     </td>
                                 </tr>

@@ -8,14 +8,14 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
           <li class="nav-item">
-            <a href="{{route('admin.index')}}" class="nav-link">
+            <a href="{{route('admin.index')}}" class="nav-link @if(Route::is('admin.index')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview @if(Route::is('admin.cms.accounts.*')) menu-open @endif">
+            <a href="#" class="nav-link @if(Route::is('admin.cms.accounts.*')) active @endif">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Accounts
@@ -24,13 +24,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.cms.partner') }}" class="nav-link">
+                <a href="{{ route('admin.cms.accounts.partner') }}" class="nav-link @if(Route::is('admin.cms.accounts.partner')) active @elseif(Route::is('admin.cms.accounts.partner.*')) active @else @endif">
                   <p>Partner/Merchant</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{ route('admin.cms.user') }}" class="nav-link">
+                <a href="{{ route('admin.cms.accounts.user') }}" class="nav-link @if(Route::is('admin.cms.accounts.user')) active @elseif(Route::is('admin.cms.accounts.user.*')) active @else @endif">
                   <p>User/Buyer</p>
                 </a>
               </li>
@@ -38,8 +38,8 @@
 
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview @if(Route::is('admin.cms.products.*')) menu-open @endif">
+            <a href="#" class="nav-link @if(Route::is('admin.cms.products.*')) active @endif">
               <i class="nav-icon fas fa-people-carry"></i>
               <p>
                 Products
@@ -48,7 +48,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.cms.catalog') }}" class="nav-link">
+                <a href="{{ route('admin.cms.products.catalog') }}" class="nav-link @if(Route::is('admin.cms.products.catalog')) active @endif">
                   <p>Catalog</p>
                 </a>
               </li>

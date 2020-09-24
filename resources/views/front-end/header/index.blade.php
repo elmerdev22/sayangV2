@@ -52,44 +52,45 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             
-            @if(Auth::user())
-
-            <div class="widgets-wrap float-md-right">
-              <div class="widget-header mr-3">
-                <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
-                  <div class="icon-area">
-                    <i class="fa fa-user text-dark"></i>
+            @auth
+              @if(Auth::user()->type != 'admin')
+                <div class="widgets-wrap float-md-right">
+                  <div class="widget-header mr-3">
+                    <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
+                      <div class="icon-area">
+                        <i class="fa fa-user text-dark"></i>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
 
 
-              <div class="widget-header mr-3">
-                <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
-                  <div class="icon-area">
-                    <i class="fas fa-shopping-cart text-dark"></i>
-                    <span class="notify"><span class="badge badge-warning">0</span></span>
+                  <div class="widget-header mr-3">
+                    <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
+                      <div class="icon-area">
+                        <i class="fas fa-shopping-cart text-dark"></i>
+                        <span class="notify"><span class="badge badge-warning">0</span></span>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
 
-              <div class="widget-header mr-3">
-                 @livewire('front-end.notification')
-              </div>
-             
-              <div class="widget-header mr-3">
-                <a class="widget-view" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();" data-tooltip="Logout" data-tooltip-location="bottom">
-                  <div class="icon-area">
-                    <i class="fas fa-sign-out-alt text-dark"></i>
+                  <div class="widget-header mr-3">
+                    @livewire('front-end.notification')
                   </div>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-              </div>
-            </div>
+                
+                  <div class="widget-header mr-3">
+                    <a class="widget-view" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();" data-tooltip="Logout" data-tooltip-location="bottom">
+                      <div class="icon-area">
+                        <i class="fas fa-sign-out-alt text-dark"></i>
+                      </div>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                  </div>
+                </div>
+              @endif
             @else
               <li class="nav-item">
                   <a class="nav-link" href="{{url('/register')}}">Register </a>
