@@ -13,16 +13,16 @@ class CreatePhilippineProvincesTable extends Migration
      */
     public function up()
     {
-        // Schema::create('philippine_provinces', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     $table->unsignedBigInteger('region_id')->index();
-        //     $table->string('psgc_code');
-        //     $table->string('name');
-        //     $table->string('code');
-        //     $table->timestamps();
+        Schema::create('philippine_provinces', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('region_id')->index();
+            $table->string('psgc_code');
+            $table->string('name');
+            $table->string('code');
+            $table->timestamps();
 
-        //     $table->foreign('region_id')->references('id')->on('philippine_regions')->onDelete('cascade')->onUpdate('cascade');
-        // });
+            $table->foreign('region_id')->references('id')->on('philippine_regions')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**
@@ -32,6 +32,9 @@ class CreatePhilippineProvincesTable extends Migration
      */
     public function down()
     {
+        Schema::table('philippine_provinces', function (Blueprint $table){
+            $table->dropForeign(['region_id']);
+        });
         Schema::dropIfExists('philippine_provinces');
     }
 }

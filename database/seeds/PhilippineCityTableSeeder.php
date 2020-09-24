@@ -15,10 +15,22 @@ class PhilippineCityTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         PhilippineCity::truncate();
-        // Import the countries data
-        $to_import = public_path('database/philippines-addresses-tmp/cities.sql');
-        DB::unprepared(file_get_contents($to_import));
+        // Import data
+        $content = file_get_contents(public_path('database/philippines-addresses/cities.json'));
+        $data    = json_decode($content);
+        
+        foreach($data as $row){
+            $new              = new PhilippineCity();
+            $new->id          = $row->id;
+            $new->province_id = $row->province_id;
+            $new->psgc_code   = $row->psgc_code;
+            $new->name        = $row->name;
+            $new->code        = $row->code;
+            $new->save();
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

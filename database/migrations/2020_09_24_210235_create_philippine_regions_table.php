@@ -13,13 +13,13 @@ class CreatePhilippineRegionsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('philippine_regions', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     $table->string('psgc_code');
-        //     $table->string('name');
-        //     $table->string('code');
-        //     $table->timestamps();
-        // });
+        Schema::create('philippine_regions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('psgc_code');
+            $table->string('name');
+            $table->string('code');
+            $table->timestamps();
+        });
     }
 
     /**

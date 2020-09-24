@@ -19,10 +19,6 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/register/merchant', function () {
         return view('auth.register-merchant');
     });
-    
-    Route::get('/register/merchant/verify', function () {
-        return view('auth.verify');
-    });
 });
 
 // VERIFICATION CHECK

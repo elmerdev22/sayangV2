@@ -15,10 +15,21 @@ class PhilippineBarangayTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         PhilippineBarangay::truncate();
-        // Import the data
-        $to_import = public_path('database/philippines-addresses-tmp/barangays.sql');
-        DB::unprepared(file_get_contents($to_import));
+        // Import data
+        $content = file_get_contents(public_path('database/philippines-addresses/barangays.json'));
+        $data    = json_decode($content);
+        
+        foreach($data as $row){
+            $new          = new PhilippineBarangay();
+            $new->id      = $row->id;
+            $new->city_id = $row->city_id;
+            $new->name    = $row->name;
+            $new->code    = $row->code;
+            $new->save();
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
