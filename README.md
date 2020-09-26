@@ -7,7 +7,7 @@ git clone https://github.com/elmerdev22/sayangV2.git
 ```
 
 ```
-cd laravel-bootstrap-admin-template/
+cd sayangV2
 ```
 
 ```
