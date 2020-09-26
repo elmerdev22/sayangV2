@@ -26,7 +26,16 @@
                     <div class="col-md-4">
                         <div class="my-account-profile mb-4">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="{{asset('images/default-photo/account.png')}}" alt="User profile picture">
+                                @php
+                                    if($account->photo){
+                                        $photo_url = asset('images/default-photo/account.png');
+                                    }else if($account->photo_provider_link){
+                                        $photo_url = $account->photo_provider_link;
+                                    }else{
+                                        $photo_url = asset('images/default-photo/account.png');
+                                    }
+                                @endphp
+                                <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture">
                             </div>
                             <div class="text-center mt-1">
                                 <button type="button" class="btn btn-default btn-sm">Upload Image</button>
@@ -66,7 +75,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <div>Male</div>
+                                        <div>{{ucfirst($account->gender)}}</div>
                                     </div>
                                 </div>
                             @endif
@@ -74,7 +83,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Birth Date</label>
-                                        <div>December 15, 1997</div>
+                                        <div>{{date('F d, Y', strtotime($account->birth_date))}}</div>
                                     </div>
                                 </div>
                             @endif
