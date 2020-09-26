@@ -1,11 +1,11 @@
 <div class="list-group panel">
-    <a href="#account" class="list-group-item active" data-toggle="collapse" data-parent="#MainMenu">
+    <a href="#account" class="list-group-item {{\Route::is('front-end.user.my-account.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-user"></span> My Account 
         <i class="fa fa-caret-down"></i>
     </a>
     
-    <div class="collapse" id="account">
-        <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
+    <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}}" id="account">
+        <a href="{{route('front-end.user.my-account.index')}}" class="list-group-item {{\Route::is('front-end.user.my-account.index') ? 'link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
         <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
         <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
         <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
