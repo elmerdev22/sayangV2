@@ -15,7 +15,7 @@
             <div class="collapse {{\Route::is('front-end.partner.my-account.*') ? 'show':''}}" id="account">
                 <a href="{{route('front-end.partner.my-account.index')}}" class="list-group-item {{\Route::is('front-end.partner.my-account.index') ? 'link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
                 <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
-                <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
+                <!-- <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a> -->
                 <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
             </div>
 
