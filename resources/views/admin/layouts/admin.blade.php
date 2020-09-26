@@ -45,50 +45,50 @@
     </div>
 @endsection
 @section('js')
-<script>
-  (function(){
-    $('.btn-logout').on('click',function(){
-      $('.logout').submit();
+  <script>
+    (function(){
+      $('.btn-logout').on('click',function(){
+        $('.logout').submit();
+      });
+    })()
+    window.livewire.on('alert', param => {
+      var config = {
+        position  : 'center',
+      };
+
+      if('title' in param)
+        config['title'] = param['title'];
+      if('type' in param)
+        config['icon'] = param['type'];
+      if('message' in param)
+        config['html'] = param['message'];
+      if('showConfirmButton' in param)
+        config['showConfirmButton'] = param['showConfirmButton'];
+      if('timer' in param)
+        config['timer'] = param['timer'];
+
+      Swal.fire(config);
     });
-  })()
-  window.livewire.on('alert', param => {
-    var config = {
-      position  : 'center',
-    };
 
-    if('title' in param)
-      config['title'] = param['title'];
-    if('type' in param)
-      config['icon'] = param['type'];
-    if('message' in param)
-      config['html'] = param['message'];
-    if('showConfirmButton' in param)
-      config['showConfirmButton'] = param['showConfirmButton'];
-    if('timer' in param)
-      config['timer'] = param['timer'];
-
-    Swal.fire(config);
-  });
-
-  window.livewire.on('alert_link', param => {
-    Swal.fire({
-        position         : 'center',
-        icon             : param['type'],
-        html             : param['message'],
-        title            : param['title'],
-        showConfirmButton: true,
-        allowOutsideClick: false,
-    }).then((result) => {
-        if(result.value){
-          if('redirect' in param){
-            window.location = param['redirect'];                       
-          }else{
-            window.location.reload();                       
+    window.livewire.on('alert_link', param => {
+      Swal.fire({
+          position         : 'center',
+          icon             : param['type'],
+          html             : param['message'],
+          title            : param['title'],
+          showConfirmButton: true,
+          allowOutsideClick: false,
+      }).then((result) => {
+          if(result.value){
+            if('redirect' in param){
+              window.location = param['redirect'];                       
+            }else{
+              window.location.reload();                       
+            }
           }
-        }
+      });
     });
-  });
 
-</script>
-    yield('admin_js')
+  </script>
+  @yield('admin_js')
 @endsection
