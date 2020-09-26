@@ -3,7 +3,7 @@
 ## Clone & install packages
 
 ```
-git clone git@github.com:crlodmngo/laravel-bootstrap-admin-template.git
+git clone https://github.com/elmerdev22/sayangV2.git
 ```
 
 ```
