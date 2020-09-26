@@ -181,6 +181,86 @@ class Utility{
         }
     }
 
+    public static function partner_activated(){
+        $account = self::auth_user_account();
+        $partner = Partner::where('user_account_id', $account->id)->first();
+
+        if($partner){
+            if($partner->is_activated){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public static function auth_partner(){
+        if(Auth::check()){
+            if(Auth::user()->type != 'admin'){
+                if(self::partner_activated()){
+                    $account = self::auth_user_account();
+                    return Partner::select([
+                            'partners.*',
+                            'partners.id as partner_id',
+                            'partners.key_token as partner_key_token',
+                            'partner_representatives.first_name as representative_first_name',
+                            'partner_representatives.last_name as representative_last_name',
+                            'partner_representatives.designation as representative_designation',
+                            'partner_representatives.email as representative_email',
+                            'partner_representatives.contact_no as representative_contact_no',
+                            'partner_representatives.uploaded_id_file as representative_uploaded_id_file',
+                            'partner_representatives.uploaded_id_file_name as representative_uploaded_id_file_name',
+                            'partner_representatives.key_token as representative_key_token',
+                            'philippine_barangays.name as barangay_name',
+                            'philippine_cities.name as city_name',
+                            'philippine_provinces.name as province_name',
+                            'philippine_regions.name as region_name'
+                        ])
+                        ->leftJoin('partner_representatives', 'partner_representatives.partner_id', '=', 'partners.id')
+                        ->leftJoin('philippine_barangays', 'philippine_barangays.id', '=', 'partners.barangay_id')
+                        ->leftJoin('philippine_cities', 'philippine_cities.id', '=', 'philippine_barangays.city_id')
+                        ->leftJoin('philippine_provinces', 'philippine_provinces.id', '=', 'philippine_cities.province_id')
+                        ->leftJoin('philippine_regions', 'philippine_regions.id', '=', 'philippine_provinces.region_id')
+                        ->where('partners.user_account_id', $account->id)
+                        ->first();
+                }else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+    public static function partner_full_address($partner_id){
+        $partner = Partner::select([
+                'partners.address',
+                'philippine_barangays.name as barangay_name',
+                'philippine_cities.name as city_name',
+                'philippine_provinces.name as province_name',
+                'philippine_regions.name as region_name'
+            ])
+            ->where('partners.id', $partner_id)
+            ->leftJoin('philippine_barangays', 'philippine_barangays.id', '=', 'partners.barangay_id')
+            ->leftJoin('philippine_cities', 'philippine_cities.id', '=', 'philippine_barangays.city_id')
+            ->leftJoin('philippine_provinces', 'philippine_provinces.id', '=', 'philippine_cities.province_id')
+            ->leftJoin('philippine_regions', 'philippine_regions.id', '=', 'philippine_provinces.region_id')
+            ->first();
+        
+        if($partner){
+            $response  = $partner->address.', ';
+            $response .= $partner->barangay_name.', '.$partner->city_name.', '.$partner->province_name.', '.$partner->region_name;
+        }else{
+            $response = null;
+        }
+
+        return ucwords($response);
+    }
+
     public static function generate_verification_expiration(int $minutes = 5){
         $time = ($minutes * 60) + time();
         return date('Y-m-d H:i:s', $time);
@@ -213,18 +293,14 @@ class Utility{
         }
     }
 
-    public static function partner_activated(){
-        $account = self::auth_user_account();
-        $partner = Partner::where('user_account_id', $account->id)->first();
-
-        if($partner){
-            if($partner->is_activated){
-                return true;
-            }else{
-                return false;
-            }
+    public static function mobile_number_ph_format($no){
+        if($no[0] == 9){
+            return '+63'.$no;
+        }else if($no[0] == 0){
+            $no = substr($no, 1);
+            return '+63'.$no;
         }else{
-            return false;
+            return $no;
         }
     }
     
