@@ -13,4 +13,8 @@ class MyAccountController extends Controller
 
         return view('front-end.user.my-account.index', compact('account'));
     }
+
+    public function addresses(){
+        return view('front-end.user.my-account.addresses');
+    }
 }

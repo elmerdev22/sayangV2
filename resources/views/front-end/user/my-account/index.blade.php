@@ -26,7 +26,7 @@
                 <h5 class="card-title"> My Account</h5> 
             </div>
             <div class="card-body">
-            <div class="row">
+                <div class="row">
                     <div class="col-md-4">
                         <div class="my-account-profile mb-4">
                             <div class="text-center">

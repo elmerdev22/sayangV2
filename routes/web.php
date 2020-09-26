@@ -106,8 +106,13 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 			Route::get('/', [
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
+            ]);
+            
+            Route::get('/addresses', [
+		        'as' 	=> 'addresses',
+		        'uses'  => $c.'@addresses'
 		    ]);
-        });        
+        });
     });
 });
 
