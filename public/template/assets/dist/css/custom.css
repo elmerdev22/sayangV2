@@ -483,3 +483,8 @@ input:checked + .slider:before {
 .link-active{
   color: #FFDE59;
 }
+.text-ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
