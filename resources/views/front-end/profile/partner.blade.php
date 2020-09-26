@@ -28,7 +28,7 @@
             <!-- Profile Image -->
             <div class="card card-widget widget-user-2">
               <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header">
+              <div class="widget-user-header p-4">
                 <div class="widget-user-image">
                   <img class="img-circle elevation-2" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
                 </div>
