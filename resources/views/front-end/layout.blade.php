@@ -83,7 +83,7 @@
             @include('front-end.header.index')
         </header>
         @php 
-          $page_fluid = ['', '/', 'register'];
+          $page_fluid = ['', '/'];
         @endphp
         <div class="content-wrapper content-wrapper-front-end">
           @yield('page_header')
