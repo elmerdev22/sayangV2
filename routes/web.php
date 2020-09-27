@@ -3,9 +3,9 @@ Route::get('/', function () {
     return view('front-end.home.index');
 });
 
-// Merchant Account
-Route::get('/account/complete-details', function () {
-    return view('front-end.account.merchant.index');
+// Partner/Merchant
+Route::get('/partner/dashboard/template', function () {
+    return view('front-end.partner.layouts.template');
 });
 
 // Merchant profile view

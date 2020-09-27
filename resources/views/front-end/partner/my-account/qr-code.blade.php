@@ -1,5 +1,5 @@
-@extends('front-end.layout')
-@section('title','Scan QR Code')
+@extends('front-end.partner.layouts.layout')
+@section('title','QR Code')
 @section('page_header')
     @php 
         $page_header = [
@@ -9,30 +9,27 @@
             ],
         ];
     @endphp
-    @include('front-end.includes.page-header', $page_header)
+    @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3">
-        @include('front-end.includes.partner.sidebar')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        <div class="card mb-3">
-            <div class="card-header">
-                <h5 class="card-title"><span class="fas fa-lock"></span> Scan QR-Code</h5> 
-            </div>
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    <div id="qr-reader" style="width:500px"></div>
-                    <div id="qr-reader-results"></div>
-                    <div style="width: 500px" id="reader"></div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-outline card-sayang mb-3">
+                <div class="card-header">
+                    <h5 class="card-title"><span class="fas fa-lock"></span> Scan QR-Code</h5> 
                 </div>
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// -->
-    </main> <!-- col.// -->
-</div>
-
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div id="qr-reader" class="w-100"></div>
+                            <div id="qr-reader-results"></div>
+                            <div id="reader" class="w-100"></div>
+                        </div>
+                    </div>
+                </div> <!-- card-body .// -->
+            </div> <!-- card.// -->
+        </div>
+    </div>
 @endsection
 @section('js')
 <script src="{{ asset('template/assets/dist/js/html5-qrcode.min.js') }}"></script>

@@ -1,4 +1,4 @@
-@extends('front-end.layout')
+@extends('front-end.partner.layouts.layout')
 @section('title','My Account')
 @section('page_header')
     @php 
@@ -9,47 +9,49 @@
             ],
         ];
     @endphp
-    @include('front-end.includes.page-header', $page_header)
+    @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
+
 <div class="row">
-    <aside class="col-md-3">
-        @include('front-end.includes.partner.sidebar')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        <div class="card mb-3">
+    <div class="col-md-3">
+        <div class="card card-outline card-sayang mb-3">
             <div class="card-body">
+                <div class="my-account-profile mb-4">
+                    <div class="text-center">
+                        @php
+                            if($account->photo){
+                                $photo_url = asset('images/default-photo/account.png');
+                            }else if($account->photo_provider_link){
+                                $photo_url = $account->photo_provider_link;
+                            }else{
+                                $photo_url = asset('images/default-photo/account.png');
+                            }
+                        @endphp
+                        <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture">
+                    </div>
+                    <div class="text-center mt-1">
+                        <button type="button" class="btn btn-default btn-sm">Upload Image</button>
+                    </div>
+                    <div class="profile-username text-center">{{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}</div>
+                    <div class="text-center">
+                        <div class="text-muted">
+                            Partner/Merchant
+                        </div>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-9">
+        <div class="card mb-3">
+            <div class="card-body card-outline card-sayang">
                 <h4>Account Information</h4>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="my-account-profile mb-4">
-                            <div class="text-center">
-                                @php
-                                    if($account->photo){
-                                        $photo_url = asset('images/default-photo/account.png');
-                                    }else if($account->photo_provider_link){
-                                        $photo_url = $account->photo_provider_link;
-                                    }else{
-                                        $photo_url = asset('images/default-photo/account.png');
-                                    }
-                                @endphp
-                                <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture">
-                            </div>
-                            <div class="text-center mt-1">
-                                <button type="button" class="btn btn-default btn-sm">Upload Image</button>
-                            </div>
-                            <div class="profile-username text-center">{{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}</div>
-                            <div class="text-center">
-                                <div class="text-muted">
-                                    Partner/Merchant
-                                </div>
-                                <span class="badge badge-success">Active</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -204,12 +206,10 @@
 
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
-    </main> <!-- col.// -->
+    </div>
 </div>
 
 @endsection
 @section('js')
-<script type="text/javascript">
-   
-</script>
+
 @endsection
