@@ -14,13 +14,7 @@
 @section('content')
           
 <div class="row">
-    <aside class="col-md-3">
-        <!-- menu -->
-        <div id="MainMenu">
-            @include('front-end.includes.partner.sidebar')
-        </div>
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
+    <main class="col-md-12">
         <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title"> Account Activation</h5> 

@@ -1,3 +1,11 @@
+/* SAYANG CUSTOM BRANDING VARIABLE */
+:root {
+  --sayang-color: #FFDE59;
+  --sayang-dark-color: #333333;
+  --sayang-light-color: #FFFFFF;
+}
+/* END OF SAYANG CUSTOM BRANDING VARIABLE */
+
 /*scroll bar*/
 /* width */
 ::-webkit-scrollbar {
@@ -183,14 +191,21 @@ span.ends-in {
     -moz-box-shadow: 0 5px 6px -6px #777;
        box-shadow: 0 5px 6px -6px #777;
 }
+/* 
 .image{
     position:relative;
     overflow:hidden;
     padding-bottom:100%;
-}
+} 
+
 .image img{
     position:absolute;
-}
+} 
+
+NOTE: need to create .{your_custom_name}-image override 
+instead of overiding existing .image built-in class, 
+because this will affect entire .image classes
+*/
 
 /*SWicth css */
 
@@ -455,9 +470,6 @@ input:checked + .slider:before {
   transform-origin: bottom;
 }
 
-.text-capitalize{
-  text-transform: capitalize;
-}
 .list-group-item.active{
   background-color: #FFDE59;
   border-color: #FFDE59;
@@ -480,11 +492,51 @@ input:checked + .slider:before {
   justify-content: flex-end !important;
 }
 
-.link-active{
-  color: #FFDE59;
-}
+/* GLOBAL CLASSES CAN BE USE */
 .text-ellipsis{
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
+.text-capitalize{
+  text-transform: capitalize;
+}
+.block-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.block-element{
+  display: block;
+}
+/* END OF GLOBAL CLASSES CAN BE USE */
+
+/* CUSTOM SAYANG BRANDING THEMES */
+.sayang-link-active{
+  color: var(--sayang-color);
+}
+.sayang-user-panel.user-panel{
+  border-top: 1px solid var(--sayang-color);
+  border-bottom: 1px solid var(--sayang-color);
+}
+.sayang-nav-pills.nav-pills .nav-link:not(.active):hover,
+.sayang-nav-pills.nav-pills .nav-link.sayang-nav-link-active{
+  color: var(--sayang-color);
+}
+.sayang-nav-pills.nav-pills .nav-link.active, 
+.sayang-nav-pills.nav-pills .show > .nav-link{
+  background-color: var(--sayang-color);
+}
+.sayang-layout-navbar-fixed.layout-navbar-fixed .wrapper .sidebar-sayang-primary .brand-link:not([class*="navbar"]) {
+  background-color: var(--sayang-light-color);
+}
+.sayang-sidebar.sidebar{
+  background: var(--sayang-light-color);
+}
+.sayang-navbar.navbar{
+  background-color: var(--sayang-color);
+}
+.card-sayang.card-outline{
+  border-top: 3px solid var(--sayang-color);
+}
+/* END OF CUSTOM SAYANG BRANDING THEMES */
