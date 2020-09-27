@@ -8,13 +8,23 @@
     <div class="sidebar sayang-sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel sayang-user-panel mt-1 pb-1 pt-1 mb-3 d-flex">
+            @php
+                $account = Utility::auth_user_account();
+                if($account->photo){
+                    $photo_url = asset('images/default-photo/account.png');
+                }else if($account->photo_provider_link){
+                    $photo_url = $account->photo_provider_link;
+                }else{
+                    $photo_url = asset('images/default-photo/account.png');
+                }
+            @endphp
             <div class="image" title="Profile">
-                <a href="javascript:void(0);">
-                    <img src="{{asset('images/default-photo/admin.png')}}" class="img-circle elevation-1" alt="User Image">
+                <a href="{{route('front-end.partner.my-account.index')}}">
+                    <img src="{{$photo_url}}" class="img-circle elevation-1" alt="User Image">
                 </a>
             </div>
             <div class="info block-element w-100" title="Profile">
-                <a href="javascript:void(0);" class="d-block">John Doe</a>
+                <a href="{{route('front-end.partner.my-account.index')}}" class="d-block">{{ucwords($account->first_name.' '.$account->last_name)}}</a>
             </div>
         </div>
 

@@ -11,7 +11,8 @@
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
                 <span class="fa fa-user-circle"></span> 
-                John Doe 
+                @php $account = Utility::auth_user_account(); @endphp
+                {{ucwords($account->first_name.' '.$account->last_name)}} 
                 <i class="fas fa-caret-down"></i>
             </a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 dropdown-menu-right shadow">
