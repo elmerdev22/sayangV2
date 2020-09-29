@@ -18,7 +18,7 @@ class LoginRedirectController extends Controller
         if(Auth::check()){
             $user = Auth::user();
             if($user->type == 'admin'){
-                return redirect(route('admin.index'));
+                return redirect(route('back-end.dashboard.index'));
             }else if($user->type == 'user'){
                 return redirect(route('front-end.user.my-account.index'));
             }else if($user->type == 'partner'){
