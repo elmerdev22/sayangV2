@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Mail\VerificationCheck as MailVerificationCheck;
 use App\Model\Partner;
 use App\Model\User;
+use App\Model\UserAdmin;
 use App\Model\UserAccount;
 use Carbon\Carbon;
 use Schema;
@@ -167,6 +168,18 @@ class Utility{
         }
 
         return $response;
+    }
+
+    public static function auth_user_admin(){
+        if(Auth::check()){
+            if(Auth::user()->type == 'admin'){
+                return UserAdmin::where('user_id', Auth::user()->id)->first();
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
 
     public static function auth_user_account(){

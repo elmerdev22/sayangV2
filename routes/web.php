@@ -95,6 +95,67 @@ Route::group(['prefix' => 'admin'], function (){
     });
 });
 
+// ADMIN GROUP
+Route::group(['middleware' => ['auth', 'auth.admin']], function(){
+    Route::group(['prefix' => 'admin', 'as' => 'back-end.', 'namespace' => 'BackEnd'], function () {
+        
+        // Dashboard
+        Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function (){
+            $c = 'DashboardController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+            
+        });
+
+        // Catalog
+        Route::group(['prefix' => 'catalog', 'as' => 'catalog.'], function (){
+            $c = 'CatalogController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+            
+        });
+
+        // Partner
+        Route::group(['prefix' => 'partner', 'as' => 'partner.'], function (){
+            $c = 'PartnerController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/profile/{key_token}', [
+                'as'    => 'profile',
+                'uses'  => $c.'@profile'
+            ]);
+            
+        });
+
+        // User
+        Route::group(['prefix' => 'user', 'as' => 'user.'], function (){
+            $c = 'UserController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/profile/{key_token}', [
+                'as'    => 'profile',
+                'uses'  => $c.'@profile'
+            ]);
+            
+        });
+
+    });
+});
+
 // USER or BUYER GROUP
 Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], function(){
     Route::group(['prefix' => 'user', 'as' => 'front-end.user.', 'namespace' => 'FrontEnd\User'], function () {
