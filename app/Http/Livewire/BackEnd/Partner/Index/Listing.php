@@ -10,7 +10,7 @@ class Listing extends Component
 {
 	use WithPagination;
 
-	public $search = '', $show_entries=1, $sort = [], $sort_type='asc';
+	public $search = '', $show_entries=10, $sort = [], $sort_type='asc';
 
 	public function mount(){
 		$this->sort = ['user_accounts.created_at'];
