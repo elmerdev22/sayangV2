@@ -8,7 +8,7 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery'),require('jquery-ui-bundle'); 
+    window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
 } catch (e) {}
@@ -19,17 +19,10 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios     = require('axios');
-window.AOS       = require("aos");
-window.toastr    = require('toastr');
-window.inputmask = require('inputmask');
-window.Swal      = require('sweetalert2');
-require('admin-lte/plugins/datatables/jquery.dataTables.js');
-require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js');
-require('overlayscrollbars');
-window.Stepper = require('bs-stepper');
+window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -38,12 +31,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // import Echo from 'laravel-echo';
 
-window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: 'ece5aa633d91650ce415',
-//     cluster: 'ap1',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-

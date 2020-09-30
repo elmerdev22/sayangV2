@@ -13,8 +13,8 @@
 @endsection
 @section('content')
           
-<div class="row">
-    <main class="col-md-12">
+<div class="row justify-content-center">
+    <main class="col-md-9">
         <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title"> Account Activation</h5> 
