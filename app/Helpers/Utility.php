@@ -265,7 +265,11 @@ class Utility{
             ->first();
         
         if($partner){
-            $response  = $partner->address.', ';
+            $response = '';
+            if($partner->address){
+                $response  .= $partner->address.', ';
+            }
+
             $response .= $partner->barangay_name.', '.$partner->city_name.', '.$partner->province_name.', '.$partner->region_name;
         }else{
             $response = null;
@@ -307,14 +311,22 @@ class Utility{
     }
 
     public static function mobile_number_ph_format($no){
-        if($no[0] == 9){
-            return '+63'.$no;
-        }else if($no[0] == 0){
-            $no = substr($no, 1);
-            return '+63'.$no;
+        if(!empty($no)){
+            if($no[0] == 9){
+                return '(+63)'.$no;
+            }else if($no[0] == 0){
+                $no = substr($no, 1);
+                return '(+63)'.$no;
+            }else{
+                return $no;
+            }
         }else{
-            return $no;
+            return null;
         }
+    }
+
+    public static function datatables_show_entries(){
+        return ['10', '25', '50', '100', '300', '500', '1000'];
     }
     
 }

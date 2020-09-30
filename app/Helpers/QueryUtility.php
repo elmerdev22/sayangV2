@@ -162,17 +162,44 @@ class QueryUtility{
 			$select = '*';
 		}
 
-		$data = DB::table('partners')
+		$data = DB::table('user_accounts')
 			->select($select)
-			->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
-			->join('philippine_barangays', 'philippine_barangays.id', '=', 'partners.barangay_id')
+			->leftJoin('partners', 'partners.user_account_id', '=', 'user_accounts.id')
+			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id')
+			->leftJoin('partner_representatives', 'partner_representatives.partner_id', '=', 'partners.id')
+			->leftJoin('philippine_barangays', 'philippine_barangays.id', '=', 'partners.barangay_id')
 			->leftJoin('philippine_cities', 'philippine_cities.id', '=', 'philippine_barangays.city_id')
 			->leftJoin('philippine_provinces', 'philippine_provinces.id', '=', 'philippine_cities.province_id')
 			->leftJoin('philippine_regions', 'philippine_regions.id', '=', 'philippine_provinces.region_id');
-	
+		
+
 		$filtered = self::where($filter, $data);
 		if($filtered){
 			$data = $filtered;
+		}
+
+		if(isset($filter['or_where_like'])){
+			$search = trim($filter['or_where_like']);
+			$search = explode(' ',$search);
+			$data = $data->where(function($query) use ($search) {
+				foreach($search as $value){
+					$query->orWhere('partners.name','like',"%{$value}%")
+						->orWhere('partners.email','like',"%{$value}%")
+						->orWhere('partners.contact_no','like',"%{$value}%")
+						->orWhere('partners.tin','like',"%{$value}%")
+						->orWhere('partners.partner_no','like',"%{$value}%")
+						->orWhere('partners.dti_registration_no','like',"%{$value}%")
+						->orWhere('user_accounts.first_name','like',"%{$value}%")
+						->orWhere('user_accounts.last_name','like',"%{$value}%")
+						->orWhere('user_accounts.middle_name','like',"%{$value}%")
+						->orWhere('users.email','like',"%{$value}%")
+						->orWhere('users.name','like',"%{$value}%")
+						->orWhere('philippine_barangays.name','like',"%{$value}%")
+						->orWhere('philippine_cities.name','like',"%{$value}%")
+						->orWhere('philippine_provinces.name','like',"%{$value}%")
+						->orWhere('philippine_regions.name','like',"%{$value}%");
+				}
+            });
 		}
 
 		$filtered = self::where_in($filter, $data);

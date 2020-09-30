@@ -509,6 +509,15 @@ input:checked + .slider:before {
 .block-element{
   display: block;
 }
+.table-cell-nowrap td, .table-cell-nowrap th{
+  white-space: nowrap;
+}
+.table-sort{
+  cursor: pointer;
+}
+.table-sort:hover{
+  opacity: 0.8;
+}
 /* END OF GLOBAL CLASSES CAN BE USE */
 
 /* CUSTOM SAYANG BRANDING THEMES */
@@ -544,5 +553,13 @@ input:checked + .slider:before {
 }
 .sayang-dropdown-item.dropdown-item.active, .sayang-dropdown-item.dropdown-item:active{
   background-color: var(--sayang-color);
+}
+.sayang-datatables td, .sayang-datatables th{
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 15px;
+}
+.text-sayang{
+  color: var(--sayang-color);
 }
 /* END OF CUSTOM SAYANG BRANDING THEMES */
