@@ -12,8 +12,8 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-<div class="row">
-  <div class="col-md-4 offset-md-4 pb-5">
+<div class="row justify-content-center">
+  <div class="col-md-6 pb-5">
       <!-- /.login-logo -->
     <div class="card">
       <div class="card-body register-card-body">
