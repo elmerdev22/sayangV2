@@ -1,11 +1,12 @@
 @extends('back-end.layouts.layout')
-@section('title','Partner Profile')
+@section('title', ucwords($data->first_name.' '.$data->last_name).' - Partner Profile')
 @section('page_header')
     @php 
         $page_header = [
             'title'       => 'Partner Profile',
             'breadcrumbs' => [
-                ['url' => '', 'label' => '{name}'],
+                ['url' => route('back-end.partner.index'), 'label' => 'Partners'],
+                ['url' => '', 'label' => ucwords($data->first_name.' '.$data->last_name)],
             ],
         ];
     @endphp
@@ -13,8 +14,14 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-12">
-            <!-- CONTENT HERE -->
+        <div class="col-md-3">
+            @livewire('back-end.partner.profile.account-information', ['key_token' => $data->key_token])
+        </div>
+        <div class="col-md-9">
+            @livewire('back-end.partner.profile.partner-information', ['key_token' => $data->key_token])
+            @livewire('back-end.partner.profile.representative-information', ['key_token' => $data->key_token])
+            @livewire('back-end.partner.profile.bank-and-card', ['key_token' => $data->key_token])
+            @livewire('back-end.partner.profile.purchase-history', ['key_token' => $data->key_token])
         </div>
     </div>
     <!-- 

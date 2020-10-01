@@ -21,6 +21,7 @@ class Listing extends Component
 		$filter['select'] = [
 			'partners.*', 
 			'partners.name as partner_name', 
+			'user_accounts.key_token as account_key_token',
 			'user_accounts.first_name as account_first_name',
 			'user_accounts.last_name as account_last_name',
 			'user_accounts.created_at as date_registered',
