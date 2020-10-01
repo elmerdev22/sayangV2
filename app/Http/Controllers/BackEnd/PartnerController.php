@@ -4,6 +4,8 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\UserAccount;
+use App\Model\Partner;
 
 class PartnerController extends Controller
 {
@@ -12,6 +14,13 @@ class PartnerController extends Controller
     }
 
     public function profile($key_token) {
-        return view('back-end.partner.profile');
+    	$data = UserAccount::with(['user', 'partner'])
+				->whereHas('user', function($query){
+                    $query->where('type', 'partner');
+                })
+				->where('key_token', $key_token)
+    			->firstOrFail();
+
+        return view('back-end.partner.profile', compact('data'));
     }
 }

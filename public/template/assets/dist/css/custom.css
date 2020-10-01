@@ -562,4 +562,8 @@ input:checked + .slider:before {
 .text-sayang{
   color: var(--sayang-color);
 }
+.sayang-list-group > .list-group-item{
+  font-size: 14px;
+  padding: 0.45rem 0rem;
+}
 /* END OF CUSTOM SAYANG BRANDING THEMES */
