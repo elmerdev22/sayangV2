@@ -3,7 +3,7 @@
 @section('css')
 <style type="text/css">
   .content-wrapper-front-end{
-    background: url('{{asset('images/default-photo/be-a-partner.jpg')}}') !important;
+    background: url('{{asset('images/default-photo/login-partner.jpg')}}') !important;
     /* Center and scale the image nicely */
     background-position: center !important;
     background-repeat: no-repeat !important;
