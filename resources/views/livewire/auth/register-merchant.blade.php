@@ -52,14 +52,10 @@
         </div> <!-- form-group// -->
     </form>
     <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="{{route('login-redirect.socialite', ['provider' => 'facebook', 'type' => 'partner'])}}" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="{{route('login-redirect.socialite', ['provider' => 'google', 'type' => 'partner'])}}" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
+        <p>- Already have an account -</p>
+        <a href="{{route('partner.login')}}" class="btn btn-block btn-warning">
+          <i class="fas fa-sign-in-alt mr-2"></i>
+          Login
         </a>
       </div>
 </div>

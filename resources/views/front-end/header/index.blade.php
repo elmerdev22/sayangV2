@@ -46,7 +46,7 @@
             </li>
             @if(!Auth::user())
             <li class="nav-item">
-              <a class="nav-link" href="{{url('/register/merchant')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
+              <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
             </li>
             @endif
         </ul>

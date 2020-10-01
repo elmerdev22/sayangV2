@@ -16,9 +16,12 @@ Route::get('/profile/partner-name', function () {
 
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
-    Route::get('/register/merchant', function () {
+    Route::get('/register/partner', function () {
         return view('auth.register-merchant');
-    });
+    })->name('partner.register');
+    Route::get('/login/partner', function () {
+        return view('auth.login-partner');
+    })->name('partner.login');
 });
 
 // VERIFICATION CHECK
