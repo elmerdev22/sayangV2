@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Views\Auth;
+namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 use Auth;
 use Session;
 
-class Login extends Component
+class LoginAdmin extends Component
 {
     public $email, $password, $remember=false;
 
-    public function render()
-    {
-        return view('livewire.admin.views.auth.login');
+    public function render(){
+        return view('livewire.auth.login');
     }
 
     public function authenticate(){
@@ -26,7 +25,7 @@ class Login extends Component
         $auth = [
             'email'    => $this->email,
             'password' => $this->password,
-            'type'     => 'admin'
+            'type'     => ['admin']
         ];
 
         if(Auth::attempt($auth, $this->remember)){
