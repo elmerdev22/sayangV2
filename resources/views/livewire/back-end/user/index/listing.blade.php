@@ -49,7 +49,7 @@
 		        				</td>
 		        				<td>{{date('F/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">
-		        					<a href="javascript:void(0);" class="btn btn-sm btn-flat btn-primary" title="View Details"><i class="fas fa-eye"></i></a>
+		        					<a href="{{route('back-end.user.profile', ['key_token' => $row->key_token])}}" class="btn btn-sm btn-flat btn-primary" title="View Details"><i class="fas fa-eye"></i></a>
 		        				</td>
 		        			</tr>
 	        			@empty
