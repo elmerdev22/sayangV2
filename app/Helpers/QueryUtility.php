@@ -116,8 +116,7 @@ class QueryUtility{
 		}
 		$data = DB::table('user_accounts')
 			->select($select)
-			->join('users', 'users.id', '=', 'user_accounts.user_id')
-			->leftjoin('partners', 'partners.user_account_id', '=', 'user_accounts.id');
+			->join('users', 'users.id', '=', 'user_accounts.user_id');
 	
 		$filtered = self::where($filter, $data);
 		if($filtered){

@@ -15,6 +15,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
+            @livewire('back-end.user.index.listing')
         </div>
     </div>
     <!-- 

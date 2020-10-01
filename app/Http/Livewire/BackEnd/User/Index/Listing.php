@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\BackEnd\Partner\Index;
+namespace App\Http\Livewire\BackEnd\User\Index;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,26 +9,26 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-
+	
 	public $search = '', $show_entries=10, $sort = [], $sort_type='asc';
 
 	public function mount(){
 		$this->sort = ['user_accounts.created_at'];
 	}
 
-	public function data(){
+    public function data(){
 		$filter = [];
 		$filter['select'] = [
-			'partners.*', 
-			'partners.name as partner_name', 
-			'user_accounts.first_name as account_first_name',
-			'user_accounts.last_name as account_last_name',
+			'user_accounts.*',
 			'user_accounts.created_at as date_registered',
-			'philippine_cities.name as city_name',
-			'philippine_provinces.name as province_name'
+			'users.name',
+			'users.email',
+			'users.is_blocked',
+			'users.verified_at',
 		];
-		$filter['where']['users.type'] = 'partner';
-		
+
+		$filter['where']['users.type'] = 'user';
+
 		if($this->search){
 			$filter['or_where_like'] = $this->search;
 		}
@@ -42,17 +42,17 @@ class Listing extends Component
 			$filter['order_by'] = $sort_table;
 		}
 
-		return QueryUtility::partners($filter)->paginate($this->show_entries);
+		return QueryUtility::user_accounts($filter)->paginate($this->show_entries);
 	}
 
-	public function updatingSearch(){
+    public function updatingSearch(){
 		$this->resetPage();
 	}
 
     public function render(){
     	$data = $this->data();
 
-        return view('livewire.back-end.partner.index.listing', compact('data'));
+        return view('livewire.back-end.user.index.listing', compact('data'));
     }
 
     public function sort($sort){
