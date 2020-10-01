@@ -79,14 +79,18 @@
 </div> --}}
 <!-- End Preloader -->
     <div class="wrapper">
-        <header>
-            @include('front-end.header.index')
-        </header>
+        @if(!Request::is('admin/login'))
+          <header>
+              @include('front-end.header.index')
+          </header>
+        @endif
         @php 
           $page_fluid = ['', '/'];
         @endphp
         <div class="content-wrapper content-wrapper-front-end">
-          @yield('page_header')
+          @if(!Request::is('admin/login'))
+            @yield('page_header')
+          @endif
           <!-- Main content -->
           <div class="content p-0">
             <div class="@if(in_array(\Request::segment(1), $page_fluid)) container-fluid p-0 m-0 @else container @endif">
@@ -98,9 +102,11 @@
           <!-- /.content -->
         </div>
 
-        <footer class="pt-5 bg-light">
-            @include('front-end.footer.index')
-        </footer>
+        @if(!Request::is('admin/login'))
+          <footer class="pt-5 bg-light">
+              @include('front-end.footer.index')
+          </footer>
+        @endif
     </div>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
