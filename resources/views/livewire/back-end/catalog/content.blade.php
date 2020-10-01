@@ -57,8 +57,8 @@
             </div>
         </div>
         @empty
-        <div class="col-12 bg-warning">
-            <h5 class="py-2 text-center">No Found Data!</h5>
+        <div class="col-12">
+            <h5 class=" bg-warning py-2 text-center">No Found Data!</h5>
         </div>
         @endforelse
     </div>
