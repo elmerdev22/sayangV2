@@ -22,7 +22,7 @@
 		        				Email 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'users.email'])
 		        			</th>
-		        			<th class="table-sort" wire:click="sort('users.contact_no')">
+		        			<th class="table-sort" wire:click="sort('user_accounts.contact_no')">
 		        				Contact 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.contact_no'])
 		        			</th>
