@@ -25,7 +25,7 @@
       <div class="card-body register-card-body">
         <h4 class="text-center">Be a Partner</h4>
         <hr>
-        @livewire('auth.register-merchant')
+        @livewire('auth.register-partner')
       </div>
     </div>
   </div>

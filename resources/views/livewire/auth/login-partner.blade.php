@@ -1,19 +1,24 @@
 <div>
-    <form method="POST" wire:submit.prevent="store">
+    <form method="POST" wire:submit.prevent="authenticate">
         <div class="form-group">
             <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
-            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model="email" placeholder="Email Address">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email Address">
             @error('email') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model="password" placeholder="Password">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.lazy="password" placeholder="Password">
             @error('password') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
         </div>
+        @if(Session::has('error'))
+            <div class="text-danger">
+                <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
+            </div>
+        @endif
         <div class="form-group">
             <button type="submit" class="btn btn-warning text-white btn-block">
                 <span class="fas fa-sign-in-alt mr-2"></span>Login

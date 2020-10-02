@@ -25,7 +25,7 @@ class Login extends Component
         $auth = [
             'email'    => $this->email,
             'password' => $this->password,
-            'type'     => ['user', 'partner']
+            'type'     => ['user']
         ];
 
         if(Auth::attempt($auth, $this->remember)){
