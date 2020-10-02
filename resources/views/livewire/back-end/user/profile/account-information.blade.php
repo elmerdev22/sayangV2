@@ -11,7 +11,7 @@
                         $photo_url = asset('images/default-photo/account.png');
                     }
                 @endphp
-                <img class="profile-user-img sayang-profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture" style="width: 150px; height: 150px;">
+                <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture" style="width: 150px; height: 150px;">
             </div>
 
             <h3 class="profile-username text-center">{{ucwords($data->first_name.' '.$data->middle_name.' '.$data->last_name)}}</h3>
