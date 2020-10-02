@@ -94,12 +94,12 @@
                 <i class="fas fa-check"></i> Activate
             </button>
 
-            @if($data->user->is_blocked == 1)
-                <button type="button" data-toggle="modal" data-target="#block-user-modal" class="btn btn-sm btn-block btn-success">
-                    <i class="fas fa-unlock"></i> Partner/Merchant
+            @if($data->user->is_blocked)
+                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this partner/merchant?')">
+                    <i class="fas fa-unlock"></i> Unblock Partner/Merchant
                 </button>
             @else
-                <button type="button" data-toggle="modal" data-target="#block-user-modal" class="btn btn-sm btn-block btn-danger">
+                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this partner/merchant?')">
                     <i class="fas fa-lock"></i> Block Partner/Merchant
                 </button>
             @endif
@@ -130,6 +130,33 @@
                     onBeforeOpen      : () => {
                         Swal.showLoading();
                         @this.call('activate')
+                    }
+                });
+            }
+        })
+    }
+
+    function change_block_status(message){
+        Swal.fire({
+            title: message,
+            // text: "You won't be able to revert this!",
+            // icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('change_block_status')
                     }
                 });
             }

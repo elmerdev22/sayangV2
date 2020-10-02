@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use Session;
 
 class AuthAdmin
 {
@@ -17,7 +18,14 @@ class AuthAdmin
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->type == 'admin'){
+            $user = Auth::user();
+            if($user->type == 'admin'){
+                if($user->is_blocked){
+                    Session::flash('error', 'Your account was blocked.');
+                    Auth::logout();
+                    return redirect(route('auth.login-admin'))->send();
+                }
+
                 return $next($request);
             }else{
                 abort(401);

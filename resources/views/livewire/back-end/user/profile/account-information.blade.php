@@ -84,15 +84,46 @@
                     </a>
                 </li>
             </ul>
-            @if($data->user->is_blocked == 1)
-                <button type="button" data-toggle="modal" data-target="#block-user-modal" class="btn btn-sm btn-block btn-success">
-                    <i class="fas fa-unlock"></i> Unblock User
+            @if($data->user->is_blocked)
+                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this user/buyer?')">
+                    <i class="fas fa-unlock"></i> Unblock User/Buyer
                 </button>
             @else
-                <button type="button" data-toggle="modal" data-target="#block-user-modal" class="btn btn-sm btn-block btn-danger">
-                    <i class="fas fa-lock"></i> Block User
+                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this user/buyer?')">
+                    <i class="fas fa-lock"></i> Block User/Buyer
                 </button>
             @endif
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    function change_block_status(message){
+        Swal.fire({
+            title: message,
+            // text: "You won't be able to revert this!",
+            // icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('change_block_status')
+                    }
+                });
+            }
+        })
+    }
+</script>
+@endpush

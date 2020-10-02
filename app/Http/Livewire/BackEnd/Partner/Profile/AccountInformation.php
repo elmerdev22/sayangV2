@@ -5,13 +5,14 @@ namespace App\Http\Livewire\BackEnd\Partner\Profile;
 use Livewire\Component;
 use App\Model\UserAccount;
 use App\Model\Partner;
+use App\Model\User;
 
 class AccountInformation extends Component
 {
 	public $data, $can_activate=true;
 
 	protected $listeners = [
-		'activated' => '$refresh'
+		'account_info_initialize' => '$refresh'
 	];
 
 	public function mount($key_token){
@@ -43,7 +44,7 @@ class AccountInformation extends Component
     		$partner->save();
 
     		$this->can_activate = false;
-    		$this->emit('activated', true);
+    		$this->emit('account_info_initialize', true);
     		$this->emit('alert', [
                 'type'    => 'success',
                 'title'   => 'Successfully Changed',
@@ -56,5 +57,25 @@ class AccountInformation extends Component
                 'message' => 'You won\'t able to activate this account.'
             ]);
     	}
+    }
+
+    public function change_block_status(){
+        $user             = User::find($this->data->user_id);
+        if($user->is_blocked){
+            $new_status = false;
+            $type       = 'Unblock';
+        }else{
+            $new_status = true;
+            $type       = 'Block';
+        }
+
+        $user->is_blocked = $new_status;
+        $user->save();
+
+        $this->emit('account_info_initialize', true);
+        $this->emit('alert', [
+            'type'    => 'success',
+            'title'   => 'Successfully '.$type
+        ]);
     }
 }
