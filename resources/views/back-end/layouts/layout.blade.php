@@ -161,6 +161,10 @@
       "progressBar": true,
     }
 
+    window.livewire.on('toast_alert', param => {
+        toastr[param['type']](param['message']);
+    });
+
     window.livewire.on('alert', param => {
       var config = {
         position  : 'center',

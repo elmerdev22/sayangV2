@@ -1,7 +1,7 @@
 <div>
     <div class="row">
 	    <div class="col-12">
-	        <div class="card card-warning">
+	        <div class="card card-outline card-sayang">
 	            <div class="card-header">
 	                <h3 class="card-title">Category Name</h3>
 	            </div>
