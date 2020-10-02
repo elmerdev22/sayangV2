@@ -4,10 +4,15 @@ namespace App\Http\Livewire\BackEnd\User\Profile;
 
 use Livewire\Component;
 use App\Model\UserAccount;
+use App\Model\User;
 
 class AccountInformation extends Component
 {
 	public $data;
+    
+    protected $listeners = [
+        'account_info_initialize' => '$refresh'
+    ];
 
 	public function mount($key_token){
 		$this->data = UserAccount::with(['user'])
@@ -17,5 +22,25 @@ class AccountInformation extends Component
 
     public function render(){
         return view('livewire.back-end.user.profile.account-information');
+    }
+
+    public function change_block_status(){
+        $user             = User::find($this->data->user_id);
+        if($user->is_blocked){
+            $new_status = false;
+            $type       = 'Unblock';
+        }else{
+            $new_status = true;
+            $type       = 'Block';
+        }
+
+        $user->is_blocked = $new_status;
+        $user->save();
+
+        $this->emit('account_info_initialize', true);
+        $this->emit('alert', [
+            'type'    => 'success',
+            'title'   => 'Successfully '.$type
+        ]);
     }
 }

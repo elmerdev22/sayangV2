@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use Session;
 
 class AuthUser
 {
@@ -17,7 +18,15 @@ class AuthUser
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->type == 'user'){
+            $user = Auth::user();
+
+            if($user->type == 'user'){
+                if($user->is_blocked){
+                    Session::flash('error', 'Your account was blocked.');
+                    Auth::logout();
+                    return redirect(route('login'))->send();
+                }
+
                 return $next($request);
             }else{
                 abort(401);

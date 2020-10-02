@@ -8,6 +8,7 @@ use Auth;
 use Route;
 use Request;
 use Utility;
+use Session;
 
 class AuthPartner
 {
@@ -21,7 +22,15 @@ class AuthPartner
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->type == 'partner'){
+            $user = Auth::user();
+
+            if($user->type == 'partner'){
+                if($user->is_blocked){
+                    Session::flash('error', 'Your account was blocked.');
+                    Auth::logout();
+                    return redirect(route('auth.login-partner'))->send();
+                }
+
                 $is_activated = Utility::partner_activated();
                 $route        = Route::is('front-end.partner.account-activation.index');
 
