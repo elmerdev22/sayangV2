@@ -26,9 +26,9 @@
         </div> <!-- form-group// -->
     </form>
     <div class="social-auth-links text-center">
-        <p>- OR -</p>
+        <p>Not Yet a Partner? Sign Up Now</p>
         <a href="{{route('partner.register')}}" class="btn btn-block btn-warning">
-          Sign up
+          <span class="fas fa-edit"></span> Sign up
         </a>
     </div>
 </div>
