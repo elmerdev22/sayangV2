@@ -73,6 +73,16 @@
                         @endif
                     </a>
                 </li>
+                <li class="list-group-item">
+                    <b>Registered</b> 
+                    <a class="float-right">
+                        @if($data->created_at)
+                            {{date('F/d/Y', strtotime($data->created_at))}}
+                        @else
+                            <small class="text-muted">Not Set</small>
+                        @endif
+                    </a>
+                </li>
             </ul>
             @if($data->user->is_blocked == 1)
                 <button type="button" data-toggle="modal" data-target="#block-user-modal" class="btn btn-sm btn-block btn-success">
