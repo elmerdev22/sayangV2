@@ -17,4 +17,8 @@ class MyAccountController extends Controller
     public function addresses(){
         return view('front-end.user.my-account.addresses');
     }
+
+    public function BanksAndCards(){
+        return view('front-end.user.my-account.banks-and-cards');
+    }
 }

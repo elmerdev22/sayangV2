@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
     Route::group(['prefix' => 'user', 'as' => 'front-end.user.', 'namespace' => 'FrontEnd\User'], function () {
         
         // My Account
-        Route::group(['prefix' => 'my-account', 'as' => 'my-account.'], function (){
+        Route::group(['prefix' => 'account', 'as' => 'my-account.'], function (){
 			$c = 'MyAccountController';
 			
 			Route::get('/', [
@@ -120,6 +120,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             Route::get('/addresses', [
 		        'as' 	=> 'addresses',
 		        'uses'  => $c.'@addresses'
+            ]);
+            
+            Route::get('/banks-and-cards', [
+		        'as' 	=> 'banks-and-cards',
+		        'uses'  => $c.'@BanksAndCards'
 		    ]);
         });
     });

@@ -6,8 +6,8 @@
     
     <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}} mb-1" id="account">
         <a href="{{route('front-end.user.my-account.index')}}" class="list-group-item {{\Route::is('front-end.user.my-account.index') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
-        <a href="javascript:void(0);" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
-        <a href="{{route('front-end.user.my-account.addresses')}}" class="list-group-item {{\Route::is('front-end.user.my-account.addresses') ? 'sayang-link-active':''}}""><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
+        <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="list-group-item {{\Route::is('front-end.user.my-account.banks-and-cards') ? 'sayang-link-active':''}}""><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
+        <a href="{{route('front-end.user.my-account.addresses')}}" class="list-group-item {{\Route::is('front-end.user.my-account.addresses') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
         <a href="javascript:void(0);" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
     </div>
 
