@@ -548,9 +548,6 @@ input:checked + .slider:before {
 .card-sayang.card-outline{
   border-top: 3px solid var(--sayang-color);
 }
-.sayang-profile-user-img.profile-user-img{
-  border: 3px solid var(--sayang-color);
-}
 .sayang-dropdown-item.dropdown-item.active, .sayang-dropdown-item.dropdown-item:active{
   background-color: var(--sayang-color);
 }
