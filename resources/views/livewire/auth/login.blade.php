@@ -32,7 +32,7 @@
             @enderror
         </div>
         @if(Session::has('error'))
-            <div class="text-danger">
+            <div class="text-danger mb-1">
                 <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
             </div>
         @endif

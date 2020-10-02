@@ -10,12 +10,12 @@ use Auth;
 use Hash;
 use DB;
 
-class RegisterMerchant extends Component
+class RegisterPartner extends Component
 {
     public $first_name, $last_name, $email, $password, $confirm_password, $agree=false;
 
     public function render(){
-        return view('livewire.auth.register-merchant');
+        return view('livewire.auth.register-partner');
     }
 
     public function store(){
