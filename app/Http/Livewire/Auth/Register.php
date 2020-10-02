@@ -13,13 +13,14 @@ use DB;
 
 class Register extends Component
 {
-    public $first_name, $last_name, $email, $contact_no, $password, $confirm_password, $agree=false;
+    public $first_name, $last_name, $email, $contact_no, $password, $confirm_password, $agree=false, $agree_post=false;
 
     public function render(){
         return view('livewire.auth.register');
     }
 
     public function store(){
+        $this->agree_post = false;
 		$rules = [
 			'first_name'       => 'required|max:150',
 			'last_name'        => 'required|max:150',
@@ -32,6 +33,7 @@ class Register extends Component
         $this->validate($rules, $messages);
 
         if(!$this->agree){
+            $this->agree_post = true;
             return false;
         }
 
