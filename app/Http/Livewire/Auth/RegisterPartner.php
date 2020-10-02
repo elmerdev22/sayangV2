@@ -12,13 +12,15 @@ use DB;
 
 class RegisterPartner extends Component
 {
-    public $first_name, $last_name, $email, $password, $confirm_password, $agree=false;
+    public $first_name, $last_name, $email, $password, $confirm_password, $agree=false, $agree_post=false;
 
     public function render(){
         return view('livewire.auth.register-partner');
     }
 
     public function store(){
+        $this->agree_post = false;
+
         $rules = [
 			'first_name'       => 'required|max:150',
 			'last_name'        => 'required|max:150',
@@ -29,6 +31,7 @@ class RegisterPartner extends Component
         $messages = [];
         $this->validate($rules, $messages);
         if(!$this->agree){
+            $this->agree_post = true;
             return false;
         }
 
