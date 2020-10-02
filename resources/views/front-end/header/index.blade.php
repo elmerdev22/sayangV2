@@ -53,8 +53,9 @@
         <ul class="navbar-nav ml-auto">
             
             @auth
-              @if(Auth::user()->type != 'admin')
                 <div class="widgets-wrap float-md-right">
+
+                @if(Auth::user()->type == 'user')
                   <div class="widget-header mr-3">
                     <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
                       <div class="icon-area">
@@ -62,7 +63,6 @@
                       </div>
                     </a>
                   </div>
-
 
                   <div class="widget-header mr-3">
                     <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
@@ -76,6 +76,25 @@
                   <div class="widget-header mr-3">
                     @livewire('front-end.notification')
                   </div>
+                @elseif(Auth::user()->type == 'partner')
+                  @if(Utility::partner_activated())
+                    <div class="widget-header mr-3">
+                      <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
+                        <div class="icon-area">
+                          <i class="fa fa-tachometer-alt text-dark"></i>
+                        </div>
+                      </a>
+                    </div>
+                  @endif
+                @else
+                  <div class="widget-header mr-3">
+                    <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
+                      <div class="icon-area">
+                        <i class="fa fa-tachometer-alt text-dark"></i>
+                      </div>
+                    </a>
+                  </div>
+                @endif
                 
                   <div class="widget-header mr-3">
                     <a class="widget-view" href="{{ route('logout') }}"
@@ -90,7 +109,7 @@
                     </form>
                   </div>
                 </div>
-              @endif
+              
             @else
               <li class="nav-item">
                   <a class="nav-link" href="{{url('/register')}}">Register </a>
