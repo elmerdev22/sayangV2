@@ -3,10 +3,9 @@
         <div class="card-header">
             <h4 class="card-title">Purchase History</h4>
             <div class="card-tools">
-				<button type="button" class="btn btn-tool" data-card-widget="collapse">
-					<i class="fas fa-minus"></i>
-				</button>
-			</div>
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+            </div>
         </div>
         <div class="card-body">
 	       <!-- NOTE: Always put the show entries & search before the .table-responsive class -->

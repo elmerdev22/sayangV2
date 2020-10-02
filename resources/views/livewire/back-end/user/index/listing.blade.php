@@ -2,6 +2,10 @@
 	<div class="card card-outline card-sayang mb-3">
         <div class="card-header">
             <h5 class="card-title"> User List</h5> 
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+            </div>
         </div>
         <div class="card-body">
         	<!-- NOTE: Always put the show entries & search before the .table-responsive class -->
@@ -18,7 +22,7 @@
 		        				Email 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'users.email'])
 		        			</th>
-		        			<th class="table-sort" wire:click="sort('users.contact_no')">
+		        			<th class="table-sort" wire:click="sort('user_accounts.contact_no')">
 		        				Contact 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.contact_no'])
 		        			</th>
