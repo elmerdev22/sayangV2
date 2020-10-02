@@ -3,8 +3,14 @@
         <div class="col-12">
             <div class="card card-outline card-sayang">
                 <div class="card-header">
-                    <input type="search" wire:model="search" class="form-control" placeholder="Search Category Name...">
-                <!-- /.card-tools -->
+                    <div class="card-title">
+                        <input type="search" wire:model="search" class="form-control form-control-sm" placeholder="Search Category Name...">
+                    </div>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

@@ -21,7 +21,7 @@
         </div>
     </aside> <!-- col.// -->
     <main class="col-md-9">
-        <div class="card mb-3">
+        <div class="card card-outline card-sayang mb-3">
             <div class="card-header">
                 <h5 class="card-title">My Addresses</h5> 
                 <div class="card-tools">
