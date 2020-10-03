@@ -31,6 +31,7 @@
                 </span> 
             @enderror
         </div>
+        
         @if(Session::has('error'))
             <div class="text-danger">
                 <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}

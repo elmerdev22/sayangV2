@@ -18,7 +18,9 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <div class="login-logo">
-                    <a href="/" title="Go to home"><b>ADMIN</b> - SAYANG!</a>
+                    <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle" src="{{asset('images/default-photo/admin.png')}}">
+                    </div>
                 </div>
                 <p class="login-box-msg">Sign in to start your session</p>
                 @if(\Session::has('login_provider_alert'))

@@ -1,5 +1,10 @@
 <div>
     <form method="POST" wire:submit.prevent="authenticate">
+        @if(Session::has('error'))
+            <div class="text-danger p-2 mb-2 bg-danger">
+                <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
+            </div>
+        @endif
         <div class="form-group">
             <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
             <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email Address">
@@ -14,11 +19,6 @@
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
         </div>
-        @if(Session::has('error'))
-            <div class="text-danger">
-                <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
-            </div>
-        @endif
         <div class="form-group">
             <button type="submit" class="btn btn-warning text-white btn-block">
                 <span class="fas fa-sign-in-alt mr-2"></span>Login
