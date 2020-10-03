@@ -24,23 +24,23 @@
 
     <div class="row">
       <main class="col-md-9">
-        <div class="card">
+        <div class="card card-outline card-sayang">
           <div class="table-responsive">
             <table class="table table-borderless table-shopping-cart">
-            <thead >
-              <tr>
-                <th scope="col">Product/Items</th>
-                <th scope="col" width="100">Quantity</th>
-                <th scope="col" width="100">Price</th>
-                <th scope="col" class="text-right" width="100">Remove</th>
+            <thead>
+              <tr class="border-bottom">
+                <th scope="col">PRODUCTS/ITEMS</th>
+                <th scope="col" width="100">QUANTITY</th>
+                <th scope="col" width="100">PRICE</th>
+                <th scope="col" class="text-right" width="100">REMOVE</th>
               </tr>
             </thead>
             <tbody>
               @for($x=0;$x < 3 ; $x++)
-              <tr>
+              <tr class="border-bottom">
                 <td>
                   <figure class="itemside">
-                    <div class="aside cart-img"><img src="{{asset('images/default-photo/prod1.jpg')}}" class="img-lg mr-2"></div>
+                    <div class="aside cart-img"><img src="{{asset('images/default-photo/product1.jpg')}}" class="img-lg mr-2"></div>
                     <figcaption class="info ml-2">
                       <a href="#" class="title text-dark">Product name</a>
                       <p class="text-muted small">
@@ -103,7 +103,7 @@
         </main> <!-- col.// -->
 
         <aside class="col-md-3">
-          <div class="card mb-3">
+          <div class="card card-outline card-sayang mb-3">
             <div class="card-body">
             <form>
               <div class="form-group">
@@ -118,7 +118,7 @@
             </form>
             </div> <!-- card-body.// -->
           </div>
-          <div class="card">
+          <div class="card card-outline card-sayang">
             <div class="card-body">
               <div class="row">
                 <div class="col-6">

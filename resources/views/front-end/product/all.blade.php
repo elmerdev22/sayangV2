@@ -26,9 +26,8 @@
       
       <div class="card">
         <article class="filter-group">
-          <header class="card-header border-top">
-            <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="text-dark">
-              
+          <header class="card-header border-top" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true">
+            <a href="#" class="text-dark">
               <h6 class="title"><span class="fa fa-chevron-down"></span> Product type</h6>
             </a>
           </header>
@@ -57,8 +56,8 @@
           </div>
         </article> <!-- filter-group  .// -->
         <article class="filter-group">
-          <header class="card-header border-top">
-            <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="text-dark">
+          <header class="card-header border-top" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" >
+            <a href="#" class="text-dark">
               <h6 class="title"><span class="fa fa-chevron-down"></span> Brands</h6>
             </a>
           </header>
@@ -93,8 +92,8 @@
           </div>
         </article> <!-- filter-group .// -->
         <article class="filter-group">
-          <header class="card-header border-top">
-            <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="text-dark">
+          <header class="card-header border-top" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" >
+            <a href="#" class="text-dark">
               <h6 class="title"><span class="fa fa-chevron-down"></span> Price Range</h6>
             </a>
           </header>
@@ -116,8 +115,8 @@
           </div>
         </article> <!-- filter-group .// -->
         <article class="filter-group">
-          <header class="card-header border-top">
-            <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="text-dark">
+          <header class="card-header border-top" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" >
+            <a href="#" class="text-dark">
               <h6 class="title"><span class="fa fa-chevron-down"></span> Sizes</h6>
             </a>
           </header>
@@ -146,8 +145,8 @@
           </div>
         </article> <!-- filter-group .// -->
         <article class="filter-group">
-          <header class="card-header border-top">
-            <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="text-dark">
+          <header class="card-header border-top" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" >
+            <a href="#" class="text-dark">
               <h6 class="title"><span class="fa fa-chevron-down"></span> More Filter</h6>
             </a>
           </header>

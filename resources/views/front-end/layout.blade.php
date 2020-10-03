@@ -26,7 +26,8 @@
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
         <!-- Toast Alert-->
-        <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}">
+        {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}"> --}}
+        <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
         <!-- Preloader -->
         <!-- overlayScrollbars -->
         {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}}
@@ -122,7 +123,7 @@
     <!-- SweetAlert2 -->
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
     <!-- Toast Alert -->
-    <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script>
+    {{-- <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script> --}}
     <!-- Preloader -->
     <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
     <!-- Animate js -->
@@ -153,12 +154,6 @@
     channel.bind('my-event', function(message) {
       window.livewire.emit('notifications', message);
     });
-    
-    toastr.options = {
-      "closeButton": true,
-      "newestOnTop": true,
-      "progressBar": true,
-    }
 
     window.livewire.on('alert', param => {
       var config = {

@@ -25,7 +25,13 @@ class Form extends Component
         $category->slug      = SlugService::createSlug(Category::class, 'slug', $this->name);
         if($category->save()){
         	$this->emit('category-content');
-        	$this->emit('alert', ['type' => 'success', 'message' => ''.ucwords($this->name).' Successfully Added!']);
+        	$this->emit('notif_alert', [
+                'timer' => 5000,
+                'confirm_button' => true , 
+                'position' => 'center', 
+                'type' => 'success', 
+                'message' => 'Successfully Added!'
+            ]);
         	$this->name = '';
         }
     }

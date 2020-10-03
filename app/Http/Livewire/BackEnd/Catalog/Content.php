@@ -43,7 +43,12 @@ class Content extends Component
         $tag->key_token   = Utility::generate_table_token('Tag');
         $tag->slug        = SlugService::createSlug(Tag::class, 'slug', $this->name);
         if($tag->save()){
-        	$this->emit('toast_alert', ['type' => 'success', 'message' => ''.ucwords($this->name).' Successfully Added!']);
+        	$this->emit('notif_alert', [
+                'timer' => 1500,
+                'position' => 'top-right',
+                'type' => 'success',
+                'message' => 'Successfully Added!'
+            ]);
         	$this->name = '';
         }
     }
