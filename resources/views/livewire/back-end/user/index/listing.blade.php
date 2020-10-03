@@ -38,8 +38,20 @@
 	        			@forelse($data as $row)
 		        			<tr>
 		        				<td>{{ucwords($row->first_name.' '.$row->last_name)}}</td>
-		        				<td>{{$row->email}}</td>
-		        				<td>{{Utility::mobile_number_ph_format($row->contact_no)}}</td>
+		        				<td>
+		        					@if($row->email) 
+			        					{{$row->email}}
+	        						@else 
+	        							<i class="text-danger">not set</i> 
+	        						@endif
+		        				</td>
+		        				<td>
+		        					@if($row->contact_no) 
+		        						{{Utility::mobile_number_ph_format($row->contact_no)}}
+	        						@else 
+	        							<i class="text-danger">not set</i> 
+	        						@endif
+		        				</td>
 		        				<td>
 		        					@if($row->verified_at) 
 			        					@if($row->is_blocked)

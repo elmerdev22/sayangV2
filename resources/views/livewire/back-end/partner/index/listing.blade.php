@@ -45,10 +45,34 @@
 	        			@forelse($data as $row)
 		        			<tr>
 		        				<td>{{ucwords($row->account_first_name.' '.$row->account_last_name)}}</td>
-		        				<td>{{ucfirst($row->partner_name)}}</td>
-		        				<td>@if($row->barangay_id) {{$row->city_name.', '.$row->province_name}} @endif</td>
-		        				<td>{{Utility::mobile_number_ph_format($row->contact_no)}}</td>
-		        				<td>{{$row->email}}</td>
+		        				<td>
+		        					@if($row->partner_name) 
+		        						{{ucfirst($row->partner_name)}} 
+		        					@else 
+		        						<i class="text-danger">not set</i> 
+		        					@endif
+		        				</td>
+		        				<td>
+		        					@if($row->barangay_id) 
+		        						{{$row->city_name.', '.$row->province_name}} 
+	        						@else 
+	        							<i class="text-danger">not set</i> 
+	        						@endif
+		        				</td>
+		        				<td>
+		        					@if($row->contact_no)
+			        					{{Utility::mobile_number_ph_format($row->contact_no)}}
+		        					@else
+	        							<i class="text-danger">not set</i>
+		        					@endif
+		        				</td>
+		        				<td>
+		        					@if($row->email)
+			        					{{$row->email}}
+		        					@else
+	        							<i class="text-danger">not set</i>
+		        					@endif
+		        				</td>
 		        				<td>
 		        					@if($row->is_activated) 
 		        						<span class="badge badge-success">Activated</span>
