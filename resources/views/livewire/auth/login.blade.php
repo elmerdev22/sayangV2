@@ -1,8 +1,15 @@
 <div>
     <form wire:submit.prevent="authenticate">
+        
+        @if(Session::has('error'))
+            <div class="text-danger p-2 mb-2 bg-danger">
+                <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
+            </div>
+        @endif
+
         <div class="form-group">
             <div class="input-group">
-                <input type="text" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -31,11 +38,6 @@
                 </span> 
             @enderror
         </div>
-        @if(Session::has('error'))
-            <div class="text-danger mb-1">
-                <i class="fas fa-exclamation-triangle"></i> {{Session::get('error')}}
-            </div>
-        @endif
 
         <div class="row">
             <div class="col-8">
