@@ -122,8 +122,9 @@ class QueryUtility{
 		if($filtered){
 			$data = $filtered;
 		}
-		if(isset($filter['search'])){
-			$search = trim($filter['search']);
+
+		if(isset($filter['or_where_like'])){
+			$search = trim($filter['or_where_like']);
 			$search = explode(' ',$search);
 			$data = $data->where(function($query) use ($search) {
 				foreach($search as $value){
