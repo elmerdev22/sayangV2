@@ -54,7 +54,7 @@ class VerificationCheck extends Component
             $user->verification_code       = rand(100000, 999999);
             $user->verification_expired_at = Utility::generate_verification_expiration();
             if($user->save()){
-                $is_sent      = Utility::mail_verification_code($user);
+                $is_sent      = true;//Utility::mail_verification_code($user);
                 $this->resend = false;
     
                 if($is_sent){

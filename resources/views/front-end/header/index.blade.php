@@ -9,6 +9,7 @@
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            @if(!Auth::check() || Auth::user()->verified_at != null)
             <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">Categories</a>
                 <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
                     <div class="container">
@@ -35,15 +36,22 @@
                     </div>
                 </div>
             </li>
+            @endif
+            
             <li class="nav-item">
               <a class="nav-link" href="{{-- {{url('/help-centre')}} --}}">Help Centre <small class="fas fa-question"></small> </a>
             </li>
+
+            @if(!Auth::check() || Auth::user()->verified_at != null)
             <li class="nav-item">
               <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list-alt"></small> </a>
             </li>
+            @endif
+            
             @if(!Auth::user())
             <li class="nav-item">
               <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
