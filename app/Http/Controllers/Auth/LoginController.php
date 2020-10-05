@@ -70,10 +70,16 @@ class LoginController extends Controller
 
         DB::beginTransaction();
         try {
-            $socialite_user = Socialite::driver($provider)
-                ->fields(['name', 'first_name', 'last_name', 'email', 'gender', 'verified'])
-                ->stateless()
-                ->user();
+            if($provider == 'google'){
+                $socialite_user = Socialite::driver($provider)
+                    ->stateless()
+                    ->user();
+            }else{
+                $socialite_user = Socialite::driver($provider)
+                    ->fields(['name', 'first_name', 'last_name', 'email', 'gender', 'verified'])
+                    ->stateless()
+                    ->user();                 
+            }
 
             $validate_email = User::where('email', $socialite_user->email)->first();
 
@@ -114,8 +120,7 @@ class LoginController extends Controller
             }
 
             $find_user->email = $socialite_user->email;
-
-            $given_name = $socialite_user->first_name;
+            $given_name       = isset($socialite_user['given_name']) ? $socialite_user['given_name'] : $socialite_user->first_name;
             
             if($is_new){
                 if($socialite_user->email){
