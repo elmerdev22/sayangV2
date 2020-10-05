@@ -139,6 +139,7 @@ class LoginController extends Controller
             }
     
         }catch(\Exception $e) {
+            dd($e);
             $success = false;
         }
 
