@@ -11,7 +11,7 @@ class LoginAdmin extends Component
     public $email, $password, $remember=false;
 
     public function render(){
-        return view('livewire.auth.login');
+        return view('livewire.auth.login-admin');
     }
 
     public function authenticate(){
