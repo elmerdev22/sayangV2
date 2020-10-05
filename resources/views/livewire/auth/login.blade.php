@@ -9,7 +9,7 @@
 
         <div class="form-group">
             <div class="input-group">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email">
+                <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" wire:model.lazy="email" value="{{ old('email') }}" placeholder="Email" autofocus="true">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
