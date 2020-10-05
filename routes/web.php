@@ -157,7 +157,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 
         // QR Code
         Route::group(['prefix' => 'qr-code', 'as' => 'qr-code.'], function (){
-			$c = 'QRCodeController';
+			$c = 'QrCodeController';
 			
 			Route::get('/', [
 		        'as' 	=> 'index',
