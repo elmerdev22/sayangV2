@@ -70,7 +70,11 @@ class LoginController extends Controller
 
         DB::beginTransaction();
         try {
-            $socialite_user = Socialite::driver($provider)->stateless()->user();
+            $socialite_user = Socialite::driver($provider)
+                ->fields(['name', 'first_name', 'last_name', 'email', 'gender', 'verified'])
+                ->stateless()
+                ->user();
+                
             $validate_email = User::where('email', $socialite_user->email)->first();
             dd($socialite_user);
             if($validate_email){
