@@ -26,11 +26,11 @@ class Form extends Component
         if($category->save()){
         	$this->emit('category-content');
         	$this->emit('notif_alert', [
-                'timer' => 5000,
-                'confirm_button' => true , 
-                'position' => 'center', 
-                'type' => 'success', 
-                'message' => 'Successfully Added!'
+                'timer'          => 5000,
+                'confirm_button' => true,
+                'position'       => 'center',
+                'type'           => 'success',
+                'message'        => 'Successfully Added!'
             ]);
         	$this->name = '';
         }

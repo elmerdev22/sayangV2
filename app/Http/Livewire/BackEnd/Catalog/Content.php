@@ -44,10 +44,10 @@ class Content extends Component
         $tag->slug        = SlugService::createSlug(Tag::class, 'slug', $this->name);
         if($tag->save()){
         	$this->emit('notif_alert', [
-                'timer' => 1500,
+                'timer'    => 1500,
                 'position' => 'top-right',
-                'type' => 'success',
-                'message' => 'Successfully Added!'
+                'type'     => 'success',
+                'message'  => 'Successfully Added!'
             ]);
         	$this->name = '';
         }
