@@ -7,7 +7,7 @@
         @endif
         <div class="form-group">
             <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
-            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.lazy="email" placeholder="Email Address">
+            <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" wire:model.lazy="email" value="{{ old('email') }}" placeholder="Email" autofocus="true">
             @error('email') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
