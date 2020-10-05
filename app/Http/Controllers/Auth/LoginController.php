@@ -121,6 +121,7 @@ class LoginController extends Controller
 
             $find_user->email = $socialite_user->email;
             $given_name       = isset($socialite_user['given_name']) ? $socialite_user['given_name'] : $socialite_user['first_name'];
+            $last_name        = isset($socialite_user['last_name']) ? $socialite_user['last_name'] : $socialite_user->last_name;
             
             if($is_new){
                 if($socialite_user->email){
@@ -141,7 +142,7 @@ class LoginController extends Controller
                 }
 
                 $account->first_name          = $given_name;
-                $account->last_name           = $socialite_user->last_name;
+                $account->last_name           = $last_name;
                 $account->photo_provider_link = $socialite_user->avatar;
 
                 if($account->save()){
