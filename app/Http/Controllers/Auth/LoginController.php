@@ -74,9 +74,9 @@ class LoginController extends Controller
                 ->fields(['name', 'first_name', 'last_name', 'email', 'gender', 'verified'])
                 ->stateless()
                 ->user();
-                
+
             $validate_email = User::where('email', $socialite_user->email)->first();
-            dd($socialite_user);
+
             if($validate_email){
                 if($provider != $validate_email->provider){
                     //Already used in other provider
@@ -145,7 +145,6 @@ class LoginController extends Controller
             }
     
         }catch(\Exception $e) {
-            dd($e);
             $success = false;
         }
 
