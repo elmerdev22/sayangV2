@@ -72,7 +72,7 @@ class LoginController extends Controller
         try {
             $socialite_user = Socialite::driver($provider)->stateless()->user();
             $validate_email = User::where('email', $socialite_user->email)->first();
-
+            dd($socialite_user);
             if($validate_email){
                 if($provider != $validate_email->provider){
                     //Already used in other provider
