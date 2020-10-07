@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Media\Media;
 
 class UserAccount extends Model
 {
@@ -16,5 +17,9 @@ class UserAccount extends Model
 
     public function partner(){
         return $this->hasOne('App\Model\Partner', 'user_account_id', 'id');
+    }
+
+    public function registerMediaConversions(Media $media = null){
+        $this->addMediaConversion('medium')->height(150)->width(150);
     }
 }

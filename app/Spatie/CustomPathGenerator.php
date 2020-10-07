@@ -4,9 +4,9 @@ class CustomPathGenerator implements PathGenerator
 {
     public function getPath(Media $media) : string
     {
-        if ($media instanceof Post) {
-            return 'user_id/' . $media->user_id . '/' . $media->id;
-        }
+        // if ($media instanceof Post) {
+        //     return 'user_id/' . $media->user_id . '/' . $media->id;
+        // }
         return $media->id;
     }
 

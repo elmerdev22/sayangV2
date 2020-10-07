@@ -137,7 +137,7 @@ class BusinessDetails extends Component
         $response = ['success' => false, 'message' => ''];
         DB::beginTransaction();
         
-        try{
+        // try{
             $account       = $this->account;
             $partner       = Partner::where('user_account_id', $account->id)->first();
 
@@ -166,14 +166,14 @@ class BusinessDetails extends Component
                 $partner->key_token       = Utility::generate_table_token('Partner');
 
                 // New DTI
-                $dti_file_name                      = Utility::generate_file_name('Partner', 'dti_certificate_file');
-                $extension                          = $this->dti_certificate_file->getClientOriginalExtension();
-                $file_name                          = $this->dti_certificate_file->getClientOriginalName();
-                $dti_certificate_path               = UploadUtility::upload_file('dti-certificates', $account->key_token);
-                $dti_file                           = $dti_file_name.'.'.$extension;
-                $dti_certificate                    = $this->dti_certificate_file->storeAs($dti_certificate_path, $dti_file);
-                $partner->dti_certificate_file      = $dti_file;
-                $partner->dti_certificate_file_name = $file_name;
+                    $dti_file_name                      = Utility::generate_file_name('Partner', 'dti_certificate_file');
+                    $extension                          = $this->dti_certificate_file->getClientOriginalExtension();
+                    $file_name                          = $this->dti_certificate_file->getClientOriginalName();
+                    $dti_certificate_path               = UploadUtility::upload_file('dti-certificates', $account->key_token);
+                    $dti_file                           = $dti_file_name.'.'.$extension;
+                    $dti_certificate                    = $this->dti_certificate_file->storeAs($dti_certificate_path, $dti_file);
+                    $partner->dti_certificate_file      = $dti_file;
+                    $partner->dti_certificate_file_name = $file_name;
                 // End of New DTI
             }
 
@@ -189,9 +189,9 @@ class BusinessDetails extends Component
             if($partner->save()){
                 $response['success'] = true;
             }            
-        }catch(\Exception $e){
+        // }catch(\Exception $e){
             $response['message'] = 'An error occured.';            
-        }
+        // }
 
         if($response['success']){
             DB::commit();
