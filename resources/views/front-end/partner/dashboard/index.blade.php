@@ -1,15 +1,15 @@
-@extends('back-end.layouts.layout')
-@section('title','Dashboard')
+@extends('front-end.partner.layouts.layout')
+@section('title','QR Code')
 @section('page_header')
     @php 
         $page_header = [
             'title'       => 'Dashboard',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Dashboard'],
+                ['url' => '', 'label' => 'Dasboard'],
             ],
         ];
     @endphp
-    @include('back-end.layouts.includes.page-header', $page_header)
+    @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
     <div class="row">

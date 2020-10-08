@@ -144,6 +144,17 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		    ]);
         });
 
+        // Dashboard
+        Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function (){
+			$c = 'DashboardController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+            
+        });
+
         // My Account
         Route::group(['prefix' => 'my-account', 'as' => 'my-account.'], function (){
 			$c = 'MyAccountController';
