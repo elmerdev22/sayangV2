@@ -17,7 +17,7 @@
                     <div class="row">
                         @forelse($data as $category)
                         <div class="col-12">
-                            <div class="card card-outline card-sayang collapsed-card" wire:ignore.self>
+                            <div class="card card-warning card-sayang collapsed-card" wire:ignore.self>
                                 <div class="card-header">
                                     <h3 class="card-title">{{ucwords($category->name)}}</h3>
 

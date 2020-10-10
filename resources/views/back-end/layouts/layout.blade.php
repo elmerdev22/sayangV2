@@ -25,13 +25,8 @@
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
-          <!-- Toast Alert-->
-          {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}"> --}}
-          <!-- Preloader -->
-          <!-- overlayScrollbars -->
-          {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}}
           <!-- Google Font: Source Sans Pro -->
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet"><!-- AOS animation-->
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
           <!-- AOS animation-->
           <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

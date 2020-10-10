@@ -25,20 +25,10 @@
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
-        <!-- Toast Alert-->
-        {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/toastr/toastr.min.css')}}"> --}}
+        <!-- Sweet Alert-->
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
-        <!-- Preloader -->
-        <!-- overlayScrollbars -->
-        {{-- <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> --}}
         <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-        <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
-        <!-- AOS animation-->
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <!-- Stepper -->
-        <link rel="stylesheet" href="{{asset('template/assets/dist/css/stepper.min.css')}}"
-      <!-- end of to be removed packages -->
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet"><!-- end of to be removed packages -->
     @else
       <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @endif
@@ -118,20 +108,12 @@
     <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- overlayScrollbars -->
-    {{-- <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}}
     <!-- SweetAlert2 -->
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
-    <!-- Toast Alert -->
-    {{-- <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script> --}}
     <!-- Preloader -->
     <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
-    <!-- Animate js -->
-    <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
      <!-- Admin lte -->
      <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
-    <!-- AOS script-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- Stepper -->
     <script src="{{asset('template/assets/dist/js/stepper.min.js')}}"></script>
