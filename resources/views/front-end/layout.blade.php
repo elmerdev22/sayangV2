@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
         <!-- Sweet Alert-->
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
-        <!-- Google Font: Source Sans Pro -->
+        <!-- Google Font: Quicksand -->
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet"><!-- end of to be removed packages -->
     @else
       <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -174,10 +174,7 @@
           }
       });
     });
-    
-    
   </script>
-
   @yield('js')
   @stack('scripts')
 </body>

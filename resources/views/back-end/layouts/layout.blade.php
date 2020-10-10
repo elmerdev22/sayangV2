@@ -25,45 +25,15 @@
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
-          <!-- Google Font: Source Sans Pro -->
-          <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet"><!-- AOS animation-->
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/preloader.css')}}">
-          <!-- AOS animation-->
-          <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
-        <!-- end of to be removed packages -->
+          <!-- Google Font: Quicksand -->
+          <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+          <!-- end of to be removed packages -->
     @else
       <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @endif
     @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sayang-layout-navbar-fixed">
-    <!-- Load Facebook SDK for JavaScript -->
-    {{-- 
-    <!-- comment for the meantime -->
-    <div id="fb-root"></div>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            xfbml            : true,
-            version          : 'v8.0'
-            });
-        };
-
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!-- Your Chat Plugin code -->
-    <div class="fb-customerchat" attribution=setup_tool page_id="100185501825589" theme_color="#FFDE59"></div>
-    <!-- /.comment for the meantime -->
-    --}} 
-
     <!-- Preloader -->
     <!-- <div class="preloader">
         <div class="preloader-inner">
@@ -113,23 +83,12 @@
     <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- overlayScrollbars -->
-    {{-- <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}}
     <!-- SweetAlert2 -->
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
-    <!-- Toast Alert -->
-    {{-- <script src="{{asset('template/assets/plugins/toastr/toastr.min.js')}}"></script> --}}
-    <!-- Preloader -->
-    <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
-    <!-- Animate js -->
-    <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
-     <!-- Admin lte -->
+    <!-- Admin lte -->
      <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
     <!-- AOS script-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <!-- Stepper -->
-    <script src="{{asset('template/assets/dist/js/stepper.min.js')}}"></script>
     <!-- end of to be removed packages -->
   @else
     <script src="{{ mix('js/app.js') }}"></script>
@@ -137,7 +96,6 @@
 
 
   <script type="text/javascript">
-    AOS.init();
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
     var key = '{{env('PUSHER_APP_KEY')}}';
