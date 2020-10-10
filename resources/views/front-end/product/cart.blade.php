@@ -40,7 +40,9 @@
               <tr class="border-bottom">
                 <td>
                   <figure class="itemside">
-                    <div class="aside cart-img"><img src="{{asset('images/default-photo/product1.jpg')}}" class="img-lg mr-2"></div>
+                    <div class="aside cart-img">
+                      <img src="{{asset('images/default-photo/product1.jpg')}}" class="img-lg mr-3 w-auto">
+                    </div>
                     <figcaption class="info ml-2">
                       <a href="#" class="title text-dark">Product name</a>
                       <p class="text-muted small">

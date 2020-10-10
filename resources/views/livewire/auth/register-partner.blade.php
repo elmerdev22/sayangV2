@@ -54,7 +54,6 @@
     <div class="social-auth-links text-center">
         <p>- Already have an account -</p>
         <a href="{{route('partner.login')}}" class="btn btn-block btn-warning">
-          <i class="fas fa-sign-in-alt mr-2"></i>
           Login
         </a>
       </div>

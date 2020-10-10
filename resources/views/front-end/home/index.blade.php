@@ -49,7 +49,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
         <div class="card mb-4 product-card">
           <div style="width:100%; text-align:center">
-            <img class="card-img-top" src="{{asset('images/default-photo/w2.jpg')}}" alt="Card image cap">
+            <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
             <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
             {{-- <div class="store-info p-1 bg-light">
                 <div class="row">
