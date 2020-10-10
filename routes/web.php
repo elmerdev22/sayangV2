@@ -155,6 +155,37 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
         });
 
+        // My Products
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+            
+        });
+        // My Menu
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/menu', [
+		        'as' 	=> 'menu',
+		        'uses'  => $c.'@menu'
+            ]);
+            
+        });
+        // Add Menu
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/menu/add', [
+		        'as' 	=> 'add-menu',
+		        'uses'  => $c.'@addMenu'
+            ]);
+            
+        });
+
         // My Account
         Route::group(['prefix' => 'my-account', 'as' => 'my-account.'], function (){
 			$c = 'MyAccountController';

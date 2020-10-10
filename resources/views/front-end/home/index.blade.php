@@ -3,7 +3,7 @@
 @section('css')
 <style type="text/css">
   #welcome{
-    background: url('{{asset('images/default-photo/w2.jpg')}}');
+    background: url('{{asset('images/default-photo/w3.jpg')}}');
     background-size: cover;
     background-repeat: no-repeat;
   }

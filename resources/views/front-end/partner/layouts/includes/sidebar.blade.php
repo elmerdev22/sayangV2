@@ -66,11 +66,26 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.my-products.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.my-products.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-list"></i>
-                        <p>My Items</p>
+                        <p>My Products <i class="right fas fa-angle-left"></i></p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.index') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.my-products.menu')}}" class="nav-link {{Route::is('front-end.partner.my-products.add-menu') || Route::is('front-end.partner.my-products.menu') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Menu</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
