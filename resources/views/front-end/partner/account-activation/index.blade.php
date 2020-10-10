@@ -1,5 +1,9 @@
 @extends('front-end.layout')
-@section('title','Account Activation')
+@section('title','Account Activation')  
+@section('css')
+<!-- Stepper-->
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/stepper.min.css')}}">    
+@endsection
 @section('page_header')
     @php 
         $page_header = [
@@ -83,6 +87,8 @@
 
 @endsection
 @section('js')
+<!-- Stepper -->
+<script src="{{asset('template/assets/dist/js/stepper.min.js')}}"></script>
 <script type="text/javascript">
     var stepper1
     document.addEventListener('DOMContentLoaded', function () {

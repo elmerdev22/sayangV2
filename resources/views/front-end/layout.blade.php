@@ -25,8 +25,6 @@
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
-        <!-- Sweet Alert-->
-        <link rel="stylesheet" href="{{asset('template/assets/dist/css/sweetalert2.min.css')}}">
         <!-- Google Font: Quicksand -->
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet"><!-- end of to be removed packages -->
     @else
@@ -122,9 +120,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
   @endif
 
-
   <script type="text/javascript">
-    AOS.init();
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
     var key = '{{env('PUSHER_APP_KEY')}}';
