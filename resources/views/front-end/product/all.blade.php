@@ -203,7 +203,7 @@
           <div class="row no-gutters p-2">
             <aside class="col-5">
               <a href="#" class="img-wrap">
-                <img class="card-img-top" src="{{asset('images/default-photo/w2.jpg')}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
                 <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
               </a>
             </aside> <!-- col.// -->
