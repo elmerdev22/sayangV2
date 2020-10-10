@@ -3,7 +3,7 @@
 @section('css')
 <style type="text/css">
   .content-wrapper-front-end{
-    background: url('{{asset('images/default-photo/login-partner.jpg')}}') !important;
+    background: url('{{asset('images/default-photo/be-a-partner-login.jpg')}}') !important;
     /* Center and scale the image nicely */
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -16,8 +16,11 @@
   <div class="col-md-7 d-none d-md-block d-lg-block">
     <div class="jumbotron bg-transparent text-white">
       <img src="{{asset('images/logo/logo_old.png')}}" height="150" class="d-inline-block align-top" alt="">
-      <h1 class="display-3" data-aos="fade-right" data-aos-duration="500" style="text-shadow: 1px 2px 5px #000;">Grow with us.</h1>
-      <p class="lead" data-aos="fade-right" data-aos-duration="700" style="text-shadow: 2px 1px 3px #000; font-size: 20px;">Zero Waste. Maximum Profits.</p>
+      <h1 class="jumbotron-heading display-3 text-white" data-aos="fade-right" data-aos-duration="500">
+        <b>Grow with us.</b>
+      </h1>
+      <p class="lead text-white" data-aos="fade-right" data-aos-duration="700">Zero Waste. Maximum Profits.</p>
+      <p>
     </div>
   </div>
   <div class="col-md-5">
