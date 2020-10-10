@@ -46,9 +46,6 @@
                             </div>
                             <div class="profile-username text-center">{{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}</div>
                             <div class="text-center">
-                                <div class="text-muted">
-                                    User/Buyer
-                                </div>
                                 <span class="badge badge-success">Active</span>
                             </div>
                         </div>
@@ -97,6 +94,9 @@
                         <div class="form-group row my-0">
                             <label class="col-sm-4 col-form-label">Member Since</label>
                             <div class="col-sm-8 col-form-label">{{date('F d, Y', strtotime($account->created_at))}}</div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <button class="btn btn-warning float-right">Save</button>
                         </div>
                         {{-- <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Username</label>

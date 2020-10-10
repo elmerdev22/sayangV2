@@ -1,22 +1,17 @@
 @extends('front-end.layout')
 @section('title','Auctions for Every Juan!')
 @section('css')
-<style type="text/css">
-  #welcome{
-    background: url('{{asset('images/default-photo/w3.jpg')}}');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-<div id="welcome">
+<div id="welcome" style=" background:url('https://image.freepik.com/free-vector/shopaholics-rushing-super-discount-banner_1262-21510.jpg')">
     <section class="jumbotron pl-0">
       <div class="container">
-        <h1 class="jumbotron-heading display-4 text-white" data-aos="fade-right" data-aos-duration="500">
+        <h1 class="jumbotron-heading display-4" data-aos="fade-right" data-aos-duration="500">
           <b>Nothing goes to waste.</b>
         </h1>
-        <p class="lead text-white" data-aos="fade-right" data-aos-duration="700">Explore exciting deals near you.</p>
+        <p class="lead " data-aos="fade-right" data-aos-duration="700">Explore exciting deals near you.</p>
         <p>
 
         <form>
@@ -25,7 +20,7 @@
               <div class="input-group input-group-lg">
                 <input class="form-control form-control-navbar border-0" type="search" placeholder="Location or Products" aria-label="Search">
                 <div class="input-group-append">
-                  <button class="btn btn-navbar bg-white" type="submit">
+                  <button class="btn btn-navbar bg-warning" type="submit">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
@@ -39,12 +34,30 @@
 </div>
 <div class="py-3">
   <div class="container">
+    <div class="row mb-3">
+      <div class="col-12 mb-3">
+        <h2 class="title" data-aos="fade-right">EXPLORE SAYANG!</h2>
+      </div>
+      <div class="col-12">    
+        <div class="owl-carousel owl-theme">
+              
+          @for($x=0;$x < 8; $x++)
+          <div class="item">
+            <div class="card text-center shadow-sm" style="width: auto;">
+              <div class="card-body">
+                <img class="card-img-top display-inline" src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
+                <p>Cars</p>
+              </div>
+            </div>
+          </div>
+          @endfor
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12 mb-3">
         <h2 class="title" data-aos="fade-right">MOST POPULAR</h2>
       </div>
-    </div>
-    <div class="row">
       @for($x=0;$x < 9; $x++)
       <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
         <div class="card mb-4 product-card">
@@ -97,4 +110,31 @@
   </div>
 </div>
 
+@endsection
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+<script>
+$('.owl-carousel').owlCarousel({
+    center: true,
+    loop:true,
+    margin:10,
+    dots: true,
+    nav: false,
+    autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:5
+        },
+        1000:{
+            items:7
+        }
+    }
+})
+</script>
 @endsection

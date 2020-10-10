@@ -1,7 +1,7 @@
 <div class="list-group panel">
     <a href="#account" class="list-group-item {{\Route::is('front-end.user.my-account.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-user"></span> My Account 
-        <i class="fa fa-caret-left float-right"></i>
+        <i class="fa fa-chevron-left float-right"></i>
     </a>
     
     <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}} mb-1" id="account">
@@ -13,7 +13,7 @@
 
     <a href="#dashboard" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-shopping-bag"></span> My Purchase 
-        <i class="fa fa-caret-left float-right"></i>
+        <i class="fa fa-chevron-left float-right"></i>
     </a>
 
     <div class="collapse mb-1" id="dashboard">
@@ -24,7 +24,7 @@
 
     <a href="#notification" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-bell"></span> Notifications 
-        <i class="fa fa-caret-left float-right"></i>
+        <i class="fa fa-chevron-left float-right"></i>
     </a>
 
     <div class="collapse mb-1" id="notification">

@@ -165,7 +165,7 @@ a:hover{
 
 /*Span timeer countdown*/
 span.ends-in {
-    background-color: #FFDE59 !important;
+    background-color: #FFDE59;
     display: inline-block;
     font-size: 12px;
     color: #fff;
@@ -252,7 +252,7 @@ because this will affect entire .image classes
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--sayang-color);
 }
 
 input:focus + .slider {

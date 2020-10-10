@@ -10,7 +10,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item active">Seller Profile</li>
             </ol>
           </div><!-- /.col -->
@@ -24,17 +24,89 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header text-white" style="background: url({{asset('images/default-photo/seller-bg-2.png')}}) center center;">
+               
+              </div>
+              <div class="widget-user-image">
+                <img class="img-circle" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
+              </div>
+              <div class="card-footer bg-white">
+                <div class="row justify-content-center mb-2">
+                    <div class="col-12 text-center">
+                      <span class="fas fa-star text-warning"></span>
+                      <span class="fas fa-star text-warning"></span>
+                      <span class="fas fa-star text-warning"></span>
+                      <span class="fas fa-star text-warning"></span>
+                      <span class="fas fa-star text-warning"></span>
+                    </div>
+                    <div class="col-12 text-center">
+                      <h4>Jollibee Malolos</h4>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">35</h5>
+                      <span class="description-text">PRODUCTS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-6">
+                    <div class="description-block">
+                      <h5 class="description-header">13,000</h5>
+                      <span class="description-text">FOLLOWERS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                  <div class="col-12">
+                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- About Me Box -->
+            <div class="card card-outline card-sayang">
+              <div class="card-header">
+                <h3 class="card-title">About</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                <p class="text-muted">Malibu, California</p>
+
+                <hr>
+
+                <strong><i class="fas fa-calendar mr-1"></i> Member since</strong>
+
+                <p class="text-muted">January 01, 3001</p>
+                </p>
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.widget-user -->
+          </div>
+          {{-- <div class="col-md-4">
 
             <!-- Profile Image -->
             <div class="card card-widget widget-user-2">
               <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header p-4">
+              <div class="widget-user-header p-4" style="background: url({{asset('images/default-photo/seller-bg-2.png')}}) center center;">
                 <div class="widget-user-image">
                   <img class="img-circle elevation-2" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
                 </div>
                 <!-- /.widget-user-image -->
-                <h4 class="widget-user-username">Nadia Carmichael</h4>
-                <h6 class="widget-user-desc">Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</h6>
+                <h4 class="widget-user-username text-white">Nadia Carmichael</h4>
               </div>
               <div class="card-footer p-0 bg-white">
                 <ul class="nav flex-column">
@@ -84,10 +156,10 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-          </div>
+          </div> --}}
           <!-- /.col -->
           <div class="col-md-8">
-            <div class="card">
+            <div class="card card-outline card-sayang">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#products" data-toggle="tab">Products</a></li>
@@ -105,13 +177,13 @@
                     @for($x=0;$x<4;$x++)
                       <article class="card card-product-list">
                         <div class="row no-gutters p-2">
-                          <aside class="col-5">
+                          <aside class="col-md-5">
                             <a href="#" class="img-wrap">
-                              <img class="card-img-top" src="{{asset('images/default-photo/w2.jpg')}}" alt="Card image cap">
+                              <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
                               <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
                             </a>
                           </aside> <!-- col.// -->
-                          <div class="col-7 pl-3">
+                          <div class="col-md-7 pl-3">
                             <div class="info-main">
                               <div class="row">
                                   <div class="col-6 font-weight-bold text-left">
@@ -146,7 +218,7 @@
                       </article> <!-- card-product .// -->
                     @endfor
                     <nav aria-label="Page navigation sample">
-                      <div class="row justify-content-center">
+                      <div class="row float-right">
                         <ul class="pagination">
                           <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
                           <li class="page-item active"><a class="page-link" href="#">1</a></li>
