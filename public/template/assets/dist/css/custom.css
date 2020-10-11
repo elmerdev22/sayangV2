@@ -5,6 +5,10 @@
   --sayang-light-color: #FFFFFF;
 }
 /* END OF SAYANG CUSTOM BRANDING VARIABLE */
+.category-icon:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
 /* Modal Custom */
 .modal-content{
   border-radius: 0;

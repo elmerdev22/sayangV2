@@ -5,7 +5,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-<div id="welcome" style=" background:url('https://image.freepik.com/free-vector/shopaholics-rushing-super-discount-banner_1262-21510.jpg')">
+<div id="welcome" class="bg-light" style=" background:url('{{asset('images/default-photo/banner1.png')}}') center no-repeat">
     <section class="jumbotron pl-0">
       <div class="container">
         <h1 class="jumbotron-heading display-4" data-aos="fade-right" data-aos-duration="500">
@@ -44,8 +44,8 @@
           @for($x=0;$x < 8; $x++)
           <div class="item">
             <div class="card text-center shadow-none" style="width: auto;">
-              <div class="card-body">
-                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border" src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
+              <div class="card-body category-icon">
+                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
                 <p>Cars</p>
               </div>
             </div>
