@@ -44,8 +44,8 @@
           @for($x=0;$x < 8; $x++)
           <div class="item">
             <div class="card text-center shadow-none" style="width: auto;">
-              <div class="card-body">
-                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border" src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
+              <div class="card-body category-icon">
+                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
                 <p>Cars</p>
               </div>
             </div>
