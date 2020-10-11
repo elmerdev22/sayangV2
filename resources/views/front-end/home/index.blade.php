@@ -36,16 +36,16 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col-12 mb-3">
-        <h2 class="title" data-aos="fade-right">EXPLORE SAYANG!</h2>
+        <h3 class="title" data-aos="fade-right">EXPLORE SAYANG!</h3>
       </div>
       <div class="col-12">    
         <div class="owl-carousel owl-theme">
               
           @for($x=0;$x < 8; $x++)
           <div class="item">
-            <div class="card text-center shadow-sm" style="width: auto;">
+            <div class="card text-center shadow-none" style="width: auto;">
               <div class="card-body">
-                <img class="card-img-top display-inline" src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
+                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border" src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
                 <p>Cars</p>
               </div>
             </div>
@@ -56,7 +56,7 @@
     </div>
     <div class="row">
       <div class="col-12 mb-3">
-        <h2 class="title" data-aos="fade-right">MOST POPULAR</h2>
+        <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>
       </div>
       @for($x=0;$x < 9; $x++)
       <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
@@ -115,7 +115,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 <script>
 $('.owl-carousel').owlCarousel({
-    center: true,
+    center: false,
     loop:true,
     margin:10,
     dots: true,
@@ -126,13 +126,13 @@ $('.owl-carousel').owlCarousel({
     responsiveClass:true,
     responsive:{
         0:{
-            items:3
+            items:4
         },
         600:{
-            items:5
+            items:6
         },
         1000:{
-            items:7
+            items:8
         }
     }
 })
