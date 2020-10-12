@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PhilippineCity extends Model
 {
-	public function philippine_barangay(){
+    public function getNameAttribute($value){
+        return ucwords(strtolower($value));
+    }
+
+    public function philippine_barangay(){
         return $this->hasOne('App\Model\PhilippineBarangay', 'city_id', 'id');
     }
 

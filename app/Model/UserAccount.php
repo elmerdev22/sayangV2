@@ -10,13 +10,29 @@ use Spatie\MediaLibrary\Media\Media;
 class UserAccount extends Model
 {
 	use HasMediaTrait;
-	
+    
+    public function getFirstNameAttribute($value){
+        return ucwords($value);
+    }
+
+    public function getMiddleNameAttribute($value){
+        return ucwords($value);
+    }
+
+    public function getLastNameAttribute($value){
+        return ucwords($value);
+    }
+
     public function user(){
         return $this->belongsTo('App\Model\User');
     }
 
     public function partner(){
         return $this->hasOne('App\Model\Partner', 'user_account_id', 'id');
+    }
+    
+    public function user_account_addresses(){
+        return $this->hasMany('App\Model\UserAccountAddress', 'user_account_id', 'id');
     }
 
     public function registerMediaConversions(Media $media = null){
