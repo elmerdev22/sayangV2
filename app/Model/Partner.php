@@ -11,6 +11,10 @@ class Partner extends Model
 {
     use HasMediaTrait;
     
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
     public function user_account(){
         return $this->belongsTo('App\Model\UserAccount');
     }
