@@ -53,20 +53,20 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Username</label>
                                     <div>{{Auth::user()->name}}</div>
                                 </div>    
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Email Address</label>
                                     <div>{{Auth::user()->email}}</div>
                                 </div>    
                             </div>
                             @if($account->contact_no)
-                                <div class="col-6">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Contact Number</label>
                                         <div>{{Utility::mobile_number_ph_format($account->contact_no)}}</div>
@@ -74,7 +74,7 @@
                                 </div>
                             @endif
                             @if($account->gender)
-                                <div class="col-6">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <div>{{ucfirst($account->gender)}}</div>
@@ -82,14 +82,14 @@
                                 </div>
                             @endif
                             @if($account->birth_date)
-                                <div class="col-6">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Birth Date</label>
                                         <div>{{date('F d, Y', strtotime($account->birth_date))}}</div>
                                     </div>
                                 </div>
                             @endif
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Member Since</label>
                                     <div>{{date('F Y', strtotime($account->created_at))}}</div>
@@ -103,43 +103,43 @@
                 <div class="row">
                     <div class="col-lg-12 px-3">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Name</label>
                                     <div>{{ucfirst($partner->name)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Contact No.</label>
                                     <div>{{Utility::mobile_number_ph_format($partner->contact_no)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Email</label>
                                     <div>{{$partner->email}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>DTI Registration No.</label>
                                     <div>{{$partner->dti_registration_no}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>TIN</label>
                                     <div>{{$partner->tin}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Uploaded DTI Certificate</label>
                                     <div><a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/dti-certificates/'.$partner->dti_certificate_file)}}" download="{{$partner->dti_certificate_file_name}}" target="_blank"><i class="fas fa-download"></i> Download File</a></div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-sm-sm-6">
                                 <div class="form-group">
                                     <label>Address</label>
                                     <div>{{Utility::partner_full_address($partner->partner_id)}}</div>
@@ -170,31 +170,31 @@
                 <div class="row">
                     <div class="col-lg-12 px-3">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Name</label>
                                     <div>{{ucwords($partner->representative_first_name.' '.$partner->representative_last_name)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Designation</label>
                                     <div>{{$partner->designation}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <div>{{$partner->representative_email}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Contact No.</label>
                                     <div>{{Utility::mobile_number_ph_format($partner->representative_contact_no)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Uploaded ID</label>
                                     <div><a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/uploaded-id/'.$partner->representative_uploaded_id_file)}}" download="{{$partner->representative_uploaded_id_file_name}}" target="_blank"><i class="fas fa-download"></i> Download File</a></div>
