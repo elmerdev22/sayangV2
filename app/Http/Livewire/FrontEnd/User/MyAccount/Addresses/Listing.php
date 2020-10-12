@@ -32,7 +32,7 @@ class Listing extends Component
 				'philippine_barangay.philippine_city.philippine_province.philippine_region',
             ])
             ->where('user_account_id', $this->account->id)
-            ->orderBy('updated_at', 'desc')
+            ->orderBy('is_default', 'desc')
             ->paginate(5);
     }
 

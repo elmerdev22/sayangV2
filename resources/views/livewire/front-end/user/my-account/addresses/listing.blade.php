@@ -1,9 +1,8 @@
 <div>
-
     <div class="row">
         <div class="col-lg-12">
             @forelse($data as $row)
-                <blockquote class="@if($row->is_default) quote-primary @else quote-secondary @endif">
+                <blockquote class="@if($row->is_default) quote-warning @else quote-secondary @endif">
                     <div class="row">
                         <div class="col-12">
                             <div class="float-xs-none float-sm-none float-md-right">
