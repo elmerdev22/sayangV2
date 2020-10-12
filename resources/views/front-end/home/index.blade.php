@@ -5,8 +5,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-<div id="welcome" class="bg-light" style=" background:url('{{asset('images/default-photo/banner1.png')}}') center no-repeat">
-    <section class="jumbotron pl-0">
+<div class="container">
+    <section class="jumbotron" style=" background:url('{{asset('images/default-photo/banner1.png')}}') center no-repeat">
       <div class="container">
         <h1 class="jumbotron-heading display-4" data-aos="fade-right" data-aos-duration="500">
           <b>Nothing goes to waste.</b>
@@ -34,10 +34,7 @@
 </div>
 <div class="py-3">
   <div class="container">
-    <div class="row mb-3">
-      <div class="col-12 mb-3">
-        <h3 class="title" data-aos="fade-right">EXPLORE SAYANG!</h3>
-      </div>
+    <div class="row">
       <div class="col-12">    
         <div class="owl-carousel owl-theme">
               
@@ -46,7 +43,6 @@
             <div class="card text-center shadow-none" style="width: auto;">
               <div class="card-body category-icon">
                 <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
-                <p>Cars</p>
               </div>
             </div>
           </div>
@@ -64,16 +60,16 @@
           <div style="width:100%; text-align:center">
             <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
             <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
-            {{-- <div class="store-info p-1 bg-light">
+            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 text-left">
                         Elmer shop
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 text-right">
                         <span class="fas fa-star text-warning"></span> 4.5
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="product-info p-2">
                 <div class="row">
                     <div class="col-6 font-weight-bold text-left">

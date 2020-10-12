@@ -16,9 +16,8 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
 <div class="row justify-content-center">
-    <main class="col-md-9">
+    <div class="col-md-10" >
         <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title"> Account Activation</h5> 
@@ -82,7 +81,7 @@
                 </div> 
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
-    </main> <!-- col.// -->
+    </div> <!-- col.// -->
 </div>
 
 @endsection
