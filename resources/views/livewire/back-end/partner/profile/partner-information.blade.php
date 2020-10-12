@@ -14,37 +14,37 @@
                 <div class="row">
                     <div class="col-lg-12 px-3">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Name</label>
                                     <div>{{ucfirst($partner->name)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Contact No.</label>
                                     <div>{{Utility::mobile_number_ph_format($partner->contact_no)}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Business Email</label>
                                     <div>{{$partner->email}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>DTI Registration No.</label>
                                     <div>{{$partner->dti_registration_no}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>TIN</label>
                                     <div>{{$partner->tin}}</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Uploaded DTI Certificate</label>
                                     <div><a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/dti-certificates/'.$partner->dti_certificate_file)}}" download="{{$partner->dti_certificate_file_name}}" target="_blank"><i class="fas fa-download"></i> Download File</a></div>
