@@ -81,7 +81,8 @@ class Add extends Component
             $address->zip_code        = $this->zip_code;
             $address->address         = $this->address;
             $address->is_default      = $this->is_default;
-            
+            $address->key_token       = Utility::generate_table_token('UserAccountAddress');
+
             if($this->is_default){
                 $old_default_address = UserAccountAddress::where('is_default', true)
                     ->where('user_account_id', $this->account->id)
@@ -109,7 +110,7 @@ class Add extends Component
     		$this->emit('alert', [
                 'type'    => 'success',
                 'title'   => 'Successfully Added',
-                'message' => 'Address Successfully Addded.'
+                'message' => 'Address Successfully Added.'
             ]);
         }else{
             DB::rollback();
