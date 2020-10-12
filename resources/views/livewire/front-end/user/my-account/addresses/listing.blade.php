@@ -6,9 +6,11 @@
                 <blockquote class="@if($x == 1) quote-primary @else quote-secondary @endif">
                     <div class="row">
                         <div class="col-12">
+                            <div class="float-xs-none float-sm-none float-md-right">
+                                <button type="button" class="btn btn-sm btn-primary" title="Edit"><i class="fas fa-pen"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger ml-1" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
                             <span class="fas fa-user"></span> <strong>Christian De Leon @if($x == 1)<span class="badge badge-info">Default</span>@endif</strong>
-                            <button type="button" class="btn btn-sm btn-danger float-right ml-1" title="Delete"><i class="fas fa-trash"></i></button>
-                            <button type="button" class="btn btn-sm btn-primary float-right" title="Edit"><i class="fas fa-pen"></i></button>
                         </div>
                     </div>
                     <div>
@@ -23,7 +25,7 @@
                             Metro Manila, Metro Manila 1555
                         </div>
                         <div class="col-sm-4">
-                            <div class="text-right">
+                            <div class="text-right mt-2">
                                 <button type="button" class="btn btn-sm btn-default" @if($x == 1) disabled @endif>Set as Default</button>
                             </div>
                         </div>
