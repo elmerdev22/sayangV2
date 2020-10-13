@@ -75,6 +75,10 @@ class Listing extends Component
         }
     }
 
+    public function edit($key_token){
+        $this->emit('edit_address', ['key_token' => $key_token]);
+    }
+
     public function delete($key_token){
         $address = UserAccountAddress::where('user_account_id', $this->account->id)
                 ->where('key_token', $key_token)
