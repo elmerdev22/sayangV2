@@ -105,5 +105,19 @@
             }
         })
     }
+
+    function edit(key_token){
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Getting Information...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                @this.call('edit', key_token)
+            }
+        });
+    }
 </script>
 @endpush
