@@ -72,18 +72,21 @@
                     </a>
                   </div>
 
-                  <div class="widget-header mr-3">
-                    <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
-                      <div class="icon-area">
-                        <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="notify"><span class="badge badge-warning">0</span></span>
-                      </div>
-                    </a>
-                  </div>
+                  @if(Auth::user()->verified_at)
+                    <div class="widget-header mr-3">
+                      <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
+                        <div class="icon-area">
+                          <i class="fas fa-shopping-cart text-dark"></i>
+                          <span class="notify"><span class="badge badge-warning">0</span></span>
+                        </div>
+                      </a>
+                    </div>
 
-                  <div class="widget-header mr-3">
-                    @livewire('front-end.notification')
-                  </div>
+                    <div class="widget-header mr-3">
+                      @livewire('front-end.notification')
+                    </div>
+                  @endif
+                  
                 @elseif(Auth::user()->type == 'partner')
                   @if(Utility::partner_activated())
                     <div class="widget-header mr-3">
