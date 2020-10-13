@@ -208,6 +208,22 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
         });
 
+        // Orders & Receipts
+        Route::group(['prefix' => 'order-and-receipt', 'as' => 'order-and-receipt.'], function (){
+			$c = 'OrderAndReceiptController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/order/{order_id}', [
+		        'as' 	=> 'order',
+		        'uses'  => $c.'@order'
+            ]);
+            
+        });
+
 
     });
 });
