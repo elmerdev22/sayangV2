@@ -88,7 +88,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.*') ? 'sayang-nav-link-active':''}}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>Orders & Receipt</p>
                     </a>
