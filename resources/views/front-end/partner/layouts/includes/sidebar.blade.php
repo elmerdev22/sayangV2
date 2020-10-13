@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.menu')}}" class="nav-link {{Route::is('front-end.partner.my-products.add-menu') || Route::is('front-end.partner.my-products.menu') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.menu')}}" class="nav-link {{Route::is('front-end.partner.my-products.edit-menu') || Route::is('front-end.partner.my-products.add-menu') || Route::is('front-end.partner.my-products.menu') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Menu</p>
                             </a>

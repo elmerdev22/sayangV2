@@ -175,13 +175,24 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             ]);
             
         });
-        // Add Menu
+        // Add Product in Menu
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
 			$c = 'MyProductsController';
 			
 			Route::get('/menu/add', [
 		        'as' 	=> 'add-menu',
 		        'uses'  => $c.'@addMenu'
+            ]);
+            
+        });
+
+        // Edit Product in Menu
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/menu/edit', [
+		        'as' 	=> 'edit-menu',
+		        'uses'  => $c.'@editMenu'
             ]);
             
         });
