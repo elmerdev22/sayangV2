@@ -120,7 +120,10 @@ class LoginController extends Controller
                 $is_new = false;
             }
 
-            $find_user->email = $socialite_user->email;
+            if($socialite_user->email){
+                $find_user->email = $socialite_user->email;
+            }
+
             $given_name       = isset($socialite_user['given_name']) ? $socialite_user['given_name'] : $socialite_user['first_name'];
             $last_name        = isset($socialite_user['last_name']) ? $socialite_user['last_name'] : $socialite_user['family_name'];
             
