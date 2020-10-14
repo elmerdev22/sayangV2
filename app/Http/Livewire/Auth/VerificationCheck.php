@@ -51,27 +51,35 @@ class VerificationCheck extends Component
     public function resend(){
         if($this->resend){
             $user                          = User::find(Auth::user()->id);
-            $user->verification_code       = rand(100000, 999999);
-            $user->verification_expired_at = Utility::generate_verification_expiration();
-            if($user->save()){
-                $is_sent      = true;//Utility::mail_verification_code($user);
-                $this->resend = false;
-    
-                if($is_sent){
-                    $this->emit('alert', [
-                        'type'     => 'success',
-                        'title'    => 'Successfully Sent',
-                        'message'  => 'Verification code successfully sent.',
-                    ]);
-                    $this->emit('reset_resend',['success' => true]);
-                }else{
-                    $this->emit('alert', [
-                        'type'     => 'error',
-                        'title'    => 'Failed',
-                        'message'  => 'Verification code not sent.',
-                    ]);
-                    $this->emit('reset_resend',['success' => true]);
+            if($user->email){
+                $user->verification_code       = rand(100000, 999999);
+                $user->verification_expired_at = Utility::generate_verification_expiration();
+                if($user->save()){
+                    $is_sent      = true;//Utility::mail_verification_code($user);
+                    $this->resend = false;
+        
+                    if($is_sent){
+                        $this->emit('alert', [
+                            'type'     => 'success',
+                            'title'    => 'Successfully Sent',
+                            'message'  => 'Verification code successfully sent.',
+                        ]);
+                        $this->emit('reset_resend',['success' => true]);
+                    }else{
+                        $this->emit('alert', [
+                            'type'     => 'error',
+                            'title'    => 'Failed',
+                            'message'  => 'Verification code not sent.',
+                        ]);
+                        $this->emit('reset_resend',['success' => true]);
+                    }
                 }
+            }else{
+                $this->emit('alert', [
+                    'type'     => 'error',
+                    'title'    => 'Failed',
+                    'message'  => 'No email address found.',
+                ]);
             }
         }
     }
