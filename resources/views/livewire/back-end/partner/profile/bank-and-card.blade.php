@@ -16,10 +16,10 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-3">
                             <div>
-                                <span class="fas fa-building-o"></span> <strong>{{$row->bank->name}}</strong> @if($row->is_default)<span class="badge badge-info">Default</span>@endif
+                                <span class="fas fa-building-o"></span> <strong>{{$row->bank->name}}</strong> 
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
+                        <div class="col-sm-6 col-md-4">
                             <div title="Account Name">
                                 <span class="fas fa-user"></span> {{ucwords($row->account_name)}}
                             </div>
@@ -29,10 +29,8 @@
                                 <span class="fas fa-credit-card"></span> {{$row->account_no}}
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div>
-                                <button type="button" class="btn btn-sm btn-default" @if($row->is_default) disabled @else onclick="set_default('{{$row->key_token}}')" @endif>Set as Default</button>
-                            </div>
+                        <div class="col-sm-6 col-md-2">
+                           @if($row->is_default)<span class="badge badge-info">Default</span>@endif
                         </div>
                     </div>
                 </blockquote>
