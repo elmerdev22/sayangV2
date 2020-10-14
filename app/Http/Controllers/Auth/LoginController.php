@@ -108,10 +108,11 @@ class LoginController extends Controller
                 $find_user->provider_id = $socialite_user->id;
                 $find_user->key_token   = Utility::generate_table_token('User');
                 $find_user->type        = $user_type;
-                $find_user->verified_at = date('Y-m-d H:i:s');
                 
-                if(!$socialite_user->email){
-                    $find_user->verification_type = 'sms';
+                if($socialite_user->email){
+                    $find_user->verified_at = date('Y-m-d H:i:s');
+                }else{
+                    // $find_user->verification_type = 'sms';
                 }
 
                 $is_new = true;
@@ -151,7 +152,6 @@ class LoginController extends Controller
             }
     
         }catch(\Exception $e) {
-            dd($e);
             $success = false;
         }
 
