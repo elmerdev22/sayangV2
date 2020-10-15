@@ -5,19 +5,21 @@ namespace App\Http\Livewire\BackEnd\User\Profile;
 use Livewire\Component;
 use App\Model\UserAccount;
 use App\Model\User;
+use UploadUtility;
 
 class AccountInformation extends Component
 {
-	public $data;
+	public $data, $photo_url;
     
     protected $listeners = [
         'account_info_initialize' => '$refresh'
     ];
 
 	public function mount($key_token){
-		$this->data = UserAccount::with(['user'])
+        $this->photo_url = UploadUtility::profile_picture($key_token);
+        $this->data      = UserAccount::with(['user'])
 					->where('key_token', $key_token)
-					->firstOrFail();
+                    ->firstOrFail();
 	}
 
     public function render(){

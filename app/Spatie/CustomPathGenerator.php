@@ -1,22 +1,23 @@
 <?php
+namespace App\Spatie;
+
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\PathGenerator\PathGenerator;
 
 class CustomPathGenerator implements PathGenerator
 {
     public function getPath(Media $media) : string
     {
-        // if ($media instanceof Post) {
-        //     return 'user_id/' . $media->user_id . '/' . $media->id;
-        // }
-        return $media->id;
+        return $media->collection_name.'/'.$media->id.'/real/';
     }
 
     public function getPathForConversions(Media $media) : string
     {
-        return $this->getPath($media) . 'conversions/';
+        return $media->collection_name.'/'.$media->id.'/conversions/';
     }
 
     public function getPathForResponsiveImages(Media $media): string
     {
-        return $this->getPath($media) . 'responsive/';
+        return $media->collection_name.'/'.$media->id.'/responsive/';
     }
 }

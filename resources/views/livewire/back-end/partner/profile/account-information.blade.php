@@ -2,15 +2,6 @@
 	<div class="card card-outline card-sayang">
         <div class="card-body box-profile">
             <div class="text-center">
-                @php
-                    if($data->photo){
-                        $photo_url = asset('images/default-photo/account.png');
-                    }else if($data->photo_provider_link){
-                        $photo_url = $data->photo_provider_link;
-                    }else{
-                        $photo_url = asset('images/default-photo/account.png');
-                    }
-                @endphp
                 <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture" style="width: 150px; height: 150px;">
             </div>
 

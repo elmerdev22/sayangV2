@@ -28,27 +28,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="my-account-profile border-right mb-4">
-                            <div class="text-center">
-                                @php
-                                    if($account->photo){
-                                        $photo_url = asset('images/default-photo/account.png');
-                                    }else if($account->photo_provider_link){
-                                        $photo_url = $account->photo_provider_link;
-                                    }else{
-                                        $photo_url = asset('images/default-photo/account.png');
-                                    }
-                                @endphp
-                                <img class="profile-user-img img-fluid img-circle m-2" style="width: 120px; height: 120px;" src="{{$photo_url}}" alt="User profile picture">
-                            </div>
-                            <div class="text-center mt-1">
-                                <button type="button" class="btn btn-default btn-sm">Select Profile</button>
-                            </div>
-                            <div class="profile-username text-center">{{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}</div>
-                            <div class="text-center">
-                                <span class="badge badge-success">Active</span>
-                            </div>
-                        </div>
+                        @livewire('front-end.user.my-account.index.profile-picture')
                     </div>
                     <div class="col-md-8">
                         @livewire('front-end.user.my-account.index.account-information')
@@ -59,6 +39,21 @@
     </main> <!-- col.// -->
 </div>
 
+<!-- Modal -->
+<div id="modal-edit_profile_picture" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload New Photo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                @livewire('front-end.user.my-account.index.edit-profile-picture')
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 

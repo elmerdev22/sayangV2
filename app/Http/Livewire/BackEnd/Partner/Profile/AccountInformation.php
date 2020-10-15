@@ -6,17 +6,19 @@ use Livewire\Component;
 use App\Model\UserAccount;
 use App\Model\Partner;
 use App\Model\User;
+use UploadUtility;
 
 class AccountInformation extends Component
 {
-	public $data, $can_activate=true;
+	public $data, $can_activate=true, $photo_url;
 
 	protected $listeners = [
 		'account_info_initialize' => '$refresh'
 	];
 
 	public function mount($key_token){
-		$this->data = UserAccount::with(['user', 'partner'])
+        $this->photo_url = UploadUtility::profile_picture($key_token);
+        $this->data      = UserAccount::with(['user', 'partner'])
 					->where('key_token', $key_token)
 					->firstOrFail();
 		

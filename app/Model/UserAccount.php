@@ -5,9 +5,9 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Media\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class UserAccount extends Model
+class UserAccount extends Model implements HasMedia
 {
 	use HasMediaTrait;
     
@@ -35,7 +35,7 @@ class UserAccount extends Model
         return $this->hasMany('App\Model\UserAccountAddress', 'user_account_id', 'id');
     }
 
-    public function registerMediaConversions(Media $media = null){
-        $this->addMediaConversion('medium')->height(150)->width(150);
+    public function registerMediaConversions(Media $media = null){ 
+        $this->addMediaConversion('thumb')->height(150)->width(150);
     }
 }
