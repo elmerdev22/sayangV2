@@ -55,7 +55,9 @@
             <div class="col-sm-8 col-form-label">{{date('F d, Y', strtotime($account->created_at))}}</div>
         </div>
         <div class="form-group mt-2">
-            <button type="submit" class="btn btn-warning float-right">Save</button>
+            <button type="submit" class="btn btn-warning float-right">
+                Save <span wire:loading wire:target="update" class="fas fa-spinner fa-spin"></span>
+            </button> 
         </div>    
     </form>
 </div>

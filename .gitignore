@@ -8,6 +8,7 @@
 /public/vendor
 /storage/*.key
 /vendor
+/storage/medialibrary/*
 .env
 .env.backup
 .phpunit.result.cache
