@@ -12,7 +12,6 @@
     @else
       <title>@yield('title') | {{ env('APP_NAME') }}</title>
     @endif
-    @yield('css')
     @if(env('APP_DEPLOY') == 'production')
       <!-- Kindly removed once the packages need is working properly -->
         <!-- Font Awesome -->
@@ -30,6 +29,7 @@
     @else
       <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @endif
+    @yield('css')
     @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">

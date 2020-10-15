@@ -10,14 +10,16 @@ class MyProductsController extends Controller
     public function index(){
         return view('front-end.partner.my-products.listing.index');
     }
-
-    public function menu(){
-        return view('front-end.partner.my-products.menu.index');
+    public function addProduct(){
+        return view('front-end.partner.my-products.listing.add');
     }
-    public function addMenu(){
-        return view('front-end.partner.my-products.menu.add');
+    public function editProduct(){
+        return view('front-end.partner.my-products.listing.edit');
     }
-    public function editMenu(){
-        return view('front-end.partner.my-products.menu.edit');
+    public function startSale(){
+        return view('front-end.partner.my-products.listing.start-sale');
+    }
+    public function activities(){
+        return view('front-end.partner.my-products.activities.index');
     }
 }
