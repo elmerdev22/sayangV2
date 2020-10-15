@@ -10,22 +10,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @if(!Auth::check() || Auth::user()->verified_at != null)
-            <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">Categories</a>
+            <li class="nav-item dropdown megamenu">
+              <a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">
+                Categories
+              </a>
                 <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-4">
                                     <div class="row">
-                                        @for($x=0;$x < 11; $x++)
+                                        @for($x=0;$x < 10; $x++)
                                         <div class="col-lg-3 col-md-6 mb-4">
-                                            <h6 class="font-weight-bold text-uppercase">Category</h6>
+                                            <h6 class="font-weight-bold text-uppercase">
+                                              <img style="width: 40px;" class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
+                                              Category
+                                            </h6>
                                             <ul class="list-unstyled">
-                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
-                                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">Sub Category</a></li>
+                                              <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">SubCategory</a></li>
+                                              <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">SubCategory</a></li>
+                                              <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">SubCategory</a></li>
+                                              <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">SubCategory</a></li>
+                                              <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">SubCategory</a></li>
                                             </ul>
                                         </div>
                                         @endfor

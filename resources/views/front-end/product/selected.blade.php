@@ -85,16 +85,17 @@
           <div style="width:100%; text-align:center">
             <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
             <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
-            {{-- <div class="store-info p-1 bg-light">
-                <div class="row">
-                    <div class="col-6">
-                        Elmer shop
-                    </div>
-                    <div class="col-6">
-                        <span class="fas fa-star text-warning"></span> 4.5
-                    </div>
-                </div>
-            </div> --}}
+            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
+              <div class="row">
+                  <div class="col-6 text-white text-left">
+                      Elmer shop
+                  </div>
+                  <div class="col-6 text-right">
+                      <span class="fas fa-star text-warning"></span> 
+                      <span class="text-white">4.5</span>
+                  </div>
+              </div>
+          </div>
             <div class="product-info p-2">
                 <div class="row">
                     <div class="col-6 font-weight-bold text-left">

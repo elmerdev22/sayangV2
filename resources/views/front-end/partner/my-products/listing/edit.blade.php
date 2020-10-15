@@ -1,5 +1,9 @@
 @extends('front-end.partner.layouts.layout')
-@section('title','QR Code')
+@section('title','Edit Products')
+@section('css')
+<link rel="stylesheet" href="{{asset('template/assets/plugins/select2/css/select2.min.css')}}"> 
+<link rel="stylesheet" href="{{asset('template/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}"> 
+@endsection
 @section('page_header')
     @php 
         $page_header = [
@@ -38,14 +42,49 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>Category</label>
+                                    <select class="form-control catalog" style="width: 100%;">
+                                        <option selected="selected">Select</option>
+                                        <option>Category</option>
+                                        <option>Category</option>
+                                        <option>Category</option>
+                                        <option>Category</option>
+                                        <option>Category</option>
+                                        <option>Category</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Sub Category</label>
+                                    <select class="form-control catalog" style="width: 100%;">
+                                        <option selected="selected">Select</option>
+                                        <option>Sub Category</option>
+                                        <option>Sub Category</option>
+                                        <option>Sub Category</option>
+                                        <option>Sub Category</option>
+                                        <option>Sub Category</option>
+                                        <option>Sub Category</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>Tags</label>
-                                    <input type="text" class="form-control" placeholder="Tags Here">
+                                    <select class="form-control tags" multiple style="width: 100%;">
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Buy now price</label>
-                                    <input type="text" class="form-control" placeholder="Price Here">
+                                    <input type="text" class="form-control" placeholder="Buy now Price Here">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Lowest price</label>
+                                    <input type="text" class="form-control" placeholder="Lowest Price Here">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -112,14 +151,30 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-warning float-right w-100">Save</button>
+                    <button class="btn btn-warning float-right w-100">Add this Product</button>
                 </div>
             </div> <!-- card.// -->
         </div>
     </div>
+    
 @endsection
 @section('js')
+<script src="{{asset('template/assets/plugins/select2/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
-
+    $(function () {
+        //Initialize Select2 Elements
+        $('.catalog').select2({
+            theme: 'bootstrap4'
+        })
+        $('.tags').select2({
+            tags: true,
+            placeholder: "Input Tags",
+            tokenSeparators: [',', ' '],
+            "language":{
+            "noResults" : function () { return ''; }
+            },
+        })
+        
+    })
 </script>
 @endsection

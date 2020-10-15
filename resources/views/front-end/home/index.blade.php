@@ -62,11 +62,12 @@
             <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
             <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
                 <div class="row">
-                    <div class="col-6 text-left">
+                    <div class="col-6 text-white text-left">
                         Elmer shop
                     </div>
                     <div class="col-6 text-right">
-                        <span class="fas fa-star text-warning"></span> 4.5
+                        <span class="fas fa-star text-warning"></span> 
+                        <span class="text-white">4.5</span>
                     </div>
                 </div>
             </div>

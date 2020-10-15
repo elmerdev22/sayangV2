@@ -155,7 +155,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
         });
 
-        // My Products
+        // My Menu List
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
 			$c = 'MyProductsController';
 			
@@ -165,23 +165,13 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             ]);
             
         });
-        // My Menu
-        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
-			Route::get('/menu', [
-		        'as' 	=> 'menu',
-		        'uses'  => $c.'@menu'
-            ]);
-            
-        });
         // Add Product in Menu
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
 			$c = 'MyProductsController';
 			
-			Route::get('/menu/add', [
-		        'as' 	=> 'add-menu',
-		        'uses'  => $c.'@addMenu'
+			Route::get('/add', [
+		        'as' 	=> 'add-product',
+		        'uses'  => $c.'@addProduct'
             ]);
             
         });
@@ -190,9 +180,31 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
 			$c = 'MyProductsController';
 			
-			Route::get('/menu/edit', [
-		        'as' 	=> 'edit-menu',
-		        'uses'  => $c.'@editMenu'
+			Route::get('/edit', [
+		        'as' 	=> 'edit-product',
+		        'uses'  => $c.'@editProduct'
+            ]);
+            
+        });
+
+        // Edit Product in Menu
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/start-sale', [
+		        'as' 	=> 'start-sale',
+		        'uses'  => $c.'@startSale'
+            ]);
+            
+        });
+
+        // My Activities
+        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
+			$c = 'MyProductsController';
+			
+			Route::get('/activities', [
+		        'as' 	=> 'activities',
+		        'uses'  => $c.'@activities'
             ]);
             
         });

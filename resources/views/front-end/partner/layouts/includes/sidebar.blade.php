@@ -74,18 +74,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.index') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.start-sale') || Route::is('front-end.partner.my-products.edit-product') || Route::is('front-end.partner.my-products.add-product') || Route::is('front-end.partner.my-products.index') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.menu')}}" class="nav-link {{Route::is('front-end.partner.my-products.edit-menu') || Route::is('front-end.partner.my-products.add-menu') || Route::is('front-end.partner.my-products.menu') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.activities')}}" class="nav-link {{Route::is('front-end.partner.my-products.activities') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Menu</p>
+                                <p>Activities</p>
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-bell"></i>
+                        <p>Notifications</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.*') ? 'sayang-nav-link-active':''}}">
