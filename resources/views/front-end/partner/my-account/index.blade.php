@@ -179,7 +179,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Designation</label>
-                                    <div>{{$partner->designation}}</div>
+                                    <div>{{$partner->representative_designation}}</div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
