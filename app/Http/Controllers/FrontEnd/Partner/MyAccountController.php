@@ -14,4 +14,8 @@ class MyAccountController extends Controller
 
         return view('front-end.partner.my-account.index', compact('partner', 'account'));
     }
+
+    public function bank_and_cards(){
+        return view('front-end.partner.my-account.banks-and-cards');
+    }
 }
