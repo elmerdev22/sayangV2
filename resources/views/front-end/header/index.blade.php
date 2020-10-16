@@ -9,7 +9,7 @@
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            @if(!Auth::check() || Auth::user()->verified_at != null)
+            @if(Utility::top_nav_validate_auth_verify())
             <li class="nav-item dropdown megamenu">
               <a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">
                 Categories
@@ -48,20 +48,20 @@
               <a class="nav-link" href="{{-- {{url('/help-centre')}} --}}">Help Centre <small class="fas fa-question"></small> </a>
             </li>
 
-            @if(!Auth::check() || Auth::user()->verified_at != null)
-            <li class="nav-item">
-              <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
-            </li>
+            @if(Utility::top_nav_validate_auth_verify())
+              <li class="nav-item">
+                <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
+              </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list-alt"></small> </a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list-alt"></small> </a>
+              </li>
             @endif
             
-            @if(!Auth::user())
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
-            </li>
+            @if(!Auth::check())
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
+              </li>
             @endif
         </ul>
         <ul class="navbar-nav ml-auto">

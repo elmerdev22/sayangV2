@@ -330,5 +330,42 @@ class Utility{
     public static function datatables_show_entries(){
         return ['10', '25', '50', '100', '300', '500', '1000'];
     }
+
+    public static function top_nav_validate_auth_verify(){
+        if(Auth::check()){
+            $type        = Auth::user()->type;
+            $is_verified = Auth::user()->verified_at;
+
+            if($type != 'admin'){
+                if($type == 'partner'){
+                    if(!$is_verified){
+                        $continue = true;
+                    }else{
+                        $continue = false;
+                    }
+
+                    if($continue){
+                        if(self::partner_activated()){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }else{
+                        return false;
+                    }
+                }else{
+                    if(!$is_verified){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            }else{
+                return true;
+            }
+        }else{
+            return true;
+        }
+    }
     
 }
