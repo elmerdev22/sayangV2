@@ -217,6 +217,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
             ]);
+
+            Route::get('/bank-and-cards', [
+		        'as' 	=> 'bank-and-cards',
+		        'uses'  => $c.'@bank_and_cards'
+            ]);
             
         });
 

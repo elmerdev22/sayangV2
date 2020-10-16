@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
+                            <a href="{{route('front-end.partner.my-account.bank-and-cards')}}" class="nav-link {{Route::is('front-end.partner.my-account.bank-and-cards') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Banks & Cards</p>
                             </a>
