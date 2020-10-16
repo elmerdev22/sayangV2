@@ -1,5 +1,9 @@
 @extends('back-end.layouts.layout')
 @section('title','Catalogs')
+@section('css')
+<!-- Dropify -->
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('template/assets/plugins/dropify/dist/css/dropify.min.css') }}"> --}}
+@endsection
 @section('page_header')
     @php 
         $page_header = [
@@ -27,5 +31,11 @@
     -->
 @endsection
 @section('js')
-
+<!-- Dropify -->
+{{-- <script src="{{ asset('template/assets/plugins/dropify/dist/js/dropify.min.js') }}"></script> --}}
+<script>
+    $(document).ready(function(){
+        $('.dropify').dropify();
+    });
+</script>
 @endsection

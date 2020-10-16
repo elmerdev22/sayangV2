@@ -58,7 +58,7 @@
                                    <td><input type="text" class="form-control form-control-sm" value="{{number_format(rand(100,999),2)}}"></td>
                                    <td><input type="number" class="form-control form-control-sm" value="{{number_format(rand(1,99))}}"></td>
                                    <td class="text-center">
-                                        <div class="icheck-primary">
+                                        <div class="icheck-warning">
                                             <input type="checkbox" id="{{$x}}">
                                             <label for="{{$x}}">
                                             </label>
