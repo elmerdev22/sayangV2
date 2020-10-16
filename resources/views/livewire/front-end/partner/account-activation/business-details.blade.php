@@ -95,11 +95,18 @@
                     <div class="input-group" id="input-group-dti_certificate_file">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="dti_certificate_file" accept=".png, .jpeg, .jpg, .gif, .docx, .pdf" wire:model="dti_certificate_file">
-                            <label class="custom-file-label" for="dti_certificate_file">@if($dti_certificate_file) File Selected <i class="fas fa-check text-success"></i> @else Choose File @endif</label>
+                            <label class="custom-file-label" for="dti_certificate_file">
+                                @if($dti_certificate_file) 
+                                    File Selected <i class="fas fa-check text-success"></i> 
+                                @else 
+                                    Choose File 
+                                @endif
+                                <span wire:loading wire:target="dti_certificate_file" class="fas fa-spinner fa-spin"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-warning text-white float-right">Next <span class="fas fa-chevron-right"></span></button>
+                <button type="submit" class="btn btn-warning text-white float-right" wire:target="dti_certificate_file" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
             </form>
         </div>
     </div>

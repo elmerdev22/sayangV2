@@ -39,12 +39,19 @@
                     <div class="input-group" id="input-group-representative_id">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="representative_id" accept=".png, .jpeg, .jpg, .gif, .docx, .pdf" wire:model="representative_id">
-                            <label class="custom-file-label" for="representative_id">@if($representative_id) File Selected <i class="fas fa-check text-success"></i> @else Choose File @endif</label>
+                            <label class="custom-file-label" for="representative_id">
+                                @if($representative_id) 
+                                    File Selected <i class="fas fa-check text-success"></i> 
+                                @else 
+                                    Choose File 
+                                @endif
+                                <span wire:loading wire:target="representative_id" class="fas fa-spinner fa-spin"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-warning bs-stepper-previous"><span class="fas fa-chevron-left"></span> Previous</button>
-                <button type="submit" class="btn btn-warning text-white float-right">Next <span class="fas fa-chevron-right"></span></button>
+                <button type="button" class="btn btn-warning bs-stepper-previous" wire:target="representative_id" wire:loading.attr="disabled"><span class="fas fa-chevron-left"></span> Previous</button>
+                <button type="submit" class="btn btn-warning text-white float-right" wire:target="representative_id" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
             </form>
         </div>
     </div>
