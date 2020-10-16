@@ -350,6 +350,8 @@ class Utility{
                         }else{
                             return false;
                         }
+                    }else{
+                        return false;
                     }
                 }else{
                     if(!$is_verified){
