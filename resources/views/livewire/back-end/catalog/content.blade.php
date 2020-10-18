@@ -4,7 +4,7 @@
             <div class="card card-outline card-sayang">
                 <div class="card-header">
                     <div class="card-title">
-                        <input type="search" wire:model="search" class="form-control form-control-sm" placeholder="Search Category Name...">
+                        <input type="search" wire:model="search" class="form-control form-control-sm" placeholder="Search ...">
                     </div>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
@@ -22,6 +22,8 @@
                                     <h3 class="card-title">{{ucwords($category->name)}}</h3>
 
                                     <div class="card-tools">
+                                        <a href="{{route('back-end.catalog.edit', ['key_token' => $category->key_token])}}" class="btn btn-tool" ><i class="fas fa-edit"></i>
+                                        </a>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                                         </button>
                                     </div>
@@ -32,9 +34,9 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <form wire:submit.prevent="add({{$category->id}})">
-                                                <label>Add Tags</label>
+                                                <label>Add Subcategory</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.lazy="name" placeholder="Tag Name">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.lazy="name" placeholder="Subcategory Name">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-warning">
                                                             <span class="fas fa-plus"></span>
@@ -52,15 +54,15 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        @forelse($category->tags as $tag)
+                                        @forelse($category->sub_category as $sub_category)
                                             <div class="col-lg-4 col-md-6">
                                                 <span class="fas fa-chevron-right"></span> 
-                                                {{ucwords($tag->name)}}
+                                                {{ucwords($sub_category->name)}}
                                             </div>
                                         @empty
                                             <div class="col-lg-4 col-md-6">
                                                 <span class="fas fa-chevron-right"></span> 
-                                                No Tags!
+                                                Subcategory!
                                             </div>
                                         @endforelse
                                     </div>

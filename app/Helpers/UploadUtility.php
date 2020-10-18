@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Model\UserAccount;
+use App\Model\Category;
 
 class UploadUtility{
 
@@ -21,6 +22,23 @@ class UploadUtility{
             return $account->photo_provider_link;
         }else{
             return asset('images/default-photo/account.png');
+        }
+    }
+
+    public static function category_photo($category_key_token, $thumb=true){
+        $category    = Category::where('key_token', $category_key_token)->firstOrFail();
+        $media_photo = $category->getMedia('catalog/category-photo');
+
+        if(count($media_photo) > 0){
+            if($thumb){
+                return $media_photo[0]->getFullUrl('thumb');
+            }else{
+                return $media_photo[0]->getFullUrl();
+            }
+        }else if($category->photo_provider_link){
+            return $category->photo_provider_link;
+        }else{
+            return asset('images/default-photo/image.png');
         }
     }
 

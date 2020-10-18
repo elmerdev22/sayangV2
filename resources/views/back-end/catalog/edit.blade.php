@@ -15,14 +15,10 @@
     @include('back-end.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
             <!-- CONTENT HERE -->
-            @livewire('back-end.catalog.form')
-        </div>
-        <div class="col-md-8">
-            <!-- CONTENT HERE -->
-            @livewire('back-end.catalog.content')
+            @livewire('back-end.catalog.edit', ['key_token' => $key_token])
         </div>
     </div>
     <!-- 
