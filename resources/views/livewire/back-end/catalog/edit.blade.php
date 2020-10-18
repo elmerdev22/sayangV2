@@ -3,21 +3,25 @@
 	    <div class="col-12">
 	        <div class="card card-outline card-sayang">
 	            <div class="card-header">
-	                <h3 class="card-title">Add Category</h3>
+	                <h3 class="card-title">{{ucwords($category_select)}}</h3>
 				</div>
-				
-	              <!-- /.card-header -->
-	              <!-- form start -->
-	            <form role="form" wire:submit.prevent="add">
+				<!-- /.card-header -->
+				<!-- form start -->
+	            <form role="form" wire:submit.prevent="update">
 	                <div class="card-body">
 						<div class="form-group">
 							<label for="photo">Photo* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
 							<div class="text-center">
-								<img class="mb-2 imagePreview" src="{{ $photo ? $photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="">
+								
+								@if ($photo)
+									<img class="mb-2 imagePreview" src="{{ $photo->temporaryUrl()}}" alt="">
+								@else
+									<img class="mb-2 imagePreview" src="{{$photo_url}}" alt="">
+								@endif
 
 								<div class="form-control upload-btn-wrapper btn btn-warning">
 									<i class="fas fa-upload"></i> Upload Photo <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
-									<input type="file" class="upload-btn" wire:model="photo" accept="image/*" />
+									<input type="file" class="upload-btn" wire:model="photo" accept="image/*"/>
 								</div>
 							</div>
 							@error('photo')
@@ -47,7 +51,7 @@
 	            	<!-- /.card-body -->
 
 	                <div class="card-footer">
-	                    <button type="submit" class="btn btn-warning">Submit <span wire:loading wire:target="add" class="fas fa-spinner fa-spin"></span></button>
+	                    <button type="submit" class="btn btn-warning float-right">Submit <span wire:loading wire:target="update" class="fas fa-spinner fa-spin"></span></button>
 	                </div>
 				</form>
 				

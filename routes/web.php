@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'index',
                 'uses'  => $c.'@index'
             ]);
+            Route::get('/{key_token}', [
+                'as'    => 'edit',
+                'uses'  => $c.'@edit'
+            ]);
             
         });
 
@@ -164,45 +168,27 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@index'
             ]);
             
-        });
-        // Add Product in Menu
-        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
+            // Add Product in Menu
 			Route::get('/add', [
 		        'as' 	=> 'add-product',
 		        'uses'  => $c.'@addProduct'
             ]);
             
-        });
-
-        // Edit Product in Menu
-        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
-			Route::get('/edit', [
-		        'as' 	=> 'edit-product',
-		        'uses'  => $c.'@editProduct'
+            // Edit Product in Menu
+            Route::get('/edit', [
+                'as' 	=> 'edit-product',
+                'uses'  => $c.'@editProduct'
             ]);
             
-        });
-
-        // Edit Product in Menu
-        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
+            // Edit Product in Menu
 			Route::get('/start-sale', [
 		        'as' 	=> 'start-sale',
 		        'uses'  => $c.'@startSale'
             ]);
-            
-        });
 
-        // My Activities
-        Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
-			Route::get('/activities', [
+            
+            // My Activities
+            Route::get('/activities', [
 		        'as' 	=> 'activities',
 		        'uses'  => $c.'@activities'
             ]);
