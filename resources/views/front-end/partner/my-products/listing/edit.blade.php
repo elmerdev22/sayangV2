@@ -7,9 +7,9 @@
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Edit Menu',
+            'title'       => 'Edit Product',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Edit Menu'],
+                ['url' => '', 'label' => 'Edit Product'],
             ],
         ];
     @endphp
@@ -36,13 +36,13 @@
                         <div class="row mb-2">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Product Name</label>
+                                    <label>Product Name*</label>
                                     <input type="text" class="form-control" placeholder="Product Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Category</label>
+                                    <label>Category*</label>
                                     <select class="form-control catalog" style="width: 100%;">
                                         <option selected="selected">Select</option>
                                         <option>Category</option>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Sub Category</label>
+                                    <label>Sub Category (optional)</label>
                                     <select class="form-control catalog" style="width: 100%;">
                                         <option selected="selected">Select</option>
                                         <option>Sub Category</option>

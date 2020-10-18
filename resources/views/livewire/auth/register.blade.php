@@ -55,7 +55,7 @@
             @endif
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-warning text-white  btn-block"> Register  </button>
+            <button type="submit" class="btn btn-warning text-white  btn-block"> Register <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span> </button>
         </div>
     </form>
 </div>

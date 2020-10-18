@@ -21,14 +21,14 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-warning text-white btn-block">
-                Login
+                Login <span wire:loading wire:target="authenticate" class="fas fa-spinner fa-spin"></span>
             </button>
         </div> <!-- form-group// -->
     </form>
     <div class="social-auth-links text-center">
         <p>Not Yet a Partner? Sign Up Now</p>
         <a href="{{route('partner.register')}}" class="btn btn-block btn-warning">
-            Sign up
+            Sign up 
         </a>
     </div>
 </div>

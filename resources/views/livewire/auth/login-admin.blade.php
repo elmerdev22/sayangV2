@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col-12">
-                <button type="submit" class="btn btn-warning text-white  btn-block btn-flat">Sign In</button>
+                <button type="submit" class="btn btn-warning text-white  btn-block btn-flat">Sign In <span wire:loading wire:target="authenticate" class="fas fa-spinner fa-spin"></span></button>
             </div>
         </div>
     </form>
