@@ -34,22 +34,7 @@
 </div>
 <div class="py-3">
   <div class="container">
-    <div class="row">
-      <div class="col-12">    
-        <div class="owl-carousel owl-theme">
-              
-          @for($x=0;$x < 8; $x++)
-          <div class="item">
-            <div class="card text-center shadow-none" style="width: auto;">
-              <div class="card-body category-icon">
-                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{asset('images/icons/icon'.$x.'.png')}}" alt="Card image cap">
-              </div>
-            </div>
-          </div>
-          @endfor
-        </div>
-      </div>
-    </div>
+    @livewire('front-end.home.category')
     <div class="row">
       <div class="col-12 mb-3">
         <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>

@@ -219,5 +219,4 @@ class QueryUtility{
 
 		return $data;
 	}
-
 }
