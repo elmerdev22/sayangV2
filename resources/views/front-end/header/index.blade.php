@@ -78,15 +78,13 @@
                   @endif
                   
                 @elseif(Auth::user()->type == 'partner')
-                  @if(Utility::partner_activated())
-                    <div class="widget-header mr-3">
-                      <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
-                        <div class="icon-area">
-                          <i class="fa fa-tachometer-alt text-dark"></i>
-                        </div>
-                      </a>
-                    </div>
-                  @endif
+                  <div class="widget-header mr-3">
+                    <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
+                      <div class="icon-area">
+                        <i class="fa fa-tachometer-alt text-dark"></i>
+                      </div>
+                    </a>
+                  </div>
                 @else
                   <div class="widget-header mr-3">
                     <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
