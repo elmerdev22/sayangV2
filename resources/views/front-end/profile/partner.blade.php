@@ -174,49 +174,58 @@
                         <input type="search" class="form-control" placeholder="Search">
                       </div>
                     </div>
-                    @for($x=0;$x<4;$x++)
-                      <article class="card card-product-list">
-                        <div class="row no-gutters p-2">
-                          <aside class="col-md-5">
-                            <a href="#" class="img-wrap">
-                              <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
-                              <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
-                            </a>
-                          </aside> <!-- col.// -->
-                          <div class="col-md-7 pl-3">
-                            <div class="info-main">
-                              <div class="row">
-                                  <div class="col-6 font-weight-bold text-left">
-                                      <span class="h5 title">COCONUT OIL</span>
-                                  </div>
-                                  <div class="col-6 text-right">
-                                      <p class="text-danger">3 LEFT!</p>
-                                  </div>
-                              </div>
-                              <p> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam... </p>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
-                                    <button class="btn btn-sm btn-dark item-btn">
-                                      <span class="font-weight-bold">Buy Now</span><br>
-                                      <small class="text-white item-info">Php: 40.00 | 30%off</small>
-                                    </button>
-                                  </a>
+                    
+                    <div class="row">
+                      @for($x=0;$x < 9; $x++)
+                      <div class="col-lg-4 col-md-6 col-sm-6 col-6" data-aos="fade-up">
+                        <div class="card mb-4 product-card">
+                          <div style="width:100%; text-align:center">
+                            <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
+                            <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
+                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
+                                <div class="row">
+                                    <div class="col-6 text-white text-left">
+                                        Elmer shop
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <span class="fas fa-star text-warning"></span> 
+                                        <span class="text-white">4.5</span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                  <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
-                                    <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                    <span class="font-weight-bold">Place Bid</span><br>
-                                    <small class="item-info">Bids: 5 | Top: 250.00</small>
-                                    </button>
-                                  </a>
+                            </div>
+                            <div class="product-info p-2">
+                                <div class="row">
+                                    <div class="col-6 font-weight-bold text-left">
+                                        Noodles
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        3 left!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-0 p-0">
+                                <div class="col-md-6 m-0 p-0">
+                                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
+                                      <button class="btn btn-sm btn-dark item-btn">
+                                        <span class="font-weight-bold">Buy Now</span><br>
+                                        <small class="text-white item-info">Php: 40.00 | 30%off</small>
+                                      </button>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 m-0 p-0">
+                                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
+                                      <button class="btn btn-sm btn-outline-warning text-dark item-btn">
+                                      <span class="font-weight-bold">Place Bid</span><br>
+                                      <small class="item-info">Bids: 5 | Top: 250.00</small>
+                                      </button>
+                                    </a>
                                 </div>
                               </div>
-                            </div> <!-- info-main.// -->
-                          </div> <!-- col.// -->
-                        </div> <!-- row.// -->
-                      </article> <!-- card-product .// -->
-                    @endfor
+                          </div>
+                        </div>
+                      </div>
+                      @endfor
+                    </div>
                     <nav aria-label="Page navigation sample">
                       <div class="row float-right">
                         <ul class="pagination">
@@ -232,40 +241,47 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="ratings">
-                    
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool">3 days ago</a>
-                        </span>
-                        <span class="description">
-                          @for($x=0;$x < 5; $x++)
-                            <span class="fas fa-star text-warning"></span>
-                          @endfor
-                        </span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="White a reply">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-warning">Send</button>
-                          </div>
+                    @for ($i = 0; $i < 5; $i++)
+                          
+                      <!-- Post -->
+                      <div class="post clearfix">
+                        <div class="user-block">
+                          <img class="img-circle img-bordered-sm" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Image">
+                          <span class="username">
+                            <a href="#">Sarah Ross</a>
+                            <a href="#" class="float-right btn-tool">3 days ago</a>
+                          </span>
+                          <span class="description">
+                            @for($x=0;$x < 5; $x++)
+                              <span class="fas fa-star text-warning"></span>
+                            @endfor
+                          </span>
                         </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
+                        <!-- /.user-block -->
+                        <p>
+                          Lorem ipsum represents a long-held tradition for designers,
+                          typographers and the like. Some people hate it and argue for
+                          its demise, but others ignore the hate as they create awesome
+                          tools to help create filler text for everyone from bacon lovers
+                          to Charlie Sheen fans.
+                        </p>
+
+                        @php $pic = rand(1,5) @endphp
+                        @for ($p = 0; $p < $pic ; $p++)
+                          <img class="" style="width: auto; height: 50px;" src="{{asset('images/default-photo/product1.jpg')}}" alt="User Image">
+                        @endfor
+                        
+                        <form class="form-horizontal mt-3">
+                          <div class="input-group input-group-sm mb-0">
+                            <input class="form-control form-control-sm" placeholder="White a reply">
+                            <div class="input-group-append">
+                              <button type="submit" class="btn btn-warning">Send</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.post -->
+                    @endfor
                   </div>
                   <!-- /.tab-pane -->
 

@@ -51,7 +51,7 @@
 	            	<!-- /.card-body -->
 
 	                <div class="card-footer">
-	                    <button type="submit" class="btn btn-warning float-right">Submit <span wire:loading wire:target="update" class="fas fa-spinner fa-spin"></span></button>
+	                    <button type="submit" class="btn btn-warning float-right">Save <span wire:loading wire:target="update" class="fas fa-spinner fa-spin"></span></button>
 	                </div>
 				</form>
 				
