@@ -1,12 +1,12 @@
 @extends('front-end.partner.layouts.layout')
-@section('title','My Account')
+@section('title','Banks & Cards')
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Bank & Cards',
+            'title'       => 'Banks & Cards',
             'breadcrumbs' => [
                 ['url' => route('front-end.partner.my-account.index'), 'label' => 'Profile'],
-                ['url' => '', 'label' => 'Bank & Cards'],
+                ['url' => '', 'label' => 'Banks & Cards'],
             ],
         ];
     @endphp

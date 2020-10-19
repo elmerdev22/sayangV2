@@ -5,10 +5,6 @@
                 <blockquote class="@if($row->is_default) quote-warning @else quote-secondary @endif">
                     <div class="row">
                         <div class="col-12">
-                            <div class="float-xs-none float-sm-none float-md-right">
-                                <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-pen"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger ml-1" title="Delete" onclick="delete_data('{{$row->key_token}}')"><i class="fas fa-trash"></i></button>
-                            </div>
                             <span class="fas fa-user"></span> <strong>{{ucwords($row->full_name)}} @if($row->is_default)<span class="badge badge-info">Default</span>@endif</strong>
                         </div>
                     </div>
@@ -24,8 +20,12 @@
                             {{$row->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$row->zip_code}} <br>
                         </div>
                         <div class="col-sm-4">
-                            <div class="text-right mt-2">
+                            <div class="text-md-right mb-1">
                                 <button type="button" class="btn btn-sm btn-default" @if($row->is_default) disabled @else onclick="set_default('{{$row->key_token}}')" @endif>Set as Default</button>
+                            </div>
+                            <div class="float-xs-none float-sm-none float-md-right">
+                                <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-pen"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data('{{$row->key_token}}')"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
                     </div>

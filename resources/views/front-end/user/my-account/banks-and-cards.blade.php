@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','My Addresses')
+@section('title','Banks & Cards')
 @section('page_header')
     @php 
         $page_header = [
