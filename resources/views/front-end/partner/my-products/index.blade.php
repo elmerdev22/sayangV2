@@ -103,7 +103,7 @@
             <div class="card-header">
                 <h5 class="card-title">My Products List</h5> 
                 <div class="card-tools">
-                    <a href="{{route('front-end.partner.my-products.add-product')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
+                    <a href="{{route('front-end.partner.my-products.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
                     <a href="{{route('front-end.partner.my-products.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                     </button>
@@ -143,7 +143,7 @@
                                     <td>{{number_format(rand(100,999),2)}}</td>
                                     <td>{{date('F/d/Y')}}</td>
                                     <td class="">
-                                        <a href="{{route('front-end.partner.my-products.edit-product')}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
+                                        <a href="{{route('front-end.partner.my-products.edit', ['slug' => '12345'])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0);" onclick="deleteProduct()" class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

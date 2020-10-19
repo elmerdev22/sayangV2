@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 class MyProductsController extends Controller
 {
     public function index(){
-        return view('front-end.partner.my-products.listing.index');
+        return view('front-end.partner.my-products.index');
     }
-    public function addProduct(){
-        return view('front-end.partner.my-products.listing.add');
+    public function add(){
+        return view('front-end.partner.my-products.add');
     }
-    public function editProduct(){
-        return view('front-end.partner.my-products.listing.edit');
+    public function edit(){
+        return view('front-end.partner.my-products.edit');
     }
     public function startSale(){
-        return view('front-end.partner.my-products.listing.start-sale');
+        return view('front-end.partner.my-products.start-sale');
     }
     public function activities(){
         return view('front-end.partner.my-products.activities.index');

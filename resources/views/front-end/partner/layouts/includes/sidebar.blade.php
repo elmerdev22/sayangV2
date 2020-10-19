@@ -74,7 +74,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.start-sale') || Route::is('front-end.partner.my-products.edit-product') || Route::is('front-end.partner.my-products.add-product') || Route::is('front-end.partner.my-products.index') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.*') && !Route::is('front-end.partner.my-products.activities') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
                             </a>
