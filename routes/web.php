@@ -170,14 +170,14 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
             // Add Product in Menu
 			Route::get('/add', [
-		        'as' 	=> 'add-product',
-		        'uses'  => $c.'@addProduct'
+		        'as' 	=> 'add',
+		        'uses'  => $c.'@add'
             ]);
             
             // Edit Product in Menu
-            Route::get('/edit', [
-                'as' 	=> 'edit-product',
-                'uses'  => $c.'@editProduct'
+            Route::get('/edit/{slug}', [
+                'as' 	=> 'edit',
+                'uses'  => $c.'@edit'
             ]);
             
             // Edit Product in Menu
