@@ -36,13 +36,13 @@
                 <li class="nav-item">
                     <a href="{{route('back-end.partner.index')}}" class="nav-link {{Route::is('back-end.partner.*') ? 'active':''}}"">
                         <i class="nav-icon fas fa-building"></i>
-                        <p>Partners/Merchants</p>
+                        <p>Partners</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('back-end.user.index')}}" class="nav-link {{Route::is('back-end.user.*') ? 'active':''}}"">
                         <i class="nav-icon fas fa-users"></i>
-                        <p>Users/Buyers</p>
+                        <p>Users</p>
                     </a>
                 </li>
                 <li class="nav-item">

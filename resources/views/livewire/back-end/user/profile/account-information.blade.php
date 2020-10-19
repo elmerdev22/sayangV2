@@ -7,7 +7,7 @@
 
             <h3 class="profile-username text-center">{{ucwords($data->first_name.' '.$data->middle_name.' '.$data->last_name)}}</h3>
 
-            <p class="text-muted text-center">User/Buyer</p>
+            <p class="text-muted text-center">User</p>
 
             <ul class="list-group sayang-list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
@@ -76,12 +76,12 @@
                 </li>
             </ul>
             @if($data->user->is_blocked)
-                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this user/buyer?')">
-                    <i class="fas fa-unlock"></i> Unblock User/Buyer
+                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this user?')">
+                    <i class="fas fa-unlock"></i> Unblock User
                 </button>
             @else
-                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this user/buyer?')">
-                    <i class="fas fa-lock"></i> Block User/Buyer
+                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this user?')">
+                    <i class="fas fa-lock"></i> Block User
                 </button>
             @endif
         </div>

@@ -7,7 +7,7 @@
 
             <h3 class="profile-username text-center">{{ucwords($data->first_name.' '.$data->middle_name.' '.$data->last_name)}}</h3>
 
-            <p class="text-muted text-center">Partner/Merchant</p>
+            <p class="text-muted text-center">Partner</p>
 
             <ul class="list-group sayang-list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
@@ -86,12 +86,12 @@
             </button>
 
             @if($data->user->is_blocked)
-                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this partner/merchant?')">
-                    <i class="fas fa-unlock"></i> Unblock Partner/Merchant
+                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this partner?')">
+                    <i class="fas fa-unlock"></i> Unblock Partner
                 </button>
             @else
-                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this partner/merchant?')">
-                    <i class="fas fa-lock"></i> Block Partner/Merchant
+                <button type="button" class="btn btn-sm btn-block btn-danger" onclick="change_block_status('Are you sure, do you want to block this partner?')">
+                    <i class="fas fa-lock"></i> Block Partner
                 </button>
             @endif
         </div>
@@ -102,7 +102,7 @@
 <script type="text/javascript">
     function activate(){
         Swal.fire({
-            title: 'Are you sure, do you want to activate this partner/merchant?',
+            title: 'Are you sure, do you want to activate this partner?',
             text: "You won't be able to revert this!",
             // icon: 'warning',
             showCancelButton: true,
