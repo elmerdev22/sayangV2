@@ -18,7 +18,7 @@
 	        					Purchase ID 
 	        				</th>
 		        			<th class="table-sort">
-		        				User/Buyer
+		        				User
 		        			</th>
 		        			<th class="table-sort">
 		        				Item

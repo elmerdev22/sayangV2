@@ -36,7 +36,7 @@
                     <div class="profile-username text-center">{{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}</div>
                     <div class="text-center">
                         <div class="text-muted">
-                            Partner/Merchant
+                            Partner
                         </div>
                         <span class="badge badge-success">Active</span>
                     </div>

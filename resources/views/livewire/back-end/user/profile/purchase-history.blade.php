@@ -18,7 +18,7 @@
 	        					Purchase ID 
 	        				</th>
 		        			<th class="table-sort">
-		        				Partner/Merchant
+		        				Partner
 		        			</th>
 		        			<th class="table-sort">
 		        				Item
