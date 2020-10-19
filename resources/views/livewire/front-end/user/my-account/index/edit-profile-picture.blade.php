@@ -2,6 +2,9 @@
     <form action="POST" wire:submit.prevent="update">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+                <div class="text-center overflow-hidden">
+                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $photo ? $photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="Photo">
+                </div>
                 <div class="form-group">
                     <label for="photo">Photo*</label>
                     <input type="file" id="photo" class="form-control-file @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photo">

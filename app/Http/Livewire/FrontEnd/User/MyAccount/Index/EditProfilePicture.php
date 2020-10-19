@@ -55,6 +55,7 @@ class EditProfilePicture extends Component
                 'title'   => 'Successfully Uploaded',
                 'message' => 'Profile Picture Successfully Uploaded!'
             ]);
+            $this->reset(['photo']);
         }else{
             DB::rollback();
             $this->emit('alert', [
