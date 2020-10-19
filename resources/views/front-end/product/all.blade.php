@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Product Name')
+@section('title','Product List')
 @section('content')
 
 <section class="content-header">
@@ -198,74 +198,57 @@
           </div>
       </header><!-- sect-heading -->
 
-      @for($x=0;$x<4;$x++)
-        <article class="card card-product-list">
-          <div class="row no-gutters p-2">
-            <aside class="col-5">
-              <a href="#" class="img-wrap">
-                <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
-                <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
-              </a>
-            </aside> <!-- col.// -->
-            <div class="col-7 pl-3">
-              <div class="info-main">
+     <div class="row">
+      @for($x=0;$x < 9; $x++)
+      <div class="col-lg-4 col-md-6 col-sm-6 col-6" data-aos="fade-up">
+        <div class="card mb-4 product-card">
+          <div style="width:100%; text-align:center">
+            <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
+            <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
+            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
                 <div class="row">
-                    <div class="col-6 font-weight-bold text-left">
-                        <span class="h5 title">COCONUT OIL</span>
+                    <div class="col-6 text-white text-left">
+                        Elmer shop
                     </div>
                     <div class="col-6 text-right">
-                        <p class="text-danger">3 LEFT!</p>
+                        <span class="fas fa-star text-warning"></span> 
+                        <span class="text-white">4.5</span>
                     </div>
                 </div>
-                
-                <div class="rating-wrap mb-3">
-                  <a href="{{url('/profile/partner-name')}}">
-                    <p>Gordon Ramcey <span class="fas fa-star text-warning"></span> 4.5</p>
-                  </a>
-                </div> <!-- rating-wrap.// -->
-                
-                <p> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam... </p>
+            </div>
+            <div class="product-info p-2">
                 <div class="row">
-                  <div class="col-md-6">
-                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
+                    <div class="col-6 font-weight-bold text-left">
+                        COCONUT OIL
+                    </div>
+                    <div class="col-6 text-right">
+                        3 left!
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 p-0">
+                <div class="col-md-6 m-0 p-0">
+                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
                       <button class="btn btn-sm btn-dark item-btn">
                         <span class="font-weight-bold">Buy Now</span><br>
                         <small class="text-white item-info">Php: 40.00 | 30%off</small>
                       </button>
                     </a>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
+                </div>
+                <div class="col-md-6 m-0 p-0">
+                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
                       <button class="btn btn-sm btn-outline-warning text-dark item-btn">
                       <span class="font-weight-bold">Place Bid</span><br>
                       <small class="item-info">Bids: 5 | Top: 250.00</small>
                       </button>
                     </a>
-                  </div>
                 </div>
-              </div> <!-- info-main.// -->
-            </div> <!-- col.// -->
-            {{-- <aside class="col-3">
-              <div class="info-aside">
-                <p>
-                  <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
-                    <button class="btn btn-sm btn-dark item-btn">
-                      <span class="font-weight-bold">Buy Now</span><br>
-                      <small class="text-white item-info">Php: 40.00 | 30%off</small>
-                    </button>
-                  </a>
-                  <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
-                    <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                    <span class="font-weight-bold">Place Bid</span><br>
-                    <small class="item-info">Bids: 5 | Top: 250.00</small>
-                    </button>
-                  </a>
-                </p>
-              </div> <!-- info-aside.// -->
-            </aside> --}} <!-- col.// -->
-          </div> <!-- row.// -->
-        </article> <!-- card-product .// -->
+              </div>
+          </div>
+        </div>
+      </div>
       @endfor
+    </div>
       <nav aria-label="Page navigation sample">
         <div class="row justify-content-center">
           <ul class="pagination">

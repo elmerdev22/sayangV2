@@ -60,7 +60,74 @@
             </div>
           </nav>
           <div class="tab-content p-3" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae condimentum erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed posuere, purus at efficitur hendrerit, augue elit lacinia arcu, a eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet cursus dolor fermentum vel. Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius finibus purus sed venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper risus. Vestibulum erat erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit mauris, in pellentesque urna pellentesque viverra. Nullam non pellentesque justo, et ultricies neque. Praesent vel metus rutrum, tempus erat a, rutrum ante. Quisque interdum efficitur nunc vitae consectetur. Suspendisse venenatis, tortor non convallis interdum, urna mi molestie eros, vel tempor justo lacus ac justo. Fusce id enim a erat fringilla sollicitudin ultrices vel metus. </div>
+            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+              <div class="card-footer bg-white card-comments">
+                @for ($i = 0; $i < 5; $i++)
+                  <div class="post clearfix">
+                    <div class="user-block">
+                      <img class="img-circle img-bordered-sm mr-3" style="width: 50px; height: 50px;" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Image">
+                      <span class="username">
+                        <a href="#">Sarah Ross</a>
+                        <a href="#" class="float-right btn-tool">3 days ago</a>
+                      </span>
+                      <span class="description">
+                        @php $star = rand(1,5) @endphp
+                        @for ($s = 0; $s < $star ; $s++)
+                          <span class="fas fa-star text-warning"></span>
+                        @endfor
+                        @for ($n = $star; $n < 5 ; $n++)
+                          <span class="fas fa-star"></span>
+                        @endfor
+                      </span>
+                    </div>
+                    <!-- /.user-block -->
+                    <p class="w-100">
+                      Lorem ipsum represents a long-held tradition for designers,
+                      typographers and the like. Some people hate it and argue for
+                      its demise, but others ignore the hate as they create awesome
+                      tools to help create filler text for everyone from bacon lovers
+                      to Charlie Sheen fans.
+                    </p>
+                    @php $pic = rand(1,5) @endphp
+                    @for ($p = 0; $p < $pic ; $p++)
+                      <img class="" style="width: auto; height: 50px;" src="{{asset('images/default-photo/product1.jpg')}}" alt="User Image">
+                    @endfor
+
+                    <div class="card-footer card-comments mt-3">
+                      <div class="replied">
+                        <span class="fas fa-reply"></span> Replied
+                      </div>
+                      <div class="card-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="{{asset('images/default-photo/store.png')}}" alt="store Image">
+      
+                        <div class="comment-text">
+                          <span class="username">
+                            Elmer Shop
+                            <span class="text-muted float-right">8:03 PM Today</span>
+                          </span><!-- /.username -->
+                          Thank you! 
+                        </div>
+                        <!-- /.comment-text -->
+                      </div>
+                      <!-- /.card-comment -->
+                    </div>
+
+                  </div>
+                  
+                  <!-- /.card-comment -->
+                @endfor
+                <div class="row float-right mt-3">
+                  <ul class="pagination pagination m-0">
+                    <li class="page-item"><a class="page-link" href="#">«</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet. Suspendisse potenti. Donec et finibus sem, ut commodo lectus. Cras eget neque dignissim, placerat orci interdum, venenatis odio. Nulla turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex pulvinar mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex elit euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget, ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui. Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div>
             <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
           </div>
@@ -70,8 +137,7 @@
     </div>
     <!-- /.card -->
   </div>
-
-
+  <hr>
   <div class="container">
     <div class="row">
       <div class="col-12 mb-3">
