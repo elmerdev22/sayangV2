@@ -338,7 +338,7 @@ class Utility{
 
             if($type != 'admin'){
                 if($type == 'partner'){
-                    if(!$is_verified){
+                    if($is_verified){
                         $continue = true;
                     }else{
                         $continue = false;
@@ -354,7 +354,7 @@ class Utility{
                         return false;
                     }
                 }else{
-                    if(!$is_verified){
+                    if($is_verified){
                         return true;
                     }else{
                         return false;
