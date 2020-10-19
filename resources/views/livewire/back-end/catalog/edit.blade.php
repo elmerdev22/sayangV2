@@ -11,12 +11,12 @@
 	                <div class="card-body">
 						<div class="form-group">
 							<label for="photo">Photo* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
-							<div class="text-center">
+							<div class="text-center overflow-hidden">
 								
 								@if ($photo)
-									<img class="mb-2 imagePreview" src="{{ $photo->temporaryUrl()}}" alt="">
+									<img class="mb-2 mt-1 imagePreview" src="{{ $photo->temporaryUrl()}}" alt="">
 								@else
-									<img class="mb-2 imagePreview" src="{{$photo_url}}" alt="">
+									<img class="mb-2 mt-1 imagePreview" src="{{$photo_url}}" alt="">
 								@endif
 
 								<div class="form-control upload-btn-wrapper btn btn-warning">

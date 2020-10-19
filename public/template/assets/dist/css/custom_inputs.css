@@ -1,10 +1,9 @@
 .imagePreview {
-    width: 180px;
+    width: auto;
     height: 180px;
-    background-position: center center;
-    background-size: cover;
     -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-    display: inline-block;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+    object-fit: cover;
 }
 .upload-btn-wrapper {
     position: relative;
