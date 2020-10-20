@@ -86,23 +86,22 @@ class Utility{
         $text = preg_replace('~-+~', '-', $text);
 
         // lowercase
-        $text = strtolower($text);
-
+        $text          = strtolower($text);
+        $original_text = $text;
+        
         //Validate if exists
         $check = false;
 
+        $times = 0;
         $model_string = 'App\\Model\\'.ucfirst($model_string);
+
         do{
-            $model        = new $model_string();
-            $check_slug   = $model::where($key, $text)->count();
+            $times++;
+            $model      = new $model_string();
+            $check_slug = $model::where($key, $text)->count();
 
             if($check_slug > 0){
-                if(!$check){
-                    $text = $text.'-'.rand(10, 99);
-                }else{
-                    $text = substr($text, 0, -3);
-                    $text = $text.'-'.rand(1, 100);
-                }
+                $text         = $original_text.'-'.$times;
                 $check        = true;
                 $already_used = true;
             }else{
@@ -368,4 +367,11 @@ class Utility{
         }
     }
     
+    public static function decimal_format($value, $places=2){
+        if($value == ''){
+            $value = 0.00;
+        }
+
+        return str_replace(',', '', $value);
+    }
 }

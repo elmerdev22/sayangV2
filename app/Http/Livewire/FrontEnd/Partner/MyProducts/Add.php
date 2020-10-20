@@ -79,8 +79,8 @@ class Add extends Component
             $product->partner_id    = $this->partner->id;
             $product->category_id   = $this->category;
             $product->name          = $this->name;
-            $product->buy_now_price = $this->buy_now_price;
-            $product->lowest_price  = $this->lowest_price;
+            $product->buy_now_price = Utility::decimal_format($this->buy_now_price);
+            $product->lowest_price  = Utility::decimal_format($this->lowest_price);
             $product->description   = $this->description;
             $product->reminders     = $this->reminders;
             $product->slug          = Utility::generate_table_slug('Product', $this->name);
