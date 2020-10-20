@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\FrontEnd\Partner\MyProducts;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Model\Product;
 use App\Model\ProductTag;
 use App\Model\Category;
@@ -15,12 +16,15 @@ use TagNameUtility;
 
 class Add extends Component
 {
-    public $partner, $name, $category, $sub_categories = [], $tags = [];
+    use WithFileUploads;
+
+    public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
     public $buy_now_price, $lowest_price, $description, $reminders;
-    public $featured_photo, $photos=[];
+    public $feauted_photo, $photos=[];
 
     public function mount(){
         $this->partner = Utility::auth_partner();
+        $this->account = Utility::auth_user_account();
     }
 
     public function categories(){
@@ -59,9 +63,6 @@ class Add extends Component
         
         $photo_validation = 'nullable|image|mimes:jpeg,jpg,png|max:2048';
 
-        if(!empty($this->featured_photo)){
-            $rules['featured_photo'] = $photo_validation;
-        }
         if(!empty($this->photos)){
             $rules['photos'] = $photo_validation;
         }
@@ -89,18 +90,21 @@ class Add extends Component
                 $validator_checker = array();
                 
                 if(!empty($this->tags)){
-                    foreach($this->tags as $tag){
-                        $tag_id                  = TagNameUtility::validate('Tag', $tag);
-                        $product_tag             = new ProductTag();
-                        $product_tag->tag_id     = $tag_id;
-                        $product_tag->product_id = $product->id;
-                        $product_tag->key_token  = Utility::generate_table_token('ProductTag');
-                        if($product_tag->save()){
-                            array_push($validator_checker, true);
-                        }else{
-                            array_push($validator_checker, false);
+                    if(is_array($this->tags)){
+                        foreach($this->tags as $tag){
+                            $tag_id                  = TagNameUtility::validate('Tag', $tag);
+                            $product_tag             = new ProductTag();
+                            $product_tag->tag_id     = $tag_id;
+                            $product_tag->product_id = $product->id;
+                            $product_tag->key_token  = Utility::generate_table_token('ProductTag');
+                            if($product_tag->save()){
+                                array_push($validator_checker, true);
+                            }else{
+                                array_push($validator_checker, false);
+                            }
                         }
-
+                    }else{
+                        array_push($validator_checker, false);
                     }
                 }
                 
