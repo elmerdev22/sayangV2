@@ -282,3 +282,4 @@ Auth::routes();
 
 Route::get('/product/{slug}', 'FrontEnd\product\SelectedController@index')->name('selected.product');
 Route::get('/my-cart', 'FrontEnd\product\CartController@index')->name('account.cart');
+Route::get('/checkout', 'FrontEnd\product\CheckoutController@index')->name('account.checkout');
