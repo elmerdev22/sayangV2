@@ -10,56 +10,102 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="product_name">Product Name</label>
-                        <input type="text" class="form-control" id="product_name" placeholder="Product Name" wire:model.lazy="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="product_name" placeholder="Product Name" wire:model.lazy="name">
+                        @error('name') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
-                <div class="col-md-6" wire:ignore wire:key="dropdown_category">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="form-control w-100 catalog" id="category">
-                            <option disabled value="" selected="selected">Select</option>
-                            @foreach($component->categories() as $row)
-                                <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore wire:key="dropdown_category">
+                            <label for="category">Category</label>
+                            <select class="form-control w-100 catalog" id="category">
+                                <option disabled value="" selected="selected">Select</option>
+                                @foreach($component->categories() as $row)
+                                    <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('category') 
+                            <span class="invalid-feedback d-block">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
-                <div class="col-md-6" wire:ignore wire:key="dropdown_sub_categories">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="sub_categories">Sub Category</label>
-                        <select class="form-control w-100" id="sub_categories" multiple="true">
-                        </select>
+                        <div wire:ignore wire:key="dropdown_sub_categories">
+                            <label for="sub_categories">Sub Category</label>
+                            <select class="form-control w-100" id="sub_categories" multiple="true">
+                            </select>
+                        </div>
+                        @error('sub_category') 
+                            <span class="invalid-feedback d-block">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
-                <div class="col-md-6" wire:ignore wire:key="dropdown_tags">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="tags">Tags</label>
-                        <select class="form-control w-100" id="tags" multiple="true">
-                        </select>
+                        <div wire:ignore wire:key="dropdown_tags">
+                            <label for="tags">Tags</label>
+                            <select class="form-control w-100" id="tags" multiple="true">
+                            </select>
+                        </div>
+                        @error('tags') 
+                            <span class="invalid-feedback d-block">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="buy_now_price">Buy now price</label>
-                        <input type="text" class="form-control" id="buy_now_price" placeholder="Buy now Price Here" wire:model.lazy="buy_now_price">
+                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00" wire:model.lazy="buy_now_price">
+                        @error('buy_now_price') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lowest_price">Lowest price</label>
-                        <input type="text" class="form-control" id="lowest_price" placeholder="Lowest Price Here" wire:model.lazy="lowest_price">
+                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00" wire:model.lazy="lowest_price">
+                        @error('lowest_price') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" placeholder="Description here..." wire:model.lazy="description"></textarea>
+                        <textarea class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Description here..." wire:model.lazy="description"></textarea>
+                        @error('description') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="reminders">Few Reminders</label>
-                        <textarea class="form-control" id="reminders" placeholder="Reminders here..." wire:model.lazy="reminders"></textarea>
+                        <textarea class="form-control @error('reminders') is-invalid @enderror" id="reminders" placeholder="Reminders here..." wire:model.lazy="reminders"></textarea>
+                        @error('reminders') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -121,11 +167,13 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
+        $('.mask-money').mask("#,##0.00", {reverse: true});
+
         $('#category').select2({theme: 'bootstrap4'});
         $('#sub_categories').select2({theme: 'bootstrap4'});
         $('#tags').select2({
             tags           : true,
-            placeholder    : "Input Tags",
+            placeholder    : "Add Tags",
             tokenSeparators: [',', ' '],
                 "language"     : {
                 "noResults" : function () { 

@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 use Utility;
 
-class TableNameUtility{
+class TagNameUtility{
     
     public static function validate($model_string, $value, $field='name'){
         $model_param  = $model_string;

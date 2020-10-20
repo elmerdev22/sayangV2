@@ -3,8 +3,12 @@
 namespace App\Http\Livewire\FrontEnd\Partner\MyProducts;
 
 use Livewire\Component;
+use App\Model\Product;
+use App\Model\ProductTag;
 use App\Model\Category;
 use App\Model\SubCategory;
+use App\Model\ProductSubCategory;
+use App\Rules\Money;
 use DB;
 use Utility;
 use TagNameUtility;
@@ -47,8 +51,8 @@ class Add extends Component
             'category'       => 'required|numeric',
             'sub_categories' => 'nullable',
             'tags'           => 'nullable',
-            'buy_now_price'  => 'nullable',
-            'lowest_price'   => 'nullable',
+            'buy_now_price'  => ['nullable', new Money()],
+            'lowest_price'   => ['nullable', new Money()],
             'description'    => 'nullable',
             'reminders'      => 'nullable'
         ];
@@ -70,8 +74,66 @@ class Add extends Component
 
         try{
             // Do the insert of product here...
-            $response['success'] = true;
+            $product                = new Product();
+            $product->partner_id    = $this->partner->id;
+            $product->category_id   = $this->category;
+            $product->name          = $this->name;
+            $product->buy_now_price = $this->buy_now_price;
+            $product->lowest_price  = $this->lowest_price;
+            $product->description   = $this->description;
+            $product->reminders     = $this->reminders;
+            $product->slug          = Utility::generate_table_slug('Product', $this->name);
+            $product->key_token     = Utility::generate_table_token('Product');
+
+            if($product->save()){
+                $validator_checker = array();
+                
+                if(!empty($this->tags)){
+                    foreach($this->tags as $tag){
+                        $tag_id                  = TagNameUtility::validate('Tag', $tag);
+                        $product_tag             = new ProductTag();
+                        $product_tag->tag_id     = $tag_id;
+                        $product_tag->product_id = $product->id;
+                        $product_tag->key_token  = Utility::generate_table_token('ProductTag');
+                        if($product_tag->save()){
+                            array_push($validator_checker, true);
+                        }else{
+                            array_push($validator_checker, false);
+                        }
+
+                    }
+                }
+                
+                if(!in_array(false, $validator_checker)){
+                    if(!empty($this->sub_categories)){
+                        if(is_array($this->sub_categories)){
+                            foreach($this->sub_categories as $sub_category){
+                                $product_sub_category                  = new ProductSubCategory();
+                                $product_sub_category->product_id      = $product->id;
+                                $product_sub_category->sub_category_id = $sub_category;
+                                $product_sub_category->key_token       = Utility::generate_table_token('ProductSubCategory');
+
+                                if($product_sub_category->save()){
+                                    array_push($validator_checker, true);
+                                }else{
+                                    array_push($validator_checker, false);
+                                }
+                            }
+                        }else{
+                            array_push($validator_checker, false);
+                        }
+                    }
+                }
+
+                if(in_array(false, $validator_checker)){
+                    $response['success'] = false;
+                }else{
+                    $response['success'] = true;
+                }
+            }
         }catch(\Exception $e){
+            // DB::rollback();
+            // dd($e);
             $response['success'] = false;
         }
 
@@ -88,7 +150,7 @@ class Add extends Component
             $this->emit('alert', [
                 'type'    => 'error',
                 'title'   => 'Failed',
-                'message' => 'An error occured'
+                'message' => 'An error occured while adding the product.'
             ]);
         }
     }
