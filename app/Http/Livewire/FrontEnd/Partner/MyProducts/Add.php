@@ -86,7 +86,7 @@ class Add extends Component
             'reminders'      => 'nullable'
         ];
         
-        $photo_validation = 'nullable|image|mimes:jpeg,jpg,png|max:1024';
+        $photo_validation = 'required|image|mimes:jpeg,jpg,png|max:2048';
 
         if(!empty($this->photos)){
             $rules['photos.*'] = $photo_validation;

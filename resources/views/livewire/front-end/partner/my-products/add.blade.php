@@ -194,7 +194,7 @@
         </div>
         <div class="card-footer">
             <button wire:target="photos" wire:loading.attr="disabled" type="submit" class="btn btn-warning float-right w-100">
-                Add this Product <span wire:loading wire:target="photos" class="fas fa-spinner fa-spin"></span>
+                Add this Product <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span>
             </button>
         </div>
     </form>
@@ -204,9 +204,11 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
         $('.mask-money').mask("#,##0.00", {reverse: true});
-
         $('#category').select2({theme: 'bootstrap4'});
-        $('#sub_categories').select2({theme: 'bootstrap4'});
+        $('#sub_categories').select2({
+            placeholder    : "Select",
+            theme: 'bootstrap4'
+        });
         $('#tags').select2({
             tags           : true,
             placeholder    : "Add Tags",
@@ -219,10 +221,10 @@
         });
 
         $(document).on('keyup', '#lowest_price', function () {
-            @this.set('lowest_price')
+            @this.set('lowest_price', $(this).val())
         });
         $(document).on('keyup', '#buy_now_price', function () {
-            @this.set('buy_now_price')
+            @this.set('buy_now_price', $(this).val())
         });
         $(document).on('change', '#sub_categories', function () {
             @this.set('sub_categories', $(this).val())
@@ -249,15 +251,26 @@
                 name: row['name']
             };
         }
-
         $('#sub_categories').select2(select2_child_input(data, false));
+        $('#sub_categories').select2({
+            placeholder    : "Select",
+            theme: 'bootstrap4'
+        });
     });
 
     function remove_photo(key){
-        var confirmation = window.confirm("Are you sure do you want to remove this photo?");
-        if(confirmation){
-            @this.call('remove_photo', key)
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+                @this.call('remove_photo', key)
+            }
+        })
     }
 </script>
 @endpush
