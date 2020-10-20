@@ -368,4 +368,11 @@ class Utility{
         }
     }
     
+    public static function decimal_format($value, $places=2){
+        if($value == ''){
+            $value = 0.00;
+        }
+
+        return str_replace(',', '', $value);
+    }
 }
