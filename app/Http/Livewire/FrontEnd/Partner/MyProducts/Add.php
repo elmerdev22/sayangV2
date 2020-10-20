@@ -20,7 +20,7 @@ class Add extends Component
 
     public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
     public $buy_now_price, $lowest_price, $description, $reminders;
-    public $feauted_photo, $photos=[];
+    public $featured_photo=0, $photos=[];
 
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -44,6 +44,31 @@ class Add extends Component
         $this->emit('reload_sub_categories', ['sub_categories' => $sub_categories]);
     }
 
+    public function apply_featured_photo($key, $force=false){
+        if($force){
+            if(!empty($this->photos)){
+                if($key == $this->featured_photo){
+                    foreach($this->photos as $row_key => $photo){
+                        $this->featured_photo = $row_key;
+                        break;
+                    }
+                }
+            }else{
+                $this->featured_photo = 0;
+            }
+        }else{
+            $this->featured_photo = $key;
+        }
+    }
+
+    public function remove_photo($key){
+        $photos = $this->photos;
+        if(isset($photos[$key])){
+            unset($this->photos[$key]);
+            $this->apply_featured_photo($key, true);
+        }
+    }
+
     public function render(){
         $component = $this;
         return view('livewire.front-end.partner.my-products.add', compact('component'));
@@ -61,10 +86,10 @@ class Add extends Component
             'reminders'      => 'nullable'
         ];
         
-        $photo_validation = 'nullable|image|mimes:jpeg,jpg,png|max:2048';
+        $photo_validation = 'nullable|image|mimes:jpeg,jpg,png|max:1024';
 
         if(!empty($this->photos)){
-            $rules['photos'] = $photo_validation;
+            $rules['photos.*'] = $photo_validation;
         }
 
         $this->validate($rules);
@@ -75,6 +100,7 @@ class Add extends Component
 
         try{
             // Do the insert of product here...
+            $key_token              = Utility::generate_table_token('Product');
             $product                = new Product();
             $product->partner_id    = $this->partner->id;
             $product->category_id   = $this->category;
@@ -84,7 +110,7 @@ class Add extends Component
             $product->description   = $this->description;
             $product->reminders     = $this->reminders;
             $product->slug          = Utility::generate_table_slug('Product', $this->name);
-            $product->key_token     = Utility::generate_table_token('Product');
+            $product->key_token     = $key_token;
 
             if($product->save()){
                 $validator_checker = array();
@@ -126,6 +152,23 @@ class Add extends Component
                         }else{
                             array_push($validator_checker, false);
                         }
+                    }
+                }
+
+                if(!empty($this->photos)){
+                    if(is_array($this->photos)){
+                        foreach($this->photos as $key => $photo){
+                            if($this->featured_photo == $key){
+                                $collection = $this->account->key_token.'/product/'.$key_token.'/featured-photo/';
+                            }else{
+                                $collection = $this->account->key_token.'/product/'.$key_token.'/photo/';
+                            }
+
+                            $product->clearMediaCollection($collection);
+                            $product->addMedia($photo->getRealPath())->usingFileName($photo->getClientOriginalName())->toMediaCollection($collection);
+                        }
+                    }else{
+                        array_push($validator_checker, false);
                     }
                 }
 
