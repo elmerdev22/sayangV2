@@ -67,7 +67,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="buy_now_price">Buy now price</label>
-                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00" wire:model.lazy="buy_now_price">
+                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00">
                         @error('buy_now_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -78,7 +78,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lowest_price">Lowest price</label>
-                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00" wire:model.lazy="lowest_price">
+                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
                         @error('lowest_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -123,37 +123,63 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    @for ($a = 1; $a < 7; $a++)
-                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-                                            <div class="card overflow-hidden @if($a==1) sayang-featured-photo-bordered @endif">
-                                                <div class="position-relative">
-                                                    <img src="{{asset('images/default-photo/hp-'.$a.'.png')}}" class="sayang-card-photo" alt="Product Photo">
-                                                    <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove"><i class="fas fa-trash"></i></button>
-                                                    @if($a==1)
-                                                        <div class="sayang-featured-photo-overlay">Featured</div>
-                                                    @else
-                                                        <button type="button" class="btn btn-warning btn-sm sayang-set-featured-photo-overlay" title="Set as Featured">
-                                                            <i class="fas fa-check"></i>
+                                    @if(!empty($photos))
+                                        @foreach($photos as $key => $photo)
+                                            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                                                <div class="card overflow-hidden @if($key == $featured_photo) sayang-featured-photo-bordered @else sayang-photo-bordered @endif">
+                                                    <div class="position-relative">
+                                                        <img src="{{$photo->temporaryUrl()}}" class="sayang-card-photo" alt="Product Photo">
+                                                        @if($key == $featured_photo)
+                                                            <div class="sayang-featured-photo-overlay">Featured</div>
+                                                        @else
+                                                            <button type="button" class="btn btn-warning btn-sm sayang-set-featured-photo-overlay" title="Set as Featured" wire:click="apply_featured_photo('{{$key}}')">
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                        @endif
+                                                        <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove" onclick="remove_photo('{{$key}}')">
+                                                            <i class="fas fa-trash"></i>
                                                         </button>
-                                                    @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endfor
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 offset-sm-4">
+                                        <div wire:loading wire:target="photos" class="text-success">
+                                            <span class="fas fa-spinner fa-spin"></span> Uploading Please Wait...
+                                        </div>
+                                        <div wire:loading wire:target="apply_featured_photo" class="text-success">
+                                            <span class="fas fa-spinner fa-spin"></span> Applying Featured Photo
+                                        </div>
                                         <div class="form-group">
                                             <label for="photos">Upload Photos</label>
-                                            <input type="file" id="photos" class="form-control-file @error('photos') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photos" multiple="true">
+                                            <!-- <input type="file" id="photos" class="form-control-file @error('photos.*') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photos" multiple="true"> -->
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="photos" accept=".png, .jpeg, .jpg, .gif, .docx, .pdf" wire:model="photos" multiple>
+                                                    <label class="custom-file-label" for="photos">
+                                                        @if($photos) 
+                                                            @if(count($this->photos) > 0)
+                                                                {{count($this->photos)}} Photos Selected 
+                                                            @else
+                                                                No Photo Selected
+                                                            @endif    
+                                                        @else 
+                                                            No Photo Selected 
+                                                        @endif
+                                                    </label>
+                                                </div>
+                                            </div>
                                             <div>
-                                                <small>File Size: Maximum of 2MB</small>
+                                                <small>File Size: Maximum of 1MB</small>
                                             </div>
                                             <div>
                                                 <small>File Extension: .png, .jpeg, .jpeg</small>
                                             </div>
-                                            @error('photos')
-                                                <span class="invalid-feedback">
+                                            @error('photos.*')
+                                                <span class="invalid-feedback d-block">
                                                     <span>{{$message}}</span>
                                                 </span>
                                             @enderror
@@ -167,7 +193,9 @@
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-warning float-right w-100">Add this Product</button>
+            <button wire:target="photos" wire:loading.attr="disabled" type="submit" class="btn btn-warning float-right w-100">
+                Add this Product <span wire:loading wire:target="photos" class="fas fa-spinner fa-spin"></span>
+            </button>
         </div>
     </form>
 </div>
@@ -190,6 +218,12 @@
             },
         });
 
+        $(document).on('keyup', '#lowest_price', function () {
+            @this.set('lowest_price')
+        });
+        $(document).on('keyup', '#buy_now_price', function () {
+            @this.set('buy_now_price')
+        });
         $(document).on('change', '#sub_categories', function () {
             @this.set('sub_categories', $(this).val())
         });
@@ -218,5 +252,12 @@
 
         $('#sub_categories').select2(select2_child_input(data, false));
     });
+
+    function remove_photo(key){
+        var confirmation = window.confirm("Are you sure do you want to remove this photo?");
+        if(confirmation){
+            @this.call('remove_photo', key)
+        }
+    }
 </script>
 @endpush

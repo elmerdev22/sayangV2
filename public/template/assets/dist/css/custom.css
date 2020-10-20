@@ -600,9 +600,12 @@ input:checked + .slider:before {
 .sayang-featured-photo-bordered{
   border: 3px solid var(--sayang-color);
 }
+.sayang-photo-bordered{
+  border: 3px solid transparent;
+}
 .sayang-card-photo{
   object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 170px;
 }
 /* END OF CUSTOM SAYANG BRANDING THEMES */
