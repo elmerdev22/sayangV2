@@ -36,4 +36,5 @@
 @section('js')
     <script src="{{asset('template/assets/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('template/assets/dist/js/custom-select2.js')}}"></script>
+    <script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 @endsection
