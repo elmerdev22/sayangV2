@@ -179,8 +179,8 @@ class Add extends Component
                 }
             }
         }catch(\Exception $e){
-            DB::rollback();
-            dd($e);
+            // DB::rollback();
+            // dd($e);
             $response['success'] = false;
         }
 
