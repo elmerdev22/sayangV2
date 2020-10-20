@@ -578,4 +578,31 @@ input:checked + .slider:before {
   object-fit: cover;
   -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
 }
+.sayang-featured-photo-overlay{
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  padding: 3px 14px;
+  font-size: 14px;
+  background: rgba(255, 222, 89, 0.8);
+  color: #FFFFFF;
+}
+.sayang-remove-photo-overlay{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.sayang-set-featured-photo-overlay{
+  position: absolute;
+  bottom: 5px;
+  right: 40px;
+}
+.sayang-featured-photo-bordered{
+  border: 3px solid var(--sayang-color);
+}
+.sayang-card-photo{
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
 /* END OF CUSTOM SAYANG BRANDING THEMES */

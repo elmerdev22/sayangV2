@@ -115,42 +115,50 @@
                 </div>
             </div>
             <div class="row mb-2">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Featured Photo</h5> 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-warning btn-sm"><i class="fas fa-upload"></i> Upload Photo
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <img src="{{asset('images/default-photo/product1.jpg')}}" class="card-img-top" alt="...">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
+                <div class="col-12">
                     <div class="form-group">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Other Photos</h5> 
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-warning btn-sm"><i class="fas fa-upload"></i> Upload Photo
-                                    </button>
-                                </div>
+                                <h5 class="card-title">Photos</h5> 
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    @for ($a = 0; $a < 6; $a++)
-                                        <div class="col-lg-4 col-sm-6">
-                                            <div class="card">
-                                                <img src="{{asset('images/default-photo/product1.jpg')}}" class="card-img-top" alt="...">
-                                                <div class="card-footer text-center">
-                                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                    @for ($a = 1; $a < 7; $a++)
+                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                                            <div class="card overflow-hidden @if($a==1) sayang-featured-photo-bordered @endif">
+                                                <div class="position-relative">
+                                                    <img src="{{asset('images/default-photo/hp-'.$a.'.png')}}" class="sayang-card-photo" alt="Product Photo">
+                                                    <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove"><i class="fas fa-trash"></i></button>
+                                                    @if($a==1)
+                                                        <div class="sayang-featured-photo-overlay">Featured</div>
+                                                    @else
+                                                        <button type="button" class="btn btn-warning btn-sm sayang-set-featured-photo-overlay" title="Set as Featured">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                     @endfor
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 offset-sm-4">
+                                        <div class="form-group">
+                                            <label for="photos">Upload Photos</label>
+                                            <input type="file" id="photos" class="form-control-file @error('photos') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photos" multiple="true">
+                                            <div>
+                                                <small>File Size: Maximum of 2MB</small>
+                                            </div>
+                                            <div>
+                                                <small>File Extension: .png, .jpeg, .jpeg</small>
+                                            </div>
+                                            @error('photos')
+                                                <span class="invalid-feedback">
+                                                    <span>{{$message}}</span>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
