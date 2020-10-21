@@ -29,6 +29,7 @@ var select2_child_input = function select2_child_input(data, label=true, place_h
         placeholder   : place_holder,
         closeOnSelect : set_action,
         data          : select2_data,
+        theme         : 'bootstrap4',
         templateResult: select2_custom_template,
         height        : 'resolve',                 //override the height
         width         : '100%',                    //override the width
