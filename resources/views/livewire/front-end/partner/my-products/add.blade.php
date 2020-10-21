@@ -251,11 +251,7 @@
                 name: row['name']
             };
         }
-        $('#sub_categories').select2(select2_child_input(data, false));
-        $('#sub_categories').select2({
-            placeholder    : "Select",
-            theme: 'bootstrap4'
-        });
+        $('#sub_categories').select2(select2_child_input(data, false, "Select"));
     });
 
     function remove_photo(key){
