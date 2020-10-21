@@ -28,8 +28,6 @@
                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
                         <i class="fas fa-plus"></i> Add New Bank Account
                     </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -43,8 +41,6 @@
                 <div class="card-tools">
                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
                         <i class="fas fa-plus"></i> Add New Debit/Credit Cards
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                     </button>
                 </div>
             </div>
