@@ -178,11 +178,19 @@
                                             <div>
                                                 <small>File Extension: .png, .jpeg, .jpeg</small>
                                             </div>
-                                            @error('photos.*')
-                                                <span class="invalid-feedback d-block">
-                                                    <span>{{$message}}</span>
-                                                </span>
-                                            @enderror
+                                            @if(empty($photos))
+                                                @error('photos')
+                                                    <span class="invalid-feedback d-block">
+                                                        <span>{{$message}}</span>
+                                                    </span>
+                                                @enderror
+                                            @else
+                                                @error('photos.*')
+                                                    <span class="invalid-feedback d-block">
+                                                        <span>{{$message}}</span>
+                                                    </span>
+                                                @enderror
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +201,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button wire:target="photos" wire:loading.attr="disabled" type="submit" class="btn btn-warning float-right w-100">
+            <button wire:target="photos, store" wire:loading.attr="disabled" type="submit" class="btn btn-warning float-right w-100">
                 Add this Product <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span>
             </button>
         </div>
