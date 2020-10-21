@@ -83,14 +83,10 @@ class Add extends Component
             'buy_now_price'  => ['nullable', new Money()],
             'lowest_price'   => ['nullable', new Money()],
             'description'    => 'nullable',
-            'reminders'      => 'nullable'
+            'reminders'      => 'nullable',
+            'photos'         => 'required',
+            'photos.*'       => 'image|mimes:jpeg,jpg,png|max:2048'
         ];
-        
-        $photo_validation = 'required|image|mimes:jpeg,jpg,png|max:2048';
-
-        if(!empty($this->photos)){
-            $rules['photos.*'] = $photo_validation;
-        }
 
         $this->validate($rules);
 
