@@ -5,7 +5,6 @@
             <div class="card-tools">
 				<a href="{{route('front-end.partner.my-products.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
 				<a href="{{route('front-end.partner.my-products.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
             </div>
         </div>

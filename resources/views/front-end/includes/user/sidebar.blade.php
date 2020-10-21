@@ -11,13 +11,13 @@
         <a href="javascript:void(0);" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
     </div>
 
-    <a href="#dashboard" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
+    <a href="#purchase" class="list-group-item {{\Route::is('front-end.user.my-purchase.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-shopping-bag"></span> My Purchase 
         <i class="fa fa-chevron-left float-right"></i>
     </a>
 
-    <div class="collapse mb-1" id="dashboard">
-        <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> To Pay </a>
+    <div class="collapse {{\Route::is('front-end.user.my-purchase.*') ? 'show':''}} mb-1" id="purchase">
+        <a href="{{route('front-end.user.my-purchase.orders')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.orders') || \Route::is('front-end.user.my-purchase.track') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Orders </a>
         <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Completed </a>
         <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a>
     </div>

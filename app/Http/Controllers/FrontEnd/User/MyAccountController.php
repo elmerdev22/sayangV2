@@ -13,12 +13,12 @@ class MyAccountController extends Controller
 
         return view('front-end.user.my-account.index', compact('account'));
     }
-
     public function addresses(){
         return view('front-end.user.my-account.addresses');
     }
 
-    public function BanksAndCards(){
+    public function banks_and_cards(){
         return view('front-end.user.my-account.banks-and-cards');
     }
+
 }
