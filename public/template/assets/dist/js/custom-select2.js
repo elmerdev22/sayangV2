@@ -38,3 +38,16 @@ var select2_child_input = function select2_child_input(data, label=true, place_h
         }
      };	    
 }
+
+var select2_tags_input = function select2_tags_input(placeholder){
+    return {
+        tags           : true,
+        placeholder    : placeholder,
+        tokenSeparators: [',', ' '],
+            "language"     : {
+            "noResults" : function () { 
+                return ''; 
+            }
+        },
+    };
+} 
