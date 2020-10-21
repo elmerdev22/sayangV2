@@ -39,8 +39,9 @@ var select2_child_input = function select2_child_input(data, label=true, place_h
      };	    
 }
 
-var select2_tags_input = function select2_tags_input(placeholder){
-    return {
+var select2_tags_input = function select2_tags_input(placeholder, max_tag=null){
+
+    var option = {
         tags           : true,
         placeholder    : placeholder,
         tokenSeparators: [',', ' '],
@@ -50,4 +51,12 @@ var select2_tags_input = function select2_tags_input(placeholder){
             }
         },
     };
+
+    if(max_tag){
+        if(!isNaN(max_tag)){
+            option['maximumSelectionLength'] = max_tag;
+        }   
+    }
+
+    return option;
 } 
