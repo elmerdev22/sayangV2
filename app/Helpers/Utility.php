@@ -374,4 +374,15 @@ class Utility{
 
         return str_replace(',', '', $value);
     }
+
+    public static function is_product_deletable($id){
+        //condition TBA
+        return true;
+    }
+
+    public static function is_category_deletable($id){
+        //condition TBA
+        return true;
+    }
+
 }
