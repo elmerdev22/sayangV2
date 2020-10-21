@@ -206,7 +206,9 @@
         $('.mask-money').mask("#,##0.00", {reverse: true});
         $('#category').select2({theme: 'bootstrap4'});
         $('#sub_categories').select2(select2_child_input([], false, "Select"));
-        $('#tags').select2(select2_tags_input("Add Tags"));
+
+        var max_tag = "{{\SettingsUtility::max_tags_per_product()}}";
+        $('#tags').select2(select2_tags_input("Add Tags", max_tag));
 
         $(document).on('keyup', '#lowest_price', function () {
             @this.set('lowest_price', $(this).val())
