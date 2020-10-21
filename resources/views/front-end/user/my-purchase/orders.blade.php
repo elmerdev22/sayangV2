@@ -1,11 +1,11 @@
 @extends('front-end.layout')
-@section('title','Order History')
+@section('title','Orders')
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Order History',
+            'title'       => 'Orders',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Order History'],
+                ['url' => '', 'label' => 'Orders'],
             ],
         ];
     @endphp

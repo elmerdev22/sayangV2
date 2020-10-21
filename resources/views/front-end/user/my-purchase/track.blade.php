@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Order History')
+@section('title','Order number')
 @section('page_header')
     @php 
         $page_header = [
