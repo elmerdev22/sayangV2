@@ -40,7 +40,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" wire:model="agree"> <div class="custom-control-label"> I am agree with <a href="#">Terms & Conditions</a>  </div> </label>
+            <div class="icheck-warning">
+                <input type="checkbox" id="agree" wire:model="agree">
+                <label for="agree" class="cursorsHover">I am agree with <a href="#">Terms & Conditions</a></label>
+            </div>
             @if(!$agree && $agree_post) 
                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Please Agree on our Terms & Conditions</span>
             @endif

@@ -27,66 +27,127 @@
         <main class="col-md-9">
             <div class="card card-sayang">
                 <div class="table-responsive">
-                    <table class="table table-borderless table-shopping-cart">
+                    <table class="table table-borderless table-hover table-shopping-cart">
                         <thead>
                             <tr class="border-bottom">
-                                <th scope="col">PRODUCTS/ITEMS</th>
+                                <th scope="col" width="10" class="text-center">
+                                    <span class="icheck-warning">
+                                        <input type="checkbox" id="check_all">
+                                        <label for="check_all"></label>
+                                    </span>
+                                </th>
+                                <th scope="col">PRODUCTS</th>
                                 <th scope="col" width="100">QUANTITY</th>
                                 <th scope="col" width="100">PRICE</th>
-                                <th scope="col" class="text-right" width="100">REMOVE</th>
+                                <th scope="col" class="text-right" width="100">ACTIONS</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for($x=0;$x < 3 ; $x++)
-                            <tr class="border-bottom">
-                                <td>
-                                    <figure class="itemside">
-                                        <div class="aside cart-img">
-                                            <img src="{{asset('images/default-photo/product1.jpg')}}" class="img-lg mr-3 w-auto">
-                                        </div>
-                                        <figcaption class="info ml-2">
-                                            <a href="#" class="title text-dark">Product name</a>
-                                            <p class="text-muted small">
-                                                <span>Gordon Ramsey</span><br>
-                                                <span>3 Left!</span><br>
-                                                <span class="bg-danger p-1"><span class="fas fa-clock"></span> 4 hrs 3 mins</span>
-                                            </p>
-                                        
-                                        </figcaption>
-                                    </figure>
+                            <tr class="border">
+                                <td colspan="1">
+                                    <span class="icheck-warning">
+                                        <input type="checkbox" id="check_store">
+                                        <label for="check_store"></label>
+                                    </span>
                                 </td>
-                                <td class="pt-5"> 
-                                    <select class="form-control">
+                                <td colspan="4">
+                                    <span class="fas fa-store"></span> ELMER SHOP
+                                </td>
+                            </tr>
+                            @for($x=0;$x < 3 ; $x++)
+                            <tr>
+                                <td class="text-center">
+                                    <span class="icheck-warning">
+                                        <input type="checkbox" id="check-{{$x}}">
+                                        <label for="check-{{$x}}"></label>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img style="height: 60px; width: auto;" src="{{asset('images/default-photo/product1.jpg')}}" class="img-sm border">
+                                        </div>
+                                        <div class="col-md-10 text-left">
+                                            <p class="title mb-0">Product name goes here </p>
+                                            <small class="bg-danger p-1"> <span class="fas fa-clock"></span> 4 hrs 3 mins </small> 
+                                        </div>
+                                    </div>
+                                </td>
+                                <td> 
+                                    <select class="form-control form-control-sm" width="20">
                                         <option selected>1</option>
                                         <option>2</option>
                                         <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
                                     </select>
+                                    <span>
+                                        <small class="text-muted"> 3 LEFT </small> 
+                                    </span>
                                 </td>
-                                <td class="pt-5"> 
+                                <td>
                                     <div class="price-wrap"> 
-                                        <span class="price">₱1,156.00</span> 
+                                        <div class="price">₱1,156.00</div> 
                                         <small class="text-muted"> ₱315.20 each </small> 
                                     </div> <!-- price-wrap .// -->
                                 </td>
-                                <td class="text-right pt-5"> 
-                                
-                                <a href="" class="btn btn-outline-danger btn-sm"> <span class="fas fa-trash"></span></a>
+                                <td class="text-right"> 
+                                    <a href="" class="btn btn-outline-danger btn-sm"> <span class="fas fa-trash"></span></a> 
+                                </td>
+                            </tr>
+                            @endfor
+
+                            <tr class="border">
+                                <td colspan="1">
+                                    <span class="icheck-warning">
+                                        <input type="checkbox" id="check_store2">
+                                        <label for="check_store2"></label>
+                                    </span>
+                                </td>
+                                <td colspan="4">
+                                    <span class="fas fa-store"></span> TORRES SHOP
+                                </td>
+                            </tr>
+                            @for($z=0;$z < 3 ; $z++)
+                            <tr>
+                                <td class="text-center">
+                                    <span class="icheck-warning">
+                                        <input type="checkbox" id="check2-{{$z}}">
+                                        <label for="check2-{{$z}}"></label>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img style="height: 60px; width: auto;" src="{{asset('images/default-photo/product2.jpg')}}" class="img-sm border">
+                                        </div>
+                                        <div class="col-md-10 text-left">
+                                            <p class="title mb-0">Product name goes here </p>
+                                            <small class="bg-danger p-1"> <span class="fas fa-clock"></span> 4 hrs 3 mins </small> 
+                                        </div>
+                                    </div>
+                                </td>
+                                <td> 
+                                    <select class="form-control form-control-sm" width="20">
+                                        <option selected>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    <span>
+                                        <small class="text-muted"> 3 LEFT </small> 
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="price-wrap"> 
+                                        <div class="price">₱1,156.00</div> 
+                                        <small class="text-muted"> ₱315.20 each </small> 
+                                    </div> <!-- price-wrap .// -->
+                                </td>
+                                <td class="text-right"> 
+                                    <a href="" class="btn btn-outline-danger btn-sm"> <span class="fas fa-trash"></span></a> 
                                 </td>
                             </tr>
                             @endfor
                         </tbody>
                     </table>
-                    <ul class="pagination pagination mr-3">
-                        <li class="page-item"><a class="page-link" href="#">«</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                    </ul>
                 </div>
                 <div class="card-body border-top">
                     <div class="row cart-footer">

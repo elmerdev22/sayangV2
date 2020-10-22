@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col-8">
-                <div class="icheck-primary">
+                <div class="icheck-warning">
                     <input type="checkbox" id="remember" wire:model="remember">
                     <label for="remember">Remember Me</label>
                 </div>
