@@ -3,9 +3,9 @@
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Orders',
+            'title'       => 'Purchase',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Orders'],
+                ['url' => '', 'label' => 'Purchase List'],
             ],
         ];
     @endphp
@@ -24,7 +24,7 @@
         
         <div class="card card-outline card-sayang mb-3">
             <div class="card-header">
-                <h5 class="card-title">Orders</h5> 
+                <h5 class="card-title">Purchase List</h5> 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                     </button>
@@ -44,7 +44,7 @@
                                    Seller Name
                                </th>
                                <th class="table-sort">
-                                   Order Date
+                                    Purchase Date
                                </th>
                                <th class="table-sort">
                                     Status
@@ -68,7 +68,7 @@
                                         </a>
                                     </td>
                                    <td>
-                                        <a href="{{route('front-end.user.my-purchase.track', ['id' => '00001234567'])}}" class="btn btn-warning btn-sm">Track Order</a>
+                                        <a href="{{route('front-end.user.my-purchase.track', ['id' => '00001234567'])}}" class="btn btn-warning btn-sm">Track</a>
                                    </td>
                                </tr>
                            @endfor
