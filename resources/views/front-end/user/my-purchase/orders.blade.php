@@ -47,7 +47,7 @@
                                    Order Date
                                </th>
                                <th class="table-sort">
-                                    status
+                                    Status
                                </th>
                                <th class="table-sort">
                                    Qr Code
@@ -62,7 +62,11 @@
                                    <td>Elmer Shop</td>
                                    <td>August 20, 2020</td>
                                    <td><span class="badge badge-success">Ready for pickup</span></td>
-                                   <td><a class="btn btn-sm btn-outline-warning"><span class=" fas fa-qrcode"></span></a></td>
+                                   <td>
+                                       <a href="#" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#qrcode">
+                                            <span class=" fas fa-qrcode"></span>
+                                        </a>
+                                    </td>
                                    <td>
                                         <a href="{{route('front-end.user.my-purchase.track', ['id' => '00001234567'])}}" class="btn btn-warning btn-sm">Track Order</a>
                                    </td>
@@ -77,7 +81,25 @@
         </div>
     </main> <!-- col.// -->
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="qrcode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order ID : 00001234567</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                {!! QrCode::size(200)->generate('Elmer Lang Malakas!'); !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 
