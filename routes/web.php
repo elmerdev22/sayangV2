@@ -128,8 +128,23 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             
             Route::get('/banks-and-cards', [
 		        'as' 	=> 'banks-and-cards',
-		        'uses'  => $c.'@BanksAndCards'
+		        'uses'  => $c.'@banks_and_cards'
 		    ]);
+        });
+
+        // My Purchase
+        Route::group(['prefix' => 'account', 'as' => 'my-purchase.'], function (){
+			$c = 'MyPurchaseController';
+			
+			Route::get('/orders', [
+		        'as' 	=> 'orders',
+		        'uses'  => $c.'@orders'
+            ]);
+			Route::get('/order/{id}', [
+		        'as' 	=> 'track',
+		        'uses'  => $c.'@track'
+            ]);
+            
         });
     });
 });
