@@ -49,7 +49,7 @@
 		        				<td>{{number_format($row->lowest_price, 2)}}</td>
 		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>
 		        				<td class="text-center">
-									<a href="javascript:void(0);" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
+									<a href="{{route('front-end.partner.my-products.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
 									<a href="javascript:void(0);" onclick="deleteProduct()" class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
 		        				</td>
 		        			</tr>

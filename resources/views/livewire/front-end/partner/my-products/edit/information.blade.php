@@ -55,6 +55,9 @@
                         <div wire:ignore wire:key="dropdown_tags">
                             <label for="tags">Tags</label>
                             <select class="form-control w-100" id="tags" multiple="true">
+                                @foreach($tags as $tag)
+                                    <option selected="true" value="{{$tag}}">{{$tag}}</option>
+                                @endforeach
                             </select>
                         </div>
                         @error('tags') 
@@ -67,7 +70,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="buy_now_price">Buy now price</label>
-                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00">
+                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00" value="{{number_format($buy_now_price, 2)}}">
                         @error('buy_now_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -78,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lowest_price">Lowest price</label>
-                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
+                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00" value="{{number_format($lowest_price, 2)}}">
                         @error('lowest_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -147,14 +150,22 @@
             @this.call('reset_var', ['sub_categories'])
             @this.call('reload_sub_categories')
         });
+
         $(document).on('change', '#tags', function () {
             @this.set('tags', $(this).val())
         });
+
+        reload_sub_categories({!!json_encode($initial_sub_categories)!!});
     });
 
     window.livewire.on('reload_sub_categories', param => {
-        var row, data = [], sub_categories;
-        sub_categories = param['sub_categories'];
+        reload_sub_categories(param);
+    });
+
+    function reload_sub_categories(param){
+        var row,                     data = [], sub_categories, selected_sub_categories;
+            sub_categories          = param['sub_categories'];
+            selected_sub_categories = param['selected_sub_categories'];
 
         for(var key in sub_categories){
             row = sub_categories[key];
@@ -163,7 +174,10 @@
                 name: row['name']
             };
         }
+
         $('#sub_categories').select2(select2_child_input(data, false, "Select"));
-    });
+        $('#sub_categories').val(selected_sub_categories);
+        $('#sub_categories').trigger('change');
+    }
 </script>
 @endpush
