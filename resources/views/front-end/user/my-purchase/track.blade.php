@@ -5,6 +5,7 @@
         $page_header = [
             'title'       => 'Order number',
             'breadcrumbs' => [
+                ['url' => route('front-end.user.my-purchase.list'), 'label' => 'Purchase List'],
                 ['url' => '', 'label' => 'Order number'],
             ],
         ];
@@ -76,7 +77,7 @@
                                         </td>
                                         <td> ₱236.00 </td>
                                         <td width="250"> 
-                                            <a href="#" class="btn btn-warning">Details</a> 
+                                            <a href="#" class="btn btn-warning btn-sm">Details</a> 
                                         </td>
                                     </tr>
                                 @endfor

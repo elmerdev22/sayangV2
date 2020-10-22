@@ -133,17 +133,30 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
         });
 
         // My Purchase
-        Route::group(['prefix' => 'account', 'as' => 'my-purchase.'], function (){
+        Route::group(['prefix' => 'purchase', 'as' => 'my-purchase.'], function (){
 			$c = 'MyPurchaseController';
-			
-			Route::get('/orders', [
-		        'as' 	=> 'orders',
-		        'uses'  => $c.'@orders'
+            
+            // Purchase
+			Route::get('/list', [
+		        'as' 	=> 'list',
+		        'uses'  => $c.'@list'
             ]);
-			Route::get('/order/{id}', [
+			Route::get('/list/{id}', [
 		        'as' 	=> 'track',
 		        'uses'  => $c.'@track'
             ]);
+
+            // Completed
+			Route::get('/completed', [
+		        'as' 	=> 'completed',
+		        'uses'  => $c.'@completed'
+            ]);
+			Route::get('/completed/{id}', [
+		        'as' 	=> 'completed-details',
+		        'uses'  => $c.'@completed_details'
+            ]);
+
+
             
         });
     });
