@@ -264,7 +264,7 @@
                 </div>
                 <div class="row pt-2">
                     <div class="col-12">
-                        <a href="{{route('front-end.user.my-purchase.orders')}}" class=""><u>Go to my purchased</u> </a>
+                        <a href="{{route('front-end.user.my-purchase.list')}}" class=""><u>Go to my purchased</u> </a>
                     </div>
                 </div>
             </div>
