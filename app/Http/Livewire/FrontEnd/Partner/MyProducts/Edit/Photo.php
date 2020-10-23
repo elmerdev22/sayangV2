@@ -13,6 +13,9 @@ class Photo extends Component
 {
     public $partner, $account, $product_id;
     public $photos = [], $media_photos = [], $featured_photo;
+    protected $listeners = [
+        'initialize_photos' => '$refresh'
+    ];
 
     public function mount($product_id){
         $this->partner        = Utility::auth_partner();
@@ -25,5 +28,21 @@ class Photo extends Component
 
     public function render(){
         return view('livewire.front-end.partner.my-products.edit.photo');
+    }
+
+    public function delete($key){
+        $media_photos = $this->media_photos;
+        if(isset($media_photos[$key])){
+
+            if($media_photos[$key]->delete()){
+                unset($media_photos[$key]);
+                $this->emit('initialize_photos', true);
+                $this->emit('alert', [
+                    'type'     => 'success',
+                    'title'    => 'Successfully Deleted',
+                    'message'  => 'Photo successfully deleted.'
+                ]);
+            }
+        }
     }
 }

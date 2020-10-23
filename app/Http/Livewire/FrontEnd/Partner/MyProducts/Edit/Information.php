@@ -218,11 +218,14 @@ class Information extends Component
 
                 // Update Sub Categories
                 if($this->category != $this->old_category){
-                    $is_deleted = ProductSubCategory::where('product_id', $product->id)->delete();
-                    if($is_deleted){
-                        array_push($validator_checker, true);
-                    }else{
-                        array_push($validator_checker, false);
+                    $sub_category_delete = ProductSubCategory::where('product_id', $product->id);
+                    
+                    if($sub_category_delete->count()){
+                        if($sub_category_delete->delete()){
+                            array_push($validator_checker, true);
+                        }else{
+                            array_push($validator_checker, false);
+                        }
                     }
                     
                     $selected_sub_categories = [];
@@ -276,11 +279,14 @@ class Information extends Component
                         array_push($validator_checker, false);
                     }
                 }else{
-                    $is_deleted = ProductSubCategory::where('product_id', $product->id)->delete();
-                    if($is_deleted){
-                        array_push($validator_checker, true);
-                    }else{
-                        array_push($validator_checker, false);
+                    $sub_category_delete = ProductSubCategory::where('product_id', $product->id);
+                    
+                    if($sub_category_delete->count()){
+                        if($sub_category_delete->delete()){
+                            array_push($validator_checker, true);
+                        }else{
+                            array_push($validator_checker, false);
+                        }
                     }
                 }
                 // End of Sub Categories
