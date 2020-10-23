@@ -45,7 +45,7 @@
             </div>
             <hr>
 
-            <div class="card text-center">
+            <div class="card text-center sticky">
               @livewire('front-end.product.details')
             </div>
         

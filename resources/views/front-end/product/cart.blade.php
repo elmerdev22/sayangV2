@@ -1,7 +1,6 @@
 @extends('front-end.layout')
 @section('title','Product Name')
 @section('content')
-
 <section class="content-header py-4">
     <div class="container">
         <div class="row mb-2">
@@ -179,7 +178,7 @@
                     </form>
                 </div> <!-- card-body.// -->
             </div>
-            <div class="card card-sayang">
+            <div class="card card-sayang sticky">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">

@@ -669,3 +669,9 @@ input:checked + .slider:before {
   display: block;
   margin-top: 7px
 }
+/* Sticky Card on scroll */
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+}

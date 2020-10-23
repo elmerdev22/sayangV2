@@ -87,16 +87,24 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-bell"></i>
-                        <p>Notifications</p>
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.order-and-receipt.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.order-and-receipt.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>Orders & Receipt <i class="right fas fa-angle-left"></i></p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.*') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.*') ? 'sayang-nav-link-active':''}}">
-                        <i class="nav-icon fas fa-money-bill"></i>
-                        <p>Orders & Receipt</p>
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-bell"></i>
+                        <p>Notifications</p>
                     </a>
                 </li>
                 <li class="nav-item">

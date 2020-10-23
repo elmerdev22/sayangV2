@@ -11,7 +11,7 @@ class OrderAndReceiptController extends Controller
         return view('front-end.partner.order-and-receipt.index');
     }
 
-    public function order($order_id){
-        return view('front-end.partner.order-and-receipt.order');
+    public function track($order_id){
+        return view('front-end.partner.order-and-receipt.track');
     }
 }
