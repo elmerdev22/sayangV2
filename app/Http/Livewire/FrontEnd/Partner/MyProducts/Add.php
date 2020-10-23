@@ -190,6 +190,7 @@ class Add extends Component
             ]);
         }else{
             DB::rollback();
+            $this->reset(['photos']);
             $this->emit('alert', [
                 'type'    => 'error',
                 'title'   => 'Failed',
