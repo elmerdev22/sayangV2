@@ -156,8 +156,6 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 		        'uses'  => $c.'@completed_details'
             ]);
 
-
-            
         });
     });
 });
@@ -247,6 +245,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
             ]);
+
             
         });
 
@@ -254,14 +253,14 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
         Route::group(['prefix' => 'order-and-receipt', 'as' => 'order-and-receipt.'], function (){
 			$c = 'OrderAndReceiptController';
 			
-			Route::get('/', [
+			Route::get('/list', [
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
             ]);
 
-            Route::get('/order/{order_id}', [
-		        'as' 	=> 'order',
-		        'uses'  => $c.'@order'
+			Route::get('/list/{id}', [
+		        'as' 	=> 'track',
+		        'uses'  => $c.'@track'
             ]);
             
         });
