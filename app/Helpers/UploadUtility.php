@@ -5,8 +5,23 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Model\UserAccount;
 use App\Model\Category;
+use App\Model\Product;
 
 class UploadUtility{
+
+    public static function product_featured_photo($user_key_token, $product_key_token){
+        $product     = Product::where('key_token', $product_key_token)->firstOrFail();
+        $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/featured-photo/');
+
+        return $media_photo;
+    }
+
+    public static function product_photos($user_key_token, $product_key_token){
+        $product     = Product::where('key_token', $product_key_token)->firstOrFail();
+        $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/photo/');
+        
+        return $media_photo;
+    }
 
     public static function profile_picture($user_key_token, $thumb=true){
         $account     = UserAccount::where('key_token', $user_key_token)->firstOrFail();

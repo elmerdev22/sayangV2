@@ -37,11 +37,28 @@
                 <div class="card-header">
                     <h5 class="card-title">Product Photos</h5> 
                     <div class="card-tools">
+                        <button type="button" data-toggle="modal" data-target="#modal-upload_photo" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Upload Photo </button>
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                     </div>
                 </div>
                 @livewire('front-end.partner.my-products.edit.photo', ['product_id' => $product_id])
             </div> <!-- card.// -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-upload_photo" class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload New Photos</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    @livewire('front-end.partner.my-products.edit.upload-photo', ['product_id' => $product_id])
+                </div>
+            </div>
         </div>
     </div>
 @endsection
