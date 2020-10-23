@@ -8,11 +8,6 @@
                             <div class="position-relative">
                                 <img src="{{$photo->getFullUrl('thumb')}}" class="sayang-card-photo" alt="Product Photo">
                                 <div class="sayang-featured-photo-overlay">Featured</div>
-                                @if(count($media_photos) > 0)
-                                    <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove" onclick="remove_photo('{{$key}}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -27,11 +22,9 @@
                                 <button type="button" class="btn btn-warning btn-sm sayang-set-featured-photo-overlay" title="Set as Featured" wire:click="apply_featured_photo('{{$key}}')">
                                     <i class="fas fa-check"></i>
                                 </button>
-                                @if(count($media_photos) > 0)
-                                    <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove" onclick="remove_photo('{{$key}}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                @endif
+                                <button type="button" class="btn btn-danger btn-sm sayang-remove-photo-overlay" title="Remove" onclick="delete_photo('{{$key}}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -40,3 +33,33 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    function delete_photo(key){
+        Swal.fire({
+            title: 'Are you sure do you want to delete this photo?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Deleting Photo...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('delete', key)
+                    }
+                });
+            }
+        })
+    }
+</script>
+@endpush
