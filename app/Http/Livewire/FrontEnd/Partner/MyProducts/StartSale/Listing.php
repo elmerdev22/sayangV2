@@ -12,7 +12,7 @@ class Listing extends Component
 {
     use WithPagination;
 
-    public $search = '', $show_entries=2, $sort = [], $sort_type='desc';
+    public $search = '', $show_entries=10, $sort = [], $sort_type='desc';
     public $partner, $selected_products = [];
 
     public function mount(){
