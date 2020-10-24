@@ -209,7 +209,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             // Edit Product in Menu
 			Route::get('/start-sale', [
 		        'as' 	=> 'start-sale',
-		        'uses'  => $c.'@startSale'
+		        'uses'  => $c.'@start_sale'
             ]);
 
             

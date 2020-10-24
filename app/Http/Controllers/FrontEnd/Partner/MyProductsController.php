@@ -20,7 +20,7 @@ class MyProductsController extends Controller
 
         return view('front-end.partner.my-products.edit', compact('product_id'));
     }
-    public function startSale(){
+    public function start_sale(){
         return view('front-end.partner.my-products.start-sale');
     }
     public function activities(){
