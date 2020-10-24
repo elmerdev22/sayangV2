@@ -50,7 +50,7 @@
 		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>
 		        				<td class="text-center">
 									<a href="{{route('front-end.partner.my-products.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
-									<a href="javascript:void(0);" onclick="deleteProduct()" class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
+									<a href="javascript:void(0);" @if(!Utility::is_product_deletable($row->id)) disabled="true" @else onclick="delete_product('{{$row->key_token}}')" @endif class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
 		        				</td>
 		        			</tr>
 	        			@empty
@@ -66,3 +66,34 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    function delete_product(key){
+        Swal.fire({
+            title: 'Are you sure do you want to delete this product?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Deleting Product...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('delete', key)
+                    }
+                });
+            }
+        })
+    }
+</script>
+@endpush
