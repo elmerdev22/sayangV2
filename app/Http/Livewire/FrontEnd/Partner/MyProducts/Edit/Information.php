@@ -86,9 +86,9 @@ class Information extends Component
             'category'       => 'required|numeric',
             'sub_categories' => 'nullable',
             'tags'           => 'nullable',
-            'buy_now_price'  => ['nullable', new Money()],
-            'lowest_price'   => ['nullable', new Money()],
-            'description'    => 'nullable',
+            'buy_now_price'  => ['required', new Money()],
+            'lowest_price'   => ['required', new Money()],
+            'description'    => 'required',
             'reminders'      => 'nullable',
         ];
 
