@@ -30,7 +30,7 @@
 		        			<th width="150">
 		        				Lowest Price 
 		        			</th>
-		        			<th width="150">
+		        			<th width="150" class="text-center">
 		        				Quantity
 		        			</th>
 		        			<th class="text-center">
@@ -57,9 +57,9 @@
                                 </td>
                                 <td>
                                     @php 
-                                        $quantity = $component->find_selected_product($row->key_token, 'quantity', 0); 
+                                        $quantity = $component->find_selected_product($row->key_token, 'quantity', 1); 
                                     @endphp
-                                    <input type="number" class="form-control form-control-sm" min="0" id="quantity-{{$row->key_token}}" value="{{number_format($quantity)}}" onkeyup="select_product('{{$row->key_token}}')">
+                                    <input type="number" class="form-control form-control-sm text-center" min="1" id="quantity-{{$row->key_token}}" value="{{number_format($quantity)}}" onchange="select_product('{{$row->key_token}}')">
                                 </td>
                                 <td class="text-center">
                                     <div class="icheck-warning">

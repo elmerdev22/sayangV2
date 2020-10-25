@@ -75,13 +75,13 @@
                         <div class="col-sm-4">
                             <label>Buy now Price</label>
                             <div>
-                                22.00
+                                {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <label>Lowest Price</label>
                             <div>
-                                26.00
+                                {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
                         <div class="col-sm-4">
