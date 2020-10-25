@@ -26,12 +26,13 @@ class Index extends Component
     public function data(){
         $filter = [];
 		$filter['select'] = [
-			'partners.id as partner_id', 
 			'products.name as product_name', 
+			'products.slug as product_slug', 
 			'product_posts.*',
         ];
         
-		$filter['where']['products.partner_id'] = $this->partner->id;
+		$filter['where']['products.partner_id']  = $this->partner->id;
+		$filter['where']['product_posts.status'] = 'active';
 		
 		if($this->search){
 			$filter['or_where_like'] = $this->search;

@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Active Sales</h5> 
+            <h5 class="card-title">Active and Upcoming Sales</h5> 
             <div class="card-tools">
                 <a href="{{route('front-end.partner.my-products.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -47,6 +47,9 @@
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.created_at'])
                             </th>
                             <th class="text-center">
+                                Status
+                            </th>
+                            <th class="text-center">
                                 Action
                             </th>
                         </tr>
@@ -62,7 +65,14 @@
                                 <td>{{date('F/d/Y', strtotime($row->date_end))}}</td>
                                 <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
+                                    @if (date('Y-m-d') >= date('Y-m-d', strtotime($row->date_start)))
+                                        <span class="badge badge-success">Active</span>    
+                                    @else
+                                        <span class="badge badge-info">Upcoming</span>    
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{route('front-end.partner.my-products.activities-details', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @empty
