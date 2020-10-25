@@ -75,13 +75,13 @@
                         <div class="col-sm-4">
                             <label>Buy now Price</label>
                             <div>
-                                22.00
+                                {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <label>Lowest Price</label>
                             <div>
-                                26.00
+                                {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -182,13 +182,13 @@
 <script>
     function save_quantity(){
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You want to update the quantity?",
-            icon: 'info',
-            showCancelButton: true,
+            title             : 'Are you sure?',
+            text              : "You want to update the quantity?",
+            icon              : 'info',
+            showCancelButton  : true,
             confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes!'
+            cancelButtonColor : '#d33',
+            confirmButtonText : 'Yes!'
             }).then((result) => {
             if (result.isConfirmed) {
                 @this.set('product_quantity', $('#quantity').val())
