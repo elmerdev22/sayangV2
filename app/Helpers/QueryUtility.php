@@ -270,4 +270,52 @@ class QueryUtility{
 
 		return $data;
 	}
+
+	public static function product_posts(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+		$data = DB::table('product_posts')
+			->select($select)
+			->join('products', 'products.id', '=', 'product_posts.product_id')
+			->join('partners', 'partners.id', '=', 'products.partner_id');
+	
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		if(isset($filter['or_where_like'])){
+			$search = trim($filter['or_where_like']);
+			$search = explode(' ',$search);
+			$data 	= $data->where(function($query) use ($search) {
+				foreach($search as $value){
+					$query->orWhere('products.name','like',"%{$value}%")
+						->orWhere('product_posts.buy_now_price','like',"%{$value}%")
+						->orWhere('product_posts.lowest_price','like',"%{$value}%")
+						->orWhere('product_posts.quantity','like',"%{$value}%")
+						->orWhere('partners.address','like',"%{$value}%");
+				}
+            });
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
 }

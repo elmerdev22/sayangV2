@@ -39,7 +39,7 @@
       <div class="col-12 mb-3">
         <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>
       </div>
-      @for($x=0;$x < 9; $x++)
+      @for($x=0;$x < 8; $x++)
       <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
         <div class="card mb-4 product-card">
           <div style="width:100%; text-align:center">
@@ -108,13 +108,13 @@ $('.owl-carousel').owlCarousel({
     responsiveClass:true,
     responsive:{
         0:{
-            items:4
-        },
-        600:{
             items:6
         },
-        1000:{
+        600:{
             items:8
+        },
+        1000:{
+            items:10
         }
     }
 })

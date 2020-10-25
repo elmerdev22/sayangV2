@@ -154,7 +154,7 @@
                             <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
                         </div>
                         <div class="col-sm-6">
-                            <a href="{{route('account.checkout')}}" class="btn btn-warning text-white float-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                            {{-- <a href="{{route('account.checkout')}}" class="btn btn-warning text-white float-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a> --}}
                         </div>
                     </div>
                 </div>  
@@ -205,14 +205,23 @@
                         </div>
                     </div>
                     <hr>
-                    <p class="text-center mb-3">
-                    <img src="{{asset('images/default-photo/payments.png')}}" height="26">
-                    {{-- <span class="fab fa-cc-visa fa-2x"></span>
-                    <span class="fab fa-cc-stripe fa-2x"></span>
-                    <span class="fab fa-cc-paypal fa-2x"></span>
-                    <span class="fab fa-cc-mastercard fa-2x"></span>
-                    <span class="fab fa-cc-amex fa-2x"></span> --}}
-                    </p>  
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <a href="{{route('account.checkout')}}" class="btn btn-warning w-100"> Make Purchase </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-center">
+                            <img src="{{asset('images/default-photo/payments.png')}}" height="26">
+                                {{-- <span class="fab fa-cc-visa fa-2x"></span>
+                                <span class="fab fa-cc-stripe fa-2x"></span>
+                                <span class="fab fa-cc-paypal fa-2x"></span>
+                                <span class="fab fa-cc-mastercard fa-2x"></span>
+                                <span class="fab fa-cc-amex fa-2x"></span> --}}
+                            </p>  
+                        </div>
+                    </div>
                 </div> <!-- card-body.// -->
             </div>  <!-- card .// -->
         </aside> <!-- col.// -->
