@@ -5,9 +5,11 @@ namespace App\Http\Controllers\FrontEnd\Partner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
+use App\Model\ProductPost;
 
 class MyProductsController extends Controller
 {
+    // List
     public function index(){
         return view('front-end.partner.my-products.index');
     }
@@ -23,7 +25,16 @@ class MyProductsController extends Controller
     public function start_sale(){
         return view('front-end.partner.my-products.start-sale');
     }
+
+    // Activities
     public function activities(){
         return view('front-end.partner.my-products.activities.index');
+    }
+
+    public function activities_details($slug, $key_token){
+        $product_post    = ProductPost::where('key_token', $key_token)->firstOrFail();
+        $product_post_id = $product_post->id;
+
+        return view('front-end.partner.my-products.activities.details', compact('product_post_id'));
     }
 }

@@ -74,13 +74,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.*') && !Route::is('front-end.partner.my-products.activities') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.*') && !Route::is('front-end.partner.my-products.activities') && !Route::is('front-end.partner.my-products.activities-details') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.activities')}}" class="nav-link {{Route::is('front-end.partner.my-products.activities') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.activities')}}" class="nav-link {{Route::is('front-end.partner.my-products.activities') || Route::is('front-end.partner.my-products.activities-details') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Activities</p>
                             </a>

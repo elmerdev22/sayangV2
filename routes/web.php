@@ -212,11 +212,15 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@start_sale'
             ]);
 
-            
             // My Activities
             Route::get('/activities', [
 		        'as' 	=> 'activities',
 		        'uses'  => $c.'@activities'
+            ]);
+
+            Route::get('/activities/{slug}/{key_token}', [
+		        'as' 	=> 'activities-details',
+		        'uses'  => $c.'@activities_details'
             ]);
             
         });
