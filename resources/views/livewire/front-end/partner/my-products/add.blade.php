@@ -9,7 +9,7 @@
             <div class="row mb-2">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="product_name">Product Name</label>
+                        <label for="product_name">Product Name*</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="product_name" placeholder="Product Name" wire:model.lazy="name">
                         @error('name') 
                             <span class="invalid-feedback">
@@ -21,7 +21,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div wire:ignore wire:key="dropdown_category">
-                            <label for="category">Category</label>
+                            <label for="category">Category*</label>
                             <select class="form-control w-100 catalog" id="category">
                                 <option disabled value="" selected="selected">Select</option>
                                 @foreach($component->categories() as $row)
@@ -39,7 +39,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div wire:ignore wire:key="dropdown_sub_categories">
-                            <label for="sub_categories">Sub Category</label>
+                            <label for="sub_categories">Sub Category (optional)</label>
                             <select class="form-control w-100" id="sub_categories" multiple="true">
                             </select>
                         </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div wire:ignore wire:key="dropdown_tags">
-                            <label for="tags">Tags</label>
+                            <label for="tags">Tags (optional)</label>
                             <select class="form-control w-100" id="tags" multiple="true">
                             </select>
                         </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="buy_now_price">Buy now price</label>
+                        <label for="buy_now_price">Buy now price*</label>
                         <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00">
                         @error('buy_now_price') 
                             <span class="invalid-feedback">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="lowest_price">Lowest price</label>
+                        <label for="lowest_price">Lowest price*</label>
                         <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
                         @error('lowest_price') 
                             <span class="invalid-feedback">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Description*</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Description here..." wire:model.lazy="description"></textarea>
                         @error('description') 
                             <span class="invalid-feedback">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="reminders">Few Reminders</label>
+                        <label for="reminders">Few Reminders (optional)</label>
                         <textarea class="form-control @error('reminders') is-invalid @enderror" id="reminders" placeholder="Reminders here..." wire:model.lazy="reminders"></textarea>
                         @error('reminders') 
                             <span class="invalid-feedback">
@@ -154,7 +154,7 @@
                                             <span class="fas fa-spinner fa-spin"></span> Applying Featured Photo
                                         </div>
                                         <div class="form-group">
-                                            <label for="photos">Upload Photos</label>
+                                            <label for="photos">Upload Photos*</label>
                                             <!-- <input type="file" id="photos" class="form-control-file @error('photos.*') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photos" multiple="true"> -->
                                             <div class="input-group">
                                                 <div class="custom-file">

@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <h6 class="font-weight-bold text-uppercase">
                     <img style="width: 40px;" class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap">
-                    {{$catalog->name}}
+                    <a href="{{url('/products')}}">{{$catalog->name}}</a>
                 </h6>
                 <ul class="list-unstyled">
                     @foreach ($catalog->sub_category as $sub_category)
