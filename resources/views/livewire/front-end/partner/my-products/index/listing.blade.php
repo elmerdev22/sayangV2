@@ -50,7 +50,7 @@
 		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>
 		        				<td class="text-center">
 									<a href="{{route('front-end.partner.my-products.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
-									<a href="javascript:void(0);" @if(!Utility::is_product_deletable($row->id)) disabled="true" @else onclick="delete_product('{{$row->key_token}}')" @endif class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
+									<a href="javascript:void(0);" @if(!Utility::is_product_deletable($row->id)) onclick="not_deletetable()" @else onclick="delete_product('{{$row->key_token}}')" @endif class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
 		        				</td>
 		        			</tr>
 	        			@empty
@@ -95,5 +95,13 @@
             }
         })
     }
+
+	function not_deletetable(){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Cant`t delete because this product already have transactions',
+		})
+	}
 </script>
 @endpush
