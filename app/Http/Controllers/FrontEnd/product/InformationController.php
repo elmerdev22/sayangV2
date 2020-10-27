@@ -12,7 +12,10 @@ class InformationController extends Controller
     public function index($slug, $key_token){
         // Key token from product posts table & slug from products table
         $filter = [];
-        $filter['select'] = ['product_posts.product_id',];
+        $filter['select'] = [
+            'products.*',
+            'product_posts.product_id',
+        ];
         $filter['where']['product_posts.status'] = 'active';
         $filter['where']['products.slug'] = $slug;
         $filter['where']['product_posts.key_token'] = $key_token;
@@ -25,18 +28,12 @@ class InformationController extends Controller
         ];
 
         $product = QueryUtility::product_posts($filter)->first();
-        
+
         if(!$product){
             abort(404);
         }
 
-        $product_id  = $product->product_id;
-        $product_url = route('front-end.product.information.index', [
-            'slug'      => $slug,
-            'key_token' => $key_token
-        ]);
-
-    	return view('front-end.product.information', compact('product_id', 'product_url'));
+    	return view('front-end.product.information', compact('product'));
     }
 
     public function redirect($slug, $key_token, $type){
@@ -46,7 +43,7 @@ class InformationController extends Controller
         ]);
 
         if($type == 'place_bid'){
-            Session::flash('product_information_redirect', ['type' => 'place_bid']);
+            Session::flash('product_purchase_type', 'place_bid');
         }
 
         return redirect($url)->send();

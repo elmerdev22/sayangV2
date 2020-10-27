@@ -7,7 +7,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
             <div class="card mb-4 product-card">
                 <div style="width:100%; text-align:center">
-                <img class="card-img-top" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                <img class="card-img-top sayang-card-img-listing" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                 <span class="ends-in">
                     <div class="countdown text-white">
                         <span class="fas fa-clock"></span>
