@@ -8,7 +8,9 @@ use App\Model\Partner;
 use App\Model\User;
 use App\Model\UserAdmin;
 use App\Model\UserAccount;
+use App\Model\Product;
 use App\Model\ProductPost;
+use App\Model\ProductSubCategory;
 use Carbon\Carbon;
 use Schema;
 use Mail;
@@ -378,19 +380,20 @@ class Utility{
 
     public static function is_product_deletable($id){
         //condition TBA
-        $product_post = ProductPost::where('product_id', $id)->count();
-
-        if($product_post > 0){
-            return false;
-        }
-        else{
-            return true;
-        }
+        $count = ProductPost::where('product_id', $id)->count();
+        return $count > 0 ? false : true;
     }
 
     public static function is_category_deletable($id){
         //condition TBA
-        return true;
+        $count = Product::where('category_id', $id)->count();
+        return $count > 0 ? false : true;
+    }
+
+    public static function is_subcategory_deletable($id){
+        //condition TBA
+        $count = ProductSubCategory::where('sub_category_id', $id)->count();
+        return $count > 0 ? false : true;
     }
 
 }

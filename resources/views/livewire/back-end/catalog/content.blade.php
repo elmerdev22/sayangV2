@@ -22,6 +22,9 @@
                                     <h3 class="card-title">{{ucwords($category->name)}}</h3>
 
                                     <div class="card-tools">
+                                        <button class="btn btn-tool" @if(!Utility::is_category_deletable($category->id)) onclick="not_deletetable('category')" @else onclick="delete_swal('{{$category->key_token}}', 'category')" @endif >
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                         <a href="{{route('back-end.catalog.edit', ['key_token' => $category->key_token])}}" class="btn btn-tool" ><i class="fas fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
@@ -56,13 +59,16 @@
                                     <div class="row">
                                         @forelse($category->sub_category as $sub_category)
                                             <div class="col-lg-4 col-md-6">
+                                                <button class="btn btn-danger btn-xs"  @if(!Utility::is_subcategory_deletable($sub_category->id)) onclick="not_deletetable('subcategory')" @else onclick="delete_swal('{{$sub_category->key_token}}','subcategory')" @endif >        
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
                                                 <span class="fas fa-chevron-right"></span> 
                                                 {{ucwords($sub_category->name)}}
                                             </div>
                                         @empty
                                             <div class="col-lg-4 col-md-6">
                                                 <span class="fas fa-chevron-right"></span> 
-                                                Subcategory!
+                                                No Subcategory!
                                             </div>
                                         @endforelse
                                     </div>
@@ -86,3 +92,42 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    
+    function delete_swal(key, name){
+        Swal.fire({
+            title: 'Are you sure do you want to delete this '+name+'?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Deleting '+name+'...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('delete', key, name)
+                    }
+                });
+            }
+        })
+    }
+
+	function not_deletetable(name){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Cant`t delete because this '+name+' already have transactions',
+		})
+    }
+</script>   
+@endpush

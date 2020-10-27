@@ -51,4 +51,22 @@ class Content extends Component
         	$this->name = '';
         }
     }
+
+    public function delete($key , $name){
+        if($name == 'category'){
+            $collection = 'catalog/category-photo';
+            $data = Category::where('key_token', $key)->first();
+            $data->clearMediaCollection($collection);
+        }else{
+            $data = SubCategory::where('key_token', $key)->first();
+        }
+        if($data->delete()){
+            $this->emit('notif_alert', [
+                'timer'    => 1500,
+                'position' => 'top-right',
+                'type'     => 'success',
+                'message'  => 'Successfully Deleted!'
+            ]);
+        }
+    }
 }

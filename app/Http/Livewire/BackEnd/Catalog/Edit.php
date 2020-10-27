@@ -35,7 +35,7 @@ class Edit extends Component
     public function update(){
         $response  = ['success' => false, 'message' => ''];
 
-        $category             = Category::where('key_token', $this->key_token)->first();
+        $category = Category::where('key_token', $this->key_token)->first();
 
         $rules = [];
 
