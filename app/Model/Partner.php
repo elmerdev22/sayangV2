@@ -31,6 +31,10 @@ class Partner extends Model implements HasMedia
         return $this->hasOne('App\Model\PartnerRepresentative', 'partner_id', 'id');
     }
 
+    public function product(){
+        return $this->hasOne('App\Model\Product', 'partner_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){
         $this->addMediaConversion('medium')->height(150)->width(150);
     }

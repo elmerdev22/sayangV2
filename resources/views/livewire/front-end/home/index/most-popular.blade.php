@@ -11,7 +11,7 @@
                 <span class="ends-in">
                     <div class="countdown text-white">
                         <span class="fas fa-clock"></span>
-                        <span class="countdown-timer" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">4 hrs 2 mins</span>
+                        <span class="countdown-timer" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
                     </div>
                 </span>
                 <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">

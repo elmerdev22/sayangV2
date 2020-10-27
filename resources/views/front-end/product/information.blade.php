@@ -15,7 +15,7 @@
                         @livewire('front-end.product.information.photos')
                     </div>
                     <div class="col-12 col-md-5">
-                        @livewire('front-end.product.information.main-details')
+                        @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id])
                         <hr>
                         <div class="card text-center sticky">
 

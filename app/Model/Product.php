@@ -11,7 +11,16 @@ class Product extends Model implements HasMedia
 {
     use HasMediaTrait;
 
+    public function partner(){
+        return $this->belongsTo('App\Model\Partner', 'partner_id', 'id');
+    }
+
+    public function product_post(){
+        return $this->hasOne('App\Model\ProductPost', 'product_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){ 
         $this->addMediaConversion('thumb')->height(150)->width(150);
     }
+
 }

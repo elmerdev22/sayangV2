@@ -14,6 +14,7 @@ class InformationController extends Controller
         $filter = [];
         $filter['select'] = [
             'products.*',
+            'product_posts.id as product_post_id',
             'product_posts.product_id',
         ];
         $filter['where']['product_posts.status'] = 'active';
