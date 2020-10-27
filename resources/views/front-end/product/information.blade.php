@@ -174,7 +174,7 @@
             </div>
             <div class="row m-0 p-0">
                 <div class="col-md-6 m-0 p-0">
-                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
+                    <a href="{{$product_url}}">
                       <button class="btn btn-sm btn-dark item-btn">
                         <span class="font-weight-bold">Buy Now</span><br>
                         <small class="text-white item-info">Php: 40.00 | 30%off</small>
@@ -182,7 +182,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 m-0 p-0">
-                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
+                    <a href="{{$product_url}}">
                       <button class="btn btn-sm btn-outline-warning text-dark item-btn">
                       <span class="font-weight-bold">Place Bid</span><br>
                       <small class="item-info">Bids: 5 | Top: 250.00</small>
