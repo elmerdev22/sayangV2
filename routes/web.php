@@ -1,11 +1,4 @@
 <?php
-
-
-Route::get('/', [
-    'as' 	=> 'front-end.home.index',
-    'uses'  => 'FrontEnd\HomeController@index'
-]);
-
 // Partner/Merchant
 Route::get('/partner/dashboard/template', function () {
     return view('front-end.partner.layouts.template');
@@ -43,6 +36,34 @@ Route::group(['middleware' => ['auth', 'verification.check']], function(){
 Route::group(['middleware' => ['guest']], function(){
     Route::get('admin/login', function () {
         return view('auth.login-admin');
+    });
+});
+
+Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
+    
+    Route::group(['as' => 'home.'], function (){
+        $c = 'HomeController';
+        Route::get('/', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+    });
+
+    Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){
+        Route::group(['as' => 'information.'], function (){
+            $c = 'InformationController';
+            
+            Route::get('/{slug}/{key_token}', [
+                'as' 	=> 'index',
+                'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/redirect/{slug}/{key_token}/{type}', [
+                'as' 	=> 'redirect',
+                'uses'  => $c.'@redirect'
+            ]);
+        });
+
     });
 });
 
@@ -314,6 +335,5 @@ Route::group(['prefix' => 'login', 'as' => 'login.', 'namespace' => 'Auth'], fun
 });
 Auth::routes();
 
-Route::get('/product/{slug}', 'FrontEnd\product\SelectedController@index')->name('selected.product');
 Route::get('/my-cart', 'FrontEnd\product\CartController@index')->name('account.cart');
 Route::get('/checkout', 'FrontEnd\product\CheckoutController@index')->name('account.checkout');

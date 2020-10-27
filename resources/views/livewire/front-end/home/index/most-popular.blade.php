@@ -7,7 +7,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
             <div class="card mb-4 product-card">
                 <div style="width:100%; text-align:center">
-                <img class="card-img-top" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                <img class="card-img-top sayang-card-img-listing" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                 <span class="ends-in">
                     <div class="countdown text-white">
                         <span class="fas fa-clock"></span>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row m-0 p-0">
                     <div class="col-md-6 m-0 p-0">
-                        <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
+                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
                             <button class="btn btn-sm btn-dark item-btn">
                             <span class="font-weight-bold">Buy Now</span><br>
                             <small class="text-white item-info">Php: {{number_format($row->buy_now_price, 2)}}</small>
@@ -45,7 +45,7 @@
                         </a>
                     </div>
                     <div class="col-md-6 m-0 p-0">
-                        <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
+                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
                             <button class="btn btn-sm btn-outline-warning text-dark item-btn">
                             <span class="font-weight-bold">Place Bid</span><br>
                             <small class="item-info">Bids: 5 | Top: 250.00</small>
