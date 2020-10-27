@@ -19,7 +19,12 @@
                         <div class="col-12">
                             <div class="card card-warning card-sayang collapsed-card" wire:ignore.self>
                                 <div class="card-header">
-                                    <h3 class="card-title">{{ucwords($category->name)}}</h3>
+                                    <h3 class="card-title">
+                                        <img class="img-sm img-fluid img-circle mr-3" src="{{UploadUtility::category_photo($category->key_token)}}">
+                                        <span style="line-height: 1.5">
+                                            {{ucwords($category->name)}}
+                                        </span>
+                                    </h3>
 
                                     <div class="card-tools">
                                         <button class="btn btn-tool" @if(!Utility::is_category_deletable($category->id)) onclick="not_deletetable('category')" @else onclick="delete_swal('{{$category->key_token}}', 'category')" @endif >
