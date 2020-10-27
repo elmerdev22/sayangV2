@@ -16,10 +16,10 @@
                 </span>
                 <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
                     <div class="row">
-                        <div class="col-6 text-white text-left">
+                        <div class="col-9 text-white text-left text-ellipsis">
                             {{ucfirst($row->partner_name)}}
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-3 text-right">
                             <span class="fas fa-star text-warning"></span> 
                             <span class="text-white">4.5</span>
                         </div>
@@ -27,10 +27,10 @@
                 </div>
                 <div class="product-info p-2">
                     <div class="row">
-                        <div class="col-6 font-weight-bold text-left">
+                        <div class="col-8 font-weight-bold text-left text-ellipsis">
                             {{ucfirst($row->product_name)}}
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-4 text-right">
                             {{number_format($row->quantity)}} left
                         </div>
                     </div>
