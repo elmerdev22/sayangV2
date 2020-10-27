@@ -41,6 +41,18 @@ class QueryUtility{
 		}
 	}
 
+	private static function date_range_two_field($filter, $data){
+		if(isset($filter['date_range_two_field'])){
+			foreach($filter['date_range_two_field'] as $key => $date){
+				$data = $data->whereRaw($date['field_from']." <= ? AND ".$date['field_to']." >=?",[$date['date'], $date['date']]);
+			}
+
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	private static function order_by_raw($filter, $data){
 		if(isset($filter['order_by'])){
 			$data = $data->orderByRaw($filter['order_by']);
@@ -280,8 +292,12 @@ class QueryUtility{
 		$data = DB::table('product_posts')
 			->select($select)
 			->join('products', 'products.id', '=', 'product_posts.product_id')
-			->join('partners', 'partners.id', '=', 'products.partner_id');
-	
+			->leftJoin('partners', 'partners.id', '=', 'products.partner_id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
 		$filtered = self::where($filter, $data);
 		if($filtered){
 			$data = $filtered;
@@ -307,6 +323,11 @@ class QueryUtility{
 		}
 
 		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
 		if($filtered){
 			$data = $filtered;
 		}

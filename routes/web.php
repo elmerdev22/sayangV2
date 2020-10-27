@@ -1,7 +1,10 @@
 <?php
-Route::get('/', function () {
-    return view('front-end.home.index');
-});
+
+
+Route::get('/', [
+    'as' 	=> 'front-end.home.index',
+    'uses'  => 'FrontEnd\HomeController@index'
+]);
 
 // Partner/Merchant
 Route::get('/partner/dashboard/template', function () {

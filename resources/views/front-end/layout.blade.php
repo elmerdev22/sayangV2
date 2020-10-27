@@ -115,6 +115,8 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- Animate -->
     <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
+    <!-- Custom JS -->
+    <script src="{{asset('template/assets/dist/js/custom.js')}}"></script>
     <!-- end of to be removed packages -->
   @else
     <script src="{{ mix('js/app.js') }}"></script>
