@@ -2,7 +2,7 @@
     <p>Grab this item now!</p>
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h4>Php 40.00</h4>
+            <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
         </div>
         <div class="col-md-2 text-center">
             <span class="fas fa-times"></span>
@@ -10,19 +10,19 @@
         <div class="col-md-5">
             <div class="input-group input-group-sm">
                 <div class="input-group-prepend">
-                    <button class="btn btn-default"><span class="fas fa-minus"></span></button>
+                    <button type="button" class="btn btn-default" id="btn-quantity-minus"><span class="fas fa-minus"></span></button>
                 </div>
-                <input type="number" class="form-control form-control-sm  text-center" min="1" value="3">
+                <input type="number" class="form-control form-control-sm  text-center" id="quantity" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
                 <div class="input-group-append">
-                    <button class="btn btn-default"><span class="fas fa-plus"></span></button>
+                    <button type="button" class="btn btn-default" id="btn-quantity-plus"><span class="fas fa-plus"></span></button>
                 </div>
             </div>
         </div>
     </div>                 
     <div class="bg-warning py-1 px-2 mt-4">
-        <h4 class="mb-0 text-white">Your Total: Php 120</h4>
+        <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
     </div>
-    <p>You save Php 40 (30% off)</p>
+    <!-- <p>You save Php 40 (30% off)</p> -->
 
     <div class="card-footer bg-white">
         <div class="row">
@@ -37,3 +37,27 @@
         </div>
     </div>
 </div>
+
+
+@push('scripts')
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        quantityField('#quantity', '#btn-quantity-minus', '#btn-quantity-plus');
+        $(document).on('change', '#quantity', function (){
+            @this.call('validate_quantity', $('#quantity').val())
+        });
+        $(document).on('change', '#quantity', function (){
+            @this.call('validate_quantity', $('#quantity').val())
+        });
+        $(document).on('keyup', '#quantity', function (){
+            @this.call('validate_quantity', $('#quantity').val())
+        });
+        $(document).on('click', '#btn-quantity-minus', function () {
+            @this.call('validate_quantity', $('#quantity').val())
+        });
+        $(document).on('click', '#btn-quantity-plus', function () {
+            @this.call('validate_quantity', $('#quantity').val())
+        });
+    });
+</script>
+@endpush

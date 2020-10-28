@@ -34,7 +34,7 @@
                             
                             <!-- Buy now -->
                             <div class="p-3" id="buy-now-section">
-                                @livewire('front-end.product.information.buy-now')
+                                @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Buy now -->
 
