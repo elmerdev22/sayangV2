@@ -12,7 +12,7 @@
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        @livewire('front-end.product.information.photos')
+                        @livewire('front-end.product.information.photo', ['product_id' => $product->product_id])
                     </div>
                     <div class="col-12 col-md-5">
                         @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id])
