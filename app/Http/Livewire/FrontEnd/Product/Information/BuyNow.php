@@ -54,7 +54,6 @@ class BuyNow extends Component
             $this->quantity = 0;
         }
 
-        // dd($preferred_quantity);
         $this->calculate_buy_now_price();
     }
 

@@ -42,7 +42,7 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
-        quantityField('#quantity', '#btn-quantity-minus', '#btn-quantity-plus');
+        quantityField('#quantity', '#btn-quantity-minus', '#btn-quantity-plus', 100);
         $(document).on('change', '#quantity', function (){
             @this.call('validate_quantity', $('#quantity').val())
         });

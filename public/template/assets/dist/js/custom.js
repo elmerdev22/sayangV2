@@ -34,28 +34,33 @@ var count_down_timer = function count_down_timer(date_time, element_container_id
     }, 1000);
 }
 
-var quantityField = function quantityField(dom_field, dom_minus, dom_plus){
+var quantityField = function quantityField(dom_field, dom_minus, dom_plus, interval=1, integer=true){
 	$(document).on('click', dom_plus, function (){
-		qtyPlus(dom_field);
+		qtyPlus(dom_field, interval, integer);
 	});
 	$(document).on('click', dom_minus, function (){
-		qtyMinus(dom_field);
+		qtyMinus(dom_field, interval, integer);
 	});
 }
 
-var qtyMinus = function qtyMinus(dom_field){
+var qtyMinus = function qtyMinus(dom_field, interval=1, integer=true){
     var value = $(dom_field).val();
+        value = value.replace(',', '');
 
-	if(value == ''){
+    if(value == ''){
 		value = 0;
 	}else{
-		value = parseInt(value);
+        if(integer){
+            value = parseInt(value);
+        }else{
+            value = parseFloat(value);
+        }
     }
 
 	if(Number.isInteger(value)){
 		if(value > 0){
-            value--;
-            
+            value = value - interval;
+
             if(typeof($(dom_field).attr('min')) != 'undefined' ) {
                 var min = $(dom_field).attr('min');
                 if(value >= min){
@@ -65,20 +70,38 @@ var qtyMinus = function qtyMinus(dom_field){
                 $(dom_field).val(value);
             }
 		}
-	}
+	}else{
+        if(value > 0){
+            value = value - interval;
+
+            if(typeof($(dom_field).attr('min')) != 'undefined' ) {
+                var min = $(dom_field).attr('min');
+                if(value >= min){
+                    $(dom_field).val(value);
+                }
+            }else{
+                $(dom_field).val(value);
+            }
+		}
+    }
 }
-var qtyPlus = function qtyPlus(dom_field){
+var qtyPlus = function qtyPlus(dom_field, interval=1, integer=true){
 	var value = $(dom_field).val();
+	    value = value.replace(',', '');
 	
 	if(value == ''){
 		value = 0;
 	}else{
-		value = parseInt(value);
+        if(integer){
+            value = parseInt(value);
+        }else{
+            value = parseFloat(value);
+        }
 	}
 
 	if(Number.isInteger(value)){
 		if(value >= 0){
-            value++;
+            value = value + interval;
             
             if(typeof($(dom_field).attr('max')) != 'undefined' ) {
                 var max = $(dom_field).attr('max');
@@ -89,5 +112,18 @@ var qtyPlus = function qtyPlus(dom_field){
                 $(dom_field).val(value);
             }
 		}
-	}
+	}else{
+        if(value >= 0){
+            value = value + interval;
+            
+            if(typeof($(dom_field).attr('max')) != 'undefined' ) {
+                var max = $(dom_field).attr('max');
+                if(value <= max){
+                    $(dom_field).val(value);
+                }
+            }else{
+                $(dom_field).val(value);
+            }
+		}
+    }
 }
