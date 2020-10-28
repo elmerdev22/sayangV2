@@ -93,3 +93,9 @@ var qtyPlus = function qtyPlus(dom_field, interval=1){
 		}
 	}
 }
+
+$('.img-preloader').each(function () {
+    $(this).on('load', function () {
+        $(this).next('.img-loader-span').hide();
+    });    
+});
