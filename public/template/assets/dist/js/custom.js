@@ -29,7 +29,7 @@ var count_down_timer = function count_down_timer(date_time, element_container_id
         // If the count down is over, write some text 
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById(element_container_id).innerHTML = "EXPIRED";
         }
     }, 1000);
 }
