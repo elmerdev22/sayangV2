@@ -8,7 +8,7 @@ use Utility;
 
 class PlaceBid extends Component
 {
-    public $product_post_id, $product_post;
+    public $product_post_id, $product_post, $allow_purchase;
     public $total_amount, $quantity, $current_quantity, $bid_price, $lowest_price;
 
     public function mount($product_post_id){
@@ -26,6 +26,7 @@ class PlaceBid extends Component
             $this->quantity = 0;
         }
 
+        $this->allow_purchase = Utility::allow_purchase();
         $this->calculate_price();
     }
 

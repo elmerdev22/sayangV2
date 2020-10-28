@@ -1,40 +1,62 @@
 <div>
     <p>Grab this item now!</p>
     <div class="row justify-content-center">
-        <div class="col-md-5">
-            <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
-        </div>
-        <div class="col-md-2 text-center">
-            <span class="fas fa-times"></span>
-        </div>
-        <div class="col-md-5">
-            <div class="input-group input-group-sm">
-                <div class="input-group-prepend">
-                    <button type="button" class="btn btn-default" id="btn-quantity-minus"><span class="fas fa-minus"></span></button>
-                </div>
-                <input type="number" class="form-control form-control-sm  text-center" id="quantity" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-default" id="btn-quantity-plus"><span class="fas fa-plus"></span></button>
+        @if($allow_purchase == 'allowed')
+            <div class="col-md-5">
+                <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
+            </div>
+            <div class="col-md-2 text-center">
+                <span class="fas fa-times"></span>
+            </div>
+            <div class="col-md-5">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-default" id="btn-quantity-minus"><span class="fas fa-minus"></span></button>
+                    </div>
+                    <input type="number" class="form-control form-control-sm  text-center" id="quantity" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-default" id="btn-quantity-plus"><span class="fas fa-plus"></span></button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>                 
-    <div class="bg-warning py-1 px-2 mt-4">
-        <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
+        @else
+            <div class="col-12">
+                <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
+            </div>
+        @endif
     </div>
+    @if($allow_purchase == 'allowed')
+        <div class="bg-warning py-1 px-2 mt-4">
+            <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
+        </div>
+    @endif
     <!-- <p>You save Php 40 (30% off)</p> -->
 
     <div class="card-footer bg-white">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 p-1">
-                <a href="{{url('my-cart')}}">
-                    <button class="btn btn-default w-100"><span class="fas fa-shopping-cart"></span> Add to Cart</button>
-                </a>
+        @if($allow_purchase == 'allowed')
+            <div class="row">
+                <div class="col-lg-6 col-md-12 p-1">
+                    <a href="{{url('my-cart')}}">
+                        <button class="btn btn-default w-100"><span class="fas fa-shopping-cart"></span> Add to Cart</button>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-12 p-1">
+                    <button class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>
+                </div>
             </div>
-            <div class="col-lg-6 col-md-12 p-1">
-                <button class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>
+        @elseif($allow_purchase == 'login')
+            <div class="row">
+                <div class="col-12 p-1">
+                    <a href="{{route('login')}}" class="btn btn-default w-100">Login to Purchase</a>
+                </div>
             </div>
-        </div>
+        @else
+            <div class="row">
+                <div class="col-12 p-1 text-center">
+                    Login as User to Purchase
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 
