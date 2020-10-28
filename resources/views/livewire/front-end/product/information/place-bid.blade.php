@@ -104,7 +104,8 @@
             @this.call('validate_quantity', $('#quantity-2').val())
         });
 
-        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', 100);
+        var bid_price_interval = 100;
+        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', bid_price_interval);
         $(document).on('change', '#bid-price', function (){
             @this.call('set_bid_price', $('#bid-price').val())
         });

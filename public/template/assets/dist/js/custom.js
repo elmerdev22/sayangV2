@@ -34,27 +34,23 @@ var count_down_timer = function count_down_timer(date_time, element_container_id
     }, 1000);
 }
 
-var quantityField = function quantityField(dom_field, dom_minus, dom_plus, interval=1, integer=true){
+var quantityField = function quantityField(dom_field, dom_minus, dom_plus, interval=1){
 	$(document).on('click', dom_plus, function (){
-		qtyPlus(dom_field, interval, integer);
+		qtyPlus(dom_field, interval);
 	});
 	$(document).on('click', dom_minus, function (){
-		qtyMinus(dom_field, interval, integer);
+		qtyMinus(dom_field, interval);
 	});
 }
 
-var qtyMinus = function qtyMinus(dom_field, interval=1, integer=true){
+var qtyMinus = function qtyMinus(dom_field, interval=1){
     var value = $(dom_field).val();
         value = value.replace(',', '');
 
     if(value == ''){
 		value = 0;
 	}else{
-        if(integer){
-            value = parseInt(value);
-        }else{
-            value = parseFloat(value);
-        }
+        value = parseInt(value);
     }
 
 	if(Number.isInteger(value)){
@@ -70,33 +66,16 @@ var qtyMinus = function qtyMinus(dom_field, interval=1, integer=true){
                 $(dom_field).val(value);
             }
 		}
-	}else{
-        if(value > 0){
-            value = value - interval;
-
-            if(typeof($(dom_field).attr('min')) != 'undefined' ) {
-                var min = $(dom_field).attr('min');
-                if(value >= min){
-                    $(dom_field).val(value);
-                }
-            }else{
-                $(dom_field).val(value);
-            }
-		}
-    }
+	}
 }
-var qtyPlus = function qtyPlus(dom_field, interval=1, integer=true){
+var qtyPlus = function qtyPlus(dom_field, interval=1){
 	var value = $(dom_field).val();
 	    value = value.replace(',', '');
 	
 	if(value == ''){
 		value = 0;
 	}else{
-        if(integer){
-            value = parseInt(value);
-        }else{
-            value = parseFloat(value);
-        }
+        value = parseInt(value);
 	}
 
 	if(Number.isInteger(value)){
@@ -112,18 +91,5 @@ var qtyPlus = function qtyPlus(dom_field, interval=1, integer=true){
                 $(dom_field).val(value);
             }
 		}
-	}else{
-        if(value >= 0){
-            value = value + interval;
-            
-            if(typeof($(dom_field).attr('max')) != 'undefined' ) {
-                var max = $(dom_field).attr('max');
-                if(value <= max){
-                    $(dom_field).val(value);
-                }
-            }else{
-                $(dom_field).val(value);
-            }
-		}
-    }
+	}
 }
