@@ -34,7 +34,12 @@ class InformationController extends Controller
             abort(404);
         }
 
-    	return view('front-end.product.information', compact('product'));
+        $trigger_place_bid = false;
+        if(Session::has('product_purchase_type')){
+            $trigger_place_bid = true;
+        }
+
+    	return view('front-end.product.information', compact('product', 'trigger_place_bid'));
     }
 
     public function redirect($slug, $key_token, $type){
