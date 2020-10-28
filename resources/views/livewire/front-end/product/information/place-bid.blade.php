@@ -4,20 +4,31 @@
             <p>Top bidders get the remaining items after auction ends!</p>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <label>Minimum Bid: Php 20 </label>
+                    <label>
+                        Minimum Bid
+                        Php {{number_format($lowest_price, 2)}} 
+                    </label>
                     <div class="input-group input-group-sm">
                         <div class="input-group-prepend">
-                            <button class="btn btn-default"><span class="fas fa-minus"></span></button>
+                            <button type="button" class="btn btn-default" id="btn-bid-price-minus"><span class="fas fa-minus"></span></button>
                         </div>
-                        <input type="number" class="form-control text-center" min="0" value="100">
+                        <input type="text" class="form-control text-center mask-money" id="bid-price" min="{{$lowest_price}}" value="{{number_format($bid_price, 2)}}">
                         <div class="input-group-append">
-                            <button class="btn btn-default"><span class="fas fa-plus"></span></button>
+                            <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Quantiy</label>
-                    <input type="number" class="form-control form-control-sm  text-center" min="1" value="3">
+                    <label>Quantity</label>
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-default" id="btn-quantity-minus-2"><span class="fas fa-minus"></span></button>
+                        </div>
+                        <input type="number" class="form-control form-control-sm  text-center" id="quantity-2" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-default" id="btn-quantity-plus-2"><span class="fas fa-plus"></span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,7 +36,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-warning py-1 px-2 mt-4">
-                <h4 class="mb-0 text-white">Your Total: Php 120</h4>
+                <h4 class="mb-0 text-white">Your Total: Php {{number_format($total_amount, 2)}}</h4>
             </div>
             <div class="py-2 px-3 mt-4">
                 <button class="btn btn-default w-100">CONFIRM BID</button>
@@ -69,3 +80,47 @@
         </div>
     </div>
 </div>
+
+
+@push('scripts')
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        $('.mask-money').mask("#,##0.00", {reverse: true});
+        
+        quantityField('#quantity-2', '#btn-quantity-minus-2', '#btn-quantity-plus-2');
+        $(document).on('change', '#quantity-2', function (){
+            @this.call('validate_quantity', $('#quantity-2').val())
+        });
+        $(document).on('change', '#quantity-2', function (){
+            @this.call('validate_quantity', $('#quantity-2').val())
+        });
+        $(document).on('keyup', '#quantity-2', function (){
+            @this.call('validate_quantity', $('#quantity-2').val())
+        });
+        $(document).on('click', '#btn-quantity-minus-2', function () {
+            @this.call('validate_quantity', $('#quantity-2').val())
+        });
+        $(document).on('click', '#btn-quantity-plus-2', function () {
+            @this.call('validate_quantity', $('#quantity-2').val())
+        });
+
+        var bid_price_interval = 100;
+        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', bid_price_interval);
+        $(document).on('change', '#bid-price', function (){
+            @this.call('set_bid_price', $('#bid-price').val())
+        });
+        $(document).on('change', '#bid-price', function (){
+            @this.call('set_bid_price', $('#bid-price').val())
+        });
+        $(document).on('keyup', '#bid-price', function (){
+            @this.call('set_bid_price', $('#bid-price').val())
+        });
+        $(document).on('click', '#btn-bid-price-minus', function () {
+            @this.call('set_bid_price', $('#bid-price').val())
+        });
+        $(document).on('click', '#btn-bid-price-plus', function () {
+            @this.call('set_bid_price', $('#bid-price').val())
+        });
+    });
+</script>
+@endpush

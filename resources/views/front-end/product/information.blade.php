@@ -12,10 +12,10 @@
             <div class="card-body p-0">
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        @livewire('front-end.product.information.photos')
+                        @livewire('front-end.product.information.photo', ['product_id' => $product->product_id])
                     </div>
                     <div class="col-12 col-md-5">
-                        @livewire('front-end.product.information.main-details')
+                        @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id])
                         <hr>
                         <div class="card text-center sticky">
 
@@ -34,13 +34,13 @@
                             
                             <!-- Buy now -->
                             <div class="p-3" id="buy-now-section">
-                                @livewire('front-end.product.information.buy-now')
+                                @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Buy now -->
 
                             <!-- Place Bid -->
                             <div class="p-3" id="place-bid-section">
-                                @livewire('front-end.product.information.place-bid')
+                                @livewire('front-end.product.information.place-bid', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Place Bid -->
                         </div>
@@ -93,6 +93,7 @@
 @section('js')
 <!-- Glasscase -->
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         //If your <ul> has the id "glasscase"

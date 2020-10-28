@@ -29,7 +29,67 @@ var count_down_timer = function count_down_timer(date_time, element_container_id
         // If the count down is over, write some text 
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById(element_container_id).innerHTML = "EXPIRED";
         }
     }, 1000);
+}
+
+var quantityField = function quantityField(dom_field, dom_minus, dom_plus, interval=1){
+	$(document).on('click', dom_plus, function (){
+		qtyPlus(dom_field, interval);
+	});
+	$(document).on('click', dom_minus, function (){
+		qtyMinus(dom_field, interval);
+	});
+}
+
+var qtyMinus = function qtyMinus(dom_field, interval=1){
+    var value = $(dom_field).val();
+        value = value.replace(',', '');
+
+    if(value == ''){
+		value = 0;
+	}else{
+        value = parseInt(value);
+    }
+
+	if(Number.isInteger(value)){
+		if(value > 0){
+            value = value - interval;
+
+            if(typeof($(dom_field).attr('min')) != 'undefined' ) {
+                var min = $(dom_field).attr('min');
+                if(value >= min){
+                    $(dom_field).val(value);
+                }
+            }else{
+                $(dom_field).val(value);
+            }
+		}
+	}
+}
+var qtyPlus = function qtyPlus(dom_field, interval=1){
+	var value = $(dom_field).val();
+	    value = value.replace(',', '');
+	
+	if(value == ''){
+		value = 0;
+	}else{
+        value = parseInt(value);
+	}
+
+	if(Number.isInteger(value)){
+		if(value >= 0){
+            value = value + interval;
+            
+            if(typeof($(dom_field).attr('max')) != 'undefined' ) {
+                var max = $(dom_field).attr('max');
+                if(value <= max){
+                    $(dom_field).val(value);
+                }
+            }else{
+                $(dom_field).val(value);
+            }
+		}
+	}
 }
