@@ -49,4 +49,16 @@ class InformationController extends Controller
 
         return redirect($url)->send();
     }
+
+    public function login_redirect($slug, $key_token, $type){
+        $url = route('front-end.product.information.redirect', [
+            'slug'      => $slug,
+            'key_token' => $key_token,
+            'type'      => $type
+        ]);
+
+        Session::put('user_login_redirect', $url);
+
+        return redirect(route('login'))->send();
+    }
 }

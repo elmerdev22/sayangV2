@@ -47,7 +47,20 @@
         @elseif($allow_purchase == 'login')
             <div class="row">
                 <div class="col-12 p-1">
-                    <a href="{{route('login')}}" class="btn btn-default w-100">Login to Purchase</a>
+                    <a href="{{route('front-end.product.information.login-redirect', [
+                            'slug'      => $product_post->product->slug,
+                            'key_token' => $product_post->key_token,
+                            'type'      => 'buy_now'
+                        ])}}" 
+                        class="btn btn-default w-100">
+                        Login to Purchase
+                    </a>
+                </div>
+            </div>
+        @elseif($allow_purchase == 'not_verified')
+            <div class="row">
+                <div class="col-12 p-1 text-center">
+                    Registered email not verified
                 </div>
             </div>
         @else

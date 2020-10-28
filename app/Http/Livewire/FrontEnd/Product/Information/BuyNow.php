@@ -13,7 +13,7 @@ class BuyNow extends Component
     public $buy_now_price, $quantity, $current_quantity, $allow_purchase;
 
     public function mount($product_post_id){
-        $product_post           = ProductPost::findOrFail($product_post_id);
+        $product_post           = ProductPost::with(['product'])->findOrFail($product_post_id);
         $this->product_post     = $product_post;
         $this->product_post_id  = $product_post_id;
         $this->initialize_current_quantity();

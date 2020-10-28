@@ -62,6 +62,11 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
                 'as' 	=> 'redirect',
                 'uses'  => $c.'@redirect'
             ]);
+
+            Route::get('/login-redirect/{slug}/{key_token}/{type}', [
+                'as' 	=> 'login-redirect',
+                'uses'  => $c.'@login_redirect'
+            ]);
         });
 
     });
