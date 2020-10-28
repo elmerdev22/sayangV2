@@ -24,7 +24,7 @@
                                     <h5 class="p-0 m-0">
                                         <span class="p-2">BUY NOW</span>
                                         <label class="switch">
-                                            <input type="checkbox" id="purchase-type-switch">
+                                            <input type="checkbox" id="purchase-type-switch" @if($trigger_place_bid) checked="true" @endif>
                                             <span class="slider round"></span>
                                         </label>
                                         <span class="p-2">PLACE BID</span>
@@ -33,13 +33,13 @@
                             </div>
                             
                             <!-- Buy now -->
-                            <div class="p-3" id="buy-now-section">
+                            <div class="p-3" id="buy-now-section" @if($trigger_place_bid) style="display: none;" @endif>
                                 @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Buy now -->
 
                             <!-- Place Bid -->
-                            <div class="p-3" id="place-bid-section">
+                            <div class="p-3" id="place-bid-section" @if(!$trigger_place_bid) style="display: none;" @endif>
                                 @livewire('front-end.product.information.place-bid', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Place Bid -->
@@ -113,20 +113,6 @@
                 $(document).find('#buy-now-section').show();
             }
         });
-
-        var trigger_place_bid = false;        
-        
-        @if(Session::has('product_purchase_type'))
-            trigger_place_bid = true;
-        @endif
-
-        if(trigger_place_bid){
-            $(document).find('#purchase-type-switch').trigger('click');
-        }else{
-            $(document).find('#place-bid-section').hide();
-            $(document).find('#buy-now-section').show();
-        }
- 
     });
 </script>
 @endsection
