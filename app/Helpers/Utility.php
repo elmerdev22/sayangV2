@@ -396,4 +396,19 @@ class Utility{
         return $count > 0 ? false : true;
     }
 
+    public static function allow_purchase(){
+        if(Auth::check()){
+            $user_type = Auth::user()->type;
+            if($user_type == 'user'){
+                $allow_purchase = 'allowed';
+            }else{
+                $allow_purchase = 'not_allowed';
+            }
+        }else{
+            $allow_purchase = 'login';
+        }
+
+        return $allow_purchase;
+    }
+
 }

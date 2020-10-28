@@ -4,12 +4,13 @@ namespace App\Http\Livewire\FrontEnd\Product\Information;
 
 use Livewire\Component;
 use App\Model\ProductPost;
+use Utility;
 
 class BuyNow extends Component
 {
 
     public $product_post_id, $product_post;
-    public $buy_now_price, $quantity, $current_quantity;
+    public $buy_now_price, $quantity, $current_quantity, $allow_purchase;
 
     public function mount($product_post_id){
         $product_post           = ProductPost::findOrFail($product_post_id);
@@ -23,7 +24,8 @@ class BuyNow extends Component
         }else{
             $this->quantity = 0;
         }
-
+        
+        $this->allow_purchase = Utility::allow_purchase();
         $this->calculate_buy_now_price();
     }
 
