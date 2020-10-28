@@ -16,7 +16,7 @@ use TagNameUtility;
 class Information extends Component
 {
     public $product_id, $account, $partner, $name, $category, $old_category, $sub_categories = [], $tags = [];
-    public $buy_now_price, $lowest_price, $description, $reminders;
+    public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
     public $selected_sub_categories = [], $initial_sub_categories=[];
 
     public function mount($product_id){
@@ -27,6 +27,7 @@ class Information extends Component
         $this->name          = $product->name;
         $this->category      = $product->category_id;
         $this->old_category  = $product->category_id;
+        $this->regular_price = $product->regular_price;
         $this->buy_now_price = $product->buy_now_price;
         $this->lowest_price  = $product->lowest_price;
         $this->description   = $product->description;
@@ -86,6 +87,7 @@ class Information extends Component
             'category'       => 'required|numeric',
             'sub_categories' => 'nullable',
             'tags'           => 'nullable',
+            'regular_price'  => ['required', new Money()],
             'buy_now_price'  => ['required', new Money()],
             'lowest_price'   => ['required', new Money()],
             'description'    => 'required',
@@ -108,6 +110,7 @@ class Information extends Component
             $product->category_id   = $this->category;
             $product->description   = $this->description;
             $product->reminders     = $this->reminders;
+            $product->regular_price = Utility::decimal_format($this->regular_price);
             $product->buy_now_price = Utility::decimal_format($this->buy_now_price);
             $product->lowest_price  = Utility::decimal_format($this->lowest_price);
             

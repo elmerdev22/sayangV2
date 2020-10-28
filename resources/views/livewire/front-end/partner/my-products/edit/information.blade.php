@@ -69,6 +69,17 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for="regular_price">Regular price*</label>
+                        <input type="text" class="form-control @error('regular_price') is-invalid @enderror mask-money" id="regular_price" placeholder="0.00" value="{{number_format($regular_price, 2)}}">
+                        @error('regular_price') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label for="buy_now_price">Buy now price*</label>
                         <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00" value="{{number_format($buy_now_price, 2)}}">
                         @error('buy_now_price') 
@@ -89,6 +100,8 @@
                         @enderror
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="description">Description*</label>
@@ -138,6 +151,9 @@
         });
         $(document).on('keyup', '#buy_now_price', function () {
             @this.set('buy_now_price', $(this).val())
+        });
+        $(document).on('keyup', '#regular_price', function () {
+            @this.set('regular_price', $(this).val())
         });
         $(document).on('change', '#sub_categories', function () {
             @this.set('sub_categories', $(this).val())

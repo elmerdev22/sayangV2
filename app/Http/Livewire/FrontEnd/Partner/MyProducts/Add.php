@@ -19,7 +19,7 @@ class Add extends Component
     use WithFileUploads;
 
     public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
-    public $buy_now_price, $lowest_price, $description, $reminders;
+    public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
     public $featured_photo=0, $photos=[];
 
     public function mount(){
@@ -80,6 +80,7 @@ class Add extends Component
             'category'       => 'required|numeric',
             'sub_categories' => 'nullable',
             'tags'           => 'nullable',
+            'regular_price'  => ['required', new Money()],
             'buy_now_price'  => ['required', new Money()],
             'lowest_price'   => ['required', new Money()],
             'description'    => 'required',
@@ -101,6 +102,7 @@ class Add extends Component
             $product->partner_id    = $this->partner->id;
             $product->category_id   = $this->category;
             $product->name          = $this->name;
+            $product->regular_price = Utility::decimal_format($this->regular_price);
             $product->buy_now_price = Utility::decimal_format($this->buy_now_price);
             $product->lowest_price  = Utility::decimal_format($this->lowest_price);
             $product->description   = $this->description;
