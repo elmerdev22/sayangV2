@@ -398,9 +398,14 @@ class Utility{
 
     public static function allow_purchase(){
         if(Auth::check()){
-            $user_type = Auth::user()->type;
+            $user      = Auth::user();
+            $user_type = $user->type;
             if($user_type == 'user'){
-                $allow_purchase = 'allowed';
+                if(!$user->verified_at){
+                    $allow_purchase = 'not_verified';
+                }else{
+                    $allow_purchase = 'allowed';
+                }
             }else{
                 $allow_purchase = 'not_allowed';
             }

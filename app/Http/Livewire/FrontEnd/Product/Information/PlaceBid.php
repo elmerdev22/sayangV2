@@ -12,7 +12,7 @@ class PlaceBid extends Component
     public $total_amount, $quantity, $current_quantity, $bid_price, $lowest_price;
 
     public function mount($product_post_id){
-        $product_post          = ProductPost::findOrFail($product_post_id);
+        $product_post          = ProductPost::with(['product'])->findOrFail($product_post_id);
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
         $this->lowest_price    = $product_post->lowest_price;

@@ -3,7 +3,7 @@
         <div class="col-12">
             <p>Top bidders get the remaining items after auction ends!</p>
             <div class="row justify-content-center">
-                @if($allow_purchase == 'allow')
+                @if($allow_purchase == 'allowed')
                     <div class="col-md-6">
                         <label>
                             Minimum Bid
@@ -44,7 +44,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            @if($allow_purchase == 'allow')
+            @if($allow_purchase == 'allowed')
                 <div class="bg-warning py-1 px-2 mt-4">
                     <h4 class="mb-0 text-white">Your Total: Php {{number_format($total_amount, 2)}}</h4>
                 </div>
@@ -54,7 +54,20 @@
             @elseif($allow_purchase == 'login')
                 <div class="row">
                     <div class="col-12 p-1">
-                        <a href="{{route('login')}}" class="btn btn-default w-100">Login to Bid</a>
+                        <a href="{{route('front-end.product.information.login-redirect', [
+                                'slug'      => $product_post->product->slug,
+                                'key_token' => $product_post->key_token,
+                                'type'      => 'place_bid'
+                            ])}}" 
+                            class="btn btn-default w-100">
+                            Login to Bid
+                        </a>
+                    </div>
+                </div>
+            @elseif($allow_purchase == 'not_verified')
+                <div class="row">
+                    <div class="col-12 p-1 text-center">
+                        Registered email not verified
                     </div>
                 </div>
             @else

@@ -20,7 +20,14 @@ class LoginRedirectController extends Controller
             if($user->type == 'admin'){
                 return redirect(route('back-end.dashboard.index'));
             }else if($user->type == 'user'){
-                return redirect(route('front-end.user.my-account.index'));
+                if(Session::has('user_login_redirect')){
+                    $url = Session::get('user_login_redirect');
+                    Session::forget('user_login_redirect');
+                }else{
+                    $url = route('front-end.user.my-account.index');
+                }
+
+                return redirect($url);
             }else if($user->type == 'partner'){
                 return redirect(route('front-end.partner.my-account.index'));
             }else{
