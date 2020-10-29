@@ -22,6 +22,10 @@
                                 Product Name 
                                 @include('front-end.includes.datatables.sort', ['field' => 'products.name'])
                             </th>
+                            {{-- <th class="table-sort" wire:click="sort('product_posts.regular_price')">	
+                                Regular Price 
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.regular_price'])
+                            </th> --}}
                             <th class="table-sort" wire:click="sort('product_posts.buy_now_price')">	
                                 Buy now Price 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.buy_now_price'])
@@ -58,6 +62,7 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
+                                {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
                                 <td>{{number_format($row->buy_now_price, 2)}}</td>
                                 <td>{{number_format($row->lowest_price, 2)}}</td>
                                 <td>{{number_format($row->quantity, 0)}}</td>

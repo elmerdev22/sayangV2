@@ -23,6 +23,10 @@
 		        				Product Name 
 		        				@include('front-end.includes.datatables.sort', ['field' => 'products.name'])
 		        			</th>
+		        			<th class="table-sort" wire:click="sort('products.regular_price')">	
+                                Regular Price
+		        				@include('front-end.includes.datatables.sort', ['field' => 'products.regular_price'])
+		        			</th>
 		        			<th class="table-sort" wire:click="sort('products.buy_now_price')">	
                                 Buy Now Price 
 		        				@include('front-end.includes.datatables.sort', ['field' => 'products.buy_now_price'])
@@ -45,6 +49,7 @@
 		        			<tr>
 		        				<td>{{ucfirst($row->category_name)}}</td>
 		        				<td>{{ucfirst($row->name)}}</td>
+		        				<td>{{number_format($row->regular_price, 2)}}</td>
 		        				<td>{{number_format($row->buy_now_price, 2)}}</td>
 		        				<td>{{number_format($row->lowest_price, 2)}}</td>
 		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>

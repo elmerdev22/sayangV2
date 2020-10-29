@@ -7,6 +7,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Product</th>
+                            {{-- <th scope="col">Regular price</th> --}}
                             <th scope="col">Buy now price</th>
                             <th scope="col">Lowest price</th>
                             <th scope="col">Quantity</th>
@@ -16,6 +17,7 @@
                         @foreach($selected_products as $product)
                             <tr>
                                 <td>{{ucfirst($component->product($product['product_id'])->name)}}</td>
+                                {{-- <td>{{number_format($product['regular_price'],2)}}</td> --}}
                                 <td>{{number_format($product['buy_now_price'],2)}}</td>
                                 <td>{{number_format($product['lowest_price'],2)}}</td>
                                 <td>{{number_format($product['quantity'])}}</td>

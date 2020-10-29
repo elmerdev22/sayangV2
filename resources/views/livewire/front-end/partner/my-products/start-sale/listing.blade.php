@@ -25,6 +25,9 @@
 		        				@include('front-end.includes.datatables.sort', ['field' => 'products.name'])
 		        			</th>
 		        			<th width="150">
+                                Regular Price 
+		        			</th>
+		        			<th width="150">
                                 Buy Now Price 
 		        			</th>
 		        			<th width="150">
@@ -42,7 +45,8 @@
 	        			@forelse($data as $key => $row)
 		        			<tr>
 		        				<td>{{ucfirst($row->category_name)}}</td>
-		        				<td>{{ucfirst($row->name)}}</td>
+                                <td>{{ucfirst($row->name)}}</td>
+		        				<td>{{number_format($row->regular_price, 2)}}</td>
 		        				<td>
                                     @php 
                                         $buy_now_price = $component->find_selected_product($row->key_token, 'buy_now_price', $row->buy_now_price); 
