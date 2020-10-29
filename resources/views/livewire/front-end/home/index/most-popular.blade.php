@@ -4,7 +4,7 @@
         <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>
         </div>
         @foreach($data as $row)
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="card mb-4 product-card">
                 <div class="w-100 text-center">
                     <div class="overflow-hidden position-relative">
@@ -17,7 +17,7 @@
                             <span class="countdown-timer" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
                         </div>
                     </span>
-                    <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
+                    <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
                         <div class="row">
                             <div class="col-9 text-white text-left text-ellipsis">
                                 {{ucfirst($row->partner_name)}}
