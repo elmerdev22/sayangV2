@@ -23,7 +23,7 @@
                                 <td>{{number_format($product['quantity'])}}</td>
                             </tr>
                         @endforeach
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
             <div class="form-group">

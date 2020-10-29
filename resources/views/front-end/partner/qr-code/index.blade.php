@@ -36,11 +36,79 @@
             </div> <!-- card.// -->
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="order-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order No. : 00000123456</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Buyer name : Juan Dela Cruz</label>
+                        </div>
+                        <div class="col-12">
+                            <label>Date purchase : October/29/2020</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Products : 3 items</label>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Product name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Subtotal</th>
+                                        </tr>
+                                        </thead>
+                                    <tbody>
+                                        @for ($i = 0; $i < 3; $i++)
+                                            <tr>
+                                                <td>Product name</td>
+                                                <td>{{number_format(rand(1000,9999),2)}}</td>
+                                                <td>{{number_format(rand(1,99),0)}}</td>
+                                                <td>{{number_format(rand(1000,9999),2)}}</td>
+                                            </tr>
+                                        @endfor
+                                        <tr>
+                                            <td colspan="3">Total</td>
+                                            <td colspan="1">{{number_format(rand(1000,9999),2)}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" onclick="confirm()">Confirm Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
 <script src="{{ asset('template/assets/dist/js/html5-qrcode.min.js') }}"></script>
 <script type="text/javascript">
-   function docReady(fn) {
+
+    function confirm(){
+        $('#order-details').modal("hide");
+        Swal.fire({
+            icon: 'success',
+            title: 'Order Confirmed!',
+            text: 'Order no. 000012345 completed.',
+        })
+    }
+    function docReady(fn) {
         // see if DOM is already available
         if (document.readyState === "complete"
             || document.readyState === "interactive") {
@@ -55,12 +123,7 @@
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
         function onScanSuccess(qrCodeMessage) {
-            if (qrCodeMessage !== lastResult) {
-                ++countResults;
-                lastResult = qrCodeMessage;
-                resultContainer.innerHTML
-                    += `<div>[${countResults}] - ${qrCodeMessage}</div>`;
-            }
+            $('#order-details').modal("show");
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
