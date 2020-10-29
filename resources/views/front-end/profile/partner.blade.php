@@ -1,300 +1,183 @@
 @extends('front-end.layout')
 @section('title','Seller Profile')
+@section('css')
+
+<style>
+    #seller-bg {
+        border: 1px whitesmoke;
+        /* padding: 25px; */
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1aer_eK_rutTokxSeU5gTiW1q9eUKPvpTyw&usqp=CAU');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+    
+@endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h2 class="m-0 text-dark">Seller Profile</h2>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Seller Profile</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid-fluid -->
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <!-- Widget: user widget style 1 -->
-            <div class="card card-widget widget-user">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header text-white" style="background: url({{asset('images/default-photo/seller-bg-2.png')}}) center center;">
-               
-              </div>
-              <div class="widget-user-image">
-                <img class="img-circle" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
-              </div>
-              <div class="card-footer bg-white">
-                <div class="row justify-content-center mb-2">
-                    <div class="col-12 text-center">
-                      <span class="fas fa-star text-warning"></span>
-                      <span class="fas fa-star text-warning"></span>
-                      <span class="fas fa-star text-warning"></span>
-                      <span class="fas fa-star text-warning"></span>
-                      <span class="fas fa-star text-warning"></span>
-                    </div>
-                    <div class="col-12 text-center">
-                      <h4>Jollibee Malolos</h4>
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6">
+                    <!-- Profile Image -->
+                    <div class="card card-widget widget-user-2">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="p-4" id="seller-bg">
+                            <div class="widget-user-image">
+                                <img class="img-circle elevation-2 mr-3" style="height: 80px; width: auto;" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/84/Jollibee_2011_logo.svg/1200px-Jollibee_2011_logo.svg.png" alt="User Avatar">
+                            </div>
+                            <!-- /.widget-user-image -->
+                            <h3 class="text-white">Jollibee Malolos</h3>
+                            <button class="btn btn-warning btn-sm">
+                                <span class="fas fa-plus"></span> Follow
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="row mb-2">
-                  <div class="col-6 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header">35</h5>
-                      <span class="description-text">PRODUCTS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-6">
-                    <div class="description-block">
-                      <h5 class="description-header">13,000</h5>
-                      <span class="description-text">FOLLOWERS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                  <div class="col-12">
-                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- About Me Box -->
-            <div class="card card-outline card-sayang">
-              <div class="card-header">
-                <h3 class="card-title">About</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-calendar mr-1"></i> Member since</strong>
-
-                <p class="text-muted">January 01, 3001</p>
-                </p>
-                
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.widget-user -->
-          </div>
-          {{-- <div class="col-md-4">
-
-            <!-- Profile Image -->
-            <div class="card card-widget widget-user-2">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header p-4" style="background: url({{asset('images/default-photo/seller-bg-2.png')}}) center center;">
-                <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Avatar">
-                </div>
-                <!-- /.widget-user-image -->
-                <h4 class="widget-user-username text-white">Nadia Carmichael</h4>
-              </div>
-              <div class="card-footer p-0 bg-white">
-                <ul class="nav flex-column">
-                  <li class="nav-item border-top">
-                    <a href="#" class="nav-link">
-                      Ratings <span class="float-right"><span class="fas fa-star text-warning"></span> 4.5</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      Active Products <span class="float-right badge bg-success">5</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      Followers <span class="float-right badge bg-danger">842</span>
-                    </a>
-                  </li>
-                  <li class="nav-item p-2">
-                    <a href="#" class="btn btn-warning btn-block"><b>Follow</b></a>
-                  </li>
-                  
-                </ul>
-              </div>
-            </div>
-
-            <!-- About Me Box -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">About</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-calendar mr-1"></i> Member since</strong>
-
-                <p class="text-muted">January 01, 3001</p>
-                </p>
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div> --}}
-          <!-- /.col -->
-          <div class="col-md-8">
-            <div class="card card-outline card-sayang">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#products" data-toggle="tab">Products</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#ratings" data-toggle="tab">Ratings</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="products">
-                    <div class="row pb-3">
-                      <div class="col-12">
-                        <input type="search" class="form-control" placeholder="Search">
-                      </div>
-                    </div>
-                    
+                <div class="col-md-3 pl-5 pt-3">
                     <div class="row">
-                      @for($x=0;$x < 9; $x++)
-                      <div class="col-lg-4 col-md-6 col-sm-6 col-6" data-aos="fade-up">
-                        <div class="card mb-4 product-card">
-                          <div style="width:100%; text-align:center">
-                            <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
-                            <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
-                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
-                                <div class="row">
-                                    <div class="col-6 text-white text-left">
-                                        Elmer shop
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        <span class="fas fa-star text-warning"></span> 
-                                        <span class="text-white">4.5</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info p-2">
-                                <div class="row">
-                                    <div class="col-6 font-weight-bold text-left">
-                                        Noodles
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        3 left!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row m-0 p-0">
-                                <div class="col-md-6 m-0 p-0">
-                                    <a href="{{route('selected.product', ['slug' => 'Product-name'])}}">
-                                      <button class="btn btn-sm btn-dark item-btn">
-                                        <span class="font-weight-bold">Buy Now</span><br>
-                                        <small class="text-white item-info">Php: 40.00 | 30%off</small>
-                                      </button>
-                                    </a>
-                                </div>
-                                <div class="col-md-6 m-0 p-0">
-                                    <a href="{{route('selected.product', ['slug' => 'product-name'])}}">
-                                      <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                      <span class="font-weight-bold">Place Bid</span><br>
-                                      <small class="item-info">Bids: 5 | Top: 250.00</small>
-                                      </button>
-                                    </a>
-                                </div>
-                              </div>
-                          </div>
+                        <div class="col-12">
+                            <label>
+                                <span class="fas fa-star"></span> 
+                                <span class="text-muted">Ratings :</span>
+                                <span class="text-warning">4.7</span>
+                                <small>(344 rating)</small>
+                            </label>
                         </div>
-                      </div>
-                      @endfor
+                        <div class="col-12">
+                            <label>
+                                <span class="fas fa-store"></span>
+                                <span class="text-muted">Products :</span>
+                                <span class="text-warning">57</span> 
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <label>
+                                <span class="fas fa-users"></span>
+                                <span class="text-muted">Followers :</span>
+                                <span class="text-warning">57</span> 
+                            </label>
+                        </div>
                     </div>
-                    <nav aria-label="Page navigation sample">
-                      <div class="row float-right">
-                        <ul class="pagination">
-                          <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">»</a></li>
-                      </ul>
-                      </div>
-                    </nav>
-
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="ratings">
-                    @for ($i = 0; $i < 5; $i++)
-                          
-                      <!-- Post -->
-                      <div class="post clearfix">
-                        <div class="user-block">
-                          <img class="img-circle img-bordered-sm" src="{{asset('images/default-photo/elmer.jpg')}}" alt="User Image">
-                          <span class="username">
-                            <a href="#">Sarah Ross</a>
-                            <a href="#" class="float-right btn-tool">3 days ago</a>
-                          </span>
-                          <span class="description">
-                            @for($x=0;$x < 5; $x++)
-                              <span class="fas fa-star text-warning"></span>
-                            @endfor
-                          </span>
-                        </div>
-                        <!-- /.user-block -->
-                        <p>
-                          Lorem ipsum represents a long-held tradition for designers,
-                          typographers and the like. Some people hate it and argue for
-                          its demise, but others ignore the hate as they create awesome
-                          tools to help create filler text for everyone from bacon lovers
-                          to Charlie Sheen fans.
-                        </p>
-
-                        @php $pic = rand(1,5) @endphp
-                        @for ($p = 0; $p < $pic ; $p++)
-                          <img class="" style="width: auto; height: 50px;" src="{{asset('images/default-photo/product1.jpg')}}" alt="User Image">
-                        @endfor
-                        
-                        <form class="form-horizontal mt-3">
-                          <div class="input-group input-group-sm mb-0">
-                            <input class="form-control form-control-sm" placeholder="White a reply">
-                            <div class="input-group-append">
-                              <button type="submit" class="btn btn-warning">Send</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <!-- /.post -->
-                    @endfor
-                  </div>
-                  <!-- /.tab-pane -->
-
                 </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+                <div class="col-md-3 pl-5 pt-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>
+                                <span class="fas fa-map-marker-alt"></span> 
+                                <span class="text-muted">Address :</span>
+                                Malolos, Bulacan
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <label>
+                                <span class="fas fa-calendar"></span>
+                                <span class="text-muted">Joined :</span>
+                                January 01, 3001
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.nav-tabs-custom -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <nav class="w-100">
+                        <div class="nav nav-tabs" id="product-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Products</a>
+                            <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Ratings</a>
+                            <a class="nav-item nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false">Location</a>
+                        </div>
+                    </nav>
+                    
+                    <div class="tab-content py-3" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+                            <div class="card-footer bg-white card-comments">
+                                <div class="row">
+                                    @for($x=0;$x < 9; $x++)
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                            <div class="card mb-4 product-card">
+                                                <div style="width:100%; text-align:center">
+                                                    <img class="card-img-top" src="https://images.summitmedia-digital.com/spotph/images/2019/03/19/chickenjoydelivery-1552988282.jpg" alt="Card image cap">
+                                                    <span class="ends-in"><div class="countdown text-white"><span class="fas fa-clock"></span> 4 hrs 2 mins</div></span>
+                                                    <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
+                                                        <div class="row">
+                                                            <div class="col-8 text-white text-left">
+                                                                Jollibee Malolos
+                                                            </div>
+                                                            <div class="col-4 text-right">
+                                                                <span class="fas fa-star text-warning"></span> 
+                                                                <span class="text-white">4.5</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-info p-2">
+                                                        <div class="row">
+                                                            <div class="col-6 font-weight-bold text-left">
+                                                                Noodles
+                                                            </div>
+                                                            <div class="col-6 text-right">
+                                                                3 left!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-0 p-0">
+                                                        <div class="col-md-6 m-0 p-0">
+                                                            <a href="">
+                                                            <button class="btn btn-sm btn-dark item-btn">
+                                                                <span class="font-weight-bold">Buy Now</span><br>
+                                                                <small class="text-white item-info">Php: 40.00 | 30%off</small>
+                                                            </button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-6 m-0 p-0">
+                                                            <a href="">
+                                                            <button class="btn btn-sm btn-outline-warning text-dark item-btn">
+                                                            <span class="font-weight-bold">Place Bid</span><br>
+                                                            <small class="item-info">Bids: 5 | Top: 250.00</small>
+                                                            </button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> 
+                            <div class="card-footer bg-white card-comments">
+                                @livewire('front-end.product.information.ratings')
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab"> 
+                            <div class="card-footer bg-white card-comments">
+                                Google map here 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 
