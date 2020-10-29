@@ -716,3 +716,10 @@ div.sticky {
 	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg);}
 }
 /*	End of $Loader Quadrant */
+
+.cart-product-photo-thumb{
+  height: 60px;
+  width: auto;
+  overflow: hidden;
+  object-fit: cover;
+}

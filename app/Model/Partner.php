@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use UploadUtility;
 
 class Partner extends Model implements HasMedia
 {
@@ -36,6 +37,9 @@ class Partner extends Model implements HasMedia
     }
 
     public function registerMediaConversions(Media $media = null){
-        $this->addMediaConversion('medium')->height(150)->width(150);
+        $height = UploadUtility::conversion_dimension('height');
+        $width  = UploadUtility::conversion_dimension('width');
+
+        $this->addMediaConversion('thumb')->height($height)->width($width);
     }
 }

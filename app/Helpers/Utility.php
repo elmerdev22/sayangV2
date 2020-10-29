@@ -440,4 +440,11 @@ class Utility{
         return Cart::where('user_account_id', $user_account_id)->count();
     }
 
+    public static function is_date_expired($from, $to){
+        if(date('Y-m-d', strtotime($from)) > date('Y-m-d', strtotime($to))){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

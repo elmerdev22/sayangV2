@@ -135,6 +135,13 @@
       window.livewire.emit('notifications', message);
     });
 
+    // badge-total-item-in-cart
+    window.livewire.on('initialize_cart_item_count', param => {
+      $(document).find('.badge-total-item-in-cart').each(function () {
+        $(this).html(param['total'])
+      });
+    });
+
     window.livewire.on('alert', param => {
       var config = {
         position  : 'center',

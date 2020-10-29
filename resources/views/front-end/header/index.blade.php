@@ -67,7 +67,7 @@
                       <a href="{{route('front-end.user.my-cart.index')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
                         <div class="icon-area">
                           <i class="fas fa-shopping-cart text-dark"></i>
-                          <span class="notify"><span class="badge badge-warning">{{Utility::total_cart_item()}}</span></span>
+                          <span class="notify"><span class="badge badge-warning badge-total-item-in-cart">{{Utility::total_cart_item()}}</span></span>
                         </div>
                       </a>
                     </div>
