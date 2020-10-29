@@ -75,4 +75,17 @@ class UploadUtility{
         }
     }
 
+    public static function conversion_dimension($key=null){
+        $response = [
+            'width'  => 250,
+            'height' => 250
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
+
 }

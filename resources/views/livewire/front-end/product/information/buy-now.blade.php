@@ -36,12 +36,20 @@
         @if($allow_purchase == 'allowed')
             <div class="row">
                 <div class="col-lg-6 col-md-12 p-1">
-                    <a href="{{url('my-cart')}}">
-                        <button class="btn btn-default w-100"><span class="fas fa-shopping-cart"></span> Add to Cart</button>
-                    </a>
+                    @if(!$component->check_cart_item())
+                        <button type="button" class="btn btn-default w-100" wire:click="add_to_cart()" wire:target="add_to_cart" wire:loading.attr="disabled">
+                            <span class="fas fa-shopping-cart"></span> Add to Cart <span wire:loading wire:target="add_to_cart" class="fas fa-spinner fa-spin"></span>
+                        </button>
+                    @else
+                        <a href="{{route('front-end.user.my-cart.index')}}">
+                            <button type="button" class="btn btn-default w-100">
+                                <span class="fas fa-shopping-cart"></span> View on Cart
+                            </button>
+                        </a>
+                    @endif
                 </div>
                 <div class="col-lg-6 col-md-12 p-1">
-                    <button class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>
+                    <button type="button" class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>
                 </div>
             </div>
         @elseif($allow_purchase == 'login')

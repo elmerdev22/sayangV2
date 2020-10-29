@@ -186,6 +186,17 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             ]);
 
         });
+
+        //My Cart
+        Route::group(['prefix' => 'my-cart', 'as' => 'my-cart.'], function (){
+			$c = 'MyCartController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+            
+        });
     });
 });
 
@@ -340,5 +351,5 @@ Route::group(['prefix' => 'login', 'as' => 'login.', 'namespace' => 'Auth'], fun
 });
 Auth::routes();
 
-Route::get('/my-cart', 'FrontEnd\product\CartController@index')->name('account.cart');
+
 Route::get('/checkout', 'FrontEnd\product\CheckoutController@index')->name('account.checkout');

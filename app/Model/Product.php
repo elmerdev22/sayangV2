@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use UploadUtility;
 
 class Product extends Model implements HasMedia
 {
@@ -19,8 +20,11 @@ class Product extends Model implements HasMedia
         return $this->hasOne('App\Model\ProductPost', 'product_id', 'id');
     }
 
-    public function registerMediaConversions(Media $media = null){ 
-        $this->addMediaConversion('thumb')->height(150)->width(150);
+    public function registerMediaConversions(Media $media = null){
+        $height = UploadUtility::conversion_dimension('height');
+        $width  = UploadUtility::conversion_dimension('width');
+
+        $this->addMediaConversion('thumb')->height($height)->width($width);
     }
 
 }

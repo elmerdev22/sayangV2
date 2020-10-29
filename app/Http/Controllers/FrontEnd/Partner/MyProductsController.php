@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\ProductPost;
+use Utility;
 
 class MyProductsController extends Controller
 {
@@ -17,7 +18,9 @@ class MyProductsController extends Controller
         return view('front-end.partner.my-products.add');
     }
     public function edit($slug){
-        $product    = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('partner_id', Utility::auth_partner()->id)
+            ->where('slug', $slug)
+            ->firstOrFail();
         $product_id = $product->id;
 
         return view('front-end.partner.my-products.edit', compact('product_id'));
@@ -32,7 +35,12 @@ class MyProductsController extends Controller
     }
 
     public function activities_details($slug, $key_token){
-        $product_post    = ProductPost::where('key_token', $key_token)->firstOrFail();
+        $product_post = ProductPost::with(['product'])
+                ->whereHas('product', function ($query){
+                    $query->where('partner_id', Utility::auth_partner()->id);
+                })
+                ->where('key_token', $key_token)
+                ->firstOrFail();
         $product_post_id = $product_post->id;
 
         return view('front-end.partner.my-products.activities.details', compact('product_post_id'));
