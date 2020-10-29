@@ -107,6 +107,7 @@
                             <a class="nav-item nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false">Location</a>
                         </div>
                     </nav>
+                    
                     <div class="tab-content py-3" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
                             <div class="card-footer bg-white card-comments">
