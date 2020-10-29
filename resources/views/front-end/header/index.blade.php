@@ -64,10 +64,10 @@
 
                   @if(Auth::user()->verified_at)
                     <div class="widget-header mr-3">
-                      <a href="{{route('account.cart')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
+                      <a href="{{route('front-end.user.my-cart.index')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
                         <div class="icon-area">
                           <i class="fas fa-shopping-cart text-dark"></i>
-                          <span class="notify"><span class="badge badge-warning">0</span></span>
+                          <span class="notify"><span class="badge badge-warning">{{Utility::total_cart_item()}}</span></span>
                         </div>
                       </a>
                     </div>

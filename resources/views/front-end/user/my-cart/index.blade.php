@@ -1,27 +1,19 @@
 @extends('front-end.layout')
-@section('title','Product Name')
+@section('title','My Cart')
+@section('page_header')
+    @php 
+        $page_header = [
+            'title'       => '<i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-warning badge-pill badge-total-item-in-cart">'.Utility::total_cart_item().'</span>',
+            'breadcrumbs' => [
+                ['url' => '', 'label' => 'My Cart'],
+            ],
+        ];
+    @endphp
+    @include('front-end.includes.page-header', $page_header)
+@endsection
 @section('content')
-<section class="content-header py-4">
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1><i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-warning badge-pill">3</span>
-                </h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">My Cart</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
 
-<section class="content pb-5">
-    
-  <div class="container">
-
+<div class="container">
     <div class="row">
         <main class="col-md-9">
             <div class="card card-sayang">
@@ -226,7 +218,9 @@
             </div>  <!-- card .// -->
         </aside> <!-- col.// -->
     </div>
+</div>
 
-  </div> <!-- container .//  -->
-</section>
+@endsection
+@section('js')
+
 @endsection

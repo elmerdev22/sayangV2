@@ -4,6 +4,7 @@ namespace App\Http\Livewire\FrontEnd\Product\Information;
 
 use Livewire\Component;
 use App\Model\ProductPost;
+use App\Model\Cart;
 use Utility;
 
 class BuyNow extends Component
@@ -64,7 +65,36 @@ class BuyNow extends Component
         $this->current_quantity = $product_post->quantity;
     }
 
+    public function check_cart_item(){
+        return Utility::check_cart_item($this->product_post_id);
+    }
+
     public function render(){
-        return view('livewire.front-end.product.information.buy-now');
+        $component = $this;
+        return view('livewire.front-end.product.information.buy-now', compact('component'));
+    }
+
+    public function add_to_cart(){
+        if($this->allow_purchase == 'allowed'){
+            if(!$this->check_cart_item()){
+                $quantity        = $this->quantity;
+                $product_post_id = $this->product_post_id;
+                $account         = Utility::auth_user_account();
+
+                $cart                  = new Cart();
+                $cart->user_account_id = $account->id;
+                $cart->product_post_id = $product_post_id;
+                $cart->quantity        = $quantity;
+                $cart->key_token       = Utility::generate_table_token('Cart');
+                $cart->save();
+
+                $this->emit('alert_link', [
+                    'type'     => 'success',
+                    'title'    => 'Successfully Added',
+                    'message'  => 'Item successfully added to cart.',
+                    'redirect' => route('front-end.user.my-cart.index')
+                ]);
+            }
+        }
     }
 }

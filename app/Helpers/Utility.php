@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Mail\VerificationCheck as MailVerificationCheck;
+use App\Model\Cart;
 use App\Model\Partner;
 use App\Model\User;
 use App\Model\UserAdmin;
@@ -414,6 +415,29 @@ class Utility{
         }
 
         return $allow_purchase;
+    }
+
+    public static function check_cart_item($product_post_id, $user_account_id=null){
+        if($user_account_id === null){
+            $user_account_id = self::auth_user_account()->id;
+        }
+
+        $cart = Cart::where('user_account_id', $user_account_id)
+                ->where('product_post_id', $product_post_id)
+                ->first();
+        
+        if($cart){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function total_cart_item($user_account_id=null){
+        if($user_account_id === null){
+            $user_account_id = self::auth_user_account()->id;
+        }
+        return Cart::where('user_account_id', $user_account_id)->count();
     }
 
 }

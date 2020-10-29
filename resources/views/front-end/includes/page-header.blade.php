@@ -3,7 +3,9 @@
     <div class="container">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h2 class="m-0 text-dark">{{ isset($page_header['title']) ? ucwords($page_header['title']):'' }}</h2>
+                <h2 class="m-0 text-dark">
+                    {!! isset($page_header['title']) ? $page_header['title']:'' !!}
+                </h2>
             </div><!-- /.col -->
             @if(isset($page_header['breadcrumbs']))
                 <div class="col-sm-6">
