@@ -450,7 +450,7 @@ class Utility{
 
     public static function product_post_status($product_post_id){
         $product_post     = ProductPost::find($product_post_id);
-        $response         = 'not_found';
+        $response         = 'not found';
         $current_datetime = date('Y-m-d H:i:s');
 
         if($product_post){
