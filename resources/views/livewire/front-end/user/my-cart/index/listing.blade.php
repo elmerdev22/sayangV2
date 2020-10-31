@@ -115,7 +115,7 @@
                 @endforeach
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">No item found</td>
+                    <td colspan="5" class="text-center">Your Cart is Empty</td>
                 </tr>
             @endif
         </tbody>
