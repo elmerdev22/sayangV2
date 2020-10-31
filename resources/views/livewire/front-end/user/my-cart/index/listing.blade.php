@@ -63,6 +63,16 @@
                                     <option selected value="{{$product_row['selected_quantity']}}">{{$product_row['selected_quantity']}}</option>
                                 @endif
                             </select>
+
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-default btn-quantity-minus" date-key_token="{{$product_row['cart_key_token']}}" id="btn-quantity-minus-{{$product_row['cart_key_token']}}"><span class="fas fa-minus"></span></button>
+                                </div>
+                                <input type="number" class="form-control form-control-sm text-center input-number-remove-arrow quantity" date-key_token="{{$product_row['cart_key_token']}}" id="quantity-{{$product_row['cart_key_token']}}">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-default btn-quantity-plus" date-key_token="{{$product_row['cart_key_token']}}" id="btn-quantity-plus-{{$product_row['cart_key_token']}}"><span class="fas fa-plus"></span></button>
+                                </div>
+                            </div>
                             <span>
                                 <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
                             </span>

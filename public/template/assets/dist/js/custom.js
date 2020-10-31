@@ -61,6 +61,8 @@ var qtyMinus = function qtyMinus(dom_field, interval=1){
                 var min = $(dom_field).attr('min');
                 if(value >= min){
                     $(dom_field).val(value);
+                }else{
+                    $(dom_field).val(min);
                 }
             }else{
                 $(dom_field).val(value);
@@ -86,6 +88,8 @@ var qtyPlus = function qtyPlus(dom_field, interval=1){
                 var max = $(dom_field).attr('max');
                 if(value <= max){
                     $(dom_field).val(value);
+                }else{
+                    $(dom_field).val(max);
                 }
             }else{
                 $(dom_field).val(value);
@@ -98,4 +102,10 @@ $('.img-preloader').each(function () {
     $(this).on('load', function () {
         $(this).next('.img-loader-span').hide();
     });    
+});
+
+$('input[type=number]').each(function () {
+    $(this).on('keydown', function () {
+        return event.keyCode == 69 ? false : true;
+    });
 });
