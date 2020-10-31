@@ -38,7 +38,13 @@
                         <td>
                             <div class="row">
                                 <div class="col-md-2 overflow-hidden">
-                                    <img src="{{$product_row['featured_photo']}}" class="img-sm border cart-product-photo-thumb">
+                                    <a href="{{route('front-end.product.information.redirect', [
+                                            'slug'      => $product_row['product_slug'],
+                                            'key_token' => $product_row['product_post_key_token'],
+                                            'type'      => 'buy_now'
+                                        ])}}">
+                                        <img src="{{$product_row['featured_photo']}}" class="img-sm border cart-product-photo-thumb">
+                                    </a>
                                 </div>
                                 <div class="col-md-10 text-left">
                                     <p class="title mb-0">{{$product_row['name']}}</p>

@@ -23,11 +23,11 @@
                         <label>Quantity</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-quantity-minus-2"><span class="fas fa-minus"></span></button>
+                                <button type="button" class="btn btn-default" id="btn-quantity-minus-2" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
                             </div>
                             <input type="number" class="form-control text-center input-number-remove-arrow" id="quantity-2" min="0" max="{{$current_quantity}}">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-quantity-plus-2"><span class="fas fa-plus"></span></button>
+                                <button type="button" class="btn btn-default" id="btn-quantity-plus-2" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                             </div>
                         </div>
                     </div>

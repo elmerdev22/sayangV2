@@ -11,11 +11,11 @@
             <div class="col-md-5">
                 <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default" id="btn-quantity-minus"><span class="fas fa-minus"></span></button>
+                        <button type="button" class="btn btn-default" id="btn-quantity-minus" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
                     </div>
                     <input type="number" class="form-control form-control-sm text-center input-number-remove-arrow" id="quantity" min="1" max="{{$current_quantity}}">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="btn-quantity-plus"><span class="fas fa-plus"></span></button>
+                        <button type="button" class="btn btn-default" id="btn-quantity-plus" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                     </div>
                 </div>
             </div>

@@ -48,21 +48,23 @@ class Listing extends Component
             $featured_photo = $this->product_featured_photo($product_id);
 
             $product = [
-                'product_id'        => $product_id,
-                'name'              => $row->product_post->product->name,
-                'featured_photo'    => $featured_photo[0]->getFullUrl('thumb'),
-                'total_price'       => $total_price,
-                'regular_price'     => $row->product_post->product->regular_price,
-                'buy_now_price'     => $buy_now_price,
-                'lowest_price'      => $row->product_post->lowest_price,
-                'date_start'        => $date_start,
-                'date_end'          => $date_end,
-                'current_quantity'  => $row->product_post->quantity,
-                'selected_quantity' => $selected_quantity,
-                'product_post_id'   => $row->product_post_id,
-                'cart_id'           => $row->id,
-                'cart_key_token'    => $row->key_token,
-                'post_status'       => Utility::product_post_status($row->product_post_id),
+                'product_id'             => $product_id,
+                'name'                   => $row->product_post->product->name,
+                'featured_photo'         => $featured_photo[0]->getFullUrl('thumb'),
+                'total_price'            => $total_price,
+                'regular_price'          => $row->product_post->product->regular_price,
+                'product_post_key_token' => $row->product_post->key_token,
+                'product_slug'           => $row->product_post->product->slug,
+                'buy_now_price'          => $buy_now_price,
+                'lowest_price'           => $row->product_post->lowest_price,
+                'date_start'             => $date_start,
+                'date_end'               => $date_end,
+                'current_quantity'       => $row->product_post->quantity,
+                'selected_quantity'      => $selected_quantity,
+                'product_post_id'        => $row->product_post_id,
+                'cart_id'                => $row->id,
+                'cart_key_token'         => $row->key_token,
+                'post_status'            => Utility::product_post_status($row->product_post_id),
             ];
 
             $insert['products'][] = $product;
