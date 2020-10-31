@@ -49,7 +49,7 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
         ]);
     });
 
-    Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'product'], function (){
+    Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){
         Route::group(['as' => 'information.'], function (){
             $c = 'InformationController';
             
@@ -352,4 +352,4 @@ Route::group(['prefix' => 'login', 'as' => 'login.', 'namespace' => 'Auth'], fun
 Auth::routes();
 
 
-Route::get('/checkout', 'FrontEnd\product\CheckoutController@index')->name('account.checkout');
+Route::get('/checkout', 'FrontEnd\Product\CheckoutController@index')->name('account.checkout');
