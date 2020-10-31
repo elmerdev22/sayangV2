@@ -92,9 +92,11 @@ class BuyNow extends Component
                     $total_item = Utility::total_cart_item();
                     $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
                     $this->emit('alert', [
-                        'type'     => 'success',
-                        'title'    => 'Successfully Added',
-                        'message'  => 'Item successfully added to cart.',
+                        'type'              => 'success',
+                        'title'             => 'Successfully Added',
+                        'message'           => 'Item successfully added to cart. <br><br>',
+                        'timer'             => 3000,
+                        'showConfirmButton' => false
                     ]);
                 }else{
                     $this->emit('alert', [
@@ -105,6 +107,38 @@ class BuyNow extends Component
                 }
 
             }
+        }
+    }
+
+    public function update_cart(){
+        if($this->check_cart_item()){
+            $this->initialize_current_quantity();
+
+            $account = Utility::auth_user_account();
+            $cart    = Cart::where('product_post_id', $this->product_post_id)
+                ->where('user_account_id', $account->id)
+                ->firstOrFail();
+
+            $new_quantity = $cart->quantity + $this->quantity;
+            if($new_quantity <= $this->current_quantity){
+                $cart->quantity = $new_quantity;
+            }else{
+                $cart->quantity = $this->current_quantity;
+            }
+
+            $cart->save();
+            $this->quantity = 1;
+            $total_item     = Utility::total_cart_item();
+            $this->calculate_buy_now_price();
+            $this->emit('buy_now_quantity_value', ['quantity' => $this->quantity]);
+            $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+            $this->emit('alert', [
+                'type'              => 'success',
+                'title'             => 'Successfully Added',
+                'message'           => 'Item successfully added to cart. <br><br>',
+                'timer'             => 3000,
+                'showConfirmButton' => false
+            ]);
         }
     }
 }
