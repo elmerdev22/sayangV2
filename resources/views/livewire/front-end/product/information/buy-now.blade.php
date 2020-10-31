@@ -49,7 +49,7 @@
                     @endif
                 </div>
                 <div class="col-lg-6 col-md-12 p-1">
-                    <button type="button" class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Checkout</button>
+                    <button type="button" class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Buy Now</button>
                 </div>
             </div>
         @elseif($allow_purchase == 'login')
