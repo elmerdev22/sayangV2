@@ -86,14 +86,23 @@ class BuyNow extends Component
                 $cart->product_post_id = $product_post_id;
                 $cart->quantity        = $quantity;
                 $cart->key_token       = Utility::generate_table_token('Cart');
-                $cart->save();
 
-                $this->emit('alert_link', [
-                    'type'     => 'success',
-                    'title'    => 'Successfully Added',
-                    'message'  => 'Item successfully added to cart.',
-                    'redirect' => route('front-end.user.my-cart.index')
-                ]);
+                if($cart->save()){
+                    $total_item = Utility::total_cart_item();
+                    $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+                    $this->emit('alert', [
+                        'type'     => 'success',
+                        'title'    => 'Successfully Added',
+                        'message'  => 'Item successfully added to cart.',
+                    ]);
+                }else{
+                    $this->emit('alert', [
+                        'type'     => 'error',
+                        'title'    => 'Failed',
+                        'message'  => 'An error occured while adding item to cart.',
+                    ]);
+                }
+
             }
         }
     }
