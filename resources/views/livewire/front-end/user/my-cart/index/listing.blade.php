@@ -80,7 +80,7 @@
                                     >
                                 <div class="input-group-append">
                                     <button type="button" 
-                                        @if($product_row['post_status'] != 'active') 
+                                        @if($product_row['post_status'] != 'active' || $product_row['selected_quantity'] == $product_row['current_quantity']) 
                                             disabled="true" 
                                         @else
                                             onclick="quantity_update('{{$product_row['cart_key_token']}}')"
@@ -151,9 +151,16 @@
                 new_value = new_value + 1;
             }else{
                 new_value = new_value - 1;
+                
+                if(new_value <= 0){
+                    delete_item(key_token);
+                    is_continue = false;
+                }
             }
-            
-            @this.call('quantity_update', key_token, new_value);
+
+            if(is_continue){
+                @this.call('quantity_update', key_token, new_value);
+            }
         }
     }
 

@@ -126,7 +126,7 @@ class Listing extends Component
     }
 
     public function delete($key_token){
-        $cart = Cart::where('key_token', $key_token)->firstOrFail();
+        $cart = Cart::where('user_account_id', $this->account->id)->where('key_token', $key_token)->firstOrFail();
         $cart->delete();
 
         $total_item  = Utility::total_cart_item();
