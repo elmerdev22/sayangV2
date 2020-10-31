@@ -141,6 +141,16 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             
         });
 
+        Route::group(['prefix' => 'setting', 'as' => 'setting.'], function (){
+            $c = 'SettingController';
+            
+            Route::get('/bid', [
+                'as'    => 'bid',
+                'uses'  => $c.'@bid'
+            ]);
+            
+        });
+
     });
 });
 

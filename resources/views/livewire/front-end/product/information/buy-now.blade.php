@@ -13,7 +13,7 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-default" id="btn-quantity-minus"><span class="fas fa-minus"></span></button>
                     </div>
-                    <input type="number" class="form-control form-control-sm  text-center" id="quantity" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
+                    <input type="number" class="form-control form-control-sm  text-center" id="quantity" min="1" max="{{$current_quantity}}" value="{{$quantity}}">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="btn-quantity-plus"><span class="fas fa-plus"></span></button>
                     </div>

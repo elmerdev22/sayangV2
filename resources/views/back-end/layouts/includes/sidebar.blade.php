@@ -51,7 +51,52 @@
                         <p>Catalogs</p>
                     </a>
                 </li>
-
+                {{-- <li class="nav-item">
+                    <a href="{{route('back-end.catalog.setting.bid.index')}}" class="nav-link {{Route::is('back-end.catalog.*') ? 'active':''}}"">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>Settings</p>
+                    </a>
+                </li> --}}
+                
+                <li class="nav-item has-treeview {{Route::is('back-end.setting.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.setting.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>Settings <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('back-end.setting.bid')}}" class="nav-link {{Route::is('back-end.setting.bid') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Bid</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas"></i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas"></i>
+                                <p>Header & Footer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas"></i>
+                                <p>Help Centre</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas"></i>
+                                <p>About</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
             </ul>
         </nav><!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->
