@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <a href="{{url('/profile/partner-name')}}">
+    <a href="{{route('front-end.profile.partner.index', ['slug' => $product_post->product->partner->slug ])}}">
         <p>{{ucfirst($product_post->product->partner->name)}} <span class="fas fa-star text-warning"></span> 4.5</p>
     </a>
     <p>{{nl2br($product_post->product->description)}}</p>

@@ -101,6 +101,3 @@
 </div>
 
 @endsection
-@section('js')
-
-@endsection
