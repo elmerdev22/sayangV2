@@ -437,7 +437,7 @@ class Utility{
         if($user_account_id === null){
             $user_account_id = self::auth_user_account()->id;
         }
-        return Cart::where('user_account_id', $user_account_id)->count();
+        return Cart::where('user_account_id', $user_account_id)->sum('quantity');
     }
 
     public static function is_date_expired($from, $to){
