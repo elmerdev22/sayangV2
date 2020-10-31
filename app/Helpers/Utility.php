@@ -447,4 +447,29 @@ class Utility{
             return false;
         }
     }
+
+    public static function product_post_status($product_post_id){
+        $product_post     = ProductPost::find($product_post_id);
+        $response         = 'not_found';
+        $current_datetime = date('Y-m-d H:i:s');
+
+        if($product_post){
+            if($product_post->status == 'cancelled'){
+                $response = 'cancelled';
+            }else if($product_post->status == 'done'){
+                $response = 'ended';
+            }else{
+                $is_expired = self::is_date_expired($current_datetime, $product_post->date_end);
+                if($is_expired){
+                    $response = 'pending';
+                }else{
+                    $response = 'active';
+                }
+            }
+
+        }
+
+        return $response;
+    }
+
 }
