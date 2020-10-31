@@ -13,7 +13,7 @@
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-minus"><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="text" class="form-control text-center mask-money" id="bid-price" min="{{$lowest_price}}" value="{{number_format($bid_price, 2)}}">
+                            <input type="text" class="form-control text-center mask-money" id="bid-price" min="{{$lowest_price}}">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                             </div>
@@ -25,8 +25,8 @@
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-quantity-minus-2"><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="number" class="form-control form-control-sm  text-center" id="quantity-2" min="0" max="{{$current_quantity}}" value="{{$quantity}}">
-                            <div class="input-group-append">
+                            <input type="number" class="form-control text-center input-number-remove-arrow" id="quantity-2" min="0" max="{{$current_quantity}}">
+                            <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-quantity-plus-2"><span class="fas fa-plus"></span></button>
                             </div>
                         </div>
@@ -123,6 +123,8 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
         $('.mask-money').mask("#,##0.00", {reverse: true});
+        $('#quantity-2').val('{{$quantity}}');
+        $('#bid-price').val('{{number_format($bid_price, 2)}}');
         
         quantityField('#quantity-2', '#btn-quantity-minus-2', '#btn-quantity-plus-2');
         $(document).on('change', '#quantity-2', function (){

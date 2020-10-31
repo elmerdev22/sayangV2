@@ -49,7 +49,7 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
         ]);
     });
 
-    Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'product'], function (){
+    Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){
         Route::group(['as' => 'information.'], function (){
             $c = 'InformationController';
             
