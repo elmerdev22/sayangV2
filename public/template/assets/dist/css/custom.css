@@ -723,3 +723,15 @@ div.sticky {
   overflow: hidden;
   object-fit: cover;
 }
+
+/* Chrome, Safari, Edge, Opera */
+input.input-number-remove-arrow::-webkit-outer-spin-button,
+input.input-number-remove-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input-number-remove-arrow {
+  -moz-appearance: textfield;
+}
