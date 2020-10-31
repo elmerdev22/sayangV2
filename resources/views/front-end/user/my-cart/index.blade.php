@@ -79,7 +79,7 @@
                     <hr>
                     <div class="row mb-3">
                         <div class="col-12">
-                            <a href="{{route('account.checkout')}}" class="btn btn-warning w-100"> Make Purchase </a>
+                            <a href="{{route('account.checkout')}}" class="btn btn-warning w-100"> Check Out </a>
                         </div>
                     </div>
                     <div class="row">
