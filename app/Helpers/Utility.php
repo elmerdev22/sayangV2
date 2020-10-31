@@ -463,7 +463,11 @@ class Utility{
                 if($is_expired){
                     $response = 'pending';
                 }else{
-                    $response = 'active';
+                    if($product_post->quantity > 0){
+                        $response = 'active';
+                    }else{
+                        $response = 'not available'; //or no quantity
+                    }
                 }
             }
 
