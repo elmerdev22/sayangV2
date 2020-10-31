@@ -155,6 +155,11 @@
                 if(new_value <= 0){
                     delete_item(key_token);
                     is_continue = false;
+
+                    $('#btn-quantity-minus-'+key_token).removeAttr('disabled', true);
+                    $('#btn-quantity-plus-'+key_token).removeAttr('disabled', true);
+                    $('#quantity-'+key_token).removeAttr('readonly', true);
+                    clearTimeout(timeOutId);
                 }
             }
 
