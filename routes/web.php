@@ -4,12 +4,6 @@ Route::get('/partner/dashboard/template', function () {
     return view('front-end.partner.layouts.template');
 });
 
-// Merchant profile view
-Route::get('/profile/partner-name', function () {
-    return view('front-end.profile.partner');
-});
-
-
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/register/partner', function () {
@@ -67,6 +61,19 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
                 'as' 	=> 'login-redirect',
                 'uses'  => $c.'@login_redirect'
             ]);
+        });
+
+    });
+
+    Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Profile'], function (){
+        Route::group(['as' => 'partner.'], function (){
+            $c = 'PartnerController';
+            
+            Route::get('/{slug}', [
+                'as' 	=> 'index',
+                'uses'  => $c.'@index'
+            ]);
+
         });
 
     });
@@ -130,6 +137,16 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             Route::get('/profile/{key_token}', [
                 'as'    => 'profile',
                 'uses'  => $c.'@profile'
+            ]);
+            
+        });
+
+        Route::group(['prefix' => 'setting', 'as' => 'setting.'], function (){
+            $c = 'SettingController';
+            
+            Route::get('/bid', [
+                'as'    => 'bid',
+                'uses'  => $c.'@bid'
             ]);
             
         });
