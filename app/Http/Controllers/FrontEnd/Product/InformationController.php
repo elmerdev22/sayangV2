@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use QueryUtility;
+use Utility;
 use Session;
 
 class InformationController extends Controller
@@ -17,20 +18,21 @@ class InformationController extends Controller
             'product_posts.id as product_post_id',
             'product_posts.product_id',
         ];
-        $filter['where']['product_posts.status'] = 'active';
         $filter['where']['products.slug'] = $slug;
         $filter['where']['product_posts.key_token'] = $key_token;
-        $date_time = date('Y-m-d H:i:s');
 
-        $filter['date_range_two_field'][] = [
-            'field_from' => 'product_posts.date_start',
-            'field_to'   => 'product_posts.date_end',
-            'date'       => $date_time
-        ];
+        $product     = QueryUtility::product_posts($filter)->first();
+        $post_status = Utility::product_post_status($product->product_post_id);
 
-        $product = QueryUtility::product_posts($filter)->first();
-
-        if(!$product){
+        /* if(
+            $post_status == 'not_found' || 
+            $post_status == 'done' || 
+            $post_status == 'pending' || 
+            $post_status == 'ended' || 
+            $post_status == 'cancelled'
+            )
+        */
+        if($post_status != 'active'){
             abort(404);
         }
 
