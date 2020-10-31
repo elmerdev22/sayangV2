@@ -161,5 +161,9 @@
             @this.call('set_bid_price', $('#bid-price').val())
         });
     });
+
+    window.livewire.on('place_bid_quantity_value', param => {
+        $(document).find('#quantity-2').val(param['quantity']);
+    });
 </script>
 @endpush

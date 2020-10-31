@@ -44,14 +44,15 @@ class PlaceBid extends Component
                     'title'   => 'Invalid Quantity',
                 ]);
             }else if($preferred_quantity <= $this->current_quantity){
-                $this->quantity = $preferred_quantity;
+                if($preferred_quantity <= 0){
+                    $this->quantity = 1;
+                    $this->emit('buy_now_quantity_value', ['quantity' => $this->quantity]);
+                }else{
+                    $this->quantity = $preferred_quantity;
+                }
             }else{
                 $this->quantity = $this->current_quantity;
-                $this->emit('alert', [
-                    'type'    => 'warning',
-                    'title'   => 'Can\'t Add Quantity',
-                    'message' => 'Available quantity for this product is <b>'.$this->current_quantity.'</b>',
-                ]);
+                $this->emit('buy_now_quantity_value', ['quantity' => $this->quantity]);
             }
         }else{
             $this->quantity = 0;
