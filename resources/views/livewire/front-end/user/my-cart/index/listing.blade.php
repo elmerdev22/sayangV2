@@ -59,31 +59,34 @@
                                     <button type="button" 
                                         @if($product_row['post_status'] != 'active') 
                                             disabled="true" 
+                                        @else
+                                            onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
                                         @endif 
-                                        class="btn btn-default btn-quantity-minus" 
-                                        id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
-                                        onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
+                                            id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
+                                            class="btn btn-default btn-quantity-minus" 
                                     ><span class="fas fa-minus"></span></button>
                                 </div>
                                 <input type="number" 
                                     @if($product_row['post_status'] != 'active') 
                                         disabled="true" 
+                                    @else
+                                        onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
                                     @endif 
                                     class="form-control form-control-sm text-center input-number-remove-arrow quantity" 
-                                    min="1" max="{{$product_row['current_quantity']}}" 
                                     id="quantity-{{$product_row['cart_key_token']}}"
+                                    min="1" max="{{$product_row['current_quantity']}}"
                                     data-key_token="{{$product_row['cart_key_token']}}"
                                     value="{{$product_row['selected_quantity']}}"
-                                    onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
                                     >
                                 <div class="input-group-append">
                                     <button type="button" 
                                         @if($product_row['post_status'] != 'active') 
                                             disabled="true" 
+                                        @else
+                                            onclick="quantity_update('{{$product_row['cart_key_token']}}')"
                                         @endif 
                                         class="btn btn-default btn-quantity-plus" 
                                         id="btn-quantity-plus-{{$product_row['cart_key_token']}}" 
-                                        onclick="quantity_update('{{$product_row['cart_key_token']}}')"
                                     ><span class="fas fa-plus"></span></button>
                                 </div>
                             </div>
