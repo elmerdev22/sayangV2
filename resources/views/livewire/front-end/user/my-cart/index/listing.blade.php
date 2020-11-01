@@ -136,17 +136,17 @@
     function quantity_update(key_token, type='plus'){
         var is_continue = true;
         var new_value = $('#quantity-'+key_token).val();
-        var timeOutId = setTimeout(() => {
-            $('#btn-quantity-minus-'+key_token).attr('disabled', true);
-            $('#btn-quantity-plus-'+key_token).attr('disabled', true);
-            // $('#quantity-'+key_token).attr('readonly', true);
-        }, 200);
+        // var timeOutId = setTimeout(() => {
+        //     $('#btn-quantity-minus-'+key_token).attr('disabled', true);
+        //     $('#btn-quantity-plus-'+key_token).attr('disabled', true);
+        //     // $('#quantity-'+key_token).attr('readonly', true);
+        // }, 200);
 
         if(type == 'force'){
-            setTimeout(() => {
-                @this.call('quantity_update', key_token, new_value);
-            }, 3000);
-            clearTimeout(timeOutId);
+            // setTimeout(() => {
+            //     @this.call('quantity_update', key_token, new_value);
+            // }, 3000);
+            // clearTimeout(timeOutId);
             
             is_continue = false;
         }
@@ -162,10 +162,10 @@
                     delete_item(key_token);
                     is_continue = false;
 
-                    $('#btn-quantity-minus-'+key_token).removeAttr('disabled', true);
-                    $('#btn-quantity-plus-'+key_token).removeAttr('disabled', true);
+                    // $('#btn-quantity-minus-'+key_token).removeAttr('disabled', true);
+                    // $('#btn-quantity-plus-'+key_token).removeAttr('disabled', true);
                     // $('#quantity-'+key_token).removeAttr('readonly', true);
-                    clearTimeout(timeOutId);
+                    // clearTimeout(timeOutId);
                 }
             }
 
