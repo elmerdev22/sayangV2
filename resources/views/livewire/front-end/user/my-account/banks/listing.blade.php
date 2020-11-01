@@ -29,5 +29,5 @@
         </blockquote>
     @empty
         <p class="text-center">You don't have bank account yet.</p>
-    @endforelse
+    @endif
 </div>
