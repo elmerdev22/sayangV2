@@ -139,7 +139,7 @@
         var timeOutId = setTimeout(() => {
             $('#btn-quantity-minus-'+key_token).attr('disabled', true);
             $('#btn-quantity-plus-'+key_token).attr('disabled', true);
-            $('#quantity-'+key_token).attr('readonly', true);
+            // $('#quantity-'+key_token).attr('readonly', true);
         }, 200);
 
         if(type == 'force'){
@@ -164,7 +164,7 @@
 
                     $('#btn-quantity-minus-'+key_token).removeAttr('disabled', true);
                     $('#btn-quantity-plus-'+key_token).removeAttr('disabled', true);
-                    $('#quantity-'+key_token).removeAttr('readonly', true);
+                    // $('#quantity-'+key_token).removeAttr('readonly', true);
                     clearTimeout(timeOutId);
                 }
             }
