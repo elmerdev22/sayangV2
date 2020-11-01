@@ -143,10 +143,9 @@
         // }, 200);
 
         if(type == 'force'){
-            // setTimeout(() => {
-            //     @this.call('quantity_update', key_token, new_value);
-            // }, 3000);
-            // clearTimeout(timeOutId);
+            setTimeout(() => {
+                @this.call('quantity_update', key_token, new_value);
+            }, 1000);
             
             is_continue = false;
         }
