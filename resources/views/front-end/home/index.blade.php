@@ -36,6 +36,8 @@
   <div class="container">
     @livewire('front-end.home.category')
     @livewire('front-end.home.index.most-popular')
+    @livewire('front-end.home.index.recently-added')
+    @livewire('front-end.home.index.ending-soon')
   </div>
 </div>
 
@@ -65,5 +67,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
 </script>
 @endsection

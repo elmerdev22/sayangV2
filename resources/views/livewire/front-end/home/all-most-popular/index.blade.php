@@ -1,8 +1,7 @@
 <div>
-    <hr>
     <div class="row">
-        <div class="col-12 mb-3">
-            <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>
+        <div class="col-12 my-3 p-2 text-center bg-light">
+            <h3 class="title">ALL MOST POPULAR</h3>
         </div>
         @foreach($data as $row)
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
@@ -61,15 +60,11 @@
             </div>
         </div>
         @endforeach
-        @if ($data->total() > 12)
-            <div class="col-12 mb-3 text-center">
-                <div class="row justify-content-center">
-                    <div class="col-3">
-                        <a href="{{route('front-end.home.all-most-popular')}}" class="btn btn-warning w-100">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
-                    </div>
-                </div>
+        <div class="col-12 mb-3 text-center">
+            <div class="row justify-content-center">
+                {{$data->render()}}
             </div>
-        @endif
+        </div>
     </div>
     <hr>
 </div>

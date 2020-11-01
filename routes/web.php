@@ -36,11 +36,28 @@ Route::group(['middleware' => ['guest']], function(){
 Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
     
     Route::group(['as' => 'home.'], function (){
+
         $c = 'HomeController';
         Route::get('/', [
             'as' 	=> 'index',
             'uses'  => $c.'@index'
         ]);
+
+        Route::get('/all-most-popular', [
+            'as' 	=> 'all-most-popular',
+            'uses'  => $c.'@all_most_popular'
+        ]);
+        
+        Route::get('/all-recently-added', [
+            'as' 	=> 'all-recently-added',
+            'uses'  => $c.'@all_recently_added'
+        ]);
+        
+        Route::get('/all-ending-soon', [
+            'as' 	=> 'all-ending-soon',
+            'uses'  => $c.'@all_ending_soon'
+        ]);
+        
     });
 
     Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){

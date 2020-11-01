@@ -10,7 +10,7 @@ use QueryUtility;
 use UploadUtility;
 use Utility;
 
-class MostPopular extends Component
+class RecentlyAdded extends Component
 {
     public $limit = 12;
 
@@ -50,7 +50,6 @@ class MostPopular extends Component
     public function render(){
         $data      = $this->initialize();
         $component = $this;
-        return view('livewire.front-end.home.index.most-popular', compact('data', 'component'));
+        return view('livewire.front-end.home.index.recently-added', compact('data', 'component'));
     }
-
 }
