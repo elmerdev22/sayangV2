@@ -36,6 +36,14 @@ class UserAccount extends Model implements HasMedia
         return $this->hasMany('App\Model\UserAccountAddress', 'user_account_id', 'id');
     }
 
+    public function user_account_banks(){
+        return $this->hasMany('App\Model\UserAccountBank', 'user_account_id', 'id');
+    }
+
+    public function user_account_bank(){
+        return $this->hasOne('App\Model\UserAccountBank', 'user_account_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){
         $height = UploadUtility::conversion_dimension('height');
         $width  = UploadUtility::conversion_dimension('width');
