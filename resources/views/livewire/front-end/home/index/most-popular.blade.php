@@ -9,7 +9,7 @@
                 <div class="w-100 text-center">
                     <div class="overflow-hidden position-relative">
                         <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
-                        <span class="img-loader-span loader-span loader-quart"></span>
+                        {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
                     </div>
                     <span class="ends-in">
                         <div class="countdown text-white">
