@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Home\Index;
+namespace App\Http\Livewire\FrontEnd\Home\AllEndingSoon;
 
 use Livewire\Component;
 use App\Model\Partner;
@@ -9,9 +9,11 @@ use App\Model\UserAccount;
 use QueryUtility;
 use UploadUtility;
 use Utility;
+use Livewire\WithPagination;
 
-class MostPopular extends Component
+class Index extends Component
 {
+    use WithPagination;
     public $limit = 12;
 
     public function initialize(){
@@ -50,7 +52,6 @@ class MostPopular extends Component
     public function render(){
         $data      = $this->initialize();
         $component = $this;
-        return view('livewire.front-end.home.index.most-popular', compact('data', 'component'));
+        return view('livewire.front-end.home.all-ending-soon.index', compact('data', 'component'));
     }
-
 }

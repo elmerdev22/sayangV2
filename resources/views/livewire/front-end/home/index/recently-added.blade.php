@@ -1,8 +1,7 @@
 <div>
-    <hr>
     <div class="row">
         <div class="col-12 mb-3">
-            <h3 class="title" data-aos="fade-right">MOST POPULAR</h3>
+            <h3 class="title" data-aos="fade-right">RECENTLY ADDED</h3>
         </div>
         @foreach($data as $row)
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
@@ -15,7 +14,7 @@
                     <span class="ends-in">
                         <div class="countdown text-white">
                             <span class="fas fa-clock"></span>
-                            <span class="countdown-timer" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
+                            <span class="countdown-timer-ra" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
                         </div>
                     </span>
                     <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
@@ -65,7 +64,7 @@
             <div class="col-12 mb-3 text-center">
                 <div class="row justify-content-center">
                     <div class="col-3">
-                        <a href="{{route('front-end.home.all-most-popular')}}" class="btn btn-warning w-100">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
+                        <a href="{{route('front-end.home.all-recently-added')}}" class="btn btn-warning w-100">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
                     </div>
                 </div>
             </div>
