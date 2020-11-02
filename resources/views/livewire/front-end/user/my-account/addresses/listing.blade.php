@@ -21,7 +21,15 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="text-md-right mb-1">
-                                <button type="button" class="btn btn-sm btn-default" @if($row->is_default) disabled @else onclick="set_default('{{$row->key_token}}')" @endif>Set as Default</button>
+                                @if($row->is_default)
+                                    <button type="button" class="btn btn-sm btn-info" disabled="true">
+                                        &nbsp;&nbsp; Default &nbsp;&nbsp;
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-sm btn-default" onclick="set_default('{{$row->key_token}}')" >
+                                        Set as Default
+                                    </button>
+                                @endif
                             </div>
                             <div class="float-xs-none float-sm-none float-md-right">
                                 <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-pen"></i></button>
@@ -47,10 +55,6 @@
     window.livewire.on('addresses_initialize', param => {
         $('#modal-add_address').modal('hide');
     });
-
-    function edit(key_token){
-
-    }
 
     function delete_data(key_token){
         Swal.fire({

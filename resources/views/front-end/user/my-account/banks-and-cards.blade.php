@@ -25,7 +25,7 @@
             <div class="card-header">
                 <h5 class="card-title">My Bank Accounts</h5> 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_bank">
                         <i class="fas fa-plus"></i> Add New Bank Account
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -42,7 +42,7 @@
             <div class="card-header">
                 <h5 class="card-title">My Debit/Credit Cards</h5> 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_credit_card">
                         <i class="fas fa-plus"></i> Add New Debit/Credit Cards
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -57,6 +57,24 @@
     </main> <!-- col.// -->
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add_bank" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Bank Account</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @livewire('front-end.user.my-account.banks.add')
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 @section('js')
 
