@@ -48,10 +48,6 @@
         $('#modal-add_address').modal('hide');
     });
 
-    function edit(key_token){
-
-    }
-
     function delete_data(key_token){
         Swal.fire({
             title: 'Are you sure do you want to delete this address?',

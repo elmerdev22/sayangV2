@@ -16,7 +16,8 @@ class Listing extends Component
     public $account;
 
     protected $listeners = [
-        'addresses_initialize' => '$refresh'
+        'addresses_initialize' => '$refresh',
+        'addresses_initialize' => 'resetPage'
     ];
 
     public function mount(){
