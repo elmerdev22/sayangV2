@@ -81,11 +81,19 @@ class Listing extends Component
     }
 
     public function delete($key_token){
-        $address = UserAccountAddress::where('user_account_id', $this->account->id)
+        $data = UserAccountAddress::where('user_account_id', $this->account->id)
                 ->where('key_token', $key_token)
                 ->firstOrFail();
 
-        if($address->delete()){
+        if($data->is_default){
+            $old_data = UserAccountAddress::where('user_account_id', $this->account->id)->orderBy('created_at', 'desc')->first();
+            if($old_data){
+                $old_data->is_default = true;
+                $old_data->save();
+            }
+        }
+        
+        if($data->delete()){
             $this->emit('addresses_initialize', true);
     		$this->emit('alert', [
                 'type'    => 'success',
