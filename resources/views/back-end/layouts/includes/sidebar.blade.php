@@ -71,25 +71,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('back-end.setting.notifications')}}" class="nav-link {{Route::is('back-end.setting.notifications') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Notifications</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('back-end.setting.header-and-footer')}}" class="nav-link {{Route::is('back-end.setting.header-and-footer') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Header & Footer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('back-end.setting.help-centre')}}" class="nav-link {{Route::is('back-end.setting.help-centre') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Help Centre</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('back-end.setting.about')}}" class="nav-link {{Route::is('back-end.setting.about') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>About</p>
                             </a>

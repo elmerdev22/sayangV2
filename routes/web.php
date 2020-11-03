@@ -157,13 +157,33 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             ]);
             
         });
-
+        // Setting
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function (){
             $c = 'SettingController';
             
             Route::get('/bid', [
                 'as'    => 'bid',
                 'uses'  => $c.'@bid'
+            ]);
+
+            Route::get('/header-and-footer', [
+                'as'    => 'header-and-footer',
+                'uses'  => $c.'@header_and_footer'
+            ]);
+
+            Route::get('/notifications', [
+                'as'    => 'notifications',
+                'uses'  => $c.'@notifications'
+            ]);
+
+            Route::get('/help-centre', [
+                'as'    => 'help-centre',
+                'uses'  => $c.'@help_centre'
+            ]);
+
+            Route::get('/about', [
+                'as'    => 'about',
+                'uses'  => $c.'@about'
             ]);
             
         });
