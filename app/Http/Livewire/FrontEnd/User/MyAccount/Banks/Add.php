@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\FrontEnd\User\MyAccount\Banks;
 
 use Livewire\Component;
+use Luigel\Paymongo\Facades\Paymongo;
 use App\Model\UserAccountBank;
 use App\Model\Bank;
+use PaymentUtility;
 use Utility;
 use DB;
 
 class Add extends Component
 {
     public $account, $account_no, $account_name, $bank, $is_default=false, $force_default;
+    public $active_payments = [];
     
     public function mount(){
         $this->account = Utility::auth_user_account();
@@ -21,6 +24,8 @@ class Add extends Component
             $this->force_default = true;
             $this->is_default    = true;
         }
+
+        $this->active_payments = PaymentUtility::active_payments();
     }
 
     public function banks(){
@@ -29,6 +34,7 @@ class Add extends Component
 
     public function render(){
         $component = $this;
+
         return view('livewire.front-end.user.my-account.banks.add', compact('component'));
     }
 
@@ -36,9 +42,10 @@ class Add extends Component
         $rules = [
             'account_no'   => 'required|numeric',
             'account_name' => 'required',
-            'bank'         => 'required|numeric',
+            'bank'         => 'required|numeric|in:'.implode(',', $this->active_payments),
             'is_default'   => 'nullable'
         ];
+        /* Validate the bank account here with Paymongo. (to follow) */
 
         $this->validate($rules);
         $response = ['success' => false];

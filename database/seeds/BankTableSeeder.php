@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use App\Model\Bank;
 use App\Helpers\Utility;
@@ -25,6 +26,7 @@ class BankTableSeeder extends Seeder
             'Citi Bank',
             'East West Bank',
             'GCash',
+            'Grab Pay',
             'Land bank of the Philippines (Landbank)',
             'Maybank Philippines',
             'Metropolitan Bank and Trust Company (Metrobank)',
@@ -40,10 +42,21 @@ class BankTableSeeder extends Seeder
             'United Coconut Planters Bank (UCPB)'
         ];
 
+        $active_payment = array('GCash');
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Bank::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         foreach($data as $name){
-            $bank            = new Bank();
-            $bank->name      = $name;
-            $bank->slug      = Utility::generate_table_slug('Bank', $name);
+            $slug           = Utility::generate_table_slug('Bank', $name);
+            $bank           = new Bank();
+            $bank->name     = $name;
+            $bank->key_name = str_replace('-', '_', $slug);
+            $bank->slug     = $slug;
+            if(!in_array($name, $active_payment)){
+                $bank->is_active = false;
+            }
             $bank->key_token = Utility::generate_table_token('Bank');
             $bank->save();
         }

@@ -20,7 +20,7 @@
             @enderror
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-warning text-white btn-block">
+            <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-warning text-white btn-block">
                 Login <span wire:loading wire:target="authenticate" class="fas fa-spinner fa-spin"></span>
             </button>
         </div> <!-- form-group// -->
