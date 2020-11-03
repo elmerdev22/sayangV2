@@ -17,7 +17,7 @@
                             <span class="countdown-timer" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
                         </div>
                     </span>
-                    <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
+                    <div class="store-info p-1 mx-1 bg-transparent text-white-shadow" style="margin-top: -30px;">
                         <div class="row">
                             <div class="col-9 text-white text-left text-ellipsis">
                                 {{ucfirst($row->partner_name)}}

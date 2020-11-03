@@ -9,6 +9,7 @@
         background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1aer_eK_rutTokxSeU5gTiW1q9eUKPvpTyw&usqp=CAU');
         background-repeat: no-repeat;
         background-size: cover;
+        /* opacity: 0.5; */
     }
 </style>
     
@@ -36,7 +37,7 @@
     <section class="content">
         <div class="container">
             <div class="row ">
-                <div class="col-md-6">
+                <div class="col-md-5 mr-5">
                     <!-- Profile Image -->
                     <div class="card card-widget widget-user-2">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -45,14 +46,14 @@
                                 <img class="img-circle elevation-2 mr-3" style="height: 80px; width: auto;" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/84/Jollibee_2011_logo.svg/1200px-Jollibee_2011_logo.svg.png" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h3 class="text-white">Jollibee Malolos</h3>
+                            <h3 class="text-white text-white-shadow">Jollibee Malolos</h3>
                             <button class="btn btn-warning btn-sm">
                                 <span class="fas fa-plus"></span> Follow
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 pl-5 pt-3">
+                <div class="col-md-3 pt-3">
                     <div class="row">
                         <div class="col-12">
                             <label>
@@ -78,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 pl-5 pt-3">
+                <div class="col-md-3 pt-3">
                     <div class="row">
                         <div class="col-12">
                             <label>

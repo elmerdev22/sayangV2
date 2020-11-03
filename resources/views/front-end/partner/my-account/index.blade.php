@@ -28,7 +28,7 @@
                                 $photo_url = asset('images/default-photo/account.png');
                             }
                         @endphp
-                        <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" alt="User profile picture" style="width: 150px; height: 150px;" src="{{$photo_url}}" alt="User profile picture">
                     </div>
                     <div class="text-center mt-1">
                         <button type="button" class="btn btn-default btn-sm">Upload Image</button>

@@ -9,6 +9,10 @@
   cursor: pointer;
   transform: scale(1.1);
 }
+/* TExt shadown in white text */
+.text-white-shadow{
+  text-shadow: 0 0 3px black;
+}
 /* Modal Custom */
 .modal-content{
   border-radius: 0;

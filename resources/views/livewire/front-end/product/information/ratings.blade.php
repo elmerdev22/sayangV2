@@ -53,12 +53,6 @@
         <!-- /.card-comment -->
     @endfor
     <div class="row float-right mt-3">
-        <ul class="pagination pagination m-0">
-        <li class="page-item"><a class="page-link" href="#">«</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">»</a></li>
-        </ul>
+        <button class="btn btn-warning">Load more <span class="fas fa-chevron-right"></span></button>
     </div>
 </div>

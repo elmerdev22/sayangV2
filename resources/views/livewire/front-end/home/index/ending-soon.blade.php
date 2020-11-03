@@ -1,7 +1,7 @@
 <div>
     
     <div class="row">
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-3 bg-light pt-2">
             <h3 class="title" data-aos="fade-right">ENDING SOON</h3>
         </div>
         @foreach($data as $row)
