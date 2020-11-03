@@ -33,7 +33,7 @@
             <div class="form-group">
                 <div class="icheck-primary">
                     <input type="checkbox" id="is_default" @if($force_default) disabled checked @else wire:model="is_default" @endif>
-                    <label for="is_default">Set as default address</label>
+                    <label for="is_default">Set as default bank account</label>
                 </div>
             </div>
         </div>

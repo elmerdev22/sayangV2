@@ -235,6 +235,7 @@ return [
         'UploadUtility'   => App\Helpers\UploadUtility::class,
         'TagNameUtility'  => App\Helpers\TagNameUtility::class,
         'SettingsUtility' => App\Helpers\SettingsUtility::class,
+        'PaymentUtility'  => App\Helpers\PaymentUtility::class,
     ],
 
 ];

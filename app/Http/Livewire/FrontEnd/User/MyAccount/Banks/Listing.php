@@ -80,11 +80,11 @@ class Listing extends Component
         }
 
         if($data->delete()){
-            $this->emit('addresses_initialize', true);
+            $this->emit('credit_card_initialize', true);
     		$this->emit('alert', [
                 'type'    => 'success',
                 'title'   => 'Successfully Deleted',
-                'message' => 'Address Successfully Deleted.'
+                'message' => 'Bank Account Successfully Deleted.'
             ]);
         }
     }

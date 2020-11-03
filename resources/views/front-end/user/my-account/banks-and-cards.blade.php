@@ -75,7 +75,25 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add_credit_card" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Debit/Credit Card</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @livewire('front-end.user.my-account.credit-card.add')
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 @section('js')
-
+<script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 @endsection
