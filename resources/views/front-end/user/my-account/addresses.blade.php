@@ -51,15 +51,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                @livewire('front-end.user.my-account.addresses.add')
-            </div>
-            <div class="modal-footer">
-                <div class="text-right">
-                    <button type="button" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
-                    <button type="submit" class="btn btn-flat btn-sm btn-success" form="form-add_address"><i class="fas fa-check"></i> Add</button>
-                </div>
-            </div>
+            @livewire('front-end.user.my-account.addresses.add')
         </div>
         <!-- /.modal-content -->
     </div>

@@ -42,17 +42,6 @@
 
 @push('scripts')
 <script type="text/javascript">
-    function no_item_alert(){
-        Swal.fire({
-            title: 'No Item Selected.',
-            icon: 'warning',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            Swal.close();
-        })
-    }
+
 </script>
 @endpush

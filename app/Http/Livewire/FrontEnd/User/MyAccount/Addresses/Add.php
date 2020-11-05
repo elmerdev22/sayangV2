@@ -16,9 +16,10 @@ use Utility;
 class Add extends Component
 {
     public $account, $full_name, $contact_no, $is_default=false, $force_default;
-    public $region, $province, $city, $barangay, $zip_code, $address;
+    public $region, $province, $city, $barangay, $zip_code, $address, $is_checkout_page;
     
-    public function mount(){
+    public function mount($is_checkout_page=false){
+        $this->is_checkout_page = $is_checkout_page;
         $this->initialize();
     }
 
@@ -104,14 +105,28 @@ class Add extends Component
 
         if($response['success']){
             DB::commit();
+            $is_checkout_page = $this->is_checkout_page;
             $this->reset();
             $this->initialize();
-            $this->emit('addresses_initialize', true);
-    		$this->emit('alert', [
-                'type'    => 'success',
-                'title'   => 'Successfully Added',
-                'message' => 'Address Successfully Added.'
-            ]);
+            $this->is_checkout_page = $is_checkout_page;
+            
+            if($this->is_checkout_page){
+                $this->emit('initialize_select_other_address', true);
+                $this->emit('initialize_billing_address', $address->key_token);
+
+                $this->emit('alert', [
+                    'type'    => 'success',
+                    'title'   => 'Successfully Added',
+                    'message' => 'Address Successfully Added and Selected.'
+                ]);
+            }else{
+                $this->emit('addresses_initialize', true);
+                $this->emit('alert', [
+                    'type'    => 'success',
+                    'title'   => 'Successfully Added',
+                    'message' => 'Address Successfully Added.'
+                ]);
+            }
         }else{
             DB::rollback();
             $this->emit('alert', [
