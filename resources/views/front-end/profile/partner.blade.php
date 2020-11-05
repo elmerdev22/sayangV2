@@ -36,69 +36,88 @@
     <!-- Main content -->
     <section class="content">
         <div class="container">
-            <div class="row ">
-                <div class="col-md-5 mr-5">
-                    <!-- Profile Image -->
-                    <div class="card card-widget widget-user-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-widget widget-user">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="p-4" id="seller-bg">
-                            <div class="widget-user-image">
-                                <img class="img-circle elevation-2 mr-3" style="height: 80px; width: auto;" src="https://upload.wikimedia.org/wikipedia/en/thumb/8/84/Jollibee_2011_logo.svg/1200px-Jollibee_2011_logo.svg.png" alt="User Avatar">
+                        <div class="widget-user-header text-white" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1aer_eK_rutTokxSeU5gTiW1q9eUKPvpTyw&usqp=CAU') center center;">
+                            {{-- <h3 class="text-right text-white-shadow">Jollibe Malolos</h3>
+                            <h5 class="widget-user-desc text-right">
+                                <button class="btn btn-warning btn-sm">
+                                    <span class="fas fa-plus"></span> Follow
+                                </button>
+                            </h5> --}}
+                        </div>
+                        <div class="widget-user-image">
+                            <img class="img-circle" style="width: auto; height: 100px;" src="https://images.summitmedia-digital.com/spotph/images/2019/03/19/chickenjoydelivery-1552988282.jpg" alt="Card image cap">
+
+                        </div>
+                        <div class="card-footer bg-white">
+                            
+                            <div class="row ">
+                                <div class="col-md-5 mr-5">
+                                    <!-- Profile Image -->
+                                    <div class="card">
+                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                        <div class="p-4">
+                                            <!-- /.widget-user-image -->
+                                            <h3>Jollibee Malolos</h3>
+                                            <button class="btn btn-warning btn-sm">
+                                                <span class="fas fa-plus"></span> Follow
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 pt-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-star"></span> 
+                                                <span class="text-muted">Ratings :</span>
+                                                <span class="text-warning">4.7</span>
+                                                <small>(344 rating)</small>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-store"></span>
+                                                <span class="text-muted">Products :</span>
+                                                <span class="text-warning">57</span> 
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-users"></span>
+                                                <span class="text-muted">Followers :</span>
+                                                <span class="text-warning">57</span> 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 pt-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-map-marker-alt"></span> 
+                                                <span class="text-muted">Address :</span>
+                                                Malolos, Bulacan
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-calendar"></span>
+                                                <span class="text-muted">Joined :</span>
+                                                January 01, 3001
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.widget-user-image -->
-                            <h3 class="text-white text-white-shadow">Jollibee Malolos</h3>
-                            <button class="btn btn-warning btn-sm">
-                                <span class="fas fa-plus"></span> Follow
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>
-                                <span class="fas fa-star"></span> 
-                                <span class="text-muted">Ratings :</span>
-                                <span class="text-warning">4.7</span>
-                                <small>(344 rating)</small>
-                            </label>
-                        </div>
-                        <div class="col-12">
-                            <label>
-                                <span class="fas fa-store"></span>
-                                <span class="text-muted">Products :</span>
-                                <span class="text-warning">57</span> 
-                            </label>
-                        </div>
-                        <div class="col-12">
-                            <label>
-                                <span class="fas fa-users"></span>
-                                <span class="text-muted">Followers :</span>
-                                <span class="text-warning">57</span> 
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>
-                                <span class="fas fa-map-marker-alt"></span> 
-                                <span class="text-muted">Address :</span>
-                                Malolos, Bulacan
-                            </label>
-                        </div>
-                        <div class="col-12">
-                            <label>
-                                <span class="fas fa-calendar"></span>
-                                <span class="text-muted">Joined :</span>
-                                January 01, 3001
-                            </label>
+                            <!-- /.row -->
                         </div>
                     </div>
                 </div>
             </div>
-            <hr>
             <div class="row">
                 <div class="col-12">
                     <nav class="w-100">

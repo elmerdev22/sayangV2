@@ -10,7 +10,10 @@
     </div>
 
     <a href="{{route('front-end.profile.partner.index', ['slug' => $product_post->product->partner->slug ])}}">
-        <p>{{ucfirst($product_post->product->partner->name)}} <span class="fas fa-star text-warning"></span> 4.5</p>
+        <p>{{ucfirst($product_post->product->partner->name)}}
+            <span class="fas fa-star text-warning"></span>
+            <small>(4.5)</small>
+        </p>
     </a>
     <p>{{nl2br($product_post->product->description)}}</p>
     <div class="bg-danger p-2 w-50 text-center">

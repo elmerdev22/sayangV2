@@ -149,10 +149,8 @@
                         </td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr class="bg-light">
+                    <td colspan="3"></td>
                     <td>
                         <div class="price-wrap"> 
                             <div class="price">

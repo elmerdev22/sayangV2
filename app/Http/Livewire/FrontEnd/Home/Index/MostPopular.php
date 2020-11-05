@@ -19,6 +19,7 @@ class MostPopular extends Component
         $filter['select'] = [
             'product_posts.*',
             'products.name as product_name',
+            'products.regular_price as regular_price',
             'products.partner_id',
             'products.slug as product_slug',
             'partners.name as partner_name'
