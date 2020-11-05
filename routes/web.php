@@ -58,6 +58,26 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             'uses'  => $c.'@all_ending_soon'
         ]);
         
+    });  
+
+    Route::group(['as' => 'help-centre.'], function (){
+
+        $c = 'HelpCentreController';
+        Route::get('/help-centre', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+        
+    });
+
+    Route::group(['as' => 'about-us.'], function (){
+
+        $c = 'AboutUsController';
+        Route::get('/about-us', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+        
     });
 
     Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){
