@@ -72,3 +72,24 @@
 </div>
 
 @endsection
+
+@section('js')
+    <script type="text/javascript">
+        @if(Session::has('check_out_item_alert'))
+            no_item_alert();
+        @endif
+        
+        function no_item_alert(){
+            Swal.fire({
+                title: 'No Item Selected.',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                Swal.close();
+            })
+        }
+    </script>
+@endsection
