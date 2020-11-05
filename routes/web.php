@@ -251,6 +251,17 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             ]);
             
         });
+
+        //My Cart
+        Route::group(['prefix' => 'check-out', 'as' => 'check-out.'], function (){
+			$c = 'CheckOutController';
+			
+			Route::get('/', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+            
+        });
     });
 });
 
@@ -404,6 +415,3 @@ Route::group(['prefix' => 'login', 'as' => 'login.', 'namespace' => 'Auth'], fun
     ]);
 });
 Auth::routes();
-
-
-Route::get('/checkout', 'FrontEnd\product\CheckoutController@index')->name('account.checkout');

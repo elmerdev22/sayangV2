@@ -514,6 +514,9 @@ input:checked + .slider:before {
 .text-capitalize{
   text-transform: capitalize;
 }
+.text-line-through{
+  text-decoration: line-through;
+}
 .block-center{
   display: block;
   margin-left: auto;
