@@ -44,7 +44,7 @@
                             <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
                                 <button class="btn btn-sm btn-dark item-btn">
                                 <span class="font-weight-bold">Buy Now</span><br>
-                                <small class="text-white item-info">Php: {{number_format($row->buy_now_price, 2)}}</small>
+                                <small class="text-white item-info">Php: {{number_format($row->buy_now_price, 2)}} | {{number_format( 1-($row->buy_now_price / $row->regular_price) , 0)}}% off</small>
                                 </button>
                             </a>
                         </div>
