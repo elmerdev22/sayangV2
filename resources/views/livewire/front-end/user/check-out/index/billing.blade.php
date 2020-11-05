@@ -25,6 +25,6 @@
     
     <div class="mb-3">
         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-select_other_address"><i class="fas fa-pen"></i> Select Other Address</button>
-        <button type="button" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Add New Address</button>
+        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-add_new_address"><i class="fas fa-plus"></i> Add New Address</button>
     </div>
 </div>

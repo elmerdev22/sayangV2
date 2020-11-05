@@ -22,11 +22,12 @@ class Billing extends Component
     public function address($key_token=null){
         
         $data = UserAccountAddress::with([
-            'philippine_barangay', 
-            'philippine_barangay.philippine_city', 
-            'philippine_barangay.philippine_city.philippine_province',
-            'philippine_barangay.philippine_city.philippine_province.philippine_region',
-        ])->where('user_account_id', $this->account->id);
+                'philippine_barangay', 
+                'philippine_barangay.philippine_city', 
+                'philippine_barangay.philippine_city.philippine_province',
+                'philippine_barangay.philippine_city.philippine_province.philippine_region',
+            ])
+            ->where('user_account_id', $this->account->id);
         
         if($key_token){
             $data = $data->where('key_token', $key_token);

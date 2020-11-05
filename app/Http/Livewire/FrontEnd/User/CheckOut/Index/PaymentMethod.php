@@ -6,8 +6,7 @@ use Livewire\Component;
 
 class PaymentMethod extends Component
 {
-    public function render()
-    {
+    public function render(){
         return view('livewire.front-end.user.check-out.index.payment-method');
     }
 }
