@@ -29,12 +29,12 @@
             @endif
             
             <li class="nav-item">
-              <a class="nav-link" href="{{-- {{url('/help-centre')}} --}}">Help Centre <small class="fas fa-question"></small> </a>
+              <a class="nav-link" href="{{route('front-end.help-centre.index')}}">Help Centre <small class="fas fa-question"></small> </a>
             </li>
 
             @if(Utility::top_nav_validate_auth_verify())
               <li class="nav-item">
-                <a class="nav-link" href="{{-- {{url('/about')}} --}}">About Us <small class="fas fa-info"></small> </a>
+                <a class="nav-link" href="{{route('front-end.about-us.index')}}">About Us <small class="fas fa-info"></small> </a>
               </li>
 
               <li class="nav-item">

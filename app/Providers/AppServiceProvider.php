@@ -14,6 +14,6 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(255);
     }
 }
