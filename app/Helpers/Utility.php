@@ -466,7 +466,7 @@ class Utility{
                     if($product_post->quantity > 0){
                         $response = 'active';
                     }else{
-                        $response = 'not available'; //or no quantity
+                        $response = 'sold out'; //or no quantity
                     }
                 }
             }

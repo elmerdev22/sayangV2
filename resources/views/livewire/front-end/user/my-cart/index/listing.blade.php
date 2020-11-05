@@ -4,8 +4,18 @@
             <tr class="border-bottom">
                 <th scope="col" width="10" class="text-center">
                     <span class="icheck-warning">
-                        <input type="checkbox" id="check_all">
-                        <label for="check_all"></label>
+                        <input type="checkbox" 
+                            @if($is_disabled_all) 
+                                disabled="true"
+                            @else 
+                                onclick="select_all_items()"
+                                id="check-all"
+                                @if($is_check_all)
+                                    checked="true"
+                                @endif
+                            @endif
+                        >
+                        <label for="check-all"></label>
                     </span>
                 </th>
                 <th scope="col">PRODUCTS</th>
@@ -19,8 +29,18 @@
                 <tr class="border">
                     <td colspan="1">
                         <span class="icheck-warning">
-                            <input type="checkbox" id="check_store-{{$key}}">
-                            <label for="check_store-{{$key}}"></label>
+                            <input type="checkbox"
+                                @if($row['is_disabled']) 
+                                    disabled="true"
+                                @else 
+                                    onclick="select_store_items('{{$key}}')"
+                                    id="check-store-{{$key}}"
+                                    @if($row['is_check_all'])
+                                        checked="true"
+                                    @endif
+                                @endif
+                            >
+                            <label for="check-store-{{$key}}"></label>
                         </span>
                     </td>
                     <td colspan="4">
@@ -31,7 +51,19 @@
                     <tr>
                         <td class="text-center">
                             <span class="icheck-warning">
-                                <input type="checkbox" id="check-{{$product_row['cart_key_token']}}" @if($product_row['post_status'] != 'active') disabled @endif>
+                                <input type="checkbox" 
+                                    @if($product_row['is_disabled']) 
+                                        disabled="true"
+                                    @else
+                                        @if($product_row['is_checkout'])
+                                            checked="true"
+                                        @endif
+                                        class="check-item check-store-{{$key}}" 
+                                        data-key_token="{{$product_row['cart_key_token']}}" 
+                                        id="check-{{$product_row['cart_key_token']}}" 
+                                        onclick="select_to_checkout_items()"
+                                    @endif
+                                >
                                 <label for="check-{{$product_row['cart_key_token']}}"></label>
                             </span>
                         </td>
@@ -63,7 +95,7 @@
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
                                     <button type="button" 
-                                        @if($product_row['post_status'] != 'active') 
+                                        @if($product_row['is_disabled']) 
                                             disabled="true" 
                                         @else
                                             onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
@@ -73,7 +105,7 @@
                                     ><span class="fas fa-minus"></span></button>
                                 </div>
                                 <input type="number" 
-                                    @if($product_row['post_status'] != 'active') 
+                                    @if($product_row['is_disabled']) 
                                         disabled="true" 
                                     @else
                                         onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
@@ -86,7 +118,7 @@
                                     >
                                 <div class="input-group-append">
                                     <button type="button" 
-                                        @if($product_row['post_status'] != 'active' || $product_row['selected_quantity'] == $product_row['current_quantity']) 
+                                        @if($product_row['is_disabled'] || $product_row['selected_quantity'] == $product_row['current_quantity']) 
                                             disabled="true" 
                                         @else
                                             onclick="quantity_update('{{$product_row['cart_key_token']}}')"
@@ -96,7 +128,7 @@
                                     ><span class="fas fa-plus"></span></button>
                                 </div>
                             </div>
-                            @if($product_row['post_status'] == 'active')
+                            @if(!$product_row['is_disabled'])
                                 <span>
                                     <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
                                 </span>
@@ -104,8 +136,12 @@
                         </td>
                         <td>
                             <div class="price-wrap"> 
-                                <div class="price">₱ {{number_format($product_row['total_price'], 2)}}</div> 
-                                <small class="text-muted"> ₱ {{number_format($product_row['buy_now_price'], 2)}} each </small> 
+                                <div class="price @if($product_row['is_disabled']) text-line-through @endif">
+                                    ₱ {{number_format($product_row['total_price'], 2)}}
+                                </div> 
+                                <small class="text-muted @if($product_row['is_disabled']) text-line-through @endif"> 
+                                    ₱ {{number_format($product_row['buy_now_price'], 2)}} each 
+                                </small> 
                             </div> <!-- price-wrap .// -->
                         </td>
                         <td class="text-right"> 
@@ -113,6 +149,24 @@
                         </td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class="price-wrap"> 
+                            <div class="price">
+                                @if($row['is_disabled']) 
+                                    ₱ 0.00
+                                @else
+                                    ₱ {{number_format($row['sub_total'], 2)}}
+                                @endif
+                            </div> 
+                            <small class="text-muted"> SUB-TOTAL </small> 
+                        </div> <!-- price-wrap .// -->
+                    </td>
+                    <td></td>
+                </tr>
             @empty
                 <tr>
                     <td colspan="5" class="text-center">Your Cart is Empty</td>
@@ -132,6 +186,54 @@
             quantityField('#quantity-'+key_token, '#btn-quantity-minus-'+key_token, '#btn-quantity-plus-'+key_token);
         });
     });
+
+    window.livewire.on('remove_card_listing_loader', param => {
+        var card_dom = $('#card-cart-listing');
+        card_loader(card_dom, 'hide');
+    });
+
+    function select_all_items(){
+        $(document).find('.check-item').each(function (){
+            $(this).prop('checked', true);
+        });
+
+        select_to_checkout_items();
+    }
+
+    function select_store_items(key_token){
+        var check_store_dom = $('.check-store-'+key_token);
+
+        check_store_dom.each(function (){
+            $(this).prop('checked', true);
+        });
+
+        select_to_checkout_items();
+    }
+
+    function select_to_checkout_items(){
+        var card_dom = $('#card-cart-listing');
+        card_loader(card_dom, 'show');
+        var cart_key_tokens = [];
+
+        $(document).find('.check-item').each(function (){
+            if($(this).is(':checked')){
+                if(typeof $(this).data('key_token') !== 'undefined') {
+                    var key_token = $(this).data('key_token'); 
+                    if(key_token != ''){
+                        cart_key_tokens.push(key_token);
+                    }
+                }
+            }
+        });
+
+        if(cart_key_tokens.length > 0){
+            @this.call('checkout_items', cart_key_tokens)
+        }else{
+            @this.call('reset_checkout_items')
+        }
+
+        count_down_datetime();
+    }
 
     function quantity_update(key_token, type='plus'){
         var is_continue = true;
@@ -172,6 +274,8 @@
                 @this.call('quantity_update', key_token, new_value);
             }
         }
+
+        count_down_datetime();
     }
 
     function count_down_datetime(){
@@ -204,6 +308,7 @@
                     onBeforeOpen      : () => {
                         Swal.showLoading();
                         @this.call('delete', key)
+                        count_down_datetime();
                     }
                 });
             }

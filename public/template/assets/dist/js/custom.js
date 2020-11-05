@@ -98,6 +98,16 @@ var qtyPlus = function qtyPlus(dom_field, interval=1){
 	}
 }
 
+var card_loader = function card_loader(dom, toggle='show'){
+    var loader = `<div class="sayang-custom-card-overlay overlay"><i class="fas fa-spinner fa-spin fa-2x"></i></div>`;
+
+    if(toggle == 'show'){
+        $(document).find(dom).append(loader);
+    }else if(toggle == 'hide'){
+        $(document).find(dom).find('.sayang-custom-card-overlay').remove();
+    }
+}
+
 $('.img-preloader').each(function () {
     $(this).on('load', function () {
         $(this).next('.img-loader-span').hide();
