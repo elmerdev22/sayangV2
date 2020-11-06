@@ -23,6 +23,8 @@
                     @livewire('front-end.user.check-out.index.billing')
                     <hr class="mb-4">
                     @livewire('front-end.user.check-out.index.payment-method')
+                    <hr class="mb-4">
+                    @livewire('front-end.user.check-out.index.continue-to-check-out')
                 </div>
             </div> <!-- card.// -->
         </main> <!-- col.// -->
@@ -32,17 +34,15 @@
 
             <form class="card p-2">
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Get a voucher?</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="" placeholder="Enter code here">
-                                <span class="input-group-append"> 
-                                <button class="btn btn-warning text-white">Apply</button>
-                                </span>
-                            </div>
+                    <div class="form-group">
+                        <label>Get a voucher?</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="" placeholder="Enter code here">
+                            <span class="input-group-append"> 
+                            <button type="button" class="btn btn-warning text-white">Apply</button>
+                            </span>
                         </div>
-                    </form>
+                    </div>
                 </div> <!-- card-body.// -->
             </form>
         </aside> <!-- col.// -->

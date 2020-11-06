@@ -476,4 +476,31 @@ class Utility{
         return $response;
     }
 
+    public static function cart_totals($user_account_id){
+        $carts = Cart::with(['product_post', 'product_post.product'])
+            ->where('user_account_id', $user_account_id)
+            ->where('is_checkout', true)
+            ->get();
+
+        $total_price          = 0.00;
+        $discount             = 0.00;
+        $total_items          = 0;
+        $total_quantity_items = 0;
+
+        foreach($carts as $row){
+            $post_status = self::product_post_status($row->product_post_id);
+            if($post_status == 'active'){
+                $total_price += $row->product_post->buy_now_price * $row->quantity;
+                $total_items++;
+                $total_quantity_items += $row->quantity;
+            }
+        }
+
+        return [
+            'total_price'          => $total_price,
+            'total_items'          => $total_items,
+            'total_quantity_items' => $total_quantity_items,
+            'total_discount'       => $discount
+        ];
+    }
 }

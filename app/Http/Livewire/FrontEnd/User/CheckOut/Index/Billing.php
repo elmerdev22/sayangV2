@@ -38,7 +38,7 @@ class Billing extends Component
         $this->row = $data->first();
         
         if($this->row){
-            $this->emit('set_billing_address_id', ['id' => $this->row->id]);
+            $this->emit('set_billing_address_id', $this->row->id);
         }else{
             $this->emit('set_billing_address_id', null);
         }
