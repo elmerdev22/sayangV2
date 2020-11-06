@@ -40,10 +40,19 @@
         <div class="modal-footer">
             <div class="text-right">
                 <button type="button" wire:loading.attr="disabled" wire:target="store" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
-                <button type="submit" wire:loading.attr="disabled" wire:target="store" class="btn btn-flat btn-sm btn-success">
-                    <i class="fas fa-check"></i> Add <span wire:loading wire:target="store"><i class="fas fa-spinner fa-spin"></i></span>
+                <button type="submit" wire:loading.attr="disabled" wire:target="store" class="btn btn-flat btn-sm btn-warning">
+                    <i class="fas fa-check"></i> Add @if($is_checkout_page) and Select @endif <span wire:loading wire:target="store"><i class="fas fa-spinner fa-spin"></i></span>
                 </button>
             </div>
         </div>
     </form>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    window.livewire.on('banks_initialize', param => {
+        $('#modal-add_bank').modal('hide');        
+        Swal.close();
+    });
+</script>
+@endpush

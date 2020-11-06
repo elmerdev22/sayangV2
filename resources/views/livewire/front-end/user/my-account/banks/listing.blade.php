@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-3">
                             <div>
-                                <span class="fas fa-building-o"></span> <strong>{{$row->bank->name}}</strong> 
+                                <span class="fas fa-building"></span> <strong>{{$row->bank->name}}</strong> 
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3">
