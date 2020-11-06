@@ -93,8 +93,6 @@
             <i class="fas fa-plus"></i> Add New Debit/Credit Card
         </button>
     @endif
-    <hr class="mb-4">
-    <button class="btn btn-warning btn-block" type="button" data-toggle="modal" data-target="#qrcode">Continue to checkout</button>
 </div>
 
 @push('scripts')
