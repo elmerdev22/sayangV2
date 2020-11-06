@@ -12,11 +12,12 @@ use DB;
 class Add extends Component
 {
     public $account, $card_holder, $card_no, $cvv, $is_default=false, $force_default;
-    public $expiration_month, $expiration_year, $years=[], $months=[];
+    public $expiration_month, $expiration_year, $years=[], $months=[], $is_checkout_page;
 
-    public function mount(){
-        $this->account = Utility::auth_user_account();
-        $exist_card    = UserAccountCreditCard::where('user_account_id', $this->account->id)->count();
+    public function mount($is_checkout_page=false){
+        $this->is_checkout_page = $is_checkout_page;
+        $this->account          = Utility::auth_user_account();
+        $exist_card             = UserAccountCreditCard::where('user_account_id', $this->account->id)->count();
 
         if($exist_card > 0){
             $this->force_default = false;
@@ -90,12 +91,22 @@ class Add extends Component
         if($response['success']){
             DB::commit();
             $this->reset(['force_default', 'cvv', 'card_no', 'card_holder', 'is_default']);
-            $this->emit('credit_card_initialize', true);
-    		$this->emit('alert', [
-                'type'    => 'success',
-                'title'   => 'Successfully Added',
-                'message' => 'Card Number Successfully Added.'
-            ]);
+            
+            $this->emit('credit_card_initialize', $user_account_card->key_token);
+            if($this->is_checkout_page){
+                $this->emit('alert', [
+                    'type'    => 'success',
+                    'title'   => 'Successfully Added',
+                    'message' => 'Card Number Successfully Added and Selected.'
+                ]);
+            }else{
+                $this->emit('alert', [
+                    'type'    => 'success',
+                    'title'   => 'Successfully Added',
+                    'message' => 'Card Number Successfully Added.'
+                ]);
+            }
+
         }else{
             DB::rollback();
             $this->emit('alert', [

@@ -18,7 +18,7 @@
     <div class="row">
         <main class="col-md-8">
             <h4 class="mb-3"><i class="fas fa-file-invoice"></i> Billing address</h4>
-            <div class="card card-sayang">
+            <div class="card card-sayang" id="card-billing">
                 <div class="card-body">
                     @livewire('front-end.user.check-out.index.billing')
                     <hr class="mb-4">
@@ -84,10 +84,41 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-add_bank" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Bank Account</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @livewire('front-end.user.my-account.banks.add', ['is_checkout_page' => true])
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-add_credit_card" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Debit/Credit Card</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @livewire('front-end.user.my-account.credit-card.add', ['is_checkout_page' => true])
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 
 @section('js')
-    <script type="text/javascript">
-        
-    </script>
+<script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 @endsection
