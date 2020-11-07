@@ -444,7 +444,7 @@ class Utility{
     }
 
     public static function is_date_expired($from, $to){
-        if(date('Y-m-d', strtotime($from)) > date('Y-m-d', strtotime($to))){
+        if(date('Y-m-d H:i:s', strtotime($from)) > date('Y-m-d H:i:s', strtotime($to))){
             return true;
         }else{
             return false;
@@ -463,6 +463,7 @@ class Utility{
                 $response = 'ended';
             }else{
                 $is_expired = self::is_date_expired($current_datetime, $product_post->date_end);
+
                 if($is_expired){
                     $response = 'pending';
                 }else{

@@ -5,7 +5,11 @@
         </div>
         
         <div class="col-lg-4">
-            <h3 class="my-2 text-danger float-right">{{number_format($product_post->quantity)}} LEFT!</h3>
+            <h3 class="my-2 text-danger float-right">
+                @if(!$force_disabled)
+                    {{number_format($product_post->quantity)}} LEFT!
+                @endif
+            </h3>
         </div>
     </div>
 
@@ -18,7 +22,13 @@
     <p>{{nl2br($product_post->product->description)}}</p>
     <div class="bg-danger p-2 w-50 text-center">
         <span class="fas fa-clock"></span> 
-        <span class="countdown">{{$component->datetime_format($product_post->date_end)}}</span>
+        <span class="countdown">
+            @if($force_disabled)
+                Ended
+            @else
+                {{$component->datetime_format($product_post->date_end)}}
+            @endif
+        </span>
     </div>
 </div>
 
@@ -32,7 +42,7 @@
     });
     $('.countdown').countdown({
         end: function() {
-            @this.call('render')
+            @this.call('force_disabled')
         }
     });
 </script>
