@@ -35,6 +35,7 @@
                                 @else 
                                     onclick="select_store_items('{{$key}}')"
                                     id="check-store-{{$key}}"
+                                    class="check-store"
                                     @if($row['is_check_all'])
                                         checked="true"
                                     @endif
@@ -212,9 +213,21 @@
     });
 
     function select_all_items(){
-        $(document).find('.check-item').each(function (){
-            $(this).prop('checked', true);
-        });
+        if($(document).find('#check-all').is(':checked')){
+            $(document).find('.check-item').each(function (){
+                $(this).prop('checked', true);
+            });
+            $(document).find('.check-store').each(function (){
+                $(this).prop('checked', true);
+            });
+        }else{
+            $(document).find('.check-item').each(function (){
+                $(this).prop('checked', false);
+            });
+            $(document).find('.check-store').each(function (){
+                $(this).prop('checked', false);
+            });
+        }
 
         select_to_checkout_items();
     }
@@ -222,9 +235,16 @@
     function select_store_items(key_token){
         var check_store_dom = $('.check-store-'+key_token);
 
-        check_store_dom.each(function (){
-            $(this).prop('checked', true);
-        });
+        if($('#check-store-'+key_token).is(':checked')){
+            check_store_dom.each(function (){
+                $(this).prop('checked', true);
+            });
+        }else{
+            check_store_dom.each(function (){
+                $(this).prop('checked', false);
+            });
+        }
+        
 
         select_to_checkout_items();
     }
