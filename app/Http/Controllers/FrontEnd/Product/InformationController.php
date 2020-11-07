@@ -32,16 +32,18 @@ class InformationController extends Controller
             $post_status == 'cancelled'
             )
         */
+        $trigger_place_bid = false;
+        $force_disabled    = false;
+
         if($post_status != 'active'){
-            abort(404);
+            $force_disabled = true;
         }
 
-        $trigger_place_bid = false;
         if(Session::has('product_purchase_type')){
             $trigger_place_bid = true;
         }
 
-    	return view('front-end.product.information', compact('product', 'trigger_place_bid'));
+    	return view('front-end.product.information', compact('product', 'trigger_place_bid', 'force_disabled'));
     }
 
     public function redirect($slug, $key_token, $type){

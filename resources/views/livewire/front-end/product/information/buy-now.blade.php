@@ -49,12 +49,12 @@
         @endif
     </div>
     @if($allow_purchase == 'allowed')
-        <div class="bg-warning py-1 px-2 mt-4">
+        <p class="mt-4">You save Php 40 (30% off)</p>
+        <div class="bg-warning py-1 px-2">
             <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
         </div>
     @endif
-    <!-- <p>You save Php 40 (30% off)</p> -->
-
+    
     <div class="card-footer bg-white">
         @if($allow_purchase == 'allowed')
             <div class="row">

@@ -14,8 +14,9 @@ class MainDetails extends Component
         'force_disabled' => 'force_disabled'
     ];
 
-    public function mount($product_post_id){
+    public function mount($product_post_id, $force_disabled){
         $this->product_post_id = $product_post_id;
+        $this->force_disabled  = $force_disabled;
         $this->initialize();
     }
 

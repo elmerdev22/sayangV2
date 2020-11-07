@@ -153,6 +153,10 @@ class Listing extends Component
         return $featured_photo;
     }
 
+    public function set_initialize_cart_checkout(){
+        $this->emit('initialize_cart_checkout', true);
+    }
+
     public function render(){
         return view('livewire.front-end.user.my-cart.index.listing');
     }

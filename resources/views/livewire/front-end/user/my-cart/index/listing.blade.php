@@ -194,7 +194,9 @@
     
     $('.countdown').countdown({
         end: function() {
+            @this.call('initialize')
             @this.call('render')
+            @this.call('set_initialize_cart_checkout')
         }
     });
 

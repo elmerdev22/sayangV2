@@ -6,9 +6,7 @@
         
         <div class="col-lg-4">
             <h3 class="my-2 text-danger float-right">
-                @if($force_disabled)
-                    Not Available
-                @else
+                @if(!$force_disabled)
                     {{number_format($product_post->quantity)}} LEFT!
                 @endif
             </h3>
