@@ -8,10 +8,23 @@ use App\Model\ProductPost;
 class MainDetails extends Component
 {
     public $product_post_id, $product_post;
+    public $force_disabled = false;
+
+    protected $listeners = [
+        'force_disabled' => 'force_disabled'
+    ];
 
     public function mount($product_post_id){
         $this->product_post_id = $product_post_id;
         $this->initialize();
+    }
+
+    public function force_disabled(){
+        if(!$this->force_disabled){
+            $this->emit('force_disabled', true);
+        }
+
+        $this->force_disabled = true;
     }
 
     public function initialize(){

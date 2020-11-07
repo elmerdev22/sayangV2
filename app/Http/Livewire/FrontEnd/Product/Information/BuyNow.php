@@ -12,6 +12,11 @@ class BuyNow extends Component
 
     public $product_post_id, $product_post;
     public $buy_now_price, $quantity, $current_quantity, $allow_purchase;
+    public $force_disabled = false;
+
+    protected $listeners = [
+        'force_disabled' => 'force_disabled'
+    ];
 
     public function mount($product_post_id){
         $product_post           = ProductPost::with(['product'])->findOrFail($product_post_id);
@@ -30,11 +35,25 @@ class BuyNow extends Component
         $this->calculate_buy_now_price();
     }
 
+    public function force_disabled(){
+        if(!$this->force_disabled){
+            $this->force_disabled = true;
+        }
+    }
+
     public function calculate_buy_now_price(){
+        if($this->force_disabled){
+            return false;
+        }
+
         $this->buy_now_price   = $this->product_post->buy_now_price * $this->quantity;
     }
 
     public function validate_quantity($preferred_quantity){
+        if($this->force_disabled){
+            return false;
+        }
+
         $this->initialize_current_quantity();
 
         if(!empty($this->product_post)){
@@ -76,6 +95,10 @@ class BuyNow extends Component
     }
 
     public function buy_now($update=false){
+        if($this->force_disabled){
+            return false;
+        }
+
         if($update){
             $this->update_cart(true);
         }else{
@@ -84,6 +107,10 @@ class BuyNow extends Component
     }
 
     public function add_to_cart($is_checkout=false){
+        if($this->force_disabled){
+            return false;
+        }
+
         if($this->allow_purchase == 'allowed'){
             if(!$this->check_cart_item()){
                 $quantity        = $this->quantity;
@@ -124,6 +151,10 @@ class BuyNow extends Component
     }
 
     public function update_cart($is_checkout=false){
+        if($this->force_disabled){
+            return false;
+        }
+
         if($this->check_cart_item()){
             $this->initialize_current_quantity();
 
