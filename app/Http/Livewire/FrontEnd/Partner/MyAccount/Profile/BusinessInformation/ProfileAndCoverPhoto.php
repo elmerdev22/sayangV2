@@ -18,7 +18,7 @@ class ProfileAndCoverPhoto extends Component
     public function mount(){
         $this->account         = Utility::auth_user_account();
         $this->old_store_photo = UploadUtility::account_photo($this->account->key_token , 'business-information/store-photo', 'store_photo');
-        $this->old_cover_photo = UploadUtility::account_photo($this->account->key_token , 'business-information/cover-photo', 'cover_photo');
+        $this->old_cover_photo = UploadUtility::account_photo($this->account->key_token , 'business-information/cover-photo', 'cover_photo', false);
     }
     public function render()
     {
