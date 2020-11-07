@@ -94,6 +94,18 @@ class BuyNow extends Component
         return view('livewire.front-end.product.information.buy-now', compact('component'));
     }
 
+    public function reset_checkouts_except($account_id, $cart_id){
+        $checkouts = Cart::where('id', '!=', $cart_id)
+            ->where('is_checkout', true)
+            ->where('user_account_id', $account_id)
+            ->get();
+        
+        foreach($checkouts as $row){
+            $row->is_checkout = false;
+            $row->save();
+        }
+    }
+
     public function buy_now($update=false){
         if($this->force_disabled){
             return false;
@@ -136,7 +148,8 @@ class BuyNow extends Component
                     ]);
                     
                     if($is_checkout){
-                        return redirect(route('front-end.user.my-cart.index'));
+                        $this->reset_checkouts_except($account->id, $cart->id);
+                        return redirect(route('front-end.user.check-out.index'));
                     }
                 }else{
                     $this->emit('alert', [
@@ -185,7 +198,8 @@ class BuyNow extends Component
             ]);
 
             if($is_checkout){
-                return redirect(route('front-end.user.my-cart.index'));   
+                $this->reset_checkouts_except($account->id, $cart->id);
+                return redirect(route('front-end.user.check-out.index'));   
             }
         }
     }
