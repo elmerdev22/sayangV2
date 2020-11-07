@@ -55,6 +55,9 @@ class PaymentMethod extends Component
                     'payment_method'    => $this->payment_method,
                     'payment_key_token' => $this->payment_key_token
                 ]);
+            }else{
+                $this->payment_key_token = null;
+                $this->emit('set_payment_method', []);
             }
         }
     }

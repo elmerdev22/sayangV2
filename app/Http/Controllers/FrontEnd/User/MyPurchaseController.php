@@ -11,6 +11,7 @@ class MyPurchaseController extends Controller
     public function list(){
         return view('front-end.user.my-purchase.list');
     }
+    
     public function track(){
         return view('front-end.user.my-purchase.track');
     }

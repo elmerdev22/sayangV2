@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Mail\VerificationCheck as MailVerificationCheck;
 use App\Model\Cart;
+use App\Model\Billing;
+use App\Model\Order;
 use App\Model\Partner;
 use App\Model\User;
 use App\Model\UserAdmin;
@@ -13,6 +15,7 @@ use App\Model\Product;
 use App\Model\ProductPost;
 use App\Model\ProductSubCategory;
 use Carbon\Carbon;
+use UploadUtility;
 use Schema;
 use Mail;
 use Auth;
@@ -476,31 +479,133 @@ class Utility{
         return $response;
     }
 
-    public static function cart_totals($user_account_id){
-        $carts = Cart::with(['product_post', 'product_post.product'])
-            ->where('user_account_id', $user_account_id)
-            ->where('is_checkout', true)
-            ->get();
+    public static function cart($user_account_id, $is_checkout=false){
+        $carts = Cart::with(['product_post', 'product_post.product', 'product_post.product.partner'])
+                ->where('user_account_id', $user_account_id);
 
-        $total_price          = 0.00;
+        if($is_checkout){
+            $carts = $carts->whereHas('product_post', function($query){
+                    $query->where('status', 'active');
+                })
+                ->where('is_checkout', true);
+        }
+        
+        $carts    = $carts->get();
+
+        $overall_total_price  = 0.00;
         $discount             = 0.00;
         $total_items          = 0;
         $total_quantity_items = 0;
+        $products             = [];
+        $data                 = [];
 
         foreach($carts as $row){
-            $post_status = self::product_post_status($row->product_post_id);
-            if($post_status == 'active'){
-                $total_price += $row->product_post->buy_now_price * $row->quantity;
-                $total_items++;
-                $total_quantity_items += $row->quantity;
+            $total_items++;
+            $is_new                = true;
+            $partner_id            = $row->product_post->product->partner->id;
+            $product_id            = $row->product_post->product->id;
+            $date_start            = $row->product_post->date_start;
+            $date_end              = $row->product_post->date_end;
+            $buy_now_price         = $row->product_post->buy_now_price;
+            $selected_quantity     = $row->quantity;
+            $total_quantity_items += $selected_quantity;
+            $total_price           = $selected_quantity * $buy_now_price;
+            $overall_total_price  += $total_price;
+            $insert                = [];
+            $insert                = [
+                'partner_id'   => $partner_id,
+                'partner_name' => $row->product_post->product->partner->name,
+                'products'     => []
+            ];
+
+            $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token);
+            $post_status    = self::product_post_status($row->product_post_id);
+            $is_disabled    = false;
+            
+            if($post_status != 'active'){
+                $is_disabled = true;
+            }
+
+            $product = [
+                'product_id'             => $product_id,
+                'product_post_id'        => $row->product_post->id,
+                'name'                   => $row->product_post->product->name,
+                'is_checkout'            => $row->is_checkout,
+                'is_disabled'            => $is_disabled,
+                'featured_photo'         => $featured_photo[0]->getFullUrl('thumb'),
+                'total_price'            => $total_price,
+                'regular_price'          => $row->product_post->product->regular_price,
+                'product_post_key_token' => $row->product_post->key_token,
+                'product_slug'           => $row->product_post->product->slug,
+                'buy_now_price'          => $buy_now_price,
+                'lowest_price'           => $row->product_post->lowest_price,
+                'date_start'             => $date_start,
+                'date_end'               => $date_end,
+                'current_quantity'       => $row->product_post->quantity,
+                'selected_quantity'      => $selected_quantity == 0 ? 1 : $selected_quantity,
+                'product_post_id'        => $row->product_post_id,
+                'cart_id'                => $row->id,
+                'cart_key_token'         => $row->key_token,
+                'post_status'            => $post_status,
+            ];
+
+            $insert['products'][] = $product;
+            $products[] = $product;
+
+            if(!empty($data)){
+                foreach($data as $exist_key => $exist_row){
+                    if($exist_row['partner_id'] == $partner_id){
+                        $is_new     = false;
+                        $insert_key = $exist_key;
+                        break;
+                    }
+                }
+            }else{
+                $is_new = true;
+            }
+
+            if($is_new){
+                $data[] = $insert;
+            }else{
+                $data[$insert_key]['products'][] = $product;
             }
         }
 
         return [
-            'total_price'          => $total_price,
-            'total_items'          => $total_items,
-            'total_quantity_items' => $total_quantity_items,
-            'total_discount'       => $discount
+            'total'                => $overall_total_price, //Not discounted TBA
+            'total_price'          => $overall_total_price, //discounted
+            'total_items'          => $total_items, //Total Rows of Items
+            'total_quantity_items' => $total_quantity_items, //Total sum of quantities
+            'total_discount'       => $discount, //Total Discounts per item quantity
+            'products'             => $products, //Array for list of products
+            'partner_products'     => $data //Array for list of products with partner details
         ];
     }
+
+    public static function generate_billing_no(){
+        do{
+            $continue     = true;
+            $generated_id = 'BN'.date('ymd').'0'.rand(1000,9999);
+            $check        = Billing::where('billing_no', $generated_id)->count();
+            if($check == 0){
+                $continue = false;
+            }
+        }while($continue);
+
+        return $generated_id;
+    }
+
+    public static function generate_order_no(){
+        do{
+            $continue     = true;
+            $generated_id = 'PR'.date('ymd').'0'.rand(1000,9999);
+            $check        = Order::where('order_no', $generated_id)->count();
+            if($check == 0){
+                $continue = false;
+            }
+        }while($continue);
+
+        return $generated_id;
+    }
+    
 }

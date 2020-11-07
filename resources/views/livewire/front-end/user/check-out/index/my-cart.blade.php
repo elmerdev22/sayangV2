@@ -9,10 +9,10 @@
         @foreach($data as $row)
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
-                    <h6 class="my-0">{{ucfirst($row->product_post->product->name)}}</h6>
-                    <small class="text-muted">₱ {{number_format($row->product_post->buy_now_price, 2)}} x {{number_format($row->quantity,0)}}</small>
+                    <h6 class="my-0">{{ucfirst($row['name'])}}</h6>
+                    <small class="text-muted">₱ {{number_format($row['buy_now_price'], 2)}} x {{number_format($row['selected_quantity'],0)}}</small>
                 </div>
-                <span>₱ {{number_format($row->product_post->buy_now_price * $row->quantity, 2)}}</span>
+                <span>₱ {{number_format($row['total_price'], 2)}}</span>
             </li>
         @endforeach
         
@@ -25,7 +25,7 @@
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>TOTAL (PHP)</span>
-            <strong>₱ {{number_format($total, 2)}}</strong>
+            <strong>₱ {{number_format($total_price, 2)}}</strong>
         </li>
     </ul>
 </div>
