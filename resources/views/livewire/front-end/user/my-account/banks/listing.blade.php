@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             @if(!$row->is_default)
-                                <button type="button" class="btn btn-sm btn-default" onclick="set_default('{{$row->key_token}}')">Set Default</button>
+                                <button type="button" class="btn btn-sm btn-default" onclick="set_default_bank('{{$row->key_token}}')">Set Default</button>
                             @else
                                 <button type="button" class="btn btn-sm btn-info" disabled="true">
                                     &nbsp;&nbsp; Default &nbsp;&nbsp;
@@ -81,7 +81,7 @@
         })
     }
 
-    function set_default(key_token){
+    function set_default_bank(key_token){
         Swal.fire({
             title: 'Are you sure do you want to set this as default bank account?',
             // text: "You won't be able to revert this!",
