@@ -76,7 +76,9 @@ class ContinueToCheckOut extends Component
     }
 
     public function proceed(){
-        if(!empty($this->payment_method) || !empty($this->billing_address_id)){
+        $payment_method = $this->payment_method;
+
+        if(!empty($payment_method) && !empty($this->billing_address_id)){
             $cart = Utility::cart($this->account->id, true);
 
             if($this->temporary_account_balance >= $cart['total_price']){
@@ -89,7 +91,6 @@ class ContinueToCheckOut extends Component
                 try{
                     $product_post_ids = [];
 
-                    $payment_method = $this->payment_method;
                     if($payment_method['payment_method'] == 'online_payment'){
                         $payment = UserAccountBank::where('user_account_id', $this->account->id);
                     }else{
@@ -119,8 +120,8 @@ class ContinueToCheckOut extends Component
                         $billing->email = auth()->user()->email;
                     }
 
-                    $billing->address  = $address->address;
-                    $billing->zip_code = $address->zip_code;
+                    $billing->address   = $address->address;
+                    $billing->zip_code  = $address->zip_code;
                     $billing->key_token = Utility::generate_table_token('Billing');
                     
                     if($billing->save()){
@@ -144,11 +145,29 @@ class ContinueToCheckOut extends Component
                                         $product_post = ProductPost::find($order_item_row['product_post_id']);
                                         
                                         if($product_post->quantity >= $order_item_row['selected_quantity']){
-                                            $product_post->quantity = abs($product_post->quantity - $order_item_row['selected_quantity']);
+                                            $remaining_quantity     = abs($product_post->quantity - $order_item_row['selected_quantity']);
+                                            $product_post->quantity = $remaining_quantity;
+
                                             if($product_post->save()){
                                                 $product_post_cart = Cart::find($order_item_row['cart_id']);
-                                                
+
                                                 if($product_post_cart->delete()){
+                                                    $cart_update_quantity = Cart::where('id', '!=', $order_item_row['cart_id'])
+                                                        ->where('product_post_id', $product_post->id)
+                                                        ->get();
+
+                                                    foreach($cart_update_quantity as $cart_update_quantity_row){
+                                                        if($remaining_quantity == 0){
+                                                            $cart_update_quantity_row->quantity = 0;
+                                                        }else{
+                                                            if($remaining_quantity <= $cart_update_quantity_row->quantity){
+                                                                $cart_update_quantity_row->quantity = $remaining_quantity;
+                                                            }
+                                                        }
+
+                                                        $cart_update_quantity_row->save();
+                                                    }
+
                                                     $product_post_ids[] = $order_item_row['product_post_id'];
                                                     continue;
                                                 }else{
@@ -206,7 +225,7 @@ class ContinueToCheckOut extends Component
                         $response['success'] = true;
                     }
                 }catch(\Exception $e){
-                    dd($e);
+                    // dd($e);
                     $response['success'] = false;
                 }
 
@@ -217,7 +236,7 @@ class ContinueToCheckOut extends Component
                     $this->emit('alert_link', [
                         'type'     => 'success',
                         'title'    => 'Order Successfully Processed',
-                        'redirect' => url('user/purchase/list')
+                        'redirect' => route('front-end.user.my-purchase.list')
                     ]);
                 }else{
                     DB::rollback();
