@@ -12,20 +12,9 @@ class CheckOutController extends Controller
 {
 
     public function index(){
-        $carts = Cart::with(['product_post', 'product_post.product'])
-            ->where('user_account_id', Utility::auth_user_account()->id)
-            ->where('is_checkout', true)
-            ->get();
+        $cart = Utility::cart(Utility::auth_user_account()->id, true);
 
-        $total_items = 0;
-        foreach($carts as $row){
-            $post_status = Utility::product_post_status($row->product_post_id);
-            if($post_status == 'active'){
-                $total_items++;
-            }
-        }
-
-        if($total_items <= 0){
+        if($cart['total_items'] <= 0){
             Session::flash('check_out_item_alert', true);
             return redirect(route('front-end.user.my-cart.index'))->send();
         }
