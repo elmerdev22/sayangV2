@@ -504,6 +504,16 @@ class Utility{
         $data                 = [];
 
         foreach($carts as $row){
+            $post_status    = self::product_post_status($row->product_post_id);
+            $is_disabled    = false;
+            
+            if($post_status != 'active'){
+                $is_disabled = true;
+                if($is_checkout){
+                    continue;
+                }
+            }
+
             $total_items++;
             $is_new                = true;
             $partner_id            = $row->product_post->product->partner->id;
@@ -523,12 +533,6 @@ class Utility{
             ];
 
             $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token);
-            $post_status    = self::product_post_status($row->product_post_id);
-            $is_disabled    = false;
-            
-            if($post_status != 'active'){
-                $is_disabled = true;
-            }
 
             $product = [
                 'product_id'             => $product_id,
