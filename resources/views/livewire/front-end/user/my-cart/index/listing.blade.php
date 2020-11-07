@@ -79,13 +79,19 @@
                                     </a>
                                 </div>
                                 <div class="col-md-10 text-left">
-                                    <p class="title mb-0">{{$product_row['name']}}</p>
+                                    <a href="{{route('front-end.product.information.redirect', [
+                                            'slug'      => $product_row['product_slug'],
+                                            'key_token' => $product_row['product_post_key_token'],
+                                            'type'      => 'buy_now'
+                                        ])}}">
+                                        <p class="title mb-0">{{$product_row['name']}}</p>
+                                    </a>
                                     <small class="bg-danger p-1"> 
                                         <span class="fas fa-clock"></span> 
                                         @if($product_row['post_status'] != 'active')
                                             <span>{{ucfirst($product_row['post_status'])}}</span> 
                                         @else
-                                            <span class="countdown-timer" id="countdown-timer-{{$product_row['cart_key_token']}}" data-date_end="{{$product_row['date_end']}}">loading...</span> 
+                                            <span class="countdown">{{$product_row['date_end']}}</span>
                                         @endif
                                     </small> 
                                 </div>
@@ -176,8 +182,23 @@
 
 @push('scripts')
 <script type="text/javascript">
+    
+    window.livewire.hook('beforeDomUpdate', () => {
+        $('.countdown').countdown("destroy");
+    });
+    
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.countdown').countdown("start");
+    });
+    
+    $('.countdown').countdown({
+        end: function() {
+            @this.call('render')
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function (event) {
-        count_down_datetime();
+        // count_down_datetime();
 
         $(document).find('.quantity').each(function (){
             var key_token = $(this).data('key_token');
@@ -230,7 +251,7 @@
             @this.call('reset_checkout_items')
         }
 
-        count_down_datetime();
+        // count_down_datetime();
     }
 
     function quantity_update(key_token, type='plus'){
@@ -273,17 +294,17 @@
             }
         }
 
-        count_down_datetime();
+        // count_down_datetime();
     }
 
-    function count_down_datetime(){
-        $('.countdown-timer').each(function () {
-            var date_end   = $(this).data('date_end');
-            var element_id = $(this).attr('id');
+    // function count_down_datetime(){
+    //     $('.countdown-timer').each(function () {
+    //         var date_end   = $(this).data('date_end');
+    //         var element_id = $(this).attr('id');
 
-            count_down_timer(date_end, element_id);
-        });
-    }
+    //         count_down_timer(date_end, element_id);
+    //     });
+    // }
 
     function delete_item(key){
         Swal.fire({
