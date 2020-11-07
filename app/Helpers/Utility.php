@@ -462,10 +462,13 @@ class Utility{
             }else if($product_post->status == 'done'){
                 $response = 'ended';
             }else{
-                $is_expired = self::is_date_expired($current_datetime, $product_post->date_end);
+                $is_date_end_expired   = self::is_date_expired($current_datetime, $product_post->date_end);
+                $is_date_start_expired = self::is_date_expired($current_datetime, $product_post->date_start);
 
-                if($is_expired){
+                if(!$is_date_start_expired){
                     $response = 'pending';
+                }else if($is_date_end_expired){
+                    $response = 'ended';
                 }else{
                     if($product_post->quantity > 0){
                         $response = 'active';
