@@ -31,6 +31,8 @@ class EndingSoon extends Component
             'field_to'   => 'product_posts.date_end',
             'date'       => $date_time
         ];
+        
+        $filter['order_by'] = 'product_posts.date_end asc';
 
         return QueryUtility::product_posts($filter)->paginate($this->limit);
     }

@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="card card-widget widget-user">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header text-white" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1aer_eK_rutTokxSeU5gTiW1q9eUKPvpTyw&usqp=CAU') center center;">
+                        <div class="widget-user-header text-white" style="background: url('https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/banners/1.jpg') center center;">
                             {{-- <h3 class="text-right text-white-shadow">Jollibe Malolos</h3>
                             <h5 class="widget-user-desc text-right">
                                 <button class="btn btn-warning btn-sm">

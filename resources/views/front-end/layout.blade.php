@@ -110,11 +110,14 @@
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
     <!-- Preloader -->
     <script src="{{asset('template/assets/dist/js/preloader.js')}}"></script>
-     <!-- Admin lte -->
+    <!-- Admin lte -->
      <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
+     <!-- Pusher JS -->
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- Animate -->
     <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
+    <!-- Countdown JS -->
+    <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
     <!-- Custom JS -->
     <script src="{{asset('template/assets/dist/js/custom.js')}}"></script>
     <!-- end of to be removed packages -->

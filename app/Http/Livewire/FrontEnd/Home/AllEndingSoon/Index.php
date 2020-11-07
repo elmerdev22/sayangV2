@@ -26,6 +26,7 @@ class Index extends Component
             'partners.name as partner_name'
         ];
         $filter['where']['product_posts.status'] = 'active';
+        
         $date_time = date('Y-m-d H:i:s');
 
         $filter['date_range_two_field'][] = [
@@ -33,6 +34,8 @@ class Index extends Component
             'field_to'   => 'product_posts.date_end',
             'date'       => $date_time
         ];
+
+        $filter['order_by'] = 'product_posts.date_end asc';
 
         return QueryUtility::product_posts($filter)->paginate($this->limit);
     }

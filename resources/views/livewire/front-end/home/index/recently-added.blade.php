@@ -14,7 +14,7 @@
                     <span class="ends-in">
                         <div class="countdown text-white">
                             <span class="fas fa-clock"></span>
-                            <span class="countdown-timer-ra" id="countdown-timer-{{$row->key_token}}" data-date_end="{{$component->datetime_format($row->date_end)}}">loading...</span>
+                            <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
                         </div>
                     </span>
                     <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
@@ -75,17 +75,16 @@
 
 @push('scripts')
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function (event) {
-        count_down_datetime();
+    window.livewire.hook('beforeDomUpdate', () => {
+        $('.countdown').countdown("destroy");
     });
-
-    function count_down_datetime(){
-        $('.countdown-timer').each(function () {
-            var date_end   = $(this).data('date_end');
-            var element_id = $(this).attr('id');
-
-            count_down_timer(date_end, element_id);
-        });
-    }
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.countdown').countdown("start");
+    });
+    $('.countdown').countdown({
+        end: function() {
+            @this.call('render')
+        }
+    });
 </script>
 @endpush

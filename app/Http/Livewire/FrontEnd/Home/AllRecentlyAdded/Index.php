@@ -34,6 +34,8 @@ class Index extends Component
             'date'       => $date_time
         ];
 
+        $filter['order_by'] = 'product_posts.created_at desc';
+        
         return QueryUtility::product_posts($filter)->paginate($this->limit);
     }
 
