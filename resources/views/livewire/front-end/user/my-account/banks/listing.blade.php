@@ -30,7 +30,7 @@
                             <!-- <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')">
                                 <i class="fas fa-pen"></i>
                             </button> -->
-                            <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data('{{$row->key_token}}')">
+                            <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data_bank('{{$row->key_token}}')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -54,7 +54,7 @@
         $('#modal-add_bank').modal('hide');
     });
 
-    function delete_data(key_token){
+    function delete_data_bank(key_token){
         Swal.fire({
             title: 'Are you sure do you want to delete this bank account?',
             text: "You won't be able to revert this!",
