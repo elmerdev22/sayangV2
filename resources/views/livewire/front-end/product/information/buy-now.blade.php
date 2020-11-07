@@ -11,11 +11,11 @@
             <div class="col-md-5">
                 <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-default" id="btn-quantity-minus" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
+                        <button type="button" wire:loading.attr="disabled" wire:target="buy_now, add_to_cart, update_cart" class="btn btn-default" id="btn-quantity-minus" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
                     </div>
-                    <input type="number" class="form-control form-control-sm text-center input-number-remove-arrow" id="quantity" min="1" max="{{$current_quantity}}">
+                    <input type="number" wire:loading.attr="readonly" wire:target="buy_now, add_to_cart, update_cart" class="form-control form-control-sm text-center input-number-remove-arrow" id="quantity" min="1" max="{{$current_quantity}}">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="btn-quantity-plus" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
+                        <button type="button" wire:loading.attr="disabled" wire:target="buy_now, add_to_cart, update_cart" class="btn btn-default" id="btn-quantity-plus" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                     </div>
                 </div>
             </div>
@@ -42,12 +42,23 @@
                         @else 
                             wire:click="add_to_cart()"
                         @endif  
-                        wire:target="add_to_cart, update_cart" wire:loading.attr="disabled">
+                        wire:target="buy_now, add_to_cart, update_cart" wire:loading.attr="disabled">
                         <span class="fas fa-shopping-cart"></span> Add to Cart <span wire:loading wire:target="add_to_cart, update_cart" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
                 <div class="col-lg-6 col-md-12 p-1">
-                    <button type="button" class="btn btn-default w-100"><span class="fas fa-shopping-basket"></span> Buy Now</button>
+                    <button type="button" 
+                        @if($component->check_cart_item()) 
+                            wire:click="buy_now(true)"
+                        @else 
+                            wire:click="buy_now()"
+                        @endif
+                        class="btn btn-default w-100" 
+                        wire:loading.attr="disabled" 
+                        wire:target="buy_now, add_to_cart, update_cart"
+                        >
+                        <span class="fas fa-shopping-basket"></span> Buy Now <span wire:loading wire:target="buy_now" class="fas fa-spinner fa-spin"></span>
+                    </button>
                 </div>
             </div>
         @elseif($allow_purchase == 'login')
