@@ -19,7 +19,7 @@ class ProfilePicture extends Component
     
     public function initialize(){
         $this->account   = UserAccount::where('user_id', $this->auth->id)->firstOrFail();
-        $this->photo_url = UploadUtility::profile_picture($this->account->key_token);
+        $this->photo_url = UploadUtility::account_photo($this->account->key_token, 'profile-picture', 'profile');
     }
 
     public function render(){

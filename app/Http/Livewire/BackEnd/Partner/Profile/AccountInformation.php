@@ -17,7 +17,7 @@ class AccountInformation extends Component
 	];
 
 	public function mount($key_token){
-        $this->photo_url = UploadUtility::profile_picture($key_token);
+        $this->photo_url = UploadUtility::account_photo($key_token, 'account-information/profile-picture', 'profile');
         $this->data      = UserAccount::with(['user', 'partner'])
 					->where('key_token', $key_token)
 					->firstOrFail();
