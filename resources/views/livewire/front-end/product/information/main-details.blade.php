@@ -17,20 +17,23 @@
     </a>
     <p>{{nl2br($product_post->product->description)}}</p>
     <div class="bg-danger p-2 w-50 text-center">
-        <span class="fas fa-clock"></span> <span id="countdown-timer" data-date_end="{{$component->datetime_format($product_post->date_end)}}">loading...</span>
+        <span class="fas fa-clock"></span> 
+        <span class="countdown">{{$component->datetime_format($product_post->date_end)}}</span>
     </div>
 </div>
 
 @push('scripts')
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function (event) {
-        count_down_datetime();
+    window.livewire.hook('beforeDomUpdate', () => {
+        $('.countdown').countdown("destroy");
     });
-
-    function count_down_datetime(){
-        var date_end   = $('#countdown-timer').data('date_end');
-        var element_id = 'countdown-timer';
-        count_down_timer(date_end, element_id);
-    }
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.countdown').countdown("start");
+    });
+    $('.countdown').countdown({
+        end: function() {
+            @this.call('render')
+        }
+    });
 </script>
 @endpush

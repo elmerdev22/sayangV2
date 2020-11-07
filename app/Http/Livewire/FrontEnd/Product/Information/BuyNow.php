@@ -95,7 +95,7 @@ class BuyNow extends Component
                         'type'              => 'success',
                         'title'             => 'Successfully Added',
                         'message'           => 'Item successfully added to cart. <br><br>',
-                        'timer'             => 3000,
+                        'timer'             => 1700,
                         'showConfirmButton' => false
                     ]);
                 }else{
@@ -136,7 +136,7 @@ class BuyNow extends Component
                 'type'              => 'success',
                 'title'             => 'Successfully Added',
                 'message'           => 'Item successfully added to cart. <br><br>',
-                'timer'             => 3000,
+                'timer'             => 1700,
                 'showConfirmButton' => false
             ]);
         }
