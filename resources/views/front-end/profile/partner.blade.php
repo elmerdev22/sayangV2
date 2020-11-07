@@ -55,20 +55,16 @@
                         <div class="card-footer bg-white">
                             
                             <div class="row ">
-                                <div class="col-md-5 mr-5">
-                                    <!-- Profile Image -->
-                                    <div class="card">
-                                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                                        <div class="p-4">
-                                            <!-- /.widget-user-image -->
-                                            <h3>Jollibee Malolos</h3>
-                                            <button class="btn btn-warning btn-sm">
-                                                <span class="fas fa-plus"></span> Follow
-                                            </button>
-                                        </div>
+                                <div class="col-md-5">
+                                    <div class="p-4">
+                                        <!-- /.widget-user-image -->
+                                        <h3>Jollibee Malolos</h3>
+                                        <button class="btn btn-warning btn-sm">
+                                            <span class="fas fa-plus"></span> Follow
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="col-md-3 pt-3">
+                                <div class="col-md-4 pt-3">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>
