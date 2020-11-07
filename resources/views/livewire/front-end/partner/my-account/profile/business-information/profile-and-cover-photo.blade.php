@@ -4,11 +4,7 @@
             
             <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                @if ($cover_photo)
-                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? $cover_photo->temporaryUrl() : 'https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/banners/1.jpg'}}'); background-repeat: no-repeat; background-size: cover;">
-                @else
-                <div class="widget-user-header text-white" style="background: url('{{ $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover">
-                @endif
+                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? $cover_photo->temporaryUrl() : $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
                     <h3 class="widget-user-desc text-right">
                         @if ($cover_photo)
                             <button class="btn btn-warning btn-sm" wire:click="update_cover_photo">
@@ -20,7 +16,7 @@
                                 <span wire:loading wire:target="cancel_upload_cover" class="fas fa-spinner fa-spin"></span>
                             </button>
                         @endif  
-                        <div class="form-control upload-btn-wrapper btn btn-default" style="width: auto;">
+                        <div class="form-control upload-btn-wrapper btn btn-default btn-sm" style="width: auto; height: 30px;">
                             <span class="fas fa-edit"></span> Cover Photo <span wire:loading wire:target="cover_photo" class="fas fa-spinner fa-spin"></span>
                             <input type="file" class="upload-btn form-control-file @error('cover_photo') is-invalid @enderror" wire:model="cover_photo" accept="image/*" />
                         </div>

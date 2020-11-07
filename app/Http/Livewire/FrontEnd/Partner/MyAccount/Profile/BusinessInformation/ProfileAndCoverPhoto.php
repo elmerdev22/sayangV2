@@ -39,7 +39,7 @@ class ProfileAndCoverPhoto extends Component
 
         try{
 
-            $collection = $this->account->key_token.'/busiess-information/store-photo';
+            $collection = $this->account->key_token.'/business-information/store-photo';
             $account    = UserAccount::where('key_token', $this->account->key_token)->firstOrFail();
             $account->clearMediaCollection($collection);
             $account->addMedia($photo)->usingFileName($file_name)->toMediaCollection($collection);
@@ -85,7 +85,7 @@ class ProfileAndCoverPhoto extends Component
 
         try{
 
-            $collection = $this->account->key_token.'/busiess-information/cover-photo';
+            $collection = $this->account->key_token.'/business-information/cover-photo';
             $account    = UserAccount::where('key_token', $this->account->key_token)->firstOrFail();
             $account->clearMediaCollection($collection);
             $account->addMedia($photo)->usingFileName($file_name)->toMediaCollection($collection);
