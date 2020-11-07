@@ -75,7 +75,15 @@ class BuyNow extends Component
         return view('livewire.front-end.product.information.buy-now', compact('component'));
     }
 
-    public function add_to_cart(){
+    public function buy_now($update=false){
+        if($update){
+            $this->update_cart(true);
+        }else{
+            $this->add_to_cart(true);
+        }
+    }
+
+    public function add_to_cart($is_checkout=false){
         if($this->allow_purchase == 'allowed'){
             if(!$this->check_cart_item()){
                 $quantity        = $this->quantity;
@@ -87,6 +95,7 @@ class BuyNow extends Component
                 $cart->product_post_id = $product_post_id;
                 $cart->quantity        = $quantity;
                 $cart->key_token       = Utility::generate_table_token('Cart');
+                $cart->is_checkout     = $is_checkout;
 
                 if($cart->save()){
                     $total_item = Utility::total_cart_item();
@@ -98,6 +107,10 @@ class BuyNow extends Component
                         'timer'             => 1700,
                         'showConfirmButton' => false
                     ]);
+                    
+                    if($is_checkout){
+                        return redirect(route('front-end.user.my-cart.index'));
+                    }
                 }else{
                     $this->emit('alert', [
                         'type'     => 'error',
@@ -110,7 +123,7 @@ class BuyNow extends Component
         }
     }
 
-    public function update_cart(){
+    public function update_cart($is_checkout=false){
         if($this->check_cart_item()){
             $this->initialize_current_quantity();
 
@@ -139,6 +152,10 @@ class BuyNow extends Component
                 'timer'             => 1700,
                 'showConfirmButton' => false
             ]);
+
+            if($is_checkout){
+                return redirect(route('front-end.user.my-cart.index'));   
+            }
         }
     }
 }
