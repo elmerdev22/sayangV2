@@ -1,8 +1,8 @@
 <div>
     <div class="row">
         <div class="col-md-12">            
-            <h4>Partner Information
-                <button class="btn btn-default btn-sm">
+            <h4>Business Information
+                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#business_information_edit">
                     <span class="fas fa-edit"></span>
                 </button>
             </h4>
@@ -67,6 +67,44 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Business Information Edit-->
+    <div wire:ignore.self class="modal fade" id="business_information_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Business Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Business Name</label>
+                            <input type="text" class="form-control" wire:model.lazy="name">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Business Contact No.</label>
+                            <input type="text" class="form-control" wire:model.lazy="contact_no">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Business Email</label>
+                            <input type="email" class="form-control" wire:model.lazy="email">
+                        </div>
+                        <div class="col-md-6">
+                            <label>DTI Registration No.</label>
+                            <input type="text" class="form-control" wire:model.lazy="dti_registration_no">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning">Dipa to tapos</button>
                 </div>
             </div>
         </div>

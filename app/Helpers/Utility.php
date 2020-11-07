@@ -273,7 +273,7 @@ class Utility{
         if($partner){
             $response = '';
             if($partner->address){
-                $response  .= $partner->address.', ';
+                $response  .= $partner->address.',';
             }
 
             $response .= ucwords(strtolower($partner->barangay_name.', '.$partner->city_name.', '.$partner->province_name.', '));
