@@ -1,19 +1,37 @@
 <div>
-    @php
-        if($account->photo){
-            $photo_url = asset('images/default-photo/account.png');
-        }else if($account->photo_provider_link){
-            $photo_url = $account->photo_provider_link;
-        }else{
-            $photo_url = asset('images/default-photo/account.png');
-        }
-    @endphp
     <div class="text-center">
-        <img class="profile-user-img img-fluid img-circle" src="{{$photo_url}}" alt="User profile picture">
+        <div>
+            <img class="profile-user-img img-fluid img-circle" src="{{$photo ? $photo->temporaryUrl() : $old_photo}}" alt="User profile picture" style="width: 100px; height: 100px;">
+        </div>
+        
+        @error('photo')
+            <div>
+                <small>{{$message}}</small>
+            </div>
+        @enderror
+        
+        <small>
+            File Size: Maximum of 2MB<br>
+            File Extension: .png, .jpeg, .jpeg
+        </small>
     </div>
-
     <div class="text-center mt-1">
-        <button type="button" class="btn btn-default btn-sm">Upload Image</button>
+        @if ($photo)
+            <button class="btn btn-warning btn-sm" wire:click="update_photo">
+                <span class="fas fa-check"></span> Save
+                <span wire:loading wire:target="update_photo" class="fas fa-spinner fa-spin"></span>
+            </button>
+            <button class="btn btn-danger btn-sm" wire:click="cancel_upload_photo">
+                <span class="fas fa-wrong"></span> Cancel
+                <span wire:loading wire:target="cancel_upload_photo" class="fas fa-spinner fa-spin"></span>
+            </button>
+        @endif  
+    </div>
+    <div class="text-center mt-1">
+        <div class="form-control upload-btn-wrapper btn btn-default btn-sm" style="width: auto; height: 30px;">
+            <span class="fas fa-edit"></span> Profile Picture <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
+            <input type="file" class="upload-btn form-control-file @error('photo') is-invalid @enderror" wire:model="photo" accept="image/*" />
+        </div>
     </div>
     <h3 class="profile-username text-center">
         {{ucwords($account->first_name.' '.$account->middle_name.' '.$account->last_name)}}
