@@ -23,9 +23,9 @@ class UploadUtility{
         return $media_photo;
     }
 
-    public static function profile_picture($user_key_token, $thumb=true){
+    public static function account_photo($user_key_token, $path, $type, $thumb=true){
         $account     = UserAccount::where('key_token', $user_key_token)->firstOrFail();
-        $media_photo = $account->getMedia($user_key_token.'/profile-picture');
+        $media_photo = $account->getMedia($user_key_token.'/'.$path);
 
         if(count($media_photo) > 0){
             if($thumb){
@@ -36,7 +36,18 @@ class UploadUtility{
         }else if($account->photo_provider_link){
             return $account->photo_provider_link;
         }else{
-            return asset('images/default-photo/account.png');
+            if($type == 'profile'){
+                return asset('images/default-photo/account.png');
+            }
+            else if($type == 'store_photo'){
+                return asset('images/default-photo/store.png');
+            }
+            else if($type == 'cover_photo'){
+                return asset('images/default-photo/cover.jpg');
+            }
+            else{
+                return asset('images/default-photo/image.png');
+            }
         }
     }
 
