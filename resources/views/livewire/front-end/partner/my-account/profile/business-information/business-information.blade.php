@@ -83,28 +83,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Business Name</label>
-                            <input type="text" class="form-control" wire:model.lazy="name">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Business Contact No.</label>
-                            <input type="text" class="form-control" wire:model.lazy="contact_no">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Business Email</label>
-                            <input type="email" class="form-control" wire:model.lazy="email">
-                        </div>
-                        <div class="col-md-6">
-                            <label>DTI Registration No.</label>
-                            <input type="text" class="form-control" wire:model.lazy="dti_registration_no">
-                        </div>
-                    </div>
+                    Content here
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-warning">Dipa to tapos</button>
+                    <button type="button" class="btn btn-warning">Save Changes</button>
                 </div>
             </div>
         </div>

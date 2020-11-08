@@ -129,7 +129,7 @@
             <b>Joined</b> 
             <a class="float-right">
                 @if($data->created_at)
-                    {{date('F/d/Y', strtotime($data->created_at))}}
+                    {{date('F d, Y', strtotime($data->created_at))}}
                 @else
                     <small class="text-muted">Not Set</small>
                 @endif
@@ -144,36 +144,94 @@
     <div wire:ignore.self class="modal fade" id="account_information_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Account Information</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Name</label>
-                            <input type="text" class="form-control" wire:model.lazy="name">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Business Contact No.</label>
-                            <input type="text" class="form-control" wire:model.lazy="contact_no">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Business Email</label>
-                            <input type="email" class="form-control" wire:model.lazy="email">
-                        </div>
-                        <div class="col-md-6">
-                            <label>DTI Registration No.</label>
-                            <input type="text" class="form-control" wire:model.lazy="dti_registration_no">
+                <form wire:submit.prevent="update_profile">    
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Account Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <div>{{$data->user->email}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Joined</label>
+                                    <div>{{date('F d, Y', strtotime($data->created_at))}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Firstname</label>
+                                    <input type="text" class="form-control" wire:model.lazy="first_name" placeholder="Firstname">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Middlename</label>
+                                    <input type="text" class="form-control" wire:model.lazy="middle_name" placeholder="Middlename">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Lastname</label>
+                                    <input type="text" class="form-control" wire:model.lazy="last_name" placeholder="Lastname">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Birthdate</label>
+                                    <input type="date" class="form-control" wire:model.lazy="birth_date">
+                                    @error('birth_date')
+                                        <span class="invalid-feedback" style="display: block;">
+                                            <span>{{$message}}</span>
+                                        </span> 
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact number</label>
+                                    <input type="text" class="form-control" wire:model.lazy="contact_no" placeholder="Ex : 09123456789">
+                                    @error('contact_no')
+                                        <span class="invalid-feedback" style="display: block;">
+                                            <span>{{$message}}</span>
+                                        </span> 
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input" type="radio" id="male" value="male" wire:model="gender">
+                                        <label for="male" class="custom-control-label">Male</label>
+                                    </div>
+                                    <div class="custom-control custom-radio ">
+                                        <input class="custom-control-input" type="radio" id="female" value="female" wire:model="gender">
+                                        <label for="female" class="custom-control-label">Female</label>
+                                    </div>
+                                    @error('gender')
+                                        <span class="invalid-feedback" style="display: block;">
+                                            <span>{{$message}}</span>
+                                        </span> 
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-warning">Dipa to tapos</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning">
+                            Save Changes <span wire:loading wire:target="update_profile" class="fas fa-spinner fa-spin"></span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
