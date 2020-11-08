@@ -11,6 +11,46 @@
             @if(!$partner)
                 <h4>No details yet</h4>
             @else
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <div class="card card-widget widget-user">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header text-white" style="background: url('{{ $cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
+                            </div>
+                            <div class="widget-user-image">
+                                <img class="img-circle" src="{{$store_photo}}" alt="User Avatar" style="width: 90px; height: 90px;">
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="row text-center">
+                                    <div class="col-md-4 border pt-2">
+                                        <label>
+                                            <span class="fas fa-star"></span> 
+                                            <span class="text-muted">Ratings :</span>
+                                            <span class="text-warning">4.7</span>
+                                            <small>(344 rating)</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4 border pt-2">
+                                        <label>
+                                            <span class="fas fa-store"></span>
+                                            <span class="text-muted">Products :</span>
+                                            <span class="text-warning">57</span> 
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4 border pt-2">
+                                        <label>
+                                            <span class="fas fa-users"></span>
+                                            <span class="text-muted">Followers :</span>
+                                            <span class="text-warning">{{number_format($followers, 0)}}</span> 
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12 px-3">
                         <div class="row">
