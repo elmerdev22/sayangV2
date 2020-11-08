@@ -51,7 +51,7 @@
         <div class="form-group">
             <div class="icheck-warning">
                 <input type="checkbox" id="agree" wire:model="agree">
-                <label for="agree" class="cursorsHover">I am agree with <a href="#">Terms & Conditions</a></label>
+                <label for="agree" class="cursorsHover">I am agree with <a href="#" data-toggle="modal" data-target="#terms_and_conditions">Terms & Conditions</a></label>
             </div>
             @if(!$agree && $agree_post) 
                 <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Please Agree on our Terms & Conditions</span>
