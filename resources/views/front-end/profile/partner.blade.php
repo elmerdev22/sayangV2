@@ -1,19 +1,6 @@
 @extends('front-end.layout')
 @section('title','Seller Profile')
-@section('css')
 
-<style>
-    #seller-bg {
-        border: 1px whitesmoke;
-        /* padding: 25px; */
-        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1aer_eK_rutTokxSeU5gTiW1q9eUKPvpTyw&usqp=CAU');
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* opacity: 0.5; */
-    }
-</style>
-    
-@endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -40,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="card card-widget widget-user">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header text-white" style="background: url('https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/banners/1.jpg') center center;">
+                        <div class="widget-user-header text-white" style="background: url('{{$data['cover_photo']}}'); background-repeat: no-repeat; background-size: cover;">
                             {{-- <h3 class="text-right text-white-shadow">Jollibe Malolos</h3>
                             <h5 class="widget-user-desc text-right">
                                 <button class="btn btn-warning btn-sm">
@@ -49,8 +36,7 @@
                             </h5> --}}
                         </div>
                         <div class="widget-user-image">
-                            <img class="img-circle" style="width: auto; height: 100px;" src="https://images.summitmedia-digital.com/spotph/images/2019/03/19/chickenjoydelivery-1552988282.jpg" alt="Card image cap">
-
+                            <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">
                         </div>
                         <div class="card-footer bg-white">
                             
@@ -58,10 +44,8 @@
                                 <div class="col-md-5">
                                     <div class="p-4">
                                         <!-- /.widget-user-image -->
-                                        <h3>Jollibee Malolos</h3>
-                                        <button class="btn btn-warning btn-sm">
-                                            <span class="fas fa-plus"></span> Follow
-                                        </button>
+                                        <h3>{{$data['store_name']}}</h3>
+                                        @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
                                     </div>
                                 </div>
                                 <div class="col-md-4 pt-3">
@@ -85,7 +69,7 @@
                                             <label>
                                                 <span class="fas fa-users"></span>
                                                 <span class="text-muted">Followers :</span>
-                                                <span class="text-warning">57</span> 
+                                                <span class="text-warning">{{number_format($data['followers'], 0)}}</span> 
                                             </label>
                                         </div>
                                     </div>
@@ -96,14 +80,14 @@
                                             <label>
                                                 <span class="fas fa-map-marker-alt"></span> 
                                                 <span class="text-muted">Address :</span>
-                                                Malolos, Bulacan
+                                                {{$data['store_address']}}
                                             </label>
                                         </div>
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-calendar"></span>
                                                 <span class="text-muted">Joined :</span>
-                                                January 01, 3001
+                                                {{date('F d, Y', strtotime($data['store_joined']))}}
                                             </label>
                                         </div>
                                     </div>

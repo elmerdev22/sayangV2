@@ -13,6 +13,7 @@ use App\Model\UserAdmin;
 use App\Model\UserAccount;
 use App\Model\Product;
 use App\Model\ProductPost;
+use App\Model\Follower;
 use App\Model\ProductSubCategory;
 use Carbon\Carbon;
 use UploadUtility;
@@ -616,4 +617,7 @@ class Utility{
         return $generated_id;
     }
     
+    public static function count_followers($partner_id){
+        return Follower::where('partner_id', $partner_id)->count();
+    }
 }

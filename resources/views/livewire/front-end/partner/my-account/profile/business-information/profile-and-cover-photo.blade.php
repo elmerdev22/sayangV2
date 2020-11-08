@@ -50,7 +50,7 @@
                             <label>
                                 <span class="fas fa-users"></span>
                                 <span class="text-muted">Followers :</span>
-                                <span class="text-warning">57</span> 
+                                <span class="text-warning">{{number_format($followers, 0)}}</span> 
                             </label>
                         </div>
                     </div>
