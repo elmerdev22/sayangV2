@@ -65,6 +65,7 @@ class Index extends Component
 
         if($response['success']){
             DB::commit();
+            $this->emit('updateProfile');
             $this->emit('alert', [
                 'type'    => 'success',
                 'title'   => 'Successfully Uploaded',
@@ -117,6 +118,7 @@ class Index extends Component
 
         if($response['success']){
             DB::commit();
+            $this->emit('updateProfile');
             $this->emit('alert', [
                 'type'    => 'success',
                 'title'   => 'Successfully Updated',
