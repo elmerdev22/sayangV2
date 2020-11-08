@@ -13,11 +13,15 @@ use UploadUtility;
 class Index extends Component
 {
     use WithFileUploads;
-    public $account, $old_photo, $photo;
+    public $data, $account, $old_photo, $photo;
 
     public function mount(){
-        $this->account         = Utility::auth_user_account();
+
+        $this->account   = Utility::auth_user_account();
         $this->old_photo = UploadUtility::account_photo($this->account->key_token , 'profile-picture', 'profile');
+        $this->data      = UserAccount::with(['user', 'partner'])
+                        ->where('key_token', $this->account->key_token)
+                        ->firstOrFail();
     }
 
     public function render()
