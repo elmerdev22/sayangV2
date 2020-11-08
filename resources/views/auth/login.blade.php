@@ -55,9 +55,13 @@
 </div>
 @endsection
 @section('js')
-  <script type="text/javascript">
-    $(function () {
-      
-    });
-  </script>
+    @if(session('success_change_password'))
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'success',
+                title: 'Yay!',
+                text: '{{session('success_change_password')}}',
+            })
+        </script>
+    @endif
 @endsection
