@@ -13,6 +13,7 @@ use App\Model\OrderPaymentLog;
 use App\Model\UserAccountBank;
 use App\Model\UserAccountAddress;
 use App\Model\UserAccountCreditCard;
+use App\Events\CheckOut;
 use Utility;
 use DB;
 
@@ -89,7 +90,7 @@ class ContinueToCheckOut extends Component
                 DB::beginTransaction();
 
                 try{
-                    $product_post_ids = [];
+                    $product_posts = [];
 
                     if($payment_method['payment_method'] == 'online_payment'){
                         $payment = UserAccountBank::where('user_account_id', $this->account->id);
@@ -168,7 +169,11 @@ class ContinueToCheckOut extends Component
                                                         $cart_update_quantity_row->save();
                                                     }
 
-                                                    $product_post_ids[] = $order_item_row['product_post_id'];
+                                                    $product_posts[] = [
+                                                        'product_post_id'        => $order_item_row['product_post_id'],
+                                                        'product_post_key_token' => $order_item_row['product_post_key_token']
+                                                    ];
+
                                                     continue;
                                                 }else{
                                                     throw new \Exception('Uncaught Exception');
@@ -231,8 +236,10 @@ class ContinueToCheckOut extends Component
 
                 if($response['success']){
                     DB::commit();
-                    // redirect to something after the process 
-                    // $this->emit('push_notification', ['product_post_ids' => $product_post_ids]);
+                    
+                    if(isset($product_posts)){
+                        event(new CheckOut($product_posts));
+                    }
                     $this->emit('alert_link', [
                         'type'     => 'success',
                         'title'    => 'Order Successfully Processed',

@@ -76,4 +76,22 @@ class PlaceBid extends Component
     public function render(){
         return view('livewire.front-end.product.information.place-bid');
     }
+
+    public function product_post_update_event($param){
+        if(!empty($param)){
+            $initialize = false;
+
+            foreach($param['data'] as $row){
+                if($row['product_post_id'] == $this->product_post_id){
+                    $initialize = true;
+                    break;
+                }
+            }
+
+            if($initialize){
+                $this->initialize_current_quantity();
+                $this->validate_quantity($this->quantity);
+            }
+        }
+    }
 }

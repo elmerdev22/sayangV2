@@ -165,5 +165,10 @@
     window.livewire.on('place_bid_quantity_value', param => {
         $(document).find('#quantity-2').val(param['quantity']);
     });
+
+    var event_channel = push_init.subscribe('product-post-update-channel');
+    event_channel.bind('product-post-update-event', function(param) {
+        @this.call('product_post_update_event', param)
+    });
 </script>
 @endpush
