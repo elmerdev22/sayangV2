@@ -255,4 +255,28 @@ class Listing extends Component
             'message'  => 'Item successfully deleted.'
         ]);
     }
+
+    public function product_post_update_event($param){
+        if(!empty($param)){
+            $initialize = false;
+
+            foreach($param['data'] as $row){
+                $total_item = Cart::where('user_account_id', $this->account->id)
+                    ->where('product_post_id', $row['product_post_id'])
+                    ->count();
+
+                if($total_item){
+                    $initialize = true;
+                    break;
+                }
+            }
+
+            if($initialize){
+                $total_item  = Utility::total_cart_item();
+                $this->emit('initialize_cart_list', true);
+                $this->emit('initialize_cart_checkout', true);
+                $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+            }
+        }
+    }
 }
