@@ -30,7 +30,12 @@ Route::group(['middleware' => ['auth', 'verification.check']], function(){
 Route::group(['middleware' => ['guest']], function(){
     Route::get('admin/login', function () {
         return view('auth.login-admin');
-    });
+    })->name('admin.login');
+});
+
+// IF AUTH
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/logout/{redirect}', 'Auth\LogoutController@index')->name('auth.logout');
 });
 
 Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
@@ -434,4 +439,5 @@ Route::group(['prefix' => 'login', 'as' => 'login.', 'namespace' => 'Auth'], fun
         'uses'  => $c.'@handleProviderCallback'
     ]);
 });
+
 Auth::routes();

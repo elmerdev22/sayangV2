@@ -137,7 +137,7 @@
         </li>
     </ul>
     <a href="#" class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#account_information_edit"><span class="fas fa-edit"></span> Edit Profile</a>
-    <a href="#" class="btn btn-warning btn-sm btn-block"><span class="fas fa-key"></span> Change Password</a>
+    <a href="#" class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#change_password"><span class="fas fa-key"></span> Change Password</a>
 
     
     <!-- Modal Account Information Edit-->
@@ -234,5 +234,6 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>    
+    
 </div>
