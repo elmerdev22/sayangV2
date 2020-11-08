@@ -96,7 +96,6 @@ class Index extends Component
         // ];
         
         // $this->validate($rules);
-
         $response = ['success' => false, 'message' => '',];
         DB::beginTransaction();
 
@@ -124,6 +123,7 @@ class Index extends Component
                 'title'   => 'Successfully Updated',
                 'message' => 'Profile Information Successfully Updated!'
             ]);
+            $this->mount();
         }else{
             DB::rollback();
             $this->emit('alert', [

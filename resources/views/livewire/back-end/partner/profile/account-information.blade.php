@@ -88,7 +88,7 @@
                 <li class="list-group-item">
                     <b>Birth Date</b> 
                     <a class="float-right">
-                        @if($data->gender)
+                        @if($data->birth_date)
                             {{date('F d,Y', strtotime($data->birth_date))}}
                         @else
                             <small class="text-muted">Not Set</small>
