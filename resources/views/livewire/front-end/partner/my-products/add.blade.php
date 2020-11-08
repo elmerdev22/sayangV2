@@ -268,6 +268,12 @@
         $('#sub_categories').select2(select2_child_input(data, false, "Select"));
     });
 
+    window.livewire.on('money_input_field', param => {
+        for(var key in param){
+            $('#'+key).val(param[key]);
+        }
+    });
+
     function remove_photo(key){
         Swal.fire({
             title: 'Are you sure?',

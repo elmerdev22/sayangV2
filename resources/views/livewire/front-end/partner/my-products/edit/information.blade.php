@@ -70,7 +70,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="regular_price">Regular price*</label>
-                        <input type="text" class="form-control @error('regular_price') is-invalid @enderror mask-money" id="regular_price" placeholder="0.00" value="{{number_format($regular_price, 2)}}">
+                        <input type="text" class="form-control @error('regular_price') is-invalid @enderror mask-money" id="regular_price" placeholder="0.00">
                         @error('regular_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="buy_now_price">Buy now price*</label>
-                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00" value="{{number_format($buy_now_price, 2)}}">
+                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00">
                         @error('buy_now_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -92,7 +92,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lowest_price">Lowest price*</label>
-                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00" value="{{number_format($lowest_price, 2)}}">
+                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
                         @error('lowest_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -172,10 +172,22 @@
         });
 
         reload_sub_categories({!!json_encode($initial_sub_categories)!!});
+        
+        var money_input_initialize = {!!json_encode($money_input_initialize)!!};
+
+        for(var key in money_input_initialize){
+            $('#'+key).val(money_input_initialize[key]);
+        }
     });
 
     window.livewire.on('reload_sub_categories', param => {
         reload_sub_categories(param);
+    });
+
+    window.livewire.on('money_input_field', param => {
+        for(var key in param){
+            $('#'+key).val(param[key]);
+        }
     });
 
     function reload_sub_categories(param){

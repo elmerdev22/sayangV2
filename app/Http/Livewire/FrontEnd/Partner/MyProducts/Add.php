@@ -19,7 +19,7 @@ class Add extends Component
     use WithFileUploads;
 
     public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
-    public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
+    public $regular_price=0.00, $buy_now_price=0.00, $lowest_price=0.00, $description, $reminders;
     public $featured_photo=0, $photos=[];
 
     public function mount(){
@@ -75,20 +75,30 @@ class Add extends Component
     }
 
     public function store(){
+        $this->regular_price = Utility::decimal_format($this->regular_price);
+        $this->buy_now_price = Utility::decimal_format($this->buy_now_price);
+        $this->lowest_price  = Utility::decimal_format($this->lowest_price);
+
         $rules = [
             'name'           => 'required|max:200|min:2',
             'category'       => 'required|numeric',
             'sub_categories' => 'nullable',
             'tags'           => 'nullable',
-            'regular_price'  => ['required', new Money()],
-            'buy_now_price'  => ['required', new Money()],
-            'lowest_price'   => ['required', new Money()],
+            'regular_price'  => ['required', new Money(), 'gte:buy_now_price'],
+            'buy_now_price'  => ['required', new Money(), 'lte:regular_price'],
+            'lowest_price'   => ['required', new Money(), 'lte:buy_now_price'],
             'description'    => 'required',
             'reminders'      => 'nullable',
             'photos'         => 'required',
             'photos.*'       => 'image|mimes:jpeg,jpg,png|max:2048'
         ];
 
+        $this->emit('money_input_field', [
+            'regular_price' => $this->regular_price,
+            'buy_now_price' => $this->buy_now_price,
+            'lowest_price' => $this->lowest_price
+        ]);
+        
         $this->validate($rules);
 
         $response = ['success' => false, 'message' => ''];
@@ -102,9 +112,9 @@ class Add extends Component
             $product->partner_id    = $this->partner->id;
             $product->category_id   = $this->category;
             $product->name          = $this->name;
-            $product->regular_price = Utility::decimal_format($this->regular_price);
-            $product->buy_now_price = Utility::decimal_format($this->buy_now_price);
-            $product->lowest_price  = Utility::decimal_format($this->lowest_price);
+            $product->regular_price = $this->regular_price;
+            $product->buy_now_price = $this->buy_now_price;
+            $product->lowest_price  = $this->lowest_price;
             $product->description   = $this->description;
             $product->reminders     = $this->reminders;
             $product->slug          = Utility::generate_table_slug('Product', $this->name);
