@@ -13,12 +13,14 @@ use UploadUtility;
 class ProfileAndCoverPhoto extends Component
 {
     use WithFileUploads;
-    public $account, $old_store_photo, $store_photo, $old_cover_photo, $cover_photo;
+    public $account, $partner, $followers, $old_store_photo, $store_photo, $old_cover_photo, $cover_photo;
     
     public function mount(){
+        $this->partner         = Utility::auth_partner();
         $this->account         = Utility::auth_user_account();
         $this->old_store_photo = UploadUtility::account_photo($this->account->key_token , 'business-information/store-photo', 'store_photo');
         $this->old_cover_photo = UploadUtility::account_photo($this->account->key_token , 'business-information/cover-photo', 'cover_photo', false);
+        $this->followers       = Utility::count_followers($this->partner->id);
     }
     public function render()
     {

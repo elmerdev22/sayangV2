@@ -25,6 +25,14 @@
                 tools to help create filler text for everyone from bacon lovers
                 to Charlie Sheen fans.
             </p>
+            <p>
+                <h5>
+                    <span class="badge badge-default border">Excellent!</span>
+                    <span class="badge badge-default border">Great!</span>
+                    <span class="badge badge-default border">Poor!</span>
+                    <span class="badge badge-default border">Good!</span>
+                </h5>
+            </p>
             @php $pic = rand(1,5) @endphp
             @for ($p = 0; $p < $pic ; $p++)
                 <img class="" style="width: auto; height: 50px;" src="{{asset('images/default-photo/product1.jpg')}}" alt="User Image">
