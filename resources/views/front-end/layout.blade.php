@@ -127,16 +127,16 @@
 
   <script type="text/javascript">
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-    var key = '{{env('PUSHER_APP_KEY')}}';
-    var pusher = new Pusher(key, {
+    Pusher.logToConsole    = true;
+    var pusher_key_app_key = '{{env('PUSHER_APP_KEY')}}';
+    var push_init          = new Pusher(pusher_key_app_key, {
       cluster: 'ap1'
     });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(message) {
-      window.livewire.emit('notifications', message);
-    });
+    // var channel = pusher.subscribe('my-channel');
+    // channel.bind('my-event', function(message) {
+    //   window.livewire.emit('notifications', message);
+    // });
 
     // badge-total-item-in-cart
     window.livewire.on('initialize_cart_item_count', param => {

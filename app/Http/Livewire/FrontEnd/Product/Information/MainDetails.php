@@ -41,4 +41,21 @@ class MainDetails extends Component
         $component = $this;
         return view('livewire.front-end.product.information.main-details', compact('component'));
     }
+
+    public function product_post_update_event($param){
+        if(!empty($param)){
+            $initialize = false;
+
+            foreach($param['data'] as $row){
+                if($row['product_post_id'] == $this->product_post_id){
+                    $initialize = true;
+                    break;
+                }
+            }
+
+            if($initialize){
+                $this->initialize();
+            }
+        }
+    }
 }

@@ -162,5 +162,10 @@
     window.livewire.on('buy_now_quantity_value', param => {
         $(document).find('#quantity').val(param['quantity']);
     });
+
+    var event_channel = push_init.subscribe('product-post-update-channel');
+    event_channel.bind('product-post-update-event', function(param) {
+        @this.call('product_post_update_event', param)
+    });
 </script>
 @endpush

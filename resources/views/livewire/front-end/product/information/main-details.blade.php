@@ -34,6 +34,11 @@
 
 @push('scripts')
 <script type="text/javascript">
+    var event_channel = push_init.subscribe('product-post-update-channel');
+    event_channel.bind('product-post-update-event', function(param) {
+        @this.call('product_post_update_event', param)
+    });
+
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
     });
