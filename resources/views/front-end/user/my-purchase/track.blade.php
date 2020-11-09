@@ -25,7 +25,11 @@
         <div class="card card-outline card-sayang mb-3">
             <header class="card-header">
                 <strong class="d-inline-block mr-3">Order ID: {{$order_no}} </strong>
-                <span>Order Date: {{date('F/d/Y', strtotime($order_date))}}</span>
+                @if($order->status == 'completed')
+                    <span>Completed Date: {{date('F/d/Y', strtotime($order->date_completed))}}</span>
+                @else
+                    <span>Order Date: {{date('F/d/Y', strtotime($order_date))}}</span>
+                @endif
             </header>
             <div class="card-body">
                 <div class="row">
@@ -67,6 +71,26 @@
         </div>
     </div>
 </div>
+
+@if($order->status == 'completed')
+    <!-- Modal -->
+    <div class="modal fade" id="modal-invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order No. : {{$order->order_no}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @livewire('front-end.user.my-purchase.track.invoice', ['order_no' => $order_no])
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @endsection
 @section('js')
 

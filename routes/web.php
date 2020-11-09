@@ -241,7 +241,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
         });
 
         // My Purchase
-        Route::group(['prefix' => 'purchase', 'as' => 'my-purchase.'], function (){
+        Route::group(['prefix' => 'my-purchase', 'as' => 'my-purchase.'], function (){
 			$c = 'MyPurchaseController';
             
             // Purchase
@@ -258,10 +258,6 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 			Route::get('/completed', [
 		        'as' 	=> 'completed',
 		        'uses'  => $c.'@completed'
-            ]);
-			Route::get('/completed/{id}', [
-		        'as' 	=> 'completed-details',
-		        'uses'  => $c.'@completed_details'
             ]);
 
         });

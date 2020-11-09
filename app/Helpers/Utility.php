@@ -683,4 +683,15 @@ class Utility{
             'total'          => $total             //discounted
         ];
     }
+
+    public static function str_starred($str){
+        $str_length = strlen($str);
+        $response   = '';
+        
+        if($str_length > 0){
+            $response = substr($str, 0, 1).str_repeat('*', $str_length - 2).substr($str, $str_length - 1, 1);
+        }
+
+        return $response;
+    }
 }

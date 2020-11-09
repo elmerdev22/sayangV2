@@ -36,6 +36,14 @@ class Partner extends Model implements HasMedia
         return $this->hasOne('App\Model\Product', 'partner_id', 'id');
     }
 
+    public function order(){
+        return $this->hasOne('App\Model\Order', 'order_id', 'id');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Model\Order', 'order_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){
         $height = UploadUtility::conversion_dimension('height');
         $width  = UploadUtility::conversion_dimension('width');
