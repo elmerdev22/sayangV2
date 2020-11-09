@@ -106,7 +106,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="discount_percent">Discount Percent</label>
-                        <input type="text" readonly="true" class="form-control" id="discount_percent" value="{{number_format($price_percentage['discount_percent'], 2)}}%">
+                        <input type="text" readonly="true" class="form-control" id="discount_percent" value="{{$price_percentage['discount_percent']}}%">
                     </div>
                 </div>
             </div>

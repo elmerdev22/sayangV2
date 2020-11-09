@@ -638,8 +638,8 @@ class Utility{
     
                 $response = [
                     'discount'         => $number_1 - $number_2,
-                    'discount_percent' => $discount,
-                    'percentage'       => $percentage
+                    'discount_percent' => $discount + 0,
+                    'percentage'       => $percentage + 0
                 ];            
             }
         }
