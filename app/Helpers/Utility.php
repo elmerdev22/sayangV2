@@ -615,7 +615,7 @@ class Utility{
     public static function generate_order_no(){
         do{
             $continue     = true;
-            $generated_id = 'PR'.date('ymd').'0'.rand(1000,9999);
+            $generated_id = 'PN'.date('ymd').'0'.rand(1000,9999);
             $check        = Order::where('order_no', $generated_id)->count();
             if($check == 0){
                 $continue = false;

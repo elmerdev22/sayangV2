@@ -339,4 +339,64 @@ class QueryUtility{
 
 		return $data;
 	}
+
+	public static function orders(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+		$data = DB::table('orders')
+			->select($select)
+			->join('billings', 'billings.id', '=', 'orders.billing_id')
+			->join('partners', 'partners.id', '=', 'orders.partner_id')
+			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
+			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		if(isset($filter['or_where_like'])){
+			$search = trim($filter['or_where_like']);
+			$search = explode(' ',$search);
+			$data 	= $data->where(function($query) use ($search) {
+				foreach($search as $value){
+					$query->orWhere('orders.order_no','like',"%{$value}%")
+						->orWhere('orders.qr_code','like',"%{$value}%")
+						->orWhere('orders.status','like',"%{$value}%")
+						->orWhere('orders.note','like',"%{$value}%")
+						->orWhere('partners.partner_no','like',"%{$value}%")
+						->orWhere('partners.name','like',"%{$value}%");
+				}
+            });
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
 }
