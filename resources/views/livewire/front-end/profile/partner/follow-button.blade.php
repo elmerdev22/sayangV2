@@ -11,17 +11,17 @@
                         <span class="sr-only">Toggle Dropdown</span>
                             <div class="dropdown-menu dropdown-menu-sm" role="menu">
                                 @if ($follower->is_notify)
-                                    <a class="dropdown-item" href="#" wire:click="notification(false)">
+                                    <a class="dropdown-item sayang-dropdown-item" href="#" wire:click="notification(false)">
                                         <span class="fas fa-bell-slash"></span>
                                         Block Notifications
                                     </a>
                                 @else
-                                    <a class="dropdown-item" href="#" wire:click="notification(true)">
+                                    <a class="dropdown-item sayang-dropdown-item" href="#" wire:click="notification(true)">
                                         <span class="fas fa-bell"></span>
                                         Accept Notifications          
                                     </a>
                                 @endif
-                                <a class="dropdown-item" href="#" onclick="unfollow()">
+                                <a class="dropdown-item sayang-dropdown-item" href="#" onclick="unfollow()">
                                     <span class="fas fa-times"></span>
                                     Unfollow
                                 </a>

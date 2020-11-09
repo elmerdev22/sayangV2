@@ -32,7 +32,7 @@
         <aside class="col-md-4 order-md-2 mb-4">
             @livewire('front-end.user.check-out.index.my-cart')
 
-            <form class="card p-2">
+            {{-- <form class="card p-2">
                 <div class="card-body">
                     <div class="form-group">
                         <label>Get a voucher?</label>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div> <!-- card-body.// -->
-            </form>
+            </form> --}}
         </aside> <!-- col.// -->
     </div>
 

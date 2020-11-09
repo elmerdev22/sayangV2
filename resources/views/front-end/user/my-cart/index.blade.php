@@ -35,7 +35,7 @@
         </main> <!-- col.// -->
 
         <aside class="col-md-3">
-            <div class="card card-sayang mb-3">
+            {{-- <div class="card card-sayang mb-3">
                 <div class="card-body">
                     <form>
                         <div class="form-group">
@@ -49,7 +49,7 @@
                         </div>
                     </form>
                 </div> <!-- card-body.// -->
-            </div>
+            </div> --}}
             <div class="card card-sayang sticky">
                 <div class="card-body">
                     @livewire('front-end.user.my-cart.index.check-out')
