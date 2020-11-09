@@ -28,12 +28,6 @@
                     <div class="card card-widget widget-user">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header text-white" style="background: url('{{$data['cover_photo']}}'); background-repeat: no-repeat; background-size: cover;">
-                            {{-- <h3 class="text-right text-white-shadow">Jollibe Malolos</h3>
-                            <h5 class="widget-user-desc text-right">
-                                <button class="btn btn-warning btn-sm">
-                                    <span class="fas fa-plus"></span> Follow
-                                </button>
-                            </h5> --}}
                         </div>
                         <div class="widget-user-image">
                             <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">

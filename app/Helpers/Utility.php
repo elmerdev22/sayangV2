@@ -14,6 +14,7 @@ use App\Model\UserAccount;
 use App\Model\Product;
 use App\Model\ProductPost;
 use App\Model\Follower;
+use App\Model\Setting;
 use App\Model\ProductSubCategory;
 use Carbon\Carbon;
 use UploadUtility;
@@ -693,5 +694,10 @@ class Utility{
         }
 
         return $response;
+    }
+
+    public static function settings($settings_key){
+        $data = Setting::where('settings_key', $settings_key)->first();
+        return $data->settings_value;
     }
 }

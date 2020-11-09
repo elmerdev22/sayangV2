@@ -16,13 +16,13 @@
             </li>
         @endforeach
         
-        <li class="list-group-item d-flex justify-content-between bg-light">
+        {{-- <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="text-dark">
                 <h6 class="my-0">Voucher code</h6>
                 <small>EXAMPLECODE</small>
             </div>
             <span class="text-dark">-₱ 50</span>
-        </li>
+        </li> --}}
         <li class="list-group-item d-flex justify-content-between">
             <span>TOTAL (PHP)</span>
             <strong>₱ {{number_format($total_price, 2)}}</strong>

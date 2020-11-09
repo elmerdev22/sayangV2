@@ -11,9 +11,9 @@
             <div class="col-md-3">
                 <label>Minimum Bids</label>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" value="0">
+                    <input type="number" class="form-control" wire:model.lazy="minimum_bids">
                     <div class="input-group-append bg-warning">
-                      <button class="btn btn-warning">Save</button>
+                      <button class="btn btn-warning" wire:click="update_minimum_bids">Save</button>
                     </div>
                 </div>
             </div>
