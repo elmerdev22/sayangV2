@@ -13,4 +13,8 @@ class Bank extends Model
     public function user_account_bank(){
         return $this->hasOne('App\Model\UserAccountBank', 'bank_id', 'id');
     }
+
+    public function order_payment(){
+        return $this->belongsTo('App\Model\OrderPayment', 'bank_id', 'id');
+    }
 }

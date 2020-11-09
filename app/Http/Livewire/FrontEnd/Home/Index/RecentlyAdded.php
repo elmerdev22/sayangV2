@@ -43,7 +43,7 @@ class RecentlyAdded extends Component
         $partner      = Partner::find($partner_id);
         $user_account = UserAccount::find($partner->user_account_id);
 
-        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl('thumb');;
+        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl('thumb');
     }
 
     public function datetime_format($date){
