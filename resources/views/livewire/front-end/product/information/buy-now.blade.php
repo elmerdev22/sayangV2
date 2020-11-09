@@ -3,7 +3,9 @@
     <div class="row justify-content-center">
         @if($allow_purchase == 'allowed')
             <div class="col-md-5">
-                <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
+                <h4>
+                    Php {{number_format($product_post->buy_now_price, 2)}}
+                </h4>
             </div>
             <div class="col-md-2 text-center">
                 <span class="fas fa-times"></span>
@@ -49,7 +51,7 @@
         @endif
     </div>
     @if($allow_purchase == 'allowed')
-        <p class="mt-4">You save Php 40 (30% off)</p>
+        <p class="mt-4">You save Php {{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
         <div class="bg-warning py-1 px-2">
             <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
         </div>

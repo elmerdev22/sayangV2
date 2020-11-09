@@ -19,31 +19,16 @@ class CheckOut extends Component
     }
 
     public function initialize(){
-        $carts = Cart::with(['product_post', 'product_post.product'])
-            ->where('user_account_id', $this->account->id)
-            ->where('is_checkout', true)
-            ->get();
+        $cart              = Utility::cart($this->account->id, true);
+        $this->total       = $cart['total_price'];
+        $this->total_price = $cart['total'];
+        $this->discount    = $cart['total_discount'];
 
-        $this->total_price = 0.00;
-        $this->total       = 0.00;
-        $this->discount    = 0.00;
-        $total_items       = 0;
-
-        foreach($carts as $row){
-            $post_status = Utility::product_post_status($row->product_post_id);
-            if($post_status == 'active'){
-                $this->total_price += $row->product_post->buy_now_price * $row->quantity;
-                $total_items++;
-            }
-        }
-
-        if($total_items > 0){
+        if($cart['total_items'] > 0){
             $this->is_disabled = false;
         }else{
             $this->is_disabled = true;
         }
-
-        $this->total = $this->total_price;
     }
 
     public function render(){
