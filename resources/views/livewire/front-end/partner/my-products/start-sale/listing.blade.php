@@ -92,6 +92,17 @@
         $('.mask-money').mask("#,##0.00", {reverse: true});
     });
 
+    window.livewire.on('initialize_buy_now_price', param => {
+        var input_buy_now = $(document).find('#buy-now-price-'+param['key_token']);
+        window.setTimeout(() => {
+            var current_value = parseFloat(input_buy_now.val());
+            if(current_value < param['lowest_price']){
+                input_buy_now.val(param['lowest_price']);
+            }
+        }, 3000);
+
+    });
+
     function select_product(key_token){
         var doc = $(document);
 
@@ -112,7 +123,9 @@
             is_selected  : is_selected
         };
 
-        @this.call('select_product', data)
+        var timeout_id = setTimeout(() => {
+            @this.call('select_product', data)
+        }, 3000);
     }
 
     function proceed(){
@@ -124,7 +137,9 @@
             showConfirmButton : false,
             onBeforeOpen      : () => {
                 Swal.showLoading();
-                @this.call('proceed')
+                setTimeout(function () {
+                    @this.call('proceed')
+                },3000)
             }
         });
     }

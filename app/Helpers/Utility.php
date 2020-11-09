@@ -497,6 +497,7 @@ class Utility{
         
         $carts    = $carts->get();
 
+        $overall_total        = 0.00;
         $overall_total_price  = 0.00;
         $discount             = 0.00;
         $total_items          = 0;
@@ -509,7 +510,10 @@ class Utility{
             $is_disabled    = false;
             
             if($post_status != 'active'){
-                $is_disabled = true;
+                $is_disabled        = true;
+                $carts->is_checkout = false;
+                $carts->save();
+
                 if($is_checkout){
                     continue;
                 }
@@ -525,7 +529,11 @@ class Utility{
             $selected_quantity     = $row->quantity;
             $total_quantity_items += $selected_quantity;
             $total_price           = $selected_quantity * $buy_now_price;
+            $overall_total        += $row->product_post->product->regular_price * $selected_quantity;
             $overall_total_price  += $total_price;
+            $item_percentage       = self::price_percentage($row->product_post->product->regular_price, $row->product_post->buy_now_price);
+            $discount             += $item_percentage['discount'] * $selected_quantity;
+
             $insert                = [];
             $insert                = [
                 'partner_id'   => $partner_id,
@@ -581,7 +589,7 @@ class Utility{
         }
 
         return [
-            'total'                => $overall_total_price, //Not discounted TBA
+            'total'                => $overall_total, //Not discounted
             'total_price'          => $overall_total_price, //discounted
             'total_items'          => $total_items, //Total Rows of Items
             'total_quantity_items' => $total_quantity_items, //Total sum of quantities
@@ -619,5 +627,31 @@ class Utility{
     
     public static function count_followers($partner_id){
         return Follower::where('partner_id', $partner_id)->count();
+    }
+
+    public static function price_percentage($number_1, $number_2){
+        $number_1 = self::decimal_format($number_1);
+        $number_2 = self::decimal_format($number_2);
+        $response = [
+            'discount'         => 0,
+            'discount_percent' => 0,
+            'percentage'       => 0
+        ];
+
+        if($number_1 > 0){
+            if($number_1 >= $number_2){
+                $percentage = round($number_2 / ($number_1 / 100),2);
+                $response   = $percentage;
+                $discount   = abs(100 - $percentage);
+    
+                $response = [
+                    'discount'         => $number_1 - $number_2,
+                    'discount_percent' => $discount + 0,
+                    'percentage'       => $percentage + 0
+                ];            
+            }
+        }
+
+        return $response;
     }
 }

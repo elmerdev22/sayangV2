@@ -12,7 +12,7 @@ class BuyNow extends Component
 
     public $product_post_id, $product_post;
     public $buy_now_price, $quantity, $current_quantity, $allow_purchase;
-    public $force_disabled = false;
+    public $force_disabled = false, $price_percentage = [];
 
     protected $listeners = [
         'force_disabled' => 'force_disabled'
@@ -33,6 +33,7 @@ class BuyNow extends Component
         
         $this->allow_purchase = Utility::allow_purchase();
         $this->calculate_buy_now_price();
+        $this->price_percentage = Utility::price_percentage($product_post->product->regular_price, $product_post->buy_now_price);
     }
 
     public function force_disabled(){

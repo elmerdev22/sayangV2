@@ -24,7 +24,7 @@
         <span class="fas fa-clock"></span> 
         <span class="countdown">
             @if($force_disabled)
-                Ended
+                {{ucwords(Utility::product_post_status($product_post_id))}}
             @else
                 {{$component->datetime_format($product_post->date_end)}}
             @endif

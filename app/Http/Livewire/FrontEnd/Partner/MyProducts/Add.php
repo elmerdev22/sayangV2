@@ -20,11 +20,12 @@ class Add extends Component
 
     public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
     public $regular_price=0.00, $buy_now_price=0.00, $lowest_price=0.00, $description, $reminders;
-    public $featured_photo=0, $photos=[];
+    public $featured_photo=0, $photos=[], $price_percentage = [];
 
     public function mount(){
         $this->partner = Utility::auth_partner();
         $this->account = Utility::auth_user_account();
+        $this->compute_price_percentage();
     }
 
     public function categories(){
@@ -69,6 +70,10 @@ class Add extends Component
         }
     }
 
+    public function compute_price_percentage(){
+        $this->price_percentage = Utility::price_percentage($this->regular_price, $this->buy_now_price);
+    }
+
     public function render(){
         $component = $this;
         return view('livewire.front-end.partner.my-products.add', compact('component'));
@@ -92,11 +97,12 @@ class Add extends Component
             'photos'         => 'required',
             'photos.*'       => 'image|mimes:jpeg,jpg,png|max:2048'
         ];
-
+        
+        $this->compute_price_percentage();
         $this->emit('money_input_field', [
             'regular_price' => $this->regular_price,
             'buy_now_price' => $this->buy_now_price,
-            'lowest_price' => $this->lowest_price
+            'lowest_price'  => $this->lowest_price
         ]);
         
         $this->validate($rules);
