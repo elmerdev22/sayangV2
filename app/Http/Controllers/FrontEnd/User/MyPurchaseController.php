@@ -24,14 +24,11 @@ class MyPurchaseController extends Controller
             
         $order_date = $order->created_at;
 
-        return view('front-end.user.my-purchase.track', compact('order_no', 'order_date'));
+        return view('front-end.user.my-purchase.track', compact('order_no', 'order_date', 'order'));
     }
 
     // Completed
     public function completed(){
         return view('front-end.user.my-purchase.completed');
-    }
-    public function completed_details(){
-        return view('front-end.user.my-purchase.completed-details');
     }
 }
