@@ -654,4 +654,33 @@ class Utility{
 
         return $response;
     }
+
+    public static function order_total($order_id){
+        $total_discount = 0;
+        $sub_total      = 0;
+        $total          = 0;
+
+        $filter = [];
+        $filter['select'] = [
+            'order_items.quantity',
+            'product_posts.buy_now_price',
+            'products.regular_price'
+        ];
+        $filter['where']['order_items.order_id'] = $order_id;
+        
+        $data = QueryUtility::order_items($filter)->get();
+
+        foreach($data as $row){
+            $price_percentage  = self::price_percentage($row->regular_price, $row->buy_now_price);
+            $total_discount   += $price_percentage['discount'] * $row->quantity;
+            $sub_total        += $row->regular_price * $row->quantity;
+            $total            += $row->buy_now_price * $row->quantity;
+        }
+
+        return [
+            'total_discount' => $total_discount,   //item discount
+            'sub_total'      => $sub_total,        //not discounted, overall regular price total
+            'total'          => $total             //discounted
+        ];
+    }
 }

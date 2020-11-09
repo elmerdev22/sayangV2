@@ -399,4 +399,48 @@ class QueryUtility{
 
 		return $data;
 	}
+
+	public static function order_items(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+		$data = DB::table('order_items')
+			->select($select)
+			->join('product_posts', 'product_posts.id', '=', 'order_items.product_post_id')
+			->join('orders', 'orders.id', '=', 'order_items.order_id')
+			->leftJoin('products', 'products.id', '=', 'product_posts.product_id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
 }

@@ -13,4 +13,8 @@ class ProductPost extends Model
     public function cart(){
         return $this->hasOne('App\Model\Cart', 'product_post_id', 'id');
     }
+
+    public function order_item(){
+        return $this->hasOne('App\Model\OrderItem', 'product_post_id', 'id');
+    }
 }
