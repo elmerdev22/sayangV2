@@ -620,4 +620,30 @@ class Utility{
     public static function count_followers($partner_id){
         return Follower::where('partner_id', $partner_id)->count();
     }
+
+    public static function price_percentage($number_1, $number_2){
+        $number_1 = self::decimal_format($number_1);
+        $number_2 = self::decimal_format($number_2);
+        $response = [
+            'discount'         => 0,
+            'discount_percent' => 0,
+            'percentage'       => 0
+        ];
+
+        if($number_1 > 0){
+            if($number_1 >= $number_2){
+                $percentage = round($number_2 / ($number_1 / 100),2);
+                $response   = $percentage;
+                $discount   = abs(100 - $percentage);
+    
+                $response = [
+                    'discount'         => $number_1 - $number_2,
+                    'discount_percent' => $discount,
+                    'percentage'       => $percentage
+                ];            
+            }
+        }
+
+        return $response;
+    }
 }

@@ -100,6 +100,18 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="discount">Discount</label>
+                        <input type="text" readonly="true" class="form-control" id="discount" value="{{number_format($price_percentage['discount'], 2)}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="discount_percent">Discount Percent</label>
+                        <input type="text" readonly="true" class="form-control" id="discount_percent" value="{{number_format($price_percentage['discount_percent'], 2)}}%">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -148,12 +160,15 @@
 
         $(document).on('keyup', '#lowest_price', function () {
             @this.set('lowest_price', $(this).val())
+            @this.call('compute_price_percentage')
         });
         $(document).on('keyup', '#buy_now_price', function () {
             @this.set('buy_now_price', $(this).val())
+            @this.call('compute_price_percentage')
         });
         $(document).on('keyup', '#regular_price', function () {
             @this.set('regular_price', $(this).val())
+            @this.call('compute_price_percentage')
         });
         $(document).on('change', '#sub_categories', function () {
             @this.set('sub_categories', $(this).val())
