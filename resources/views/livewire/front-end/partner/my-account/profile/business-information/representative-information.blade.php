@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">            
             <h4>Representative Information
-                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#representative_info_edit">
+                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-edit_representative_information">
                     <span class="fas fa-edit"></span>
                 </button>
             </h4>
