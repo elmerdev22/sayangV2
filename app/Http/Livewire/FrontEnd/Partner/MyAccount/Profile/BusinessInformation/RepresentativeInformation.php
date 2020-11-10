@@ -6,15 +6,14 @@ use Livewire\Component;
 use Utility;
 class RepresentativeInformation extends Component
 {
-    public $partner, $account;
+    protected $listeners = [
+        'initialize_representative_information' => '$refresh'
+    ];
 
-    public function mount(){
-        $this->partner = Utility::auth_partner();
-        $this->account = Utility::auth_user_account();
-    }
+    public function render(){
+        $partner = Utility::auth_partner();
+        $account = Utility::auth_user_account();
 
-    public function render()
-    {
-        return view('livewire.front-end.partner.my-account.profile.business-information.representative-information');
+        return view('livewire.front-end.partner.my-account.profile.business-information.representative-information', compact('partner', 'account'));
     }
 }

@@ -534,6 +534,9 @@ input:checked + .slider:before {
 .table-sort:hover{
   opacity: 0.8;
 }
+.cursor-pointer{
+  cursor: pointer;
+}
 /* END OF GLOBAL CLASSES CAN BE USE */
 
 /* CUSTOM SAYANG BRANDING THEMES */
