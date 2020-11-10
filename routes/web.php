@@ -399,7 +399,18 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
     });
 });
 
+// PRINT PREVIEW GROUP
+Route::group(['prefix' => 'print-preview', 'as' => 'front-end.print-preview.', 'namespace' => 'FrontEnd\PrintPreview'], function(){
+    
+    Route::group(['prefix' => 'invoice', 'as' => 'invoice.', 'middleware' => ['auth']], function (){
+        $c = 'InvoiceController';
+        Route::get('/{invoice_no}', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+    });
 
+});
 
 
 Route::get('/products', function () {

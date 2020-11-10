@@ -93,5 +93,17 @@
 
 @endsection
 @section('js')
-
+    @if($order->status == 'completed')
+        <script src="{{asset('template/assets/dist/js/window-document.js')}}"></script>
+        <script type="text/javascript">
+            $(function (){
+                $(document).on('click', '.btn-print-invoice', function (){
+                    var url     = "{{route('front-end.print-preview.invoice.index', ['invoice_no' => '|invoice_no|'])}}";
+                        url     = url.replace('|invoice_no|', $(this).data('invoice_no'));
+                    var filters = {};
+                    window_frame(filters, url, 'Print Invoice: '+$(this).data('invoice_no'));
+                });
+            });
+        </script>
+    @endif
 @endsection

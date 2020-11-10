@@ -5,7 +5,7 @@
             <div class="col-12">
                 <h4>
                     <img src="{{asset('images/logo/logo.png')}}" class="float-left" height="50px">
-                    <small class="float-right">Date: {{date('F/d/Y', strtotime($data->date_completed))}}</small>
+                    <small class="float-right">Date: {{date('F/d/Y')}}</small>
                 </h4>
             </div>
         <!-- /.col -->
@@ -53,7 +53,11 @@
                 <br>
                 <b>Billing No.:</b> {{$data->billing->billing_no}}<br>
                 <b>Payment Due:</b> {{date('F/d/Y', strtotime($data->date_payment_confirmed))}}<br>
+                <b>Purchase Completed:</b> {{date('F/d/Y', strtotime($data->date_completed))}}<br>
                 <!-- <b>Account:</b> 968-34567 -->
+                <div class="mt-2">
+                    {!! QrCode::size(70)->generate($data->qr_code); !!}
+                </div>
             </div>
         <!-- /.col -->
         </div>
@@ -131,7 +135,7 @@
         <!-- this row will not appear when printing -->
         <div class="row no-print">
             <div class="col-12">
-                <a href="javascript:void(0)" class="btn btn-warning"><i class="fas fa-print"></i> Print</a>
+                <a href="javascript:void(0)" class="btn btn-warning btn-print-invoice" data-invoice_no="{{$data->order_no}}"><i class="fas fa-print"></i> Print</a>
                 <button type="button" class="btn btn-danger float-right"><i class="fas fa-times"></i> Close</button>
                 <!-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
