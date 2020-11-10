@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">            
             <h4>Business Information
-                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#business_information_edit">
+                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-edit_business_information">
                     <span class="fas fa-edit"></span>
                 </button>
             </h4>
@@ -42,13 +42,18 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Uploaded DTI Certificate</label>
-                        <div><a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/dti-certificates/'.$partner->dti_certificate_file)}}" download="{{$partner->dti_certificate_file_name}}" target="_blank"><i class="fas fa-download"></i> Download File</a></div>
+                        <div>
+                            <a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/dti-certificates/'.$partner->dti_certificate_file)}}" download="{{$partner->dti_certificate_file_name}}" target="_blank">
+                                <i class="fas fa-download"></i> Download File
+                            </a>
+                            <small class="text-blue cursor-pointer">( <i class="fas fa-edit"></i> Upload New )</small>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-sm-6">
                     <div class="form-group">
                         <label>Address</label>
-                        <div>{{Utility::partner_full_address($partner->partner_id)}}</div>
+                        <div>{{$full_address}}</div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
@@ -67,27 +72,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Business Information Edit-->
-    <div wire:ignore.self class="modal fade" id="business_information_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Business Information</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Content here
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-warning">Save Changes</button>
                 </div>
             </div>
         </div>
