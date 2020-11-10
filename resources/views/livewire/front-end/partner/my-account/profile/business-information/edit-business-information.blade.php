@@ -171,6 +171,7 @@
 <script type="text/javascript">
     window.livewire.on('initialize_business_information', param => {
         $('#modal-edit_business_information').modal('hide');
+        $('#modal-upload_dti_certificate').modal('hide');
     });
 </script>
 @endpush

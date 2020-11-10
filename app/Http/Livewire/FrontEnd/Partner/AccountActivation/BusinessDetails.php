@@ -137,7 +137,7 @@ class BusinessDetails extends Component
         $response = ['success' => false, 'message' => ''];
         DB::beginTransaction();
         
-        // try{
+        try{
             $account       = $this->account;
             $partner       = Partner::where('user_account_id', $account->id)->first();
 
@@ -189,9 +189,9 @@ class BusinessDetails extends Component
             if($partner->save()){
                 $response['success'] = true;
             }            
-        // }catch(\Exception $e){
+        }catch(\Exception $e){
             $response['message'] = 'An error occured.';            
-        // }
+        }
 
         if($response['success']){
             DB::commit();

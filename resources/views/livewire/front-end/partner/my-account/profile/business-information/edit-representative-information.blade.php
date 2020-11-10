@@ -78,6 +78,7 @@
 <script type="text/javascript">
     window.livewire.on('initialize_representative_information', param => {
         $('#modal-edit_representative_information').modal('hide');
+        $('#modal-upload_representative_id').modal('hide');
     });
 </script>
 @endpush

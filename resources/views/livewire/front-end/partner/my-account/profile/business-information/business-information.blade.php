@@ -46,7 +46,7 @@
                             <a class="btn btn-sm btn-default" href="{{asset('storage/'.$account->key_token.'/dti-certificates/'.$partner->dti_certificate_file)}}" download="{{$partner->dti_certificate_file_name}}" target="_blank">
                                 <i class="fas fa-download"></i> Download File
                             </a>
-                            <small class="text-blue cursor-pointer">( <i class="fas fa-edit"></i> Upload New )</small>
+                            <small class="text-blue cursor-pointer" data-toggle="modal" data-target="#modal-upload_dti_certificate">( <i class="fas fa-edit"></i> Upload New )</small>
                         </div>
                     </div>
                 </div>
