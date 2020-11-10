@@ -70,10 +70,10 @@ return [
     */
 
     'temporary_file_upload' => [
-        'disk'       => null,                                                // Example: 'local', 's3'              Default: 'default'
-        'rules'      => ['file', 'mimes:jpeg,png,jpg,gif,svg','max:2048'],   // Example: ['file', 'mimes:png,jpg']  Default: ['required', 'file', 'max:12288'] (12MB)
-        'directory'  => null,                                                // Example: 'tmp'                      Default  'livewire-tmp'
-        'middleware' => null,                                                // Example: 'throttle:5,1'             Default: 'throttle:60,1'
+        'disk'       => null,                                                                       // Example: 'local', 's3'              Default: 'default'
+        'rules'      => ['file', 'mimes:jpeg,jpg,png,gif,docx,pdf,dot,doc,docm,zip','max:2048'],    // Example: ['file', 'mimes:png,jpg']  Default: ['required', 'file', 'max:12288'] (12MB)
+        'directory'  => null,                                                                       // Example: 'tmp'                      Default  'livewire-tmp'
+        'middleware' => null,                                                                       // Example: 'throttle:5,1'             Default: 'throttle:60,1'
     ],
 
     /*
