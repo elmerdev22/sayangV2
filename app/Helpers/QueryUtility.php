@@ -351,7 +351,8 @@ class QueryUtility{
 			->join('billings', 'billings.id', '=', 'orders.billing_id')
 			->join('partners', 'partners.id', '=', 'orders.partner_id')
 			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
-			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id');
+			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id')
+			->leftJoin('user_accounts', 'user_accounts.id', '=', 'billings.user_account_id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

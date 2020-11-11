@@ -70,7 +70,7 @@
                     <b>Payment Due:</b> {{date('F/d/Y', strtotime($data->date_payment_confirmed))}}<br>
                     <b>Purchase Completed:</b> {{date('F/d/Y', strtotime($data->date_completed))}}<br>
                     <!-- <b>Account:</b> 968-34567 -->
-                    <div class="mt-2">
+                    <div class="mt-2 mb-2">
                         {!! QrCode::size(70)->generate($data->qr_code); !!}
                     </div>
                 </div>
