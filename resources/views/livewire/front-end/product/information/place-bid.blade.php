@@ -7,13 +7,13 @@
                     <div class="col-md-6">
                         <label>
                             Minimum Bid
-                            Php {{number_format($lowest_price, 2)}} 
+                            Php {{number_format($minimum_bid, 2)}} 
                         </label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-bid-price-minus"><span class="fas fa-minus"></span></button>
+                                <button type="button" class="btn btn-default" id="btn-bid-price-minus" {{$lowest_price <= $bid_price ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="text" class="form-control text-center mask-money" id="bid-price" min="{{$lowest_price}}">
+                            <input type="text" class="form-control text-center" id="bid-price" min="{{$lowest_price}}" wire:model="bid_price">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                             </div>
@@ -25,7 +25,7 @@
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-quantity-minus-2" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="number" class="form-control text-center input-number-remove-arrow" id="quantity-2" min="0" max="{{$current_quantity}}">
+                            <input type="number" class="form-control text-center input-number-remove-arrow" id="quantity-2" min="1" max="{{$current_quantity}}" wire:model="quantity">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-quantity-plus-2" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                             </div>
@@ -49,7 +49,9 @@
                     <h4 class="mb-0 text-white">Your Total: Php {{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
-                    <button class="btn btn-default w-100">CONFIRM BID</button>
+                    <button class="btn btn-default w-100" wire:click="confirm_bid">
+                        CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
+                    </button>
                 </div>
             @elseif($allow_purchase == 'login')
                 <div class="row">
@@ -79,7 +81,7 @@
             @endif
 
             <hr>
-            <p>Rankings | Total Bids: 16</p>
+            <p>Rankings Top 5 | Total Bids: {{number_format($ranking->total(), 0)}}</p>
             <table class="table table-bordered table-sm">
                 <thead>
                     <tr>
@@ -91,27 +93,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $quan = $current_quantity;    
+                    @endphp
+                    @forelse ($ranking as $key => $data)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>100</td>
-                        <td>2</td>
-                        <td>Winning</td>
+                        @php
+                            $quan = $quan - $data->quantity;    
+                        @endphp
+                        <td>{{++$key}}</td>
+                        <td>{{$data->user_account->first_name}}</td>
+                        <td>{{number_format($data->bid, 2)}}</td>
+                        <td>{{number_format($data->quantity, 0)}}</td>
+                        <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
                     </tr>
+                    @empty
                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>90</td>
-                        <td>3</td>
-                        <td>Winning</td>
+                        <td colspan="5">No Bids.</td>
                     </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Jacob</td>
-                        <td>80</td>
-                        <td>4</td>
-                        <td>Winning</td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -122,7 +122,7 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
-        $('.mask-money').mask("#,##0.00", {reverse: true});
+        // $('.mask-money').mask("#,##0.00", {reverse: true});
         $('#quantity-2').val('{{$quantity}}');
         $('#bid-price').val('{{number_format($bid_price, 2)}}');
         
@@ -143,8 +143,7 @@
             @this.call('validate_quantity', $('#quantity-2').val())
         });
 
-        var bid_price_interval = 100;
-        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', bid_price_interval);
+        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', {{$minimum_bid}});
         $(document).on('change', '#bid-price', function (){
             @this.call('set_bid_price', $('#bid-price').val())
         });

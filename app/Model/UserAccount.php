@@ -28,6 +28,10 @@ class UserAccount extends Model implements HasMedia
         return $this->belongsTo('App\Model\User');
     }
 
+    public function bid(){
+        return $this->belongsTo('App\Model\Bid');
+    }
+
     public function partner(){
         return $this->hasOne('App\Model\Partner', 'user_account_id', 'id');
     }
