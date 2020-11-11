@@ -11,7 +11,16 @@ class SettingsUtility{
 
     public static function settings($key=null){
         $response = [
-            'minimum_bids'     => 50,
+            //Bids
+            'minimum_bid' => [
+                'group' => 'bids',
+                'name'  => 'Minimum Bid',
+                'value' => 50,
+            ],
+
+            //Notifications
+
+            //
         ];
 
         if($key){
@@ -30,7 +39,9 @@ class SettingsUtility{
             foreach(self::settings() as $settings_key => $settings_value){
                 $settings                 = new Setting();
                 $settings->settings_key   = $settings_key;
-                $settings->settings_value = $settings_value;
+                $settings->settings_value = $settings_value['value'];
+                $settings->settings_group = $settings_value['group'];
+                $settings->settings_name  = $settings_value['name'];
                 $save                     = $settings->save();
     
                 if(!$save){
