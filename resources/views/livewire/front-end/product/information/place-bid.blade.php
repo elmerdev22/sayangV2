@@ -7,16 +7,26 @@
                     <div class="col-md-6">
                         <label>
                             Minimum Bid
-                            Php {{number_format($minimum_bid, 2)}} 
+                            ₱ {{number_format($bid_increment, 2)}} 
                         </label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-bid-price-minus" {{$lowest_price <= $bid_price ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
+                                <button type="button" class="btn btn-default" id="btn-bid-price-minus" {{$lowest_bid >= $bid ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="text" class="form-control text-center" id="bid-price" min="{{$lowest_price}}" wire:model="bid_price">
+                            <input type="text" class="form-control text-center" pattern="[0-9]+" id="bid-price" min="{{$lowest_bid}}" wire:model="bid">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                             </div>
+                            @error('bid')
+                            <div class="text-center">
+                                <small class="text-danger">{{$message}}</small>
+                            </div>
+                            @enderror
+                            @if(session('minimum_bid'))
+                            <div class="text-center">
+                                <small class="text-danger">{{session('minimum_bid')}}</small>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -30,12 +40,17 @@
                                 <button type="button" class="btn btn-default" id="btn-quantity-plus-2" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                             </div>
                         </div>
+                        @if(session('quantity_required'))
+                        <div class="text-center">
+                            <small class="text-danger">{{session('quantity_required')}}</small>
+                        </div>
+                        @endif
                     </div>
                 @else
                     <div class="col-12 text-center">
                         <label>
-                            Minimum Bid
-                            Php {{number_format($lowest_price, 2)}} 
+                            Bid Increment
+                            ₱ {{number_format($bid_increment, 2)}} 
                         </label>
                     </div>
                 @endif
@@ -46,10 +61,10 @@
         <div class="col-12">
             @if($allow_purchase == 'allowed')
                 <div class="bg-warning py-1 px-2 mt-4">
-                    <h4 class="mb-0 text-white">Your Total: Php {{number_format($total_amount, 2)}}</h4>
+                    <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
-                    <button class="btn btn-default w-100" wire:click="confirm_bid">
+                    <button class="btn btn-default w-100" onclick="confirm_bid()">
                         CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
@@ -81,7 +96,7 @@
             @endif
 
             <hr>
-            <p>Rankings Top 5 | Total Bids: {{number_format($ranking->total(), 0)}}</p>
+            <p>Rankings Top {{$this->ranking_top_show}} | Total Bids: {{number_format($ranking->total(), 0)}}</p>
             <table class="table table-bordered table-sm">
                 <thead>
                     <tr>
@@ -103,7 +118,7 @@
                         @endphp
                         <td>{{++$key}}</td>
                         <td>{{$data->user_account->first_name}}</td>
-                        <td>{{number_format($data->bid, 2)}}</td>
+                        <td>₱{{number_format($data->bid, 2)}}</td>
                         <td>{{number_format($data->quantity, 0)}}</td>
                         <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
                     </tr>
@@ -124,8 +139,11 @@
     document.addEventListener('DOMContentLoaded', function (event) {
         // $('.mask-money').mask("#,##0.00", {reverse: true});
         $('#quantity-2').val('{{$quantity}}');
-        $('#bid-price').val('{{number_format($bid_price, 2)}}');
-        
+        $('#bid-price').val('{{$bid}}');
+        $('#bid-price').on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+
         quantityField('#quantity-2', '#btn-quantity-minus-2', '#btn-quantity-plus-2');
         $(document).on('change', '#quantity-2', function (){
             @this.call('validate_quantity', $('#quantity-2').val())
@@ -143,21 +161,18 @@
             @this.call('validate_quantity', $('#quantity-2').val())
         });
 
-        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', {{$minimum_bid}});
+        quantityField('#bid-price', '#btn-bid-price-minus', '#btn-bid-price-plus', {{$bid_increment}});
         $(document).on('change', '#bid-price', function (){
-            @this.call('set_bid_price', $('#bid-price').val())
-        });
-        $(document).on('change', '#bid-price', function (){
-            @this.call('set_bid_price', $('#bid-price').val())
+            @this.call('set_bid', $('#bid-price').val())
         });
         $(document).on('keyup', '#bid-price', function (){
-            @this.call('set_bid_price', $('#bid-price').val())
+            @this.call('set_bid', $('#bid-price').val())
         });
         $(document).on('click', '#btn-bid-price-minus', function () {
-            @this.call('set_bid_price', $('#bid-price').val())
+            @this.call('set_bid', $('#bid-price').val())
         });
         $(document).on('click', '#btn-bid-price-plus', function () {
-            @this.call('set_bid_price', $('#bid-price').val())
+            @this.call('set_bid', $('#bid-price').val())
         });
     });
 
@@ -169,5 +184,22 @@
     event_channel.bind('product-post-update-event', function(param) {
         @this.call('product_post_update_event', param)
     });
+
+    function confirm_bid(){
+        var bid = $('#bid-price').val();
+        Swal.fire({
+        title: 'Your Bid is : ₱'+bid,
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: `Confirm`,
+        denyButtonText: `Don't save`,
+        reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.call('confirm_bid')
+            } 
+        })
+    }
+    
 </script>
 @endpush

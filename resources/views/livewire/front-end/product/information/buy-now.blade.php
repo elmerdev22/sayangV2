@@ -4,7 +4,7 @@
         @if($allow_purchase == 'allowed')
             <div class="col-md-5">
                 <h4>
-                    Php {{number_format($product_post->buy_now_price, 2)}}
+                    ₱{{number_format($product_post->buy_now_price, 2)}}
                 </h4>
             </div>
             <div class="col-md-2 text-center">
@@ -46,14 +46,14 @@
             </div>
         @else
             <div class="col-12">
-                <h4>Php {{number_format($product_post->buy_now_price, 2)}}</h4>
+                <h4>₱{{number_format($product_post->buy_now_price, 2)}}</h4>
             </div>
         @endif
     </div>
     @if($allow_purchase == 'allowed')
-        <p class="mt-4">You save Php {{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
+        <p class="mt-4">You save ₱{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
         <div class="bg-warning py-1 px-2">
-            <h4 class="mb-0 text-white">Your Total: Php {{number_format($buy_now_price, 2)}}</h4>
+            <h4 class="mb-0 text-white">Your Total: ₱{{number_format($buy_now_price, 2)}}</h4>
         </div>
     @endif
     

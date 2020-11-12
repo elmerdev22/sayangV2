@@ -32,7 +32,7 @@
                                 @endif
                             </div>
                             <div class="float-xs-none float-sm-none float-md-right">
-                                <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-pen"></i></button>
+                                <button type="button" class="btn btn-sm btn-default" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-edit"></i></button>
                                 <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data('{{$row->key_token}}')"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>

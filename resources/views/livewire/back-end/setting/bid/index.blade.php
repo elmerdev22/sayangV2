@@ -9,11 +9,16 @@
         </div>
         <div class="card-body">
             <div class="col-md-3">
-                <label>Minimum Bids</label>
+                <label>Minimum Bids (in percent %)</label>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" wire:model.lazy="minimum_bids">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          %
+                        </span>
+                    </div>
+                    <input type="number" class="form-control text-center" min="1" max="100" wire:model.lazy="bid_increment_percent">
                     <div class="input-group-append bg-warning">
-                      <button class="btn btn-warning" wire:click="update_minimum_bids">Save</button>
+                      <button class="btn btn-warning" wire:click="update_bid_increment_percent">Save</button>
                     </div>
                 </div>
             </div>

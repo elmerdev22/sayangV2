@@ -6,26 +6,32 @@ use Livewire\Component;
 use App\Model\ProductPost;
 use App\Model\Bid;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use Utility;
 use Auth;
+use Session;
 
 class PlaceBid extends Component
 {
     use WithPagination;
 
     public $product_post_id, $product_post, $allow_purchase;
-    public $total_amount, $quantity, $current_quantity, $bid_price, $lowest_price, $minimum_bid;
+    public $total_amount, $quantity, $current_quantity, $bid, $lowest_price, $lowest_bid, $bid_increment;
+    public $ranking_top_show;
 
     public function mount($product_post_id){
         $product_post          = ProductPost::with(['product'])->findOrFail($product_post_id);
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
 
-        $this->minimum_bid     = Utility::settings('minimum_bid');
+        $bid_increment_percent  = Utility::settings('bid_increment_percent');
+        $this->ranking_top_show = Utility::settings('ranking_top_show');
 
-        $lowest_bid      = Bid::where('product_post_id', $this->product_post_id)->orderBy('bid', 'desc')->first();
-        $this->bid_price = $lowest_bid != null ? $lowest_bid->bid : $product_post->lowest_price;
-        $this->bid_price = $this->bid_price + floatval($this->minimum_bid);
+        $this->bid_increment    = round( ($bid_increment_percent / 100) * $product_post->buy_now_price );
+
+        $lowest_bid       = Bid::where('product_post_id', $this->product_post_id)->orderBy('bid', 'desc')->first();
+        $this->lowest_bid = $lowest_bid != null ? $lowest_bid->bid + floatval($this->bid_increment) : $product_post->lowest_price;
+        $this->bid        = $lowest_bid != null ? $lowest_bid->bid + floatval($this->bid_increment) : $product_post->lowest_price;
 
         $this->initialize_current_quantity();
         $preferred_quantity     = 1;
@@ -40,7 +46,12 @@ class PlaceBid extends Component
     }
 
     public function calculate_price(){
-        $this->total_amount = $this->bid_price * $this->quantity;
+        if($this->bid != null){
+            $this->total_amount = $this->bid * $this->quantity;
+        }
+        else{
+            $this->total_amount = 0.00;
+        }
     }
 
     public function validate_quantity($preferred_quantity){
@@ -50,10 +61,8 @@ class PlaceBid extends Component
 
         if(!empty($this->product_post)){
             if(!is_numeric($preferred_quantity)){
-                $this->emit('alert', [
-                    'type'    => 'warning',
-                    'title'   => 'Invalid Quantity',
-                ]);
+                Session::flash('quantity_required', 'Quantity is required!');
+                
             }else if($preferred_quantity <= $this->current_quantity){
                 if($preferred_quantity <= 0){
                     $this->quantity = 1;
@@ -72,9 +81,9 @@ class PlaceBid extends Component
         $this->calculate_price();
     }
 
-    public function set_bid_price($value){
+    public function set_bid($value){
         if($value >= $this->lowest_price){
-            $this->bid_price = Utility::decimal_format($value);
+            $this->bid = $value;
             $this->calculate_price();
         }
     }
@@ -94,7 +103,7 @@ class PlaceBid extends Component
             ->where('product_post_id',$this->product_post_id)
             ->orderBy('bid', 'desc')
             ->orderBy('quantity', 'desc')
-            ->paginate(5);
+            ->paginate($this->ranking_top_show);
     }
 
     public function product_post_update_event($param){
@@ -118,16 +127,29 @@ class PlaceBid extends Component
     public function confirm_bid(){
 
         $bidder = Auth::user()->id;
+        $product_post_id = $this->product_post_id;
+
+        $this->validate([
+            'bid' => ['required',
+            Rule::unique('bids')->where(function ($query) use ($product_post_id) {
+                return $query->where('product_post_id', $product_post_id);
+            })]
+        ]);
         
-        $bid                  = new Bid();
-        $bid->bid_no          = Utility::generate_bid_no();
-        $bid->product_post_id = $this->product_post_id;
-        $bid->user_id         = $bidder;
-        $bid->bid             = $this->bid_price;
-        $bid->quantity        = $this->quantity;
-        $bid->status          = 'active';
-        $bid->key_token       = Utility::generate_table_token('Bid');
-        $bid->save();
+        if($this->bid < $this->lowest_bid){
+            Session::flash('minimum_bid', 'The minimum Bid is '.$this->lowest_bid);
+        }
+        else{
+            $bid                  = new Bid();
+            $bid->bid_no          = Utility::generate_bid_no();
+            $bid->product_post_id = $this->product_post_id;
+            $bid->user_id         = $bidder;
+            $bid->bid             = $this->bid;
+            $bid->quantity        = $this->quantity;
+            $bid->status          = 'active';
+            $bid->key_token       = Utility::generate_table_token('Bid');
+            $bid->save();
+        }
 
         $this->mount($this->product_post_id);
     }

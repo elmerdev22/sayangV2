@@ -12,10 +12,15 @@ class SettingsUtility{
     public static function settings($key=null){
         $response = [
             //Bids
-            'minimum_bid' => [
+            'bid_increment_percent' => [
                 'group' => 'bids',
-                'name'  => 'Minimum Bid',
+                'name'  => 'Bid Increment Percentage',
                 'value' => 50,
+            ],
+            'ranking_top_show' => [
+                'group' => 'bids',
+                'name'  => 'Ranking Top Show',
+                'value' => 5,
             ],
 
             //Notifications

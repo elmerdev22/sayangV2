@@ -40,7 +40,7 @@
         <span class="fas fa-list-alt"></span> My Bids  
     </a>
 
-    <a href="#" class="list-group-item" data-parent="#MainMenu">
+    {{-- <a href="#" class="list-group-item" data-parent="#MainMenu">
         <span class="fas fa-money-bill"></span> My Vouchers  
-    </a>
+    </a> --}}
 </div>

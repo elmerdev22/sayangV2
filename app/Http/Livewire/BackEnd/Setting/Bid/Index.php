@@ -7,25 +7,25 @@ use App\Model\Setting;
 use Utility;
 class Index extends Component
 {
-    public $minimum_bids;
+    public $bid_increment_percent;
 
     public function mount(){
-        $this->minimum_bids = Utility::settings('minimum_bids');
+        $this->bid_increment_percent = Utility::settings('bid_increment_percent');
     }
     public function render()
     {
         return view('livewire.back-end.setting.bid.index');
     }
 
-    public function update_minimum_bids(){
+    public function update_bid_increment_percent(){
 
-        $data                 = Setting::where('settings_key', 'minimum_bids')->first();
-        $data->settings_value = $this->minimum_bids;
+        $data                 = Setting::where('settings_key', 'bid_increment_percent')->first();
+        $data->settings_value = $this->bid_increment_percent;
         if($data->save()){
             $this->emit('alert', [
                 'type'              => 'success',
                 'title'             => 'Successfully Updated',
-                'message'           => 'Minimum Bids Successfully Updated!. <br><br>',
+                'message'           => 'Bid Increment Percent Successfully Updated!. <br><br>',
                 'timer'             => 1500,
                 'showConfirmButton' => false
             ]);
