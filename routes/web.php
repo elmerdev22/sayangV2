@@ -237,6 +237,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             Route::get('/banks-and-cards', [
 		        'as' 	=> 'banks-and-cards',
 		        'uses'  => $c.'@banks_and_cards'
+            ]);
+            
+            Route::get('/change-password', [
+		        'as' 	=> 'change-password',
+		        'uses'  => $c.'@change_password'
 		    ]);
         });
 
