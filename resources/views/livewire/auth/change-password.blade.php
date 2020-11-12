@@ -16,7 +16,7 @@
         <div class="form-group">
             <label>New password* </label>
             <div>
-                <input type="password" class="form-control" placeholder="Password" wire:model.lazy="new_password" />
+                <input type="password" class="form-control" placeholder="New Password" wire:model.lazy="new_password" />
                 @error('new_password')
 				    <span class="text-danger">{{$message}}</span>
 				@enderror

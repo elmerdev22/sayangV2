@@ -8,7 +8,9 @@
         <a href="{{route('front-end.user.my-account.index')}}" class="list-group-item {{\Route::is('front-end.user.my-account.index') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Profile </a>
         <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="list-group-item {{\Route::is('front-end.user.my-account.banks-and-cards') ? 'sayang-link-active':''}}""><span class="fas fa-chevron-right mr-1 ml-2"></span> Banks & Cards </a>
         <a href="{{route('front-end.user.my-account.addresses')}}" class="list-group-item {{\Route::is('front-end.user.my-account.addresses') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Addresses </a>
-        <a href="javascript:void(0);" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change password </a>
+        @if (Auth::user()->provider == 'default')
+        <a href="{{route('front-end.user.my-account.change-password')}}" class="list-group-item {{\Route::is('front-end.user.my-account.change-password') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span> Change Password </a>
+        @endif
     </div>
 
     <a href="#purchase" class="list-group-item {{\Route::is('front-end.user.my-purchase.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">

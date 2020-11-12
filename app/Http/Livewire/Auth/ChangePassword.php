@@ -50,6 +50,9 @@ class ChangePassword extends Component
                 else if($this->redirect == 'admin_login'){
 				    return redirect()->route('admin.login');
                 }
+                else{
+                    return redirect()->to('/login');
+                }
 
 			}
 			else{
