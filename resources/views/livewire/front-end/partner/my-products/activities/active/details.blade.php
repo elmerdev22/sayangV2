@@ -35,7 +35,7 @@
                         <div class="col-12 mb-2">
                             @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
                                 <label>Time Left</label>
-                                <div class="bg-danger p-1 text-center">
+                                <div class="bg-warning p-1 text-center">
                                     <span class="fas fa-clock"></span> 4 hrs 3 mins
                                 </div>
                             @else
@@ -46,7 +46,7 @@
                             @endif
                         </div>
                         <div class="col-12 mb-2 text-center">
-                            <button class="btn btn-danger btn-sm">Cancel this product</button> 
+                            <button class="btn btn-danger btn-sm w-100" @if(!Utility::is_product_post_cancellable($product_post_id)) onclick="not_cancellable()" @else onclick="cancellable()" @endif>Cancel this product</button> 
                         </div>
                         <div class="col-12 mb-2">
                             <label>Date Start</label>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-12 mb-2">
-                            <label>Date Added</label>
+                            <label>Date Posted</label>
                             <div>
                                 {{date('F/d/Y', strtotime($data->created_at))}}
                             </div>
@@ -72,103 +72,128 @@
                 <div class="col-md-8">
                     
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <label>Regular Price</label>
+                            <div>
+                                {{number_format($data->regular_price, 2)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <label>Buy now Price</label>
                             <div>
                                 {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <label>Lowest Price</label>
                             <div>
                                 {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label>Quantity</label>
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
-                                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         
                         @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
-                        
+                        <hr>
                         <div class="col-12">
                             <label>Product Sold</label>
+                        </div>
+                        <div class="col-md-7">
                             <p>Buyer Details | Total Sold: 2</p>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">
+                        </div>
+                        <div class="col-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-bordered table-sm text-center">
                                     <thead>
                                         <tr>
-                                            <th>Buyer name</th>
-                                            <th>Qty</th>
-                                            <th>Date Purchase</th>
+                                            <th>Order no.</th>
+                                            <th>Purchase Date</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for ($i = 0; $i < 3; $i++)
+                                        @forelse($product_sold as $row)
                                             <tr>
-                                                <th>John cena reyes</th>
-                                                <td>2</td>
-                                                <td>{{date('F/d/Y', strtotime($data->created_at))}}</td>
+                                                <td>{{$row->order_no}}</td>
+                                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                                <td>{{number_format($row->product_quantity, 0)}}</td>
                                                 <td>
-                                                    <a class="btn btn-warning btn-sm">View Invoice</a>
+                                                    @if($row->status == 'cancelled')
+                                                        <span class="badge badge-danger">Cancelled</span>
+                                                    @elseif($row->status == 'order_placed')
+                                                        <span class="badge badge-warning">Order Placed</span>
+                                                    @elseif($row->status == 'payment_confirmed')
+                                                        <span class="badge badge-info">Payment Confirmed</span>
+                                                    @elseif($row->status == 'to_receive')
+                                                        <span class="badge badge-info">To Receive</span>
+                                                    @elseif($row->status == 'completed')
+                                                        <span class="badge badge-success">Completed</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                                 </td>
                                             </tr>
-                                        @endfor
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">No Data Found</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
+                                {{$product_sold->render()}}
                             </div>
-                            {{-- <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul> --}}
                         </div>
                         <div class="col-12">
-                            <label>Product Bids</label>
-                            <p>Rankings | Total Bids: 16</p>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-sm">
-                                    <thead>
-                                        <tr>
+                            <hr>
+                            <p>Rankings | Total Bids: {{number_format($bid_ranking_list->total(), 0)}}</p>
+                            <table class="table table-bordered table-sm text-center">
+                                <thead>
+                                    <tr>
                                         <th scope="col">Rank</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Bid</th>
                                         <th scope="col">Qty</th>
                                         <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for ($i = 0; $i < 5; $i++)
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>100</td>
-                                                <td>2</td>
-                                                <td>Winning</td>
-                                            </tr>
-                                        @endfor
-                                    </tbody>
-                                </table>
-                            </div>
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $quan = $data->quantity;    
+                                    @endphp
+                                    @forelse ($bid_ranking_list as $key => $data)
+                                    <tr>
+                                        @php
+                                            $quan = $quan - $data->quantity;    
+                                        @endphp
+                                        <td>{{++$key}}</td>
+                                        <td>{{$data->user_account->first_name}}</td>
+                                        <td>₱{{number_format($data->bid, 2)}}</td>
+                                        <td>{{number_format($data->quantity, 0)}}</td>
+                                        <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
+                                    </tr>
+                                    @empty
+                                    <tr class="text-center">
+                                        <td colspan="5">No Bids.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            {{$bid_ranking_list->render()}}
                         </div>
                         @else 
                         @endif
@@ -195,6 +220,41 @@
                 @this.call('save_quantity')
             }
         })
+    }
+
+    function cancellable(){
+        Swal.fire({
+            title: 'Are you sure do you want to cancel this product?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Cancelling ...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('cancel')
+                    }
+                });
+            }
+        })
+    }
+
+	function not_cancellable(name){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Cant`t cancel because this Product already have transactions',
+		})
     }
 </script>
 @endpush

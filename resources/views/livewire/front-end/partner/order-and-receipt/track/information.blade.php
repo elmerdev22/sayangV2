@@ -62,9 +62,10 @@
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
             </p>
         </div>
-        <div class="col-md-8">
+        
+        {{-- <div class="col-md-8">
             QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
-        </div>
+        </div> --}}
         @if($data->status == 'completed')
             <div class="col-md-4">
                 View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
