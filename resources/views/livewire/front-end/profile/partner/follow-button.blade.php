@@ -46,7 +46,7 @@
 
         Swal.fire({
             title: 'Are you sure?',
-            text: "You want to unfollow this!",
+            text: "You want to unfollow this store/shop ?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

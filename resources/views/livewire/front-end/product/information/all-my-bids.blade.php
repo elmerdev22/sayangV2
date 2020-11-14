@@ -23,7 +23,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5">No Bids already.</td>
+                            <td colspan="5">No Bids.</td>
                         </tr>
                         @endforelse
                     </tbody>

@@ -644,7 +644,7 @@ class Utility{
     public static function generate_bid_no(){
         do{
             $continue     = true;
-            $generated_id = 'BN'.date('ymd').'0'.rand(1000,9999);
+            $generated_id = 'BN'.date('ymd').'0'.rand(100000,999999);
             $check        = Bid::where('bid_no', $generated_id)->count();
             if($check == 0){
                 $continue = false;

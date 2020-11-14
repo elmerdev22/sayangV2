@@ -103,38 +103,40 @@
             <hr>
             
             <p>Rankings Top {{$this->ranking_top_show}} | Total Bids: {{number_format($ranking->total(), 0)}}</p>
-            <table class="table table-bordered table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Rank</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Bid</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $quan = $current_quantity;    
-                    @endphp
-                    @forelse ($ranking as $key => $data)
-                    <tr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Bid</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @php
-                            $quan = $quan - $data->quantity;    
+                            $quan = $current_quantity;    
                         @endphp
-                        <td>{{++$key}}</td>
-                        <td>{{$data->user_account->first_name}}</td>
-                        <td>₱{{number_format($data->bid, 2)}}</td>
-                        <td>{{number_format($data->quantity, 0)}}</td>
-                        <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5">No Bids.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        @forelse ($ranking as $key => $data)
+                        <tr>
+                            @php
+                                $quan = $quan - $data->quantity;    
+                            @endphp
+                            <td>{{++$key}}</td>
+                            <td>{{$data->user_account->first_name}}</td>
+                            <td>₱{{number_format($data->bid, 2)}}</td>
+                            <td>{{number_format($data->quantity, 0)}}</td>
+                            <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5">No Bids.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
             
             @if($allow_purchase == 'allowed' && $view_my_bids)
                 <div>

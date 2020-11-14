@@ -17,12 +17,14 @@ class PlaceBid extends Component
     protected $listeners = ['reload-ranking-list' => 'refresh'];
 
     public $view_my_bids = false;
-    public $product_post_id, $product_post, $allow_purchase, $bidder;
+    public $product_post_id, $product_post, $allow_purchase, $account;
     public $total_amount, $quantity, $current_quantity, $bid, $lowest_price, $lowest_bid, $bid_increment;
     public $ranking_top_show;
 
     public function mount($product_post_id){
         
+        $this->account         = Utility::auth_user_account();
+
         $product_post          = ProductPost::with(['product'])->findOrFail($product_post_id);
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
@@ -98,7 +100,6 @@ class PlaceBid extends Component
 
     public function render(){
         if(Auth::check()){
-            $this->bidder       = Auth::user();
             $this->view_my_bids = $this->view_my_bids() >= 1 ? true : false;
         }
         $ranking = $this->ranking_list();
@@ -116,7 +117,7 @@ class PlaceBid extends Component
 
     public function view_my_bids(){
         return Bid::where('product_post_id', $this->product_post_id)
-            ->where('user_id', $this->bidder->id)
+            ->where('user_account_id', $this->account->id)
             ->count();
     }
 
@@ -156,7 +157,7 @@ class PlaceBid extends Component
             $bid                  = new Bid();
             $bid->bid_no          = Utility::generate_bid_no();
             $bid->product_post_id = $this->product_post_id;
-            $bid->user_id         = $this->bidder->id;
+            $bid->user_account_id = $this->account->id;
             $bid->bid             = $this->bid;
             $bid->quantity        = $this->quantity;
             $bid->status          = 'active';

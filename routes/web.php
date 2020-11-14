@@ -266,6 +266,27 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             ]);
 
         });
+        // My Purchase
+        Route::group(['prefix' => 'my-bids', 'as' => 'my-bids.'], function (){
+			$c = 'MyBidController';
+            
+            // Purchase
+			Route::get('/active', [
+		        'as' 	=> 'active',
+		        'uses'  => $c.'@active'
+            ]);
+			Route::get('/win', [
+		        'as' 	=> 'win',
+		        'uses'  => $c.'@win'
+            ]);
+
+            // Completed
+			Route::get('/lose', [
+		        'as' 	=> 'lose',
+		        'uses'  => $c.'@lose'
+            ]);
+
+        });
 
         //My Cart
         Route::group(['prefix' => 'my-cart', 'as' => 'my-cart.'], function (){
