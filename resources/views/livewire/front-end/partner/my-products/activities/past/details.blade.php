@@ -26,29 +26,13 @@
                         </div>
                         <div class="col-12 mb-2">
                             <label>Status</label> : 
-                            @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
-                                <span class="badge badge-success">Active</span>    
-                            @else
-                                <span class="badge badge-info">Upcoming</span>    
-                            @endif
+                            <span class="badge badge-danger">Ended</span>    
                         </div>
                         <div class="col-12 mb-2">
-                            @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
-                                <label>Time Left</label>
-                                <div class="bg-warning p-1 text-center">
-                                    <span class="fas fa-clock"></span> 
-                                    <span class="countdown">{{$data->date_end}}</span>
-                                </div>
-                            @else
-                                <label>Start In</label>
-                                <div class="bg-light p-1 text-center">
-                                    <span class="fas fa-clock"></span>
-                                    <span class="countdown">{{$data->date_end}}</span>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="col-12 mb-2 text-center">
-                            <button class="btn btn-danger btn-sm w-100" @if(!Utility::is_product_post_cancellable($product_post_id)) onclick="not_cancellable()" @else onclick="cancellable()" @endif>Cancel this product</button> 
+                            <div class="bg-danger p-1 text-center">
+                                <span class="fas fa-clock"></span> 
+                                Ended ({{Utility::carbon_diff($data->date_start)}})
+                            </div>
                         </div>
                         <div class="col-12 mb-2">
                             <label>Date Start</label>
@@ -72,8 +56,8 @@
                     
                 </div>
                 <div class="col-md-8">
-                    
                     <div class="row">
+                        
                         <div class="col-sm-3">
                             <label>Regular Price</label>
                             <div>
@@ -93,19 +77,16 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Quantity</label>
-                                <div class="input-group mb-3">
-                                    <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
-                                    </div>
-                                </div>
+                            <label>Quantity</label>
+                            <div>
+                                {{number_format($data->quantity, 0)}}
                             </div>
                         </div>
                         
+                    </div>
+                    <hr>
+                    <div class="row">
                         @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
-                        <hr>
                         <div class="col-12">
                             <label>Product Sold</label>
                         </div>

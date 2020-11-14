@@ -5,7 +5,8 @@
         $page_header = [
             'title'       => 'Activities',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Activities'],
+                ['url' => route('front-end.partner.my-products.activities.index'), 'label' => 'Activities'],
+                ['url' => '', 'label' => 'View Product Post'],
             ],
         ];
     @endphp
@@ -14,23 +15,12 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        @livewire('front-end.partner.my-products.activities.active.index')
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        @livewire('front-end.partner.my-products.activities.past.index')
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        @livewire('front-end.partner.my-products.activities.cancelled.index')
+        @livewire('front-end.partner.my-products.activities.cancelled.details', ['product_post_id' => $product_post_id])
     </div>
 </div>
 
 @endsection
 @section('js')
-<script type="text/javascript">
-
-</script>
+<!-- Countdown JS -->
+<script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
 @endsection

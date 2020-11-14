@@ -3,8 +3,8 @@
         <div class="card-header">
             <h5 class="card-title"> My Product List</h5> 
             <div class="card-tools">
-				<a href="{{route('front-end.partner.my-products.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
-				<a href="{{route('front-end.partner.my-products.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+				<a href="{{route('front-end.partner.my-products.list.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
+				<a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
             </div>
         </div>
@@ -54,7 +54,7 @@
 		        				<td>{{number_format($row->lowest_price, 2)}}</td>
 		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>
 		        				<td class="text-center">
-									<a href="{{route('front-end.partner.my-products.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
+									<a href="{{route('front-end.partner.my-products.list.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
 									<a href="javascript:void(0);" @if(!Utility::is_product_deletable($row->id)) onclick="not_deletetable()" @else onclick="delete_product('{{$row->key_token}}')" @endif class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>
 		        				</td>
 		        			</tr>

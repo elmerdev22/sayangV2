@@ -316,45 +316,65 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
         });
 
-        // My Menu List
+        // My product List
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-			$c = 'MyProductsController';
-			
-			Route::get('/', [
-		        'as' 	=> 'index',
-		        'uses'  => $c.'@index'
-            ]);
-            
-            // Add Product in Menu
-			Route::get('/add', [
-		        'as' 	=> 'add',
-		        'uses'  => $c.'@add'
-            ]);
-            
-            // Edit Product in Menu
-            Route::get('/edit/{slug}', [
-                'as' 	=> 'edit',
-                'uses'  => $c.'@edit'
-            ]);
-            
-            // Edit Product in Menu
-			Route::get('/start-sale', [
-		        'as' 	=> 'start-sale',
-		        'uses'  => $c.'@start_sale'
-            ]);
+		    
+            Route::group(['prefix' => 'list', 'as' => 'list.'], function (){
+                $c = 'MyProductsController';
+                
+                Route::get('/', [
+                    'as' 	=> 'index',
+                    'uses'  => $c.'@index'
+                ]);
+                
+                // Add Product in Menu
+                Route::get('/add', [
+                    'as' 	=> 'add',
+                    'uses'  => $c.'@add'
+                ]);
+                
+                // Edit Product in Menu
+                Route::get('/edit/{slug}', [
+                    'as' 	=> 'edit',
+                    'uses'  => $c.'@edit'
+                ]);
+                
+                // Edit Product in Menu
+                Route::get('/start-sale', [
+                    'as' 	=> 'start-sale',
+                    'uses'  => $c.'@start_sale'
+                ]);
+                
+            });
 
-            // My Activities
-            Route::get('/activities', [
-		        'as' 	=> 'activities',
-		        'uses'  => $c.'@activities'
-            ]);
+            // My activities List
+            Route::group(['prefix' => 'activities', 'as' => 'activities.'], function (){
+                $c = 'MyProductsController';
+                
+                // My Activities
+                Route::get('/', [
+                    'as' 	=> 'index',
+                    'uses'  => $c.'@activities'
+                ]);
 
-            Route::get('/activities/{slug}/{key_token}', [
-		        'as' 	=> 'activities-details',
-		        'uses'  => $c.'@activities_details'
-            ]);
-            
+                Route::get('/active/{slug}/{key_token}', [
+                    'as' 	=> 'active',
+                    'uses'  => $c.'@active'
+                ]);
+
+                Route::get('/past/{slug}/{key_token}', [
+                    'as' 	=> 'past',
+                    'uses'  => $c.'@past'
+                ]);
+
+                Route::get('/cancelled/{slug}/{key_token}', [
+                    'as' 	=> 'cancelled',
+                    'uses'  => $c.'@cancelled'
+                ]);
+                
+            });
         });
+
 
         // My Account
         Route::group(['prefix' => 'my-account', 'as' => 'my-account.'], function (){

@@ -5,7 +5,7 @@
         $page_header = [
             'title'       => 'Activities',
             'breadcrumbs' => [
-                ['url' => route('front-end.partner.my-products.activities'), 'label' => 'Activities'],
+                ['url' => route('front-end.partner.my-products.activities.index'), 'label' => 'Activities'],
                 ['url' => '', 'label' => 'View Product Post'],
             ],
         ];
@@ -21,7 +21,6 @@
 
 @endsection
 @section('js')
-<script type="text/javascript">
-
-</script>
+<!-- Countdown JS -->
+<script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
 @endsection

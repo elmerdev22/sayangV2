@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Active and Upcoming Sales</h5> 
+            <h5 class="card-title">Cancelled Sales</h5> 
             <div class="card-tools">
                 <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -26,17 +26,9 @@
                                 Regular Price 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.regular_price'])
                             </th> --}}
-                            <th class="table-sort" wire:click="sort('product_posts.buy_now_price')">	
-                                Buy now Price 
-                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.buy_now_price'])
-                            </th>
-                            <th class="table-sort" wire:click="sort('product_posts.lowest_price')">
-                                Lowest Price 
-                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.lowest_price'])
-                            </th>
-                            <th class="table-sort" wire:click="sort('product_posts.quantity')">
-                                Quantity 
-                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.quantity'])
+                            <th class="table-sort" wire:click="sort('product_posts.date_cancelled')">
+                                Date Cancelled
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_cancelled'])
                             </th>
                             <th class="table-sort" wire:click="sort('product_posts.date_start')">
                                 Date Start
@@ -63,21 +55,15 @@
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
                                 {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
-                                <td>{{number_format($row->buy_now_price, 2)}}</td>
-                                <td>{{number_format($row->lowest_price, 2)}}</td>
-                                <td>{{number_format($row->quantity, 0)}}</td>
+                                <td>{{date('F/d/Y', strtotime($row->date_cancelled))}}</td>
                                 <td>{{date('F/d/Y', strtotime($row->date_start))}}</td>
                                 <td>{{date('F/d/Y', strtotime($row->date_end))}}</td>
                                 <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
-                                    @if (date('Y-m-d') >= date('Y-m-d', strtotime($row->date_start)))
-                                        <span class="badge badge-success">Active</span>    
-                                    @else
-                                        <span class="badge badge-info">Upcoming</span>    
-                                    @endif
+                                    <span class="badge badge-danger">Cancelled</span>    
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('front-end.partner.my-products.activities.active', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
+                                    <a href="{{route('front-end.partner.my-products.activities.cancelled', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @empty
