@@ -339,7 +339,7 @@ class Information extends Component
                 'type'     => 'success',
                 'title'    => 'Successfully Updated',
                 'message'  => 'Product successfully saved.',
-                'redirect' => route('front-end.partner.my-products.edit', ['slug' => $product->slug])
+                'redirect' => route('front-end.partner.my-products.list.edit', ['slug' => $product->slug])
             ]);
         }else{
             DB::rollback();

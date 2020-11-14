@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Active;
+namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Past;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,7 +11,6 @@ use DB;
 use Utility;
 use QueryUtility;
 use UploadUtility;
-use Carbon\Carbon;
 
 class Details extends Component
 {
@@ -45,7 +44,7 @@ class Details extends Component
         $bid_ranking_list     = $this->ranking_list();
         $product_sold         = $this->product_sold();
 
-        return view('livewire.front-end.partner.my-products.activities.active.details', compact('data','bid_ranking_list','product_sold'));
+        return view('livewire.front-end.partner.my-products.activities.past.details', compact('data','bid_ranking_list','product_sold'));
     }
 
     public function ranking_list(){
@@ -71,30 +70,4 @@ class Details extends Component
 		return QueryUtility::order_items($filter)->where('orders.order_no', 'like', '%'.$this->search.'%')->paginate(5);
     }
 
-    public function save_quantity(){
-        $product_post           = ProductPost::where('id', $this->product_post_id)->first();
-        $product_post->quantity = $this->product_quantity;
-        if($product_post->save()){
-            
-            $this->emit('alert', [
-                'type'     => 'success',
-                'title'    => 'Successfully Saved',
-                'message'  => 'Product Quantity successfully saved!',
-            ]);
-        }
-    }
-
-    public function cancel(){
-        $product_post                 = ProductPost::where('id', $this->product_post_id)->first();
-        $product_post->status         = 'cancelled';
-        $product_post->date_cancelled = Carbon::now();
-        if($product_post->save()){
-            
-            $this->emit('alert', [
-                'type'     => 'success',
-                'title'    => 'Successfully Cancelled',
-                'message'  => 'Product successfully Cancelled!',
-            ]);
-        }
-    }
 }

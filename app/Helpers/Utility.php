@@ -31,6 +31,10 @@ class Utility{
         return ['google', 'facebook'];
     }
     
+    public static function carbon_diff($date){
+        return Carbon::parse($date)->diffForHumans();
+    }
+
     public static function generate_unique_token($len = 13) {
         // uniqid gives 13 chars, but you could adjust it to your needs.
         if (function_exists("random_bytes")) {

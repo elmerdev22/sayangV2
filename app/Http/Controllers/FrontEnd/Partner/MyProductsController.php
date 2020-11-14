@@ -34,7 +34,7 @@ class MyProductsController extends Controller
         return view('front-end.partner.my-products.activities.index');
     }
 
-    public function activities_details($slug, $key_token){
+    public function active($slug, $key_token){
         $product_post = ProductPost::with(['product'])
                 ->whereHas('product', function ($query){
                     $query->where('partner_id', Utility::auth_partner()->id);
@@ -43,6 +43,28 @@ class MyProductsController extends Controller
                 ->firstOrFail();
         $product_post_id = $product_post->id;
 
-        return view('front-end.partner.my-products.activities.details', compact('product_post_id'));
+        return view('front-end.partner.my-products.activities.active.details', compact('product_post_id'));
+    }
+    public function past($slug, $key_token){
+        $product_post = ProductPost::with(['product'])
+                ->whereHas('product', function ($query){
+                    $query->where('partner_id', Utility::auth_partner()->id);
+                })
+                ->where('key_token', $key_token)
+                ->firstOrFail();
+        $product_post_id = $product_post->id;
+
+        return view('front-end.partner.my-products.activities.past.details', compact('product_post_id'));
+    }
+    public function cancelled($slug, $key_token){
+        $product_post = ProductPost::with(['product'])
+                ->whereHas('product', function ($query){
+                    $query->where('partner_id', Utility::auth_partner()->id);
+                })
+                ->where('key_token', $key_token)
+                ->firstOrFail();
+        $product_post_id = $product_post->id;
+
+        return view('front-end.partner.my-products.activities.cancelled.details', compact('product_post_id'));
     }
 }

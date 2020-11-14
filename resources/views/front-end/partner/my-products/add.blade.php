@@ -9,7 +9,7 @@
         $page_header = [
             'title'       => 'Add Product',
             'breadcrumbs' => [
-                ['url' => route('front-end.partner.my-products.index'), 'label' => 'List'],
+                ['url' => route('front-end.partner.my-products.list.index'), 'label' => 'List'],
                 ['url' => '', 'label' => 'Add Product'],
             ],
         ];
