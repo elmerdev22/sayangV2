@@ -39,7 +39,7 @@ class Listing extends Component
 			$filter['order_by'] = $sort_table;
 		}
 
-		return QueryUtility::orders($filter)->paginate($this->show_entries);
+		return QueryUtility::orders($filter)->where('orders.status', '!=', 'completed')->paginate($this->show_entries);
 	}
     
     public function updatingSearch(){

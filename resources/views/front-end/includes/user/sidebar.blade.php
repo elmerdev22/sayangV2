@@ -21,7 +21,7 @@
     <div class="collapse {{\Route::is('front-end.user.my-purchase.*') ? 'show':''}} mb-1" id="purchase">
         <a href="{{route('front-end.user.my-purchase.list')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.list') || \Route::is('front-end.user.my-purchase.list.track') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span>List</a>
         <a href="{{route('front-end.user.my-purchase.completed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.completed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}"><span class="fas fa-chevron-right mr-1 ml-2"></span>Completed</a>
-        <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a>
+        {{-- <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a> --}}
     </div>
 
     <a href="#notification" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
