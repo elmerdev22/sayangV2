@@ -249,11 +249,7 @@ class Listing extends Component
         $this->emit('initialize_cart_list', true);
         $this->emit('initialize_cart_checkout', true);
         $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
-        $this->emit('alert', [
-            'type'     => 'success',
-            'title'    => 'Successfully Deleted',
-            'message'  => 'Item successfully deleted.'
-        ]);
+
     }
 
     public function product_post_update_event($param){

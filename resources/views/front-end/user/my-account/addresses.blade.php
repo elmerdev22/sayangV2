@@ -28,8 +28,6 @@
                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
                         <i class="fas fa-plus"></i> Add New Address
                     </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                    </button>
                 </div>
             </div>
             <div class="card-body">
