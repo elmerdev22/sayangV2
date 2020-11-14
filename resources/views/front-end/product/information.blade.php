@@ -103,7 +103,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                @livewire('front-end.product.information.all-my-bids',  ['product_post_id' => $product->product_post_id])
+                @if (Auth::check() && Auth::user()->type == 'user')
+                    @livewire('front-end.product.information.all-my-bids',  ['product_post_id' => $product->product_post_id])
+                @endif
             </div>
         </div>
     </div>

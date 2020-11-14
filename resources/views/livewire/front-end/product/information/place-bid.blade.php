@@ -135,6 +135,7 @@
                     @endforelse
                 </tbody>
             </table>
+            
             @if($allow_purchase == 'allowed' && $view_my_bids)
                 <div>
                     <div>

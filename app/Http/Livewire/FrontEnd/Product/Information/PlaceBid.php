@@ -22,8 +22,7 @@ class PlaceBid extends Component
     public $ranking_top_show;
 
     public function mount($product_post_id){
-        $this->bidder          = $bidder = Auth::user();
-
+        
         $product_post          = ProductPost::with(['product'])->findOrFail($product_post_id);
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
@@ -98,7 +97,10 @@ class PlaceBid extends Component
     }
 
     public function render(){
-        $this->view_my_bids = $this->view_my_bids() >= 1 ? true : false;
+        if(Auth::check()){
+            $this->bidder       = Auth::user();
+            $this->view_my_bids = $this->view_my_bids() >= 1 ? true : false;
+        }
         $ranking = $this->ranking_list();
         
         return view('livewire.front-end.product.information.place-bid', compact('ranking'));
