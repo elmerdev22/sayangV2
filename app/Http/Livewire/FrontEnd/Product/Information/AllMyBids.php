@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Model\ProductPost;
 use App\Model\Bid;
 use Livewire\WithPagination;
+use Utility;
 use Auth;
 
 class AllMyBids extends Component
@@ -13,17 +14,17 @@ class AllMyBids extends Component
     use WithPagination;
     protected $listeners = ['show-my-bids' => '$refresh'];
 
-    public $bidder, $product_post_id;
+    public $account, $product_post_id;
 
     public function mount($product_post_id){
-        $this->bidder          = $bidder = Auth::user();
+        $this->account         = Utility::auth_user_account();
         $this->product_post_id = $product_post_id;
     }
 
     public function render()
     {
         $bid = Bid::where('product_post_id', $this->product_post_id)
-            ->where('user_id', $this->bidder->id)
+            ->where('user_account_id', $this->account->id)
             ->orderBy('bid', 'desc')
             ->orderBy('quantity', 'desc')
             ->paginate(5);
@@ -33,7 +34,7 @@ class AllMyBids extends Component
     
     public function delete_all(){
         $data = Bid::where('product_post_id', $this->product_post_id)
-            ->where('user_id', $this->bidder->id);
+            ->where('user_account_id', $this->account->id);
 
         if($data->delete()){
             $this->emit('reload-ranking-list');

@@ -12,7 +12,7 @@ class Listing extends Component
 {
     use WithPagination;
 
-    public $partner, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
+    public $partner, $status, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
     
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -27,6 +27,10 @@ class Listing extends Component
 			'user_accounts.last_name as user_account_last_name',
 		];
 		$filter['where']['orders.partner_id'] = $this->partner->id;
+
+		if($this->status != null){
+			$filter['where']['orders.status'] = $this->status;
+		}
 		
 		if($this->search){
 			$filter['or_where_like'] = $this->search;

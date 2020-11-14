@@ -17,7 +17,7 @@ class CreateBidsTable extends Migration
             $table->bigIncrements('id');
             $table->string('bid_no', 255)->unique();
             $table->unsignedBigInteger('product_post_id')->index();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('user_account_id')->index();
             $table->decimal('bid', 11,2)->nullable()->default(0);
             $table->integer('quantity')->default(0);
             $table->enum('status', ['active', 'win', 'lose']);
@@ -25,7 +25,7 @@ class CreateBidsTable extends Migration
             $table->timestamps();
             
             $table->foreign('product_post_id')->references('id')->on('product_posts')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_account_id')->references('id')->on('user_accounts')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
@@ -39,9 +39,9 @@ class CreateBidsTable extends Migration
     {
         Schema::table('bids', function (Blueprint $table) {
             $table->dropForeign(['product_post_id']);
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['user_account_id']);
             $table->dropColumn('product_post_id');
-            $table->dropColumn('user_id');
+            $table->dropColumn('user_account_id');
         });
         Schema::dropIfExists('bids');
     }

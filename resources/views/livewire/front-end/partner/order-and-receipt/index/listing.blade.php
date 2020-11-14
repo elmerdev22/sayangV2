@@ -8,6 +8,17 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label>Status</label>
+                    <select class="form-control" wire:model="status">
+                        <option value="" selected>All</option>
+                        <option value="payment_confirmed">Payment Confirmed</option>
+                        <option value="to_receive">To Receive</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('front-end.includes.datatables.search')
             <div class="table-responsive mt-3">

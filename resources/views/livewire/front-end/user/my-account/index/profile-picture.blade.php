@@ -1,7 +1,7 @@
 <div>
     <div class="my-account-profile border-right mb-4">
         <div class="text-center">
-            <img class="profile-user-img img-fluid img-circle m-2" src="{{$photo_url}}" alt="User profile picture" style="width: 100px; height: 100px;">
+            <img class="profile-user-img img-fluid img-circle m-2" src="{{$photo_url}}" alt="User profile picture" style="width: 120px; height: 120px;">
         </div>
         <div class="text-center">
             <span class="badge badge-success">Active</span>

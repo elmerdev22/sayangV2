@@ -340,6 +340,60 @@ class QueryUtility{
 		return $data;
 	}
 
+	
+	public static function user_bids(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+		$data = DB::table('bids')
+			->select($select)
+			->join('product_posts', 'product_posts.id', '=', 'bids.product_post_id')
+			->join('products', 'products.id', '=', 'product_posts.product_id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		if(isset($filter['or_where_like'])){
+			$search = trim($filter['or_where_like']);
+			$search = explode(' ',$search);
+			$data 	= $data->where(function($query) use ($search) {
+				foreach($search as $value){
+					$query->orWhere('products.name','like',"%{$value}%");
+				}
+            });
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
+
 	public static function orders(array $filter = []){
 		if(isset($filter['select'])){
 			$select = $filter['select'];
