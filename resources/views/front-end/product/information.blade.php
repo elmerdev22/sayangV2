@@ -91,6 +91,23 @@
         @livewire('front-end.product.information.more-like-this')
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="my-all-bids" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">My Bids in this Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @livewire('front-end.product.information.all-my-bids',  ['product_post_id' => $product->product_post_id])
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 <!-- Glasscase -->

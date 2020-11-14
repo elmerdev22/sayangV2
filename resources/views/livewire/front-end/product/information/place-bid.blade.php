@@ -6,14 +6,14 @@
                 @if($allow_purchase == 'allowed')
                     <div class="col-md-6">
                         <label>
-                            Minimum Bid
+                            Bid Increment
                             ₱ {{number_format($bid_increment, 2)}} 
                         </label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-minus" {{$lowest_bid >= $bid ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
                             </div>
-                            <input type="text" class="form-control text-center" pattern="[0-9]+" id="bid-price" min="{{$lowest_bid}}" wire:model="bid">
+                            <input type="text" class="form-control text-center" id="bid-price" min="{{$lowest_bid}}" wire:model="bid">
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                             </div>
@@ -25,6 +25,11 @@
                             @if(session('minimum_bid'))
                             <div class="text-center">
                                 <small class="text-danger">{{session('minimum_bid')}}</small>
+                            </div>
+                            @endif
+                            @if(session('buy_now_price_reach'))
+                            <div class="text-center">
+                                <small class="text-danger">{{session('buy_now_price_reach')}}</small>
                             </div>
                             @endif
                         </div>
@@ -64,7 +69,7 @@
                     <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
-                    <button class="btn btn-default w-100" onclick="confirm_bid()">
+                    <button class="btn btn-default w-100" onclick="confirm_bid('{{number_format($bid, 2)}}')">
                         CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
@@ -96,6 +101,7 @@
             @endif
 
             <hr>
+            
             <p>Rankings Top {{$this->ranking_top_show}} | Total Bids: {{number_format($ranking->total(), 0)}}</p>
             <table class="table table-bordered table-sm">
                 <thead>
@@ -129,6 +135,13 @@
                     @endforelse
                 </tbody>
             </table>
+            @if($allow_purchase == 'allowed' && $view_my_bids)
+                <div>
+                    <div>
+                        <button class="btn btn-warning btn-sm" onclick="all_my_bids()">View all my bids in this product</button>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
@@ -185,12 +198,12 @@
         @this.call('product_post_update_event', param)
     });
 
-    function confirm_bid(){
-        var bid = $('#bid-price').val();
+    function confirm_bid(bid){
         Swal.fire({
         title: 'Your Bid is : ₱'+bid,
         showCancelButton: true,
-        showDenyButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
         confirmButtonText: `Confirm`,
         denyButtonText: `Don't save`,
         reverseButtons: true,
@@ -201,5 +214,9 @@
         })
     }
     
+    function all_my_bids(){
+        window.livewire.emit('show-my-bids');
+        $('#my-all-bids').modal('show');
+    }
 </script>
 @endpush
