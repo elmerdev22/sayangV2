@@ -14,6 +14,7 @@ use App\Model\UserAdmin;
 use App\Model\UserAccount;
 use App\Model\Product;
 use App\Model\ProductPost;
+use App\Model\OrderItem;
 use App\Model\Follower;
 use App\Model\Setting;
 use App\Model\ProductSubCategory;
@@ -389,6 +390,15 @@ class Utility{
         //condition TBA
         $count = ProductPost::where('product_id', $id)->count();
         return $count > 0 ? false : true;
+    }
+
+    public static function is_product_post_cancellable($id){
+        //condition TBA
+        $order_item_count = OrderItem::where('product_post_id', $id)->count();
+        $bid_count        = Bid::where('product_post_id', $id)->count();
+        $cart_count       = Cart::where('product_post_id', $id)->count();
+        
+        return $order_item_count > 0 || $bid_count > 0 || $cart_count > 0  ? false : true;
     }
 
     public static function is_category_deletable($id){

@@ -10,15 +10,20 @@ class SettingsUtility{
     }
 
     public static function settings($key=null){
+        
+        $group = [
+            'bids' => 'bids',
+        ];
+
         $response = [
             //Bids
             'bid_increment_percent' => [
-                'group' => 'bids',
+                'group' => $group['bids'],
                 'name'  => 'Bid Increment Percentage',
                 'value' => 50,
             ],
             'ranking_top_show' => [
-                'group' => 'bids',
+                'group' => $group['bids'],
                 'name'  => 'Ranking Top Show',
                 'value' => 5,
             ],
