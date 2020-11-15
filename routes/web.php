@@ -182,6 +182,7 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             ]);
             
         });
+
         // Setting
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function (){
             $c = 'SettingController';
@@ -209,6 +210,22 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             Route::get('/about', [
                 'as'    => 'about',
                 'uses'  => $c.'@about'
+            ]);
+            
+        });
+
+        // Orders and Receipt
+        Route::group(['prefix' => 'order-and-receipt', 'as' => 'order-and-receipt.'], function (){
+            $c = 'OrderAndReceiptController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/track/{order_no}', [
+                'as'    => 'track',
+                'uses'  => $c.'@track'
             ]);
             
         });
