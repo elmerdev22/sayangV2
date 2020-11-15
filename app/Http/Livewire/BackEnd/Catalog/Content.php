@@ -44,7 +44,7 @@ class Content extends Component
         if($subcategory->save()){
         	$this->emit('notif_alert', [
                 'timer'    => 1500,
-                'position' => 'top-right',
+                'position' => 'center',
                 'type'     => 'success',
                 'message'  => 'Successfully Added!'
             ]);
@@ -63,7 +63,7 @@ class Content extends Component
         if($data->delete()){
             $this->emit('notif_alert', [
                 'timer'    => 1500,
-                'position' => 'top-right',
+                'position' => 'center',
                 'type'     => 'success',
                 'message'  => 'Successfully Deleted!'
             ]);

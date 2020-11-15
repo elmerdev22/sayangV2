@@ -19,7 +19,7 @@
 									<img class="mb-2 mt-1 imagePreview" src="{{$photo_url}}" alt="">
 								@endif
 
-								<div class="form-control upload-btn-wrapper btn btn-warning">
+								<div class="form-control upload-btn-wrapper btn btn-default">
 									<i class="fas fa-upload"></i> Upload Photo <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
 									<input type="file" class="upload-btn" wire:model="photo" accept="image/*"/>
 								</div>

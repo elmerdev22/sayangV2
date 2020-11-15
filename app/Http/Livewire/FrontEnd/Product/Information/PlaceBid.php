@@ -99,7 +99,7 @@ class PlaceBid extends Component
     }
 
     public function render(){
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->type == 'user'){
             $this->view_my_bids = $this->view_my_bids() >= 1 ? true : false;
         }
         $ranking = $this->ranking_list();
