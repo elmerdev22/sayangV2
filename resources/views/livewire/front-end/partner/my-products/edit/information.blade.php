@@ -70,7 +70,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="regular_price">Regular price*</label>
-                        <input type="text" class="form-control @error('regular_price') is-invalid @enderror mask-money" id="regular_price" placeholder="0.00">
+                        <input type="text" class="form-control @error('regular_price') is-invalid @enderror mask-money" id="regular_price" wire:model.lazy="regular_price" placeholder="0.00">
                         @error('regular_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="buy_now_price">Buy now price*</label>
-                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" placeholder="0.00">
+                        <input type="text" class="form-control @error('buy_now_price') is-invalid @enderror mask-money" id="buy_now_price" wire:model.lazy="buy_now_price" placeholder="0.00">
                         @error('buy_now_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -92,7 +92,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lowest_price">Lowest price*</label>
-                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
+                        <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" wire:model.lazy="lowest_price" placeholder="0.00">
                         @error('lowest_price') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
@@ -158,18 +158,6 @@
         var max_tag = "{{\SettingsUtility::max_tags_per_product()}}";
         $('#tags').select2(select2_tags_input("Add Tags", max_tag));
 
-        $(document).on('keyup', '#lowest_price', function () {
-            @this.set('lowest_price', $(this).val())
-            @this.call('compute_price_percentage')
-        });
-        $(document).on('keyup', '#buy_now_price', function () {
-            @this.set('buy_now_price', $(this).val())
-            @this.call('compute_price_percentage')
-        });
-        $(document).on('keyup', '#regular_price', function () {
-            @this.set('regular_price', $(this).val())
-            @this.call('compute_price_percentage')
-        });
         $(document).on('change', '#sub_categories', function () {
             @this.set('sub_categories', $(this).val())
         });

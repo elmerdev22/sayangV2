@@ -17,7 +17,7 @@ class Information extends Component
 {
     public $product_id, $account, $partner, $name, $category, $old_category, $sub_categories = [], $tags = [];
     public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
-    public $selected_sub_categories = [], $initial_sub_categories=[], $money_input_initialize=[], $price_percentage;
+    public $selected_sub_categories = [], $initial_sub_categories=[], $money_input_initialize=[];
 
     public function mount($product_id){
         $this->partner       = Utility::auth_partner();
@@ -56,7 +56,6 @@ class Information extends Component
         }
 
         $this->reload_sub_categories(true);
-        $this->compute_price_percentage();
     }
 
     public function reset_var($var){
@@ -85,20 +84,17 @@ class Information extends Component
         return Category::orderBy('name', 'asc')->where('is_display', true)->get();
     }
 
-    public function compute_price_percentage(){
-        $this->price_percentage = Utility::price_percentage($this->regular_price, $this->buy_now_price);
-    }
-
     public function render(){
-        $component = $this;
-        return view('livewire.front-end.partner.my-products.edit.information', compact('component'));
+        $component        = $this;
+        $price_percentage = Utility::price_percentage($this->regular_price, $this->buy_now_price);
+
+        return view('livewire.front-end.partner.my-products.edit.information', compact('component', 'price_percentage'));
     }
 
     public function update(){
         $this->regular_price = Utility::decimal_format($this->regular_price);
         $this->buy_now_price = Utility::decimal_format($this->buy_now_price);
         $this->lowest_price  = Utility::decimal_format($this->lowest_price);
-
         $rules = [
             'name'           => 'required|max:200|min:2',
             'category'       => 'required|numeric',
@@ -111,11 +107,10 @@ class Information extends Component
             'reminders'      => 'nullable',
         ];
 
-        $this->compute_price_percentage();
         $this->emit('money_input_field', [
             'regular_price' => $this->regular_price,
             'buy_now_price' => $this->buy_now_price,
-            'lowest_price' => $this->lowest_price
+            'lowest_price'  => $this->lowest_price
         ]);
 
         $this->validate($rules);
