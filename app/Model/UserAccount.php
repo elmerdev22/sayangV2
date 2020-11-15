@@ -48,6 +48,10 @@ class UserAccount extends Model implements HasMedia
         return $this->hasOne('App\Model\UserAccountBank', 'user_account_id', 'id');
     }
 
+    public function billing(){
+        return $this->belongsTo('App\Model\Billing', 'user_account_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){
         $height = UploadUtility::conversion_dimension('height');
         $width  = UploadUtility::conversion_dimension('width');

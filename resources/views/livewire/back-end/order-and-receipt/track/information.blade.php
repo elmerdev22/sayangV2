@@ -1,9 +1,9 @@
 <div>
     <div class="row border p-2 pt-4"> 
         <div class="col-md-8">
-            <h6 class="text-muted">Delivery to</h6>
+            <h6 class="text-muted">Delivery To</h6>
             <p>
-                {{ucwords($data->billing->full_name)}}<br>
+                <a href="{{route('back-end.user.profile', ['key_token' => $data->billing->user_account->key_token])}}" class="text-blue" title="Click to view profile">{{ucwords($data->billing->full_name)}}</a><br>
                 Contact No.:  {{Utility::mobile_number_ph_format($data->billing->contact_no)}}<br>
     
                 @if($data->billing->email)
@@ -13,6 +13,20 @@
                 {{$data->billing->philippine_barangay->name}}, {{$data->billing->philippine_barangay->philippine_city->name}}, <br>
                 {{$data->billing->philippine_barangay->philippine_city->philippine_province->name}}, 
                 {{$data->billing->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$data->billing->zip_code}} <br>
+            </p>
+            <hr>
+            <h6 class="text-muted">Delivery From</h6>
+            <p>
+                <a href="{{route('back-end.partner.profile', ['key_token' => $data->partner->user_account->key_token])}}" class="text-blue" title="Click to view profile">{{ucfirst($data->partner->name)}}</a><br>
+                Contact No.:  {{Utility::mobile_number_ph_format($data->partner->contact_no)}}<br>
+                @if($data->partner->email)
+                    Email: {{$data->partner->email}} <br>
+                @endif
+
+                Location: {{$data->partner->address}} <br>
+                {{$data->partner->philippine_barangay->name}}, {{$data->partner->philippine_barangay->philippine_city->name}}, <br>
+                {{$data->partner->philippine_barangay->philippine_city->philippine_province->name}}, 
+                {{$data->partner->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}@if($data->partner->zip_code), {{$data->partner->zip_code}} @endif<br>
             </p>
         </div>
         <div class="col-md-4">
