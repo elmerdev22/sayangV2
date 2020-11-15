@@ -1,10 +1,10 @@
 @extends('front-end.layout')
 @section('title', ucfirst($product->name))
-@section('content')
 @section('css')
     <!-- Glasscase css-->
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
 @endsection
+@section('content')
 <section class="content pb-5">
     <div class="container my-5">
         <!-- Default box -->
@@ -112,6 +112,9 @@
 </div>
 @endsection
 @section('js')
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb151db1c817c52"></script>
+
 <!-- Glasscase -->
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
 <script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
