@@ -59,7 +59,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                @livewire('front-end.partner.order-and-receipt.track.qr-code')
+                @livewire('back-end.order-and-receipt.track.qr-code')
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,7 +80,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @livewire('front-end.partner.order-and-receipt.track.invoice', ['order_no' => $order->order_no])
+                    @livewire('back-end.order-and-receipt.track.invoice', ['order_no' => $order->order_no])
                 </div>
             </div>
         </div>
