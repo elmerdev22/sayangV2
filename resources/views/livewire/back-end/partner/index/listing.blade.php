@@ -86,7 +86,7 @@
 		        				</td>
 		        				<td>{{date('F/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">
-		        					<a href="{{route('back-end.partner.profile', ['key_token' => $row->account_key_token])}}" class="btn btn-sm btn-flat btn-primary" title="View Details"><i class="fas fa-eye"></i></a>
+		        					<a href="{{route('back-end.partner.profile', ['key_token' => $row->account_key_token])}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
 		        				</td>
 		        			</tr>
 	        			@empty

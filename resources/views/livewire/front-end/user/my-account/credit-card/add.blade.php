@@ -2,7 +2,15 @@
     <form method="POST" wire:submit.prevent="store">
         <div class="modal-body">
             <div class="form-group">
-                <input type="text" id="card_no" class="form-control mask-credit-card-number @error('card_no') is-invalid @enderror" wire:model.lazy="card_no" placeholder="Credit Card No.">
+                <div class="input-group">
+                    <input type="text" id="card_no" class="form-control mask-credit-card-number @error('card_no') is-invalid @enderror" wire:model.lazy="card_no" placeholder="Credit Card No.">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp; 
+                            <i class="fab fa-cc-mastercard"></i> 
+                        </span>
+                    </div>
+                </div>
                 @error('card_no') 
                     <span class="invalid-feedback">
                         <span>{{$message}}</span>

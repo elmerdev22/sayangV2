@@ -13,7 +13,8 @@ class SettingsUtility{
     public static function settings($key=null){
         
         $group = [
-            'bids' => 'bids',
+            'bids'          => 'bids',
+            'notifications' => 'notifications',
         ];
 
         $response = [
@@ -30,7 +31,11 @@ class SettingsUtility{
             ],
 
             //Notifications
-
+            'partner_approved_by_admin_notif' => [
+                'group' => $group['notifications'],
+                'name'  => 'Application Approved!',
+                'value' => 'Your application approved by the admin, you can start now to sell your products. thank you!',
+            ],
             //
         ];
 

@@ -69,7 +69,7 @@
                     <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
-                    <button class="btn btn-default w-100" onclick="confirm_bid('{{number_format($bid, 2)}}')">
+                    <button class="btn btn-default w-100" onclick="confirm_bid('{{$bid != null ? number_format($bid, 2) : $bid}}')">
                         CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
