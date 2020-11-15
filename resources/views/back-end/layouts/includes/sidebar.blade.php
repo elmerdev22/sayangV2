@@ -100,6 +100,12 @@
                                 <p>About</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.setting.ratings')}}" class="nav-link {{Route::is('back-end.setting.ratings') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Ratings</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 
