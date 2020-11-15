@@ -26,4 +26,8 @@ class SettingController extends Controller
     public function about() {
         return view('back-end.setting.about.index');
     }
+
+    public function ratings() {
+        return view('back-end.setting.ratings.index');
+    }
 }
