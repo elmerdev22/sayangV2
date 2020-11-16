@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use Utility;
 use Auth;
 use Session;
+use Carbon\Carbon;
 
 class PlaceBid extends Component
 {
@@ -141,7 +142,10 @@ class PlaceBid extends Component
 
     public function confirm_bid(){
 
-        $product_post_id = $this->product_post_id;
+        $product_post_id                     = $this->product_post_id;
+        $popcorn_bidding_last_minutes        = Utility::settings('popcorn_bidding_last_minutes');
+        $popcorn_bidding_last_minutes_repeat = Utility::settings('popcorn_bidding_last_minutes_repeat');
+        $popcorn_bidding_additional_minutes  = Utility::settings('popcorn_bidding_additional_minutes');
 
         $this->validate([
             'bid' => ['required',
@@ -150,22 +154,47 @@ class PlaceBid extends Component
             })]
         ]);
         
+        $to              = Carbon::now();
+        $from            = $this->product_post->date_end;
+        $diff_in_minutes = $to->diffInMinutes($from);
+
         if($this->bid < $this->lowest_bid){
             Session::flash('minimum_bid', 'The minimum Bid is '.$this->lowest_bid);
         }
         else{
-            $bid                  = new Bid();
-            $bid->bid_no          = Utility::generate_bid_no();
-            $bid->product_post_id = $this->product_post_id;
-            $bid->user_account_id = $this->account->id;
-            $bid->bid             = $this->bid;
-            $bid->quantity        = $this->quantity;
-            $bid->status          = 'active';
-            $bid->key_token       = Utility::generate_table_token('Bid');
-            $bid->save();
+            
+            if($diff_in_minutes < $popcorn_bidding_last_minutes){
+                
+                $new_date_end = date('Y-m-d H:i',strtotime('+'.$popcorn_bidding_additional_minutes.' minutes',strtotime($from)));
+                
+                $product_post = ProductPost::where('id', $this->product_post_id)->firstorFail();
+                if($product_post->extend < $popcorn_bidding_last_minutes_repeat){
+                    $product_post->extend   = $product_post->extend + 1;
+                    $product_post->date_end = $new_date_end;
+                    if($product_post->save()){
+                        $this->emit('refresh_time');
+                    }
+                }
+
+            }
+
+            $this->add_bid();
+            
         }
 
         $this->mount($this->product_post_id);
+    }
+
+    public function add_bid(){
+        $bid                  = new Bid();
+        $bid->bid_no          = Utility::generate_bid_no();
+        $bid->product_post_id = $this->product_post_id;
+        $bid->user_account_id = $this->account->id;
+        $bid->bid             = $this->bid;
+        $bid->quantity        = $this->quantity;
+        $bid->status          = 'active';
+        $bid->key_token       = Utility::generate_table_token('Bid');
+        $bid->save();
     }
 
     public function refresh(){

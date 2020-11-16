@@ -38,8 +38,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <div class="row">
-                        
+                    <div class="row my-4">
                         <div class="col-sm-3">
                             <label>Regular Price</label>
                             <div>

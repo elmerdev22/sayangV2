@@ -72,8 +72,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    
-                    <div class="row">
+                    <div class="row my-4">
                         <div class="col-sm-3">
                             <label>Regular Price</label>
                             <div>
@@ -162,40 +161,7 @@
                         </div>
                         <div class="col-12">
                             <hr>
-                            <p>Rankings | Total Bids: {{number_format($bid_ranking_list->total(), 0)}}</p>
-                            <table class="table table-bordered table-sm text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Rank</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Bid</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $quan = $data->quantity;    
-                                    @endphp
-                                    @forelse ($bid_ranking_list as $key => $data)
-                                    <tr>
-                                        @php
-                                            $quan = $quan - $data->quantity;    
-                                        @endphp
-                                        <td>{{++$key}}</td>
-                                        <td>{{$data->user_account->first_name}}</td>
-                                        <td>₱{{number_format($data->bid, 2)}}</td>
-                                        <td>{{number_format($data->quantity, 0)}}</td>
-                                        <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
-                                    </tr>
-                                    @empty
-                                    <tr class="text-center">
-                                        <td colspan="5">No Bids.</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{$bid_ranking_list->render()}}
+                            @livewire('front-end.partner.my-products.activities.active.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
                         </div>
                         @else 
                         @endif

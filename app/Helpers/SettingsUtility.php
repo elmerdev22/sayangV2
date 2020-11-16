@@ -39,14 +39,19 @@ class SettingsUtility{
                 'name'  => 'Maximum hours auction (hours)',
                 'value' => 2,
             ],
-            'last_minute_bids' => [
+            'popcorn_bidding_last_minutes' => [
                 'group' => $group['bids'],
-                'name'  => 'Last minutes Bid (minutes)',
+                'name'  => 'Popcorn bidding last minutes (minutes)',
                 'value' => 3,
             ],
-            'last_minute_bids_attempt' => [
+            'popcorn_bidding_last_minutes_repeat' => [
                 'group' => $group['bids'],
-                'name'  => 'Last minutes Bid Attempt',
+                'name'  => 'Popcorn bidding last minutes repeat',
+                'value' => 3,
+            ],
+            'popcorn_bidding_additional_minutes' => [
+                'group' => $group['bids'],
+                'name'  => 'Popcorn bidding additional minutes (minutes)',
                 'value' => 3,
             ],
 

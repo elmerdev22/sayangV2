@@ -11,7 +11,8 @@ class MainDetails extends Component
     public $force_disabled = false;
 
     protected $listeners = [
-        'force_disabled' => 'force_disabled'
+        'force_disabled' => 'force_disabled',
+        'refresh_time'   => '$refresh',
     ];
 
     public function mount($product_post_id, $force_disabled){

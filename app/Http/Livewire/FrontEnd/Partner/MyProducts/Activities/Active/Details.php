@@ -43,18 +43,9 @@ class Details extends Component
     {  
         $data                 = $this->data();
         $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $data->product_key_token);
-        $bid_ranking_list     = $this->ranking_list();
         $product_sold         = $this->product_sold();
 
-        return view('livewire.front-end.partner.my-products.activities.active.details', compact('data','bid_ranking_list','product_sold'));
-    }
-
-    public function ranking_list(){
-        return Bid::with(['user_account'])
-            ->where('product_post_id', $this->product_post_id)
-            ->orderBy('bid', 'desc')
-            ->orderBy('quantity', 'desc')
-            ->paginate(10);
+        return view('livewire.front-end.partner.my-products.activities.active.details', compact('data','product_sold'));
     }
 
     public function product_sold(){
