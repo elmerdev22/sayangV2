@@ -8,72 +8,75 @@
             </div>
         </div>
         <div class="card-body">
-	       <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
-        	{{-- @include('back-end.layouts.includes.datatables.search') --}}
-        	<div class="table-responsive mt-3">
-        		<table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
-	        		<thead>
-	        			<tr>
-	        				<th class="table-sort">
-	        					Purchase ID 
-	        				</th>
-		        			<th class="table-sort">
-		        				User
-		        			</th>
-		        			<th class="table-sort">
-		        				Item
-		        			</th>
-		        			<th class="table-sort">
-		        				Quantity 
-		        			</th>
-		        			<th class="table-sort">
-		        				Price 
-		        			</th>
-		        			<th>Status</th>
-		        			<th class="table-sort">
-		        				Total 
-		        			</th>
-		        			<th class="table-sort">
-		        				Purchase Date 
-		        			</th>
-		        			<th></th>
-	        			</tr>
-	        		</thead>
-	        		<tbody>
-	        			@for($x=1; $x<=10; $x++)
+		<div class="row justify-content-center">
+                <div class="col-5">
+                    <label>Status</label>
+                    <select class="form-control" wire:model="status">
+                        <option value="" selected>All</option>
+                        <option value="payment_confirmed">Payment Confirmed</option>
+                        <option value="to_receive">To Receive</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
+        	@include('back-end.layouts.includes.datatables.search')
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                    <thead>
+                        <tr>
+                            <th class="table-sort" wire:click="sort('orders.order_no')">
+                                Order No. 
+                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.order_no'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('user_accounts.first_name|user_accounts.last_name')">
+                                Buyer Name
+                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('orders.created_at')">
+                                Purchase Date
+                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.created_at'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('orders.status')">
+                                Status
+                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.status'])
+                            </th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($data as $row)
+                            <tr>
+                                <td>{{$row->order_no}}</td>
+                                <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>
+                                    @if($row->status == 'cancelled')
+                                        <span class="badge badge-danger">Cancelled</span>
+                                    @elseif($row->status == 'order_placed')
+                                        <span class="badge badge-warning">Order Placed</span>
+                                    @elseif($row->status == 'payment_confirmed')
+                                        <span class="badge badge-info">Payment Confirmed</span>
+                                    @elseif($row->status == 'to_receive')
+                                        <span class="badge badge-info">To Receive</span>
+                                    @elseif($row->status == 'completed')
+                                        <span class="badge badge-success">Completed</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('back-end.order-and-receipt.track', ['order_no' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                </td>
+                            </tr>
+                        @empty
 	        				<tr>
-	        					<td>{{rand(100000,999999)}}</td>
-	        					<td>
-	        						<a href="javascript:void(0)" class="text-blue" title="View User's Profile">{{rand(100000,999999)}}</a>
-	        					</td>
-	        					<td>{{rand(100000,999999)}}</td>
-	        					<td>{{number_format(rand(1,1500), 0)}}</td>
-	        					<td>&#x20B1; {{number_format(rand(1,1500), 2)}}</td>
-	        					<td>
-	        						@php $status = rand(1,4); @endphp
-	        						
-	        						@if($status == 1)
-	        							<span class="badge badge-success">Completed</span>
-	        						@elseif($status == 2)
-	        							<span class="badge badge-info">Approved</span>
-	        						@elseif($status == 3)
-	        							<span class="badge badge-warning">Pending</span>
-	        						@else
-	        							<span class="badge badge-danger">Cancelled</span>
-	        						@endif
-	        					</td>
-	        					<td>&#x20B1; {{number_format(rand(1,1500), 2)}}</td>
-	        					<td>{{date('F/d/Y')}}</td>
-	        					<td class="text-center">
-		        					<a href="javascript:void(0);" class="btn btn-sm btn-flat btn-primary" title="View Details"><i class="fas fa-eye"></i></a>
-		        				</td>
+	        					<td colspan="6" class="text-center">No Data Found</td>
 	        				</tr>
-	        			@endfor
-	        		</tbody>
-	        	</table>
-        	</div>
-        	<!-- NOTE: Always put the pagination after the .table-responsive class -->
-        	{{-- @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data]) --}}
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <!-- NOTE: Always put the pagination after the .table-responsive class -->
+            @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
     </div>
 </div>

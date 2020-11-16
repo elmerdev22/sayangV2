@@ -29,9 +29,9 @@
 								Order No. 
 								@include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.order_no'])
 							</th>
-							<th class="table-sort" wire:click="sort('user_accounts.first_name|user_accounts.last_name')">
-								Buyer Name
-								@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
+							<th class="table-sort" wire:click="sort('partners.name')">
+								Partner Name
+								@include('back-end.layouts.includes.datatables.sort', ['field' => 'partners.name'])
 							</th>
 							<th class="table-sort" wire:click="sort('orders.created_at')">
 								Purchase Date
@@ -48,7 +48,7 @@
 						@forelse($data as $row)
 							<tr>
 								<td>{{$row->order_no}}</td>
-								<td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+								<td>{{ucfirst($row->partner_name)}}</td>
 								<td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
 								<td>
 									@if($row->status == 'cancelled')

@@ -25,8 +25,7 @@ class PurchaseHistory extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
-			'user_accounts.first_name as user_account_first_name',
-			'user_accounts.last_name as user_account_last_name'
+			'partners.name as partner_name'
 		];
 		$filter['where']['billings.user_account_id'] = $this->account->id;
 
