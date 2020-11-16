@@ -7,29 +7,36 @@ use App\Model\Setting;
 use Utility;
 class Index extends Component
 {
-    public $bid_increment_percent;
+    public $settings_name, $settings_id, $settings_value;
 
-    public function mount(){
-        $this->bid_increment_percent = Utility::settings('bid_increment_percent');
-    }
     public function render()
     {
-        return view('livewire.back-end.setting.bid.index');
+        $data = Setting::where('settings_group','bids')->get();
+        return view('livewire.back-end.setting.bid.index', compact('data'));
     }
 
-    public function update_bid_increment_percent(){
+    public function edit($settings_id){
+        $data                 = Setting::where('id', $settings_id)->first();
+        $this->settings_id    = $settings_id;
+        $this->settings_name  = $data->settings_name;
+        $this->settings_value = $data->settings_value;
+    }
+    public function save(){
+        
+        $this->validate([
+            'settings_value' => 'required',
+        ]);
 
-        $data                 = Setting::where('settings_key', 'bid_increment_percent')->first();
-        $data->settings_value = $this->bid_increment_percent;
+        $data                 = Setting::where('id', $this->settings_id)->first();
+        $data->settings_value = $this->settings_value;
         if($data->save()){
             $this->emit('alert', [
                 'type'              => 'success',
                 'title'             => 'Successfully Updated',
-                'message'           => 'Bid Increment Percent Successfully Updated!. <br><br>',
-                'timer'             => 1500,
+                'message'           => ''.$this->settings_name.' Settings Successfully Updated!. <br><br>',
+                'timer'             => 2000,
                 'showConfirmButton' => false
             ]);
         }
-        $this->mount();
     }
 }

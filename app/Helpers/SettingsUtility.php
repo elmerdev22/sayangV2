@@ -21,13 +21,33 @@ class SettingsUtility{
             //Bids
             'bid_increment_percent' => [
                 'group' => $group['bids'],
-                'name'  => 'Bid Increment Percentage',
+                'name'  => 'Bid Increment Percentage (%)',
                 'value' => 50,
             ],
             'ranking_top_show' => [
                 'group' => $group['bids'],
                 'name'  => 'Ranking Top Show',
                 'value' => 5,
+            ],
+            'minimum_hours_in_auction' => [
+                'group' => $group['bids'],
+                'name'  => 'Minimum hours auction (hours)',
+                'value' => 1,
+            ],
+            'maximum_hours_in_auction' => [
+                'group' => $group['bids'],
+                'name'  => 'Maximum hours auction (hours)',
+                'value' => 2,
+            ],
+            'last_minute_bids' => [
+                'group' => $group['bids'],
+                'name'  => 'Last minutes Bid (minutes)',
+                'value' => 3,
+            ],
+            'last_minute_bids_attempt' => [
+                'group' => $group['bids'],
+                'name'  => 'Last minutes Bid Attempt',
+                'value' => 3,
             ],
 
             //Notifications
