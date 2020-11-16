@@ -26,24 +26,27 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="form-group">
                 <label for="start_date">Start Date</label>
-                <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="start_date" wire:model.lazy="start_date">
+                <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" wire:model.lazy="start_date">
                 @error('start_date')
                     <span class="invalid-feedback">
                         <span>{{$message}}</span>
                     </span>
                 @enderror
             </div>
+
             <div class="form-group">
                 <label for="end_date">End Date</label>
-                <input type="date" class="form-control @error('end_date') is-invalid @enderror" id="end_date" wire:model.lazy="end_date">
+                <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" wire:model.lazy="end_date">
                 @error('end_date')
                     <span class="invalid-feedback">
                         <span>{{$message}}</span>
                     </span>
                 @enderror
             </div>
+
 
             @error('selected_products')
                 <span class="invalid-feedback d-block">
@@ -61,6 +64,13 @@
 
 @push('scripts')
 <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        $(document).on('change', '#start_date', function (){
+            var start_date = $(this).val();
+
+        });
+    });
+
     window.livewire.on('proceed_done', param => {
         setTimeout(function () {
             Swal.close();
