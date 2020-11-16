@@ -70,7 +70,7 @@
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->date_end))}}</td>
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
-                                    @if (date('Y-m-d') >= date('Y-m-d', strtotime($row->date_start)))
+                                    @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($row->date_start)))
                                         <span class="badge badge-success">Active</span>    
                                     @else
                                         <span class="badge badge-info">Upcoming</span>    
