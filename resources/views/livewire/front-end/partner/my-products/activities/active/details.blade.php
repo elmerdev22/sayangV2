@@ -53,19 +53,19 @@
                         <div class="col-12 mb-2">
                             <label>Date Start</label>
                             <div>
-                                {{date('F/d/Y', strtotime($data->date_start))}}
+                                {{date('F/d/Y h:i:s a', strtotime($data->date_start))}}
                             </div>
                         </div>
                         <div class="col-12 mb-2">
                             <label>Date End</label>
                             <div>
-                                {{date('F/d/Y', strtotime($data->date_end))}}
+                                {{date('F/d/Y h:i:s a', strtotime($data->date_end))}}
                             </div>
                         </div>
                         <div class="col-12 mb-2">
                             <label>Date Posted</label>
                             <div>
-                                {{date('F/d/Y', strtotime($data->created_at))}}
+                                {{date('F/d/Y h:i:s a', strtotime($data->created_at))}}
                             </div>
                         </div>
                     </div>

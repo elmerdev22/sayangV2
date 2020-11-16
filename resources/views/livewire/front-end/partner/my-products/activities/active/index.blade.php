@@ -13,7 +13,7 @@
         <div class="card-body">
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')
-            <div class="table-responsive mt-3">
+            <div class="table-responsive my-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
                     <thead>
                         
@@ -66,9 +66,9 @@
                                 <td>{{number_format($row->buy_now_price, 2)}}</td>
                                 <td>{{number_format($row->lowest_price, 2)}}</td>
                                 <td>{{number_format($row->quantity, 0)}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_end))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_start))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_end))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
                                     @if (date('Y-m-d') >= date('Y-m-d', strtotime($row->date_start)))
                                         <span class="badge badge-success">Active</span>    

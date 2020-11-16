@@ -13,7 +13,7 @@
         <div class="card-body">
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')
-            <div class="table-responsive mt-3">
+            <div class="table-responsive my-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
                     <thead>
                         
@@ -55,10 +55,10 @@
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
                                 {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
-                                <td>{{date('F/d/Y', strtotime($row->date_cancelled))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_end))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_cancelled))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_start))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_end))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-danger">Cancelled</span>    
                                 </td>
