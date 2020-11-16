@@ -13,7 +13,7 @@
                     <div class="col-md-3">
                         <label>{{$row->settings_name}}</label>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control text-center" min="1" max="100" value="{{$row->settings_value}}">
+                            <input type="number" class="form-control text-center" min="1" max="100" disabled value="{{$row->settings_value}}">
                             <div class="input-group-append bg-warning">
                             <button class="btn btn-default" onclick="edit('{{$row->id}}')"><span class="fas fa-edit"></span></button>
                             </div>
