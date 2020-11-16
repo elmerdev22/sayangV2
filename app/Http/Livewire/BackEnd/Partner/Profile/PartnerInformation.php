@@ -25,7 +25,11 @@ class PartnerInformation extends Component
 			->where('user_account_id', $account->id)
 			->first();
 		
-		$this->followers = Utility::count_followers($this->partner->id);
+		if(!empty($this->partner)){
+			$this->followers = Utility::count_followers($this->partner->id);
+		}else{
+			$this->followers = 0;
+		}
 	}
 	
     public function render(){
