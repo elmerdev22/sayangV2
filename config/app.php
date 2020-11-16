@@ -230,12 +230,14 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         
         //Utility
-        'Utility'         => App\Helpers\Utility::class,
-        'QueryUtility'    => App\Helpers\QueryUtility::class,
-        'UploadUtility'   => App\Helpers\UploadUtility::class,
-        'TagNameUtility'  => App\Helpers\TagNameUtility::class,
-        'SettingsUtility' => App\Helpers\SettingsUtility::class,
-        'PaymentUtility'  => App\Helpers\PaymentUtility::class,
+        'Utility'              => App\Helpers\Utility::class,
+        'QueryUtility'         => App\Helpers\QueryUtility::class,
+        'UploadUtility'        => App\Helpers\UploadUtility::class,
+        'TagNameUtility'       => App\Helpers\TagNameUtility::class,
+        'SettingsUtility'      => App\Helpers\SettingsUtility::class,
+        'PaymentUtility'       => App\Helpers\PaymentUtility::class,
+        'ScheduledTaskUtility' => App\Helpers\ScheduledTaskUtility::class,
+        
     ],
 
 ];
