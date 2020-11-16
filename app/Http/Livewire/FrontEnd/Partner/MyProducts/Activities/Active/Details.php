@@ -11,6 +11,7 @@ use DB;
 use Utility;
 use QueryUtility;
 use UploadUtility;
+use Illuminate\Support\Str; 
 use Carbon\Carbon;
 
 class Details extends Component
@@ -95,6 +96,8 @@ class Details extends Component
                 'title'    => 'Successfully Cancelled',
                 'message'  => 'Product successfully Cancelled!',
             ]);
+
+            return redirect()->route('front-end.partner.my-products.activities.cancelled', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
         }
     }
 }

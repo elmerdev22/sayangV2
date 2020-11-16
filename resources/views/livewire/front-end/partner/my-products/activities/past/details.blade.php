@@ -31,7 +31,7 @@
                         <div class="col-12 mb-2">
                             <div class="bg-danger p-1 text-center">
                                 <span class="fas fa-clock"></span> 
-                                Ended ({{Utility::carbon_diff($data->date_start)}})
+                                Ended ({{Utility::carbon_diff($data->date_end)}})
                             </div>
                         </div>
                         <div class="col-12 mb-2">
