@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label for="start_date">Start Date</label>
-                <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" wire:model.lazy="start_date">
+                <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" wire:model.lazy="start_date" min="{{date('Y-m-d\TH:i')}}">
                 @error('start_date')
                     <span class="invalid-feedback">
                         <span>{{$message}}</span>
@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="end_date">End Date</label>
-                <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" wire:model.lazy="end_date">
+                <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" wire:model.lazy="end_date" @if(!empty($start_date)) min="{{date('Y-m-d\TH:i', strtotime($start_date))}}" @else min="{{date('Y-m-d\TH:i')}}" @endif>
                 @error('end_date')
                     <span class="invalid-feedback">
                         <span>{{$message}}</span>
@@ -66,8 +66,12 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
         $(document).on('change', '#start_date', function (){
-            var start_date = $(this).val();
+            var start_date   = $(this).val();
+            if(start_date != ''){
+                $(document).find('#end_date').attr('min', start_date);
+            }else{
 
+            }
         });
     });
 
