@@ -4,7 +4,7 @@
                 <h5 class="card-title">My Products List</h5> 
                 <div class="card-tools">
                     <a href="javascript:void(0);" onclick="proceed()" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Proceed </a>
-                    <a href="{{route('front-end.partner.my-products.index')}}" class="btn btn-danger btn-sm">Back </a>
+                    <a href="{{route('front-end.partner.my-products.list.index')}}" class="btn btn-danger btn-sm">Back </a>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                     </button>
                 </div>

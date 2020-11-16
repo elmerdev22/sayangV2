@@ -51,8 +51,8 @@ class Proceed extends Component
                 $product_post->buy_now_price = $row['buy_now_price'];
                 $product_post->lowest_price  = $row['lowest_price'];
                 $product_post->quantity      = $row['quantity'];
-                $product_post->date_start    = $this->start_date.' 00:00:00';
-                $product_post->date_end      = $this->end_date.' 23:59:59';
+                $product_post->date_start    = $this->start_date;
+                $product_post->date_end      = $this->end_date;
                 $product_post->status        = 'active';
                 $product_post->is_set        = true;
                 $product_post->key_token     = Utility::generate_table_token('ProductPost');

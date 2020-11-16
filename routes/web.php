@@ -1,8 +1,13 @@
 <?php
-// Partner/Merchant
-// Route::get('/partner/dashboard/template', function () {
-//     return view('front-end.partner.layouts.template');
-// });
+/* 
+    NOTE: AS MUCH AS POSSIBLE, CAN WE ALWAYS DO THIS PATTERN  
+
+    1.) Route Pattern   : <folder name, if nested folder separate it with dot(.)>.<followed by controller>.<followed by method>
+                Example : front-end.partner.my-products.index 
+    3.) Blade Template  : (pattern and example is same in #1)
+    4.) Livewire Blade  : Example {parent-namespace.follow-namespace.method.section_name}
+        Livewire Blade alomost same with #1 but the method is folder and the actual component is the name of section
+*/
 
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
@@ -370,7 +375,6 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 
         // My product List
         Route::group(['prefix' => 'my-products', 'as' => 'my-products.'], function (){
-		    
             Route::group(['prefix' => 'list', 'as' => 'list.'], function (){
                 $c = 'MyProductsController';
                 
