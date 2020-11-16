@@ -1,8 +1,8 @@
 <?php
 // Partner/Merchant
-Route::get('/partner/dashboard/template', function () {
-    return view('front-end.partner.layouts.template');
-});
+// Route::get('/partner/dashboard/template', function () {
+//     return view('front-end.partner.layouts.template');
+// });
 
 // Redirect If Authenticated
 Route::group(['middleware' => ['guest']], function(){
@@ -102,6 +102,15 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             Route::get('/login-redirect/{slug}/{key_token}/{type}', [
                 'as' 	=> 'login-redirect',
                 'uses'  => $c.'@login_redirect'
+            ]);
+        });
+
+        Route::group(['as' => 'list.'], function (){
+            $c = 'ListingController';
+            
+            Route::get('/list', [
+                'as' 	=> 'index',
+                'uses'  => $c.'@index'
             ]);
         });
 
@@ -479,12 +488,6 @@ Route::group(['prefix' => 'print-preview', 'as' => 'front-end.print-preview.', '
     });
 
 });
-
-
-Route::get('/products', function () {
-    return view('front-end.product.all');
-});
-
 
 // Login Redirect
 Route::group(['prefix' => 'login-redirect', 'as' => 'login-redirect.', 'namespace' => 'Auth'], function () {

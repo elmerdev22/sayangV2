@@ -38,7 +38,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{url('/products')}}">Products <small class="fas fa-list-alt"></small> </a>
+                <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-list-alt"></small> </a>
               </li>
             @endif
             
