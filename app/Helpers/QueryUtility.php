@@ -303,6 +303,12 @@ class QueryUtility{
 			$data = $filtered;
 		}
 
+		if(isset($filter['where_date_end_expired'])){
+			if($filter['where_date_end_expired']){
+				$data = $data->where('product_posts.date_end', '<=', $filter['where_date_end_expired']);
+			}
+		}
+
 		if(isset($filter['or_where_like'])){
 			$search = trim($filter['or_where_like']);
 			$search = explode(' ',$search);
