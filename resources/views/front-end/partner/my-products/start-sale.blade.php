@@ -1,5 +1,10 @@
 @extends('front-end.partner.layouts.layout')
 @section('title','Start Sale')
+@section('css')
+<link rel="stylesheet" href="{{asset('template/assets/plugins/daterangepicker/daterangepicker.css')}}">
+<link rel="stylesheet" href="{{asset('template/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+
+@endsection
 @section('page_header')
     @php 
         $page_header = [
@@ -34,6 +39,9 @@
 @endsection
 @section('js')
 <script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{asset('template/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <script type="text/javascript">
     function deleteProduct(){
         Swal.fire({

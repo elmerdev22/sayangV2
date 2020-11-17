@@ -537,6 +537,9 @@ input:checked + .slider:before {
 .cursor-pointer{
   cursor: pointer;
 }
+input.input-readonly[readonly]{
+	background: #FFF;
+}
 /* END OF GLOBAL CLASSES CAN BE USE */
 
 /* CUSTOM SAYANG BRANDING THEMES */
