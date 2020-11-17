@@ -5,12 +5,14 @@ namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\StartSale;
 use Livewire\Component;
 use App\Model\ProductPost;
 use App\Model\Product;
+use Carbon\Carbon;
+use App\Model\Setting;
 use Utility;
 use DB;
 
 class Proceed extends Component
 {
-    public $partner, $selected_products = [], $start_date, $end_date;
+    public $partner, $selected_products = [], $start_date, $end_date, $hours_error='';
     protected $listeners = [
         'proceed_to_start_sale' => 'initialize'
     ];
@@ -33,7 +35,13 @@ class Proceed extends Component
         return view('livewire.front-end.partner.my-products.start-sale.proceed', compact('component'));
     }
 
+    public function set_date($type, $timestamp){
+        $this->$type = date('Y-m-d H:00:00', strtotime($timestamp));
+    }
+
     public function store(){
+        $this->hours_error = '';
+
         $rules = [
             'selected_products' => 'required',
             'start_date'        => 'required|date',
@@ -41,6 +49,22 @@ class Proceed extends Component
         ];
 
         $this->validate($rules);
+        $start = Carbon::parse($this->start_date);
+        $end   = Carbon::parse($this->end_date);
+        $hours = $end->diffInHours($start);
+
+        $min_hours = Setting::where('settings_key', 'minimum_hours_in_auction')->first()->settings_value;
+        $max_hours = Setting::where('settings_key', 'maximum_hours_in_auction')->first()->settings_value;
+        
+
+        if($min_hours > $hours){
+            $this->hours_error = 'The minimum hours for posting is: '.$min_hours.' hrs.';
+            return false;
+        }else if($max_hours < $hours){
+            $this->hours_error = 'The maximum hours for posting is: '.$max_hours.' hrs.';
+            return false;
+        }
+        
         $response = ['success' => false, 'message' => ''];
 
         DB::beginTransaction();
