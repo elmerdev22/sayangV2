@@ -114,7 +114,7 @@
                         @if($data->order_payment->payment_method == 'card')
                             <div class="col-6">{{$data->order_payment->card_holder}}</div>
                             <div class="col-6">{{Utility::str_starred($data->order_payment->card_no)}}</div>
-                        @elseif($data->order_payment->payment_method == 'online_payment')
+                        @elseif($data->order_payment->payment_method == 'e_wallet')
                             <div class="col-4">{{$data->order_payment->account_name}}</div>
                             <div class="col-4">{{Utility::str_starred($data->order_payment->account_no)}}</div>
                             <div class="col-4">{{$data->order_payment->bank->name}}</div>

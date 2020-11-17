@@ -2,19 +2,19 @@
     <h4 class="mb-3">Payment Method</h4>
     <div class="d-block my-3">
         <button type="button" 
-            class="btn btn-sm {{$payment_method == 'online_payment' ? 'btn-warning':'btn-default' }}" 
+            class="btn btn-sm {{$payment_method == 'e_wallet' ? 'btn-warning':'btn-default' }}" 
             @if($payment_method == 'card') 
-                onclick="change_payment_method('online_payment')" 
+                onclick="change_payment_method('e_wallet')" 
             @endif
-        ><span class="fas fa-money-bill"></span> Online Payment @if($payment_method == 'online_payment') <span class="fas fa-check"></span> @endif</button>
+        ><span class="fas fa-money-bill"></span> E-Wallet @if($payment_method == 'e_wallet') <span class="fas fa-check"></span> @endif</button>
         <button type="button" 
             class="btn btn-sm {{$payment_method == 'card' ? 'btn-warning':'btn-default' }}" 
-            @if($payment_method == 'online_payment') 
+            @if($payment_method == 'e_wallet') 
                 onclick="change_payment_method('card')" 
             @endif
         ><span class="fas fa-credit-card"></span> Debit/Credit Card @if($payment_method == 'card') <span class="fas fa-check"></span> @endif</button>
     </div>
-    @if($payment_method == 'online_payment')
+    @if($payment_method == 'e_wallet')
         @forelse($banks as $row)
             <div class="row mb-3">
                 <div class="col-1">
