@@ -282,12 +282,15 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 /*Scrollable notification box*/
-.scrollable-notif {
+.scrollable-menu {
     height: auto;
-    max-height: 200px;
+    max-height: 250px;
     overflow-x: hidden;
 }
 
+.dropdown-item:hover{
+  background-color: var(--sayang-color);
+}
 /*PAgination*/
 .page-item.active .page-link{
   background-color: #FFDE59;

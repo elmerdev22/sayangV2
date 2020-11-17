@@ -2,7 +2,7 @@
 @section('title','Be a Partner')
 @section('content')
 <div class="row mt-5 pb-5">
-  <div class="col-md-7 d-none d-md-block d-lg-block " style="background: url('{{asset('images/default-photo/register-partner.jpg')}}')">
+  <div class="col-md-7 d-none d-md-block d-lg-block " style="background: url('{{asset('images/default-photo/register-partner2.jpg')}}') no-repeat center bottom">
     <div class="jumbotron bg-transparent ">
       <h1 class="jumbotron-heading display-3" data-aos="fade-right" data-aos-duration="500">
         <b>Grow with us.</b>

@@ -13,7 +13,7 @@
 @endsection
 @section('content')
 <div class="row">
-  <div class="col-md-6 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/register-user.png')}}') no-repeat">
+  <div class="col-md-6 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/register-user2.jpg')}}') no-repeat">
   </div>
   <div class="col-md-6">
     <div class="row justify-content-center">

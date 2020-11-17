@@ -13,9 +13,9 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-md-6 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/login-user.png')}}') no-repeat">
+    <div class="col-md-7 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/login-user2.jpg')}}') no-repeat">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="row justify-content-center">
             <div class="login-box pb-5 ">
                 <!-- /.login-logo -->

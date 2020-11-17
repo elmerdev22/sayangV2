@@ -173,8 +173,13 @@
                     <td></td>
                 </tr>
             @empty
-                <tr>
-                    <td colspan="5" class="text-center">Your Cart is Empty</td>
+                <tr class="text-center bg-white">
+                    <td colspan="5" class="text-center">
+                        <img width="150" src="https://image.freepik.com/free-vector/user-rating-feedback-customer-reviews-cartoon-web-icon-e-commerce-online-shopping-internet-buying-trust-metrics-top-rated-product_335657-778.jpg">
+                        <h3>
+                            Your Cart is Empty!
+                        </h3>
+                    </td>
                 </tr>
             @endif
         </tbody>

@@ -12,6 +12,7 @@ use Utility;
 
 class PurchaseHistory extends Component
 {
+	use WithPagination;
 	public $account, $partner;
 	public $status, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
     

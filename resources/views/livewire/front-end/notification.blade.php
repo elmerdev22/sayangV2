@@ -5,7 +5,22 @@
       <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
     </div>
   </a>
-  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" wire:ignore.self>
+  <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right">
+    <span class="dropdown-item dropdown-header bg-white">15 Notifications</span>
+      <div class="dropdown-divider"></div>
+          <div class="scrollable-menu">
+              @for ($i = 0; $i < 10; $i++)
+                  
+              <a href="#" class="dropdown-item">
+                  <i class="fas fa-bell mr-2"></i> 4 new messages
+                  <span class="float-right text-muted text-sm">3 mins</span>
+              </a>
+              @endfor
+          </div>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item dropdown-footer bg-white">See All Notifications</a>
+  </div>
+  {{-- <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" wire:ignore.self>
     <span class="dropdown-item dropdown-header">15 Notifications</span>
     <div class="dropdown-divider"></div>
       <div class="scrollable-notif">
@@ -22,7 +37,7 @@
       </div>
     <div class="dropdown-divider"></div>
     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-  </div>
+  </div> --}}
   <audio id="NotifSound">
     <source src="{{asset('sounds/notification.mp3')}}" type="audio/mpeg">
   </audio>
