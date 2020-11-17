@@ -26,7 +26,26 @@
                     </tbody>
                 </table>
             </div>
-
+            <div class="form-group">
+                <label>Start Date</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    </div>
+                    <input type="text" value="" class="form-control" name="datetime" id="date_start">
+                </div>
+                <!-- /.input group -->
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    </div>
+                    <input type="text" value="" class="form-control" name="datetime" id="date_end">
+                </div>
+                <!-- /.input group -->
+            </div>
             <!-- DateTime Picker -->
             <div class="bootstrap-timepicker" wire:ignore wire:key="start_date_datetimepicker">
                 <div class="form-group">
