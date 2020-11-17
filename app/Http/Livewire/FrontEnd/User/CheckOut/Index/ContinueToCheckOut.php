@@ -56,7 +56,7 @@ class ContinueToCheckOut extends Component
         $default = $default->where('is_default', true)->first();
         if($default){
             $payment_method = [
-                'payment_method'    => 'online_payment',
+                'payment_method'    => 'e_wallet',
                 'payment_key_token' => $default->key_token
             ];
 
@@ -92,7 +92,7 @@ class ContinueToCheckOut extends Component
                 try{
                     $product_posts = [];
 
-                    if($payment_method['payment_method'] == 'online_payment'){
+                    if($payment_method['payment_method'] == 'e_wallet'){
                         $payment = UserAccountBank::where('user_account_id', $this->account->id);
                     }else{
                         $payment = UserAccountCreditCard::where('user_account_id', $this->account->id);
@@ -193,7 +193,7 @@ class ContinueToCheckOut extends Component
                                 $order_payment->order_id       = $order->id;
                                 $order_payment->payment_method = $this->payment_method['payment_method'];
                                 
-                                if($this->payment_method['payment_method'] == 'online_payment'){
+                                if($this->payment_method['payment_method'] == 'e_wallet'){
                                     $order_payment->bank_id      = $payment->bank_id;
                                     $order_payment->account_name = ucwords($payment->account_name);
                                     $order_payment->account_no   = $payment->account_no;

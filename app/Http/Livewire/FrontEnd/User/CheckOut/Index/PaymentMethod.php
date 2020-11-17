@@ -9,7 +9,7 @@ use Utility;
 
 class PaymentMethod extends Component
 {
-    public $account, $payment_method = 'online_payment', $payment_key_token;
+    public $account, $payment_method = 'e_wallet', $payment_key_token;
     protected $listeners = [
         'banks_initialize'       => 'initialize_payment_key_token',
         'credit_card_initialize' => 'initialize_payment_key_token'
@@ -36,8 +36,8 @@ class PaymentMethod extends Component
     public function initialize_payment_key_token($key_token=null){
         $this->payment_key_token = null;
         
-        if($this->payment_method == 'online_payment' || $this->payment_method == 'card'){
-            if($this->payment_method == 'online_payment'){
+        if($this->payment_method == 'e_wallet' || $this->payment_method == 'card'){
+            if($this->payment_method == 'e_wallet'){
                 $default = UserAccountBank::where('user_account_id', $this->account->id);
             }else{
                 $default = UserAccountCreditCard::where('user_account_id', $this->account->id);
@@ -69,7 +69,7 @@ class PaymentMethod extends Component
     }
 
     public function change_payment_method($method){
-        if($method == 'online_payment' || $method == 'card'){
+        if($method == 'e_wallet' || $method == 'card'){
             $this->payment_method = $method;
             $this->initialize_payment_key_token();
             $this->emit('remove_loading_card', true);

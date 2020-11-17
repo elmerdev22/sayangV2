@@ -26,7 +26,7 @@
                 <div>
                     <i class="fas fa-credit-card"></i> {{$data->order_payment->card_no}}
                 </div>
-            @elseif($data->order_payment->payment_method == 'online_payment')
+            @elseif($data->order_payment->payment_method == 'e_wallet')
                 <div>
                     <i class="fas fa-user"></i> {{$data->order_payment->account_name}}
                 </div>
