@@ -728,4 +728,16 @@ class Utility{
         $data = Setting::where('settings_key', $settings_key)->first();
         return $data->settings_value;
     }
+
+    public static function bid_details($product_post_id, $type){
+        $data = Bid::where('product_post_id', $product_post_id);
+
+        if($type == 'count'){
+            return $data->count();
+        }
+        else if($type == 'top'){
+            $top =  $data->max('bid');
+            return $top <= 0 ? 'None' : number_format($top, 2) ;
+        }
+    }
 }
