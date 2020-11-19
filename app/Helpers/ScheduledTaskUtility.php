@@ -27,8 +27,8 @@ class ScheduledTaskUtility{
                 $product_post       = ProductPost::find($row->id);
                 $available_quantity = $product_post->quantity;
                 $current_quantity   = $available_quantity;
-                $bids               = Bind::where('product_post_id', $product_post->id)->orderBy('bid', 'desc')->get();
-                    
+                $bids               = Bid::where('product_post_id', $product_post->id)->orderBy('bid', 'desc')->get();
+
                 foreach($bids as $bid){
                     if($available_quantity > 0){
                         if($current_quantity > 0){
