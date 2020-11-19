@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\FrontEnd\User\CheckOut\Index;
 
 use Livewire\Component;
+use App\Model\Bid;
 use App\Model\Cart;
 use App\Model\Billing;
 use App\Model\ProductPost;
@@ -148,8 +149,27 @@ class ContinueToCheckOut extends Component
                                         if($product_post->quantity >= $order_item_row['selected_quantity']){
                                             $remaining_quantity     = abs($product_post->quantity - $order_item_row['selected_quantity']);
                                             $product_post->quantity = $remaining_quantity;
-
+                                            
                                             if($product_post->save()){
+                                                
+                                                if($remaining_quantity <= 0){
+                                                    $bids = Bid::where('product_post_id', $product_post->id)->get();
+                                                    foreach($bids as $bid){
+                                                        $bid->status = 'sold_out';
+                                                        if($bid->save()){
+                                                            /* Notify bidders that the item was sold out. */
+                                                        }
+                                                    }
+
+                                                    /* 
+                                                        Notify the users in carts table where the product_post_id = $product_post->id 
+                                                        that the product was sold out.
+                                                    */
+
+                                                    /* Notify the partner owner of this product post that his/her item was sold out */
+
+                                                }
+
                                                 $product_post_cart = Cart::find($order_item_row['cart_id']);
 
                                                 if($product_post_cart->delete()){
@@ -225,6 +245,9 @@ class ContinueToCheckOut extends Component
                                     throw new \Exception('Uncaught Exception');
                                 }
                             }
+
+                            /* Notify the partner in status of order */
+                            /* Notify the user order */
                         }
 
                         $response['success'] = true;
