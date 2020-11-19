@@ -86,51 +86,56 @@ class Listing extends Component
 
             if(is_numeric($lowest_price) && is_numeric($buy_now_price)){
                 if($data['is_selected']){
-                    $product = Product::where('key_token', $data['key_token'])
+                    if($data['quantity'] > 0){
+                     
+                        $product = Product::where('key_token', $data['key_token'])
                         ->where('partner_id', $this->partner->id)
                         ->first();
                     
-                    if($product){
-                        if($buy_now_price >= $product->lowest_price){
-                            $is_new           = true;
-                            $selected_product = [
-                                'product_id'    => $product->id,
-                                'key_token'     => $data['key_token'],
-                                'buy_now_price' => $buy_now_price,
-                                'lowest_price'  => $lowest_price,
-                                'quantity'      => $data['quantity'],
-                                'is_selected'   => $data['is_selected']
-                            ];
-    
-                            if(!empty($this->selected_products)){
-                                if(is_array($this->selected_products)){
-                                    foreach($this->selected_products as $key => $value){
-                                        if($value['key_token'] == $data['key_token']){
-                                            $is_new       = false;
-                                            $existing_key = $key;
-                                            break;
+                        if($product){
+                            if($buy_now_price >= $product->lowest_price){
+                                $is_new           = true;
+                                $selected_product = [
+                                    'product_id'    => $product->id,
+                                    'key_token'     => $data['key_token'],
+                                    'buy_now_price' => $buy_now_price,
+                                    'lowest_price'  => $lowest_price,
+                                    'quantity'      => $data['quantity'],
+                                    'is_selected'   => $data['is_selected']
+                                ];
+
+                                if(!empty($this->selected_products)){
+                                    if(is_array($this->selected_products)){
+                                        foreach($this->selected_products as $key => $value){
+                                            if($value['key_token'] == $data['key_token']){
+                                                $is_new       = false;
+                                                $existing_key = $key;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
-                            }
-    
-                            if($is_new){
-                                $this->selected_products[] = $selected_product;
+
+                                if($is_new){
+                                    $this->selected_products[] = $selected_product;
+                                }else{
+                                    $this->selected_products[$existing_key] = $selected_product;
+                                }
+
+                                $response['success'] = true;
                             }else{
-                                $this->selected_products[$existing_key] = $selected_product;
+                                $response['message'] = 'Buy now price not less than product lowest price.';
+                                
+                                // $this->emit('initialize_buy_now_price', [
+                                //     'key_token'    => $data['key_token'],
+                                //     'lowest_price' => $product->lowest_price
+                                // ]);
                             }
-    
-                            $response['success'] = true;
                         }else{
-                            $response['message'] = 'Buy now price not less than product lowest price.';
-                            
-                            // $this->emit('initialize_buy_now_price', [
-                            //     'key_token'    => $data['key_token'],
-                            //     'lowest_price' => $product->lowest_price
-                            // ]);
-                        }
+                            $response['message'] = 'Product not found.';
+                        }   
                     }else{
-                        $response['message'] = 'Product not found.';
+                        $response['message'] = 'Quantity minimum is 1.';
                     }
                 }else{
                     if(!empty($this->selected_products)){
