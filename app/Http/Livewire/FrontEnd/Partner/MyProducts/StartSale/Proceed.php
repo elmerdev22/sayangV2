@@ -90,7 +90,7 @@ class Proceed extends Component
             $this->emit('alert_link', [
                 'type'     => 'success',
                 'title'    => 'Successfully Saved',
-                'message'  => 'Products successfully added to active sales.',
+                'message'  => 'Products successfully added to active/upcoming sales.',
             ]);
         }else{
             DB::rollback();

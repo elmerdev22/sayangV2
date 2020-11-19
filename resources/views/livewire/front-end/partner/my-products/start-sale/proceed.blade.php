@@ -26,6 +26,9 @@
                     </tbody>
                 </table>
             </div>
+            <hr>
+                <div>Note: The Minimum is {{$min_hours}}hours and Maximum is {{$max_hours}}hours.</div>
+            <hr>
             <!-- Date Range Picker -->
             <div class="form-group" wire:ignore wire:key="start_date_daterangepicker">
                 <label for="start_date">Start Date</label>
@@ -167,10 +170,6 @@
             Swal.close();
             $('#modal-proceed_start_sale').modal('show');
         }, 1500);
-    });
-    window.livewire.on('alert_link', param => {
-        Swal.close();
-        $('#modal-proceed_start_sale').modal('hide');
     });
 </script>
 @endpush
