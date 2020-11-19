@@ -26,49 +26,29 @@
                     </tbody>
                 </table>
             </div>
-            <div class="form-group">
-                <label>Start Date</label>
+            <!-- Date Range Picker -->
+            <div class="form-group" wire:ignore wire:key="start_date_daterangepicker">
+                <label for="start_date">Start Date</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                     </div>
-                    <input type="text" value="" class="form-control" name="datetime" id="date_start">
+                    <input type="text" value="" class="form-control input-readonly" id="start_date" readonly="true" placeholder="MM/DD/YYYY @ HH:00A">
                 </div>
                 <!-- /.input group -->
             </div>
-            <div class="form-group">
-                <label>End Date</label>
+
+            <div class="form-group" wire:ignore wire:key="end_date_daterangepicker">
+                <label for="end_date">End Date</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                     </div>
-                    <input type="text" value="" class="form-control" name="datetime" id="date_end">
+                    <input type="text" value="" class="form-control input-readonly" id="end_date" readonly="true" placeholder="MM/DD/YYYY @ HH:00A">
                 </div>
                 <!-- /.input group -->
             </div>
-            <!-- DateTime Picker -->
-            <div class="bootstrap-timepicker" wire:ignore wire:key="start_date_datetimepicker">
-                <div class="form-group">
-                    <label>Start Date</label>
-                    <div class="input-group date" id="start_date" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input input-readonly" data-target="#start_date" readonly="true">
-                        <div class="input-group-append" data-target="#start_date" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bootstrap-timepicker" wire:ignore wire:key="end_date_datetimepicker">
-                <div class="form-group">
-                    <label>End Date</label>
-                    <div class="input-group date" id="end_date" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input input-readonly" data-target="#end_date" readonly="true">
-                        <div class="input-group-append" data-target="#end_date" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             @error('start_date')
                 <span class="invalid-feedback d-block">
                     <span>{{$message}}</span>
@@ -101,61 +81,83 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
-        $(document).on('change', '#start_date', function (){
-            var start_date   = $(this).val();
-            if(start_date != ''){
-                $(document).find('#end_date').attr('min', start_date);
-            }else{
-
-            }
-        });
-
         init_start_date();
         init_end_date();
-
-        $("#start_date").on("change.datetimepicker", function (e){
-            var minDate = moment(e.date).format("YYYY/MM/DD");
-            init_end_date(minDate);
-            @this.call('set_date', 'start_date', e.date['_d'])
-        });
-        $("#end_date").on("change.datetimepicker", function (e){              
-            @this.call('set_date', 'end_date', e.date['_d'])
-        });
     });
-    
+
+    function start_daterangepicker_init(picker){
+        var type = 'start_date';
+        var date = picker.startDate['_d'];
+        @this.call('set_date', type, date)
+        $('#'+type).val(moment(date).format('MM/DD/YYYY @ HH:00A'));
+        end_daterangepicker_init(picker, date);
+        init_end_date(date);
+    }
+
+    function end_daterangepicker_init(picker, new_date=null){
+        var type = 'end_date';
+
+        if(new_date != null){
+            var date        = new Date(new_date);
+            var min_seconds = {{$min_hours}} * 3600;
+                date.setSeconds(date.getSeconds() + min_seconds);
+        }else{
+            var date = new Date(picker.endDate['_d']);
+        }
+
+        $('#'+type).val(moment(date).format('MM/DD/YYYY @ HH:00A'));
+        @this.call('set_date', type, date)
+    }
+
     function init_start_date(minDate=null){
         var datetime_config = date_config();
             if(minDate == null){
-                datetime_config['minDate'] = '{{date("Y/m/d")}}';
+                datetime_config['minDate'] = new Date();
             }else{
                 datetime_config['minDate'] = minDate;
             }
 
-        $('#start_date').datetimepicker("destroy");
-        $('#start_date').datetimepicker(datetime_config);
+        // $('#start_date').daterangepicker("destroy"); 
+        $('#start_date').daterangepicker(datetime_config);
+        $('#start_date').on('apply.daterangepicker', function(ev, picker) {
+            start_daterangepicker_init(picker);
+        });
     }
 
     function init_end_date(minDate=null){
         var datetime_config = date_config();
-            if(minDate == null){
-                datetime_config['minDate'] = '{{date("Y/m/d")}}';
-            }else{
-                datetime_config['minDate'] = minDate;
-            }
+        var min_seconds     = {{$min_hours}} * 3600;
+        var max_seconds     = {{$max_hours}} * 3600;
 
-        $('#end_date').datetimepicker("destroy");
-        $('#end_date').datetimepicker(datetime_config);
+        if(minDate == null){
+            minDate = new Date();
+        }else{
+            minDate = new Date(minDate);
+            minDate.setSeconds(minDate.getSeconds() + min_seconds);
+        }
+        datetime_config['minDate'] = minDate;
+        
+        var maxDate = new Date();
+            maxDate.setSeconds(maxDate.getSeconds() + max_seconds);
+        datetime_config['maxDate'] = maxDate;
+
+        // $('#end_date').daterangepicker("destroy");
+        $('#end_date').daterangepicker(datetime_config);
+        $('#end_date').on('apply.daterangepicker', function (ev, picker){    
+            end_daterangepicker_init(picker, null);
+        });
     }
 
     function date_config(){
-        return  {
-            format        : 'MM/DD/YYYY @ hh:00A',
-            ignoreReadonly: true,
-            icons         : {
-                time : "fas fa-clock",
-                date : "fas fa-calendar",
-                up   : "fas fa-arrow-up",
-                down : "fas fa-arrow-down"
+        return {
+            container          : '#modal-proceed_start_sale',
+            ignoreReadonly     : true,
+            singleDatePicker   : true,
+            timePicker         : true,
+            autoUpdateInput    : false,
+            timePickerIncrement: 60,
+            locale             : {
+                format: 'MM/DD/YYYY @ HH:00A'
             }
         };
     }
@@ -165,6 +167,10 @@
             Swal.close();
             $('#modal-proceed_start_sale').modal('show');
         }, 1500);
+    });
+    window.livewire.on('alert_link', param => {
+        Swal.close();
+        $('#modal-proceed_start_sale').modal('hide');
     });
 </script>
 @endpush

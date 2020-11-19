@@ -43,25 +43,6 @@
 <script src="{{asset('template/assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{asset('template/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <script type="text/javascript">
-
-    $('#date_start').daterangepicker({
-        singleDatePicker : true,
-        timePicker : true,
-        timePickerIncrement: 60,
-        minDate: new Date(),
-        locale: {
-            format: 'MM/DD/YYYY hh:mm A'
-        },
-    });
-    $('#date_end').daterangepicker({
-        singleDatePicker : true,
-        timePicker : true,
-        timePickerIncrement: 60,
-        minDate: new Date(),
-        locale: {
-            format: 'MM/DD/YYYY hh:mm A'
-        },
-    });
     function deleteProduct(){
         Swal.fire({
             title: 'Are you sure?',

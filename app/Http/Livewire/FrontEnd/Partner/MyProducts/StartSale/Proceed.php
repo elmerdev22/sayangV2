@@ -12,13 +12,15 @@ use DB;
 
 class Proceed extends Component
 {
-    public $partner, $selected_products = [], $start_date, $end_date, $hours_error='';
+    public $partner, $selected_products = [], $start_date, $end_date, $hours_error='', $min_hours, $max_hours;
     protected $listeners = [
         'proceed_to_start_sale' => 'initialize'
     ];
 
     public function mount(){
         $this->partner = Utility::auth_partner();
+        $this->min_hours = Setting::where('settings_key', 'minimum_hours_in_auction')->first()->settings_value;
+        $this->max_hours = Setting::where('settings_key', 'maximum_hours_in_auction')->first()->settings_value;
     }
 
     public function initialize($param){
@@ -37,6 +39,7 @@ class Proceed extends Component
 
     public function set_date($type, $timestamp){
         $this->$type = date('Y-m-d H:00:00', strtotime($timestamp));
+        // dd($type.' = '.$this->$type);
     }
 
     public function store(){
@@ -52,16 +55,11 @@ class Proceed extends Component
         $start = Carbon::parse($this->start_date);
         $end   = Carbon::parse($this->end_date);
         $hours = $end->diffInHours($start);
-
-        $min_hours = Setting::where('settings_key', 'minimum_hours_in_auction')->first()->settings_value;
-        $max_hours = Setting::where('settings_key', 'maximum_hours_in_auction')->first()->settings_value;
-        
-
-        if($min_hours > $hours){
-            $this->hours_error = 'The minimum hours for posting is: '.$min_hours.' hrs.';
+        if($this->min_hours > $hours){
+            $this->hours_error = 'The minimum hours for posting is: '.$this->min_hours.' hrs.';
             return false;
-        }else if($max_hours < $hours){
-            $this->hours_error = 'The maximum hours for posting is: '.$max_hours.' hrs.';
+        }else if($this->max_hours < $hours){
+            $this->hours_error = 'The maximum hours for posting is: '.$this->max_hours.' hrs.';
             return false;
         }
         
