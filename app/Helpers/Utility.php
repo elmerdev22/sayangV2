@@ -527,8 +527,8 @@ class Utility{
             
             if($post_status != 'active'){
                 $is_disabled        = true;
-                $carts->is_checkout = false;
-                $carts->save();
+                $row->is_checkout = false;
+                $row->save();
 
                 if($is_checkout){
                     continue;

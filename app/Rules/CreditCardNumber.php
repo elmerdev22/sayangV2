@@ -28,9 +28,15 @@ class CreditCardNumber implements Rule
         $success = false;
 
         if(!empty($value)){
-            if(is_numeric(str_replace('-', '', $value))){
-                if(strlen($value) == 19){
+            if(strlen($value) == 16){
+                if(is_numeric($value)){
                     $success = true;
+                }
+            }else{
+                if(is_numeric(str_replace('-', '', $value))){
+                    if(strlen($value) == 19){
+                        $success = true;
+                    }
                 }
             }
         }else{
