@@ -58,11 +58,19 @@ class ContinueToCheckOut extends Component
         if($default){
             $payment_method = [
                 'payment_method'    => 'e_wallet',
-                'payment_key_token' => $default->key_token
+                'payment_key_token' => $default->key_token,
+                'payment_e_wallet'  => 'gcash'
             ];
-
-            $this->set_payment_method($payment_method);
+        }else{
+            $payment_method = [
+                'payment_method'    => 'e_wallet',
+                'payment_key_token' => null,
+                'payment_e_wallet'  => 'gcash'
+            ];
         }
+
+        $this->set_payment_method($payment_method);
+
     }
 
     public function set_payment_method(array $payment_method = []){
@@ -81,6 +89,23 @@ class ContinueToCheckOut extends Component
         $payment_method = $this->payment_method;
 
         if(!empty($payment_method) && !empty($this->billing_address_id)){
+
+            if($payment_method['payment_method'] == 'e_wallet'){
+                //Go for gcash/grab_pay payment source API
+                $message = 'e-wallet : <b>'.ucfirst(str_replace('_', '', $payment_method['payment_e_wallet'])).'</b>';
+            }else{
+                // Go for card paymentIntent
+                $message = 'debit/credit card';
+            }
+
+            $this->emit('remove_loading_card', true);
+            $this->emit('alert', [
+                'type'    => 'error',
+                'title'   => 'Warning',
+                'message' => 'Payment method for '.$message.' is on development.'
+            ]);
+            return false;
+
             $cart = Utility::cart($this->account->id, true);
 
             if($this->temporary_account_balance >= $cart['total_price']){

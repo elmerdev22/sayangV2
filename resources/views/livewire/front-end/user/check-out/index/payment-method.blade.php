@@ -14,8 +14,27 @@
             @endif
         ><span class="fas fa-credit-card"></span> Debit/Credit Card @if($payment_method == 'card') <span class="fas fa-check"></span> @endif</button>
     </div>
-    @if($payment_method == 'e_wallet')
-        @forelse($banks as $row)
+
+    @if($payment_method == 'e_wallet')        
+        <h5><b>Select Payment</b></h5>
+        <div class="row">
+            <div class="col-12">
+                <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" @if($e_wallet != 'gcash') onclick="set_e_wallet('gcash')" @endif>
+                    @if($e_wallet == 'gcash') 
+                        <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
+                    @endif
+                    <img src="{{asset('images/icons/payments/gcash.png')}}" height="42px" alt="GCash Photo">
+                </div>
+                <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" @if($e_wallet != 'grab_pay') onclick="set_e_wallet('grab_pay')" @endif>
+                    @if($e_wallet == 'grab_pay') 
+                        <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
+                    @endif
+                    <img src="{{asset('images/icons/payments/grab-pay.png')}}" height="42px" alt="Grab Pay Photo">
+                </div>
+            </div>
+        </div>
+
+        <!-- @forelse($banks as $row)
             <div class="row mb-3">
                 <div class="col-1">
                     <span class="icheck-warning">
@@ -52,8 +71,11 @@
 
         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-add_bank">
             <i class="fas fa-plus"></i> Add New Bank
-        </button>
+        </button> -->
     @else
+        
+        <h5 class="mb-3"><b>Select Credit/Debit Card</b></h5>
+        
         @forelse($credit_cards as $row)
             <div class="row mb-3">
                 <div class="col-1">
@@ -107,6 +129,12 @@
         var card_dom = $('#card-billing');
         card_loader(card_dom, 'show');
         @this.call('change_payment_method', method)
+    }
+
+    function set_e_wallet(type){
+        var card_dom = $('#card-billing');
+        card_loader(card_dom, 'show');
+        @this.call('set_e_wallet', type)
     }
 </script>
 @endpush

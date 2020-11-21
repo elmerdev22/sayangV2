@@ -10,7 +10,7 @@ use Auth;
 class MyAccountController extends Controller
 {
     public function index(){
-        $account = Utility::auth_user_account();
+        $account              = Utility::auth_user_account();
         return view('front-end.user.my-account.index', compact('account'));
     }
 
@@ -19,7 +19,9 @@ class MyAccountController extends Controller
     }
 
     public function banks_and_cards(){
-        return view('front-end.user.my-account.banks-and-cards');
+        $enabled_bank_account      = false;
+        $enabled_debit_credit_card = true;
+        return view('front-end.user.my-account.banks-and-cards', compact('enabled_bank_account', 'enabled_debit_credit_card'));
     }
 
     public function change_password(){
