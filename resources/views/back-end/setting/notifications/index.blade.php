@@ -16,7 +16,8 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-            @livewire('back-end.setting.notifications.index')
+            @livewire('back-end.setting.notifications.email')
+            @livewire('back-end.setting.notifications.web')
         </div>
     </div>
     <!-- 

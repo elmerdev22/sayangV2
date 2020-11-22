@@ -3,6 +3,7 @@
 namespace App\Helpers;
 use App\Model\Setting;
 use App\Model\Rating;
+use App\Model\EmailNotificationSetting;
 use DB;
 class SettingsUtility{
 
@@ -13,8 +14,8 @@ class SettingsUtility{
     public static function settings($key=null){
         
         $group = [
-            'bids'          => 'bids',
-            'notifications' => 'notifications',
+            'bids'              => 'bids',
+            'web_notifications' => 'web_notifications',
         ];
 
         $response = [
@@ -55,13 +56,50 @@ class SettingsUtility{
                 'value' => 3,
             ],
 
-            //Notifications
+            //Web Notifications
             'partner_approved_by_admin_notif' => [
-                'group' => $group['notifications'],
+                'group' => $group['web_notifications'],
                 'name'  => 'Application Approved!',
                 'value' => 'Your application approved by the admin, you can start now to sell your products. thank you!',
             ],
             //
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
+
+    public static function email_notification_settings($key=null){
+        
+        $response = [
+            // Partner Application Approved by admin
+            'application_approved_by_admin' => [
+                'name'    => 'Partner application approved by admin',
+                'subject' => 'Application Approved!',
+                'message' => 'Congratulations your application approved!',
+            ],
+            // Partner Notify if product post is end
+            'partner_product_post_end' => [
+                'name'    => 'Partner product post is ended',
+                'subject' => 'Product is ended!',
+                'message' => 'your product is ended click the button below to proceed!',
+            ],
+            // Bidder win
+            'bidder_won' => [
+                'name'    => 'Bidder win',
+                'subject' => 'your bid is won!',
+                'message' => 'congratulation your bid is won!',
+            ],
+            // Bidder lose
+            'bidder_lose' => [
+                'name'    => 'Bidder lose',
+                'subject' => 'your bid is lose!',
+                'message' => 'try again, your bid is lose!',
+            ],
+
         ];
 
         if($key){
@@ -129,6 +167,39 @@ class SettingsUtility{
             return $success;
         }
     }
+
+    public static function email_notication_settings_set_default(){
+        EmailNotificationSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::email_notification_settings() as $settings_key => $settings_value){
+                $settings                = new EmailNotificationSetting();
+                $settings->settings_key  = $settings_key;
+                $settings->settings_name = $settings_value['name'];
+                $settings->subject       = $settings_value['subject'];
+                $settings->message       = $settings_value['message'];
+                $save                    = $settings->save();
+    
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+
     public static function ratings_set_default(){
         Rating::truncate();
         $success = true;
