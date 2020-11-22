@@ -26,7 +26,7 @@
                                 <td>{{$row->subject}}</td>
                                 <td>{!! $row->message !!}</td>
                                 <td>
-                                    <button class="btn btn-default btn-sm" onclick="edit('{{$row->id}}')">
+                                    <button class="btn btn-default btn-sm" onclick="edit_email_notification('{{$row->id}}')">
                                         <span class=" fas fa-edit"></span>
                                     </button>
                                 </td>
@@ -87,7 +87,7 @@
 </div>
 @push('scripts')
 <script>
-    function edit(id){
+    function edit_email_notification(id){
         @this.call('edit', id)
         $('#edit-email-notification').modal('show');
     }
