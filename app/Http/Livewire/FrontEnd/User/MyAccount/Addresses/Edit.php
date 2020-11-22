@@ -22,12 +22,7 @@ class Edit extends Component
         $this->account    = Utility::auth_user_account();
         $this->key_token  = $key_token;
 
-        $address          = UserAccountAddress::with([
-                'philippine_barangay', 
-                'philippine_barangay.philippine_city', 
-                'philippine_barangay.philippine_city.philippine_province',
-                'philippine_barangay.philippine_city.philippine_province.philippine_region',
-            ])
+        $address          = UserAccountAddress::with(['philippine_barangay.philippine_city.philippine_province.philippine_region'])
             ->where('key_token', $this->key_token)
             ->where('user_account_id', $this->account->id)
             ->firstOrFail();

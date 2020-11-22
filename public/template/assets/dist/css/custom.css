@@ -766,3 +766,11 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
 .payment-channel-wrapper.active .payment-channel-selected-icon{
   color: var(--sayang-color);
 }
+
+.product-filter-checkbox{
+  font-weight: normal !important;
+  font-size: 15px;
+}
+.product-filter-checkbox .custom-control-label{
+  margin-left: 6px;
+}
