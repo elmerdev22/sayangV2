@@ -54,8 +54,8 @@
                         <div class="col-md-6 m-0 p-0">
                             <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
                                 <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                <span class="font-weight-bold">Place Bid</span><br>
-                                <small class="item-info">Bids: {{Utility::bid_details($row->id, 'count')}} | Top: {{Utility::bid_details($row->id, 'top')}}</small>
+                                    <span class="font-weight-bold">Place Bid</span><br>
+                                    <small class="item-info">Bids: {{Utility::bid_details($row->id, 'count')}} | Top: {{Utility::bid_details($row->id, 'top')}}</small>
                                 </button>
                             </a>
                         </div>
