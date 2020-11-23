@@ -777,3 +777,48 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
 .product-filter-checkbox .custom-control-label{
   margin-left: 6px;
 }
+
+.product-card-img-list{
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.product-card-list-information{
+  padding-left: 10px;
+}
+.product-card-countdown{
+  margin-top: 15px;
+}
+.product-card-btn-purchase{
+  margin-left: 3.5px;
+}
+@media screen and (max-width: 567px){
+  .product-card-img-list{
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+  }
+  .product-card-btn-purchase .product-card-buy-now{
+    margin-right: 0;
+    padding-right: 0px;
+  }
+  .product-card-btn-purchase .product-card-place-bid{
+    margin-left: 0;
+    padding-left: 0px;
+  }
+  .product-card-list-information{
+    padding-left: 5.5px;
+    padding-right: 5.5px;
+  }
+  .product-card-list-information .product-info{
+    font-size: 16px !important;
+  }
+  .product-card-list-information .store-info{
+    font-size: 18px !important;
+  }
+  .product-card-countdown{
+    margin-top: 0px;
+  }
+  .product-card-btn-purchase{
+    margin-left: -7.5px;
+  }
+}
