@@ -99,6 +99,11 @@
         $('.countdown').countdown("destroy");
     });
     window.livewire.hook('afterDomUpdate', () => {
+        setTimeout(function () {
+            var card_dom = $('#card-product_listing');
+            card_loader(card_dom, 'hide');
+        }, 2000);
+    
         $('.countdown').countdown("start");
     });
     $('.countdown').countdown({

@@ -13,6 +13,9 @@
 .text-white-shadow{
   text-shadow: 0 0 3px black;
 }
+.no-box-shadow{
+  box-shadow: none;
+}
 /* Modal Custom */
 .modal-content{
   border-radius: 0;

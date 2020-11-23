@@ -22,7 +22,11 @@
         <main class="col-md-9">
             <div class="row">
                 <div class="col-12">
-                    @livewire('front-end.product.listing.listing')
+                    <div class="card no-box-shadow" id="card-product_listing">
+                        <div class="card-body p-0">
+                            @livewire('front-end.product.listing.listing')
+                        </div>
+                    </div> <!-- card.// -->
                 </div>
             </div>
         </main>

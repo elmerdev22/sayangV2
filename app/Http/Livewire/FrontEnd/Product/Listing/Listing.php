@@ -13,12 +13,17 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-    public $price_range=[], $limit=9;
+    public $price_range=[], $search, $category, $limit=9;
 
     protected $listeners = [
-        'set_filter'      => 'set_filter',
-        'refresh_listing' => 'render'
+        'set_filter'   => 'set_filter',
+        'clear_filter' => 'clear_filter'
     ];
+
+    public function clear_filter(){
+        $this->reset();
+        $this->resetPage();
+    }
 
     public function set_filter($param){
         $type        = $param['type'];
@@ -44,6 +49,27 @@ class Listing extends Component
             'field_to'   => 'product_posts.date_end',
             'date'       => $date_time
         ];
+
+        if(!empty($this->price_range)){
+            if(isset($this->price_range['price_min']) && isset($this->price_range['price_max'])){
+                $filter['value_between_min_max'][] = [
+                    'field' => 'product_posts.buy_now_price',
+                    'min'   => $this->price_range['price_min'],
+                    'max'   => $this->price_range['price_max'],
+                ];
+            }            
+        }
+
+        if(!empty($this->category)){
+            $filter['categories'] = $this->category;
+        }
+
+        if(!empty($this->search)){
+            $filter['or_where_like'] = $this->search['key_word'];
+        }
+
+        $filter['order_by'] = 'product_posts.updated_at asc';
+
         $query = QueryUtility::product_posts($filter);
 
         return $query;
