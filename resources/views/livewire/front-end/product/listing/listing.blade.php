@@ -2,18 +2,18 @@
     <header class="border-bottom border-top mb-4 py-3">
         <div class="form-inline">
             <span class="mr-md-auto" id="total-item_found">{{number_format($total_items,0)}} Items found </span>
-            <select class="mr-2 form-control">
-                <option>Latest items</option>
-                <option>Trending</option>
-                <option>Most Popular</option>
-                <option>Cheapest</option>
+            <select class="mr-2 form-control" id="sort-by" wire:model="sort_by">
+                <option value="latest_items">Latest items</option>
+                <option value="cheapest">Cheapest</option>
+                <!-- <option value="most_popular">Most Popular</option> -->
+                <!-- <option value="trending">Trending</option> -->
             </select>
             <div class="btn-group">
-                <a href="#" class="btn btn-outline-warning active" data-toggle="tooltip" title="" data-original-title="List view"> 
-                    <i class="fa fa-bars"></i>
-                </a>
-                <a href="#" class="btn  btn-outline-warning" data-toggle="tooltip" title="" data-original-title="Grid view"> 
+                <a href="#" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
                     <i class="fa fa-th"></i>
+                </a>
+                <a href="#" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
+                    <i class="fa fa-bars"></i>
                 </a>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="row">
         @forelse($data as $row)
-            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+            <div class="@if($view_by == 'grid_view') col-lg-4 col-md-4 col-sm-6 col-6 @else col-12 @endif">
                 <div class="card mb-4 product-card">
                     <div class="w-100 text-center">
                         <div class="overflow-hidden position-relative">
@@ -95,6 +95,21 @@
 
 @push('scripts')
 <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        $(document).on('change', '#sort-by', function () {
+            var card_dom = $('#card-product_listing');
+            card_loader(card_dom, 'hide');
+            card_loader(card_dom, 'show');
+        });
+    });
+
+    function view_by(type){
+        var card_dom = $('#card-product_listing');
+        card_loader(card_dom, 'hide');
+        card_loader(card_dom, 'show');
+        @this.call('view_by', type)
+    }
+
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
     });
@@ -111,5 +126,6 @@
             @this.call('render')
         }
     });
+
 </script>
 @endpush

@@ -13,7 +13,7 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-    public $price_range=[], $search, $category, $limit=9;
+    public $price_range=[], $search, $category, $limit=9, $sort_by='latest_items', $view_by='grid_view';
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
@@ -68,7 +68,11 @@ class Listing extends Component
             $filter['or_where_like'] = $this->search['key_word'];
         }
 
-        $filter['order_by'] = 'product_posts.updated_at asc';
+        if($this->sort_by == 'cheapest'){
+            $filter['order_by'] = 'product_posts.buy_now_price asc, product_posts.created_at desc';
+        }else{
+            $filter['order_by'] = 'product_posts.updated_at desc';
+        }
 
         $query = QueryUtility::product_posts($filter);
 
@@ -98,5 +102,9 @@ class Listing extends Component
         $component   = $this;
         
         return view('livewire.front-end.product.listing.listing', compact('data', 'component', 'total_items'));
+    }
+
+    public function view_by($type){
+        $this->view_by = $type;
     }
 }
