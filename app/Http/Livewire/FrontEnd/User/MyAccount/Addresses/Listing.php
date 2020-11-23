@@ -26,12 +26,7 @@ class Listing extends Component
     }
 
     public function addresses(){
-        return UserAccountAddress::with([
-                'philippine_barangay', 
-				'philippine_barangay.philippine_city', 
-				'philippine_barangay.philippine_city.philippine_province',
-				'philippine_barangay.philippine_city.philippine_province.philippine_region',
-            ])
+        return UserAccountAddress::with(['philippine_barangay.philippine_city.philippine_province.philippine_region'])
             ->where('user_account_id', $this->account->id)
             ->orderBy('is_default', 'desc')
             ->paginate(5);
