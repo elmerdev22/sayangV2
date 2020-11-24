@@ -335,13 +335,18 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             
         });
 
-        //My Cart
+        //Check out
         Route::group(['prefix' => 'check-out', 'as' => 'check-out.'], function (){
 			$c = 'CheckOutController';
 			
 			Route::get('/', [
 		        'as' 	=> 'index',
 		        'uses'  => $c.'@index'
+            ]);
+
+            Route::get('/pay', [
+		        'as' 	=> 'pay',
+		        'uses'  => $c.'@pay'
             ]);
             
         });
