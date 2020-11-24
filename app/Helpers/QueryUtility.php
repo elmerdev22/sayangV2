@@ -53,6 +53,34 @@ class QueryUtility{
 		}
 	}
 
+	private static function value_between_min_max($filter, $data){
+		if(isset($filter['value_between_min_max'])){
+			foreach($filter['value_between_min_max'] as $key => $row){
+				$data = $data->where($row['field'], '>=', $row['min'])->where($row['field'], '<=', $row['max']);
+			}
+
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
+	private static function where_one_to_many_rows($filter, $data){
+		if(isset($filter['where_one_to_many_rows'])){
+			foreach($filter['where_one_to_many_rows'] as $filter_row){
+				$data= $data->whereExists(function($query) use ($filter_row){
+					$query->select([DB::raw(1)])
+						->from($filter_row['foreign_table'])
+						->whereIn($filter_row['foreign_table'].'.'.$filter_row['where_key'], $filter_row['values']);
+				});
+			}
+
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	private static function order_by_raw($filter, $data){
 		if(isset($filter['order_by'])){
 			$data = $data->orderByRaw($filter['order_by']);
@@ -321,6 +349,39 @@ class QueryUtility{
 						->orWhere('partners.address','like',"%{$value}%");
 				}
             });
+		}
+
+		if(isset($filter['categories'])){
+			if(!empty($filter['categories'])){
+				if(isset($filter['categories']['categories']) && isset($filter['categories']['sub_categories'])){
+					$categories     = $filter['categories']['categories'];
+					$sub_categories = $filter['categories']['sub_categories'];
+					$data = $data->whereExists(function ($query) use ($categories, $sub_categories){
+							$query = $query->select(DB::raw(1))
+								->from('product_sub_categories')
+								->whereRaw('products.id = product_sub_categories.product_id');
+							
+							if(!empty($sub_categories)){
+								$query = $query->whereIn('product_sub_categories.sub_category_id', $sub_categories);
+							}
+							
+							if(!empty($categories)){
+								if(!empty($sub_categories)){
+									$query = $query->orWhereIn('products.category_id', $categories);
+								}else{
+									$query = $query->whereIn('products.category_id', $categories);
+								}
+							}
+							
+							
+					});
+				}
+			}
+		}
+		
+		$filtered = self::value_between_min_max($filter, $data);
+		if($filtered){
+			$data = $filtered;
 		}
 
 		$filtered = self::where_in($filter, $data);

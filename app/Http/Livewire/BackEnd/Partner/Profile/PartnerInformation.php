@@ -16,12 +16,7 @@ class PartnerInformation extends Component
         $this->cover_photo = UploadUtility::account_photo($key_token , 'business-information/cover-photo', 'cover_photo', false);
 		$account 	   = UserAccount::where('key_token', $key_token)->firstOrFail();
 		$this->account = $account;
-		$this->partner = Partner::with([
-				'philippine_barangay', 
-				'philippine_barangay.philippine_city', 
-				'philippine_barangay.philippine_city.philippine_province',
-				'philippine_barangay.philippine_city.philippine_province.philippine_region',
-			])
+		$this->partner = Partner::with(['philippine_barangay.philippine_city.philippine_province.philippine_region'])
 			->where('user_account_id', $account->id)
 			->first();
 		

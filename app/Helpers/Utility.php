@@ -18,6 +18,7 @@ use App\Model\OrderItem;
 use App\Model\Follower;
 use App\Model\Setting;
 use App\Model\ProductSubCategory;
+use App\Model\EmailNotificationSetting;
 use Carbon\Carbon;
 use UploadUtility;
 use Schema;
@@ -527,8 +528,8 @@ class Utility{
             
             if($post_status != 'active'){
                 $is_disabled        = true;
-                $carts->is_checkout = false;
-                $carts->save();
+                $row->is_checkout = false;
+                $row->save();
 
                 if($is_checkout){
                     continue;
@@ -727,6 +728,11 @@ class Utility{
     public static function settings($settings_key){
         $data = Setting::where('settings_key', $settings_key)->first();
         return $data->settings_value;
+    }
+
+    public static function email_notification_settings($settings_key){
+        $data = EmailNotificationSetting::where('settings_key', $settings_key)->first();
+        return $data;
     }
 
     public static function bid_details($product_post_id, $type){

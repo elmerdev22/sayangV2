@@ -9,7 +9,7 @@ use Utility;
 
 class PaymentMethod extends Component
 {
-    public $account, $payment_method = 'e_wallet', $payment_key_token;
+    public $account, $payment_method = 'e_wallet', $payment_key_token, $e_wallet;
     protected $listeners = [
         'banks_initialize'       => 'initialize_payment_key_token',
         'credit_card_initialize' => 'initialize_payment_key_token'
@@ -18,6 +18,7 @@ class PaymentMethod extends Component
     public function mount(){
         $this->account = Utility::auth_user_account();
         $this->initialize_payment_key_token();
+        $this->e_wallet = 'gcash';
     }
 
     public function credit_cards(){
@@ -51,14 +52,15 @@ class PaymentMethod extends Component
 
             if($default){
                 $this->payment_key_token = $default->key_token;
-                $this->emit('set_payment_method', [
-                    'payment_method'    => $this->payment_method,
-                    'payment_key_token' => $this->payment_key_token
-                ]);
             }else{
                 $this->payment_key_token = null;
-                $this->emit('set_payment_method', []);
             }
+
+            $this->emit('set_payment_method', [
+                'payment_method'    => $this->payment_method,
+                'payment_key_token' => $this->payment_key_token,
+                'payment_e_wallet'  => $this->e_wallet
+            ]);
         }
     }
 
@@ -66,6 +68,15 @@ class PaymentMethod extends Component
         $banks        = $this->banks();
         $credit_cards = $this->credit_cards();
         return view('livewire.front-end.user.check-out.index.payment-method', compact('banks', 'credit_cards'));
+    }
+
+    public function set_e_wallet($type){
+        if($type == 'gcash' || $type == 'grab_pay'){
+            $this->e_wallet = $type;
+            $this->initialize_payment_key_token();
+        }
+
+        $this->emit('remove_loading_card', true);
     }
 
     public function change_payment_method($method){

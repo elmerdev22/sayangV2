@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingTableSeeder::class);
         $this->call(RatingTableSeeder::class);
         $this->call(NotificationTableSeeder::class);
+        $this->call(EmailNotificationSettingTableSeeder::class);
+        $this->call(WebNotificationSettingTableSeeder::class);
         $this->call(UserTableSeeder::class);
     }
 }
