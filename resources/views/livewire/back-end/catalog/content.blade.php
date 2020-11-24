@@ -62,7 +62,7 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        @forelse($category->sub_category as $sub_category)
+                                        @forelse($category->sub_categories as $sub_category)
                                             <div class="col-lg-4 col-md-6">
                                                 <button class="btn btn-danger btn-xs"  @if(!Utility::is_subcategory_deletable($sub_category->id)) onclick="not_deletetable('subcategory')" @else onclick="delete_swal('{{$sub_category->key_token}}','subcategory')" @endif >        
                                                     <span class="fas fa-trash"></span>

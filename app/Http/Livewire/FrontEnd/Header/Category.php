@@ -9,7 +9,7 @@ class Category extends Component
 {
     public function render()
     {
-        $data = Categories::with('sub_category')
+        $data = Categories::with('sub_categories')
                         ->orderBy('name','asc')
                         ->get();
 

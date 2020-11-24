@@ -12,7 +12,7 @@
                     <a href="{{url('/products')}}">{{$catalog->name}}</a>
                 </h6>
                 <ul class="list-unstyled">
-                    @foreach($catalog->sub_categories()->get() as $sub_category)
+                    @foreach($catalog->sub_categories as $sub_category)
                         <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">{{ucwords($sub_category->name)}}</a></li> 
                     @endforeach
                 </ul>

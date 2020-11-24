@@ -23,10 +23,6 @@ class Category extends Model implements HasMedia
         ];
     }
 
-    public function sub_category(){
-        return $this->hasOne('App\Model\SubCategory', 'category_id', 'id');
-    }
-
     public function sub_categories(){
         return $this->hasMany('App\Model\SubCategory', 'category_id', 'id');
     }

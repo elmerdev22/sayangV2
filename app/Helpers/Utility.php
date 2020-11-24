@@ -3,6 +3,7 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Mail\EmailNotification;
 use App\Mail\VerificationCheck as MailVerificationCheck;
 use App\Model\Cart;
 use App\Model\Billing;
@@ -19,6 +20,7 @@ use App\Model\Follower;
 use App\Model\Setting;
 use App\Model\ProductSubCategory;
 use App\Model\EmailNotificationSetting;
+use App\Model\Notification;
 use Carbon\Carbon;
 use UploadUtility;
 use Schema;
@@ -745,5 +747,42 @@ class Utility{
             $top =  $data->max('bid');
             return $top <= 0 ? 'None' : number_format($top, 2) ;
         }
+    }
+
+    public static function send_notification($email_notification_details, $email){
+        \Mail::to($email)->send(new EmailNotification($email_notification_details));
+    }
+
+    public static function email_notification_details($settings_key, $url_link){
+
+        $data = [
+            'subject'  => self::email_notification_settings($settings_key)->subject,
+            'message'  => self::email_notification_settings($settings_key)->message,
+            'url_link' => $url_link,
+        ];
+
+        return $data;
+    }
+
+    public static function notification_check($user_account_id, $product_post_id, $settings_key){
+        
+        $data = Notification::where('user_account_id', $user_account_id)
+                ->where('product_post_id', $product_post_id)
+                ->where('type', $settings_key)
+                ->count();
+
+        if($data == 0){
+            $notif                  = new Notification();
+            $notif->user_account_id = $user_account_id;
+            $notif->product_post_id = $product_post_id;
+            $notif->type            = $settings_key;
+            $notif->save();
+            $data = true;
+        }
+        else{
+            $data = false;
+        }
+
+        return $data;
     }
 }

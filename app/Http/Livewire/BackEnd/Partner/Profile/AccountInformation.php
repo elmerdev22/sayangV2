@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\BackEnd\Partner\Profile;
 
 use Livewire\Component;
+use App\Mail\EmailNotification;
 use App\Model\UserAccount;
 use App\Model\Partner;
 use App\Model\User;
 use UploadUtility;
+use Utility;
 
 class AccountInformation extends Component
 {
@@ -14,8 +16,8 @@ class AccountInformation extends Component
 
 	protected $listeners = [
 		'account_info_initialize' => '$refresh'
-	];
-
+    ];
+    
 	public function mount($key_token){
         $this->photo_url = UploadUtility::account_photo($key_token, 'profile-picture', 'profile');
         $this->data      = UserAccount::with(['user', 'partner'])
@@ -41,10 +43,18 @@ class AccountInformation extends Component
 
     public function activate(){
     	if($this->can_activate){
+
     		$partner 			   = Partner::find($this->data->partner->id);
     		$partner->is_activated = true;
-    		$partner->save();
+    		if($partner->save()){
+                $notification_check = Utility::notification_check($this->data->id, null, 'application_approved_by_admin');
 
+                if($notification_check){
+                    $details = Utility::email_notification_details('application_approved_by_admin', route('partner.login'));
+                    Utility::send_notification($details, $this->data->user->email);
+                }
+            }
+            
     		$this->can_activate = false;
     		$this->emit('account_info_initialize', true);
     		$this->emit('alert', [

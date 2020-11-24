@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\User\Header;
+namespace App\Http\Livewire\FrontEnd\Partner\Header;
 
 use Livewire\Component;
 use App\Model\Notification as Notifications;
@@ -8,6 +8,7 @@ use App\Model\UserAccount;
 use UploadUtility;
 use Auth;
 use QueryUtility;
+
 class Notification extends Component
 {
     public function mount(){
@@ -16,9 +17,9 @@ class Notification extends Component
     }
 
     public function render()
-    {   
+    {
         $data = QueryUtility::notifications($this->account->id);
-                
-        return view('livewire.front-end.user.header.notification', compact('data'));
+
+        return view('livewire.front-end.partner.header.notification', compact('data'));
     }
 }

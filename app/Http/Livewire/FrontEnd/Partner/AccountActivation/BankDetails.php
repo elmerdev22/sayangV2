@@ -47,7 +47,7 @@ class BankDetails extends Component
     }
 
     public function banks(){
-        return Bank::where('is_active', true)->orderBy('name', 'asc')->get();
+        return Bank::orderBy('name', 'asc')->get();
     }
 
     public function render(){

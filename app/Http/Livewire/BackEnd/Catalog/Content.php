@@ -16,7 +16,7 @@ class Content extends Component
 	public $search,$name;
     public function render()
     {
-    	$data = Category::with('sub_category')
+    	$data = Category::with('sub_categories')
     			->orderBy('name','asc')
 				->where('name', 'like', '%'.$this->search.'%')
 				->paginate(10);

@@ -2,7 +2,7 @@
 namespace App\Helpers;
 
 use DB;
-
+use App\Model\Notification;
 class QueryUtility{
 
     private static function where($filter, $data){
@@ -562,6 +562,17 @@ class QueryUtility{
 		if($filtered){
 			$data = $filtered;
 		}
+
+		return $data;
+	}
+
+	public static function notifications($user_account_id){
+		
+		$data = Notification::with(['product_post.product.partner.user_account','web_notification_settings'])
+                ->where('is_read', 0)
+                ->where('user_account_id', $user_account_id)
+                ->orderBy('created_at','desc')
+				->get();
 
 		return $data;
 	}

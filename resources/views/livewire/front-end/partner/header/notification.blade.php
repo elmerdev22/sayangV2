@@ -1,9 +1,7 @@
 <div>
-    <a href="#" class="widget-view" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="Notifications" data-tooltip-location="bottom">
-        <div class="icon-area">
-            <i class="fas fa-bell text-dark" id="notif"></i>
-            <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
-        </div>
+    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-warning navbar-badge">{{number_format($data->count(),0)}}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right" style="left: inherit; right: 0px;">
         <span class="dropdown-item dropdown-header bg-white">{{number_format($data->count(),0)}} New Notifications</span>
@@ -47,16 +45,3 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
 </div>
-{{-- @push('scripts')
-<script>
-  window.livewire.on('notifications', message => {
-      $( "#notif" ).effect( "shake", { times: 2, distance: 5}, 500 );
-      $( "#NotifSound")[0].play()
-  });
-
-</script>
-@endpush --}}
-
-{{-- <audio id="NotifSound">
-  <source src="{{asset('sounds/notification.mp3')}}" type="audio/mpeg">
-</audio> --}}
