@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="widget-header mr-3">
-                      {{-- @livewire('front-end.notification') --}}
+                      @livewire('front-end.user.header.notification')
                     </div>
                   @endif
                   
