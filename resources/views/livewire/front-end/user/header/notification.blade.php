@@ -13,11 +13,11 @@
                 @php
                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
                     $product_token      = $row->product_post->product->key_token;
-                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token , $product_token);
+                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb')
                 @endphp
                 <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="dropdown-item">
                     <div class="media">
-                        <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle">
+                        <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 {{Str::limit($row->web_notification_settings->title, 20, '...')}}
@@ -34,14 +34,13 @@
                 </a>
                 @endforelse
             </div>
-
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
-    <audio id="NotifSound">
+    {{-- <audio id="NotifSound">
       <source src="{{asset('sounds/notification.mp3')}}" type="audio/mpeg">
-    </audio>
-  </div>
+    </audio> --}}
+</div>
   {{-- @push('scripts')
   <script>
     window.livewire.on('notifications', message => {
