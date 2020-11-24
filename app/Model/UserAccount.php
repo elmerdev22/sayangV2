@@ -52,6 +52,10 @@ class UserAccount extends Model implements HasMedia
         return $this->belongsTo('App\Model\Billing', 'user_account_id', 'id');
     }
 
+    public function notification(){
+        return $this->belongsTo('App\Model\Notification', 'user_account_id', 'id');
+    }
+
     public function registerMediaConversions(Media $media = null){
         $height = UploadUtility::conversion_dimension('height');
         $width  = UploadUtility::conversion_dimension('width');
