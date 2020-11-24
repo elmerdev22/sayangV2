@@ -16,7 +16,7 @@ class PaymongoWebhookController extends Controller
     public function index(Request $request)
     {
         $data = Arr::get($request->all(), 'data.attributes');
-        // dd($data);
+        dd($data);
         if ($data['type'] !== 'source.chargeable') {
             return response()->noContent();
         }

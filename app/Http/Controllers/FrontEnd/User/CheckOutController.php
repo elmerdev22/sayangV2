@@ -25,21 +25,21 @@ class CheckOutController extends Controller
 
     public function pay(){
         try{
-            // $source = Paymongo::source()->create([
-            //     'type'     => 'grab_pay',
-            //     'amount'   => '100.00',
-            //     'currency' => 'PHP',
-            //     'redirect' => [
-            //         'success' => route('front-end.user.my-account.index', ['success' => true]),
-            //         'failed'  => route('front-end.user.my-account.index', ['success' => false])
-            //     ],
-            //     'billing' => [
-            //         'address' => 'Cabanatuan City, Nueva Ecija',
-            //         'name'    => 'Christian De Leon',
-            //         'email'   => 'cmdl.deleon02@gmail.com',
-            //     ]
-            // ]);
-            // dd($source);
+            $source = Paymongo::source()->create([
+                'type'     => 'gcash',
+                'amount'   => '100.00',
+                'currency' => 'PHP',
+                'redirect' => [
+                    'success' => route('front-end.user.my-account.index', ['success' => true]),
+                    'failed'  => route('front-end.user.my-account.index', ['success' => false])
+                ],
+                'billing' => [
+                    'address' => 'Cabanatuan City, Nueva Ecija',
+                    'name'    => 'Christian De Leon',
+                    'email'   => 'cmdl.deleon02@gmail.com',
+                ]
+            ]);
+            dd($source);
 
             // $paymentIntent = Paymongo::paymentIntent()->create([
             //     'amount'                 => 100,
@@ -57,39 +57,39 @@ class CheckOutController extends Controller
             // ]);
             // dd($paymentIntent);
 
-            $paymentMethod = Paymongo::paymentMethod()->create([
-                'type'      => 'card',
-                'details'   => [
-                    'card_number' => '4343434343434345',
-                    'exp_month'   => 12,
-                    'exp_year'    => 25,
-                    'cvc'         => "123",
-                ],
-                'billing'       => [
-                    'address'   => [
-                        'line1'       => 'Somewhere there',
-                        'city'        => 'Cebu City',
-                        'state'       => 'Cebu',
-                        'country'     => 'PH',
-                        'postal_code' => '6000',
-                    ],
-                    'name'  => 'Rigel Kent Carbonel',
-                    'email' => 'rigel20.kent@gmail.com',
-                    'phone' => '0935454875545'
-                ],
-            ]);
-            dd($paymentMethod);
-            $payment = Paymongo::payment()
-                    ->create([
-                        'amount'               => 100.00,
-                        'currency'             => 'PHP',
-                        'description'          => 'Testing payment',
-                        'statement_descriptor' => 'Test Paymongo',
-                        'source'               => [
-                            'id' => $paymentMethod->id,
-                            'type' => 'source'
-                        ]
-                    ]);
+            // $paymentMethod = Paymongo::paymentMethod()->create([
+            //     'type'      => 'card',
+            //     'details'   => [
+            //         'card_number' => '4343434343434345',
+            //         'exp_month'   => 12,
+            //         'exp_year'    => 25,
+            //         'cvc'         => "123",
+            //     ],
+            //     'billing'       => [
+            //         'address'   => [
+            //             'line1'       => 'Somewhere there',
+            //             'city'        => 'Cebu City',
+            //             'state'       => 'Cebu',
+            //             'country'     => 'PH',
+            //             'postal_code' => '6000',
+            //         ],
+            //         'name'  => 'Rigel Kent Carbonel',
+            //         'email' => 'rigel20.kent@gmail.com',
+            //         'phone' => '0935454875545'
+            //     ],
+            // ]);
+            // dd($paymentMethod);
+            // $payment = Paymongo::payment()
+            //         ->create([
+            //             'amount'               => 100.00,
+            //             'currency'             => 'PHP',
+            //             'description'          => 'Testing payment',
+            //             'statement_descriptor' => 'Test Paymongo',
+            //             'source'               => [
+            //                 'id' => $paymentMethod->id,
+            //                 'type' => 'source'
+            //             ]
+            //         ]);
             // dd($payment);
         }catch(\Exception $e){
             dd($e);
