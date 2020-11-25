@@ -348,6 +348,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 		        'as' 	=> 'pay',
 		        'uses'  => $c.'@pay'
             ]);
+
+            Route::get('/paymongo-pay', [
+		        'as' 	=> 'paymongo-pay',
+		        'uses'  => $c.'@paymongo_pay'
+            ]);
             
         });
     });

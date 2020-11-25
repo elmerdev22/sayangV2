@@ -1,7 +1,20 @@
 <?php
 namespace App\Helpers;
 
+use App\Model\Bid;
 use App\Model\Bank;
+use App\Model\Billing;
+use App\Model\Cart;
+use App\Model\Product;
+use App\Model\ProductPost;
+use App\Model\Order;
+use App\Model\OrderItem;
+use App\Model\OrderPayment;
+use App\Model\OrderPaymentLog;
+use App\Events\CheckOut;
+use Session;
+use Utility;
+use DB;
 
 class PaymentUtility{
     
@@ -16,4 +29,151 @@ class PaymentUtility{
 
         return $response;
     }
+
+    public static function paymongo_minimum(){
+        return 100.00;
+    }
+
+    public static function active_e_wallet($default=false){
+        $response = [
+            [
+                'key'        => 'grab_pay',
+                'name'       => 'Grab Pay',
+                'minimum'    => self::paymongo_minimum(),
+                'maximum'    => 999999,
+                'is_default' => false
+            ],
+            [
+                'key'        => 'gcash',
+                'name'       => 'GCash',
+                'minimum'    => self::paymongo_minimum(),
+                'maximum'    => 999999,
+                'is_default' => true
+            ] 
+        ];
+
+        if($default){
+            return $response[1];
+        }else{
+            return $response;
+        }
+    }
+
+    public static function e_wallet($key, $type=null){
+
+        $e_wallets = self::active_e_wallet();
+        
+        foreach($e_wallets as $row){
+            if($row['key'] == $key){
+                if($type){
+                    return $row[$type];
+                }else{
+                    return $row;
+                }
+            }
+        }
+
+        return [];
+    }
+
+    public static function pay_order($order_id, array $e_wallet=[]){
+        $response      = ['success' => false];
+        $product_posts = [];
+
+        try{
+
+            /* <><><><><><><><><><><><><><>><><><><><><><><><><><><><><> */
+            $order = Order::with(['billing'])->find($order_id);
+                
+            if($order){
+                $order_total = Utility::order_total($order_id);
+                $order_items = OrderItem::where('order_id', $order->id)->get();
+
+                foreach($order_items as $order_item_row){
+                    $product_post = ProductPost::find($order_item_row->product_post_id);
+                    
+                    if($product_post->quantity >= $order_item_row->quantity){
+                        $remaining_quantity     = abs($product_post->quantity - $order_item_row->quantity);
+                        $product_post->quantity = $remaining_quantity;
+                        
+                        if($product_post->save()){
+                            if($remaining_quantity <= 0){
+                                $bids = Bid::where('product_post_id', $product_post->id)->get();
+                                foreach($bids as $bid){
+                                    $bid->status = 'sold_out';
+                                    if($bid->save()){
+                                        /* Notify bidders that the item was sold out. */
+                                    }
+                                }
+            
+                                /* 
+                                    Notify the users in carts table where the product_post_id = $product_post->id 
+                                    that the product was sold out.
+                                */
+            
+                                /* Notify the partner owner of this product post that his/her item was sold out */
+                            }
+
+                            $cart_update_quantity = Cart::where('product_post_id', $order_item_row->product_post_id)
+                                ->get();
+        
+                            foreach($cart_update_quantity as $cart_update_quantity_row){
+                                if($remaining_quantity == 0){
+                                    $cart_update_quantity_row->quantity = 0;
+                                }else{
+                                    if($remaining_quantity <= $cart_update_quantity_row->quantity){
+                                        $cart_update_quantity_row->quantity = $remaining_quantity;
+                                    }
+                                }
+        
+                                $cart_update_quantity_row->save();
+                            }
+        
+                            $product_posts[] = [
+                                'product_post_id'        => $order_item_row->product_post_id,
+                                'product_post_key_token' => $product_post->key_token
+                            ];
+                        }
+                    }
+                }
+
+                $order_payment = OrderPayment::where('order_id', $order_id)->first();
+
+                if($order_payment){
+
+                    if(!empty($e_wallet)){
+                        $bank                          = Bank::where('key_name', $e_wallet['type'])->first();
+                        $order_payment->payment_method = $e_wallet['method'];
+                        $order_payment->bank_id        = $bank->id;
+                    }
+                    
+                    $order_payment->status    = 'paid';
+                    $order_payment->date_paid = date('Y-m-d H:i:s');
+
+                    if($order_payment->save()){
+                        $order                         = Order::find($order_id);
+                        $order->status                 = 'payment_confirmed';
+                        $order->date_payment_confirmed = date('Y-m-d H:i:s');
+
+                        if($order->save()){
+                            $response['success'] = true;
+                        }
+                    }
+                }
+            }
+            /* <><><><><><><><><><><><><><>><><><><><><><><><><><><><><> */
+        }catch(\Exception $e){
+            // dd($e);
+            $response['success'] = false;
+        }
+
+        if($response['success']){
+            if(isset($product_posts)){
+                event(new CheckOut($product_posts));
+            }
+        }
+
+        return $response['success'];
+    }
+
 }

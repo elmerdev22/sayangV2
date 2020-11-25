@@ -17,7 +17,10 @@
                             ₱ {{number_format($row->product_post->buy_now_price * $row->quantity, 2)}} 
                         </td>
                         <td width="250"> 
-                            <a href="javascript:void(0);" class="btn btn-warning btn-sm">Details</a> 
+                            <a  href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                                target="_blank" 
+                                class="btn btn-warning btn-sm"
+                            >Details</a> 
                         </td>
                     </tr>
                 @endforeach
