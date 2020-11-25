@@ -320,7 +320,9 @@ class QueryUtility{
 		$data = DB::table('product_posts')
 			->select($select)
 			->join('products', 'products.id', '=', 'product_posts.product_id')
-			->leftJoin('partners', 'partners.id', '=', 'products.partner_id');
+			->leftJoin('partners', 'partners.id', '=', 'products.partner_id')
+			->leftJoin('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
+			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

@@ -19,7 +19,11 @@ class ScheduledTaskUtility{
         try{
             $filter = [];
             $filter['select'] = [
-                'product_posts.id'
+                'users.email as partner_email',
+                'products.slug',
+                'product_posts.key_token',
+                'product_posts.id',
+                'partners.user_account_id as partner_id',
             ];
             $filter['where']['product_posts.status'] = 'active';
             $filter['where_date_end_expired']        = date('Y-m-d H:i:s');
@@ -34,10 +38,10 @@ class ScheduledTaskUtility{
                                         ->where('product_post_id', $product_post->id)
                                         ->orderBy('bid', 'desc')
                                         ->get();
-                                        
+                               
+                $url_link = env('APP_URL').'/'.'product'.'/'.$row->slug.'/'.$row->key_token;
+         
                 foreach($bids as $bid){
-
-                    $url_link = env('APP_URL').'/'.'product'.'/'.$bid->product_post->product->slug.'/'.$bid->product_post->key_token;
 
                     if($available_quantity > 0){
                         if($current_quantity > 0){
@@ -94,15 +98,14 @@ class ScheduledTaskUtility{
                 }
 
                 $product_post->status = 'done';
-
+                
                 if($product_post->save()){
                     /* Notify the partner owner of this product post that his/her item was ended */
-
-                    $notification_check = Utility::notification_check($bid->product_post->product->partner->user_account->id, $bid->product_post_id, 'partner_product_post_end');
+                    $notification_check = Utility::notification_check($row->partner_id, $row->id, 'partner_product_post_end');
                             
                     if($notification_check){
                         $email_notification_details = Utility::email_notification_details('partner_product_post_end',$url_link);
-                        Utility::send_notification($email_notification_details, $bid->product_post->product->partner->user_account->user->email);
+                        Utility::send_notification($email_notification_details, $row->partner_email);
                     }
                 }
 
