@@ -33,11 +33,11 @@ class CheckOutController extends Controller
                     'success' => route('front-end.user.my-account.index', ['success' => true]),
                     'failed'  => route('front-end.user.my-account.index', ['success' => false])
                 ],
-                'billing' => [
-                    'address' => 'Cabanatuan City, Nueva Ecija',
-                    'name'    => 'Christian De Leon',
-                    'email'   => 'cmdl.deleon02@gmail.com',
-                ]
+                // 'billing' => [
+                //     'address' => 'Cabanatuan City, Nueva Ecija',
+                //     'name'    => 'Christian De Leon',
+                //     'email'   => 'cmdl.deleon02@gmail.com',
+                // ]
             ]);
             // dd($source);
             return redirect($source->getRedirect()['checkout_url'])->send();
