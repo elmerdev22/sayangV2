@@ -39,7 +39,8 @@ class CheckOutController extends Controller
                     'email'   => 'cmdl.deleon02@gmail.com',
                 ]
             ]);
-            dd($source);
+            // dd($source);
+            return redirect($source->getRedirect()['checkout_url'])->send();
 
             // $paymentIntent = Paymongo::paymentIntent()->create([
             //     'amount'                 => 100,
