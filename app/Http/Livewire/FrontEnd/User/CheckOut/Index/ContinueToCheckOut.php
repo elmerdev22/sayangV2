@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\FrontEnd\User\CheckOut\Index;
 
+use Luigel\Paymongo\Facades\Paymongo;
 use Livewire\Component;
 use App\Model\Bid;
 use App\Model\Cart;
@@ -15,15 +16,17 @@ use App\Model\UserAccountBank;
 use App\Model\UserAccountAddress;
 use App\Model\UserAccountCreditCard;
 use App\Events\CheckOut;
+use PaymentUtility;
+use Session;
 use Utility;
 use DB;
 
 class ContinueToCheckOut extends Component
 {
-    public $account, $payment_method = [], $billing_address_id;
+    public $account, $payment_method = [], $billing_address_id, $available_e_wallet=[];
 
     //Sample Bank Account Balance, We will remove this after the payment paymongo implemented
-    public $temporary_account_balance=500000;
+    public $temporary_account_balance=true;
     
     protected $listeners = [
         'set_payment_method'     => 'set_payment_method',
@@ -33,7 +36,11 @@ class ContinueToCheckOut extends Component
     public function mount(){
         $this->account = Utility::auth_user_account();
         $this->initialize_address();
-        $this->initialize_bank();
+        $this->available_e_wallet = PaymentUtility::active_e_wallet();
+        
+        $payment_method = [];
+
+        $this->set_payment_method($payment_method);
     }
 
     public function initialize_address(){
@@ -52,27 +59,6 @@ class ContinueToCheckOut extends Component
         }
     }
 
-    public function initialize_bank(){
-        $default = UserAccountBank::where('user_account_id', $this->account->id);
-        $default = $default->where('is_default', true)->first();
-        if($default){
-            $payment_method = [
-                'payment_method'    => 'e_wallet',
-                'payment_key_token' => $default->key_token,
-                'payment_e_wallet'  => 'gcash'
-            ];
-        }else{
-            $payment_method = [
-                'payment_method'    => 'e_wallet',
-                'payment_key_token' => null,
-                'payment_e_wallet'  => 'gcash'
-            ];
-        }
-
-        $this->set_payment_method($payment_method);
-
-    }
-
     public function set_payment_method(array $payment_method = []){
         $this->payment_method = $payment_method;
     }
@@ -88,236 +74,228 @@ class ContinueToCheckOut extends Component
     public function proceed(){
         $payment_method = $this->payment_method;
 
-        if(!empty($payment_method) && !empty($this->billing_address_id)){
-
-            if($payment_method['payment_method'] == 'e_wallet'){
-                //Go for gcash/grab_pay payment source API
-                $message = 'e-wallet : <b>'.ucfirst(str_replace('_', '', $payment_method['payment_e_wallet'])).'</b>';
-            }else{
-                // Go for card paymentIntent
-                $message = 'debit/credit card';
-            }
-
-            $this->emit('remove_loading_card', true);
-            $this->emit('alert', [
-                'type'    => 'error',
-                'title'   => 'Warning',
-                'message' => 'Payment method for '.$message.' is on development.'
-            ]);
-            return false;
-
-            $cart = Utility::cart($this->account->id, true);
-
-            if($this->temporary_account_balance >= $cart['total_price']){
-                /*  Do the Insert of Order Transactions
-                    and the payment API transaction here...
-                */
-                $response = ['success' => false];
-                DB::beginTransaction();
-
-                try{
-                    $product_posts = [];
-
+        if(!empty($this->billing_address_id)){
+            if(!empty($payment_method)){
+                if($payment_method['payment_method'] != 'e_wallet' && $payment_method['payment_method'] != 'card'){
+                    $this->emit('remove_loading_card', true);
+                    $this->emit('alert', [
+                        'type'    => 'error',
+                        'title'   => 'Warning',
+                        'message' => 'Invalid payment method.'
+                    ]);
+                    return false;
+                }else{
                     if($payment_method['payment_method'] == 'e_wallet'){
-                        $payment = UserAccountBank::where('user_account_id', $this->account->id);
-                    }else{
-                        $payment = UserAccountCreditCard::where('user_account_id', $this->account->id);
+    
+                        $available_ewallet = [];
+                        foreach($this->available_e_wallet as $e_wallet_row){
+                            $available_ewallet[] = $e_wallet_row['key'];
+                        }
+    
+                        if(!in_array($payment_method['payment_e_wallet'], $available_ewallet)){
+                            $this->emit('remove_loading_card', true);
+                            $this->emit('alert', [
+                                'type'    => 'error',
+                                'title'   => 'Warning',
+                                'message' => 'Invalid e-wallet.'
+                            ]);
+                            return false;
+                        }
                     }
-
-                    $payment = $payment->where('key_token', $payment_method['payment_key_token'])->first();
-                    
-                    if(!$payment){
-                        throw new \Exception('Uncaught Exception');
-                    }
-
-                    $address = UserAccountAddress::find($this->billing_address_id);
-                    
-                    if(!$address){
-                        throw new \Exception('Uncaught Exception');
-                    }
-
-                    $billing                  = new Billing();
-                    $billing->billing_no      = Utility::generate_billing_no();
-                    $billing->user_account_id = $this->account->id;
-                    $billing->barangay_id     = $address->barangay_id;
-                    $billing->full_name       = $address->full_name;
-                    $billing->contact_no      = $address->contact_no;
-                    
-                    if(auth()->user()->email){
-                        $billing->email = auth()->user()->email;
-                    }
-
-                    $billing->address   = $address->address;
-                    $billing->zip_code  = $address->zip_code;
-                    $billing->key_token = Utility::generate_table_token('Billing');
-                    
-                    if($billing->save()){
-                        foreach($cart['partner_products'] as $cart_key => $cart_row){
-                            $order                         = new Order();
-                            $order->billing_id             = $billing->id;
-                            $order->partner_id             = $cart_row['partner_id'];
-                            $order->order_no               = Utility::generate_order_no();
-                            $order->qr_code                = Utility::generate_table_token('Order', 'qr_code');
-                            $order->status                 = 'payment_confirmed';
-                            $order->date_payment_confirmed = date('Y-m-d H:i:s');
-                            $order->key_token              = Utility::generate_table_token('Order');
-                            if($order->save()){
-                                foreach($cart_row['products'] as $order_item_key => $order_item_row){
-                                    $order_item                  = new OrderItem();
-                                    $order_item->order_id        = $order->id;
-                                    $order_item->product_post_id = $order_item_row['product_post_id'];
-                                    $order_item->quantity        = $order_item_row['selected_quantity'];
-                                    $order_item->key_token       = Utility::generate_table_token('OrderItem');
-                                    if($order_item->save()){
-                                        $product_post = ProductPost::find($order_item_row['product_post_id']);
-                                        
-                                        if($product_post->quantity >= $order_item_row['selected_quantity']){
-                                            $remaining_quantity     = abs($product_post->quantity - $order_item_row['selected_quantity']);
-                                            $product_post->quantity = $remaining_quantity;
-                                            
-                                            if($product_post->save()){
-                                                
-                                                if($remaining_quantity <= 0){
-                                                    $bids = Bid::where('product_post_id', $product_post->id)->get();
-                                                    foreach($bids as $bid){
-                                                        $bid->status = 'sold_out';
-                                                        if($bid->save()){
-                                                            /* Notify bidders that the item was sold out. */
-                                                        }
-                                                    }
-
-                                                    /* 
-                                                        Notify the users in carts table where the product_post_id = $product_post->id 
-                                                        that the product was sold out.
-                                                    */
-
-                                                    /* Notify the partner owner of this product post that his/her item was sold out */
-
-                                                }
-
-                                                $product_post_cart = Cart::find($order_item_row['cart_id']);
-
-                                                if($product_post_cart->delete()){
-                                                    $cart_update_quantity = Cart::where('id', '!=', $order_item_row['cart_id'])
-                                                        ->where('product_post_id', $product_post->id)
-                                                        ->get();
-
-                                                    foreach($cart_update_quantity as $cart_update_quantity_row){
-                                                        if($remaining_quantity == 0){
-                                                            $cart_update_quantity_row->quantity = 0;
-                                                        }else{
-                                                            if($remaining_quantity <= $cart_update_quantity_row->quantity){
-                                                                $cart_update_quantity_row->quantity = $remaining_quantity;
-                                                            }
-                                                        }
-
-                                                        $cart_update_quantity_row->save();
-                                                    }
-
-                                                    $product_posts[] = [
-                                                        'product_post_id'        => $order_item_row['product_post_id'],
-                                                        'product_post_key_token' => $order_item_row['product_post_key_token']
-                                                    ];
-
-                                                    continue;
-                                                }else{
-                                                    throw new \Exception('Uncaught Exception');
-                                                }
-                                            }else{
-                                                throw new \Exception('Uncaught Exception');
-                                            }
+                }
+    
+                $cart = Utility::cart($this->account->id, true);
+    
+                if($this->temporary_account_balance){
+                    /*  Do the Insert of Order Transactions
+                        and the payment API transaction here...
+                    */
+                    $response = ['success' => false];
+                    DB::beginTransaction();
+    
+                    try{
+                        $billing_details                       = [];
+                        $billing_details['sub_total']          = $cart['total'];
+                        $billing_details['total_discount']     = $cart['total_discount'];
+                        $billing_details['total_price']        = $cart['total_price'];
+                        $billing_details['paymongo']['method'] = $payment_method['payment_method'];
+    
+                        if($payment_method['payment_method'] != 'e_wallet'){
+                            $payment = UserAccountCreditCard::where('user_account_id', $this->account->id);
+                            $payment = $payment->where('key_token', $payment_method['payment_key_token'])->first();
+    
+                            if(!$payment){
+                                throw new \Exception('Uncaught Exception');
+                            }
+                        }
+                        
+                        $address = UserAccountAddress::find($this->billing_address_id);
+                        
+                        if(!$address){
+                            throw new \Exception('Uncaught Exception');
+                        }
+    
+                        $billing                  = new Billing();
+                        $billing->billing_no      = Utility::generate_billing_no();
+                        $billing->user_account_id = $this->account->id;
+                        $billing->barangay_id     = $address->barangay_id;
+                        $billing->full_name       = $address->full_name;
+                        $billing->contact_no      = $address->contact_no;
+                        
+                        if(auth()->user()->email){
+                            $billing->email = auth()->user()->email;
+                        }
+    
+                        $billing->address   = $address->address;
+                        $billing->zip_code  = $address->zip_code;
+                        $billing->key_token = Utility::generate_table_token('Billing');
+                        
+                        if($billing->save()){
+                            $billing_details['billing_id'] = $billing->id;
+                            $billing_details['billing_no'] = $billing->billing_no;
+    
+                            foreach($cart['partner_products'] as $cart_key => $cart_row){
+                                $order                         = new Order();
+                                $order->billing_id             = $billing->id;
+                                $order->partner_id             = $cart_row['partner_id'];
+                                $order->order_no               = Utility::generate_order_no();
+                                $order->qr_code                = Utility::generate_table_token('Order', 'qr_code');
+                                $order->status                 = 'order_placed';
+                                $order->key_token              = Utility::generate_table_token('Order');
+                                if($order->save()){
+    
+                                    foreach($cart_row['products'] as $order_item_key => $order_item_row){
+                                        $order_item                  = new OrderItem();
+                                        $order_item->order_id        = $order->id;
+                                        $order_item->product_post_id = $order_item_row['product_post_id'];
+                                        $order_item->quantity        = $order_item_row['selected_quantity'];
+                                        $order_item->key_token       = Utility::generate_table_token('OrderItem');
+                                        $order_item_saved            = $order_item->save();
+    
+                                        if($order_item_saved){
+                                            $product_post_cart = Cart::find($order_item_row['cart_id']);
+                                            $product_post_cart->delete();
+                                        }else{
+                                            throw new \Exception('Uncaught Exception');
+                                        }
+    
+                                    }
+    
+                                    $order_payment                 = new OrderPayment();
+                                    $order_payment->order_id       = $order->id;
+                                    $order_payment->payment_method = $this->payment_method['payment_method'];
+                                    
+                                    if(!isset($payment)){
+                                        $order_payment->bank_id      = null;
+                                        $order_payment->account_name = null;
+                                        $order_payment->account_no   = null;
+                                    }else{
+                                        $order_payment->card_holder             = ucwords($payment->card_holder);
+                                        $order_payment->card_no                 = $payment->card_no;
+                                        $order_payment->card_expiration_date    = $payment->card_expiration_date;
+                                        $order_payment->card_verification_value = $payment->card_verification_value;
+                                    }
+    
+                                    $order_payment->status    = 'pending';
+                                    $order_payment->key_token = Utility::generate_table_token('OrderPayment');
+                                    
+                                    if($order_payment->save()){
+                                        $order_payment_log                   = new OrderPaymentLog();
+                                        $order_payment_log->order_payment_id = $order_payment->id;
+                                        $order_payment_log->api              = 'paymongo';
+    
+                                        if($payment_method['payment_method'] == 'e_wallet'){
+                                            $order_payment_log->method = 'source';
+                                        }
+    
+                                        // $order_payment_log->method_id        = $paymongo->id;
+                                        // $order_payment_log->logs             = json_encode([]);
+    
+                                        if($order_payment_log->save()){
+                                            $billing_details['orders'][] = [
+                                                'order_id'             => $order->id,
+                                                'order_no'             => $order->order_no,
+                                                'order_payment_id'     => $order_payment->id,
+                                                'order_payment_log_id' => $order_payment_log->id
+                                            ];
+                                            continue;
                                         }else{
                                             throw new \Exception('Uncaught Exception');
                                         }
                                     }else{
                                         throw new \Exception('Uncaught Exception');
                                     }
-                                }
 
-                                $order_payment                 = new OrderPayment();
-                                $order_payment->order_id       = $order->id;
-                                $order_payment->payment_method = $this->payment_method['payment_method'];
-                                
-                                if($this->payment_method['payment_method'] == 'e_wallet'){
-                                    $order_payment->bank_id      = $payment->bank_id;
-                                    $order_payment->account_name = ucwords($payment->account_name);
-                                    $order_payment->account_no   = $payment->account_no;
-                                }else{
-                                    $order_payment->card_holder             = ucwords($payment->card_holder);
-                                    $order_payment->card_no                 = $payment->card_no;
-                                    $order_payment->card_expiration_date    = $payment->card_expiration_date;
-                                    $order_payment->card_verification_value = $payment->card_verification_value;
-                                }
-
-                                $order_payment->status    = 'paid';
-                                $order_payment->date_paid = date('Y-m-d H:i:s');
-                                $order_payment->key_token = Utility::generate_table_token('OrderPayment');
-                                
-                                if($order_payment->save()){
-                                    $order_payment_log                   = new OrderPaymentLog();
-                                    $order_payment_log->order_payment_id = $order_payment->id;
-                                    $order_payment_log->api              = 'paymongo';
-                                    // $order_payment_log->method           = 'source';
-                                    // $order_payment_log->method_id        = $paymongo->id;
-                                    // $order_payment_log->logs             = json_encode([]);
-
-                                    if($order_payment_log->save()){
-                                        continue;
-                                    }else{
-                                        throw new \Exception('Uncaught Exception');
-                                    }
-                                }else{
-                                    throw new \Exception('Uncaught Exception');
                                 }
                             }
 
-                            /* Notify the partner in status of order */
-                            /* Notify the user order */
+                            if($payment_method['payment_method'] == 'e_wallet'){
+                                $billing_details['paymongo']['type']   = $payment_method['payment_e_wallet'];
+                                $paymongoSource = Paymongo::source()->create([
+                                    'type'     => $payment_method['payment_e_wallet'],
+                                    'amount'   => $billing_details['total_price'],
+                                    'currency' => 'PHP',
+                                    'redirect' => [
+                                        'success' => route('front-end.user.check-out.paymongo-pay', ['billing_details' => $billing_details, 'success' => true]),
+                                        'failed'  => route('front-end.user.check-out.paymongo-pay', ['billing_details' => $billing_details, 'success' => false])
+                                    ]
+                                ]);
+                                
+                                foreach($billing_details['orders'] as $order){
+                                    $payment_log            = OrderPaymentLog::find($order['order_payment_log_id']);
+                                    $payment_log->method    = 'source';
+                                    $payment_log->method_id = $paymongoSource->id;
+                                    $payment_log->save();
+                                }
+                            }
+    
+                            $response['success'] = true;
                         }
-
-                        $response['success'] = true;
+                    }catch(\Exception $e){
+                        $response['success'] = false;
                     }
-                }catch(\Exception $e){
-                    // dd($e);
-                    $response['success'] = false;
-                }
-
-                if($response['success']){
-                    DB::commit();
-                    
-                    if(isset($product_posts)){
-                        event(new CheckOut($product_posts));
+    
+                    if($response['success']){
+                        if(isset($paymongoSource)){
+                            DB::commit();
+                            return redirect($paymongoSource->getRedirect()['checkout_url']);
+                        }else{
+                            DB::rollback();
+                            dd('OOPS... CARD RESOURCE ON DEVELOPMENT ^_^');
+                        }
+                    }else{
+                        DB::rollback();
+                        $this->emit('remove_loading_card', true);
+                        $this->emit('alert', [
+                            'type'    => 'error',
+                            'title'   => 'Failed',
+                            'message' => 'An error occured while in order transaction.'
+                        ]);
                     }
-                    $this->emit('alert_link', [
-                        'type'     => 'success',
-                        'title'    => 'Order Successfully Processed',
-                        'redirect' => route('front-end.user.my-purchase.list')
-                    ]);
+    
                 }else{
-                    DB::rollback();
                     $this->emit('remove_loading_card', true);
                     $this->emit('alert', [
                         'type'    => 'error',
-                        'title'   => 'Failed',
-                        'message' => 'An error occured while in order transaction.'
+                        'title'   => 'Insufficient Account Balance',
+                        'message' => 'Total Price to Pay: <b>₱ '.number_format($cart['total_price'], 2).'</b>'
                     ]);
                 }
-
+    
             }else{
                 $this->emit('remove_loading_card', true);
                 $this->emit('alert', [
                     'type'    => 'error',
-                    'title'   => 'Insufficient Account Balance',
-                    'message' => 'Total Price to Pay: <b>₱ '.number_format($cart['total_price'], 2).'</b>'
+                    'title'   => 'Failed!',
+                    'message' => 'Please choose payment method.'
                 ]);
             }
-
         }else{
             $this->emit('remove_loading_card', true);
             $this->emit('alert', [
                 'type'    => 'error',
                 'title'   => 'Failed!',
-                'message' => 'Please Select Address and Payment Method'
+                'message' => 'Please select your billing address.'
             ]);
         }
     }

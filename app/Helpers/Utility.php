@@ -716,12 +716,12 @@ class Utility{
         ];
     }
 
-    public static function str_starred($str){
+    public static function str_starred($str, $per_char=4){
         $str_length = strlen($str);
-        $response   = '';
+        $response   = $str;
         
-        if($str_length > 0){
-            $response = substr($str, 0, 1).str_repeat('*', $str_length - 2).substr($str, $str_length - 1, 1);
+        if($str_length > $per_char){
+            $response = $masked =  str_pad(substr($str, -$per_char), strlen($str), '*', STR_PAD_LEFT);
         }
 
         return $response;

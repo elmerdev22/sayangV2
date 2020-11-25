@@ -1,7 +1,7 @@
 <div>
     <div class="row border p-2 pt-4"> 
         <div class="col-md-8">
-            <h6 class="text-muted">Delivery to</h6>
+            <h6 class="text-muted">Delivery To</h6>
             <p>
                 {{ucwords($data->billing->full_name)}}<br>
                 Contact No.:  {{Utility::mobile_number_ph_format($data->billing->contact_no)}}<br>
@@ -14,29 +14,46 @@
                 {{$data->billing->philippine_barangay->philippine_city->philippine_province->name}}, 
                 {{$data->billing->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$data->billing->zip_code}} <br>
             </p>
+            <hr>
+            <h6 class="text-muted">Delivery From</h6>
+            <p>
+                {{ucfirst($data->partner->name)}}<br>
+                Contact No.:  {{Utility::mobile_number_ph_format($data->partner->contact_no)}}<br>
+                @if($data->partner->email)
+                    Email: {{$data->partner->email}} <br>
+                @endif
+
+                Location: {{$data->partner->address}} <br>
+                {{$data->partner->philippine_barangay->name}}, {{$data->partner->philippine_barangay->philippine_city->name}}, <br>
+                {{$data->partner->philippine_barangay->philippine_city->philippine_province->name}}, 
+                {{$data->partner->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}@if($data->partner->zip_code), {{$data->partner->zip_code}} @endif<br>
+            </p>
         </div>
         <div class="col-md-4">
             <h6 class="text-muted">
                 Payment <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
             </h6>
-            @if($data->order_payment->payment_method == 'card')
-                <div>
-                    <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}
-                </div>
-                <div>
-                    <i class="fas fa-credit-card"></i> {{$data->order_payment->card_no}}
-                </div>
-            @elseif($data->order_payment->payment_method == 'e_wallet')
-                <div>
-                    <i class="fas fa-user"></i> {{$data->order_payment->account_name}}
-                </div>
-                <div>
-                    <i class="fas fa-credit-card"></i> {{$data->order_payment->account_no}}
-                </div>
-                <div>
-                    <i class="fas fa-building"></i> {{$data->order_payment->bank->name}}
-                </div>
+            @if($data->order_payment->status == 'paid')
+                @if($data->order_payment->payment_method == 'card')
+                    <div>
+                        <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}
+                    </div>
+                    <div>
+                        <i class="fas fa-credit-card"></i> {{Utility::str_starred($data->order_payment->card_no)}}
+                    </div>
+                @elseif($data->order_payment->payment_method == 'e_wallet')
+                    <!-- <div>
+                        <i class="fas fa-user"></i> {{$data->order_payment->account_name}}
+                    </div>
+                    <div>
+                        <i class="fas fa-credit-card"></i> {{$data->order_payment->account_no}}
+                    </div> -->
+                    <div>
+                        <i class="fas fa-building"></i> {{$data->order_payment->bank->name}}
+                    </div>
+                @endif
             @endif
+            
             @if($data->order_payment->status == 'pending')
                 <div>
                     <span class="badge badge-warning">
@@ -61,9 +78,19 @@
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
             </p>
+
+            @if($data->order_payment->status == 'pending')
+                @if($order_total['total'] >= PaymentUtility::paymongo_minimum())
+                    <a class="btn btn-sm btn-warning" href="javascript:void(0);">
+                        PAY NOW
+                    </a>
+                @endif
+            @endif
         </div>
         <div class="col-md-8">
-            QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
+            @if($data->order_payment->status == 'paid')
+                QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
+            @endif
         </div>
         @if($data->status == 'completed')
             <div class="col-md-4">

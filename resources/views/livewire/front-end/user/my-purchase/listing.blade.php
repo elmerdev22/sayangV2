@@ -56,9 +56,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning" onclick="qr_code('{{$row->key_token}}')">
-                                        <span class="fas fa-qrcode"></span>
-                                    </a>
+                                    @if($row->status != 'order_placed' && $row->status != 'cancelled')
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning" onclick="qr_code('{{$row->key_token}}')">
+                                            <span class="fas fa-qrcode"></span>
+                                        </a>
+                                    @else
+                                        TBA
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>

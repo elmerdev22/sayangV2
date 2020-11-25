@@ -762,12 +762,27 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
   border-radius: 3px;
   margin-bottom: 8px;
   cursor: pointer;
+  position: relative;
 }
 .payment-channel-wrapper.active{
   border: 1px solid var(--sayang-color);
 }
 .payment-channel-wrapper.active .payment-channel-selected-icon{
   color: var(--sayang-color);
+}
+.payment-channel-wrapper .payment-channel-disabled{
+  font-weight: 700;
+  padding: 15px;
+  text-align: center;
+  cursor: default;
+  position: absolute;
+  bottom:0px;
+  top:0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  background: rgba(197, 197, 197, 0.7);
+  text-shadow: 1px 0px 3px #fff;
 }
 
 .product-filter-checkbox{

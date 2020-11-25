@@ -46,5 +46,23 @@
 </div>
 @endsection
 @section('js')
-
+    <script type="text/javascript">
+        @if(Session::has('checkout_payment'))
+            @if(Session::get('checkout_payment')['success'])
+                var config = {
+                    position : 'center',
+                    icon     : 'success',
+                    title    : 'Order Successfully Processed'
+                };
+                Swal.fire(config);
+            @else
+                var config = {
+                    position : 'center',
+                    icon     : 'error',
+                    title    : 'Order Failed To Process.'
+                };
+                Swal.fire(config);
+            @endif
+        @endif
+    </script>
 @endsection

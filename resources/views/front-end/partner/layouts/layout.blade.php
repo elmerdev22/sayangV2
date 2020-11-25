@@ -96,18 +96,6 @@
   @endif
 
   <script type="text/javascript">
-    // Enable pusher logging - don't include this in production
-    // Pusher.logToConsole = true;
-    // var key = '{{env('PUSHER_APP_KEY')}}';
-    // var pusher = new Pusher(key, {
-    //   cluster: 'ap1'
-    // });
-
-    // var channel = pusher.subscribe('my-channel');
-    // channel.bind('my-event', function(message) {
-    //   window.livewire.emit('notifications', message);
-    // });
-    
     window.livewire.on('alert', param => {
       var config = {
         position  : 'center',

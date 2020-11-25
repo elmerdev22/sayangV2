@@ -33,24 +33,27 @@
             <h6 class="text-muted">
                 Payment <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
             </h6>
-            @if($data->order_payment->payment_method == 'card')
-                <div>
-                    <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}
-                </div>
-                <div>
-                    <i class="fas fa-credit-card"></i> {{$data->order_payment->card_no}}
-                </div>
-            @elseif($data->order_payment->payment_method == 'e_wallet')
-                <div>
-                    <i class="fas fa-user"></i> {{$data->order_payment->account_name}}
-                </div>
-                <div>
-                    <i class="fas fa-credit-card"></i> {{$data->order_payment->account_no}}
-                </div>
-                <div>
-                    <i class="fas fa-building"></i> {{$data->order_payment->bank->name}}
-                </div>
+            @if($data->order_payment->status == 'paid')
+                @if($data->order_payment->payment_method == 'card')
+                    <div>
+                        <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}
+                    </div>
+                    <div>
+                        <i class="fas fa-credit-card"></i> {{Utility::str_starred($data->order_payment->card_no)}}
+                    </div>
+                @elseif($data->order_payment->payment_method == 'e_wallet')
+                    <!-- <div>
+                        <i class="fas fa-user"></i> {{$data->order_payment->account_name}}
+                    </div>
+                    <div>
+                        <i class="fas fa-credit-card"></i> {{$data->order_payment->account_no}}
+                    </div> -->
+                    <div>
+                        <i class="fas fa-building"></i> {{$data->order_payment->bank->name}}
+                    </div>
+                @endif
             @endif
+
             @if($data->order_payment->status == 'pending')
                 <div>
                     <span class="badge badge-warning">

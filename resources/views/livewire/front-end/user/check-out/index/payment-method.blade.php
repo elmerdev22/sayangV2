@@ -19,13 +19,31 @@
         <h5><b>Select Payment</b></h5>
         <div class="row">
             <div class="col-12">
-                <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" @if($e_wallet != 'gcash') onclick="set_e_wallet('gcash')" @endif>
+                <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" 
+                    @if($e_wallet != 'gcash') 
+                        @if($total_price >= $component->min_amount('gcash'))
+                            onclick="set_e_wallet('gcash')" 
+                        @endif
+                    @endif
+                >
+                    @if($total_price < $component->min_amount('gcash'))
+                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($component->min_amount('gcash'))}})</div>
+                    @endif
                     @if($e_wallet == 'gcash') 
                         <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
                     @endif
                     <img src="{{asset('images/icons/payments/gcash.png')}}" height="42px" alt="GCash Photo">
                 </div>
-                <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" @if($e_wallet != 'grab_pay') onclick="set_e_wallet('grab_pay')" @endif>
+                <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" 
+                    @if($e_wallet != 'grab_pay') 
+                        @if($total_price >= $component->min_amount('grab_pay'))
+                            onclick="set_e_wallet('grab_pay')" 
+                        @endif
+                    @endif
+                >
+                    @if($total_price < $component->min_amount('grab_pay'))
+                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($component->min_amount('grab_pay'))}})</div>
+                    @endif
                     @if($e_wallet == 'grab_pay') 
                         <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
                     @endif
