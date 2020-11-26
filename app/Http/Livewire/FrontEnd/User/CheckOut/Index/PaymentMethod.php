@@ -70,6 +70,7 @@ class PaymentMethod extends Component
             'payment_key_token' => $this->payment_key_token,
             'payment_e_wallet'  => $this->e_wallet
         ]);
+        $this->emit('remove_loading_card', true);
     }
 
     public function render(){

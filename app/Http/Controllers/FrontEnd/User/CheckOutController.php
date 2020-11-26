@@ -32,14 +32,14 @@ class CheckOutController extends Controller
     }
 
     public function paymongo_pay_e_wallet(Request $request){
+        $response = ['success' => false, 'message' => ''];
+
         if($request->success){
             $billing_details = $request->billing_details;
             $product_posts   = [];
 
             if(isset($billing_details)){
                 set_time_limit(0);
-
-                $response = ['success' => false, 'message' => ''];
                 
                 DB::beginTransaction();
                 try{
@@ -79,7 +79,7 @@ class CheckOutController extends Controller
                         }
                     }
                 }catch(\Exception $e){
-                    dd($e);
+                    // dd($e);
                     $response['success'] = false;
                 }
 
@@ -143,19 +143,7 @@ class CheckOutController extends Controller
 
     public function pay(){
         try{
-            // $billing_details['paymongo']['payment_id'] = 123;
-            // dd($billing_details);
-            // $source = Paymongo::source()->create([
-            //     'type'     => 'grab_pay',
-            //     'amount'   => 1000,
-            //     'currency' => 'PHP',
-            //     'redirect' => [
-            //         'success' => route('front-end.user.my-account.index', ['success' => true]),
-            //         'failed'  => route('front-end.user.my-account.index', ['success' => false])
-            //     ]
-            // ]);
-            // dd($source);
-            // return redirect($source->getRedirect()['checkout_url'])->send();
+            
             // $payment = Paymongo::payment()->find('pay_xhh12v2on9gxH1MU7GD6A4SL');
             // dd($payment);
             // $source = Paymongo::source()->find('src_LAN7xNZ8KwimADJTceBza6bG');
@@ -176,22 +164,6 @@ class CheckOutController extends Controller
             // }
             // dd($payment);
             // return redirect($source->getRedirect()['checkout_url'])->send();
-
-            // $paymentIntent = Paymongo::paymentIntent()->create([
-            //     'amount'                 => 100,
-            //     'payment_method_allowed' => [
-            //         'card'
-            //     ],
-            //     'payment_method_options' => [
-            //         'card' => [
-            //             'request_three_d_secure' => 'automatic'
-            //         ]
-            //     ],
-            //     'description' => 'This is a test payment intent',
-            //     'statement_descriptor' => 'LUIGEL STORE',
-            //     'currency' => "PHP",
-            // ]);
-            // dd($paymentIntent);
 
             // $paymentMethod = Paymongo::paymentMethod()->create([
             //     'type'      => 'card',
@@ -214,8 +186,65 @@ class CheckOutController extends Controller
             //         'phone' => '0935454875545'
             //     ],
             // ]);
-            // dd($paymentMethod);
 
+            $paymentMethod = Paymongo::paymentMethod()->create([
+                'type' => 'card',
+                'details' => [
+                    'card_number' => str_replace('-', '', '4120-0000-0000-0007'),
+                    'exp_month'   => 12,
+                    'exp_year'    => 30,
+                    'cvc'         => '000'
+                ],
+                'billing' => [
+                    'name'  => 'John Doe',
+                    'email' => 'testjohndoe@email.com',
+                    'phone' => '09123456789'
+                ],
+            ]);
+            
+            $newPaymentIntent = Paymongo::paymentIntent()->create([
+                'amount'                 => 100,
+                'payment_method_allowed' => [
+                    'card'
+                ],
+                'payment_method_options' => [
+                    'card' => [
+                        'request_three_d_secure' => 'automatic'
+                    ]
+                ],
+                'description'          => 'This is a test payment intent',
+                'statement_descriptor' => 'LUIGEL STORE',
+                'currency'             => "PHP"
+            ]);
+
+            $response = ['success' => false, 'message' => 'An error occured on payment with your card while processing the transaction'];
+
+            try{
+                $paymentIntent = Paymongo::paymentIntent()->find($newPaymentIntent->id);
+                if($paymentIntent->status === 'awaiting_payment_method'){
+                    
+                    $paymentIntentAttach = $paymentIntent->attach($paymentMethod->id);
+                    // 'return_url'     => 'http://127.0.0.1:8003/'
+                    
+                    if($paymentIntentAttach->status === 'awaiting_next_action'){
+                        // $paymentIntentAttach->next_action['redirect']['return_url'] = 'https://sayang-ph.com';
+                        // https://test-sources.paymongo.com/sources?id=src_iatsdaXmsKLHQhpcTTm9fWFH
+                        $next_action = $paymentIntentAttach->next_action;
+                        dd($paymentIntentAttach);
+                        return redirect($next_action['redirect']['url'])->send();
+                    }else if($paymentIntentAttach->status === 'succeeded'){
+                        dd($paymentIntentAttach);
+                    }
+                }
+            }catch(\Exception $e){
+                dd($e);
+                $exception = json_decode($e->getMessage());
+                $message   = $exception->errors[0];
+                if($message->code == 'resource_failed_state'){
+                    $response['message'] = $message->detail;
+                }
+            }
+            dd($response);
             // $payment = Paymongo::payment()
             //         ->create([
             //             'amount'               => 100.00,
