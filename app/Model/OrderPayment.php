@@ -13,4 +13,8 @@ class OrderPayment extends Model
     public function bank(){
         return $this->belongsTo('App\Model\Bank', 'bank_id', 'id');
     }
+
+    public function order_payment_log(){
+        return $this->hasOne('App\Model\OrderPaymentLog', 'order_payment_id', 'id');
+    }
 }

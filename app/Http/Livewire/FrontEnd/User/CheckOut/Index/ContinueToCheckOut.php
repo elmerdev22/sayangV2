@@ -8,6 +8,7 @@ use App\Model\Bid;
 use App\Model\Cart;
 use App\Model\Billing;
 use App\Model\ProductPost;
+use App\Model\PhilippineBarangay;
 use App\Model\Order;
 use App\Model\OrderItem;
 use App\Model\OrderPayment;
@@ -201,16 +202,7 @@ class ContinueToCheckOut extends Component
                                     
                                     if($order_payment->save()){
                                         $order_payment_log                   = new OrderPaymentLog();
-                                        $order_payment_log->order_payment_id = $order_payment->id;
-                                        $order_payment_log->api              = 'paymongo';
-    
-                                        if($payment_method['payment_method'] == 'e_wallet'){
-                                            $order_payment_log->method = 'source';
-                                        }
-    
-                                        // $order_payment_log->method_id        = $paymongo->id;
-                                        // $order_payment_log->logs             = json_encode([]);
-    
+                                        $order_payment_log->order_payment_id = $order_payment->id;    
                                         if($order_payment_log->save()){
                                             $billing_details['orders'][] = [
                                                 'order_id'             => $order->id,
@@ -229,20 +221,39 @@ class ContinueToCheckOut extends Component
                                 }
                             }
 
+                            $barangay = PhilippineBarangay::with(['philippine_city.philippine_province'])
+                                ->find($billing->barangay_id);
+
+                            $billing = [
+                                'name'    => ucwords($billing->full_name),
+                                'phone'   => $billing->contact_no,
+                                'email'   => $billing->email,
+                                'address' => [
+                                    'line1'       => ucfirst($barangay->name),
+                                    'line2'       => ucfirst($billing->address),
+                                    'postal_code' => $billing->zip_code,
+                                    'state'       => ucfirst($barangay->philippine_city->philippine_province->name),
+                                    'city'        => ucfirst($barangay->philippine_city->name),
+                                    'country'     => PaymentUtility::billing_country()
+                                ]
+                            ];
+
                             if($payment_method['payment_method'] == 'e_wallet'){
                                 $billing_details['paymongo']['type']   = $payment_method['payment_e_wallet'];
                                 $paymongoSource = Paymongo::source()->create([
                                     'type'     => $payment_method['payment_e_wallet'],
                                     'amount'   => $billing_details['total_price'],
-                                    'currency' => 'PHP',
+                                    'currency' => PaymentUtility::currency(),
                                     'redirect' => [
-                                        'success' => route('front-end.user.check-out.paymongo-pay', ['billing_details' => $billing_details, 'success' => true]),
-                                        'failed'  => route('front-end.user.check-out.paymongo-pay', ['billing_details' => $billing_details, 'success' => false])
-                                    ]
+                                        'success' => route('front-end.user.check-out.paymongo-pay-e-wallet', ['billing_details' => $billing_details, 'success' => true]),
+                                        'failed'  => route('front-end.user.check-out.paymongo-pay-e-wallet', ['billing_details' => $billing_details, 'success' => false])
+                                    ],
+                                    'billing' => $billing
                                 ]);
                                 
                                 foreach($billing_details['orders'] as $order){
                                     $payment_log            = OrderPaymentLog::find($order['order_payment_log_id']);
+                                    $payment_log->api       = 'paymongo';
                                     $payment_log->method    = 'source';
                                     $payment_log->method_id = $paymongoSource->id;
                                     $payment_log->save();

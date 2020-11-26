@@ -17,12 +17,8 @@ class Information extends Component
 
     public function data(){
         return Order::with([
-                'order_payment',
                 'order_payment.bank',
-                'billing', 
-                'billing.philippine_barangay',
-                'billing.philippine_barangay.philippine_city',
-                'billing.philippine_barangay.philippine_city.philippine_province',
+                'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region',
             ])
             ->where('order_no', $this->order_no)

@@ -34,6 +34,14 @@ class PaymentUtility{
         return 100.00;
     }
 
+    public static function billing_country(){
+        return 'PH'; //default is PH as ISO Code of Philippines
+    }
+
+    public static function currency(){
+        return 'PHP'; //default is PHP (Peso)
+    }
+
     public static function active_e_wallet($default=false){
         $response = [
             [
@@ -76,14 +84,14 @@ class PaymentUtility{
         return [];
     }
 
-    public static function pay_order($order_id, array $e_wallet=[]){
-        $response      = ['success' => false];
+    public static function pay_order($order_id, array $paymongo=[]){
+        $response      = ['success' => false, 'message' => ''];
         $product_posts = [];
 
         try{
 
             /* <><><><><><><><><><><><><><>><><><><><><><><><><><><><><> */
-            $order = Order::with(['billing'])->find($order_id);
+            $order = Order::find($order_id);
                 
             if($order){
                 $order_total = Utility::order_total($order_id);
@@ -134,16 +142,18 @@ class PaymentUtility{
                                 'product_post_key_token' => $product_post->key_token
                             ];
                         }
+                    }else{
+                        $response['message'] = 'One of the item currenntly is not available while processing the transaction.';
+                        throw new \Exception('Uncaught Exeption');
                     }
                 }
 
                 $order_payment = OrderPayment::where('order_id', $order_id)->first();
 
                 if($order_payment){
-
-                    if(!empty($e_wallet)){
-                        $bank                          = Bank::where('key_name', $e_wallet['type'])->first();
-                        $order_payment->payment_method = $e_wallet['method'];
+                    if(!empty($paymongo)){
+                        $bank                          = Bank::where('key_name', $paymongo['type'])->first();
+                        $order_payment->payment_method = $paymongo['method'];
                         $order_payment->bank_id        = $bank->id;
                     }
                     
@@ -151,7 +161,6 @@ class PaymentUtility{
                     $order_payment->date_paid = date('Y-m-d H:i:s');
 
                     if($order_payment->save()){
-                        $order                         = Order::find($order_id);
                         $order->status                 = 'payment_confirmed';
                         $order->date_payment_confirmed = date('Y-m-d H:i:s');
 
@@ -159,6 +168,8 @@ class PaymentUtility{
                             $response['success'] = true;
                         }
                     }
+                }else{
+                    throw new \Exception('Uncaught Exeption');
                 }
             }
             /* <><><><><><><><><><><><><><>><><><><><><><><><><><><><><> */
@@ -167,13 +178,8 @@ class PaymentUtility{
             $response['success'] = false;
         }
 
-        if($response['success']){
-            if(isset($product_posts)){
-                event(new CheckOut($product_posts));
-            }
-        }
-
-        return $response['success'];
+        $response['product_posts'] = $product_posts;
+        return $response;
     }
 
 }
