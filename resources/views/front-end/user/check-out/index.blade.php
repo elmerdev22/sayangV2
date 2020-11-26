@@ -117,6 +117,21 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<div class="modal fade" id="modal-payment_3d_secure" data-backdrop="static" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="modal-payment_3rd_secure_iframe">
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" href="{{route('front-end.user.my-purchase.list')}}">Cancel Payment</a>
+            </div> 
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 
 @section('js')
