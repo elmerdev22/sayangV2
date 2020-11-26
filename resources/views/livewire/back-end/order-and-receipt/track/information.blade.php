@@ -1,6 +1,6 @@
 <div>
     <div class="row border p-2 pt-4"> 
-        <div class="col-md-8">
+        <div class="col-md-7">
             <h6 class="text-muted">Delivery To</h6>
             <p>
                 <a href="{{route('back-end.user.profile', ['key_token' => $data->billing->user_account->key_token])}}" class="text-blue" title="Click to view profile">{{ucwords($data->billing->full_name)}}</a><br>
@@ -29,11 +29,23 @@
                 {{$data->partner->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}@if($data->partner->zip_code), {{$data->partner->zip_code}} @endif<br>
             </p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h6 class="text-muted">
                 Payment <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
             </h6>
             @if($data->order_payment->status == 'paid')
+                <div>
+                    <b>Billing No. :</b> {{$data->billing->billing_no}}
+                </div>
+                <div>
+                    <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
+                </div>
+                <div>
+                    <b>API Method ID :</b> {{$data->order_payment->order_payment_log->method_id}}
+                </div>
+                <div>
+                    <b>API Method Type :</b> {{$data->order_payment->order_payment_log->method}}
+                </div>
                 @if($data->order_payment->payment_method == 'card')
                     <div>
                         <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}
@@ -78,16 +90,20 @@
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
             </p>
-        </div>
-        
-        {{-- <div class="col-md-8">
-            QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
-        </div> --}}
-        @if($data->status == 'completed')
-            <div class="col-md-4">
-                View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
+
+            <div class="row">
+                <!-- @if($data->order_payment->status == 'paid')
+                    <div class="col-6">
+                        QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
+                    </div>
+                @endif -->
+                @if($data->status == 'completed')
+                    <div class="col-6">
+                        View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
+                    </div>
+                @endif
             </div>
-        @endif
+        </div>
     </div> <!-- row.// -->
 </div>
 

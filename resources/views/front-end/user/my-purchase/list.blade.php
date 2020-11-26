@@ -48,7 +48,8 @@
 @section('js')
     <script type="text/javascript">
         @if(Session::has('checkout_payment'))
-            @if(Session::get('checkout_payment')['success'])
+            @php $checkout_status = Session::get('checkout_payment'); @endphp
+            @if($checkout_status['success'])
                 var config = {
                     position : 'center',
                     icon     : 'success',
@@ -57,9 +58,10 @@
                 Swal.fire(config);
             @else
                 var config = {
-                    position : 'center',
-                    icon     : 'error',
-                    title    : 'Order Failed To Process.'
+                    position: 'center',
+                    icon    : 'error',
+                    title   : 'Order Failed To Process.',
+                    html    : "{{$checkout_status['message']}}"
                 };
                 Swal.fire(config);
             @endif
