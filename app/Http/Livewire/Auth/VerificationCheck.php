@@ -41,7 +41,7 @@ class VerificationCheck extends Component
                 $this->emit('alert_link', [
                     'type'     => 'success',
                     'title'    => 'Successfully Verified',
-                    'message'  => 'Your account successfully verified.',
+                    'message'  => 'Your Email successfully verified.',
                     'redirect' => route('login-redirect.index'),
                 ]);
             }

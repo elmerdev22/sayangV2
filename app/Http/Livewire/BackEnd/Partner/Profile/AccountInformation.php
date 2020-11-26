@@ -4,6 +4,8 @@ namespace App\Http\Livewire\BackEnd\Partner\Profile;
 
 use Livewire\Component;
 use App\Mail\EmailNotification;
+use App\Model\PartnerRepresentative;
+use App\Model\PartnerBankAccount;
 use App\Model\UserAccount;
 use App\Model\Partner;
 use App\Model\User;
@@ -12,7 +14,7 @@ use Utility;
 
 class AccountInformation extends Component
 {
-	public $data, $can_activate=true, $photo_url;
+	public $data, $can_activate=true, $photo_url , $application_progress;
 
 	protected $listeners = [
 		'account_info_initialize' => '$refresh'
@@ -38,6 +40,7 @@ class AccountInformation extends Component
 	}
 
     public function render(){
+        $this->application_progress = $this->application_progress();
         return view('livewire.back-end.partner.profile.account-information');
     }
 
@@ -89,5 +92,34 @@ class AccountInformation extends Component
             'type'    => 'success',
             'title'   => 'Successfully '.$type
         ]);
+    }
+
+    public function application_progress(){
+        if($this->data->partner == null){
+            $step_to = 0;
+        }
+        else{
+
+            $step_to = 1;
+            $partner = Partner::where('user_account_id', $this->data->partner->user_account_id)->first();
+    
+            if($partner){
+                $representative = PartnerRepresentative::where('partner_id', $partner->id)->count();
+                $bank_account   = PartnerBankAccount::where('partner_id', $partner->id)->count();
+    
+                if($partner->is_activated == 1){
+                    $step_to = 5;
+                }
+                else if($partner->status == 'done'){
+                    $step_to = 4;
+                }else if($bank_account > 0){
+                    $step_to = 3;
+                }else if($representative > 0){
+                    $step_to = 2;
+                }
+            }
+        }
+
+        return $step_to;
     }
 }

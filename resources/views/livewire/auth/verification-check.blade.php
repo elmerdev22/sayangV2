@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-warning text-white btn-block">
-                Confirm Verification
+                Confirm Verification <span wire:loading wire:target="verify" class="fas fa-spinner fa-spin"></span>
             </button>
         </div>
         <span class="text-center">Didn't receive code ? <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-change_email" class="text-blue">Change Email</a></span>

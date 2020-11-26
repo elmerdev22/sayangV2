@@ -116,13 +116,17 @@
                     </a>
                 </li>
             </ul>
+
+            <button data-toggle="modal" data-target="#application-progress" class="btn btn-sm btn-block btn-warning">View Activation progress</button>
             
-            <button type="button" @if(!$can_activate) disabled="true" @else onclick="activate()" @endif  class="btn btn-sm btn-block btn-success">
-                <i class="fas fa-check"></i> Activate
-            </button>
+            @if ($application_progress == 4 )
+                <button type="button" @if(!$can_activate) disabled="true" @else onclick="activate()" @endif  class="btn btn-sm btn-block btn-warning">
+                    <i class="fas fa-check"></i> Activate
+                </button>
+            @endif
 
             @if($data->user->is_blocked)
-                <button type="button" class="btn btn-sm btn-block btn-success" onclick="change_block_status('Are you sure, do you want to unblock this partner?')">
+                <button type="button" class="btn btn-sm btn-block btn-default" onclick="change_block_status('Are you sure, do you want to unblock this partner?')">
                     <i class="fas fa-unlock"></i> Unblock Partner
                 </button>
             @else
@@ -130,6 +134,46 @@
                     <i class="fas fa-lock"></i> Block Partner
                 </button>
             @endif
+        </div>
+    </div>
+    <!-- Application Progress Modal -->
+    <div wire:ignore.self class="modal fade" id="application-progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Application Progress</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="track w-100">
+                        <div class="step @if($application_progress > 0) active @endif">
+                            <span class="icon"> 1 </span> <span class="text">Business Details</span> 
+                        </div>
+                        <div class="step @if($application_progress > 1) active @endif"> 
+                            <span class="icon"> 2 </span> <span class="text">Representative Information</span> 
+                        </div>
+                        <div class="step @if($application_progress > 2) active @endif"> 
+                            <span class="icon"> 3 </span> <span class="text">Bank Details</span>
+                        </div>
+                        <div class="step @if($application_progress > 3) active @endif"> 
+                            <span class="icon"> 4 </span> <span class="text">Completed</span> 
+                        </div>
+                        <div class="step @if($application_progress > 4) active @endif"> 
+                            <span class="icon"> <li class="fas fa-check"></li> </span> <span class="text">Activated</span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @if ($application_progress == 4 )
+                        <button type="button" @if(!$can_activate) disabled="true" @else onclick="activate()" @endif  class="btn btn-warning">
+                            <i class="fas fa-check"></i> Activate
+                        </button>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

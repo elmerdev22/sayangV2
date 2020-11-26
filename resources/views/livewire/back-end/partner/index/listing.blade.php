@@ -19,7 +19,7 @@
 	        					@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
 	        				</th>
 		        			<th class="table-sort" wire:click="sort('partners.name')">
-		        				Merchant Name 
+		        				Partner Name 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'partners.name'])
 		        			</th>
 		        			<th class="table-sort" wire:click="sort('partners.address|philippine_barangays.name|philippine_cities.name|philippine_provinces.name|philippine_regions.name')">	Address 
@@ -78,7 +78,7 @@
 		        						<span class="badge badge-success">Activated</span>
 		        					@else
 		        						@if($row->status == 'done')
-			        						<span class="badge badge-info">Activation</span>
+			        						<span class="badge badge-info">For Activation</span>
 	        							@else
 			        						<span class="badge badge-warning">Pending</span>
 		        						@endif
