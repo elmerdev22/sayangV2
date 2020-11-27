@@ -84,16 +84,26 @@
 
             @if($data->order_payment->status == 'pending')
                 @if($order_total['total'] >= PaymentUtility::paymongo_minimum())
-                    <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-pay_now">
-                        PAY NOW
-                    </a>
+                    @if($can_repay)
+                        <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-pay_now">
+                            PAY NOW
+                        </a>
+                    @endif
                     <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
                         CANCEL ORDER
                     </a>
                 @endif
             @endif
+
             
             <div class="row">
+                @if($data->status == 'order_placed')
+                    @if(!$can_repay)
+                        <div class="col-12">
+                            <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.
+                        </div>
+                    @endif
+                @endif
                 @if($data->order_payment->status == 'paid')
                     <div class="col-6">
                         QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
