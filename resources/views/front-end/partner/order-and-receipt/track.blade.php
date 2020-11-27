@@ -26,11 +26,13 @@
                 @endif
             </header>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        @livewire('front-end.partner.order-and-receipt.track.status', ['order_no' => $order->order_no])
+                @if($order->status != 'cancelled')
+                    <div class="row">
+                        <div class="col-12">
+                            @livewire('front-end.partner.order-and-receipt.track.status', ['order_no' => $order->order_no])
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         @livewire('front-end.partner.order-and-receipt.track.information', ['order_no' => $order->order_no])

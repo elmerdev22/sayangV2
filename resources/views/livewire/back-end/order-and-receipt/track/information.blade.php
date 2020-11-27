@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-5">
             <h6 class="text-muted">
-                Payment <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
+                Payment @if($data->order_payment->status == 'paid') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>
@@ -100,6 +100,16 @@
                 @if($data->status == 'completed')
                     <div class="col-6">
                         View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
+                    </div>
+                @endif
+                @if($data->status == 'cancelled')
+                    <div class="col-12">
+                        <div>
+                            <b>Cancelation Reason: </b> <br> {{ucfirst($data->cancelation_reason)}}
+                        </div>
+                        <div>
+                            <small class="text-muted">{{date('F/d/Y h:iA', strtotime($data->date_cancelled))}}</small>
+                        </div>
                     </div>
                 @endif
             </div>

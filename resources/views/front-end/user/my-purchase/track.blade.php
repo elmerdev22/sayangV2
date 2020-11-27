@@ -32,11 +32,13 @@
                 @endif
             </header>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        @livewire('front-end.user.my-purchase.track.status', ['order_no' => $order_no])
+                @if($order->status != 'cancelled')
+                    <div class="row">
+                        <div class="col-12">
+                            @livewire('front-end.user.my-purchase.track.status', ['order_no' => $order_no])
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
                         @livewire('front-end.user.my-purchase.track.information', ['order_no' => $order_no])
@@ -85,6 +87,30 @@
                 </div>
                 <div class="modal-body">
                     @livewire('front-end.user.my-purchase.track.invoice', ['order_no' => $order_no])
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+@if($order->status == 'order_placed')
+    <!-- Modal -->
+    <div class="modal fade" id="modal-cancel_order" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @livewire('front-end.user.my-purchase.track.cancel-order', ['order_no' => $order_no])
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-pay_now" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @livewire('front-end.user.my-purchase.track.pay-now', ['order_no' => $order_no])
                 </div>
             </div>
         </div>
