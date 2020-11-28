@@ -155,7 +155,7 @@ class PayNow extends Component
                                     }
 
                                 }catch(\Exception $e){
-                                    dd($e);
+                                    // dd($e);
                                 }
 
                                 if($response['success']){
@@ -191,7 +191,7 @@ class PayNow extends Component
 
                             if($card){
                                 // Card Found
-
+                                dd("ON DEVELOPMENT");
                             }else{
                                 $this->emit('alert', [
                                     'type'    => 'error',
