@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Cart;
 use App\Model\ProductPost;
 use App\Model\Order;
+use App\Model\OrderItem;
 use App\Model\OrderPayment;
 use App\Model\OrderPaymentLog;
 use App\Events\CheckOut;
@@ -138,6 +139,92 @@ class CheckOutController extends Controller
             Session::flash('checkout_payment', ['success' => false, 'message' => $response['message']]);
         }
 
+        return redirect(route('front-end.user.my-purchase.list'))->send();
+    }
+
+    public function paymongo_repay_order_e_wallet(Request $request){
+        $response = ['success' => false, 'message' => 'An error occured.'];
+        
+        if($request->success){
+
+            if($request->order_key_token){
+                $order = Order::with(['billing', 'order_payment.order_payment_log'])
+                    ->where('key_token', $request->order_key_token)
+                    ->first();
+
+                if($order){
+                    if($order->status == 'order_placed'){
+                        $can_repay = Utility::order_can_repay($order->id);
+                        
+                        if($can_repay){
+                            
+                            DB::beginTransaction();
+                            try{
+                                $product_post = [];
+                                $method_id    = $order->order_payment->order_payment_log->method_id;
+
+                                $source = Paymongo::source()->find($method_id);
+                                
+                                if($source){
+                                    if($source->status === 'chargeable'){
+                                        $paymongo = [
+                                            'type'   => $source->source_type,
+                                            'method' => 'e_wallet'
+                                        ];
+
+                                        $pay_response = PaymentUtility::pay_order($order->id, $paymongo);
+
+                                        if(!$pay_response['success']){
+                                            $checker[]           = false;
+                                            $response['message'] = $pay_response['message'];
+                                        }else{
+                                            $product_post        = $pay_response['product_posts'];
+                                            $response['success'] = true;
+                                        }
+                                    }
+                                }
+                            }catch(\Exception $e){
+                                // dd($e);    
+                            }
+
+                            if($response['success']){
+                                
+                                $payment_description = 'Billing No: '.$order->billing->billing_no.', Order No.: '.$order->order_no.' from Source ID: '.$method_id.' - method type (source).';
+            
+                                $payment = Paymongo::payment()->create([
+                                    // 'amount'      => $source->amount / 100,
+                                    'amount'      => $source->amount,
+                                    'currency'    => $source->currency,
+                                    'description' => $payment_description,
+                                    'source'      => [
+                                        'id'   => $source->id,
+                                        'type' => $source->type,
+                                    ]
+                                ]);
+
+                                if($payment){
+                                    $payment_log                      = OrderPaymentLog::find($order->order_payment->order_payment_log->id);
+                                    $payment_log->paymongo_payment_id = $payment->id;
+                                    $payment_log->save();
+    
+                                    DB::commit();
+                                    if(!empty($product_post)){
+                                        event(new CheckOut($product_post));
+                                    }
+                                }else{
+                                    $response['success'] = false;
+                                    DB::rollback();
+                                }
+                            }else{
+                                DB::rollback();  
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Session::flash('checkout_payment', ['success' => $response['success'], 'message' => $response['message']]);
         return redirect(route('front-end.user.my-purchase.list'))->send();
     }
 

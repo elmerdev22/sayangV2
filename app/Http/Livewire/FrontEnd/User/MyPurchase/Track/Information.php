@@ -26,32 +26,10 @@ class Information extends Component
             ->firstOrFail();
     }
 
-    public function order_repay($order_id){
-        $order_items = OrderItem::with(['product_post'])->where('order_id', $order_id)->get();
-        $repay       = true;
-        
-        foreach($order_items as $row){
-            $status = Utility::product_post_status($row->product_post_id);
-            if($status == 'active'){
-                if($row->product_post->quantity >= $row->quantity){
-                    continue;
-                }else{
-                    $repay = false;
-                    break;
-                }
-            }else{
-                $repay = false;
-                break;
-            }
-        }
-
-        return $repay;
-    }
-
     public function render(){
         $data        = $this->data();
         if($data->status == 'order_placed'){
-            $can_repay   = $this->order_repay($data->id);
+            $can_repay   = Utility::order_can_repay($data->id);
         }else{
             $can_repay = false;
         }

@@ -785,4 +785,26 @@ class Utility{
 
         return $data;
     }
+
+    public static function order_can_repay($order_id){
+        $order_items = OrderItem::with(['product_post'])->where('order_id', $order_id)->get();
+        $repay       = true;
+        
+        foreach($order_items as $row){
+            $status = self::product_post_status($row->product_post_id);
+            if($status == 'active'){
+                if($row->product_post->quantity >= $row->quantity){
+                    continue;
+                }else{
+                    $repay = false;
+                    break;
+                }
+            }else{
+                $repay = false;
+                break;
+            }
+        }
+
+        return $repay;
+    }
 }
