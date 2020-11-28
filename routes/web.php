@@ -353,6 +353,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 		        'as' 	=> 'paymongo-pay-e-wallet',
 		        'uses'  => $c.'@paymongo_pay_e_wallet'
             ]);
+
+            Route::get('/paymongo-repay-order-e-wallet', [
+		        'as' 	=> 'paymongo-repay-order-e-wallet',
+		        'uses'  => $c.'@paymongo_repay_order_e_wallet'
+            ]);
             
         });
     });

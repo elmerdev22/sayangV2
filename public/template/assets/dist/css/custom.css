@@ -546,6 +546,9 @@ input:checked + .slider:before {
 input.input-readonly[readonly]{
 	background: #FFF;
 }
+.box-shadow-none{
+  box-shadow: none !important;
+}
 /* END OF GLOBAL CLASSES CAN BE USE */
 
 /* CUSTOM SAYANG BRANDING THEMES */

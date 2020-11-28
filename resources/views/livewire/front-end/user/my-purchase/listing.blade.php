@@ -61,7 +61,7 @@
                                             <span class="fas fa-qrcode"></span>
                                         </a>
                                     @else
-                                        TBA
+                                        N/A
                                     @endif
                                 </td>
                                 <td>
