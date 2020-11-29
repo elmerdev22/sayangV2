@@ -146,7 +146,7 @@
             showConfirmButton : false,
             onBeforeOpen      : () => {
                 Swal.showLoading();
-                @this.call('paymongo_pay_card', null, true)
+                @this.call('paymongo_pay_card', true)
             }
         });
     }

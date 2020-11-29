@@ -129,7 +129,7 @@
                 <div class="modal-body" id="modal-payment_3rd_secure_iframe">
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default" href="javascript:void(0);" onclick="window.reload();">Cancel Payment</a>
+                    <a class="btn btn-default" href="{{route('front-end.user.my-purchase.track', ['id' => $order->order_no])}}">Cancel Payment</a>
                 </div> 
             </div>
             <!-- /.modal-content -->
@@ -141,6 +141,27 @@
 
 @endsection
 @section('js')
+    <script type="text/javascript">
+        @if(Session::has('checkout_payment'))
+            @php $checkout_status = Session::get('checkout_payment'); @endphp
+            @if($checkout_status['success'])
+                var config = {
+                    position : 'center',
+                    icon     : 'success',
+                    title    : 'Order Successfully Processed'
+                };
+                Swal.fire(config);
+            @else
+                var config = {
+                    position: 'center',
+                    icon    : 'error',
+                    title   : 'Order Failed To Process.',
+                    html    : "{{$checkout_status['message']}}"
+                };
+                Swal.fire(config);
+            @endif
+        @endif
+    </script>
     @if($order->status == 'completed')
         <script src="{{asset('template/assets/dist/js/window-document.js')}}"></script>
         <script type="text/javascript">

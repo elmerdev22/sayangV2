@@ -153,6 +153,8 @@ class CheckOutController extends Controller
                     ->first();
 
                 if($order){
+                    $order_no = $order->order_no;
+                    
                     if($order->status == 'order_placed'){
                         $can_repay = Utility::order_can_repay($order->id);
                         
@@ -225,7 +227,12 @@ class CheckOutController extends Controller
         }
 
         Session::flash('checkout_payment', ['success' => $response['success'], 'message' => $response['message']]);
-        return redirect(route('front-end.user.my-purchase.list'))->send();
+        if(isset($order_no)){
+            return redirect(route('front-end.user.my-purchase.track', ['id' => $order_no]));
+        }else{
+            return redirect(route('front-end.user.my-purchase.list'))->send();
+        }
+        
     }
 
     public function pay(){
