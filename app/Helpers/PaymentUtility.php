@@ -152,9 +152,14 @@ class PaymentUtility{
 
                 if($order_payment){
                     if(!empty($paymongo)){
-                        $bank                          = Bank::where('key_name', $paymongo['type'])->first();
-                        $order_payment->payment_method = $paymongo['method'];
-                        $order_payment->bank_id        = $bank->id;
+                        //If E-wallet
+                        $bank                                   = Bank::where('key_name', $paymongo['type'])->first();
+                        $order_payment->payment_method          = $paymongo['method'];
+                        $order_payment->bank_id                 = $bank->id;
+                        $order_payment->card_holder             = null;
+                        $order_payment->card_no                 = null;
+                        $order_payment->card_expiration_date    = null;
+                        $order_payment->card_verification_value = null;
                     }
                     
                     $order_payment->status    = 'paid';

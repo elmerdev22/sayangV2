@@ -368,7 +368,6 @@ class ContinueToCheckOut extends Component
                                 if($response['payment_intent_success']){
                                     if($paymentIntentAttach->status === 'awaiting_next_action'){
                                         DB::commit();
-                                        // DB::rollback();
                                         $this->billing_details = $billing_details;
                                         $this->emit('payment_3d_secure', [
                                             'url' => $next_action['redirect']['url']
@@ -380,7 +379,6 @@ class ContinueToCheckOut extends Component
                                             }
                                         }
                                         DB::commit();
-                                        DB::rollback();
                                         Session::flash('checkout_payment', ['success' => true, 'message' => '']);
                                         return redirect(route('front-end.user.my-purchase.list'));
                                     }else{
