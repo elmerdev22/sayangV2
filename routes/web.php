@@ -302,7 +302,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
             ]);
 
         });
-        // My Purchase
+        // My Bids
         Route::group(['prefix' => 'my-bids', 'as' => 'my-bids.'], function (){
 			$c = 'MyBidController';
             
@@ -324,6 +324,20 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 
         });
 
+        // My Notifications
+        Route::group(['prefix' => 'notifications', 'as' => 'notifications.'], function (){
+			$c = 'MyNotificationController';
+            
+			Route::get('/order-updates', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+			Route::get('/activity', [
+		        'as' 	=> 'activity',
+		        'uses'  => $c.'@activity'
+            ]);
+
+        });
         //My Cart
         Route::group(['prefix' => 'my-cart', 'as' => 'my-cart.'], function (){
 			$c = 'MyCartController';

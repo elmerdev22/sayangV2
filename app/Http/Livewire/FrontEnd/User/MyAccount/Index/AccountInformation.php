@@ -13,7 +13,7 @@ class AccountInformation extends Component
 {
     public $account, $auth, $first_name, $last_name, $middle_name, $gender, $birth_date, $contact_no ,$old_contact_no;
     
-    protected $listerners = [
+    protected $listeners = [
         'account_information_initialize' => '$refresh'
     ];
 

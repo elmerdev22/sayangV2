@@ -39,8 +39,9 @@ class ScheduledTaskUtility{
                                         ->orderBy('bid', 'desc')
                                         ->get();
                                
-                $url_link = env('APP_URL').'/'.'product'.'/'.$row->slug.'/'.$row->key_token;
-         
+                $url_link          = env('APP_URL').'/'.'product'.'/'.$row->slug.'/'.$row->key_token;
+                $notification_type = 'activity';
+
                 foreach($bids as $bid){
 
                     if($available_quantity > 0){
@@ -50,7 +51,7 @@ class ScheduledTaskUtility{
                                     Notify the bidder that his/her bid was win 
                                     $quantity_to_avail = $bid->quantity;
                                 */
-                                $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won');
+                                $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won', $notification_type);
                                 
                                 if($notification_check){
                                     $email_notification_details = Utility::email_notification_details('bidder_won', $url_link);
@@ -62,7 +63,7 @@ class ScheduledTaskUtility{
                                     but his/her preferred quantity is deficient. 
                                     $quantity_to_avail = $bid->quantity - $current_quantity;
                                 */
-                                $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won');
+                                $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won', $notification_type);
                                 
                                 if($notification_check){
                                     $email_notification_details = Utility::email_notification_details('bidder_won',$url_link);
@@ -76,7 +77,7 @@ class ScheduledTaskUtility{
                             /* Notify the bidders that his/her bid was lose */
                             $bid->status = 'lose';
 
-                            $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_lose');
+                            $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_lose', $notification_type);
                             
                             if($notification_check){
                                 $email_notification_details = Utility::email_notification_details('bidder_lose',$url_link);
@@ -87,7 +88,7 @@ class ScheduledTaskUtility{
                         /* Notify bidders that the item was sold out. */
                         $bid->status = 'sold_out';
                         
-                        $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'product_post_sold_out');
+                        $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'product_post_sold_out', $notification_type);
                             
                         if($notification_check){
                             $email_notification_details = Utility::email_notification_details('product_post_sold_out',$url_link);
@@ -101,7 +102,7 @@ class ScheduledTaskUtility{
                 
                 if($product_post->save()){
                     /* Notify the partner owner of this product post that his/her item was ended */
-                    $notification_check = Utility::notification_check($row->partner_id, $row->id, 'partner_product_post_end');
+                    $notification_check = Utility::notification_check($row->partner_id, $row->id, 'partner_product_post_end', $notification_type);
                             
                     if($notification_check){
                         $email_notification_details = Utility::email_notification_details('partner_product_post_end',$url_link);

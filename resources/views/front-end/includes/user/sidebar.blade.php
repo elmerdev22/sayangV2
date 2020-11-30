@@ -44,16 +44,20 @@
         {{-- <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a> --}}
     </div>
 
-    <a href="#notification" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu">
+    <a href="#notification" class="list-group-item {{\Route::is('front-end.user.notifications.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-bell"></span> Notifications 
         <i class="fa fa-chevron-left float-right"></i>
     </a>
-
-    <div class="collapse mb-1" id="notification">
-        <a href="" class="list-group-item">
-            <span class="fas fa-chevron-right mr-1 ml-2"></span> Order Updates</span>
+    
+    <div class="collapse {{\Route::is('front-end.user.notifications.*') ? 'show':''}} mb-1" id="notification">
+        <a href="{{route('front-end.user.notifications.index')}}" class="list-group-item {{\Route::is('front-end.user.notifications.index') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            Order Updates
         </a>
-        <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Activity </a>
+        <a href="{{route('front-end.user.notifications.activity')}}" class="list-group-item {{\Route::is('front-end.user.notifications.activity') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            Activity
+        </a>
     </div>
     
     <a href="#bids" class="list-group-item {{\Route::is('front-end.user.my-bids.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">

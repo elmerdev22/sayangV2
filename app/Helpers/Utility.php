@@ -764,18 +764,20 @@ class Utility{
         return $data;
     }
 
-    public static function notification_check($user_account_id, $product_post_id, $settings_key){
+    public static function notification_check($user_account_id, $product_post_id, $settings_key, $notification_type){
         
         $data = Notification::where('user_account_id', $user_account_id)
                 ->where('product_post_id', $product_post_id)
                 ->where('type', $settings_key)
+                ->where('notification_type', $notification_type)
                 ->count();
 
         if($data == 0){
-            $notif                  = new Notification();
-            $notif->user_account_id = $user_account_id;
-            $notif->product_post_id = $product_post_id;
-            $notif->type            = $settings_key;
+            $notif                    = new Notification();
+            $notif->user_account_id   = $user_account_id;
+            $notif->product_post_id   = $product_post_id;
+            $notif->type              = $settings_key;
+            $notif->notification_type = $notification_type;
             $notif->save();
             $data = true;
         }

@@ -20,16 +20,17 @@
                         $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
                     }
                 @endphp
-                @if ($row->product_post_id != null)
-                <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="dropdown-item">
-                @else
-                    <a class="dropdown-item">
-                @endif
+                <a  @if ($row->product_post_id != null) 
+                        href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                    @endif 
+                class="dropdown-item" 
+                wire:click="click('{{$row->id}}')">
+                
                         <div class="media">
                             <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                    {{Str::limit($row->web_notification_settings->title, 20, '...')}}
+                                    {{Str::limit($row->web_notification_settings->title, 18, '...')}}
                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                 </h3>
                                 <p class="text-sm">{{Str::limit($row->web_notification_settings->message, 35, '...')}}</p>

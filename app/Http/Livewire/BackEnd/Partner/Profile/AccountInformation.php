@@ -50,7 +50,7 @@ class AccountInformation extends Component
     		$partner 			   = Partner::find($this->data->partner->id);
     		$partner->is_activated = true;
     		if($partner->save()){
-                $notification_check = Utility::notification_check($this->data->id, null, 'application_approved_by_admin');
+                $notification_check = Utility::notification_check($this->data->id, null, 'application_approved_by_admin','activity');
 
                 if($notification_check){
                     $details = Utility::email_notification_details('application_approved_by_admin', route('partner.login'));

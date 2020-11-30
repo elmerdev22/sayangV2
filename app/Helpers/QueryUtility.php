@@ -568,14 +568,19 @@ class QueryUtility{
 		return $data;
 	}
 
-	public static function notifications($user_account_id){
+	public static function notifications($user_account_id, $notification_type = null){
 		
 		$data = Notification::with(['product_post.product.partner.user_account','web_notification_settings'])
-                ->where('is_read', 0)
                 ->where('user_account_id', $user_account_id)
-                ->orderBy('created_at','desc')
-				->get();
+				->orderBy('created_at','desc');
 
-		return $data;
+		if($notification_type != null){
+			$data->where('notification_type', $notification_type);
+		}
+		else{
+			$data->where('is_read', 0);
+		}
+
+		return $data->get();
 	}
 }
