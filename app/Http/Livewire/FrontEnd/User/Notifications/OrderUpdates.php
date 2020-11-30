@@ -34,9 +34,12 @@ class OrderUpdates extends Component
     }
 
     public function read_all(){
-        $data          = Notification::where('user_account_id', $this->account->id)->where('notification_type', 'order_updates')->first();
-        $data->is_read = 1;
-        $data->save();
-        $this->emit('refresh_notifications', true);
+
+        Notification::where('user_account_id', $this->account->id)->where('notification_type', 'activity')
+                    ->update([
+                        'is_read' => 1
+                    ]);
+        $this->emit('updateNotifications');
+
     }
 }
