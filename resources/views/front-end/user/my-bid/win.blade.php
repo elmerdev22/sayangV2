@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Change Password')
+@section('title','Bids - Win')
 @section('page_header')
     @php 
         $page_header = [
@@ -21,7 +21,7 @@
         </div>
     </aside> <!-- col.// -->
     <main class="col-md-9">
-        {{-- @livewire('front-end.user.my-bid.active') --}}
+        @livewire('front-end.user.my-bid.win')
     </main> <!-- col.// -->
 </div>
 

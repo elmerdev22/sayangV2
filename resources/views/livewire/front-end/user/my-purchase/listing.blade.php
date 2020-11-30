@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>{{date('F/d/Y h:i:s A', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->status == 'cancelled')
                                         <span class="badge badge-danger">Cancelled</span>

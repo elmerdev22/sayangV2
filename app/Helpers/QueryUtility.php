@@ -410,7 +410,7 @@ class QueryUtility{
 	}
 
 	
-	public static function user_bids(array $filter = []){
+	public static function bids(array $filter = []){
 		if(isset($filter['select'])){
 			$select = $filter['select'];
 		}else{

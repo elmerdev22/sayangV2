@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Active Bids</h5> 
+            <h5 class="card-title">Win Bids</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                 </button>
@@ -26,9 +26,6 @@
                                 Date End
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_end'])
                             </th>
-                            <th class="table-sort" wire:click="sort('product_posts.date_end')">
-                                Time Left 
-                            </th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -36,20 +33,10 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->date_end))}}</td>
+                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_start))}}</td>
+                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_end))}}</td>
                                 <td>
-                                    <div class="bg-danger">
-                                        <small>
-                                            <span class="fas fa-clock"></span> 
-                                            <span class="countdown">
-                                                {{$row->date_end}}
-                                            </span>
-                                        </small>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
+                                    <a class="btn btn-warning btn-sm" href="#">Pay now</a>
                                 </td>
                             </tr>
                         @empty

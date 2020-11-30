@@ -31,6 +31,7 @@ class Active extends Component
         ];
         
 		$filter['where']['bids.user_account_id'] = $this->account->id;
+		$filter['where']['product_posts.status'] = 'active';
 		$filter['where']['bids.status']          = 'active';
 		
 		if($this->search){
@@ -46,7 +47,7 @@ class Active extends Component
 			$filter['order_by'] = $sort_table;
 		}
 
-		return QueryUtility::user_bids($filter)->groupBy('bids.product_post_id')->paginate($this->show_entries);
+		return QueryUtility::bids($filter)->groupBy('bids.product_post_id')->paginate($this->show_entries);
     }
 
     public function updatingSearch(){
@@ -54,7 +55,8 @@ class Active extends Component
 	}
     
     public function render(){
-        $data = $this->data();
+		$data = $this->data();
+		// dd($data);
         return view('livewire.front-end.user.my-bid.active', compact('data'));
     }
 

@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Change Password')
+@section('title','Bids - Active')
 @section('page_header')
     @php 
         $page_header = [
