@@ -35,7 +35,7 @@ class OrderUpdates extends Component
 
     public function read_all(){
 
-        Notification::where('user_account_id', $this->account->id)->where('notification_type', 'activity')
+        Notification::where('user_account_id', $this->account->id)->where('notification_type', 'order_updates')
                     ->update([
                         'is_read' => 1
                     ]);
