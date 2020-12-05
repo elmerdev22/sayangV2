@@ -196,9 +196,9 @@
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
         }
       });
-      
+
       $.ajax({
-        type:"POST",
+        method:"POST",
         contentType: 'application/json',
         url: "https://f05bbe51-29ad-489d-8255-35e252bb86ed.pushnotifications.pusher.com/publish_api/v1/instances/f05bbe51-29ad-489d-8255-35e252bb86ed/publishes",
         data:{
