@@ -193,13 +193,14 @@
 
       $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            "contentType ": "application/json",
+            "Authorization": "Bearer A276677AB1C574CBF0F5FEA2C90C4BF3FA9DF6165721E906FB0D684432DF5B20"
         }
       });
 
       $.ajax({
         method:"POST",
-        contentType: 'application/json',
         url: "https://f05bbe51-29ad-489d-8255-35e252bb86ed.pushnotifications.pusher.com/publish_api/v1/instances/f05bbe51-29ad-489d-8255-35e252bb86ed/publishes",
         data:{
           "interests":["hello"],
