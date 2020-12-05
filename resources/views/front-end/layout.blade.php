@@ -190,6 +190,32 @@
       .then(() => beamsClient.addDeviceInterest('hello'))
       .then(() => console.log('Successfully registered and subscribed!'))
       .catch(console.error);
+
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+      });
+      
+      $.ajax({
+        type:"POST",
+        contentType: 'application/json',
+        url: "https://f05bbe51-29ad-489d-8255-35e252bb86ed.pushnotifications.pusher.com/publish_api/v1/instances/f05bbe51-29ad-489d-8255-35e252bb86ed/publishes",
+        data:{
+          "interests":["hello"],
+          "web":
+          {
+            "notification":{
+              "title":"Hello",
+              "body":"Hello, world!"
+            }
+          }
+        },
+        success:function(response){
+          console.log(response);
+        },
+       });
+
   </script>
   @yield('js')
   @stack('scripts')
