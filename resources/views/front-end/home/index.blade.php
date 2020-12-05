@@ -7,7 +7,7 @@
 .main-text
 {
     position: absolute;
-    top: 50px;
+    top: 80px;
 }
 </style>
 @endsection
