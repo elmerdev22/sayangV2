@@ -11,6 +11,8 @@ use QueryUtility;
 
 class Notification extends Component
 {
+    protected $listeners = ['updateNotifications' => '$refresh'];
+
     public function mount(){
         $this->auth    = Auth::user();
         $this->account = UserAccount::where('user_id', $this->auth->id)->firstOrFail();

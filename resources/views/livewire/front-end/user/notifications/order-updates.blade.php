@@ -45,9 +45,9 @@
                                         @endif
                                     >
                                 
-                                        <div class="media">
+                                        <div class="media pt-2">
                                             <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
-                                            <div class="media-body">
+                                            <div class="media-body text-left">
                                                 <h3 class="dropdown-item-title">
                                                     {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
