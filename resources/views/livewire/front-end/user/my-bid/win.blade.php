@@ -23,7 +23,7 @@
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_start'])
                             </th>
                             <th class="table-sort" wire:click="sort('product_posts.date_end')">
-                                Date End
+                                Date Ended
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_end'])
                             </th>
                             <th class="text-center">Action</th>

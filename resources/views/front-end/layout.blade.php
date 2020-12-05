@@ -116,6 +116,7 @@
      <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
      <!-- Pusher JS -->
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
     <!-- Animate -->
     <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
     <!-- Countdown JS -->
@@ -179,6 +180,16 @@
           }
       });
     });
+  </script>
+  <script>
+    const beamsClient = new PusherPushNotifications.Client({
+      instanceId: 'f05bbe51-29ad-489d-8255-35e252bb86ed',
+    });
+  
+    beamsClient.start()
+      .then(() => beamsClient.addDeviceInterest('hello'))
+      .then(() => console.log('Successfully registered and subscribed!'))
+      .catch(console.error);
   </script>
   @yield('js')
   @stack('scripts')
