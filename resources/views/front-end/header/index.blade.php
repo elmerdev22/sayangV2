@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top nav-fixed">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="{{asset('images/logo/logo.png')}}" height="45" class="d-inline-block align-top" alt="">
@@ -14,7 +14,7 @@
               <a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">
                 Categories
               </a>
-                <div aria-labelledby="megamneu" class="dropdown-menu border p-0 m-0">
+                <div aria-labelledby="megamneu" class="dropdown-menu border-0 shadow-sm p-0 m-0">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">

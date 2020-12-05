@@ -94,7 +94,7 @@
         </div>
 
         @if(!Request::is('admin/login'))
-          <footer class="pt-5 bg-light">
+          <footer class="pt-5 shadow">
               @include('front-end.footer.index')
           </footer>
         @endif
@@ -187,9 +187,14 @@
     });
   
     beamsClient.start()
-      .then(() => beamsClient.addDeviceInterest('debug-hello'))
-      .then(() => console.log('Successfully registered and subscribed!'))
-      .catch(console.error);
+    .then(beamsClient => beamsClient.getDeviceId())
+    .then(deviceId =>
+      console.log('Successfully registered with Beams. Device ID:', deviceId)
+    )
+    .then(() => beamsClient.addDeviceInterest('debug-hello'))
+    .then(() => beamsClient.getDeviceInterests())
+    .then(interests => console.log('Current interests:', interests))
+    .catch(console.error);
 
   </script>
   @yield('js')
