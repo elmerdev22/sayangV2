@@ -53,7 +53,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-xs">View Details</a>
+                                    <a href="" class="btn btn-warning btn-xs">View Details</a>
                                 </td>
                             </tr>
                         @empty
