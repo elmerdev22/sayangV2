@@ -25,6 +25,7 @@
                         @forelse($data as $row)
                         
                             @php
+                                $link = '';
                                 if($row->product_post_id == null){
                                     $featured_photo = 'https://www.flaticon.com/svg/static/icons/svg/1827/1827370.svg';
                                 }
@@ -38,7 +39,12 @@
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
                                     <a @if ($row->product_post_id != null) 
-                                            href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                                            @if ($row->type == 'bidder_won')
+                                                $link = {{route('front-end.user.my-bids.win')}}
+                                            @else 
+                                                $link = '#';
+                                            @endif 
+                                            href="{{$link}}" 
                                         @endif 
                                         @if ($row->is_read == 0)
                                             wire:click="click('{{$row->id}}')"
