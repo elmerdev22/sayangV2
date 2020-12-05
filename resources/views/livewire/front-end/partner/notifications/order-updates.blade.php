@@ -48,10 +48,10 @@
                                             <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                                             <div class="media-body">
                                                 <h3 class="dropdown-item-title">
-                                                    {{Str::limit($row->web_notification_settings->title, 18, '...')}}
+                                                    {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                                 </h3>
-                                                <p class="text-sm">{{Str::limit($row->web_notification_settings->message, 35, '...')}}</p>
+                                                <p class="text-sm">{{$row->web_notification_settings->message}}</p>
                                             </div>
                                         </div>
                                     </a>
