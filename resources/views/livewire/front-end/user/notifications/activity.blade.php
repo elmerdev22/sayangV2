@@ -26,7 +26,7 @@
                         
                             @php
                                 if($row->product_post_id == null){
-                                    $featured_photo = 'https://www.flaticon.com/svg/static/icons/svg/1827/1827370.svg';
+                                    $featured_photo = "{{asset('images/default-photo/notification-icon.png')}}";
                                 }
                                 else{
                                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
