@@ -39,12 +39,12 @@
                                 <p>Banks & Cards</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="javascript:void(0);" class="nav-link" data-toggle="modal" data-target="#change_password">
                                 <i class="nav-icon fas"></i>
                                 <p>Change Password</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 

@@ -48,7 +48,70 @@
                         @endif
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="card widget-user-2 bg-white">
+                            <div class="row ">
+                                <div class="col-md-4">
+                                    <div class="p-4">
+
+                                        <div class="widget-user-header">
+                                            <div class="widget-user-image">
+                                              <img class="img-circle elevation-1 mr-3" src="{{$store_photo}}" alt="User Avatar">
+                                            </div>
+                                            <!-- /.widget-user-image -->
+                                            <h5>Elmer shop</h5>
+                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-sm">
+                                                <span class="fas fa-store"></span> View Shop
+                                            </a>
+                                          </div>
+
+                                        {{-- @livewire('front-end.profile.partner.follow-button', ['partner_id' => $product->partner_id ]) --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pt-3">
+                                    <div class="row widget-user-header">
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-star"></span> 
+                                                <span class="text-muted">Ratings :</span>
+                                                <span class="text-warning">4.7</span>
+                                                <small>(344 rating)</small>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-store"></span>
+                                                <span class="text-muted">Products :</span>
+                                                <span class="text-warning">{{number_format(Utility::count_products($product->partner_id) ,0)}}</span> 
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-users"></span>
+                                                <span class="text-muted">Followers :</span>
+                                                <span class="text-warning">{{Utility::count_followers($product->partner_id)}}</span> 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pt-3">
+                                    <div class="row widget-user-header">
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-map-marker-alt"></span> 
+                                                <span class="text-muted">Address :</span>
+                                                {{$product->address}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         <nav class="w-100">
                             <div class="nav nav-tabs" id="product-tab" role="tablist">
@@ -113,7 +176,7 @@
 @endsection
 @section('js')
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb151db1c817c52"></script>
+{{-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb151db1c817c52"></script> --}}
 
 <!-- Glasscase -->
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>

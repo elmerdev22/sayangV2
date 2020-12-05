@@ -661,6 +661,14 @@ class Utility{
         return Follower::where('partner_id', $partner_id)->count();
     }
 
+    public static function count_products($partner_id){
+        return DB::table('product_posts')
+                ->join('products', 'products.id', '=', 'product_posts.product_id')
+                ->where('products.partner_id', $partner_id)
+                ->where('product_posts.status', 'active')
+                ->count();
+    }
+
     public static function price_percentage($number_1, $number_2){
         $number_1 = self::decimal_format($number_1);
         $number_2 = self::decimal_format($number_2);

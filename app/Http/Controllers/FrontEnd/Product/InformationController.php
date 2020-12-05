@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use QueryUtility;
+use UploadUtility;
 use Utility;
 use Session;
 
@@ -17,6 +18,10 @@ class InformationController extends Controller
             'products.*',
             'product_posts.id as product_post_id',
             'product_posts.product_id',
+            'partners.slug as partner_slug',
+            'partners.address',
+            'partners.created_at as joined',
+            'user_accounts.key_token as user_account_key_token',
         ];
         $filter['where']['products.slug'] = $slug;
         $filter['where']['product_posts.key_token'] = $key_token;
@@ -31,6 +36,8 @@ class InformationController extends Controller
             $post_status == 'ended' || 
             $post_status == 'cancelled'
             )
+            ProductPost::with(['product', 'product.partner'])
+            ->find($this->product_post_id);
         */
         $trigger_place_bid = false;
         $force_disabled    = false;
@@ -43,7 +50,9 @@ class InformationController extends Controller
             $trigger_place_bid = true;
         }
 
-    	return view('front-end.product.information', compact('product', 'trigger_place_bid', 'force_disabled'));
+        $store_photo = UploadUtility::account_photo($product->user_account_key_token , 'business-information/store-photo', 'cover_photo');
+
+    	return view('front-end.product.information', compact('product', 'trigger_place_bid', 'force_disabled', 'store_photo'));
     }
 
     public function redirect($slug, $key_token, $type){

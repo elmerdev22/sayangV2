@@ -56,7 +56,7 @@
                                             <label>
                                                 <span class="fas fa-store"></span>
                                                 <span class="text-muted">Products :</span>
-                                                <span class="text-warning">57</span> 
+                                                <span class="text-warning">{{number_format(Utility::count_products($data['partner_id']) ,0)}}</span> 
                                             </label>
                                         </div>
                                         <div class="col-12">
