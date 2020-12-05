@@ -25,7 +25,7 @@
                         
                             @php
                                 if($row->product_post_id == null){
-                                    $featured_photo = "{{asset('images/default-photo/notification-icon.png')}}";
+                                    $featured_photo = asset('images/default-photo/notification-icon.png');
                                 }
                                 else{
                                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
