@@ -8,6 +8,11 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <a class="float-right cursor-pointer" wire:click="read_all()"><u>Mark all as read</u></a>
+                </div>
+            </div>
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
@@ -46,7 +51,7 @@
                                                     {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                                 </h3>
-                                                <p class="text-sm">{{Str::limit($row->web_notification_settings->message, 35, '...')}}</p>
+                                                <p class="text-sm">{{$row->web_notification_settings->message)}}</p>
                                             </div>
                                         </div>
                                     </a>

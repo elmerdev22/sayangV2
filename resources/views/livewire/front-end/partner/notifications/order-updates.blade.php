@@ -8,12 +8,16 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <a class="float-right cursor-pointer" wire:click="read_all()"><u>Mark all as read</u></a>
+                </div>
+            </div>
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
                         <tr>
                             <th>Order Updates</th>
-                            <th width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,9 +55,6 @@
                                             </div>
                                         </div>
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-xs">View Details</a>
                                 </td>
                             </tr>
                         @empty
