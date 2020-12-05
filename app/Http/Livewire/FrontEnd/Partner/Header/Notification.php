@@ -11,7 +11,7 @@ use QueryUtility;
 
 class Notification extends Component
 {
-    protected $listeners = ['updateNotifications' => '$refresh'];
+    protected $listeners = ['updateNotificationsPartner' => '$refresh'];
 
     public function mount(){
         $this->auth    = Auth::user();

@@ -39,7 +39,7 @@ class Activity extends Component
                     ->update([
                         'is_read' => 1
                     ]);
-        $this->emit('updateNotifications');
+        $this->emit('updateNotificationsPartner');
 
     }
 }
