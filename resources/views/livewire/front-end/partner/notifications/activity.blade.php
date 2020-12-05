@@ -24,8 +24,6 @@
                         @forelse($data as $row)
                         
                             @php
-                                $link = '';
-
                                 if($row->product_post_id == null){
                                     $featured_photo = 'https://www.flaticon.com/svg/static/icons/svg/1827/1827370.svg';
                                 }
@@ -40,11 +38,10 @@
                                 <td>
                                     <a @if ($row->product_post_id != null)
                                             @if ($row->type == 'partner_product_post_end')
-                                                $link = {{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}
+                                                href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                                             @else 
-                                                $link = '#';
+                                                href="#";
                                             @endif 
-                                            href="{{$link}}" 
                                         @endif 
                                         @if ($row->is_read == 0)
                                             wire:click="click('{{$row->id}}')"
