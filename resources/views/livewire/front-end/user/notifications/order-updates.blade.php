@@ -37,7 +37,7 @@
 
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a @if ($row->product_post_id != null) 
+                                    <a target="_blank" @if ($row->product_post_id != null) 
                                             href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
                                         @endif 
                                         @if ($row->is_read == 0)

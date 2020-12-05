@@ -36,7 +36,7 @@
 
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a @if ($row->product_post_id != null)
+                                    <a target="_blank" @if ($row->product_post_id != null) 
                                             @if ($row->type == 'partner_product_post_end')
                                                 href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                                             @else 

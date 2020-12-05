@@ -31,6 +31,8 @@ class OrderUpdates extends Component
         $data          = Notification::where('id', $id)->first();
         $data->is_read = 1;
         $data->save();
+        $this->emit('updateNotifications');
+
     }
 
     public function read_all(){

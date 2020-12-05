@@ -37,9 +37,11 @@
 
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a @if ($row->product_post_id != null) 
+                                    <a target="_blank" @if ($row->product_post_id != null) 
                                             @if ($row->type == 'bidder_won')
                                                 href="{{route('front-end.user.my-bids.win')}}"
+                                            @elseif($row->type == 'bidder_lose')
+                                                href="{{route('front-end.user.my-bids.lose')}}"
                                             @else 
                                                 href="#";
                                             @endif 
