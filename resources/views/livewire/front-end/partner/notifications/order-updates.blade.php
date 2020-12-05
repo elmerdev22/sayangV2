@@ -63,6 +63,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                <!-- NOTE: Always put the pagination after the .table-responsive class -->
+                @include('front-end.includes.datatables.pagination', ['pagination_items' => $data])
             </div>
         </div>
     </div> <!-- card.// -->

@@ -13,7 +13,6 @@
                     <thead>
                         <tr>
                             <th>Activity</th>
-                            <th width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,16 +43,13 @@
                                             <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                                             <div class="media-body">
                                                 <h3 class="dropdown-item-title">
-                                                    {{Str::limit($row->web_notification_settings->title, 18, '...')}}
+                                                    {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                                 </h3>
                                                 <p class="text-sm">{{Str::limit($row->web_notification_settings->message, 35, '...')}}</p>
                                             </div>
                                         </div>
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-warning btn-xs">View Details</a>
                                 </td>
                             </tr>
                         @empty
@@ -64,6 +60,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- NOTE: Always put the pagination after the .table-responsive class -->
+            @include('front-end.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
     </div> <!-- card.// -->
 </div>
