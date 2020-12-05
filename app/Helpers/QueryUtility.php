@@ -581,6 +581,6 @@ class QueryUtility{
 			$data->where('is_read', 0);
 		}
 
-		return $data->get();
+		return $data->paginate(10);
 	}
 }
