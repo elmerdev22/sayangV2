@@ -82,11 +82,25 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.notifications.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.notifications.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-bell"></i>
-                        <p>Notifications</p>
+                        <p>Notifications <i class="right fas fa-angle-left"></i></p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.notifications.index')}}" class="nav-link {{Route::is('front-end.partner.notifications.index') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Order Updates</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.notifications.activity')}}" class="nav-link {{Route::is('front-end.partner.notifications.activity') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Activity</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('front-end.partner.qr-code.index')}}" class="nav-link {{\Route::is('front-end.partner.qr-code.index') ? 'active' : ''}}">

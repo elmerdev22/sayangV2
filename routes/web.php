@@ -486,7 +486,6 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@index'
             ]);
 
-            
         });
 
         // Orders & Receipts
@@ -501,6 +500,22 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 			Route::get('/list/{id}', [
 		        'as' 	=> 'track',
 		        'uses'  => $c.'@track'
+            ]);
+            
+        });
+
+        // Notifications
+        Route::group(['prefix' => 'notifications', 'as' => 'notifications.'], function (){
+			$c = 'NotificationsController';
+			
+			Route::get('/order-updates', [
+		        'as' 	=> 'index',
+		        'uses'  => $c.'@index'
+            ]);
+
+			Route::get('/activity', [
+		        'as' 	=> 'activity',
+		        'uses'  => $c.'@activity'
             ]);
             
         });
