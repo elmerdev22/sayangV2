@@ -12,7 +12,19 @@ class OrderAndReceiptController extends Controller
     public function index(){
         return view('front-end.partner.order-and-receipt.index');
     }
+    
+    public function completed(){
+        return view('front-end.partner.order-and-receipt.completed');
+    }
+    
+    public function payment_confirmed(){
+        return view('front-end.partner.order-and-receipt.payment-confirmed');
+    }
 
+    public function order_placed(){
+        return view('front-end.partner.order-and-receipt.order-placed');
+    }
+    
     public function track($order_no){
         $order = Order::with(['billing'])
             ->where('orders.partner_id', Utility::auth_partner()->id)

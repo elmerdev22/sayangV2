@@ -502,6 +502,20 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@track'
             ]);
             
+			Route::get('/completed', [
+		        'as' 	=> 'completed',
+		        'uses'  => $c.'@completed'
+            ]);
+            
+			Route::get('/payment-confirmed', [
+		        'as' 	=> 'payment-confirmed',
+		        'uses'  => $c.'@payment_confirmed'
+            ]);
+
+			Route::get('/order-placed', [
+		        'as' 	=> 'order-placed',
+		        'uses'  => $c.'@order_placed'
+            ]);
         });
 
         // Notifications

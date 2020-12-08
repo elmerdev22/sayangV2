@@ -20,8 +20,15 @@
                         $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
                     }
                 @endphp
+                
                 <a  @if ($row->product_post_id != null) 
-                        href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                        @if ($row->type == 'bidder_won')
+                            href="{{route('front-end.user.my-bids.win')}}"
+                        @elseif($row->type == 'bidder_lose')
+                            href="{{route('front-end.user.my-bids.lose')}}"
+                        @else 
+                            href="#";
+                        @endif 
                     @endif 
                 class="dropdown-item" 
                 wire:click="click('{{$row->id}}')">
