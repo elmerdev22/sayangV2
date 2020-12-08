@@ -497,7 +497,7 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@index'
             ]);
 
-			Route::get('/list/{id}', [
+			Route::get('/order/{id}', [
 		        'as' 	=> 'track',
 		        'uses'  => $c.'@track'
             ]);

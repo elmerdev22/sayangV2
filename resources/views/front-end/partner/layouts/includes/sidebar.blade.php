@@ -74,12 +74,12 @@
                         <p>Orders & Receipt <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{route('front-end.partner.order-and-receipt.index')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.index') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{route('front-end.partner.order-and-receipt.completed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.completed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
