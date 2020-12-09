@@ -107,15 +107,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.notifications.index')}}" class="nav-link {{Route::is('front-end.partner.notifications.index') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Order Updates</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('front-end.partner.notifications.activity')}}" class="nav-link {{Route::is('front-end.partner.notifications.activity') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Activity</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.notifications.index')}}" class="nav-link {{Route::is('front-end.partner.notifications.index') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Order Updates</p>
                             </a>
                         </li>
                     </ul>

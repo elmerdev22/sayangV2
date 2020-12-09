@@ -576,11 +576,14 @@ class QueryUtility{
 
 		if($notification_type != null){
 			$data->where('notification_type', $notification_type);
+
+			return $data->paginate(10);
 		}
 		else{
 			$data->where('is_read', 0);
+
+			return $data->get();
 		}
 
-		return $data->paginate(10);
 	}
 }

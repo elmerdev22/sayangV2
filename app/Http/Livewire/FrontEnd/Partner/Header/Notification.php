@@ -24,4 +24,10 @@ class Notification extends Component
 
         return view('livewire.front-end.partner.header.notification', compact('data'));
     }
+
+    public function click($id){
+        $data          = Notifications::where('id', $id)->first();
+        $data->is_read = 1;
+        $data->save();
+    }
 }

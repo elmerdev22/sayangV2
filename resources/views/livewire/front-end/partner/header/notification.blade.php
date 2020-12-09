@@ -19,7 +19,15 @@
                     }
                 @endphp
                 @if ($row->product_post_id != null)
-                <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="dropdown-item">
+                <a target="_blank" 
+                    @if ($row->type == 'partner_product_post_end')
+                        href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                    @else 
+                        href="#";
+                    @endif 
+
+                    wire:click="click('{{$row->id}}')"    
+                    class="dropdown-item">
                 @else
                     <a class="dropdown-item">
                 @endif
@@ -42,6 +50,6 @@
                 @endforelse
             </div>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        <a href="{{route('front-end.partner.notifications.activity')}}" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
 </div>

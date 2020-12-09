@@ -810,6 +810,37 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
 .product-card-btn-purchase{
   margin-left: 3.5px;
 }
+
+  /* Rating Star Widgets Style */
+  .rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    
+    -moz-user-select:none;
+    -webkit-user-select:none;
+  }
+  .rating-stars ul > li.star {
+    display:inline-block;
+    
+  }
+
+  /* Idle State of the stars */
+  .rating-stars ul > li.star > i.fa {
+    font-size:1.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+  }
+
+  /* Hover state of the stars */
+  .rating-stars ul > li.star.hover > i.fa {
+    color:var(--sayang-color);
+  }
+
+  /* Selected state of the stars */
+  .rating-stars ul > li.star.selected > i.fa {
+    color:var(--sayang-color);
+  }
+  
+
 @media screen and (max-width: 567px){
   .product-card-img-list{
     padding-right: 7.5px;
