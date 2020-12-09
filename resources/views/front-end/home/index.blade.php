@@ -39,7 +39,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="main-text hidden-xs">
+  <div class="main-text hidden-xs d-none d-lg-block d-xl-none">
     <div class="col-md-12">
       <section class="jumbotron bg-transparent">
         <div class="container">
@@ -92,10 +92,10 @@ $('.owl-carousel').owlCarousel({
     responsiveClass:true,
     responsive:{
         0:{
-            items:6
+            items:4
         },
         600:{
-            items:8
+            items:6
         },
         1000:{
             items:10

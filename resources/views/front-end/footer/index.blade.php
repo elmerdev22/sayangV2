@@ -16,7 +16,7 @@
             <div class="col-md-8">
                 <small class="text-muted"><i class="far fa-copyright"></i> Copyright © {{date('Y')}} All Rights Reserved by <a href="/">{{env('APP_NAME')}}</a> </small>
             </div>
-            <div class="col-md-4 text-right">
+            <div class="col-md-4 text-sm-left text-md-center text-right ">
                 <small class="text-muted">{{env('APP_NAME')}} {{date('Y')}} | Version {{env('APP_VERSION', 'not_set_in_ENV')}}</small>
             </div>
         </div>
