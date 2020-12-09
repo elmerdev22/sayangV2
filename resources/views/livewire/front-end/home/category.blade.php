@@ -7,9 +7,9 @@
                     <div class="item shadow-sm">
                         <div class="card text-center shadow-none" style="width: auto;">
                             <div class="card-body category-icon">
-                            <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap">
+                                <img class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap">
                             </div>
-                            <span class="mb-2">
+                            <span class="mb-2 d-none d-lg-block ">
                                 {{$catalog->name}}
                             </span>
                         </div>

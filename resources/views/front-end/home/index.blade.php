@@ -39,7 +39,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="main-text hidden-xs d-none d-lg-block d-xl-none">
+  <div class="main-text hidden-xs d-none d-lg-block ">
     <div class="col-md-12">
       <section class="jumbotron bg-transparent">
         <div class="container">
