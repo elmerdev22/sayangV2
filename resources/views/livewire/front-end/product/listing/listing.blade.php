@@ -1,14 +1,14 @@
 <div>
     <header class="border-bottom border-top mb-4 py-3">
         <div class="form-inline">
-            <span class="mr-md-auto" id="total-item_found">{{number_format($total_items,0)}} Items found </span>
-            <select class="mr-2 form-control" id="sort-by" wire:model="sort_by">
+            <span class="mr-md-auto my-1" id="total-item_found">{{number_format($total_items,0)}} Items found </span>
+            <select class="mr-2 form-control my-1" id="sort-by" wire:model="sort_by">
                 <option value="latest_items">Latest items</option>
                 <option value="cheapest">Cheapest</option>
                 <!-- <option value="most_popular">Most Popular</option> -->
                 <!-- <option value="trending">Trending</option> -->
             </select>
-            <div class="btn-group">
+            <div class="btn-group my-1">
                 <a href="#" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
                     <i class="fa fa-th"></i>
                 </a>

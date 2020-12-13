@@ -19,7 +19,7 @@ class LogoutController extends Controller
             return redirect()->route('admin.login');
         }
         else{
-            return redirect()->url('/login');
+            return back();
         }
     }
 }

@@ -14,11 +14,8 @@
 @section('content')
           
 <div class="row">
-    <aside class="col-md-3">
-        <!-- menu -->
-        <div id="MainMenu">
-            @include('front-end.includes.user.sidebar')
-        </div>
+    <aside class="col-md-3 mb-3">
+        @include('front-end.includes.user.aside')
     </aside> <!-- col.// -->
     <main class="col-md-9">
         @livewire('front-end.user.my-bid.lose')

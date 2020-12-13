@@ -3,121 +3,173 @@
         <a class="navbar-brand" href="/">
             <img src="{{asset('images/logo/logo.png')}}" height="45" class="d-inline-block align-top" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button"  data-toggle="modal" data-target="#modal_aside_left" class="btn btn-primary" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            @if(Utility::top_nav_validate_auth_verify())
-            <li class="nav-item dropdown megamenu">
-              <a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">
-                Categories
-              </a>
-                <div aria-labelledby="megamneu" class="dropdown-menu border-0 shadow-sm p-0 m-0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-4">
-                                    @livewire('front-end.header.category')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            @endif
-            
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('front-end.help-centre.index')}}">Help Centre <small class="fas fa-question"></small> </a>
-            </li>
-
-            @if(Utility::top_nav_validate_auth_verify())
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('front-end.about-us.index')}}">About Us <small class="fas fa-info"></small> </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-list-alt"></small> </a>
-              </li>
-            @endif
-            
-            @if(!Auth::check())
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
-              </li>
-            @endif
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            
-            @auth
-                <div class="widgets-wrap float-md-right">
-
-                @if(Auth::user()->type == 'user')
-                  <div class="widget-header mr-3">
-                    <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
-                      <div class="icon-area">
-                        <i class="fa fa-user text-dark"></i>
+          <ul class="navbar-nav mr-auto">
+              @if(Utility::top_nav_validate_auth_verify())
+              <li class="nav-item dropdown megamenu">
+                  <a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle ">
+                    Categories
+                  </a>
+                  <div aria-labelledby="megamneu" class="dropdown-menu border-0 shadow-sm p-0 m-0">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="p-4">
+                                      @livewire('front-end.header.category')
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                    </a>
                   </div>
+              </li>
+              @endif
+              
+              <li class="nav-item">
+                  <a class="nav-link" href="{{route('front-end.help-centre.index')}}">Help Centre <small class="fas fa-question"></small> </a>
+              </li>
 
-                  @if(Auth::user()->verified_at)
+              @if(Utility::top_nav_validate_auth_verify())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('front-end.about-us.index')}}">About Us <small class="fas fa-info"></small> </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-list-alt"></small> </a>
+                </li>
+              @endif
+              
+              @if(!Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('partner.register')}}">Be a Partner <small class="fas fa-rocket"></small> </a>
+                </li>
+              @endif
+          </ul>
+          <ul class="navbar-nav ml-auto">
+              
+              @auth
+                  <div class="widgets-wrap float-md-right">
+
+                  @if(Auth::user()->type == 'user')
                     <div class="widget-header mr-3">
-                      <a href="{{route('front-end.user.my-cart.index')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
+                      <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">
                         <div class="icon-area">
-                          <i class="fas fa-shopping-cart text-dark"></i>
-                          <span class="notify"><span class="badge badge-warning badge-total-item-in-cart">{{Utility::total_cart_item()}}</span></span>
+                          <i class="fa fa-user text-dark"></i>
                         </div>
                       </a>
                     </div>
 
+                    @if(Auth::user()->verified_at)
+                      <div class="widget-header mr-3">
+                        <a href="{{route('front-end.user.my-cart.index')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
+                          <div class="icon-area">
+                            <i class="fas fa-shopping-cart text-dark"></i>
+                            <span class="notify"><span class="badge badge-warning badge-total-item-in-cart">{{Utility::total_cart_item()}}</span></span>
+                          </div>
+                        </a>
+                      </div>
+
+                      <div class="widget-header mr-3">
+                        @livewire('front-end.user.header.notification')
+                      </div>
+                    @endif
+                    
+                  @elseif(Auth::user()->type == 'partner')
                     <div class="widget-header mr-3">
-                      @livewire('front-end.user.header.notification')
+                      <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
+                        <div class="icon-area">
+                          <i class="fa fa-tachometer-alt text-dark"></i>
+                        </div>
+                      </a>
+                    </div>
+                  @else
+                    <div class="widget-header mr-3">
+                      <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
+                        <div class="icon-area">
+                          <i class="fa fa-tachometer-alt text-dark"></i>
+                        </div>
+                      </a>
                     </div>
                   @endif
                   
-                @elseif(Auth::user()->type == 'partner')
-                  <div class="widget-header mr-3">
-                    <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
-                      <div class="icon-area">
-                        <i class="fa fa-tachometer-alt text-dark"></i>
-                      </div>
-                    </a>
+                    <div class="widget-header mr-3">
+                      <a class="widget-view" href="{{route('auth.logout', ['redirect' => 'user_login'])}}" data-tooltip="Logout" data-tooltip-location="bottom">
+                        <div class="icon-area">
+                          <i class="fas fa-sign-out-alt text-dark"></i>
+                        </div>
+                      </a>
+                    </div>
                   </div>
-                @else
-                  <div class="widget-header mr-3">
-                    <a href="{{route('login-redirect.index')}}" class="widget-view" data-tooltip="Dashboard" data-tooltip-location="bottom">
-                      <div class="icon-area">
-                        <i class="fa fa-tachometer-alt text-dark"></i>
-                      </div>
-                    </a>
-                  </div>
-                @endif
                 
-                  <div class="widget-header mr-3">
-                    <a class="widget-view" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();" data-tooltip="Logout" data-tooltip-location="bottom">
-                      <div class="icon-area">
-                        <i class="fas fa-sign-out-alt text-dark"></i>
-                      </div>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                  </div>
-                </div>
-              
-            @else
-              <li class="nav-item">
-                  <a class="nav-link" href="{{url('/register')}}">Register </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link btn btn-outline-warning" href="{{url('/login')}}">Login</a>
-              </li>
-            @endauth
-        </ul>
+              @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/register')}}">Register </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-warning" href="{{url('/login')}}">Login</a>
+                </li>
+              @endauth
+          </ul>
         </div>
     </div>
 </nav>
+
+<div id="modal_aside_left" class="modal fixed-left fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-aside" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <div class="input-group">
+            <input class="form-control form-control-navbar" type="search" placeholder="Location or Products" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-navbar bg-warning" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </h5>
+      </div>
+      <div class="modal-body m-0 p-0">
+        <nav class="list-group list-group-flush">
+          
+          @if(Utility::top_nav_validate_auth_verify())
+            <a href="#" class="list-group-item"><span class="fas fa-list"></span> Categories</a>
+          @endif
+
+          <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question"></span> Centre</a>
+          
+          @if(Utility::top_nav_validate_auth_verify())
+            <a href="{{route('front-end.about-us.index')}}" class="list-group-item {{\Route::is('front-end.about-us.index') ? 'active':''}}"><span class="fas fa-info"></span> About Us</a>
+            <a href="{{route('front-end.product.list.index')}}" class="list-group-item {{\Route::is('front-end.product.list.index') ? 'active':''}}"><span class="fas fa-list-alt"></span> Products</a>
+          @endif
+          
+          @if(!Auth::check())
+            <a href="{{route('partner.register')}}" class="list-group-item {{\Route::is('partner.register') ? 'active':''}}"><span class="fas fa-rocket"></span> Be a Partner</a>
+          @endif
+
+          @auth
+            @if(Auth::user()->type == 'user')
+              <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="list-group-item"><span class="fa fa-user"></span> My Account</a>
+            @elseif(Auth::user()->type == 'partner')
+              <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt"></span> Dashboard</a>
+            @else
+              <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt"></span> Logout</a>
+            @endif
+            
+            <a href="{{route('auth.logout', ['redirect' => 'user_login'])}}" class="list-group-item"><span class="fas fa-sign-out-alt"></span> Logout</a>
+
+          @else
+            <a href="{{url('/register')}}" class="list-group-item {{\Request::is('register') ? 'active':''}}"><span class="fas fa-user"></span> Register</a>
+            <a href="{{url('/login')}}" class="list-group-item {{\Request::is('login') ? 'active':''}}"><span class="fas fa-sign-in-alt"></span> Login</a>
+          @endauth
+        </nav>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div> <!-- modal-bialog .// -->
+</div> <!-- modal.// -->
