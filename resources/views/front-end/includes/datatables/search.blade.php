@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-7 col-md-8 col-lg-9 text-center text-sm-left">
-		<div class="mt-2">
+		<div class="my-2">
 			Show 
 				<select wire:model="show_entries">
 					@foreach(Utility::datatables_show_entries() as $value)

@@ -7,6 +7,12 @@ use App\Model\Category as Categories;
 
 class Category extends Component
 {
+    public $type;
+    
+    public function mount($type){
+        $this->type = $type;
+    }
+
     public function render()
     {
         $data = Categories::with('sub_categories')

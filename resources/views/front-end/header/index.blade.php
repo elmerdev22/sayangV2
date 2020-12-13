@@ -19,7 +19,7 @@
                           <div class="row">
                               <div class="col-lg-12">
                                   <div class="p-4">
-                                      @livewire('front-end.header.category')
+                                      @livewire('front-end.header.category', ['type' => 'web'])
                                   </div>
                               </div>
                           </div>
@@ -136,7 +136,7 @@
         <nav class="list-group list-group-flush">
           
           @if(Utility::top_nav_validate_auth_verify())
-            <a href="#" class="list-group-item"><span class="fas fa-list"></span> Categories</a>
+            <a href="#"data-dismiss="modal" data-toggle="modal" data-target="#modal_categories" class="list-group-item"><span class="fas fa-list"></span> Categories</a>
           @endif
 
           <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question"></span> Centre</a>
@@ -153,6 +153,11 @@
           @auth
             @if(Auth::user()->type == 'user')
               <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="list-group-item"><span class="fa fa-user"></span> My Account</a>
+              
+              @if(Auth::user()->verified_at)
+                <a href="{{route('front-end.user.my-cart.index')}}" class="list-group-item {{\Route::is('front-end.user.my-cart.index') ? 'active':''}}"><span class="fa fa-shopping-cart"></span> My Cart</a>
+                <a href="{{route('front-end.user.notifications.index')}}" class="list-group-item {{\Route::is('front-end.user.notifications.index') ? 'active':''}}"><span class="fas fa-bell"></span> Notifications</a>
+              @endif
             @elseif(Auth::user()->type == 'partner')
               <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt"></span> Dashboard</a>
             @else
@@ -169,6 +174,22 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div> <!-- modal-bialog .// -->
+</div> <!-- modal.// -->
+
+<div id="modal_categories" class="modal fixed-left fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-aside" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Categories</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body m-0 p-0">
+          @livewire('front-end.header.category', ['type' => 'mobile'])
       </div>
     </div>
   </div> <!-- modal-bialog .// -->
