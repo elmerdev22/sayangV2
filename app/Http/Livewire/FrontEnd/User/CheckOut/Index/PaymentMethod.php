@@ -62,7 +62,9 @@ class PaymentMethod extends Component
                 $this->payment_key_token = null;
             }
         }else if($this->payment_method == 'e_wallet'){
-
+            $this->e_wallet = null;
+        }else if($this->payment_method == 'cash_on_pickup'){
+            $this->e_wallet = null;
         }
 
         $this->emit('set_payment_method', [
@@ -107,7 +109,8 @@ class PaymentMethod extends Component
     }
 
     public function change_payment_method($method){
-        if($method == 'e_wallet' || $method == 'card'){
+        $allowed_method = ['e_wallet', 'card', 'cash_on_pickup'];
+        if(in_array($method, $allowed_method)){
             $this->payment_method = $method;
             $this->initialize_payment_key_token();
             $this->emit('remove_loading_card', true);
