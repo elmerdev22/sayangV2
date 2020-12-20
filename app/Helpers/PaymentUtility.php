@@ -187,4 +187,8 @@ class PaymentUtility{
         return $response;
     }
 
+    public static function allowed_method(){
+        return ['e_wallet', 'card', 'cash_on_pickup'];
+    }
+
 }
