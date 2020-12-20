@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-5">
             <h6 class="text-muted">
-                Payment @if($data->order_payment->status == 'paid') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
+                Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>

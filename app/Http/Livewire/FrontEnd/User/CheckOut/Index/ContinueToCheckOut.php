@@ -41,7 +41,7 @@ class ContinueToCheckOut extends Component
         
         $payment_method = [];
 
-        $this->set_payment_method($payment_method);
+        $this->set_payment_method($payment_method, true);
     }
 
     public function initialize_address(){
@@ -60,7 +60,27 @@ class ContinueToCheckOut extends Component
         }
     }
 
-    public function set_payment_method(array $payment_method = []){
+    public function set_payment_method(array $payment_method = [], $is_init=false){
+        if($is_init){
+            $cart        = Utility::cart($this->account->id, true);
+            $total_price = $cart['total_price'];
+        
+            if($total_price >= PaymentUtility::paymongo_minimum()){
+                $default_e_wallet = PaymentUtility::active_e_wallet(true);
+                $payment_method = [
+                    'payment_method'    => 'e_wallet',
+                    'payment_e_wallet'  => $default_e_wallet['key'],
+                    'payment_key_token' => null,
+                ];
+            }else{
+                $payment_method = [
+                    'payment_method'    => 'cash_on_pickup',
+                    'payment_e_wallet'  => null,
+                    'payment_key_token' => null,
+                ];
+            }
+        }
+
         $this->payment_method = $payment_method;
     }
 
@@ -74,10 +94,12 @@ class ContinueToCheckOut extends Component
 
     public function proceed(){
         $payment_method = $this->payment_method;
+        $cart           = Utility::cart($this->account->id, true);
 
         if(!empty($this->billing_address_id)){
             if(!empty($payment_method)){
-                if($payment_method['payment_method'] != 'e_wallet' && $payment_method['payment_method'] != 'card'){
+                $allowed_method = PaymentUtility::allowed_method();
+                if(!in_array($payment_method['payment_method'], $allowed_method)){
                     $this->emit('remove_loading_card', true);
                     $this->emit('alert', [
                         'type'    => 'error',
@@ -85,9 +107,20 @@ class ContinueToCheckOut extends Component
                         'message' => 'Invalid payment method.'
                     ]);
                     return false;
-                }else{
+                }
+
+                if($payment_method['payment_method'] != 'cash_on_pickup'){
+                    if($cart['total_price'] < PaymentUtility::paymongo_minimum()){
+                        $this->emit('remove_loading_card', true);
+                        $this->emit('alert', [
+                            'type'    => 'error',
+                            'title'   => 'Failed',
+                            'message' => 'Minimum for <b>'.str_replace('_', '-', $payment_method['payment_method']).'</b> is PHP '.number_format(PaymentUtility::paymongo_minimum(),2)
+                        ]);
+                        return false;
+                    }
+                    
                     if($payment_method['payment_method'] == 'e_wallet'){
-    
                         $available_ewallet = [];
                         foreach($this->available_e_wallet as $e_wallet_row){
                             $available_ewallet[] = $e_wallet_row['key'];
@@ -104,19 +137,7 @@ class ContinueToCheckOut extends Component
                         }
                     }
                 }
-    
-                $cart = Utility::cart($this->account->id, true);
-    
-                if($cart['total_price'] < PaymentUtility::paymongo_minimum()){
-                    $this->emit('remove_loading_card', true);
-                    $this->emit('alert', [
-                        'type'    => 'error',
-                        'title'   => 'Failed',
-                        'message' => 'Minimum for transaction is PHP '.PaymentUtility::paymongo_minimum()
-                    ]);
-                    return false;
-                }
-    
+
                 if($this->temporary_account_balance){
                     /*  Do the Insert of Order Transactions
                         and the payment API transaction here...
@@ -125,6 +146,7 @@ class ContinueToCheckOut extends Component
                     DB::beginTransaction();
     
                     try{
+                        $notification_details                  = [];
                         $billing_details                       = [];
                         $billing_details['sub_total']          = $cart['total'];
                         $billing_details['total_discount']     = $cart['total_discount'];
@@ -173,8 +195,16 @@ class ContinueToCheckOut extends Component
                                 $order->qr_code                = Utility::generate_table_token('Order', 'qr_code');
                                 $order->status                 = 'order_placed';
                                 $order->key_token              = Utility::generate_table_token('Order');
+                                
                                 if($order->save()){
-    
+
+                                    $notification_details[] = [
+                                        'partner_id'      => $order->partner_id,
+                                        'billing_no'      => $billing->billing_no,
+                                        'order_no'        => $order->order_no,
+                                        'user_account_id' => $billing->user_account_id //Buyer - user account id
+                                    ];
+                                    
                                     foreach($cart_row['products'] as $order_item_key => $order_item_row){
                                         $order_item                  = new OrderItem();
                                         $order_item->order_id        = $order->id;
@@ -194,19 +224,15 @@ class ContinueToCheckOut extends Component
     
                                     $order_payment                 = new OrderPayment();
                                     $order_payment->order_id       = $order->id;
-                                    $order_payment->payment_method = $this->payment_method['payment_method'];
+                                    $order_payment->payment_method = $payment_method['payment_method'];
                                     
-                                    if(!isset($payment)){
-                                        $order_payment->bank_id      = null;
-                                        $order_payment->account_name = null;
-                                        $order_payment->account_no   = null;
-                                    }else{
+                                    if($payment_method['payment_method'] == 'card'){
                                         $order_payment->card_holder             = ucwords($payment->card_holder);
                                         $order_payment->card_no                 = $payment->card_no;
                                         $order_payment->card_expiration_date    = $payment->card_expiration_date;
                                         $order_payment->card_verification_value = $payment->card_verification_value;
                                     }
-    
+
                                     $order_payment->status    = 'pending';
                                     $order_payment->key_token = Utility::generate_table_token('OrderPayment');
                                     
@@ -350,6 +376,8 @@ class ContinueToCheckOut extends Component
                                     }
 
                                 }
+                            }else if($payment_method['payment_method'] == 'cash_on_pickup'){
+                                
                             }
     
                             $response['success'] = true;
@@ -410,6 +438,19 @@ class ContinueToCheckOut extends Component
                                     'message' => 'An error occured while in order transaction.'
                                 ]);
                             }
+                        }else if($payment_method['payment_method'] == 'cash_on_pickup'){
+                            DB::commit();
+
+                            foreach($notification_details as $notify){
+                                /* After the Transaction via COP, 
+                                   Do the Notification via Email or Web 
+                                */
+                                // DATA: $notify['partner_id'], $notify['billing_no'], $notify['order_no'], $notify['user_account_id']
+                                
+                            }
+
+                            Session::flash('checkout_payment', ['success' => true, 'message' => '']);
+                            return redirect(route('front-end.user.my-purchase.list'));
                         }else{
                             DB::rollback();
                             $this->emit('remove_loading_card', true);

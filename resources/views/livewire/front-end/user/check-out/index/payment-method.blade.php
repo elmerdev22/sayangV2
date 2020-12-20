@@ -27,13 +27,13 @@
             <div class="col-12">
                 <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" 
                     @if($e_wallet != 'gcash') 
-                        @if($total_price >= $component->min_amount('gcash'))
+                        @if($total_price >= $paymongo_minimum)
                             onclick="set_e_wallet('gcash')" 
                         @endif
                     @endif
                 >
-                    @if($total_price < $component->min_amount('gcash'))
-                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($component->min_amount('gcash'))}})</div>
+                    @if($total_price < $paymongo_minimum)
+                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($paymongo_minimum,2)}})</div>
                     @endif
                     @if($e_wallet == 'gcash') 
                         <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
@@ -42,13 +42,13 @@
                 </div>
                 <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" 
                     @if($e_wallet != 'grab_pay') 
-                        @if($total_price >= $component->min_amount('grab_pay'))
+                        @if($total_price >= $paymongo_minimum)
                             onclick="set_e_wallet('grab_pay')" 
                         @endif
                     @endif
                 >
-                    @if($total_price < $component->min_amount('grab_pay'))
-                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($component->min_amount('grab_pay'))}})</div>
+                    @if($total_price < $paymongo_minimum)
+                        <div class="payment-channel-disabled">(Minimum of PHP {{number_format($paymongo_minimum,2)}})</div>
                     @endif
                     @if($e_wallet == 'grab_pay') 
                         <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
@@ -96,7 +96,7 @@
         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-add_bank">
             <i class="fas fa-plus"></i> Add New Bank
         </button> -->
-    @else
+    @elseif($payment_method == 'card')
         
         <h5 class="mb-3"><b>Select Credit/Debit Card</b></h5>
         @if($total_price < PaymentUtility::paymongo_minimum())
@@ -141,6 +141,9 @@
                 <i class="fas fa-plus"></i> Add New Debit/Credit Card
             </button>
         @endif
+    @elseif($payment_method == 'cash_on_pickup')
+        <h5 class="mb-3"><b>Header</b></h5>
+        <p>Description here...</p>
     @endif
 </div>
 

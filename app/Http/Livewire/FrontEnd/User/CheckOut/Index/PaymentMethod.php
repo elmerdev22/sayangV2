@@ -11,7 +11,7 @@ use Utility;
 class PaymentMethod extends Component
 {
     public $account, $payment_method = 'e_wallet', $payment_key_token, $e_wallet=null;
-    public $total_price=0.00, $available_e_wallets;
+    public $total_price=0.00, $available_e_wallets, $paymongo_minimum;
     
     protected $listeners = [
         'banks_initialize'       => 'initialize_payment_key_token',
@@ -19,16 +19,18 @@ class PaymentMethod extends Component
     ];
 
     public function mount(){
-        $this->account             = Utility::auth_user_account();
-        $default_e_wallet          = PaymentUtility::active_e_wallet(true);
-        $this->available_e_wallets = PaymentUtility::active_e_wallet();
-        $cart                      = Utility::cart($this->account->id, true);
-        $this->total_price         = $cart['total_price'];
-        $min_amount                = $this->min_amount($default_e_wallet['key']);
-    }
+        $this->paymongo_minimum = PaymentUtility::paymongo_minimum();
+        $this->account          = Utility::auth_user_account();
+        $cart                   = Utility::cart($this->account->id, true);
+        $this->total_price      = $cart['total_price'];
+        
+        if($this->total_price >= $this->paymongo_minimum){
+            $default_e_wallet = PaymentUtility::active_e_wallet(true);
+        }else{
+            $this->payment_method = 'cash_on_pickup';
+        }
 
-    public function min_amount($key){
-        return PaymentUtility::e_wallet($key, 'minimum');
+        $this->available_e_wallets = PaymentUtility::active_e_wallet();
     }
 
     public function credit_cards(){
@@ -89,13 +91,13 @@ class PaymentMethod extends Component
         }
         
         if(in_array($type, $available_ewallet)){
-            if($this->total_price >= $this->min_amount($type)){
+            if($this->total_price >= $this->paymongo_minimum){
                 $this->e_wallet = $type;
                 $this->initialize_payment_key_token();
             }else{
                 $this->emit('alert', [
                     'type'  => 'error',
-                    'title' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.$this->min_amount($type)
+                    'title' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.$this->paymongo_minimum
                 ]);
             }
         }else{
@@ -109,16 +111,18 @@ class PaymentMethod extends Component
     }
 
     public function change_payment_method($method){
-        $allowed_method = ['e_wallet', 'card', 'cash_on_pickup'];
+        $allowed_method = PaymentUtility::allowed_method();
+
         if(in_array($method, $allowed_method)){
             $this->payment_method = $method;
             $this->initialize_payment_key_token();
-            $this->emit('remove_loading_card', true);
         }else{
             $this->emit('alert', [
                 'type'  => 'error',
                 'title' => 'Invalid Payment Method.'
             ]);
         }
+
+        $this->emit('remove_loading_card', true);
     }
 }
