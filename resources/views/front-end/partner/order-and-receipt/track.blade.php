@@ -35,7 +35,7 @@
                 @endif
                 <div class="row">
                     <div class="col-12">
-                        @livewire('front-end.partner.order-and-receipt.track.information', ['order_no' => $order->order_no])
+                        @livewire('front-end.partner.order-and-receipt.track.information', ['order_no' => $order->order_no, 'is_cancellable' => $is_cancellable, 'is_payment_confirmable' => $is_payment_confirmable])
                     </div>
                 </div>
                 <div class="row mt-2 pt-2 border">
@@ -86,6 +86,20 @@
         </div>
     </div>
 @endif
+
+@if($is_cancellable)
+    <!-- Modal -->
+    <div class="modal fade" id="modal-cancel_order" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @livewire('front-end.partner.order-and-receipt.track.cancel-order', ['order_no' => $order->order_no])
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @endsection
 @section('js')
     @if($order->status == 'completed')

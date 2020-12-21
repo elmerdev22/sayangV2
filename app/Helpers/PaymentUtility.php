@@ -84,7 +84,7 @@ class PaymentUtility{
         return [];
     }
 
-    public static function pay_order($order_id, array $paymongo=[]){
+    public static function pay_order($order_id, array $paymongo=[], $is_cash_on_pickup=false){
         $response      = ['success' => false, 'message' => ''];
         $product_posts = [];
 
@@ -161,9 +161,11 @@ class PaymentUtility{
                         $order_payment->card_expiration_date    = null;
                         $order_payment->card_verification_value = null;
                     }
-                    
-                    $order_payment->status    = 'paid';
-                    $order_payment->date_paid = date('Y-m-d H:i:s');
+
+                    if(!$is_cash_on_pickup){
+                        $order_payment->status    = 'paid';
+                        $order_payment->date_paid = date('Y-m-d H:i:s');
+                    }
 
                     if($order_payment->save()){
                         $order->status                 = 'payment_confirmed';

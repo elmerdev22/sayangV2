@@ -60,13 +60,40 @@
                     <span class="badge badge-danger">
                         <i class="fas fa-times"></i> Cancelled
                     </span>
+                    <small>
+                    ( Cancelled by 
+                    @if($data->cancelled_by)
+                        @if($data->cancelled_by == 'partner') you @elseif($data->cancelled_by == 'user') buyer @else sayang @endif
+                    @endif)
+                    </small>
                 </div>
             @endif
+
             <p>
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
             </p>
+
+            @if($is_payment_confirmable)
+                @if($can_repay)
+                    <a class="btn btn-sm btn-warning" href="javascript:void(0);" onclick="payment_confirmed()">
+                        CONFIRM
+                    </a>
+                @else
+                    <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.
+                @endif
+            @endif
+            @if($is_remarkable_as_paid)
+                <a class="btn btn-sm btn-warning" href="javascript:void(0);" onclick="remark_as_paid()">
+                    REMARK AS PAID
+                </a>
+            @endif
+            @if($is_cancellable)
+                <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
+                    CANCEL ORDER
+                </a>
+            @endif
 
             <div class="row">
                 <!-- @if($data->order_payment->status == 'paid')
@@ -108,6 +135,60 @@
                 @this.call('qr_code', key_token)
             }
         });
+    }
+
+    function payment_confirmed(){
+        Swal.fire({
+            title: 'Are you sure do you want to confirm this order?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('payment_confirmed')
+                    }
+                });
+            }
+        })
+    }
+
+    function remark_as_paid(){
+        Swal.fire({
+            title: 'Are you sure do you want to remark this order as paid?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Payment Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('remark_as_paid')
+                    }
+                });
+            }
+        })
     }
 </script>
 @endpush

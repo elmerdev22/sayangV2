@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\User\MyPurchase\Track;
+namespace App\Http\Livewire\FrontEnd\Partner\OrderAndReceipt\Track;
 
 use Livewire\Component;
 use App\Model\Order;
@@ -18,7 +18,7 @@ class CancelOrder extends Component
     }
 
     public function render(){
-        return view('livewire.front-end.user.my-purchase.track.cancel-order');
+        return view('livewire.front-end.partner.order-and-receipt.track.cancel-order');
     }
 
     public function update(){
@@ -30,11 +30,11 @@ class CancelOrder extends Component
         $response = ['success' => false];
 
         try{
-            $order                     = Order::where('order_no', $this->order_no)->where('status', 'order_placed')->firstOrFail();
+            $order                     = Order::where('order_no', $this->order_no)->firstOrFail();
             $order->status             = 'cancelled';
             $order->cancelation_reason = ucfirst($this->cancelation_reason);
             $order->date_cancelled     = date('Y-m-d H:i:s');
-            $order->cancelled_by       = 'user';
+            $order->cancelled_by       = 'partner';
 
             if($order->save()){
                 $order_payment         = OrderPayment::where('order_id', $order->id)->firstOrFail();

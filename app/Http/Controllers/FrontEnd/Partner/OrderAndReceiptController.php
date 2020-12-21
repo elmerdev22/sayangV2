@@ -26,11 +26,23 @@ class OrderAndReceiptController extends Controller
     }
     
     public function track($order_no){
-        $order = Order::with(['billing'])
+        $order = Order::with(['billing', 'order_payment'])
             ->where('orders.partner_id', Utility::auth_partner()->id)
             ->where('orders.order_no', $order_no)
             ->firstOrFail();
 
-        return view('front-end.partner.order-and-receipt.track', compact('order'));
+        $is_cancellable          = false;
+        $is_payment_confirmable = false;
+   
+        if($order->order_payment->payment_method == 'cash_on_pickup'){
+            if($order->status == 'order_placed'){
+                $is_payment_confirmable = true;
+                $is_cancellable = true;
+            }
+        }else if($order->status == 'order_placed'){
+            $is_cancellable = true;
+        }
+
+        return view('front-end.partner.order-and-receipt.track', compact('order', 'is_cancellable', 'is_payment_confirmable'));
     }
 }
