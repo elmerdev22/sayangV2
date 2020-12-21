@@ -74,6 +74,12 @@
                     <span class="badge badge-danger">
                         <i class="fas fa-times"></i> Cancelled
                     </span>
+                    <small>
+                    ( Cancelled by 
+                    @if($data->cancelled_by)
+                        @if($data->cancelled_by == 'user') you @elseif($data->cancelled_by == 'partner') seller @else sayang @endif
+                    @endif)
+                    </small>
                 </div>
             @endif
             <p>
@@ -120,7 +126,9 @@
                             <b>Cancelation Reason: </b> <br> {{ucfirst($data->cancelation_reason)}}
                         </div>
                         <div>
-                            <small class="text-muted">{{date('F/d/Y h:iA', strtotime($data->date_cancelled))}}</small>
+                            <small class="text-muted">
+                                {{date('F/d/Y h:iA', strtotime($data->date_cancelled))}}
+                            </small>
                         </div>
                     </div>
                 @endif
