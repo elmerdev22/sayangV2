@@ -181,22 +181,6 @@
       });
     });
   </script>
-  <script>
-    const beamsClient = new PusherPushNotifications.Client({
-      instanceId: 'f05bbe51-29ad-489d-8255-35e252bb86ed',
-    });
-  
-    beamsClient.start()
-    .then(beamsClient => beamsClient.getDeviceId())
-    .then(deviceId =>
-      console.log('Successfully registered with Beams. Device ID:', deviceId)
-    )
-    .then(() => beamsClient.addDeviceInterest('debug-hello'))
-    .then(() => beamsClient.getDeviceInterests())
-    .then(interests => console.log('Current interests:', interests))
-    .catch(console.error);
-
-  </script>
   @yield('js')
   @stack('scripts')
 </body>

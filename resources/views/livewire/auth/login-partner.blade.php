@@ -26,6 +26,10 @@
         </div> <!-- form-group// -->
     </form>
     <div class="social-auth-links text-center">
+        <p class="my-1 text-right">
+            <a href="{{ route('password.request') }}" class="text-blue">I forgot my password</a>
+        </p>
+        <hr>
         <p>Not Yet a Partner? Sign Up Now</p>
         <a href="{{route('partner.register')}}" class="btn btn-block btn-warning">
             Sign up 
