@@ -4,6 +4,7 @@ namespace App\Http\Livewire\FrontEnd\Partner\QrCode\Index;
 
 use Livewire\Component;
 use App\Model\Order;
+use App\Model\OrderPayment;
 use Utility;
 
 class Result extends Component
@@ -22,6 +23,7 @@ class Result extends Component
             $data = Order::with([
                     'billing', 
                     'order_items',
+                    'order_payment',
                     'order_items.product_post',
                     'order_items.product_post.product'
                 ])
@@ -65,6 +67,13 @@ class Result extends Component
             }else if($order->status == 'to_receive'){
                 $order->status         = 'completed';
                 $order->date_completed = date('Y-m-d H:i:s');
+                $order_payment         = OrderPayment::where('order_id', $order->id)->firstOrFail();
+
+                if($order_payment->status == 'pending'){
+                    $order_payment->status    = 'paid';
+                    $order_payment->date_paid = date('Y-m-d H:i:s');
+                    $order_payment->save();
+                }
             }
 
             if($order->save()){

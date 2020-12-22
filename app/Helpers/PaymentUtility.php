@@ -168,7 +168,9 @@ class PaymentUtility{
                     }
 
                     if($order_payment->save()){
-                        $order->status                 = 'payment_confirmed';
+                        // $order->status                 = 'payment_confirmed';
+                        $order->status                 = 'to_receive';
+                        $order->date_received          = date('Y-m-d H:i:s');
                         $order->date_payment_confirmed = date('Y-m-d H:i:s');
 
                         if($order->save()){

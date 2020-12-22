@@ -26,6 +26,7 @@
                             @elseif($data->status == 'completed')
                                 <span class="badge badge-success">Completed</span>
                             @endif
+                            <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
                         </label>
                     </div>          
                 </div>
@@ -47,9 +48,9 @@
                                         <tr>
                                             <td>{{ucfirst($item->product_post->product->name)}}</td>
                                             <td>{{number_format($item->product_post->buy_now_price, 2)}}</td>
-                                            <td>{{number_format($item->product_post->quantity, 0)}}</td>
+                                            <td>{{number_format($item->quantity, 0)}}</td>
                                             @php 
-                                                $sub_total  = $item->product_post->buy_now_price * $item->product_post->quantity;
+                                                $sub_total  = $item->product_post->buy_now_price * $item->quantity;
                                                 $total     += $sub_total;
                                             @endphp
                                             <td>{{number_format($sub_total, 2)}}</td>

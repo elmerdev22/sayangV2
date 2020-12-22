@@ -37,7 +37,7 @@ class OrderAndReceiptController extends Controller
         if($order->order_payment->payment_method == 'cash_on_pickup'){
             if($order->status == 'order_placed'){
                 $is_payment_confirmable = true;
-                $is_cancellable = true;
+                $is_cancellable         = true;
             }
         }else if($order->status == 'order_placed'){
             $is_cancellable = true;
