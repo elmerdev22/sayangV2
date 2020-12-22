@@ -26,8 +26,9 @@ class Index extends Component
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
 		];
-		$filter['where']['orders.partner_id'] = $this->partner->id;
-		$filter['where']['orders.status']     = 'order_placed';
+		$filter['where']['orders.partner_id']             = $this->partner->id;
+		$filter['where']['orders.status']                 = 'order_placed';
+		$filter['where']['order_payments.payment_method'] = 'cash_on_pickup';
 
 		if($this->status != null){
 			$filter['where']['orders.status'] = $this->status;

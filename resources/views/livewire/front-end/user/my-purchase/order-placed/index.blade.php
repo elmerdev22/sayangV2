@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Completed List <a href="#" data-toggle="modal" data-target="#rate-seller-modal" class="btn btn-warning btn-xs">Sample Rate</a></h5> 
+            <h5 class="card-title">Order Placed</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                 </button>
@@ -26,10 +26,6 @@
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
-                            <th class="table-sort" wire:click="sort('orders.date_completed')">
-                                Completed Date
-                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_completed'])
-                            </th>
                             <th class="table-sort" wire:click="sort('order_payments.payment_method')">
                                 Payment Method
                                 @include('front-end.includes.datatables.sort', ['field' => 'order_payments.payment_method'])
@@ -42,8 +38,7 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->created_at))}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_completed))}}</td>
+                                <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
                                 <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
                                 <td>
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>

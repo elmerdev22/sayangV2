@@ -142,6 +142,18 @@ class SettingsUtility{
                 'title'   => 'Product sold out!',
                 'message' => 'product sold, click the here for more details',
             ],
+            // New Cash on Delivery Request
+            'new_cop_request' => [
+                'name'    => 'New Cash on Pickup Request',
+                'title'   => 'COP Request!',
+                'message' => 'New Cash on Pickup Request, click the here for more details',
+            ],
+            // New PRoduct Sold
+            'new_product_sold' => [
+                'name'    => 'New Product Sold',
+                'title'   => 'New Product Sold!',
+                'message' => 'New Product Sold, click the here for more details',
+            ],
 
         ];
 

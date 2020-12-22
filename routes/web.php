@@ -295,6 +295,21 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.user']], func
 		        'uses'  => $c.'@track'
             ]);
 
+            // Order Placed
+			Route::get('/order-placed', [
+		        'as' 	=> 'order-placed',
+		        'uses'  => $c.'@order_placed'
+            ]);
+            // To Receive
+			Route::get('/to-receive', [
+		        'as' 	=> 'to-receive',
+		        'uses'  => $c.'@to_receive'
+            ]);
+            // Cancelled
+			Route::get('/cancelled', [
+		        'as' 	=> 'cancelled',
+		        'uses'  => $c.'@cancelled'
+            ]);
             // Completed
 			Route::get('/completed', [
 		        'as' 	=> 'completed',

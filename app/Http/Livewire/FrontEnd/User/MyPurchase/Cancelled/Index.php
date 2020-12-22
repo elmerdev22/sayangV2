@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\User\MyPurchase;
+namespace App\Http\Livewire\FrontEnd\User\MyPurchase\Cancelled;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -8,7 +8,7 @@ use App\Model\Order;
 use QueryUtility;
 use Utility;
 
-class Listing extends Component
+class Index extends Component
 {
     use WithPagination;
 	public $account, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
@@ -22,13 +22,14 @@ class Listing extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
-			'partners.name as partner_name',
+            'partners.name as partner_name',
             'order_payments.payment_method'
-		];
+        ];
+        
 		$filter['where']['billings.user_account_id'] = $this->account->id;
 		$filter['where_in'][] = [
 			'field'  => 'orders.status',
-			'values' => ['order_placed', 'cancelled', 'to_receive', 'payment_confirmed']
+			'values' => ['cancelled']
 		];
 
 		if($this->search){
@@ -54,7 +55,7 @@ class Listing extends Component
     public function render(){
     	$data = $this->data();
 
-        return view('livewire.front-end.user.my-purchase.listing', compact('data'));
+        return view('livewire.front-end.user.my-purchase.cancelled.index', compact('data'));
     }
 
     public function sort($sort){

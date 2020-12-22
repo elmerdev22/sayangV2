@@ -9,6 +9,7 @@ use App\Model\Cart;
 use App\Model\Billing;
 use App\Model\ProductPost;
 use App\Model\PhilippineBarangay;
+use App\Model\Partner;
 use App\Model\Order;
 use App\Model\OrderItem;
 use App\Model\OrderPayment;
@@ -216,6 +217,7 @@ class ContinueToCheckOut extends Component
                                         if($order_item_saved){
                                             $product_post_cart = Cart::find($order_item_row['cart_id']);
                                             $product_post_cart->delete();
+                                            
                                         }else{
                                             throw new \Exception('Uncaught Exception');
                                         }
@@ -377,9 +379,20 @@ class ContinueToCheckOut extends Component
 
                                 }
                             }else if($payment_method['payment_method'] == 'cash_on_pickup'){
-                                
+                                foreach($notification_details as $notify){
+                                    
+                                    // Web notification
+                                    $partner_data = Partner::where('id' , $notify['partner_id'])->first();
+                                    Utility::new_notification($partner_data->user_account_id , null , 'new_cop_request', 'order_updates');
+                                            
+                                    /* After the Transaction via COP, 
+                                       Do the Notification via Email or Web 
+                                    */
+                                    // DATA: $notify['partner_id'], $notify['billing_no'], $notify['order_no'], $notify['user_account_id']
+                                    
+                                }                                
                             }
-    
+
                             $response['success'] = true;
                         }
                     }catch(\Exception $e){
@@ -440,14 +453,6 @@ class ContinueToCheckOut extends Component
                             }
                         }else if($payment_method['payment_method'] == 'cash_on_pickup'){
                             DB::commit();
-
-                            foreach($notification_details as $notify){
-                                /* After the Transaction via COP, 
-                                   Do the Notification via Email or Web 
-                                */
-                                // DATA: $notify['partner_id'], $notify['billing_no'], $notify['order_no'], $notify['user_account_id']
-                                
-                            }
 
                             Session::flash('checkout_payment', ['success' => true, 'message' => '']);
                             return redirect(route('front-end.user.my-purchase.list'));
@@ -563,6 +568,14 @@ class ContinueToCheckOut extends Component
         if($db_transact){
             if($response['success']){
                 DB::commit();
+
+                foreach($billing_details['orders'] as $order){
+                    
+                    // Web notification
+                    $partner_data = Partner::where('id' , $order['partner_id'])->first();
+                    Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
+                                            
+                }
                 Session::flash('checkout_payment', ['success' => true, 'message' => '']);
             }else{
                 DB::rollback();

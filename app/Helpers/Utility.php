@@ -772,6 +772,16 @@ class Utility{
         return $data;
     }
 
+    public static function new_notification($user_account_id, $product_post_id, $settings_key, $notification_type){
+        
+            $notif                    = new Notification();
+            $notif->user_account_id   = $user_account_id;
+            $notif->product_post_id   = $product_post_id;
+            $notif->type              = $settings_key;
+            $notif->notification_type = $notification_type;
+            $notif->save();
+    }
+
     public static function notification_check($user_account_id, $product_post_id, $settings_key, $notification_type){
         
         $data = Notification::where('user_account_id', $user_account_id)

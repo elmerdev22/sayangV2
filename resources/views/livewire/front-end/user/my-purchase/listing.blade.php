@@ -26,6 +26,10 @@
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
+                            <th class="table-sort" wire:click="sort('order_payments.payment_method')">
+                                Payment Method
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_payments.payment_method'])
+                            </th>
                             <th class="table-sort" wire:click="sort('orders.status')">
                                 Status
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.status'])
@@ -42,6 +46,7 @@
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
+                                <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
                                 <td>
                                     @if($row->status == 'cancelled')
                                         <span class="badge badge-danger">Cancelled</span>
@@ -70,7 +75,7 @@
                             </tr>
                         @empty
 	        				<tr>
-	        					<td colspan="6" class="text-center">No Data Found</td>
+	        					<td colspan="7" class="text-center">No Data Found</td>
 	        				</tr>
                         @endforelse
                     </tbody>

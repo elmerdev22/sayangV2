@@ -18,19 +18,27 @@
                         $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
                     }
                 @endphp
-                @if ($row->product_post_id != null)
+                
                 <a target="_blank" 
-                    @if ($row->type == 'partner_product_post_end')
-                        href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
-                    @else 
-                        href="#";
-                    @endif 
+                    @if ($row->product_post_id != null)
+                        @if ($row->type == 'partner_product_post_end')
+                            href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                        @else 
+                            href="javascript::void()";
+                        @endif 
 
-                    wire:click="click('{{$row->id}}')"    
-                    class="dropdown-item">
-                @else
-                    <a class="dropdown-item">
-                @endif
+                    @else
+                        @if($row->type == 'new_product_sold')
+                            href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}" 
+                        @elseif($row->type == 'new_cop_request')
+                            href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
+                        @else 
+                            href="javascript::void()";
+                        @endif 
+                    @endif
+
+                    wire:click="click('{{$row->id}}')" class="dropdown-item">
+                    
                         <div class="media">
                             <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                             <div class="media-body">
@@ -44,7 +52,7 @@
                     </a>
                 <div class="dropdown-divider"></div>
                 @empty
-                    <a href="#" class="dropdown-item text-center">
+                    <a href="javascript::void()" class="dropdown-item text-center">
                         No new notifications.
                     </a>
                 @endforelse

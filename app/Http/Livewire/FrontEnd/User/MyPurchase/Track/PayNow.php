@@ -393,6 +393,11 @@ class PayNow extends Component
         if($db_transact){
             if($response['success']){
                 DB::commit();
+                
+                // Web notification
+                $partner_data = Partner::where('id' , $order['partner_id'])->first();
+                Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
+                        
                 Session::flash('checkout_payment', ['success' => true, 'message' => '']);
             }else{
                 DB::rollback();

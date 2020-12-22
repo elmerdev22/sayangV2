@@ -27,6 +27,18 @@ class MyPurchaseController extends Controller
         return view('front-end.user.my-purchase.track', compact('order_no', 'order_date', 'order'));
     }
 
+    // Order Placed
+    public function order_placed(){
+        return view('front-end.user.my-purchase.order-placed');
+    }
+    // To Receive
+    public function to_receive(){
+        return view('front-end.user.my-purchase.to-receive');
+    }
+    // Cancelled
+    public function cancelled(){
+        return view('front-end.user.my-purchase.cancelled');
+    }
     // Completed
     public function completed(){
         return view('front-end.user.my-purchase.completed');

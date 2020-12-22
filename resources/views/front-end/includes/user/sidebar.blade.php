@@ -37,11 +37,22 @@
             <span class="fas fa-chevron-right mr-1 ml-2"></span>
             List
         </a>
+        <a href="{{route('front-end.user.my-purchase.order-placed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.order-placed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            Order Placed
+        </a>
+        <a href="{{route('front-end.user.my-purchase.to-receive')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.to-receive') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            To Receive/Pickup
+        </a>
+        <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.cancelled') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            Cancelled
+        </a>
         <a href="{{route('front-end.user.my-purchase.completed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.completed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
             <span class="fas fa-chevron-right mr-1 ml-2"></span>
             Completed
         </a>
-        {{-- <a href="" class="list-group-item"><span class="fas fa-chevron-right mr-1 ml-2"></span> Cancelled </a> --}}
     </div>
 
     <a href="#notification" class="list-group-item {{\Route::is('front-end.user.notifications.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">

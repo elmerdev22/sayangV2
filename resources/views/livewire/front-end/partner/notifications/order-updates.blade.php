@@ -36,8 +36,17 @@
 
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a target="_blank" @if ($row->product_post_id != null) 
-                                            href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                                    <a target="_blank" 
+                                        @if ($row->product_post_id != null) 
+                                            {{-- if may product post id here --}}
+                                        @else 
+                                            @if ($row->type == 'new_product_sold')
+                                                href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}"
+                                            @elseif ($row->type == 'new_cop_request')
+                                                href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
+                                            @else 
+                                                href="javascript::void()" 
+                                            @endif 
                                         @endif 
                                         @if ($row->is_read == 0)
                                             wire:click="click('{{$row->id}}')"

@@ -22,8 +22,10 @@ class Listing extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
-			'partners.name as partner_name'
+			'partners.name as partner_name',
+            'order_payments.payment_method'
 		];
+		
 		$filter['where']['billings.user_account_id'] = $this->account->id;
 		$filter['where']['orders.status'] = 'completed';
 		

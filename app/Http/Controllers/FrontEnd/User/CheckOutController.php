@@ -8,6 +8,7 @@ use Luigel\Paymongo\Facades\Paymongo;
 use App\Http\Controllers\Controller;
 use App\Model\Cart;
 use App\Model\ProductPost;
+use App\Model\Partner;
 use App\Model\Order;
 use App\Model\OrderItem;
 use App\Model\OrderPayment;
@@ -123,6 +124,15 @@ class CheckOutController extends Controller
                         }
 
                         DB::commit();
+
+                        foreach($billing_details['orders'] as $order){
+                            
+                            // Web notification
+                            $partner_data = Partner::where('id' , $order['partner_id'])->first();
+                            Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
+                                    
+                        }
+
                         Session::flash('checkout_payment', ['success' => true, 'message' => $response['message']]);
                     }else{
                         DB::rollback();
@@ -210,6 +220,11 @@ class CheckOutController extends Controller
                                     $payment_log->save();
     
                                     DB::commit();
+                                    
+                                    // Web notification
+                                    $partner_data = Partner::where('id' , $order->partner_id)->first();
+                                    Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
+                                    
                                     if(!empty($product_post)){
                                         event(new CheckOut($product_post));
                                     }
