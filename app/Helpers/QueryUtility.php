@@ -324,8 +324,13 @@ class QueryUtility{
 			->leftJoin('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
 			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id');
 		
+
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);
+		}
+
+		if(isset($filter['available_quantity'])){
+			$data = $data->where('product_posts.quantity', '>', 0);
 		}
 
 		$filtered = self::where($filter, $data);

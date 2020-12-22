@@ -26,8 +26,8 @@ class Index extends Component
             'products.slug as product_slug',
             'partners.name as partner_name'
         ];
+        $filter['available_quantity']            = true;
         $filter['where']['product_posts.status'] = 'active';
-        
         $date_time = date('Y-m-d H:i:s');
 
         $filter['date_range_two_field'][] = [
@@ -46,7 +46,7 @@ class Index extends Component
         $partner      = Partner::find($partner_id);
         $user_account = UserAccount::find($partner->user_account_id);
 
-        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl('thumb');;
+        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl();;
     }
 
     public function datetime_format($date){

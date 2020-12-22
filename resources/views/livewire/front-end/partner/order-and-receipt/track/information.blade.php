@@ -85,9 +85,9 @@
                 @endif
             @endif
             @if($is_remarkable_as_paid)
-                <a class="btn btn-sm btn-warning" href="javascript:void(0);" onclick="remark_as_paid()">
+                <!-- <a class="btn btn-sm btn-warning" href="javascript:void(0);" onclick="remark_as_paid()">
                     REMARK AS PAID
-                </a>
+                </a> -->
             @endif
             @if($is_cancellable)
                 <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">

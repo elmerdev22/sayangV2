@@ -42,7 +42,8 @@ class Listing extends Component
             'partners.name as partner_name'
         ];
         $filter['where']['product_posts.status'] = 'active';
-        $date_time = date('Y-m-d H:i:s');
+        $filter['available_quantity']            = true;
+                $date_time                       = date('Y-m-d H:i:s');
 
         $filter['date_range_two_field'][] = [
             'field_from' => 'product_posts.date_start',

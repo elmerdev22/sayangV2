@@ -63,8 +63,9 @@ class PaymentMethod extends Component
             }else{
                 $this->payment_key_token = null;
             }
-        }else if($this->payment_method == 'e_wallet'){
             $this->e_wallet = null;
+        }else if($this->payment_method == 'e_wallet'){
+
         }else if($this->payment_method == 'cash_on_pickup'){
             $this->e_wallet = null;
         }
