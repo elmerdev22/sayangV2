@@ -243,6 +243,7 @@ class ContinueToCheckOut extends Component
                                         $order_payment_log->order_payment_id = $order_payment->id;    
                                         if($order_payment_log->save()){
                                             $billing_details['orders'][] = [
+                                                'partner_id'           => $order->partner_id,
                                                 'order_id'             => $order->id,
                                                 'order_no'             => $order->order_no,
                                                 'order_payment_id'     => $order_payment->id,
@@ -396,6 +397,7 @@ class ContinueToCheckOut extends Component
                             $response['success'] = true;
                         }
                     }catch(\Exception $e){
+                    
                         // dd($e);
                         $response['success'] = false;
                     }
