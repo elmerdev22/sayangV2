@@ -424,7 +424,8 @@ class QueryUtility{
 		$data = DB::table('bids')
 			->select($select)
 			->join('product_posts', 'product_posts.id', '=', 'bids.product_post_id')
-			->join('products', 'products.id', '=', 'product_posts.product_id');
+			->join('products', 'products.id', '=', 'product_posts.product_id')
+			->leftJoin('order_bids', 'order_bids.bid_id', '=', 'bids.id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

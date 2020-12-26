@@ -36,8 +36,8 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_end))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
                                 <td>
                                     <div class="bg-danger">
                                         <small>

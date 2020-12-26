@@ -12,6 +12,11 @@ class SettingsUtility{
         return null; //if null it means unlimited
     }
 
+    public static function settings_value($settings_key){
+        $setting = Setting::where('settings_key', $settings_key)->first();
+        return $setting->settings_value;
+    }
+
     public static function settings($key=null){
         
         $group = [

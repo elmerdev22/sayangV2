@@ -33,8 +33,8 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_end))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
                                 <td>
                                     <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
                                 </td>

@@ -34,11 +34,17 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_end))}}</td>
-                                <td>Expiration date</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_end.' +'.$winning_bid_expiration.' hours'))}}</td>
                                 <td>
-                                    <a class="btn btn-warning btn-sm" href="#">Pay now</a>
+                                    @if($component->is_expired($row->date_end))
+                                        <a class="btn btn-danger btn-sm" href="javascript:void(0);">Expired</a>
+                                    @elseif($row->order_bid_id)
+                                        <a class="btn btn-success btn-sm" href="javascript:void(0);">View Order</a>
+                                    @else
+                                        <a class="btn btn-warning btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
+                                    @endif
                                     <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
                                 </td>
                             </tr>
@@ -55,3 +61,28 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    function pay_now(key_token){
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Loading Payment...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                @this.call('pay_now', key_token)
+            }
+        });
+    }
+
+    window.livewire.on('bid_pay_now', param => {
+        setTimeout(function (){
+            $('#modal-pay_now').modal('show');
+            Swal.close();
+        }, 3000);
+    });
+</script>
+@endpush
