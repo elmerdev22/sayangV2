@@ -34,12 +34,12 @@ class SettingsUtility{
             'minimum_hours_in_auction' => [
                 'group' => $group['bids'],
                 'name'  => 'Minimum hours auction (hours)',
-                'value' => 1,
+                'value' => 3,
             ],
             'maximum_hours_in_auction' => [
                 'group' => $group['bids'],
                 'name'  => 'Maximum hours auction (hours)',
-                'value' => 2,
+                'value' => 168,
             ],
             'popcorn_bidding_last_minutes' => [
                 'group' => $group['bids'],
@@ -158,6 +158,18 @@ class SettingsUtility{
                 'name'    => 'New Product Sold',
                 'title'   => 'New Product Sold!',
                 'message' => 'New Product Sold, click the here for more details',
+            ],
+            // Cancelled cop request
+            'cancelled_cop_request' => [
+                'name'    => 'Cancelled Cash on Pickup Request',
+                'title'   => 'COP request cancelled!',
+                'message' => 'COP request cancelled!, click the here for more details',
+            ],
+            // Confirm cop request
+            'confirmed_cop_request' => [
+                'name'    => 'Confirmed Cash on Pickup Request',
+                'title'   => 'COP request Confirmed!',
+                'message' => 'COP request Confirmed!, click the here for more details',
             ],
 
         ];

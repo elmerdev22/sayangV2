@@ -123,6 +123,8 @@ class Information extends Component
     
             if($response['success']){
                 DB::commit();
+                $user_account_id = $this->data()->billing->user_account_id;
+                Utility::new_notification($user_account_id, null, 'confirmed_cop_request', 'order_updates');
                 $this->emit('alert_link',[
                     'type'  => 'success',
                     'title' => 'Order Successfully Confirmed'

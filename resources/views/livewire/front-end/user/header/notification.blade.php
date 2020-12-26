@@ -29,6 +29,14 @@
                         @else 
                             href="#";
                         @endif 
+                    @else 
+                        @if($row->type == 'cancelled_cop_request')
+                            href="{{route('front-end.user.my-purchase.cancelled')}}"
+                        @elseif($row->type == 'confirm_cop_request')
+                            href="{{route('front-end.user.my-purchase.to-receive')}}"
+                        @else 
+                            href="#";
+                        @endif 
                     @endif 
                 class="dropdown-item" 
                 wire:click="click('{{$row->id}}')">

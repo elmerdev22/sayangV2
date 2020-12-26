@@ -18,7 +18,6 @@
                     <thead>
                         <tr>
                             <th class="text-center">Activity</th>
-                            <th class="text-center" width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,13 +62,10 @@
                                         </div>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-xs">View Details</a>
-                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="2">No Notifications.</td>
+                                <td colspan="1">No Notifications.</td>
                             </tr>
                         @endforelse
                     </tbody>

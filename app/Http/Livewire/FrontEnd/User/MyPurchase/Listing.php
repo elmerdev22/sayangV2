@@ -61,12 +61,5 @@ class Listing extends Component
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
 	}
-	
-	public function qr_code($key_token){
-		$order = Order::where('key_token', $key_token)->firstOrFail();
-		$this->emit('initialize_qr_code', [
-			'qr_code'  => $order->qr_code,
-			'order_no' => $order->order_no
-		]);
-	}
+
 }

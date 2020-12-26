@@ -17,6 +17,16 @@ class CancelOrder extends Component
         $this->order_no = $order_no;
     }
 
+    public function data(){
+        return Order::with([
+                'order_payment.bank',
+                'order_payment.order_payment_log',
+                'billing.philippine_barangay.philippine_city.philippine_province.philippine_region'
+            ])
+            ->where('order_no', $this->order_no)
+            ->firstOrFail();
+    }
+    
     public function render(){
         return view('livewire.front-end.partner.order-and-receipt.track.cancel-order');
     }
@@ -50,6 +60,8 @@ class CancelOrder extends Component
 
         if($response['success']){
             DB::commit();
+            $user_account_id = $this->data()->billing->user_account_id;
+            Utility::new_notification($user_account_id, null, 'cancelled_cop_request', 'order_updates');
             $this->emit('alert_link',[
                 'type'  => 'success',
                 'title' => 'Order Successfully Cancelled'
