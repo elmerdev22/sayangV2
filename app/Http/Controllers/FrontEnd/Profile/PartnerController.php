@@ -20,6 +20,8 @@ class PartnerController extends Controller
         $data = [
             'partner_id'    => $data->id,
             'store_name'    => $data->name,
+            'ratings'       => Utility::get_partner_ratings($data->id),
+            'products'      => Utility::count_products($data->id),
             'followers'     => Utility::count_followers($data->id),
             'store_address' => $data->address,
             'store_joined'  => $data->created_at,

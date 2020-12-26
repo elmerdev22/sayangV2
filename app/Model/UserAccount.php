@@ -32,6 +32,10 @@ class UserAccount extends Model implements HasMedia
         return $this->belongsTo('App\Model\Bid');
     }
 
+    public function partner_rating(){
+        return $this->belongsTo('App\Model\PartnerRating');
+    }
+
     public function partner(){
         return $this->hasOne('App\Model\Partner', 'user_account_id', 'id');
     }

@@ -171,6 +171,12 @@ class SettingsUtility{
                 'title'   => 'COP request Confirmed!',
                 'message' => 'COP request Confirmed!, click the here for more details',
             ],
+            // Order Completed
+            'order_completed' => [
+                'name'    => 'Order Completed',
+                'title'   => 'Order Completed!',
+                'message' => 'Order Completed!, click the here for more details',
+            ],
 
         ];
 

@@ -10,10 +10,10 @@
                     <div class="modal-body text-center">
                         <div class="row">
                             <div class="col-12">
-                                <img class="profile-user-img img-fluid img-circle m-2" src="{{asset('images/default-photo/store.png')}}" alt="User profile picture" style="width: 120px; height: 120px;">
+                                <img class="profile-user-img img-fluid img-circle m-2" src="{{$store_photo}}" alt="User profile picture" style="width: 120px; height: 120px;">
                             </div>
                             <div class="col-12">
-                                <h5>Seller name</h5>
+                                <h5>{{$seller_name}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -43,7 +43,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 @foreach ($data as $item)
-                                    <a wire:ignore.self class="btn btn-default btn-sm m-1 cursor-pointer" id="rate-{{$item->id}}" onclick="rate('{{$item->id}}')" data-value="{{$item->id}}">{{$item->rating}}</a>
+                                    <a wire:ignore.self class="btn btn-default btn-sm m-1 cursor-pointer" id="rate-{{$item->id}}" onclick="rate('{{$item->id}}')" data-value="{{$item->rating}}">{{$item->rating}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -78,10 +78,8 @@
             selected.removeClass('btn-default').addClass('btn-outline-warning');
         }
         $( ".btn-outline-warning" ).each(function( index ) {
-            var id = $( this ).data('value');
-            if($.isNumeric(id)){
-                select_array.push(id);
-            }
+            var value = $( this ).data('value');
+            select_array.push(value);
         });
         console.log(select_array);
         @this.set('rating', select_array )
@@ -121,5 +119,10 @@
         @this.set('rating', [])
         @this.set('star', ratingValue )
     }
+    
+    window.livewire.on('close_modal', param => {
+        $('#rate-seller-modal').modal('hide');
+        select_array = [''];
+    });
 </script>
 @endsection

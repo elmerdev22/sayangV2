@@ -35,15 +35,15 @@
                             <label>
                                 <span class="fas fa-star"></span> 
                                 <span class="text-muted">Ratings :</span>
-                                <span class="text-warning">4.7</span>
-                                <small>(344 rating)</small>
+                                <span class="text-warning">{{$ratings}}</span>
+                                {{-- <small>(344 rating)</small> --}}
                             </label>
                         </div>
                         <div class="col-md-4 border pt-2">
                             <label>
                                 <span class="fas fa-store"></span>
                                 <span class="text-muted">Products :</span>
-                                <span class="text-warning">57</span> 
+                                <span class="text-warning">{{number_format($products, 0)}}</span> 
                             </label>
                         </div>
                         <div class="col-md-4 border pt-2">

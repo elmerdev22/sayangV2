@@ -34,6 +34,8 @@
                             href="{{route('front-end.user.my-purchase.cancelled')}}"
                         @elseif($row->type == 'confirmed_cop_request')
                             href="{{route('front-end.user.my-purchase.to-receive')}}"
+                        @elseif($row->type == 'order_completed')
+                            href="#"
                         @else 
                             href="#";
                         @endif 
