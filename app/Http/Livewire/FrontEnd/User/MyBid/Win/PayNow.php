@@ -7,6 +7,7 @@ use App\Model\UserAccountAddress;
 use App\Model\Product;
 use SettingsUtility;
 use UploadUtility;
+use PaymentUtility;
 use QueryUtility;
 use Utility;
 
@@ -77,5 +78,50 @@ class PayNow extends Component
 
     public function expiration($date_ended){
 		return date('M/d/Y h:iA', strtotime($date_ended.'+'.$this->winning_bid_expiration.' hours'));
-	}
+    }
+    
+    public function change_payment_method($method){
+        $allowed_method = PaymentUtility::allowed_method();
+
+        if(in_array($method, $allowed_method)){
+            $this->payment_method = $method;
+        }else{
+            $this->emit('alert', [
+                'type'  => 'error',
+                'title' => 'Invalid Payment Method.'
+            ]);
+        }
+
+        $this->emit('remove_loading_card', true);
+    }
+
+    public function proceed(){
+        $response = ['success'=>false, 'message'=>'Unable to process your request'];
+
+        try{
+            if(!empty($this->address)){
+                if(in_array($this->payment_method, PaymentUtility::allowed_method())){
+                    
+                }else{
+                    $response['message'] = 'Invalid Payment Method.';
+                }
+            }else{
+                $response['message'] = 'No billing address yet.';
+            }
+        }catch(\Exception $e){
+            $response['success'] = false;
+            $response['message'] = 'An error occured.';
+        }
+
+
+        if($response['success']){
+
+        }else{
+            $this->emit('alert', [
+                'type'    => 'error',
+                'title'   => 'Failed',
+                'message' => $response['message']
+            ]);
+        }
+    }
 }

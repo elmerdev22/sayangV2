@@ -82,7 +82,7 @@
         </div>
 
         @if($payment_method == 'cash_on_pickup')
-            <h5 class="mb-3"><b>Payment via Cash on Pick-up</b></h5>
+            <p class="mb-3"><b>Payment via Cash on Pick-up</b></p>
             <!-- <p>Description here...</p> -->
         @elseif($payment_method == 'e_wallet')        
             <h5><b>Select Payment</b></h5>
@@ -178,3 +178,20 @@
         </div>
     @endif
 </div>
+
+
+@push('scripts')
+<script type="text/javascript">
+    window.livewire.on('remove_loading_card', param => {
+        var card_dom = $('#card-payment_method');
+        card_loader(card_dom, 'hide');
+        Swal.close();
+    });
+
+    function change_payment_method(method){
+        var card_dom = $('#card-payment_method');
+        card_loader(card_dom, 'show');
+        @this.call('change_payment_method', method)
+    }
+</script>
+@endpush
