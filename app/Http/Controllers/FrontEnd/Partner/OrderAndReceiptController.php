@@ -25,6 +25,10 @@ class OrderAndReceiptController extends Controller
         return view('front-end.partner.order-and-receipt.order-placed');
     }
     
+    public function cancelled(){
+        return view('front-end.partner.order-and-receipt.cancelled');
+    }
+    
     public function track($order_no){
         $order = Order::with(['billing', 'order_payment'])
             ->where('orders.partner_id', Utility::auth_partner()->id)

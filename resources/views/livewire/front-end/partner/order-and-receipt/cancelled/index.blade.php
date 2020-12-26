@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Completed</h5> 
+            <h5 class="card-title">Cancelled</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                 </button>
@@ -26,14 +26,15 @@
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
-                            <th class="table-sort" wire:click="sort('orders.date_completed')">
-                                Completed Date
-                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_completed'])
+                            <th class="table-sort" wire:click="sort('orders.date_payment_confirmed')">
+                                Cancelled Date
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_payment_confirmed'])
                             </th>
                             <th class="table-sort" wire:click="sort('orders.status')">
                                 Status
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.status'])
                             </th>
+                            <th class="text-center">Cancelled By</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -43,7 +44,7 @@
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_completed))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_cancelled))}}</td>
                                 <td>
                                     @if($row->status == 'cancelled')
                                         <span class="badge badge-danger">Cancelled</span>
@@ -55,6 +56,15 @@
                                         <span class="badge badge-info">To Receive</span>
                                     @elseif($row->status == 'completed')
                                         <span class="badge badge-success">Completed</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->cancelled_by == 'partner')
+                                        You
+                                    @elseif($row->cancelled_by == 'user')
+                                        Buyer
+                                    @else
+                                        {{$row->cancelled_by}}
                                     @endif
                                 </td>
                                 <td>

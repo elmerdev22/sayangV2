@@ -94,12 +94,18 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Quantity</label>
-                                <div class="input-group mb-3">
-                                    <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
+                                @if ($data->quantity <= 0)
+                                    <div>
+                                        {{$data->quantity}}
                                     </div>
-                                </div>
+                                @else 
+                                    <div class="input-group mb-3">
+                                        <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         

@@ -127,7 +127,7 @@
                         </div>
                         <div>
                             <small class="text-muted">
-                                {{date('F/d/Y h:iA', strtotime($data->date_cancelled))}}
+                                {{date('F/d/Y  h:i A', strtotime($data->date_cancelled))}}
                             </small>
                         </div>
                     </div>

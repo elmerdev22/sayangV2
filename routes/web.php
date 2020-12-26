@@ -522,6 +522,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'uses'  => $c.'@completed'
             ]);
             
+			Route::get('/cancelled', [
+		        'as' 	=> 'cancelled',
+		        'uses'  => $c.'@cancelled'
+            ]);
+            
 			Route::get('/payment-confirmed', [
 		        'as' 	=> 'payment-confirmed',
 		        'uses'  => $c.'@payment_confirmed'
