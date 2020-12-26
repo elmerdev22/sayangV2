@@ -56,6 +56,11 @@ class SettingsUtility{
                 'name'  => 'Popcorn bidding additional minutes (minutes)',
                 'value' => 3,
             ],
+            'winning_bid_expiration' => [
+                'group' => $group['bids'],
+                'name'  => 'Winning Bid Expiration (Hour)',
+                'value' => 5,
+            ],
 
         ];
 

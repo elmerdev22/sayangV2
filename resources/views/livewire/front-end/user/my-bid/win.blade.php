@@ -26,6 +26,7 @@
                                 Date Ended
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_end'])
                             </th>
+                            <th class="text-center">Expiration Date</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -35,8 +36,10 @@
                                 <td>{{ucfirst($row->product_name)}}</td>
                                 <td>{{date('F/d/Y h:i:s A', strtotime($row->date_start))}}</td>
                                 <td>{{date('F/d/Y h:i:s A', strtotime($row->date_end))}}</td>
+                                <td>Expiration date</td>
                                 <td>
                                     <a class="btn btn-warning btn-sm" href="#">Pay now</a>
+                                    <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
                                 </td>
                             </tr>
                         @empty
