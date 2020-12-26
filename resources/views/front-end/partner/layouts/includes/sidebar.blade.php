@@ -98,6 +98,12 @@
                                 <p>Payment Confirmed</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.order-and-receipt.cancelled')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.cancelled') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Cancelled</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview {{Route::is('front-end.partner.notifications.*') ? 'menu-open':''}}">

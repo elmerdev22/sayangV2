@@ -42,8 +42,8 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->created_at))}}</td>
-                                <td>{{date('F/d/Y h:i:s A', strtotime($row->date_completed))}}</td>
+                                <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
+                                <td>{{date('F/d/Y h:i A', strtotime($row->date_completed))}}</td>
                                 <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
                                 <td>
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>

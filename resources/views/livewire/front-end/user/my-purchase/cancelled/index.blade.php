@@ -41,7 +41,15 @@
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
                                 <td>{{date('F/d/Y h:i A', strtotime($row->date_cancelled))}}</td>
-                                <td>{{ucfirst($row->cancelled_by == 'user' ? 'You' : $row->cancelled_by)}}</td>
+                                <td>
+                                    @if ($row->cancelled_by == 'user')
+                                        You 
+                                    @elseif($row->cancelled_by == 'partner')
+                                        Seller
+                                    @else
+                                        {{$row->cancelled_by}}
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>

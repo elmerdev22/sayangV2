@@ -20,9 +20,9 @@
             <header class="card-header">
                 <strong class="d-inline-block mr-3">Order ID: {{$order->order_no}} </strong>
                 @if($order->status == 'completed')
-                    <span>Completed Date: {{date('F/d/Y', strtotime($order->date_completed))}}</span>
+                    <span>Completed Date: {{date('F/d/Y h:i:s a', strtotime($order->date_completed))}}</span>
                 @else
-                    <span>Order Date: {{date('F/d/Y', strtotime($order->created_at))}}</span>
+                    <span>Order Date: {{date('F/d/Y h:i:s a', strtotime($order->created_at))}}</span>
                 @endif
             </header>
             <div class="card-body">
