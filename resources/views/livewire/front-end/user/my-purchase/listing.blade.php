@@ -34,9 +34,6 @@
                                 Status
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.status'])
                             </th>
-                            <th class="table-sort">
-                                QR Code
-                            </th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -61,21 +58,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($row->status != 'order_placed' && $row->status != 'cancelled')
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning" onclick="qr_code('{{$row->key_token}}')">
-                                            <span class="fas fa-qrcode"></span>
-                                        </a>
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
-                                <td>
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>
                             </tr>
                         @empty
 	        				<tr>
-	        					<td colspan="7" class="text-center">No Data Found</td>
+	        					<td colspan="6" class="text-center">No Data Found</td>
 	        				</tr>
                         @endforelse
                     </tbody>
@@ -86,21 +74,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script type="text/javascript">
-    function qr_code(key_token){
-        Swal.fire({
-            title             : 'Please wait...',
-            html              : 'Getting QR Code...',
-            allowOutsideClick : false,
-            showCancelButton  : false,
-            showConfirmButton : false,
-            onBeforeOpen      : () => {
-                Swal.showLoading();
-                @this.call('qr_code', key_token)
-            }
-        });
-    }
-</script>
-@endpush

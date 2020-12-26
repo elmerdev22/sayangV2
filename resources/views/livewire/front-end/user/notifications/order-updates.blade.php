@@ -18,7 +18,6 @@
                     <thead>
                         <tr>
                             <th class="text-center">Order Updates</th>
-                            <th class="text-center" width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,8 +36,17 @@
 
                             <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a target="_blank" @if ($row->product_post_id != null) 
+                                    <a target="_blank" 
+                                        @if ($row->product_post_id != null) 
                                             href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" 
+                                        @else 
+                                            @if($row->type == 'cancelled_cop_request')
+                                                href="{{route('front-end.user.my-purchase.cancelled')}}"
+                                            @elseif($row->type == 'confirm_cop_request')
+                                                href="{{route('front-end.user.my-purchase.to-receive')}}"
+                                            @else 
+                                                href="#";
+                                            @endif 
                                         @endif 
                                         @if ($row->is_read == 0)
                                             wire:click="click('{{$row->id}}')"
@@ -57,13 +65,10 @@
                                         </div>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-xs">View Details</a>
-                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="2">No Notifications.</td>
+                                <td colspan="1">No Notifications.</td>
                             </tr>
                         @endforelse
                     </tbody>

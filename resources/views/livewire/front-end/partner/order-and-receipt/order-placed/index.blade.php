@@ -53,7 +53,6 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm" onclick="confirm('{{$row->order_no}}')">Confirm</a>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>
                             </tr>
@@ -70,7 +69,7 @@
         </div>
     </div> <!-- card.// -->
 </div>
-@push('scripts')
+{{-- @push('scripts')
 <script>
     function confirm(order_no){
         Swal.fire({
@@ -92,4 +91,4 @@
         })
     }
 </script>
-@endpush
+@endpush --}}

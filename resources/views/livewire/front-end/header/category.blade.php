@@ -33,15 +33,16 @@
                         <i class="fa fa-chevron-left float-right"></i>  
                     @endif
                 </a>
-                <div class="collapse mb-1" id="catalog-{{$catalog->id}}">
-                    
-                    @foreach($catalog->sub_categories as $sub_category)
-                        <a href="#" class="list-group-item">
-                            <span class="fas fa-chevron-right mr-1 ml-2"></span> 
-                            {{ucwords($sub_category->name)}}
-                        </a>
-                    @endforeach
-                </div>
+                @if ($catalog->sub_categories->count() > 0)
+                    <div class="collapse mb-1" id="catalog-{{$catalog->id}}">
+                        @foreach($catalog->sub_categories as $sub_category)
+                            <a href="#" class="list-group-item">
+                                <span class="fas fa-chevron-right mr-1 ml-2"></span> 
+                                {{ucwords($sub_category->name)}}
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             @empty
             @endforelse
         </div>
