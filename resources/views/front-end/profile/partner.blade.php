@@ -48,15 +48,15 @@
                                             <label>
                                                 <span class="fas fa-star"></span> 
                                                 <span class="text-muted">Ratings :</span>
-                                                <span class="text-warning">4.7</span>
-                                                <small>(344 rating)</small>
+                                                <span class="text-warning">{{$data['ratings']}}</span>
+                                                {{-- <small>(344 rating)</small> --}}
                                             </label>
                                         </div>
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-store"></span>
                                                 <span class="text-muted">Products :</span>
-                                                <span class="text-warning">{{number_format(Utility::count_products($data['partner_id']) ,0)}}</span> 
+                                                <span class="text-warning">{{number_format($data['products'], 0)}}</span> 
                                             </label>
                                         </div>
                                         <div class="col-12">
@@ -160,7 +160,7 @@
                         </div>
                         <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> 
                             <div class="card-footer bg-white card-comments">
-                                @livewire('front-end.product.information.ratings')
+                                @livewire('front-end.product.information.ratings', ['partner_id' => $data['partner_id'] ])
                             </div>
                         </div>
                         <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab"> 

@@ -25,12 +25,12 @@
                             </span>
                             <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
                                 <div class="row">
-                                    <div class="col-9 text-white text-left text-ellipsis">
-                                        {{ucfirst($row->partner_name)}}
+                                    <div class="col-7 text-white text-left text-ellipsis">
+                                        <small>{{ucfirst($row->partner_name)}}</small>
                                     </div>
-                                    <div class="col-3 text-right">
-                                        <span class="fas fa-star text-warning"></span> 
-                                        <span class="text-white">4.5</span>
+                                    <div class="col-5 text-right">
+                                        <small class="fas fa-star text-warning"></small> 
+                                        <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
                                     </div>
                                 </div>
                             </div>

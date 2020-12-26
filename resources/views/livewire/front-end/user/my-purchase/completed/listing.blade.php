@@ -46,6 +46,9 @@
                                 <td>{{date('F/d/Y h:i A', strtotime($row->date_completed))}}</td>
                                 <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
                                 <td>
+                                    @if (Utility::is_partner_ratetable($account->id, $row->partner_id, $row->order_id))
+                                        <a href="javascript::void();" onclick="rate_seller('{{$row->order_no}}')" class="btn btn-warning btn-sm">Rate</a>   
+                                    @endif
                                     <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>
                             </tr>
@@ -62,3 +65,11 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    function rate_seller(order_no){
+        window.livewire.emit('rate_order_no', order_no);
+        $('#rate-seller-modal').modal('show');
+    }
+</script>
+@endpush

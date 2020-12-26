@@ -75,8 +75,8 @@
                                             <label>
                                                 <span class="fas fa-star"></span> 
                                                 <span class="text-muted">Ratings :</span>
-                                                <span class="text-warning">4.7</span>
-                                                <small>(344 rating)</small>
+                                                <span class="text-warning">{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                                {{-- <small>(344 rating)</small> --}}
                                             </label>
                                         </div>
                                         <div class="col-12">
@@ -123,7 +123,7 @@
                         <div class="tab-content p-3" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
                                 <div class="card-footer bg-white card-comments">
-                                    @livewire('front-end.product.information.ratings')
+                                    @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 

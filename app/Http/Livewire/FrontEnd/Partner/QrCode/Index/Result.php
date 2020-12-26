@@ -10,12 +10,19 @@ use Utility;
 class Result extends Component
 {
 
-    public $qr_code, $partner;
+    public $qr_code, $partner, $order_no;
 
     public function mount(){
         $this->partner = Utility::auth_partner();
     }
 
+    public function data(){
+        return Order::with([
+                'billing'
+            ])
+            ->where('order_no', $this->order_no)
+            ->firstOrFail();
+    }
     public function render(){
         // $this->qr_code = 'ba4efaaae9e575aef80f';
         if(!empty($this->qr_code)){
@@ -39,7 +46,7 @@ class Result extends Component
 
     public function scan($qr_code){
         $order = Order::where('partner_id', $this->partner->id)->where('qr_code', $qr_code)->first();
-
+        $this->order_no = $order->order_no;
         if($order){
             $success       = true;
             $this->qr_code = $qr_code;
@@ -82,6 +89,9 @@ class Result extends Component
                     'success'    => true,
                     'order_no'   => $order->order_no
                 ]);
+                
+                $user_account_id = $this->data()->billing->user_account_id;
+                Utility::new_notification($user_account_id, null, 'order_completed', 'order_updates');
             }
         }
     }

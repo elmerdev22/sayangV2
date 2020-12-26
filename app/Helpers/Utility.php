@@ -21,6 +21,7 @@ use App\Model\Setting;
 use App\Model\ProductSubCategory;
 use App\Model\EmailNotificationSetting;
 use App\Model\Notification;
+use App\Model\PartnerRating;
 use Carbon\Carbon;
 use UploadUtility;
 use Schema;
@@ -418,6 +419,34 @@ class Utility{
         //condition TBA
         $count = ProductSubCategory::where('sub_category_id', $id)->count();
         return $count > 0 ? false : true;
+    }
+
+        
+    public static function is_partner_ratetable($user_account_id, $partner_id, $order_id){
+        //condition TBA
+        $count = PartnerRating::where('user_account_id', $user_account_id)
+                ->where('partner_id', $partner_id)
+                ->where('order_id', $order_id)
+                ->count();
+                
+        return $count > 0 ? false : true;
+    }
+
+    public static function get_partner_ratings($partner_id){
+        
+        $data  = [1, 2, 3, 4, 5];
+        $stars = [];
+        foreach($data as $star){
+            $count = PartnerRating::where('partner_id', $partner_id)->where('star', $star)->count();
+            $stars[$star] = $count;
+        }
+        if(array_sum($stars) == 0){
+            return "No Ratings";
+        }
+        else{
+            return ((5*$stars[5])+(4*$stars[4])+(3*$stars[3])+(2*$stars[2])+(1*$stars[1])) / ($stars[5]+$stars[4]+$stars[3]+$stars[2]+$stars[1]);
+        }
+        
     }
 
     public static function allow_purchase(){
@@ -827,4 +856,5 @@ class Utility{
 
         return $repay;
     }
+    
 }

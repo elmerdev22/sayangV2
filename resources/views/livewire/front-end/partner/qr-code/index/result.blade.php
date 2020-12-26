@@ -78,7 +78,7 @@
                 @elseif($data->status == 'payment_confirmed')
                     <button type="button" class="btn btn-info" onclick="update_status()">Ready to Receive</button>
                 @elseif($data->status == 'to_receive')
-                    <button type="button" class="btn btn-success" onclick="update_status()">Remark as Completed</button>
+                    <button type="button" class="btn btn-warning" onclick="update_status()">Remark as Completed</button>
                 @endif
             </div>
         @endif
