@@ -2,25 +2,60 @@
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
             <h5 class="card-title">Orders & Receipts</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
-            </div>
         </div>
         <div class="card-body">
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <label>Status</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Partner</label>
+                    <select class="form-control" wire:model="partner">
+                        <option value="" selected>All</option>
+                        @forelse ($partners as $row)
+                            <option value="{{$row->id}}">{{$row->name}}</option>
+                        @empty
+                            <option>No Partner.</option>    
+                        @endforelse
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Order Status</label>
                     <select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
+                        <option value="order_placed">Order Placed</option>
                         <option value="payment_confirmed">Payment Confirmed</option>
                         <option value="to_receive">To Receive</option>
                         <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
                     </select>
                 </div>
+                <div class="col-md-6">
+                    <label>Date From</label>
+                    <input type="date" class="form-control" wire:model="date_from">
+                </div>
+                <div class="col-md-6">
+                    <label>Date To</label>
+                    <input type="date" class="form-control" wire:model="date_to">
+                    @if(session('date_to_error')) 
+                        <span class="invalid-feedback" style="display: block;">
+                            <span>{{session('date_to_error')}}</span>
+                        </span> 
+                    @endif
+                </div>
             </div>
+            @if ($reset_filter)
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-warning w-25" wire:click="reset_filter">Reset Filter <span wire:loading wire:target="reset_filter" class="fas fa-spinner fa-spin"></span></button>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div> <!-- card.// -->
+
+    <div class="card">
+
+        <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
-        	@include('back-end.layouts.includes.datatables.search')
+            @include('back-end.layouts.includes.datatables.search')
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
@@ -73,15 +108,16 @@
                                 </td>
                             </tr>
                         @empty
-	        				<tr>
-	        					<td colspan="6" class="text-center">No Data Found</td>
-	        				</tr>
+                            <tr>
+                                <td colspan="6" class="text-center">No Data Found</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
+            
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
-    </div> <!-- card.// -->
+    </div>
 </div>
