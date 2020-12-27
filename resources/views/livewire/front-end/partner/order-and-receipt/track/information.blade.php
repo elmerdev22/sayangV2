@@ -18,7 +18,7 @@
         <div class="col-md-5">
             <h6 class="text-muted">
                 Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
-                @if($data->order_bid->id) <span class="badge badge-primary">Order From Win Bid</span> @endif
+                @if($data->order_bid) <span class="badge badge-primary">Order From Win Bid</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>
@@ -82,7 +82,7 @@
                         CONFIRM
                     </a>
                 @else
-                    @if(!$data->order_bid->id)
+                    @if(!$data->order_bid)
                         <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.
                     @endif
                 @endif

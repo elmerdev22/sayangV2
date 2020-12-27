@@ -32,21 +32,25 @@
         <div class="col-md-5">
             <h6 class="text-muted">
                 Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
-                @if($data->order_bid->id) <span class="badge badge-primary">Order From Win Bid</span> @endif
+                @if($data->order_bid) <span class="badge badge-primary">Order From Win Bid</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>
                     <b>Billing No. :</b> {{$data->billing->billing_no}}
                 </div>
-                <div>
-                    <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
-                </div>
-                <div>
-                    <b>API Method ID :</b> {{$data->order_payment->order_payment_log->method_id}}
-                </div>
-                <div>
-                    <b>API Method Type :</b> {{$data->order_payment->order_payment_log->method}}
-                </div>
+                
+                @if($data->order_payment->payment_method == 'card' && $data->order_payment->payment_method == 'e_wallet')
+                    <div>
+                        <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
+                    </div>
+                    <div>
+                        <b>API Method ID :</b> {{$data->order_payment->order_payment_log->method_id}}
+                    </div>
+                    <div>
+                        <b>API Method Type :</b> {{$data->order_payment->order_payment_log->method}}
+                    </div>
+                @endif
+
                 @if($data->order_payment->payment_method == 'card')
                     <div>
                         <i class="fas fa-user"></i> {{$data->order_payment->card_holder}}

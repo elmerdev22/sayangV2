@@ -32,7 +32,7 @@
         <div class="col-md-5">
             <h6 class="text-muted">
                 Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
-                @if($data->order_bid->id) <span class="badge badge-primary">Order From Win Bid</span> @endif
+                @if($data->order_bid) <span class="badge badge-primary">Order From Win Bid</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>
@@ -97,7 +97,7 @@
                         </a>
                     @endif
                     @if($data->status == 'order_placed')
-                        @if(!$data->order_bid->id) 
+                        @if(!$data->order_bid) 
                             <!-- remove condition if cancel is allowed in bid win -->
                             <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
                                 CANCEL ORDER
@@ -110,7 +110,7 @@
             
             <div class="row">
                 @if($data->status == 'order_placed')
-                    @if(!$data->order_bid->id)
+                    @if(!$data->order_bid)
                         @if(!$can_repay)
                             <div class="col-12">
                                 <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.

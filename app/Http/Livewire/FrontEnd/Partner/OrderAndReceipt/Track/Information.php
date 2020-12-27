@@ -37,7 +37,7 @@ class Information extends Component
         $order_total = Utility::order_total($data->id);
         
         if($data->status == 'order_placed'){
-            if($data->order_bid->id){
+            if($data->order_bid){
                 $this->can_repay = true;
             }else{
                 $this->can_repay = Utility::order_can_repay($data->id);

@@ -24,6 +24,8 @@ class Listing extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
+			'order_payments.payment_method', 
+			'order_payments.status as order_payment_status', 
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
 			'partners.name as partner_name',
