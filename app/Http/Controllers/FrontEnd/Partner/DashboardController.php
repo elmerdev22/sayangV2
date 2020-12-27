@@ -36,7 +36,11 @@ class DashboardController extends Controller
         ];
         
 		$filter['where']['orders.partner_id'] = $partner->id;
-		$filter['where']['orders.status']     = $status;
+        $filter['where']['orders.status']     = $status;
+        
+        if($status == 'order_placed'){
+            $filter['where']['order_payments.payment_method'] = 'cash_on_pickup';
+        }
 
 		return QueryUtility::orders($filter)->count();
     }

@@ -19,7 +19,7 @@
             <div class="small-box bg-white">
                 <div class="inner">
                     <h3>{{number_format($data['order_placed'] ,0)}}</h3>
-                    <p>Order Placed</p>
+                    <p>Order Placed (COP)</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-shopping-cart text-warning"></i>
