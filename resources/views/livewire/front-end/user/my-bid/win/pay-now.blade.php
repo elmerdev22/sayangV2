@@ -183,6 +183,40 @@
 
 @push('scripts')
 <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        window.addEventListener('message', ev => {
+                if (ev.data === '3DS-authentication-complete') {
+                    payment_3d_completed();
+                }
+            },
+            false
+        );
+    });
+
+    window.livewire.on('payment_3d_secure', param => {
+        var url = param['url'];
+        $('#modal-payment_3rd_secure_iframe').html(`<iframe src="`+url+`" title="3D Secure" style="width: 100%; height: 70vh; border: 0px;"></iframe>`);
+        setTimeout(function (){
+            $('#modal-pay_now').modal('hide'); 
+            $('#modal-payment_3d_secure').modal('show'); 
+        }, 2000);
+    });
+    
+    function payment_3d_completed(){
+        $('#modal-payment_3d_secure').modal('hide');
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Processing Payment...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                @this.call('paymongo_pay_card', true)
+            }
+        });
+    }
+
     window.livewire.on('remove_loading_card', param => {
         var card_dom = $('#card-payment_method');
         card_loader(card_dom, 'hide');

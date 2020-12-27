@@ -27,8 +27,8 @@ use DB;
 
 class PayNow extends Component
 {
-    public $bid_key_token=null, $payment_method, $account, $address, $winning_bid_expiration;
-    public $e_wallet, $card, $total_price=0.00, $card_token, $available_e_wallets=[];
+    public $order_id, $order_no, $bid_key_token=null, $payment_method, $account, $address, $winning_bid_expiration;
+    public $e_wallet, $card, $total_price=0.00, $card_token, $available_e_wallets=[], $tmp_payment_method_id, $tmp_payment_intent_id;
 
     protected $listeners = [
         'bid_pay_now' => 'initialize'
@@ -280,6 +280,8 @@ class PayNow extends Component
                             $order->key_token              = Utility::generate_table_token('Order');
                             
                             if($order->save()){
+                                $this->order_id              = $order->id;
+                                $this->order_no              = $order->order_no;
                                 $order_item                  = new OrderItem();
                                 $order_item->order_id        = $order->id;
                                 $order_item->product_post_id = $bid->product_post_id;
@@ -365,8 +367,68 @@ class PayNow extends Component
                                         }
                                     }
                                 }else if($this->payment_method == 'card'){
+                                    $exp_month = date('m', strtotime($card->card_expiration_date));
+                                    $exp_year  = date('y', strtotime($card->card_expiration_date));
+
+                                    $paymentMethod = Paymongo::paymentMethod()->create([
+                                        'type'    => $this->payment_method,
+                                        'details' => [
+                                            'card_number' => str_replace('-', '', $card->card_no),
+                                            'exp_month'   => (int)$exp_month,
+                                            'exp_year'    => (int)$exp_year,
+                                            'cvc'         => $card->card_verification_value
+                                        ],
+                                        'billing' => $billing_address
+                                    ]);
+
+                                    $this->tmp_payment_method_id = $paymentMethod->id;
+                                    $payment_description         = 'Billing No: '.$billing->billing_no.', Order No.: '.$order->order_no.' from Payment Method ID: '.$paymentMethod->id.' - method type (paymentMethod).';
+                                    
+                                    $newPaymentIntent = Paymongo::paymentIntent()->create([
+                                        'amount'                 => $this->total_price,
+                                        'payment_method_allowed' => [
+                                            'card'
+                                        ],
+                                        'payment_method_options' => [
+                                            'card' => [
+                                                'request_three_d_secure' => 'automatic'
+                                            ]
+                                        ],
+                                        'description'          => $payment_description,
+                                        'statement_descriptor' => 'Sayang PH - Billing No.: '.$billing->billing_no,
+                                        'currency'             => PaymentUtility::currency()
+                                    ]);
+                                    $this->tmp_payment_intent_id = $newPaymentIntent->id;
+                                    $paymentIntent               = Paymongo::paymentIntent()->find($newPaymentIntent->id);
+                                    $response['message']         = 'An error occured on payment with your card while processing the transaction';
+                                    
+                                    if($paymentIntent->status !== 'awaiting_payment_method'){
+                                        throw new \Exception('Uncaught Exception');
+                                    }else{
+                                        try{
+                                            $paymentIntentAttach = $paymentIntent->attach($paymentMethod->id);
     
-                                    // $response['success'] = true;
+                                            if($paymentIntentAttach->status === 'awaiting_next_action'){
+                                                $next_action             = $paymentIntentAttach->next_action;
+                                                $response['success']     = true;
+                                                $response['next_action'] = true;
+                                            }else if($paymentIntentAttach->status === 'succeeded'){
+                                                $card_payment_success = $this->paymongo_pay_card();
+
+                                                if($card_payment_success['success']){
+                                                    $response['success'] = true;
+                                                    $payment_intent_product_posts = $card_payment_success['product_posts'];
+                                                }
+                                            }
+                                        
+                                        }catch(\Exception $e){
+                                            $paymentIntentException = json_decode($e->getMessage());
+                                            $paymentIntentMessage   = $paymentIntentException->errors[0];
+                                            if($paymentIntentMessage->code === 'resource_failed_state'){
+                                                $response['message'] = $paymentIntentMessage->detail;
+                                            }
+                                        }
+                                    }
                                 }else if($this->payment_method == 'cash_on_pickup'){
                                     // Web notification
                                     $partner_data = Partner::find($data->partner_id);
@@ -406,11 +468,47 @@ class PayNow extends Component
                     'redirect' => route('front-end.user.my-purchase.track', ['id' => $order->order_no])
                 ]);
             }else if($this->payment_method == 'card'){
-                DB::rollback();
-                $this->emit('alert', [
-                    'type'    => 'success',
-                    'title'   => 'Bid Order Success via Card',
-                ]);
+                $order_payment                          = OrderPayment::find($order_payment->id);
+                $order_payment->bank_id                 = null;
+                $order_payment->payment_method          = 'card';
+                $order_payment->card_holder             = ucwords($card->card_holder);
+                $order_payment->card_no                 = $card->card_no;
+                $order_payment->card_expiration_date    = $card->card_expiration_date;
+                $order_payment->card_verification_value = $card->card_verification_value;
+                $order_payment->account_no              = null;
+                $order_payment->account_name            = null;
+
+                $payment_log                      = OrderPaymentLog::where('order_payment_id', $order_payment->id)->first();
+                $payment_log->method              = 'paymentMethod';
+                $payment_log->method_id           = $paymentMethod->id;
+                $payment_log->paymongo_payment_id = $paymentIntentAttach->id;
+                $payment_log->save();
+                
+                if(isset($response['next_action'])){
+                    $order_payment->save();
+                    DB::commit();
+                    $this->emit('payment_3d_secure', [
+                        'url' => $next_action['redirect']['url']
+                    ]);
+                }else{
+                    $order_payment->status                  = 'paid';
+                    $order_payment->date_paid               = date('Y-m-d H:i:s');
+                    $order_payment->save();
+                    DB::commit();
+                        
+                    if(isset($payment_intent_product_posts) > 0){
+                        event(new CheckOut($payment_intent_product_posts));
+                    }
+
+                    $this->emit('alert_link', [
+                        'type'     => 'success',
+                        'title'    => 'Bid Order Success',
+                        'message'  => 'Order paid via Card',
+                        'redirect' => route('front-end.user.my-purchase.track', ['id' => $order->order_no])
+                    ]);
+                }
+
+                
             }else if($this->payment_method == 'e_wallet'){
                 DB::commit();
                 return redirect($paymongoSource->getRedirect()['checkout_url']);
@@ -432,5 +530,68 @@ class PayNow extends Component
             ]);
             $this->emit('remove_loading_card', true);
         }
+    }
+
+    public function paymongo_pay_card($db_transact=false){
+        $response      = ['success' => false, 'message' => ''];
+        $product_posts = [];
+        
+        if($db_transact){
+            $paymentIntent = Paymongo::paymentIntent()->find($this->tmp_payment_intent_id);
+            if(!$paymentIntent){
+                $this->emit('remove_card_payment_method_loader', true);
+                $this->emit('alert', [
+                    'type'    => 'error',
+                    'title'   => 'Failed',
+                    'message' => 'An error occured while in order transaction.'
+                ]);
+                return $response;
+            }else{
+                if($paymentIntent->status === 'processing'){
+                    $this->emit('reprocess_payment_3d_completed', true);
+                    return $response;
+                }else if($paymentIntent->status !== 'succeeded'){
+                    Session::flash('checkout_payment', ['success' => false, 'message' => '']);
+                    return redirect(route('front-end.user.my-purchase.track', ['id' => $this->order_no]));
+                }
+            }
+
+            DB::beginTransaction();
+        }
+
+        try{
+            $pay_response = PaymentUtility::pay_order($this->order_id);
+            if(!$pay_response['success']){
+                $response['message'] = $pay_response['message'];
+            }else{
+                $response['success'] = true;
+                $product_posts = $pay_response['product_posts'];
+            }
+        }catch(\Exception $e){
+
+        }
+        
+        if($db_transact){
+            if($response['success']){
+                DB::commit();
+                
+                // Web notification
+                $order        = Order::find($this->order_id);
+                $partner_data = Partner::where('id' , $order->partner_id)->first();
+                Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
+                if(count($product_posts) > 0){
+                    event(new CheckOut($product_posts));
+                }
+                Session::flash('checkout_payment', ['success' => true, 'message' => '']);
+            }else{
+                DB::rollback();
+                Session::flash('checkout_payment', ['success' => false, 'message' => '']);
+            }
+
+            return redirect(route('front-end.user.my-purchase.track', ['id' => $this->order_no]));
+        }
+
+        $response['product_posts'] = $product_posts;
+        return $response;
     }
 }

@@ -402,17 +402,16 @@ class PayNow extends Component
                 DB::commit();
                 
                 // Web notification
-                $partner_data = Partner::where('id' , $order['partner_id'])->first();
+                $order        = Order::find($this->order_id);
+                $partner_data = Partner::where('id' , $order->partner_id)->first();
                 Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
-                        
+                if(count($product_posts) > 0){
+                    event(new CheckOut($product_posts));
+                }
                 Session::flash('checkout_payment', ['success' => true, 'message' => '']);
             }else{
                 DB::rollback();
                 Session::flash('checkout_payment', ['success' => false, 'message' => '']);
-            }
-
-            if(count($product_posts) > 0){
-                event(new CheckOut($product_posts));
             }
 
             return redirect(route('front-end.user.my-purchase.track', ['id' => $this->order_no]));
