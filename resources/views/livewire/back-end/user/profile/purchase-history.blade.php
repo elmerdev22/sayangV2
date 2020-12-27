@@ -12,10 +12,12 @@
 				<div class="col-5">
 					<label>Status</label>
 					<select class="form-control" wire:model="status">
-						<option value="" selected>All</option>
-						<option value="payment_confirmed">Payment Confirmed</option>
-						<option value="to_receive">To Receive</option>
-						<option value="completed">Completed</option>
+                        <option value="" selected>All</option>
+                        <option value="order_placed">Order Placed</option>
+                        <option value="payment_confirmed">Payment Confirmed</option>
+                        <option value="to_receive">To Receive</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
 					</select>
 				</div>
 			</div>

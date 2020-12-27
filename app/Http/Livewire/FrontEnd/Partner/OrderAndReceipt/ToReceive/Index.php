@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\OrderAndReceipt\Completed;
+namespace App\Http\Livewire\FrontEnd\Partner\OrderAndReceipt\ToReceive;
+
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -28,7 +29,7 @@ class Index extends Component
 			'user_accounts.last_name as user_account_last_name',
 		];
 		$filter['where']['orders.partner_id'] = $this->partner->id;
-		$filter['where']['orders.status']     = 'completed';
+		$filter['where']['orders.status']     = 'to_receive';
 
 		if($this->status != null){
 			$filter['where']['orders.status'] = $this->status;
@@ -57,7 +58,7 @@ class Index extends Component
     public function render(){
     	$data = $this->data();
 
-        return view('livewire.front-end.partner.order-and-receipt.completed.index', compact('data'));
+        return view('livewire.front-end.partner.order-and-receipt.to-receive.index', compact('data'));
     }
 
     public function sort($sort){

@@ -81,12 +81,6 @@
                             </a>
                         </li> --}}
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.order-and-receipt.completed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.completed') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Completed</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('front-end.partner.order-and-receipt.order-placed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.order-placed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Order Placed</p>
@@ -96,6 +90,18 @@
                             <a href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.payment-confirmed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Payment Confirmed</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.order-and-receipt.to-receive')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.to-receive') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>To Receive/Pickup</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.order-and-receipt.completed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.completed') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Completed</p>
                             </a>
                         </li>
                         <li class="nav-item">

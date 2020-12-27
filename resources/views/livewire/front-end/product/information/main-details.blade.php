@@ -5,7 +5,7 @@
         </div>
         
         <div class="col-lg-4">
-            <h3 class="my-2 text-danger float-right">
+            <h3 class="my-2 text-danger text-lg-right">
                 @if(!$force_disabled)
                     {{number_format($product_post->quantity)}} LEFT!
                 @endif
@@ -16,7 +16,7 @@
     <a href="{{route('front-end.profile.partner.index', ['slug' => $product_post->product->partner->slug ])}}">
         <p>{{ucfirst($product_post->product->partner->name)}}
             <span class="fas fa-star text-warning"></span>
-            <small>(4.5)</small>
+            <small>({{Utility::get_partner_ratings($product_post->product->partner->id)}})</small>
         </p>
     </a>
     <p>{{nl2br($product_post->product->description)}}</p>

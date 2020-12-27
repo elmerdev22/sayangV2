@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Completed List <a href="#" data-toggle="modal" data-target="#rate-seller-modal" class="btn btn-warning btn-xs">Sample Rate</a></h5> 
+            <h5 class="card-title">To Receive/Pick-up</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                 </button>
@@ -18,21 +18,25 @@
                                 Order No. 
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.order_no'])
                             </th>
-                            <th class="table-sort" wire:click="sort('partners.name')">
-                                Seller Name
-                                @include('front-end.includes.datatables.sort', ['field' => 'partners.name'])
+                            <th class="table-sort" wire:click="sort('user_accounts.first_name|user_accounts.last_name')">
+                                Buyer Name
+                                @include('front-end.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
                             </th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
-                            <th class="table-sort" wire:click="sort('orders.date_completed')">
-                                Completed Date
-                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_completed'])
+                            <th class="table-sort" wire:click="sort('orders.date_payment_confirmed')">
+                                Payment Confirmed Date
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_payment_confirmed'])
                             </th>
                             <th class="table-sort" wire:click="sort('order_payments.payment_method')">
                                 Payment Method
                                 @include('front-end.includes.datatables.sort', ['field' => 'order_payments.payment_method'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('orders.status')">
+                                Status
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.status'])
                             </th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -41,15 +45,17 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{$row->order_no}}</td>
-                                <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('M/d/Y h:iA', strtotime($row->created_at))}}</td>
-                                <td>{{date('M/d/Y h:iA', strtotime($row->date_completed))}}</td>
-                                <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
+                                <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
+                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_payment_confirmed))}}</td>
                                 <td>
-                                    @if (Utility::is_partner_ratetable($account->id, $row->partner_id, $row->order_id))
-                                        <a href="javascript::void();" onclick="rate_seller('{{$row->order_no}}')" class="btn btn-warning btn-sm">Rate</a>   
-                                    @endif
-                                    <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                    <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">To Receive</span>
+                                </td>
+                                <td>
+                                    <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>
                             </tr>
                         @empty
@@ -63,13 +69,5 @@
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
             @include('front-end.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
-    </div>
+    </div> <!-- card.// -->
 </div>
-@push('scripts')
-<script>
-    function rate_seller(order_no){
-        window.livewire.emit('rate_order_no', order_no);
-        $('#rate-seller-modal').modal('show');
-    }
-</script>
-@endpush

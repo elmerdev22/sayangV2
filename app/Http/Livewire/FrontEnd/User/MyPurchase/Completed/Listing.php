@@ -22,7 +22,9 @@ class Listing extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
+			'orders.id as order_id', 
 			'partners.name as partner_name',
+			'partners.id as partner_id',
             'order_payments.payment_method'
 		];
 		

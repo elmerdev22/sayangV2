@@ -20,6 +20,10 @@ class OrderAndReceiptController extends Controller
     public function payment_confirmed(){
         return view('front-end.partner.order-and-receipt.payment-confirmed');
     }
+    
+    public function to_receive(){
+        return view('front-end.partner.order-and-receipt.to-receive');
+    }
 
     public function order_placed(){
         return view('front-end.partner.order-and-receipt.order-placed');

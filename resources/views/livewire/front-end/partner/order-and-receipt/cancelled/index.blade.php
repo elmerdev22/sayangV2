@@ -46,17 +46,7 @@
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->date_cancelled))}}</td>
                                 <td>
-                                    @if($row->status == 'cancelled')
-                                        <span class="badge badge-danger">Cancelled</span>
-                                    @elseif($row->status == 'order_placed')
-                                        <span class="badge badge-warning">Order Placed</span>
-                                    @elseif($row->status == 'payment_confirmed')
-                                        <span class="badge badge-info">Payment Confirmed</span>
-                                    @elseif($row->status == 'to_receive')
-                                        <span class="badge badge-info">To Receive</span>
-                                    @elseif($row->status == 'completed')
-                                        <span class="badge badge-success">Completed</span>
-                                    @endif
+                                    <span class="badge badge-danger">Cancelled</span>
                                 </td>
                                 <td>
                                     @if ($row->cancelled_by == 'partner')

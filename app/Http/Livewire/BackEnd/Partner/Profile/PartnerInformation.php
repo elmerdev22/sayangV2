@@ -9,7 +9,7 @@ use UploadUtility;
 use Utility;
 class PartnerInformation extends Component
 {
-	public $account, $partner, $store_photo, $cover_photo, $followers;
+	public $account, $partner, $store_photo, $cover_photo, $followers, $products, $ratings;
 
 	public function mount($key_token){
 		$this->store_photo = UploadUtility::account_photo($key_token , 'business-information/store-photo', 'store_photo');
@@ -19,11 +19,14 @@ class PartnerInformation extends Component
 		$this->partner = Partner::with(['philippine_barangay.philippine_city.philippine_province.philippine_region'])
 			->where('user_account_id', $account->id)
 			->first();
-		
 		if(!empty($this->partner)){
 			$this->followers = Utility::count_followers($this->partner->id);
+			$this->ratings   = Utility::get_partner_ratings($this->partner->id);
+			$this->products  = Utility::count_products($this->partner->id);
 		}else{
 			$this->followers = 0;
+			$this->ratings   = 'No Ratings Yet';
+			$this->products  = 0;
 		}
 	}
 	

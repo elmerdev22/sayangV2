@@ -23,6 +23,7 @@ class Index extends Component
 		$filter = [];
 		$filter['select'] = [
 			'orders.*', 
+			'order_payments.payment_method', 
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
 		];
