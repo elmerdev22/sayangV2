@@ -32,7 +32,18 @@ class DashboardController extends Controller
 
     public function orders($status){
 
-        return Order::where('status', $status)->count();
+		$filter = [];
+		$filter['select'] = [
+			'orders.*', 
+        ];
+        
+        $filter['where']['orders.status'] = $status;
+        
+        if($status == 'order_placed'){
+            $filter['where']['order_payments.payment_method'] = 'cash_on_pickup';
+        }
+
+		return QueryUtility::orders($filter)->count();
 
     }
 
