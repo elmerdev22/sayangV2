@@ -20,12 +20,13 @@
                         $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
                     }
                 @endphp
-                
-                <a  @if ($row->product_post_id != null) 
+                    <a  @if ($row->product_post_id != null) 
                         @if ($row->type == 'bidder_won')
                             href="{{route('front-end.user.my-bids.win')}}"
                         @elseif($row->type == 'bidder_lose')
                             href="{{route('front-end.user.my-bids.lose')}}"
+                        @elseif($row->type == 'partner_new_product_post')
+                            href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug , 'key_token' => $row->product_post->key_token , 'type' => 'buy_now'])}}"
                         @else 
                             href="#";
                         @endif 
@@ -35,7 +36,7 @@
                         @elseif($row->type == 'confirmed_cop_request')
                             href="{{route('front-end.user.my-purchase.to-receive')}}"
                         @elseif($row->type == 'order_completed')
-                        href="{{route('front-end.user.my-purchase.completed')}}"
+                            href="{{route('front-end.user.my-purchase.completed')}}"
                         @else 
                             href="#";
                         @endif 
