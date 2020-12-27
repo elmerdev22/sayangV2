@@ -24,12 +24,12 @@ class LoginRedirectController extends Controller
                     $url = Session::get('user_login_redirect');
                     Session::forget('user_login_redirect');
                 }else{
-                    $url = route('front-end.user.my-account.index');
+                    $url = '/';
                 }
 
                 return redirect($url);
             }else if($user->type == 'partner'){
-                return redirect(route('front-end.partner.my-account.index'));
+                return redirect(route('front-end.partner.dashboard.index'));
             }else{
                 return redirect('/');
             }

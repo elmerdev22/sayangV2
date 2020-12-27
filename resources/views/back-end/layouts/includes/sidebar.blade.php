@@ -34,12 +34,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('back-end.order-and-receipt.index')}}" class="nav-link {{Route::is('back-end.order-and-receipt.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-money-bill"></i>
-                        <p>Orders & Receipt</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{route('back-end.partner.index')}}" class="nav-link {{Route::is('back-end.partner.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-building"></i>
                         <p>Partners</p>
@@ -52,18 +46,23 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('back-end.products.index')}}" class="nav-link {{Route::is('back-end.products.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>Products</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('back-end.order-and-receipt.index')}}" class="nav-link {{Route::is('back-end.order-and-receipt.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>Orders & Receipt</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('back-end.catalog.index')}}" class="nav-link {{Route::is('back-end.catalog.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>Catalogs</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href="{{route('back-end.catalog.setting.bid.index')}}" class="nav-link {{Route::is('back-end.catalog.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>Settings</p>
-                    </a>
-                </li> --}}
-                
                 <li class="nav-item has-treeview {{Route::is('back-end.setting.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.setting.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-cogs"></i>

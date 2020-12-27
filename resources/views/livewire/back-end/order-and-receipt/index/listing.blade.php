@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Orders & Receipts</h5> 
+            <h5 class="card-title">Filter Orders & Receipts</h5> 
         </div>
         <div class="card-body">
             <div class="row">
@@ -20,7 +20,7 @@
                     <label>Order Status</label>
                     <select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
-                        <option value="order_placed">Order Placed</option>
+                        <option value="order_placed">Order Placed (COP)</option>
                         <option value="payment_confirmed">Payment Confirmed</option>
                         <option value="to_receive">To Receive</option>
                         <option value="completed">Completed</option>
@@ -30,6 +30,11 @@
                 <div class="col-md-6">
                     <label>Date From</label>
                     <input type="date" class="form-control" wire:model="date_from">
+                    @if(session('date_from_error')) 
+                        <span class="invalid-feedback" style="display: block;">
+                            <span>{{session('date_from_error')}}</span>
+                        </span> 
+                    @endif
                 </div>
                 <div class="col-md-6">
                     <label>Date To</label>
@@ -52,7 +57,6 @@
     </div> <!-- card.// -->
 
     <div class="card">
-
         <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')
