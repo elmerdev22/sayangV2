@@ -39,7 +39,7 @@
                     <b>Billing No. :</b> {{$data->billing->billing_no}}
                 </div>
                 
-                @if($data->order_payment->payment_method == 'card' && $data->order_payment->payment_method == 'e_wallet')
+                @if($data->order_payment->payment_method == 'card' || $data->order_payment->payment_method == 'e_wallet')
                     <div>
                         <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
                     </div>
