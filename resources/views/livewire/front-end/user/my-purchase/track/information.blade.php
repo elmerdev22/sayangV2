@@ -97,10 +97,13 @@
                         </a>
                     @endif
                     @if($data->status == 'order_placed')
-                        <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
-                            CANCEL ORDER
-                        </a>
-                        <br><br>
+                        @if(!$data->order_bid->id) 
+                            <!-- remove condition if cancel is allowed in bid win -->
+                            <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
+                                CANCEL ORDER
+                            </a>
+                            <br><br>
+                        @endif
                     @endif
                 @endif
             @endif

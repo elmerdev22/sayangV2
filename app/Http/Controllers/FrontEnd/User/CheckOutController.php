@@ -158,7 +158,7 @@ class CheckOutController extends Controller
         if($request->success){
 
             if($request->order_key_token){
-                $order = Order::with(['billing', 'order_payment.order_payment_log'])
+                $order = Order::with(['billing', 'order_bid', 'order_payment.order_payment_log'])
                     ->where('key_token', $request->order_key_token)
                     ->first();
 
@@ -166,8 +166,12 @@ class CheckOutController extends Controller
                     $order_no = $order->order_no;
                     
                     if($order->status == 'order_placed'){
-                        $can_repay = Utility::order_can_repay($order->id);
-                        
+                        if($order->order_bid->id){
+                            $can_repay = true;
+                        }else{
+                            $can_repay = Utility::order_can_repay($order->id);
+                        }
+
                         if($can_repay){
                             
                             DB::beginTransaction();
@@ -176,7 +180,7 @@ class CheckOutController extends Controller
                                 $method_id    = $order->order_payment->order_payment_log->method_id;
 
                                 $source = Paymongo::source()->find($method_id);
-                                
+
                                 if($source){
                                     if($source->status === 'chargeable'){
                                         $paymongo = [
@@ -199,6 +203,7 @@ class CheckOutController extends Controller
                                 // dd($e);    
                             }
 
+                            // dd($response);
                             if($response['success']){
                                 
                                 $payment_description = 'Billing No: '.$order->billing->billing_no.', Order No.: '.$order->order_no.' from Source ID: '.$method_id.' - method type (source).';

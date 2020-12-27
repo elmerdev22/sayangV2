@@ -42,7 +42,9 @@
                                     @if($component->is_expired($row->date_end))
                                         <span class="badge badge-danger">Expired</span>
                                     @elseif($row->order_bid_id)
-                                        @if($row->payment_method == 'cash_on_pickup')
+                                        @if($row->order_status == 'cancelled')
+                                            <span class="badge badge-danger">Cancelled</span>
+                                        @elseif($row->payment_method == 'cash_on_pickup')
                                             <span class="badge badge-info">Cash on Pickup</span>
                                         @else
                                             @if($row->order_payment_status == 'pending')
@@ -58,7 +60,7 @@
                                 <td>
                                     @if(!$component->is_expired($row->date_end))
                                         @if($row->order_bid_id)
-                                            <a class="btn btn-warning btn-sm" href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}">View Order</a>
+                                            <a class="btn btn-info btn-sm" href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}">View Order</a>
                                         @else
                                             <a class="btn btn-warning btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
                                         @endif

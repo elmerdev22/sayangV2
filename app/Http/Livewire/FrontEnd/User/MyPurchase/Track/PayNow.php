@@ -97,7 +97,14 @@ class PayNow extends Component
     public function proceed(){
         $response = ['success' => false, 'message' => 'An error occured.'];
 
-        $can_repay = Utility::order_can_repay($this->order_id);
+        $order_init = Order::with(['order_bid'])
+        ->findOrFail($this->order_id);
+
+        if($order_init->order_bid->id){
+            $can_repay = true;
+        }else{
+            $can_repay = Utility::order_can_repay($this->order_id);
+        }
 
         if($can_repay){
             if($this->total_price >= PaymentUtility::paymongo_minimum()){

@@ -33,6 +33,7 @@ class Win extends Component
 			'bids.key_token as bid_key_token', 
 			'order_bids.id as order_bid_id', 
 			'orders.order_no', 
+			'orders.status as order_status', 
 			'order_payments.payment_method',
 			'order_payments.status as order_payment_status'
         ];

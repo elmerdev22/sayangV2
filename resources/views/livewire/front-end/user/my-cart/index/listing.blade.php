@@ -206,8 +206,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', function (event) {
-        // count_down_datetime();
-
         $(document).find('.quantity').each(function (){
             var key_token = $(this).data('key_token');
             quantityField('#quantity-'+key_token, '#btn-quantity-minus-'+key_token, '#btn-quantity-plus-'+key_token);
@@ -283,7 +281,6 @@
             @this.call('reset_checkout_items')
         }
 
-        // count_down_datetime();
     }
 
     function quantity_update(key_token, type='plus'){
@@ -325,18 +322,7 @@
                 @this.call('quantity_update', key_token, new_value);
             }
         }
-
-        // count_down_datetime();
     }
-
-    // function count_down_datetime(){
-    //     $('.countdown-timer').each(function () {
-    //         var date_end   = $(this).data('date_end');
-    //         var element_id = $(this).attr('id');
-
-    //         count_down_timer(date_end, element_id);
-    //     });
-    // }
 
     function delete_item(key){
         Swal.fire({
@@ -359,7 +345,6 @@
                     onBeforeOpen      : () => {
                         Swal.showLoading();
                         @this.call('delete', key)
-                        count_down_datetime();
                     }
                 });
             }

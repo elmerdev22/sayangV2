@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\FrontEnd\User\MyBid\Win;
 
+use Luigel\Paymongo\Facades\Paymongo;
 use Livewire\Component;
 use App\Model\Product;
 use App\Model\Bid;
@@ -344,9 +345,28 @@ class PayNow extends Component
                                 ];
                                 
                                 if($this->payment_method == 'e_wallet'){
+                                    $paymongoSource = Paymongo::source()->create([
+                                        'type'     => $this->e_wallet,
+                                        'amount'   => $this->total_price,
+                                        'currency' => PaymentUtility::currency(),
+                                        'redirect' => [
+                                            'success' => route('front-end.user.check-out.paymongo-repay-order-e-wallet', ['order_key_token' => $order->key_token, 'success' => true]),
+                                            'failed'  => route('front-end.user.check-out.paymongo-repay-order-e-wallet', ['order_key_token' => $order->key_token, 'success' => false])
+                                        ],
+                                        'billing' => $billing_address
+                                    ]);
 
+                                    if($paymongoSource){
+                                        $payment_log            = OrderPaymentLog::find($order_payment_log->id);
+                                        $payment_log->method    = 'source';
+                                        $payment_log->method_id = $paymongoSource->id;
+                                        if($payment_log->save()){
+                                            $response['success'] = true;
+                                        }
+                                    }
                                 }else if($this->payment_method == 'card'){
     
+                                    // $response['success'] = true;
                                 }else if($this->payment_method == 'cash_on_pickup'){
                                     // Web notification
                                     $partner_data = Partner::find($data->partner_id);
@@ -355,9 +375,8 @@ class PayNow extends Component
                                         Do the Notification via Email or Web 
                                     */
                                     // DATA: $notify['partner_id'], $notify['billing_no'], $notify['order_no'], $notify['user_account_id']
+                                    $response['success'] = true;
                                 }
-
-                                $response['success'] = true;
                             }
                         }
                     }else{
@@ -393,11 +412,8 @@ class PayNow extends Component
                     'title'   => 'Bid Order Success via Card',
                 ]);
             }else if($this->payment_method == 'e_wallet'){
-                DB::rollback();
-                $this->emit('alert', [
-                    'type'    => 'success',
-                    'title'   => 'Bid Order Success via E-Wallet',
-                ]);
+                DB::commit();
+                return redirect($paymongoSource->getRedirect()['checkout_url']);
             }else{
                 DB::rollback();
                 $this->emit('alert', [
