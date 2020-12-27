@@ -30,6 +30,11 @@
                 <div class="col-md-6">
                     <label>Date From</label>
                     <input type="date" class="form-control" wire:model="date_from">
+                    @if(session('date_from_error')) 
+                        <span class="invalid-feedback" style="display: block;">
+                            <span>{{session('date_from_error')}}</span>
+                        </span> 
+                    @endif
                 </div>
                 <div class="col-md-6">
                     <label>Date To</label>
