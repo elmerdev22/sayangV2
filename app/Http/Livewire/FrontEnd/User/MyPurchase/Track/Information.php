@@ -18,6 +18,7 @@ class Information extends Component
 
     public function data(){
         return Order::with([
+                'order_bid',
                 'order_payment.bank',
                 'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region',
@@ -28,8 +29,13 @@ class Information extends Component
 
     public function render(){
         $data        = $this->data();
+
         if($data->status == 'order_placed'){
-            $can_repay   = Utility::order_can_repay($data->id);
+            if($data->order_bid){
+                $can_repay = true;
+            }else{
+                $can_repay = Utility::order_can_repay($data->id);
+            }
         }else{
             $can_repay = false;
         }

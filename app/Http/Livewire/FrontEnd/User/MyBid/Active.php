@@ -17,7 +17,8 @@ class Active extends Component
     public $account;
     
     public function mount(){
-        $this->account = Utility::auth_user_account();
+		$this->account = Utility::auth_user_account();
+		$this->sort    = ['product_posts.date_end'];
     } 
     
     public function data(){

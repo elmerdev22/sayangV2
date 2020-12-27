@@ -16,6 +16,7 @@ class Information extends Component
 
     public function data(){
         return Order::with([
+                'order_bid',
                 'order_payment.bank',
                 'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region'

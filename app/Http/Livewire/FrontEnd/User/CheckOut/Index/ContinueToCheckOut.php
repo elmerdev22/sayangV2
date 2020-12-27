@@ -578,17 +578,19 @@ class ContinueToCheckOut extends Component
                     Utility::new_notification($partner_data->user_account_id , null , 'new_product_sold', 'order_updates');
                                             
                 }
+                
+                if(count($product_posts) > 0){
+                    foreach($product_posts as $key => $product_post){
+                        event(new CheckOut($product_post));
+                    }
+                }
+
                 Session::flash('checkout_payment', ['success' => true, 'message' => '']);
             }else{
                 DB::rollback();
                 Session::flash('checkout_payment', ['success' => false, 'message' => '']);
             }
 
-            if(count($product_posts) > 0){
-                foreach($product_posts as $key => $product_post){
-                    event(new CheckOut($product_post));
-                }
-            }
             return redirect(route('front-end.user.my-purchase.list'));
         }
 

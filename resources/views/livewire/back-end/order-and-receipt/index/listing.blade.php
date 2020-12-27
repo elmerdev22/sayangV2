@@ -80,6 +80,10 @@
                                 Purchase Date
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
+                            <th class="table-sort" wire:click="sort('orders.created_at')">
+                                Payment
+                                <!-- @include('back-end.layouts.includes.datatables.sort', ['field' => 'order_payments.payment_method']) -->
+                            </th>
                             <th class="table-sort" wire:click="sort('orders.status')">
                                 Status
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.status'])
@@ -94,6 +98,19 @@
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
                                 <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>
+                                    @if($row->payment_method == 'cash_on_pickup')
+                                        <span class="badge badge-info">Cash on Pickup</span>
+                                    @else
+                                        @if($row->order_payment_status == 'pending')
+                                            <span class="badge badge-warning">Pending</span>
+                                        @elseif($row->order_payment_status == 'paid')
+                                            <span class="badge badge-info">{{ucfirst(str_replace('_', '-', $row->payment_method))}}</span>
+                                        @else
+                                            <span class="badge badge-danger">Cancelled</span>
+                                        @endif
+                                    @endif
+                                </td>
                                 <td>
                                     @if($row->status == 'cancelled')
                                         <span class="badge badge-danger">Cancelled</span>

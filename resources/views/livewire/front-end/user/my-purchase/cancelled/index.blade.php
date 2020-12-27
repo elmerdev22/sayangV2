@@ -39,8 +39,8 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
-                                <td>{{date('F/d/Y h:i A', strtotime($row->date_cancelled))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->date_cancelled))}}</td>
                                 <td>
                                     @if ($row->cancelled_by == 'user')
                                         You 

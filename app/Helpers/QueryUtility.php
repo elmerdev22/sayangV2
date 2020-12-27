@@ -424,7 +424,11 @@ class QueryUtility{
 		$data = DB::table('bids')
 			->select($select)
 			->join('product_posts', 'product_posts.id', '=', 'bids.product_post_id')
-			->join('products', 'products.id', '=', 'product_posts.product_id');
+			->join('products', 'products.id', '=', 'product_posts.product_id')
+			->leftJoin('order_bids', 'order_bids.bid_id', '=', 'bids.id')
+			->leftJoin('orders', 'orders.id', '=', 'order_bids.order_id')
+			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
+			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);
@@ -539,7 +543,8 @@ class QueryUtility{
 			->select($select)
 			->join('product_posts', 'product_posts.id', '=', 'order_items.product_post_id')
 			->join('orders', 'orders.id', '=', 'order_items.order_id')
-			->leftJoin('products', 'products.id', '=', 'product_posts.product_id');
+			->leftJoin('products', 'products.id', '=', 'product_posts.product_id')
+			->leftJoin('order_bids', 'order_bids.order_id', '=', 'orders.id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

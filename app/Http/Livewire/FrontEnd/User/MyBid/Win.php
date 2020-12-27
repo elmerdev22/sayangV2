@@ -6,17 +6,20 @@ use Livewire\Component;
 use App\Model\ProductPost;
 use App\Model\Bid;
 use Livewire\WithPagination;
+use SettingsUtility;
 use QueryUtility;
 use Utility;
 use Auth;
 class Win extends Component
 {
     use WithPagination;
-    public $search = '', $show_entries=10, $sort = [], $sort_type='desc';
+    public $search = '', $show_entries=10, $sort = [], $sort_type='desc', $winning_bid_expiration;
     public $account;
     
     public function mount(){
-        $this->account = Utility::auth_user_account();
+		$this->account                = Utility::auth_user_account();
+		$this->sort                   = ['product_posts.date_end'];
+		$this->winning_bid_expiration = SettingsUtility::settings_value('winning_bid_expiration');
     } 
     
     public function data(){
@@ -27,6 +30,12 @@ class Win extends Component
 			'product_posts.key_token as product_key_token', 
 			'product_posts.date_start', 
 			'product_posts.date_end', 
+			'bids.key_token as bid_key_token', 
+			'order_bids.id as order_bid_id', 
+			'orders.order_no', 
+			'orders.status as order_status', 
+			'order_payments.payment_method',
+			'order_payments.status as order_payment_status'
         ];
         
 		$filter['where']['bids.user_account_id'] = $this->account->id;
@@ -54,13 +63,65 @@ class Win extends Component
 	}
     
     public function render(){
-		$data = $this->data();
-		// dd($data);
-        return view('livewire.front-end.user.my-bid.win', compact('data'));
-    }
+		$data      = $this->data();
+		$component = $this;
+
+		return view('livewire.front-end.user.my-bid.win', compact('data', 'component'));
+	}
 
     public function sort($sort){
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
-    }
+	}
+	
+	public function is_expired($date_ended){
+		$end     = strtotime($date_ended.'+'.$this->winning_bid_expiration.' hours');
+		$current = time();
+		if($end >= $current){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public function pay_now($key_token){
+		$response = ['success' => false, 'message' => 'Unable to process your request'];
+		
+		try{
+
+			$filter = [];
+			$filter['select'] = [
+				'bids.key_token', 
+				'product_posts.date_end', 
+				'order_bids.id as order_bid_id', 
+			];
+			$filter['where']['bids.key_token']      = $key_token;
+			$filter['where']['bids.status']         = 'win';
+			$filter['where']['bids.winning_status'] = 'not_paid';
+			
+			$bid = QueryUtility::bids($filter)->first();
+			
+			if($bid){
+				if(!$this->is_expired($bid->date_end)){
+					if(!$bid->order_bid_id){
+						$response['success'] = true;
+					}
+				}
+			}
+
+		}catch(\Exception $e){
+			$response['success'] = false;
+			$response['message'] = 'An error occured while processing the payment.';
+		}
+
+		if($response['success']){
+			$this->emit('bid_pay_now', ['bid_key_token' => $key_token]);
+		}else{
+			$this->emit('alert', [
+                'type'    => 'error',
+                'title'   => 'Failed',
+                'message' => $response['message']
+            ]);
+		}
+	}
 }

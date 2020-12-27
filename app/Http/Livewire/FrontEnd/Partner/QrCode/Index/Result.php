@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\FrontEnd\Partner\QrCode\Index;
 
 use Livewire\Component;
+use App\Model\Bid;
 use App\Model\Order;
+use App\Model\OrderBid;
 use App\Model\OrderPayment;
 use Utility;
 
@@ -29,6 +31,7 @@ class Result extends Component
 
             $data = Order::with([
                     'billing', 
+                    'order_bid',
                     'order_items',
                     'order_payment',
                     'order_items.product_post',
@@ -80,6 +83,13 @@ class Result extends Component
                     $order_payment->status    = 'paid';
                     $order_payment->date_paid = date('Y-m-d H:i:s');
                     $order_payment->save();
+
+                    $order_bid = OrderBid::where('order_id', $order->id)->first();
+                    if($order_bid){
+                        $win_bid                 = Bid::find($order_bid->bid_id);
+                        $win_bid->winning_status = 'paid';
+                        $win_bid->save();
+                    }
                 }
             }
 

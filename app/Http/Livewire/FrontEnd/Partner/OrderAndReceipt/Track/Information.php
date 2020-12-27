@@ -5,6 +5,7 @@ namespace App\Http\Livewire\FrontEnd\Partner\OrderAndReceipt\Track;
 use Livewire\Component;
 use App\Model\Order;
 use App\Model\OrderPayment;
+use App\Events\CheckOut;
 use PaymentUtility;
 use Utility;
 use DB;
@@ -22,6 +23,7 @@ class Information extends Component
 
     public function data(){
         return Order::with([
+                'order_bid',
                 'order_payment.bank',
                 'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region'
@@ -35,7 +37,11 @@ class Information extends Component
         $order_total = Utility::order_total($data->id);
         
         if($data->status == 'order_placed'){
-            $this->can_repay = Utility::order_can_repay($data->id);
+            if($data->order_bid){
+                $this->can_repay = true;
+            }else{
+                $this->can_repay = Utility::order_can_repay($data->id);
+            }
         }else{
             $this->can_repay = false;
         }
@@ -123,6 +129,13 @@ class Information extends Component
     
             if($response['success']){
                 DB::commit();
+                if(isset($pay_order['product_posts'])){
+                    if(count($pay_order['product_posts']) > 0){
+                        foreach($pay_order['product_posts'] as $key => $product_post){
+                            event(new CheckOut($product_post));
+                        }
+                    }
+                }
                 $user_account_id = $this->data()->billing->user_account_id;
                 Utility::new_notification($user_account_id, null, 'confirmed_cop_request', 'order_updates');
                 $this->emit('alert_link',[

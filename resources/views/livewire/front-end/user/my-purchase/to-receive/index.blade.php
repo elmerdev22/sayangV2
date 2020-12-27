@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td>{{date('F/d/Y h:i A', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:iA', strtotime($row->created_at))}}</td>
                                 <td><span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span></td>
                                 <td>
                                     <a href="javascript:void(0);" class="btn btn-sm btn-outline-warning" onclick="qr_code('{{$row->key_token}}')">
