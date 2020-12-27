@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Orders & Receipts</h5> 
+            <h5 class="card-title">Filter Orders & Receipts</h5> 
         </div>
         <div class="card-body">
             <div class="row">
@@ -57,7 +57,6 @@
     </div> <!-- card.// -->
 
     <div class="card">
-
         <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')

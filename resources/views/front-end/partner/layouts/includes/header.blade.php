@@ -19,7 +19,7 @@
             </a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 dropdown-menu-right shadow">
                 <li>
-                    <a href="#" class="dropdown-item sayang-dropdown-item {{Route::is('front-end.partner.my-account.index') ? 'active':''}}">Profile </a>
+                    <a href="{{route('front-end.partner.my-account.index')}}" class="dropdown-item sayang-dropdown-item {{Route::is('front-end.partner.my-account.index') ? 'active':''}}">Profile </a>
                 </li>
                 <li data-toggle="modal" data-target="#change_password">
                     <a href="javascript:void(0);" class="dropdown-item sayang-dropdown-item">Change Password </a>

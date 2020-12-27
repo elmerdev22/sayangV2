@@ -12,68 +12,101 @@
     @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
+
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">CPU Traffic</span>
-                        <span class="info-box-number">
-                            10
-                        <small>%</small>
-                    </span>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['order_placed'] ,0)}}</h3>
+                    <p>Order Placed</p>
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-        <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Likes</span>
-                    <span class="info-box-number">41,410</span>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart text-warning"></i>
                 </div>
-                <!-- /.info-box-content -->
+                <a href="{{route('front-end.partner.order-and-receipt.order-placed')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
-        <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Sales</span>
-                    <span class="info-box-number">760</span>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['to_receive'] ,0)}}</h3>
+                    <p>To Receive/Pick-up</p>
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-        <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">New Members</span>
-                    <span class="info-box-number">2,000</span>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart text-info"></i>
                 </div>
-                <!-- /.info-box-content -->
+                <a href="{{route('front-end.partner.order-and-receipt.to-receive')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
-        <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['completed'] ,0)}}</h3>
+                    <p>Completed Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart text-success"></i>
+                </div>
+                <a href="{{route('front-end.partner.order-and-receipt.completed')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['cancelled'] ,0)}}</h3>
+                    <p>Cancelled Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart text-danger"></i>
+                </div>
+                <a href="{{route('front-end.partner.order-and-receipt.cancelled')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['total_followers'] ,0)}}</h3>
+                    <p>Total Followers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users text-warning"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['total_products'] ,0)}}</h3>
+                    <p>Total Active Products</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart text-warning"></i>
+                </div>
+                <a href="{{route('front-end.partner.my-products.activities.index')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -206,7 +239,7 @@
           <!-- /.card -->
         </div>
         <!-- /.col -->
-    </div>
+    </div> --}}
 @endsection
 @section('js')
 <script src="{{ asset('template/assets/plugins/chart.js/Chart.min.js') }}"></script>

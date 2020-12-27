@@ -26,9 +26,9 @@
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
-                            <th class="table-sort" wire:click="sort('orders.date_payment_confirmed')">
+                            <th class="table-sort" wire:click="sort('orders.date_cancelled')">
                                 Cancelled Date
-                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_payment_confirmed'])
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_cancelled'])
                             </th>
                             <th class="table-sort" wire:click="sort('orders.status')">
                                 Status
@@ -63,7 +63,7 @@
                             </tr>
                         @empty
 	        				<tr>
-	        					<td colspan="6" class="text-center">No Data Found</td>
+	        					<td colspan="7" class="text-center">No Data Found</td>
 	        				</tr>
                         @endforelse
                     </tbody>
