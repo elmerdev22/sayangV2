@@ -8,6 +8,7 @@ use App\Model\Cart;
 use App\Model\Product;
 use App\Model\ProductPost;
 use App\Model\Order;
+use App\Model\OrderBid;
 use App\Model\OrderItem;
 use App\Model\OrderPayment;
 use App\Model\OrderPaymentLog;
@@ -165,6 +166,13 @@ class PaymentUtility{
                     if(!$is_cash_on_pickup){
                         $order_payment->status    = 'paid';
                         $order_payment->date_paid = date('Y-m-d H:i:s');
+
+                        $order_bid = OrderBid::where('order_id', $order->id)->first();
+                        if($order_bid){
+                            $win_bid                 = Bid::find($order_bid->bid_id);
+                            $win_bid->winning_status = 'paid';
+                            $win_bid->save();
+                        }
                     }
 
                     if($order_payment->save()){

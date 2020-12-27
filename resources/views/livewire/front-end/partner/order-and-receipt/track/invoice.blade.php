@@ -80,8 +80,8 @@
                             <tr>
                                 <td>{{ucfirst($row->product_post->product->name)}}</td>
                                 <td>{{$row->quantity}}</td>
-                                <td>₱ {{number_format($row->product_post->buy_now_price, 2)}}</td>
-                                <td>₱ {{number_format($row->product_post->buy_now_price * $row->quantity, 2)}}</td>
+                                <td>₱ {{number_format($row->price, 2)}}</td>
+                                <td>₱ {{number_format($row->price * $row->quantity, 2)}}</td>
                             </tr>
                         @endforeach
                     </tbody>

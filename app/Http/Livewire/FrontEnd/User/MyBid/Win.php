@@ -32,6 +32,9 @@ class Win extends Component
 			'product_posts.date_end', 
 			'bids.key_token as bid_key_token', 
 			'order_bids.id as order_bid_id', 
+			'orders.order_no', 
+			'order_payments.payment_method',
+			'order_payments.status as order_payment_status'
         ];
         
 		$filter['where']['bids.user_account_id'] = $this->account->id;

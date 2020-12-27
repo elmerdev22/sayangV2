@@ -703,7 +703,8 @@ class Utility{
         $filter = [];
         $filter['select'] = [
             'order_items.quantity',
-            'product_posts.buy_now_price',
+            // 'product_posts.buy_now_price',
+            'order_items.price as buy_now_price',
             'products.regular_price'
         ];
         $filter['where']['order_items.order_id'] = $order_id;

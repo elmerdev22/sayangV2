@@ -6,6 +6,7 @@
                     <th scope="col">Item</th>
                     <th scope="col">Bid Qty</th>
                     <th scope="col">Bid Price</th>
+                    <th scope="col">Total Price</th>
                     <th scope="col">Expiration</th>
                 </tr>
             </thead>
@@ -24,7 +25,8 @@
                         </div>
                     </td>
                     <td>{{number_format($data->bid_quantity,0)}}</td>
-                    <td>{{number_format($data->bid_quantity * $data->bid_price,2)}}</td>
+                    <td>PHP {{number_format($data->bid_price,2)}}</td>
+                    <td>PHP {{number_format($total_price,2)}}</td>
                     <td>{{$component->expiration($data->date_end)}}</td>
                 </tr>
             </tbody>
@@ -49,13 +51,12 @@
                             {{$address->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$address->zip_code}} <br>
                         </div>
                     </div>        
-
-                    <a class="btn btn-sm btn-warning" href="{{route('front-end.user.my-account.addresses')}}"><i class="fas fa-edit"></i> Change Default Address</a>
                 </div>
             @else
                 <p class="text-muted mb-3 mt-3">You don't have address yet.</p>
-                <a class="btn btn-sm btn-warning" href="{{route('front-end.user.my-account.addresses')}}"><i class="fas fa-plus-square"></i> Add Addresses</a>
             @endif
+
+            <a class="btn btn-sm btn-warning" href="{{route('front-end.user.my-account.addresses')}}"><i class="fas fa-plus"></i> Add New Addresses</a>
         <hr>
         <h4>Payment Method</h4>
         <div class="row mb-3">
@@ -123,7 +124,7 @@
         @else
             <h5 class="mb-3"><b>Select Credit/Debit Card</b></h5>
             @if($total_price < PaymentUtility::paymongo_minimum())
-                <p>(Minimum of PHP 100)</p>
+                <p>(Minimum of PHP {{PaymentUtility::paymongo_minimum()}})</p>
             @else
                 @forelse($credit_cards as $row)
                     <div class="row mb-3">
@@ -185,13 +186,30 @@
     window.livewire.on('remove_loading_card', param => {
         var card_dom = $('#card-payment_method');
         card_loader(card_dom, 'hide');
-        Swal.close();
     });
 
     function change_payment_method(method){
         var card_dom = $('#card-payment_method');
         card_loader(card_dom, 'show');
         @this.call('change_payment_method', method)
+    }
+
+    function set_card_token(key_token){
+        var card_dom = $('#card-payment_method');
+        card_loader(card_dom, 'show');
+        @this.call('set_card_token', key_token)
+    }
+
+    function set_e_wallet(type){
+        var card_dom = $('#card-payment_method');
+        card_loader(card_dom, 'show');
+        @this.call('set_e_wallet', type)
+    }
+
+    function proceed(){
+        var card_dom = $('#card-payment_method');
+        card_loader(card_dom, 'show');
+        @this.call('proceed')
     }
 </script>
 @endpush

@@ -18,15 +18,16 @@
                                 Product name
                                 @include('front-end.includes.datatables.sort', ['field' => 'products.name'])
                             </th>
-                            <th class="table-sort" wire:click="sort('product_posts.date_start')">
+                            <!-- <th class="table-sort" wire:click="sort('product_posts.date_start')">
                                 Date Start
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_start'])
-                            </th>
+                            </th> -->
                             <th class="table-sort" wire:click="sort('product_posts.date_end')">
                                 Date Ended
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.date_end'])
                             </th>
                             <th class="text-center">Expiration Date</th>
+                            <th class="text-center">Payment</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -34,16 +35,33 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
+                                <!-- <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td> -->
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_end.' +'.$winning_bid_expiration.' hours'))}}</td>
                                 <td>
                                     @if($component->is_expired($row->date_end))
-                                        <a class="btn btn-danger btn-sm" href="javascript:void(0);">Expired</a>
+                                        <span class="badge badge-danger">Expired</span>
                                     @elseif($row->order_bid_id)
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0);">View Order</a>
+                                        @if($row->payment_method == 'cash_on_pickup')
+                                            <span class="badge badge-info">Cash on Pickup</span>
+                                        @else
+                                            @if($row->order_payment_status == 'pending')
+                                                <span class="badge badge-warning">Pending</span>
+                                            @else
+                                                <span class="badge badge-info">{{ucfirst(str_replace('_','-',$row->payment_method))}}</span>
+                                            @endif
+                                        @endif
                                     @else
-                                        <a class="btn btn-warning btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
+                                        <span class="badge badge-warning">Pending</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(!$component->is_expired($row->date_end))
+                                        @if($row->order_bid_id)
+                                            <a class="btn btn-warning btn-sm" href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}">View Order</a>
+                                        @else
+                                            <a class="btn btn-warning btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
+                                        @endif
                                     @endif
                                     <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
                                 </td>

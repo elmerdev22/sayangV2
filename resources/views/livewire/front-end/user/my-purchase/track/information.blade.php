@@ -32,6 +32,7 @@
         <div class="col-md-5">
             <h6 class="text-muted">
                 Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
+                @if($data->order_bid->id) <span class="badge badge-primary">Order From Win Bid</span> @endif
             </h6>
             @if($data->order_payment->status == 'paid')
                 <div>
@@ -60,7 +61,7 @@
             @if($data->order_payment->status == 'pending')
                 <div>
                     <span class="badge badge-warning">
-                        <i class="fas fa-spinner"></i> Pending
+                        <i class="fas fa-spinner"></i> Pending 
                     </span>
                 </div>
             @elseif($data->order_payment->status == 'paid')
@@ -95,19 +96,23 @@
                             PAY NOW
                         </a>
                     @endif
-                    <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
-                        CANCEL ORDER
-                    </a>
+                    @if($data->status == 'order_placed')
+                        <a class="btn btn-sm btn-danger" href="javascript:void(0);" data-toggle="modal" data-target="#modal-cancel_order">
+                            CANCEL ORDER
+                        </a>
+                        <br><br>
+                    @endif
                 @endif
             @endif
-
             
             <div class="row">
                 @if($data->status == 'order_placed')
-                    @if(!$can_repay)
-                        <div class="col-12">
-                            <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.
-                        </div>
+                    @if(!$data->order_bid->id)
+                        @if(!$can_repay)
+                            <div class="col-12">
+                                <b>Note:</b> This order was expired, because one or more of the items in this order was ended or soldout.
+                            </div>
+                        @endif
                     @endif
                 @endif
                 @if($data->status != 'order_placed' && $data->status != 'cancelled')

@@ -18,6 +18,10 @@ class Order extends Model
         return $this->hasOne('App\Model\OrderPayment', 'order_id', 'id');
     }
 
+    public function order_bid(){
+        return $this->hasOne('App\Model\OrderBid', 'order_id', 'id');
+    }
+
     public function order_items(){
         return $this->hasMany('App\Model\OrderItem', 'order_id', 'id');
     }

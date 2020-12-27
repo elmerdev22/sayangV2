@@ -4,10 +4,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12">
-                        <label>Buyer name : {{ucwords($data->billing->full_name)}}</label>
+                        <label>Customer Name : {{ucwords($data->billing->full_name)}}</label>
                     </div>
                     <div class="col-12">
-                        <label>Date purchase : {{date('F/d/Y', strtotime($data->created_at))}}</label>
+                        <label>Date Purchase : {{date('F/d/Y', strtotime($data->created_at))}}</label>
                     </div>
                     <div class="col-sm-5">
                         <label>Products : {{number_format($data->order_items()->count(), 0)}} items</label>
@@ -27,6 +27,9 @@
                                 <span class="badge badge-success">Completed</span>
                             @endif
                             <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
+                            @if($data->order_bid->id)
+                                <span class="badge badge-primary">Order From Win Bid</span>
+                            @endif
                         </label>
                     </div>          
                 </div>
