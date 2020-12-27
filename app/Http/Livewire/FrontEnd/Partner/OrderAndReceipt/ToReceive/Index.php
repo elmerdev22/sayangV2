@@ -17,7 +17,7 @@ class Index extends Component
     
     public function mount(){
         $this->partner = Utility::auth_partner();
-        $this->sort    = ['orders.created_at'];
+        $this->sort    = ['orders.date_payment_confirmed'];
     }
 
     public function data(){

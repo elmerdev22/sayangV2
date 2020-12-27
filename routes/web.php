@@ -197,6 +197,17 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             
         });
 
+        // Products
+        Route::group(['prefix' => 'products', 'as' => 'products.'], function (){
+            $c = 'ProductsController';
+            
+            Route::get('/', [
+                'as'    => 'index',
+                'uses'  => $c.'@index'
+            ]);
+
+        });
+
         // Setting
         Route::group(['prefix' => 'setting', 'as' => 'setting.'], function (){
             $c = 'SettingController';

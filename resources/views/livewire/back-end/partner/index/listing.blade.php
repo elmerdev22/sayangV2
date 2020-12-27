@@ -1,17 +1,60 @@
 <div>
-	<div class="card card-outline card-sayang mb-3">
+    <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title"> Partner List</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-            </div>
+            <h5 class="card-title">Filter Partners</h5> 
         </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Account Status</label>
+                    <select class="form-control" wire:model="account_status">
+                        <option value="" selected>All</option>
+                        <option value="done">Activated</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Block Status</label>
+                    <select class="form-control" wire:model="block_status">
+                        <option value="" selected>All</option>
+                        <option value="1">Blocked</option>
+                        <option value="0">Not Blocked</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Date Registered From</label>
+                    <input type="date" class="form-control" wire:model="date_from">
+                    @if(session('date_from_error')) 
+                        <span class="invalid-feedback" style="display: block;">
+                            <span>{{session('date_from_error')}}</span>
+                        </span> 
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <label>Date Registered To</label>
+                    <input type="date" class="form-control" wire:model="date_to">
+                    @if(session('date_to_error')) 
+                        <span class="invalid-feedback" style="display: block;">
+                            <span>{{session('date_to_error')}}</span>
+                        </span> 
+                    @endif
+                </div>
+            </div>
+            @if ($reset_filter)
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-warning w-25" wire:click="reset_filter">Reset Filter <span wire:loading wire:target="reset_filter" class="fas fa-spinner fa-spin"></span></button>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div> <!-- card.// -->
+	<div class="card mb-3">
         <div class="card-body">
         	<!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('back-end.layouts.includes.datatables.search')
         	<div class="table-responsive mt-3">
-        		<table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
+        		<table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
 	        		<thead>
 	        			<tr>
 	        				<th class="table-sort" wire:click="sort('user_accounts.first_name|user_accounts.last_name')">
@@ -33,12 +76,17 @@
 		        				Email 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'partners.email'])
 		        			</th>
-		        			<th>Status</th>
+		        			<th class="table-sort" wire:click="sort('users.is_blocked')">
+		        				Status 
+		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'users.is_blocked'])
+		        			</th>
 		        			<th class="table-sort" wire:click="sort('user_accounts.created_at')">
 		        				Date Registered 
 		        				@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.created_at'])
 		        			</th>
-		        			<th></th>
+		        			<th>
+								Action
+							</th>
 	        			</tr>
 	        		</thead>
 	        		<tbody>

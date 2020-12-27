@@ -15,7 +15,7 @@ class Index extends Component
     
     public function mount(){
         $this->account = Utility::auth_user_account();
-        $this->sort    = ['orders.created_at'];
+        $this->sort    = ['orders.date_cancelled'];
     }
 
     public function data(){
