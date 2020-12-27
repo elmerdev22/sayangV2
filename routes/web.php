@@ -531,6 +531,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
 		        'as' 	=> 'payment-confirmed',
 		        'uses'  => $c.'@payment_confirmed'
             ]);
+            
+			Route::get('/to-receive', [
+		        'as' 	=> 'to-receive',
+		        'uses'  => $c.'@to_receive'
+            ]);
 
 			Route::get('/order-placed', [
 		        'as' 	=> 'order-placed',

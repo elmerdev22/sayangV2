@@ -40,17 +40,7 @@
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>
-                                    @if($row->status == 'cancelled')
-                                        <span class="badge badge-danger">Cancelled</span>
-                                    @elseif($row->status == 'order_placed')
-                                        <span class="badge badge-warning">Order Placed</span>
-                                    @elseif($row->status == 'payment_confirmed')
-                                        <span class="badge badge-info">Payment Confirmed</span>
-                                    @elseif($row->status == 'to_receive')
-                                        <span class="badge badge-info">To Receive</span>
-                                    @elseif($row->status == 'completed')
-                                        <span class="badge badge-success">Completed</span>
-                                    @endif
+                                    <span class="badge badge-info">Order Placed</span>
                                 </td>
                                 <td>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>

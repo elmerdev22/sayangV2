@@ -45,13 +45,13 @@
             <span class="fas fa-chevron-right mr-1 ml-2"></span>
             To Receive/Pickup
         </a>
-        <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.cancelled') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
-            <span class="fas fa-chevron-right mr-1 ml-2"></span>
-            Cancelled
-        </a>
         <a href="{{route('front-end.user.my-purchase.completed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.completed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
             <span class="fas fa-chevron-right mr-1 ml-2"></span>
             Completed
+        </a>
+        <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.cancelled') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
+            <span class="fas fa-chevron-right mr-1 ml-2"></span>
+            Cancelled
         </a>
     </div>
 

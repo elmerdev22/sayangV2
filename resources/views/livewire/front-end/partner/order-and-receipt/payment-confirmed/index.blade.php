@@ -30,6 +30,10 @@
                                 Payment Confirmed Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.date_payment_confirmed'])
                             </th>
+                            <th class="table-sort" wire:click="sort('order_payments.payment_method')">
+                                Payment Method
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_payments.payment_method'])
+                            </th>
                             <th class="table-sort" wire:click="sort('orders.status')">
                                 Status
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.status'])
@@ -45,17 +49,10 @@
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->date_payment_confirmed))}}</td>
                                 <td>
-                                    @if($row->status == 'cancelled')
-                                        <span class="badge badge-danger">Cancelled</span>
-                                    @elseif($row->status == 'order_placed')
-                                        <span class="badge badge-warning">Order Placed</span>
-                                    @elseif($row->status == 'payment_confirmed')
-                                        <span class="badge badge-info">Payment Confirmed</span>
-                                    @elseif($row->status == 'to_receive')
-                                        <span class="badge badge-info">To Receive</span>
-                                    @elseif($row->status == 'completed')
-                                        <span class="badge badge-success">Completed</span>
-                                    @endif
+                                    <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info">Payment Confirmed</span>
                                 </td>
                                 <td>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
