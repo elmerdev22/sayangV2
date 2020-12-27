@@ -182,6 +182,12 @@ class SettingsUtility{
                 'title'   => 'Order Completed!',
                 'message' => 'Order Completed!, click the here for more details',
             ],
+            // Partner New Product Post
+            'partner_new_product_post' => [
+                'name'    => 'Partner New Post Product',
+                'title'   => 'New Post Product!',
+                'message' => 'New Post Product , click the here for more details',
+            ],
 
         ];
 

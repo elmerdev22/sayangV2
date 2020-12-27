@@ -7,6 +7,7 @@ use App\Model\ProductPost;
 use App\Model\Product;
 use Carbon\Carbon;
 use App\Model\Setting;
+use App\Model\Follower;
 use Utility;
 use DB;
 
@@ -42,7 +43,12 @@ class Proceed extends Component
         // dd($type.' = '.$this->$type);
     }
 
+    public function followers(){
+        return Follower::where('partner_id', $this->partner->id)->where('is_notify', 1)->get();
+    }
+
     public function store(){
+
         $this->hours_error = '';
 
         $rules = [
@@ -79,6 +85,11 @@ class Proceed extends Component
                 $product_post->is_set        = true;
                 $product_post->key_token     = Utility::generate_table_token('ProductPost');
                 $product_post->save();
+
+                foreach($this->followers() as $row){
+                    Utility::notification_check($row->user_account_id, $product_post->id, 'partner_new_product_post', 'activity');
+                }
+
             }
             $response['success'] = true;
         }catch(\Exception $e){
