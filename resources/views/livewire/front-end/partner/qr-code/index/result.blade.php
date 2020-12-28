@@ -27,7 +27,7 @@
                                 <span class="badge badge-success">Completed</span>
                             @endif
                             <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span>
-                            @if($data->order_bid->id)
+                            @if($data->order_bid)
                                 <span class="badge badge-primary">Order From Win Bid</span>
                             @endif
                         </label>
