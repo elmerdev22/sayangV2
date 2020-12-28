@@ -112,10 +112,10 @@
                         @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
                         <hr>
                         <div class="col-12">
-                            <label>Product Sold</label>
+                            <label>Order History</label>
                         </div>
                         <div class="col-md-7">
-                            <p>Buyer Details | Total Sold: 2</p>
+                            <p>Buyer Details</p>
                         </div>
                         <div class="col-md-5">
                             <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">
