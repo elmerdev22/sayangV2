@@ -60,7 +60,7 @@
                                               <img class="img-circle elevation-1 mr-3" src="{{$store_photo}}" alt="User Avatar">
                                             </div>
                                             <!-- /.widget-user-image -->
-                                            <h5>Elmer shop</h5>
+                                            <h5>{{ucfirst($product->partner_name)}}</h5>
                                             <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-sm">
                                                 <span class="fas fa-store"></span> View Shop
                                             </a>

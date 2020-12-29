@@ -19,6 +19,7 @@ class InformationController extends Controller
             'product_posts.id as product_post_id',
             'product_posts.product_id',
             'partners.slug as partner_slug',
+            'partners.name as partner_name',
             'partners.address',
             'partners.created_at as joined',
             'user_accounts.key_token as user_account_key_token',
