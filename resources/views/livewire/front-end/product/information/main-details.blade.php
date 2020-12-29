@@ -19,7 +19,7 @@
             <small>({{Utility::get_partner_ratings($product_post->product->partner->id)}})</small>
         </p>
     </a>
-    <p>{{nl2br($product_post->product->description)}}</p>
+    <p class="text-justify">{!! $product_post->product->description !!}</p>
     <div class="bg-danger p-2 w-50 text-center">
         <span class="fas fa-clock"></span> 
         <span class="countdown">

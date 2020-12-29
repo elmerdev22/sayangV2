@@ -32,9 +32,17 @@ class Listing extends Component
 		];
 		$filter['where']['users.type'] = 'partner';
 		
-		
 		if($this->account_status != null){
-			$filter['where']['partners.status'] = $this->account_status;
+			if($this->account_status == 'activated'){
+				$filter['where']['partners.is_activated'] = 1;
+			}
+			else if($this->account_status == 'for_activation'){
+				$filter['where']['partners.status']       = 'done';
+				$filter['where']['partners.is_activated'] = 0;
+			}
+			else{
+				$filter['where']['partners.status'] = 'pending';
+			}
 		}
 		
 		if($this->block_status != null){

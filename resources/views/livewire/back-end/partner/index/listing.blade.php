@@ -9,7 +9,8 @@
                     <label>Account Status</label>
                     <select class="form-control" wire:model="account_status">
                         <option value="" selected>All</option>
-                        <option value="done">Activated</option>
+                        <option value="activated">Activated</option>
+                        <option value="for_activation">For Activation</option>
                         <option value="pending">Pending</option>
                     </select>
                 </div>
