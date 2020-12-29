@@ -24,7 +24,7 @@ class LoginRedirectController extends Controller
                     $url = Session::get('user_login_redirect');
                     Session::forget('user_login_redirect');
                 }else{
-                    $url = route('front-end.user.my-account.index')
+                    $url = route('front-end.user.my-account.index');
                 }
 
                 return redirect($url);
