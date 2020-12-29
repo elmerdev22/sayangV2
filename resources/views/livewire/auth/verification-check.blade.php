@@ -10,7 +10,7 @@
             <div class="input-group">
                 <input type="text" wire:model.lazy="verification_code" style="letter-spacing: 8px;" maxlength="6" autofocus="true" class="form-control text-center" placeholder="XXXXXX">
                 <div class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary" onclick="resend()" id="btn-resend" {{$resend ? '':'disabled="true"'}}>Resend <span id="btn-resend-count">{{$resend ? '':'(30)'}}</span></button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="resend()" id="btn-resend" {{$resend ? '':'disabled="true"'}}>Resend <span wire:loading wire:target="resend" class="fas fa-spinner fa-spin"></span> <span id="btn-resend-count">{{$resend ? '':'(30)'}}</span></button>
                 </div>
             </div>
             @if($error_message)

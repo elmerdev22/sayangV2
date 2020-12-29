@@ -444,7 +444,8 @@ class Utility{
             return "No Ratings";
         }
         else{
-            return ((5*$stars[5])+(4*$stars[4])+(3*$stars[3])+(2*$stars[2])+(1*$stars[1])) / ($stars[5]+$stars[4]+$stars[3]+$stars[2]+$stars[1]);
+            $data = ((5*$stars[5])+(4*$stars[4])+(3*$stars[3])+(2*$stars[2])+(1*$stars[1])) / ($stars[5]+$stars[4]+$stars[3]+$stars[2]+$stars[1]);
+            return number_format($data, 1);
         }
         
     }
