@@ -15,7 +15,7 @@ class PartnerController extends Controller
                 ->firstOrFail();
 
         $cover_photo = UploadUtility::account_photo($data->user_account->key_token , 'business-information/cover-photo', 'cover_photo', false);
-        $store_photo = UploadUtility::account_photo($data->user_account->key_token , 'business-information/store-photo', 'cover_photo');
+        $store_photo = UploadUtility::account_photo($data->user_account->key_token , 'business-information/store-photo', 'store_photo');
         
         $data = [
             'partner_id'    => $data->id,

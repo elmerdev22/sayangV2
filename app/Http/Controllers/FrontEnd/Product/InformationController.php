@@ -51,7 +51,7 @@ class InformationController extends Controller
             $trigger_place_bid = true;
         }
 
-        $store_photo = UploadUtility::account_photo($product->user_account_key_token , 'business-information/store-photo', 'cover_photo');
+        $store_photo = UploadUtility::account_photo($product->user_account_key_token , 'business-information/store-photo', 'store_photo');
 
     	return view('front-end.product.information', compact('product', 'trigger_place_bid', 'force_disabled', 'store_photo'));
     }
