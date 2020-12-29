@@ -20,7 +20,7 @@
                     <label>Order Status</label>
                     <select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
-                        <option value="active">Active</option>
+                        <option value="active">Active/Incoming</option>
                         <option value="done">Ended</option>
                         <option value="cancelled">Cancelled</option>
                     </select>
@@ -115,7 +115,11 @@
                                 <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->status == 'active')
-                                        <span class="badge badge-warning">Active</span>
+                                        @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($row->date_start)))
+                                            <span class="badge badge-warning">Active</span>    
+                                        @else
+                                            <span class="badge badge-info">Upcoming</span>    
+                                        @endif
                                     @elseif($row->status == 'done')
                                         <span class="badge badge-info">Ended</span>
                                     @elseif($row->status == 'cancelled')

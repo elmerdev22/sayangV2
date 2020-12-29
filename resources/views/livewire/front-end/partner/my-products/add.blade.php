@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="lowest_price">Lowest price*</label>
+                        <label for="lowest_price">Lowest price/Bidding start price*</label>
                         <input type="text" class="form-control @error('lowest_price') is-invalid @enderror mask-money" id="lowest_price" placeholder="0.00">
                         @error('lowest_price') 
                             <span class="invalid-feedback">

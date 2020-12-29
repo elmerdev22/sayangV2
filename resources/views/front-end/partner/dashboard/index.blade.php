@@ -94,7 +94,7 @@
             <div class="small-box bg-white">
                 <div class="inner">
                     <h3>{{number_format($data['total_products'] ,0)}}</h3>
-                    <p>Total Active Products</p>
+                    <p>Active/Incoming Products</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-shopping-cart text-warning"></i>

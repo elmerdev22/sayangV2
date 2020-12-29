@@ -1,32 +1,6 @@
 <div>
     <form method="POST" wire:submit.prevent="store">
         <div class="modal-body">
-            <div class="form-group">
-                <label>Products : {{number_format(count($selected_products), 0)}} items</label>
-                <table class="table table-sm table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Product</th>
-                            {{-- <th scope="col">Regular price</th> --}}
-                            <th scope="col">Buy now price</th>
-                            <th scope="col">Lowest price</th>
-                            <th scope="col">Quantity</th>
-                        </tr>
-                        </thead>
-                    <tbody>
-                        @foreach($selected_products as $product)
-                            <tr>
-                                <td>{{ucfirst($component->product($product['product_id'])->name)}}</td>
-                                {{-- <td>{{number_format($product['regular_price'],2)}}</td> --}}
-                                <td>{{number_format($product['buy_now_price'],2)}}</td>
-                                <td>{{number_format($product['lowest_price'],2)}}</td>
-                                <td>{{number_format($product['quantity'])}}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <hr>
                 <div>Note: The Minimum is {{$min_hours}}hours and Maximum is {{$max_hours}}hours.</div>
             <hr>
             <!-- Date Range Picker -->
@@ -72,6 +46,36 @@
                     <span>{{$message}}</span>
                 </span>
             @enderror
+            
+            <hr>
+
+            <div class="form-group">
+                <label>Products : {{number_format(count($selected_products), 0)}} items</label>
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                {{-- <th scope="col">Regular price</th> --}}
+                                <th scope="col">Buy now price</th>
+                                <th scope="col">Lowest price</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            @foreach($selected_products as $product)
+                                <tr>
+                                    <td>{{ucfirst($component->product($product['product_id'])->name)}}</td>
+                                    {{-- <td>{{number_format($product['regular_price'],2)}}</td> --}}
+                                    <td>{{number_format($product['buy_now_price'],2)}}</td>
+                                    <td>{{number_format($product['lowest_price'],2)}}</td>
+                                    <td>{{number_format($product['quantity'])}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button wire:target="store" wire:loading.attr="disabled" type="submit" class="btn btn-primary">
@@ -113,7 +117,7 @@
     }
 
     function init_start_date(minDate=null){
-        var datetime_config = date_config();
+        var datetime_config = date_config(1);
             if(minDate == null){
                 datetime_config['minDate'] = new Date();
             }else{
@@ -128,7 +132,7 @@
     }
 
     function init_end_date(minDate=null){
-        var datetime_config = date_config();
+        var datetime_config = date_config(60);
         var min_seconds     = {{$min_hours}} * 3600;
         var max_seconds     = {{$max_hours}} * 3600;
 
@@ -151,14 +155,15 @@
         });
     }
 
-    function date_config(){
+    function date_config(timePickerIncrement){
         return {
             container          : '#modal-proceed_start_sale',
+            opens              : 'left',
             ignoreReadonly     : true,
             singleDatePicker   : true,
             timePicker         : true,
             autoUpdateInput    : false,
-            timePickerIncrement: 60,
+            timePickerIncrement: timePickerIncrement,
             locale             : {
                 format: 'MM/DD/YYYY @ HH:00A'
             }

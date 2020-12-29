@@ -169,7 +169,7 @@
             <div class="small-box bg-white">
                 <div class="inner">
                     <h3>{{number_format($data['active_products'] ,0)}}</h3>
-                    <p>Active Products</p>
+                    <p>Active/Incoming Products</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-tag text-warning"></i>
