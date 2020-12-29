@@ -21,6 +21,7 @@ class Add extends Component
     public $account, $partner, $name, $category, $sub_categories = [], $tags = [];
     public $regular_price=0.00, $buy_now_price=0.00, $lowest_price=0.00, $description, $reminders;
     public $featured_photo=0, $photos=[], $price_percentage = [];
+    public $discount, $discount_percent;
 
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -29,7 +30,7 @@ class Add extends Component
     }
 
     public function categories(){
-        return Category::orderBy('name', 'asc')->where('is_display', true)->get();
+        return Category::orderBy('name', 'asc')->get();
     }
 
     public function reset_var($var){
@@ -72,6 +73,8 @@ class Add extends Component
 
     public function compute_price_percentage(){
         $this->price_percentage = Utility::price_percentage($this->regular_price, $this->buy_now_price);
+        $this->discount         = $this->price_percentage['discount'];
+        $this->discount_percent = $this->price_percentage['discount_percent'];
     }
 
     public function render(){

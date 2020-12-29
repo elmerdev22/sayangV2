@@ -93,6 +93,21 @@
             <!-- small card -->
             <div class="small-box bg-white">
                 <div class="inner">                    
+                    <h3>{{number_format($data['for_activation_partners'] ,0)}}</h3>
+                    <p>For Activation Partners</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users text-info"></i>
+                </div>
+                <a href="{{route('back-end.partner.index')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">                    
                     <h3>{{number_format($data['pending_partners'] ,0)}}</h3>
                     <p>Pending Partners</p>
                 </div>
