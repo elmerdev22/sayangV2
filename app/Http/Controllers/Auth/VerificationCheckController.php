@@ -22,7 +22,7 @@ class VerificationCheckController extends Controller
         if($user->email){
             $is_expired = Utility::is_date_time_expired($user->verification_expired_at);
 
-            if($is_expired === true || $user->verification_code == null || Session::has('email_changed')){
+            if($is_expired == true || $user->verification_code == null || Session::has('email_changed')){
                 $user->verification_code       = rand(100000, 999999);
                 $user->verification_expired_at = Utility::generate_verification_expiration();
                 if($user->save()){
