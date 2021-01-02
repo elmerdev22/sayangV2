@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.lazy="password" placeholder="Password">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.lazy="password" placeholder="Password" autocomplete="off">
             @error('password') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror

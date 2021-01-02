@@ -139,7 +139,7 @@
             <a href="#"data-dismiss="modal" data-toggle="modal" data-target="#modal_categories" class="list-group-item"><span class="fas fa-list text-center" style="width: 10%;"></span> Categories</a>
           @endif
 
-          <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question text-center" style="width: 10%;"></span> Centre</a>
+          <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question text-center" style="width: 10%;"></span> Help Centre</a>
           
           @if(Utility::top_nav_validate_auth_verify())
             <a href="{{route('front-end.about-us.index')}}" class="list-group-item {{\Route::is('front-end.about-us.index') ? 'active':''}}"><span class="fas fa-info text-center" style="width: 10%;"></span> About Us</a>
@@ -161,7 +161,7 @@
             @elseif(Auth::user()->type == 'partner')
               <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt text-center" style="width: 10%;"></span> Dashboard</a>
             @else
-              <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt text-center" style="width: 10%;"></span> Logout</a>
+              <a href="{{route('login-redirect.index')}}" class="list-group-item"><span class="fa fa-tachometer-alt text-center" style="width: 10%;"></span> Dashboard</a>
             @endif
             
             <a href="{{route('auth.logout', ['redirect' => 'user_login'])}}" class="list-group-item"><span class="fas fa-sign-out-alt text-center" style="width: 10%;"></span> Logout</a>

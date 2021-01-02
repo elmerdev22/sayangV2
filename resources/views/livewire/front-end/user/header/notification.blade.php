@@ -2,7 +2,10 @@
     <a href="#" class="widget-view" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="Notifications" data-tooltip-location="bottom">
         <div class="icon-area">
             <i class="fas fa-bell text-dark" id="notif"></i>
-            <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
+            
+            @if ($data->count() > 0)
+                <span class="notify"><span class="badge badge-warning">{{number_format($data->count(),0)}}</span></span>
+            @endif
         </div>
     </a>
     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right" style="left: inherit; right: 0px;">

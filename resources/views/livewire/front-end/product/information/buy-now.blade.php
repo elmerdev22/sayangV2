@@ -4,8 +4,9 @@
         @if($allow_purchase == 'allowed')
             <div class="col-md-5">
                 <h4>
-                    ₱{{number_format($product_post->buy_now_price, 2)}}
+                    ₱{{number_format($product_post->buy_now_price, 2)}} 
                 </h4>
+                <small><del>₱{{number_format($product_post->product->regular_price, 2)}}</del></small>
             </div>
             <div class="col-md-2 text-center">
                 <span class="fas fa-times"></span>
@@ -46,7 +47,8 @@
             </div>
         @else
             <div class="col-12">
-                <h4>₱{{number_format($product_post->buy_now_price, 2)}}</h4>
+                <h4>₱{{number_format($product_post->buy_now_price, 2)}} </h4> 
+                <small><del>₱{{number_format($product_post->product->regular_price, 2)}}</del></small>
             </div>
         @endif
     </div>

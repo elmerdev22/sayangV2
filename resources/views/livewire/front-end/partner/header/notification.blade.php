@@ -1,7 +1,9 @@
 <div>
     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
         <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge">{{number_format($data->count(),0)}}</span>
+        @if ($data->count() > 0 )
+            <span class="badge badge-warning navbar-badge">{{number_format($data->count(),0)}}</span>
+        @endif
     </a>
     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right" style="left: inherit; right: 0px;">
         <span class="dropdown-item dropdown-header bg-white">{{number_format($data->count(),0)}} New Notifications</span>
@@ -29,7 +31,7 @@
 
                     @else
                         @if($row->type == 'new_product_sold')
-                            href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}" 
+                            href="{{route('front-end.partner.order-and-receipt.to-receive')}}" 
                         @elseif($row->type == 'new_cop_request')
                             href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
                         @else 

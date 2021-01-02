@@ -25,7 +25,7 @@
         
         <div class="form-group">
             <div class="input-group">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.lazy="password" placeholder="Password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model.lazy="password" placeholder="Password" autocomplete="off">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>

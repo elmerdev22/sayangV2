@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-12 mb-2">
                             <label>Status</label> : 
-                            @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
+                            @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($data->date_start)))
                                 <span class="badge badge-success">Active</span>    
                             @else
                                 <span class="badge badge-info">Upcoming</span>    

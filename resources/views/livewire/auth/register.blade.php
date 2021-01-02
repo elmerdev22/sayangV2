@@ -3,14 +3,14 @@
         <div class="form-row">
             <div class="col form-group">
                 <label>First name</label>
-                <input type="text" class="form-control text-capitalize @error('first_name') is-invalid @enderror" wire:model="first_name">
+                <input type="text" class="form-control text-capitalize @error('first_name') is-invalid @enderror" wire:model="first_name" autocomplete="off">
                 @error('first_name') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
             </div>
             <div class="col form-group">
                 <label>Last name</label>
-                <input type="text" class="form-control text-capitalize @error('last_name') is-invalid @enderror" wire:model="last_name">
+                <input type="text" class="form-control text-capitalize @error('last_name') is-invalid @enderror" wire:model="last_name" autocomplete="off">
                 @error('last_name') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
-            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model="email">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model="email" autocomplete="off">
             @error('email') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
@@ -26,7 +26,7 @@
         
         <div class="form-group">
             <label>Contact no.</label>
-            <input type="text" class="form-control @error('contact_no') is-invalid @enderror" wire:model="contact_no" id="contact_no">
+            <input type="text" class="form-control @error('contact_no') is-invalid @enderror" wire:model="contact_no" id="contact_no" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"  autocomplete="off">
             @error('contact_no') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
@@ -35,14 +35,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Create password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model="password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" wire:model="password" autocomplete="off">
                 @error('password') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
                 <label>Confirm password</label>
-                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" wire:model="confirm_password">
+                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" wire:model="confirm_password" autocomplete="off">
                 @error('confirm_password') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
