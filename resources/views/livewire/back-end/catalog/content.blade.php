@@ -87,11 +87,8 @@
                         </div>
                         @endforelse
                     </div>
-                    <div class="row justify-content-right">
-                        <div class="col-12">
-                            {{$data->render()}}
-                        </div>
-                    </div>
+                    <!-- NOTE: Always put the pagination after the .table-responsive class -->
+                    @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
                 </div>
             </div>
         </div>
