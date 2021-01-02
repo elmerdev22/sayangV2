@@ -21,6 +21,7 @@ class SettingsUtility{
         
         $group = [
             'bids'              => 'bids',
+            'content'           => 'content',
             'web_notifications' => 'web_notifications',
         ];
 
@@ -29,7 +30,7 @@ class SettingsUtility{
             'bid_increment_percent' => [
                 'group' => $group['bids'],
                 'name'  => 'Bid Increment Percentage (%)',
-                'value' => 50,
+                'value' => 5,
             ],
             'ranking_top_show' => [
                 'group' => $group['bids'],
@@ -65,6 +66,18 @@ class SettingsUtility{
                 'group' => $group['bids'],
                 'name'  => 'Winning Bid Expiration (Hour)',
                 'value' => 5,
+            ],
+
+            // Content Logo and Footer
+            'logo' => [
+                'group' => $group['content'],
+                'name'  => 'Logo',
+                'value' => null,
+            ],
+            'icon' => [
+                'group' => $group['content'],
+                'name'  => 'Icon',
+                'value' => null,
             ],
 
         ];

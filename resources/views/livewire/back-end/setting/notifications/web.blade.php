@@ -8,9 +8,8 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-hover sayang-datatables">
                         <thead>
                             <tr>
                                 <th scope="col">Notification name</th>
@@ -35,12 +34,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="row justify-content-right">
-                <div class="col-12">
-                    {{$data->render()}}
-                </div>
-            </div>
+                <!-- NOTE: Always put the pagination after the .table-responsive class -->
+                @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
     </div>
     <!-- Modal -->

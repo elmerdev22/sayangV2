@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-sayang-primary elevation-2">
     <!-- Brand Logo -->
     <a href="/" class="brand-link logo-switch text-center" target="_blank">
-        <img src="{{ asset('images/logo/icon.png') }}" alt="Sayang Admin Logo Small" class="brand-image-xl logo-xs">
-        <img src="{{ asset('images/logo/logo.png') }}" alt="Sayang Admin Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
+        <img src="{{ UploadUtility::content_photo('icon') }}" alt="Sayang Admin Logo Small" class="brand-image-xl logo-xs">
+        <img src="{{ UploadUtility::content_photo('logo') }}" alt="Sayang Admin Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
     </a>
     <!-- Sidebar -->
     <div class="sidebar sayang-sidebar">

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="{{asset('images/logo/logo.png')}}" height="45" class="d-inline-block align-top" alt="">
+            <img src="{{UploadUtility::content_photo('logo')}}" height="45" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button"  data-toggle="modal" data-target="#modal_aside_left" class="btn btn-primary" type="button">
             <span class="navbar-toggler-icon"></span>
