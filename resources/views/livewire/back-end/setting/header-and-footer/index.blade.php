@@ -49,7 +49,7 @@
                 <div class="col-md-4">
                     <form role="form" wire:submit.prevent="update('icon')">
                         <div class="form-group">
-                            <label for="icon">Icon* <small class="text-muted"><i>ico, png, jpg, jpeg. </i></small></label>
+                            <label for="icon">Icon* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
                             <div class="text-center overflow-hidden">
                                 
                                 @if ($icon)

@@ -48,7 +48,7 @@ class Index extends Component
             $data->settings_name  = ucfirst($type);
             $data->settings_key   = $type;
             
-            $$type      = $this->$type->getRealPath();
+            $type      = $this->$type->getRealPath();
             $file_name = $this->$type->getClientOriginalName();
             
             $collection = 'content/'.$type;
