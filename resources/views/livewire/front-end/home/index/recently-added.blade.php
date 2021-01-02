@@ -15,7 +15,7 @@
                                 <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                                 {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
                             </div>
-                            <span class="ends-in">
+                            <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
                                     <span class="fas fa-clock"></span>
                                     <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>

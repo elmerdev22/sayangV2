@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Date Registered From</label>
-                    <input type="date" class="form-control" wire:model="date_from">
+                    <input type="date" class="form-control" wire:model="date_from" max="{{$date_to}}">
                     @if(session('date_from_error')) 
                         <span class="invalid-feedback" style="display: block;">
                             <span>{{session('date_from_error')}}</span>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Date Registered To</label>
-                    <input type="date" class="form-control" wire:model="date_to">
+                    <input type="date" class="form-control" wire:model="date_to" max="{{date('Y-m-d')}}" min="{{$date_from}}">
                     @if(session('date_to_error')) 
                         <span class="invalid-feedback" style="display: block;">
                             <span>{{session('date_to_error')}}</span>
