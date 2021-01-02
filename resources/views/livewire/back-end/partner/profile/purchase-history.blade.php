@@ -56,7 +56,7 @@
                                     @if($row->status == 'cancelled')
                                         <span class="badge badge-danger">Cancelled</span>
                                     @elseif($row->status == 'order_placed')
-                                        <span class="badge badge-warning">Order Placed(COP)</span>
+                                        <span class="badge badge-warning">Order Placed</span>
                                     @elseif($row->status == 'payment_confirmed')
                                         <span class="badge badge-info">Payment Confirmed</span>
                                     @elseif($row->status == 'to_receive')

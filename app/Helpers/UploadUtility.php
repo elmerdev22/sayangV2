@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Model\UserAccount;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\Setting;
 
 class UploadUtility{
 
@@ -65,6 +66,28 @@ class UploadUtility{
             return $category->photo_provider_link;
         }else{
             return asset('images/default-photo/image.png');
+        }
+    }
+
+    public static function content_photo($settings_key, $thumb=true){
+        $setting     = Setting::where('settings_key', $settings_key)->firstOrFail();
+        $media_photo = $setting->getMedia('content/'.$settings_key);
+
+        if(count($media_photo) > 0){
+            if($thumb){
+                return $media_photo[0]->getFullUrl('thumb');
+            }else{
+                return $media_photo[0]->getFullUrl();
+            }
+        }else if($setting->photo_provider_link){
+            return $setting->photo_provider_link;
+        }else{
+            if($settings_key == 'logo'){
+                return asset('images/logo/logo.png');
+            }
+            else if($settings_key == 'icon'){
+                return asset('images/logo/icon.png');
+            }
         }
     }
 

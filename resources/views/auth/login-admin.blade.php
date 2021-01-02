@@ -19,7 +19,7 @@
             <div class="card-body login-card-body">
                 <div class="login-logo">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="{{asset('images/default-photo/admin.png')}}">
+                        <img class="profile-user-img img-fluid img-circle" style="width: 100px; height: 100px;" src="{{UploadUtility::content_photo('icon')}}">
                     </div>
                 </div>
                 <p class="login-box-msg">Sign in to start your session</p>

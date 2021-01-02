@@ -1,5 +1,8 @@
 @extends('back-end.layouts.layout')
 @section('title','Settings')
+@section('css')
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/custom_inputs.css')}}">
+@endsection
 @section('page_header')
     @php 
         $page_header = [

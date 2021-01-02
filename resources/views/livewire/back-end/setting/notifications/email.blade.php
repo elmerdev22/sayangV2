@@ -8,39 +8,34 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Notification name</th>
-                                <th scope="col">Subject</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $row)
-                            <tr>
-                                <td>{{$row->settings_name}}</td>
-                                <td>{{$row->subject}}</td>
-                                <td>{!! $row->message !!}</td>
-                                <td>
-                                    <button class="btn btn-default btn-sm" onclick="edit_email_notification('{{$row->id}}')">
-                                        <span class=" fas fa-edit"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover sayang-datatables">
+                    <thead>
+                        <tr>
+                            <th scope="col">Notification name</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $row)
+                        <tr>
+                            <td>{{$row->settings_name}}</td>
+                            <td>{{$row->subject}}</td>
+                            <td>{!! $row->message !!}</td>
+                            <td>
+                                <button class="btn btn-default btn-sm" onclick="edit_email_notification('{{$row->id}}')">
+                                    <span class=" fas fa-edit"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <div class="row justify-content-right">
-                <div class="col-12">
-                    {{$data->render()}}
-                </div>
-            </div>
+            <!-- NOTE: Always put the pagination after the .table-responsive class -->
+            @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
     </div>
     <!-- Modal -->

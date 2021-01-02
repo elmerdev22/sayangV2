@@ -13,7 +13,7 @@
       <title>@yield('title') | {{ env('APP_NAME') }}</title>
     @endif
 
-    <link rel="icon" type="image/icon" href="{{asset('images/logo/icon.png')}}">
+    <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon')}}">
     @if(env('APP_DEPLOY') == 'production')
       <!-- Kindly removed once the packages need is working properly -->
         <!-- Font Awesome -->
