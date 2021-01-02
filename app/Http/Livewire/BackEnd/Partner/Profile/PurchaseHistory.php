@@ -36,9 +36,12 @@ class PurchaseHistory extends Component
 			$filter['where']['orders.partner_id'] = 'no_data';
 		}
 
-
 		if($this->status != null){
 			$filter['where']['orders.status'] = $this->status;
+			
+			if($this->status == 'order_placed'){
+				$filter['where']['order_payments.payment_method'] = 'cash_on_pickup';
+			}
 		}
 		
 		if($this->search){

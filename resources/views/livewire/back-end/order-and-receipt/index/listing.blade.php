@@ -97,7 +97,7 @@
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
-                                <td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->payment_method == 'cash_on_pickup')
                                         <span class="badge badge-info">Cash on Pickup</span>

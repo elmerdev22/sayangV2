@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>
                                     <span class="badge badge-info">Order Placed</span>
                                 </td>

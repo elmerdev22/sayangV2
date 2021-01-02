@@ -109,7 +109,7 @@
 		        						<span class="badge badge-warning">Not Verified</span>
 		        					@endif 
 		        				</td>
-		        				<td>{{date('F/d/Y', strtotime($row->date_registered))}}</td>
+		        				<td>{{date('M/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">
 		        					<a href="{{route('back-end.user.profile', ['key_token' => $row->key_token])}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
 		        				</td>

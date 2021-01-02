@@ -46,8 +46,8 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_payment_confirmed))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_payment_confirmed))}}</td>
                                 <td>
                                     <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $row->payment_method))}}</span>
                                 </td>

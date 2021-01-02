@@ -59,7 +59,7 @@
 	        		<thead>
 	        			<tr>
 	        				<th class="table-sort" wire:click="sort('user_accounts.first_name|user_accounts.last_name')">
-	        					Account 
+	        					Account Name
 	        					@include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
 	        				</th>
 		        			<th class="table-sort" wire:click="sort('partners.name')">
@@ -133,7 +133,7 @@
 		        						@endif
 		        					@endif 
 		        				</td>
-		        				<td>{{date('F/d/Y', strtotime($row->date_registered))}}</td>
+		        				<td>{{date('M/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">
 		        					<a href="{{route('back-end.partner.profile', ['key_token' => $row->account_key_token])}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
 		        				</td>

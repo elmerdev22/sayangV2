@@ -55,10 +55,10 @@
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
                                 {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_cancelled))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_end))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_cancelled))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_start))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_end))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-danger">Cancelled</span>    
                                 </td>

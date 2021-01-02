@@ -13,7 +13,7 @@
 					<label>Status</label>
 					<select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
-                        <option value="order_placed">Order Placed</option>
+                        <option value="order_placed">Order Placed(COP)</option>
                         <option value="payment_confirmed">Payment Confirmed</option>
                         <option value="to_receive">To Receive</option>
                         <option value="completed">Completed</option>
@@ -51,7 +51,7 @@
 							<tr>
 								<td>{{$row->order_no}}</td>
 								<td>{{ucfirst($row->partner_name)}}</td>
-								<td>{{date('F/d/Y', strtotime($row->created_at))}}</td>
+								<td>{{date('M/d/Y', strtotime($row->created_at))}}</td>
 								<td>
 									@if($row->status == 'cancelled')
 										<span class="badge badge-danger">Cancelled</span>

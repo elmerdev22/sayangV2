@@ -20,7 +20,7 @@
         </p>
     </a>
     <p class="text-justify">{!! $product_post->product->description !!}</p>
-    <div class="bg-danger p-2 w-50 text-center">
+    <div class="bg-danger p-2 w-50 text-center rounded">
         <span class="fas fa-clock"></span> 
         <span class="countdown">
             @if($force_disabled)

@@ -52,7 +52,7 @@
 		        				<td>{{number_format($row->regular_price, 2)}}</td>
 		        				<td>{{number_format($row->buy_now_price, 2)}}</td>
 		        				<td>{{number_format($row->lowest_price, 2)}}</td>
-		        				<td>{{date('F/d/Y', strtotime($row->date_added))}}</td>
+		        				<td>{{date('M/d/Y', strtotime($row->date_added))}}</td>
 		        				<td class="text-center">
 									<a href="{{route('front-end.partner.my-products.list.edit', ['slug' => $row->slug])}}" class="btn btn-sm btn-flat btn-default" title="Edit Details"><i class="fas fa-edit"></i></a>
 									<a href="javascript:void(0);" @if(!Utility::is_product_deletable($row->id)) onclick="not_deletetable()" @else onclick="delete_product('{{$row->key_token}}')" @endif class="btn btn-sm btn-flat btn-danger" title="Delete Details"><i class="fas fa-trash"></i></a>

@@ -65,9 +65,9 @@
                                 <td>{{number_format($row->buy_now_price, 2)}}</td>
                                 <td>{{number_format($row->lowest_price, 2)}}</td>
                                 <td>{{number_format($row->quantity, 0)}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_start))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->date_end))}}</td>
-                                <td>{{date('F/d/Y h:i:s a', strtotime($row->created_at))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_start))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->date_end))}}</td>
+                                <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-danger">Ended</span>    
                                 </td>
