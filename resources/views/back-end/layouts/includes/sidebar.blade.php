@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.setting.help-centre')}}" class="nav-link {{Route::is('back-end.setting.help-centre') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.setting.help-centre')}}" class="nav-link {{Route::is('back-end.setting.help-centre') || Route::is('back-end.setting.help-centre-edit') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Help Centre</p>
                             </a>

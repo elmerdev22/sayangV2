@@ -232,6 +232,11 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'uses'  => $c.'@help_centre'
             ]);
 
+            Route::get('/help-centre/{id}', [
+                'as'    => 'help-centre-edit',
+                'uses'  => $c.'@help_centre_edit'
+            ]);
+
             Route::get('/about', [
                 'as'    => 'about',
                 'uses'  => $c.'@about'

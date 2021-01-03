@@ -76,7 +76,7 @@
           </header>
         @endif
         @php 
-          $page_fluid = ['', '/'];
+          $page_fluid = ['', '/','help-centre'];
         @endphp
         <div class="content-wrapper content-wrapper-front-end">
           @if(!Request::is('admin/login'))

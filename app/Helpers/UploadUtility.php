@@ -7,6 +7,7 @@ use App\Model\UserAccount;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\Setting;
+use App\Model\HelpCentre;
 
 class UploadUtility{
 
@@ -51,7 +52,7 @@ class UploadUtility{
             }
         }
     }
-
+    
     public static function category_photo($category_key_token, $thumb=true){
         $category    = Category::where('key_token', $category_key_token)->firstOrFail();
         $media_photo = $category->getMedia('catalog/category-photo');
@@ -64,6 +65,23 @@ class UploadUtility{
             }
         }else if($category->photo_provider_link){
             return $category->photo_provider_link;
+        }else{
+            return asset('images/default-photo/image.png');
+        }
+    }
+
+    public static function help_centre_photos($help_centre_id, $thumb=true){
+        $data        = HelpCentre::where('id', $help_centre_id)->firstOrFail();
+        $media_photo = $data->getMedia('help-centre');
+
+        if(count($media_photo) > 0){
+            if($thumb){
+                return $media_photo[0]->getFullUrl('thumb');
+            }else{
+                return $media_photo[0]->getFullUrl();
+            }
+        }else if($data->photo_provider_link){
+            return $data->photo_provider_link;
         }else{
             return asset('images/default-photo/image.png');
         }

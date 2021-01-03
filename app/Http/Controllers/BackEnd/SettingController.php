@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\HelpCentre;
 
 class SettingController extends Controller
 {
@@ -21,6 +22,11 @@ class SettingController extends Controller
     
     public function help_centre() {
         return view('back-end.setting.help-centre.index');
+    }
+
+    public function help_centre_edit($id) {
+        $data = HelpCentre::where('id', $id)->firstOrFail();
+        return view('back-end.setting.help-centre.edit', compact('data'));
     }
     
     public function about() {

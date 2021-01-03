@@ -9,7 +9,8 @@
             'title'       => 'Settings',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'Settings'],
-                ['url' => '', 'label' => 'Help Centre'],
+                ['url' => route('back-end.setting.help-centre') , 'label' => 'Help Centre'],
+                ['url' => '', 'label' => ucwords($data->topic)],
             ],
         ];
     @endphp
@@ -19,11 +20,11 @@
     <div class="row">
         <div class="col-md-4">
             <!-- CONTENT HERE -->
-            @livewire('back-end.setting.help-centre.index.form')
+            @livewire('back-end.setting.help-centre.edit.form', ['help_centre_id' => $data->id])
         </div>
         <div class="col-md-8">
             <!-- CONTENT HERE -->
-            @livewire('back-end.setting.help-centre.index.listing')
+            <h1>Di pa tapos to</h1>
         </div>
     </div>
     <!-- 
