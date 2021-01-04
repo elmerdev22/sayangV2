@@ -16,7 +16,10 @@ class Question extends Component
     }
 
     public function data(){
-        $data = HelpCentreQuestion::with(['help_centre_answer'])->get();
+        $data = HelpCentreQuestion::with(['help_centre_answer'])
+                ->where('help_centre_id', $this->help_centre_id)
+                ->get();
+                
         return $data;
     }
 
