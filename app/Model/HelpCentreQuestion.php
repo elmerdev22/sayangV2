@@ -9,7 +9,7 @@ class HelpCentreQuestion extends Model
 {
     
     use Sluggable;
-
+    protected $fillable = ['id'];
     public function sluggable()
     {
         return [
@@ -24,6 +24,6 @@ class HelpCentreQuestion extends Model
     }
     
     public function help_centre_answer(){
-        return $this->hasMany('App\Model\HelpCentreAnswer', 'help_centre_answer_id', 'id');
+        return $this->hasMany('App\Model\HelpCentreAnswer', 'help_centre_question_id', 'id');
     }
 }

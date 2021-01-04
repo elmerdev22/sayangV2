@@ -1,7 +1,7 @@
 <div>
     <div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title">Completed List <a href="#" data-toggle="modal" data-target="#rate-seller-modal" class="btn btn-warning btn-xs">Sample Rate</a></h5> 
+            <h5 class="card-title">Completed List</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
                 </button>

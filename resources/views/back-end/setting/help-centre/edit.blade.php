@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-8">
             <!-- CONTENT HERE -->
-            <h1>Di pa tapos to</h1>
+            @livewire('back-end.setting.help-centre.edit.question', ['help_centre_id' => $data->id])
         </div>
     </div>
     <!-- 

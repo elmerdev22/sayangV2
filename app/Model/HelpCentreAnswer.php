@@ -8,6 +8,6 @@ class HelpCentreAnswer extends Model
 {
     
     public function help_centre_question(){
-        return $this->belongsTo('App\Model\HelpCentreQuestion', 'help_centre_answer_id', 'id');
+        return $this->belongsTo('App\Model\HelpCentreQuestion', 'help_centre_question_id', 'id');
     }
 }
