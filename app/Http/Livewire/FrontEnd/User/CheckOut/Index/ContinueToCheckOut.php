@@ -212,6 +212,7 @@ class ContinueToCheckOut extends Component
                                         $order_item->product_post_id = $order_item_row['product_post_id'];
                                         $order_item->quantity        = $order_item_row['selected_quantity'];
                                         $order_item->key_token       = Utility::generate_table_token('OrderItem');
+                                        $order_item->price           = $order_item_row['buy_now_price'];
                                         $order_item_saved            = $order_item->save();
     
                                         if($order_item_saved){
