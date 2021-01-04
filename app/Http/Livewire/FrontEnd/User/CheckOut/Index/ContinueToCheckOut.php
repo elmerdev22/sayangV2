@@ -67,10 +67,10 @@ class ContinueToCheckOut extends Component
             $total_price = $cart['total_price'];
         
             if($total_price >= PaymentUtility::paymongo_minimum()){
-                $default_e_wallet = PaymentUtility::active_e_wallet(true);
+                // $default_e_wallet = PaymentUtility::active_e_wallet(true);
                 $payment_method = [
                     'payment_method'    => 'e_wallet',
-                    'payment_e_wallet'  => $default_e_wallet['key'],
+                    'payment_e_wallet'  => null,//$default_e_wallet['key'],
                     'payment_key_token' => null,
                 ];
             }else{
