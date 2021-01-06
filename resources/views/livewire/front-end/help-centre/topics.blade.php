@@ -30,7 +30,7 @@
                             <div class="card-header bg-light cursor-pointer p-3" id="Heading-{{$row->id}}" data-toggle="collapse" data-target="#Topic-{{$row->id}}" aria-expanded="true" aria-controls="Topic-{{$row->id}}">
                                 <img class="img-sm img-rounded img-responsive shadow-sm" src="{{UploadUtility::help_centre_photos($row->id)}}">
                                 <h4 class="card-title pt-1 ml-2">
-                                    <a href="javascript:void();">{{ucwords($row->topic)}}</a>
+                                    <a href="javascript:void(0);">{{ucwords($row->topic)}}</a>
                                 </h4>
                             </div>
                             <div id="Topic-{{$row->id}}" class="collapse {{$selected_topic_id == $row->id ? 'show': ''}}" aria-labelledby="Heading-{{$row->id}}" data-parent="#accordionTopics">
@@ -38,9 +38,9 @@
                                     <div class="accordion" id="accordionQuestion">
                                         @forelse ($row->help_centre_question as $question)
                                             <div class="card shadow-none m-0">
-                                                <div class="card-header border-bottom-0 cursor-pointer" id="HeadingQuestion-{{$question->id}}" data-toggle="collapse" data-target="#Question-{{$question->id}}" aria-expanded="true" aria-controls="Topic-{{$row->id}}">
+                                                <div class="card-header border-bottom-0 cursor-pointer" id="HeadingQuestion-{{$question->id}}" data-toggle="collapse" data-target="#Question-{{$question->id}}" aria-expanded="true" aria-controls="Question-{{$question->id}}">
                                                     <h4 class="card-title pt-1 ml-2">
-                                                        <a href="javascript:void();">{{ucwords($question->question)}}</a>
+                                                        <a href="javascript:void(0);">{{ucwords($question->question)}}</a>
                                                     </h4>
                                                 </div>
                                         
