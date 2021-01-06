@@ -39,6 +39,11 @@ class Utility{
         return Carbon::parse($date)->diffForHumans();
     }
 
+    public static function img_source($type){
+        if($type == 'not_found'){
+            return 'https://image.freepik.com/free-vector/fixing-pages-found-system-error_45923-201.jpg';
+        }
+    }
     public static function generate_unique_token($len = 13) {
         // uniqid gives 13 chars, but you could adjust it to your needs.
         if (function_exists("random_bytes")) {

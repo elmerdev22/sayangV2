@@ -31,6 +31,13 @@ class Listing extends Component
         $data             = HelpCentre::where('id', $id)->first();
         $data->is_display = $data->is_display ? false : true;
         $data->save();
+        
+        $this->emit('notif_alert', [
+            'timer'    => 1500,
+            'position' => 'center',
+            'type'     => 'success',
+            'message'  => 'Successfully Saved!'
+        ]);    
     }
 
     
@@ -48,6 +55,19 @@ class Listing extends Component
             ]);
             
             $this->emit('help-centre-add');
+        }
+    }
+
+    public function update_arrangement($id, $arrangement){
+        $data              = HelpCentre::where('id', $id)->first();
+        $data->arrangement = $arrangement;
+        if($data->save()){
+            $this->emit('notif_alert', [
+                'timer'    => 1500,
+                'position' => 'center',
+                'type'     => 'success',
+                'message'  => 'Successfully Saved!'
+            ]);            
         }
     }
 }

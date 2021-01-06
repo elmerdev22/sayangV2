@@ -41,6 +41,7 @@ class Question extends Component
         $data->slug           = SlugService::createSlug(HelpCentreQuestion::class, 'slug', $this->question);
         if($data->save()){
             $this->question = '';
+            $this->emit('close_modal');
         	$this->emit('notif_alert', [
                 'timer'    => 1500,
                 'position' => 'center',
@@ -48,6 +49,7 @@ class Question extends Component
                 'message'  => 'Successfully Added!'
             ]);
         }
+        $this->selected_question_id = '';
     }
 
     public function delete_question($id){

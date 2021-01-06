@@ -169,9 +169,11 @@ a:hover{
 }
 
 /*Help centre*/
+.topic-card{
+  cursor: pointer;
+}
 .topic-card:hover{
-    cursor: pointer;
-    background-color: whitesmoke;
+  transform: scale(1.03);
 }
 
 /*Span timeer countdown*/

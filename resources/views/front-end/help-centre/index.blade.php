@@ -37,18 +37,7 @@
 
 <section class="content">
     <div class="container">
-        <div class="row">
-            @for ($i = 1; $i < 7 ; $i++)
-                <div class="col-lg-3 col-md-4 col-sm-6  col-6 text-center">
-                    <div class="card text-center">
-                        <img class="card-img-top w-50 p-3 text-center img-responsive" style="margin:0 auto;" src="{{asset('images/default-photo/hp-'.$i.'.png')}}" alt="Card image cap">
-                        <div class="card-body ">
-                            <p class="card-text">{{ucwords('Title title')}}</p>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-        </div>
+        @livewire('front-end.help-centre.topics')
     </div> 
 </section>
 @endsection

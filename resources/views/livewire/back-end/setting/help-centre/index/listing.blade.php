@@ -30,7 +30,7 @@
                                         </td>
                                         <td>{{ucwords($row->topic)}}</td>
                                         <td>
-                                            {{$row->arrangement}}
+                                            {{$row->arrangement}} <button class="btn btn-default btn-xs ml-1" onclick="edit_arrangement('{{$row->id}}','{{$row->arrangement}}')"><span class=" fas fa-edit"></span></button>
                                         </td>
                                         <td>            
                                             <div class="icheck-warning">
@@ -67,7 +67,25 @@
 </div>
 @push('scripts')
 <script>
-    
+    function edit_arrangement(id, current_arrangement){
+        (async () => {
+                const { value: arrangement } = await Swal.fire({
+                    title: 'Arrangement',
+                    input: 'number',
+                    inputLabel: 'arrangement',
+                    inputValue: current_arrangement,
+                    inputAttributes: {
+                        min: 1,
+                    },
+                    validationMessage: 'Minimum arrangement is 1',
+                    confirmButtonText: 'Save',  
+                })
+
+                if (arrangement) {
+                    @this.call('update_arrangement', id , arrangement)
+                }
+        })()
+    }
     function delete_swal(name, id){
         Swal.fire({
             title: 'Are you sure do you want to delete this '+name+'?',

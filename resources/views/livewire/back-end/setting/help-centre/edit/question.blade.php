@@ -7,7 +7,42 @@
                     <button class="btn btn-xs btn-warning float-right" onclick="question_modal('add')"><span class="fas fa-plus"></span>  Add Question</button>
                 </div>
                 <div class="card-body">
-                    @forelse ($data as $row)
+                        @forelse ($data as $question)
+                            <div class="card">
+                                <div class="card-header border-bottom-0 cursor-pointer" >
+                                    <h4 class="card-title pt-1 ml-2">
+                                        <p class="card-text">{{ucwords($question->question)}}</p>       
+                                    </h4>
+                                    <div class="card-tools">
+                                        
+                                        <button class="btn btn-xs btn-default" id="question-{{$question->id}}" data-question="{{$question->question}}" onclick="question_modal('edit', '{{$question->id}}')"><span class="fas fa-edit"></span></button>
+                                        <button class="btn btn-xs btn-danger" onclick="delete_question('{{$question->id}}')"><span class="fas fa-trash"></span></button> 
+                                    </div>
+                                </div>
+                        
+                                <div class="card-body py-0">
+                                    <button class="btn btn-warning btn-xs float m-2" onclick="add_answer('{{$question->id}}')"><span class="fas fa-plus"></span> Add Answer</button>
+                                    @forelse ($question->help_centre_answer as $answer)
+                                        <ul>
+                                            <li>
+                                                {{$answer->answer}}            
+                                                {{-- <button class="btn btn-xs btn-default"><span class="fas fa-edit"></span></button> --}}
+                                                <button class="btn btn-xs btn-danger" onclick="delete_answer('{{$answer->id}}')"><span class="fas fa-trash"></span></button>
+                                            </li>
+                                        </ul>
+                                    @empty
+                                    <ul>
+                                        <li>No Answer added.</li>
+                                    </ul>
+                                    @endforelse
+                                </div>
+                            </div>
+                        @empty
+                            <ul>
+                                <li>No Question added.</li>
+                            </ul>
+                        @endforelse
+                    {{-- @forelse ($data as $row)
                         <div class="row mb-2">
                             <div class="col-12">
                                 <span class="fas fa-chevron-circle-right"></span> 
@@ -34,7 +69,7 @@
                         <hr>
                     @empty
                         <div class="text-center">No Questions Added.</div>
-                    @endforelse
+                    @endforelse --}}
                 </div>
 	        </div>
 	    </div>
@@ -151,5 +186,9 @@
         $('#add-answer').modal('show');
         @this.set('selected_question_id', id);
     }
+    
+    window.livewire.on('close_modal', param => {
+        $('#save-question').modal('hide');
+    });
 </script>    
 @endpush
