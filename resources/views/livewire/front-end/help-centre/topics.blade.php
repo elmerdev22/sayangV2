@@ -27,7 +27,7 @@
                 <div class="accordion" id="accordionTopics">
                     @foreach ($data as $row)
                         <div class="card">
-                            <div class="card-header cursor-pointer p-3" id="Heading-{{$row->id}}" data-toggle="collapse" data-target="#Topic-{{$row->id}}" aria-expanded="true" aria-controls="Topic-{{$row->id}}">
+                            <div class="card-header bg-light cursor-pointer p-3" id="Heading-{{$row->id}}" data-toggle="collapse" data-target="#Topic-{{$row->id}}" aria-expanded="true" aria-controls="Topic-{{$row->id}}">
                                 <img class="img-sm img-rounded img-responsive shadow-sm" src="{{UploadUtility::help_centre_photos($row->id)}}">
                                 <h4 class="card-title pt-1 ml-2">
                                     <a href="javascript:void();">{{ucwords($row->topic)}}</a>
