@@ -20,7 +20,7 @@
             </div>
             <div class="hidden-xs d-none d-md-block d-lg-block ">    
                 <div class="card">
-                    @livewire('front-end.product.listing.search-filter')
+                    @livewire('front-end.product.listing.search-filter', ['search' => $search])
                 </div> <!-- card.// -->
             </div>
         </aside> <!-- col.// -->
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card no-box-shadow" id="card-product_listing">
                         <div class="card-body p-0">
-                            @livewire('front-end.product.listing.listing')
+                            @livewire('front-end.product.listing.listing', ['search' => $search])
                         </div>
                     </div> <!-- card.// -->
                 </div>
@@ -48,7 +48,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0 m-0">
-                    @livewire('front-end.product.listing.search-filter')
+                    @livewire('front-end.product.listing.search-filter', ['search' => $search])
                 </div>
             </div>
         </div> <!-- modal-bialog .// -->

@@ -4,7 +4,7 @@
             <div class="filter-content">
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="search" class="form-control" id="input-search" placeholder="Search key word..." wire:loading.attr="readonly" wire:target="set_search">
+                        <input type="search" class="form-control" id="input-search" value="{{$search}}" placeholder="Search key word..." wire:loading.attr="readonly" wire:target="set_search">
                         <div class="input-group-append">
                             <button class="btn btn-warning" id="btn-search" type="button" wire:loading.attr="disabled" wire:target="set_search"><i class="fa fa-search"></i></button>
                         </div>

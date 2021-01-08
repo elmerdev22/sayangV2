@@ -322,7 +322,11 @@ class QueryUtility{
 			->join('products', 'products.id', '=', 'product_posts.product_id')
 			->leftJoin('partners', 'partners.id', '=', 'products.partner_id')
 			->leftJoin('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
-			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id');
+			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id')
+			->leftJoin('philippine_barangays as partner_barangays', 'partner_barangays.id', '=', 'partners.barangay_id')
+			->leftJoin('philippine_cities as partner_cities', 'partner_cities.id', '=', 'partner_barangays.city_id')
+			->leftJoin('philippine_provinces as partner_provinces', 'partner_provinces.id', '=', 'partner_cities.province_id')
+			->leftJoin('philippine_regions as partner_regions', 'partner_regions.id', '=', 'partner_provinces.region_id');
 		
 
 		if(isset($filter['limit'])){
@@ -353,7 +357,11 @@ class QueryUtility{
 						->orWhere('product_posts.buy_now_price','like',"%{$value}%")
 						->orWhere('product_posts.lowest_price','like',"%{$value}%")
 						->orWhere('product_posts.quantity','like',"%{$value}%")
-						->orWhere('partners.address','like',"%{$value}%");
+						->orWhere('partners.address','like',"%{$value}%")
+						->orWhere('partner_barangays.name','like',"%{$value}%")
+						->orWhere('partner_cities.name','like',"%{$value}%")
+						->orWhere('partner_provinces.name','like',"%{$value}%")
+						->orWhere('partner_regions.name','like',"%{$value}%");
 				}
             });
 		}

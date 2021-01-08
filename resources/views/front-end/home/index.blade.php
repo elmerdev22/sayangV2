@@ -47,11 +47,11 @@
             <b>Nothing goes to waste.</b>
           </h1>
           <p class="lead">Explore exciting deals near you.</p>
-          <form>
+          <form action="{{route('front-end.product.list.index')}}" method="GET">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="input-group input-group-lg">
-                  <input class="form-control form-control-navbar border-0" type="search" placeholder="Location or Products" aria-label="Search">
+                  <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
                   <div class="input-group-append">
                     <button class="btn btn-navbar bg-warning" type="submit">
                       <i class="fas fa-search"></i>

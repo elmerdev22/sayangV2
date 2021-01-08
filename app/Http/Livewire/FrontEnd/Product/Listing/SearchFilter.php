@@ -9,6 +9,12 @@ use App\Model\SubCategory;
 class SearchFilter extends Component
 {
 
+    public $search;
+
+    public function mount($search){
+        $this->search = $search;
+    }
+
     public function categories(){
         return Category::with(['sub_categories', 'sub_categories.product_sub_categories'])
             ->where('is_display', true)

@@ -20,6 +20,15 @@ class Listing extends Component
         'clear_filter' => 'clear_filter'
     ];
 
+    public function mount($search){
+        if($search != null){
+            $this->search = [
+                'type'     => 'searcn',
+                'key_word' => $search
+            ];
+        }
+    }
+
     public function clear_filter(){
         $this->reset();
         $this->resetPage();
