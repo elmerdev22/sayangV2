@@ -77,6 +77,11 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             'as' 	=> 'index',
             'uses'  => $c.'@index'
         ]);
+
+        Route::get('/help-centre/ask', [
+            'as' 	=> 'ask',
+            'uses'  => $c.'@ask'
+        ]);
         
     });
 
