@@ -139,7 +139,7 @@ class BuyNow extends Component
 
                 if($cart->save()){
                     $total_item = Utility::total_cart_item();
-                    $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+                    $this->emit('initialize_cart_item_count', ['total' => $total_item]);
                     $this->emit('alert', [
                         'type'              => 'success',
                         'title'             => 'Successfully Added',
@@ -189,7 +189,7 @@ class BuyNow extends Component
             $total_item     = Utility::total_cart_item();
             $this->calculate_buy_now_price();
             $this->emit('buy_now_quantity_value', ['quantity' => $this->quantity]);
-            $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+            $this->emit('initialize_cart_item_count', ['total' => $total_item]);
             $this->emit('alert', [
                 'type'              => 'success',
                 'title'             => 'Successfully Added',

@@ -138,8 +138,13 @@
 
     // badge-total-item-in-cart
     window.livewire.on('initialize_cart_item_count', param => {
+      var total_item_in_cart = parseInt(param['total']);
       $(document).find('.badge-total-item-in-cart').each(function () {
-        $(this).html(param['total'])
+        if(total_item_in_cart > 0){
+          $(this).html('<span class="badge badge-warning">'+total_item_in_cart+'</span>');
+        }else{
+          $(this).html('');
+        }
       });
     });
 

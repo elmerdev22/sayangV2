@@ -180,7 +180,7 @@ class Listing extends Component
             $cart->save();
             
             $total_item  = Utility::total_cart_item();
-            $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+            $this->emit('initialize_cart_item_count', ['total' => $total_item]);
             $this->emit('initialize_cart_checkout', true);
             $this->initialize();
         }
@@ -248,7 +248,7 @@ class Listing extends Component
 
         $this->emit('initialize_cart_list', true);
         $this->emit('initialize_cart_checkout', true);
-        $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+        $this->emit('initialize_cart_item_count', ['total' => $total_item]);
         $this->emit('alert', [
             'type'  => 'success',
             'title' => 'Successfully Deleted.',
@@ -274,7 +274,7 @@ class Listing extends Component
                 $total_item  = Utility::total_cart_item();
                 $this->emit('initialize_cart_list', true);
                 $this->emit('initialize_cart_checkout', true);
-                $this->emit('initialize_cart_item_count', ['total' => number_format($total_item)]);
+                $this->emit('initialize_cart_item_count', ['total' => $total_item]);
             }
         }
     }

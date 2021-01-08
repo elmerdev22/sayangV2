@@ -67,7 +67,14 @@
                         <a href="{{route('front-end.user.my-cart.index')}}" class="widget-view" data-tooltip="My Cart" data-tooltip-location="bottom">
                           <div class="icon-area">
                             <i class="fas fa-shopping-cart text-dark"></i>
-                            <span class="notify"><span class="badge badge-warning badge-total-item-in-cart">{{Utility::total_cart_item()}}</span></span>
+                            <span class="notify badge-total-item-in-cart">
+                            @php 
+                              $total_cart_item = Utility::total_cart_item();
+                            @endphp
+                              @if($total_cart_item > 0)
+                                <span class="badge badge-warning">{{$total_cart_item}}</span>
+                              @endif
+                            </span>
                           </div>
                         </a>
                       </div>
