@@ -15,6 +15,18 @@ class QueryUtility{
 		}
 	}
 
+	private static function where_not($filter, $data){
+		if(isset($filter['where_not'])){
+			foreach($filter['where_not'] as $key => $value){
+				$data = $data->where($value['field'], '!=', $value['value']);
+			}
+			
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	private static function where_in($filter, $data){
 		if(isset($filter['where_in'])){
 			foreach($filter['where_in'] as $key => $value){
@@ -500,6 +512,11 @@ class QueryUtility{
 		}
 
 		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_not($filter, $data);
 		if($filtered){
 			$data = $filtered;
 		}
