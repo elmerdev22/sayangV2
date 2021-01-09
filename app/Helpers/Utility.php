@@ -24,6 +24,7 @@ use App\Model\Notification;
 use App\Model\PartnerRating;
 use Carbon\Carbon;
 use UploadUtility;
+use PaymentUtility;
 use Schema;
 use Mail;
 use Auth;
@@ -862,6 +863,23 @@ class Utility{
         }
 
         return $repay;
+    }
+
+    public static function sayang_commision($total_amount){
+        $commission_percentage = PaymentUtility::commission_percentage();
+
+        if($total_amount > 0 ){
+            $total_commission = round($commission_percentage * ($total_amount / 100), 2);
+
+            return [
+                'commission_percentage' => $commission_percentage,
+                'total_amount'          => $total_amount,
+                'total_commission'      => $total_commission,
+                'total_deducted'        => $total_amount - $total_commission
+            ];
+        }else{
+            return 0;
+        }
     }
     
 }

@@ -31,6 +31,10 @@ class PaymentUtility{
         return $response;
     }
 
+    public static function commission_percentage(){
+        return 6; //Default is 6% (Sayang commission percentage per order transaction)
+    }
+
     public static function paymongo_minimum(){
         return 100.00;
     }
