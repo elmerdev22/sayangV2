@@ -94,6 +94,29 @@
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
+                <hr>
+                <h6 class="text-muted">Sayang Commission</h6>
+                @if($data->order_payment->status == 'paid' || $data->status == 'completed')
+                    @php 
+                        if($data->order_payment->order_payment_payout){
+                            $commission_percentage = $data->order_payment->order_payment_payout->commission_percentage;
+                        }else{
+                            $commission_percentage = PaymentUtility::commission_percentage();
+                        }
+
+                        $commission = Utility::sayang_commission($order_total['total'], $commission_percentage);
+                    @endphp
+                    Commission Percentage: {{$commission_percentage}}% <br>
+                    Total Commission: ₱ {{$commission['total_commission']}} <br>
+                    Total Deducted: ₱ {{$commission['total_deducted']}} <br>
+                    <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
+                @endif
+
+                @if($data->order_payment->payment_method != 'cash_on_pickup')
+                    <hr>
+                    <h6 class="text-muted">Paymongo Commission</h6>
+                    
+                @endif
             </p>
 
             <div class="row">
@@ -103,7 +126,7 @@
                     </div>
                 @endif -->
                 @if($data->status == 'completed')
-                    <div class="col-6">
+                    <div class="col-12">
                         View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
                     </div>
                 @endif

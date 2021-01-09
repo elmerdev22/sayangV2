@@ -38,7 +38,7 @@
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 @php 
                                     $total_amount     = $component->order_total($row->order_id);
-                                    $sayang_comission = Utility::sayang_commision($total_amount);
+                                    $sayang_comission = Utility::sayang_commission($total_amount);
                                 @endphp
                                 <td>PHP {{number_format($sayang_comission['total_commission'], 2)}}</td>
                                 <td>PHP {{number_format($sayang_comission['total_deducted'], 2)}}</td>
