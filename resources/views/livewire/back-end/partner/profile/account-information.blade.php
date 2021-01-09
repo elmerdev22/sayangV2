@@ -31,6 +31,10 @@
                         @else
                             <span class="badge badge-warning">Pending</span>
                         @endif
+                        
+                        @if ($data->user->is_blocked)
+                            <span class="badge badge-danger">Blocked</span>
+                        @endif
                     </a>
                 </li>
                 <li class="list-group-item">

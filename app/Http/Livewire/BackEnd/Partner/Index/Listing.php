@@ -21,6 +21,7 @@ class Listing extends Component
 	public function data(){
 		$filter = [];
 		$filter['select'] = [
+			'users.is_blocked',
 			'partners.*', 
 			'partners.name as partner_name', 
 			'user_accounts.key_token as account_key_token',

@@ -123,15 +123,22 @@
 		        					@endif
 		        				</td>
 		        				<td>
-		        					@if($row->is_activated) 
-		        						<span class="badge badge-success">Activated</span>
-		        					@else
-		        						@if($row->status == 'done')
-			        						<span class="badge badge-info">For Activation</span>
-	        							@else
-			        						<span class="badge badge-warning">Pending</span>
-		        						@endif
-		        					@endif 
+									<div>
+										@if($row->is_activated) 
+											<span class="badge badge-success">Activated</span>
+										@else
+											@if($row->status == 'done')
+												<span class="badge badge-info">For Activation</span>
+											@else
+												<span class="badge badge-warning">Pending</span>
+											@endif
+										@endif 
+									</div>
+									<div>
+										@if ($row->is_blocked)
+											<span class="badge badge-danger">Blocked</span>
+										@endif
+									</div>
 		        				</td>
 		        				<td>{{date('M/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">

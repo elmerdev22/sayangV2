@@ -14,13 +14,13 @@
                     <b>Status</b> 
                     <a class="float-right">
                         @if($data->user->verified_at) 
-                            @if($data->user->is_blocked)
-                                <span class="badge badge-danger">Blocked</span>
-                            @else
-                                <span class="badge badge-success">Verified</span>
-                            @endif
+                            <span class="badge badge-success">Verified</span>
                         @else
                             <span class="badge badge-warning">Not Verified</span>
+                        @endif
+                        
+                        @if ($data->user->is_blocked)
+                            <span class="badge badge-danger">Blocked</span>
                         @endif
                     </a>
                 </li>

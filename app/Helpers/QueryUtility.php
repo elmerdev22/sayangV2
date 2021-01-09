@@ -15,6 +15,16 @@ class QueryUtility{
 		}
 	}
 
+    private static function where_not_null($filter, $data){
+		if(isset($filter['where_not_null'])){
+			$data = $data->whereNotNull($filter['where_not_null']);
+			
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	private static function where_in($filter, $data){
 		if(isset($filter['where_in'])){
 			foreach($filter['where_in'] as $key => $value){
@@ -163,6 +173,11 @@ class QueryUtility{
 			$data = $filtered;
 		}
 
+		$filtered = self::where_not_null($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
 		if(isset($filter['or_where_like'])){
 			$search = trim($filter['or_where_like']);
 			$search = explode(' ',$search);
@@ -176,7 +191,7 @@ class QueryUtility{
 				}
             });
 		}
-
+		
 		$filtered = self::where_in($filter, $data);
 		if($filtered){
 			$data = $filtered;

@@ -50,7 +50,7 @@
                 
                 <li class="nav-item has-treeview {{Route::is('front-end.partner.my-products.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.my-products.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-list"></i>
+                        <i class="nav-icon fas fa-tag"></i>
                         <p>My Products <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">

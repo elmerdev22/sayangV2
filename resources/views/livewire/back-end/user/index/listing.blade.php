@@ -9,6 +9,8 @@
                     <label>Account Status</label>
                     <select class="form-control" wire:model="account_status">
                         <option value="" selected>All</option>
+                        <option value="1" selected>Verified</option>
+                        <option value="0" selected>Not Verified</option>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -99,15 +101,18 @@
 	        						@endif
 		        				</td>
 		        				<td>
-		        					@if($row->verified_at) 
-			        					@if($row->is_blocked)
-			        						<span class="badge badge-danger">Blocked</span>
-	        							@else
-			        						<span class="badge badge-success">Verified</span>
-		        						@endif
-		        					@else
-		        						<span class="badge badge-warning">Not Verified</span>
-		        					@endif 
+									<div>
+										@if($row->verified_at) 
+											<span class="badge badge-success">Verified</span>
+										@else
+											<span class="badge badge-warning">Not Verified</span>
+										@endif 
+									</div>
+									<div>
+										@if ($row->is_blocked)
+											<span class="badge badge-danger">Blocked</span>
+										@endif
+									</div>
 		        				</td>
 		        				<td>{{date('M/d/Y', strtotime($row->date_registered))}}</td>
 		        				<td class="text-center">
