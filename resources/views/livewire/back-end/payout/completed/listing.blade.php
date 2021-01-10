@@ -46,7 +46,7 @@
                                     $sayang_comission = Utility::sayang_commission($total_amount);
                                 @endphp
                                 <td>PHP {{number_format($sayang_comission['total_commission'], 2)}}</td>
-                                <td>PHP {{number_format($sayang_comission['total_deducted'], 2)}}</td>
+                                <td>PHP {{number_format($sayang_comission['net_amount'], 2)}}</td>
                                 <td>PHP {{number_format($total_amount, 2)}}</td>
                                 <td>{{date('M/d/Y', strtotime($row->created_at))}}</td>
                                 <td>{{date('M/d/Y', strtotime($row->payout_date))}}</td>

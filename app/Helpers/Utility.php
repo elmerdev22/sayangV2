@@ -876,7 +876,7 @@ class Utility{
             'commission_percentage' => $commission_percentage,
             'total_amount'          => $total_amount,
             'total_commission'      => $total_commission,
-            'total_deducted'        => $total_amount - $total_commission
+            'net_amount'            => $total_amount - $total_commission
         ];
     }
     

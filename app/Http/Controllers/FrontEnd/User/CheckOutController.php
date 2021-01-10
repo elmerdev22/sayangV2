@@ -257,7 +257,7 @@ class CheckOutController extends Controller
 
     public function pay(){
         try{
-            
+            abort(404);
             // $payment = Paymongo::payment()->find('pay_xhh12v2on9gxH1MU7GD6A4SL');
             // dd($payment);
             // $source = Paymongo::source()->find('src_LAN7xNZ8KwimADJTceBza6bG');

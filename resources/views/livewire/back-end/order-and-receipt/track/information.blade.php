@@ -40,15 +40,21 @@
                 </div>
                 
                 @if($data->order_payment->payment_method == 'card' || $data->order_payment->payment_method == 'e_wallet')
-                    <div>
-                        <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
-                    </div>
-                    <div>
-                        <b>API Method ID :</b> {{$data->order_payment->order_payment_log->method_id}}
-                    </div>
-                    <div>
-                        <b>API Method Type :</b> {{$data->order_payment->order_payment_log->method}}
-                    </div>
+                    @if($data->order_payment->order_payment_log->paymongo_payment_id)
+                        <div>
+                            <b>API Payment ID :</b> {{$data->order_payment->order_payment_log->paymongo_payment_id}}
+                        </div>
+                    @endif
+                    @if($data->order_payment->order_payment_log->method_id)
+                        <div>
+                            <b>API Method ID :</b> {{$data->order_payment->order_payment_log->method_id}}
+                        </div>
+                    @endif
+                    @if($data->order_payment->order_payment_log->method)
+                        <div>
+                            <b>API Method Type :</b> {{$data->order_payment->order_payment_log->method}}
+                        </div>
+                    @endif
                 @endif
 
                 @if($data->order_payment->payment_method == 'card')
@@ -94,9 +100,9 @@
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
-                <hr>
-                <h6 class="text-muted">Sayang Commission</h6>
-                @if($data->order_payment->status == 'paid' || $data->status == 'completed')
+                @if($data->status == 'completed')
+                    <hr>
+                    <h6 class="text-muted">Commissions</h6>
                     @php 
                         if($data->order_payment->order_payment_payout){
                             $commission_percentage = $data->order_payment->order_payment_payout->commission_percentage;
@@ -106,16 +112,47 @@
 
                         $commission = Utility::sayang_commission($order_total['total'], $commission_percentage);
                     @endphp
-                    Commission Percentage: {{$commission_percentage}}% <br>
-                    Total Commission: ₱ {{$commission['total_commission']}} <br>
-                    Total Deducted: ₱ {{$commission['total_deducted']}} <br>
-                    <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
-                @endif
 
-                @if($data->order_payment->payment_method != 'cash_on_pickup')
-                    <hr>
-                    <h6 class="text-muted">Paymongo Commission</h6>
+                    Sayang Commission: ₱ {{number_format($commission['total_commission'],2)}} <small>({{$commission_percentage}}%)</small><br>
+                    @php 
+                        $online_payment_fee = 0;
+                    @endphp
+                    @if($data->order_payment->payment_method != 'cash_on_pickup')
+                        @if($data->order_payment->order_payment_log->paymongo_payment_id)
+                            @php 
+                                $paymongo_commission = PaymentUtility::paymongo_commission($data->order_payment->order_payment_log->paymongo_payment_id, $data->order_payment->payment_method);
+                                $online_payment_fee  = $paymongo_commission['fee'];
+                                $foreign_fee         = $paymongo_commission['foreign_fee'];
+                            @endphp
+                            
+                            @if($data->order_payment->payment_method == 'e_wallet') 
+                                Online E-wallet Fee: ₱ {{number_format($online_payment_fee,2)}} 
+                                <small>(2.9%)</small>
+                                <br>
+                            @elseif($data->order_payment->payment_method == 'card') 
+                                Online Card Fee: ₱ {{number_format($online_payment_fee,2)}}
+                                <small>(3.5% + PHP 15.00)</small>
+                                <br>
+                                Foreign Fee: ₱ {{number_format($foreign_fee,2)}}
+                                <div>
+                                    <small><b>Note:</b> Standard foreign fee <br> For cards issued outside the Philippines is additional 1%</small>
+                                </div>
+                            @endif
+                        @endif
+                    @endif
+                    Net Amount: ₱ {{number_format($commission['net_amount'] - ($online_payment_fee + $foreign_fee),2)}} <br>
+                    <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
+                    @if($data->order_payment->order_payment_payout)
                     
+                    @else
+                        <div>
+                            <span class="badge badge-warning">Payout Pending</span>
+                        </div>
+                        <div class="mt-1">
+                            <button class="btn btn-success btn-sm" type="button">Process Payout</button>
+                        </div>
+                    @endif
+                    <hr>
                 @endif
             </p>
 
@@ -132,6 +169,7 @@
                 @endif
                 @if($data->status == 'cancelled')
                     <div class="col-12">
+                        <hr>
                         <div>
                             <b>Cancelation Reason: </b> <br> {{ucfirst($data->cancelation_reason)}}
                         </div>
