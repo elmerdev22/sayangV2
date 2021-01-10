@@ -32,14 +32,14 @@
                                             <label>
                                                 <span class="fas fa-star"></span> 
                                                 <span class="text-muted">Ratings :</span>
-                                                <span class="text-sm">{{$data['ratings']}}</span>
+                                                <span class="text-warning">{{$data['ratings']}}</span>
                                             </label>
                                         </div>
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-store"></span>
                                                 <span class="text-muted">Products :</span>
-                                                <span class="text-sm">{{number_format($data['products'], 0)}}</span> 
+                                                <span class="text-warning">{{number_format($data['products'], 0)}}</span> 
                                             </label>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                             <label>
                                                 <span class="fas fa-users"></span>
                                                 <span class="text-muted">Followers :</span>
-                                                <span class="text-sm">{{number_format($data['followers'], 0)}}</span> 
+                                                <span class="text-warning">{{number_format($data['followers'], 0)}}</span> 
                                             </label>
                                         </div>
                                     </div>
