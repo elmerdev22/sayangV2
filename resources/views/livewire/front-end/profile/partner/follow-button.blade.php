@@ -5,7 +5,12 @@
                 <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-warning">
                         <span class="fas fa-check"></span>
-                        Followed
+                            Followed
+                        @if ($follower->is_notify)
+                            <span class="fas fa-bell"></span>
+                        @else 
+                            <span class="fas fa-bell-slash"></span>
+                        @endif
                     </button>
                     <button type="button" class="btn btn-warning dropdown-toggle dropdown-icon" data-toggle="dropdown">
                         <span class="sr-only">Toggle Dropdown</span>

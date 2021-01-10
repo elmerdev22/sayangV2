@@ -78,13 +78,13 @@
             <!-- small card -->
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3>{{number_format($data['total_followers'] ,0)}}</h3>
-                    <p>Total Followers</p>
+                    <h3>{{number_format($data['total_products_active'] ,0)}}</h3>
+                    <p>Active/Incoming Products</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-users text-warning"></i>
+                    <i class="fas fa-tag text-warning"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="{{route('front-end.partner.my-products.activities.index')}}" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -93,13 +93,43 @@
             <!-- small card -->
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3>{{number_format($data['total_products'] ,0)}}</h3>
-                    <p>Active/Incoming Products</p>
+                    <h3>{{number_format($data['total_products_ended'] ,0)}}</h3>
+                    <p>Ended Products</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-shopping-cart text-warning"></i>
+                    <i class="fas fa-tag text-success"></i>
                 </div>
                 <a href="{{route('front-end.partner.my-products.activities.index')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['total_products_cancelled'] ,0)}}</h3>
+                    <p>Cancelled Products</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-tag text-danger"></i>
+                </div>
+                <a href="{{route('front-end.partner.my-products.activities.index')}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3>{{number_format($data['total_followers'] ,0)}}</h3>
+                    <p>Total Followers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users text-warning"></i>
+                </div>
+                <a href="#" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>

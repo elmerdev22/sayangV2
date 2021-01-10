@@ -50,7 +50,7 @@
                 
                 <li class="nav-item has-treeview {{Route::is('front-end.partner.my-products.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.my-products.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-list"></i>
+                        <i class="nav-icon fas fa-tag"></i>
                         <p>My Products <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -86,12 +86,12 @@
                                 <p>Order Placed</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.payment-confirmed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Payment Confirmed</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{route('front-end.partner.order-and-receipt.to-receive')}}" class="nav-link {{Route::is('front-end.partner.order-and-receipt.to-receive') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>

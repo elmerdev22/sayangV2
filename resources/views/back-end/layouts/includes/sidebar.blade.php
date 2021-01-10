@@ -47,7 +47,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('back-end.products.index')}}" class="nav-link {{Route::is('back-end.products.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-list"></i>
+                        <i class="nav-icon fas fa-tag"></i>
                         <p>Products</p>
                     </a>
                 </li>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('back-end.catalog.index')}}" class="nav-link {{Route::is('back-end.catalog.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-list"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>Catalogs</p>
                     </a>
                 </li>

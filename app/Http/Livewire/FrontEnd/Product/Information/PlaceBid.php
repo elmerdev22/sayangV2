@@ -147,8 +147,12 @@ class PlaceBid extends Component
         $popcorn_bidding_last_minutes_repeat = Utility::settings('popcorn_bidding_last_minutes_repeat');
         $popcorn_bidding_additional_minutes  = Utility::settings('popcorn_bidding_additional_minutes');
 
+        $get_highest_bid = $this->get_highest_bid();
+        $get_highest_bid = $get_highest_bid ? $get_highest_bid->bid : $this->lowest_price;
+        $next_bid        = $get_highest_bid + $this->bid_increment;
+
         $this->validate([
-            'bid' => ['required',
+            'bid' => ['required','numeric','min:'.$next_bid.'',
             Rule::unique('bids')->where(function ($query) use ($product_post_id) {
                 return $query->where('product_post_id', $product_post_id);
             })]
@@ -160,6 +164,9 @@ class PlaceBid extends Component
 
         if($this->bid < $this->lowest_bid){
             Session::flash('minimum_bid', 'The minimum Bid is '.$this->lowest_bid);
+        }
+        else if($this->bid >= $this->product_post->buy_now_price){
+            Session::flash('reach_buy_now_price', 'Your Bid reach the buy now price. please buy now instead.');
         }
         else{
             
@@ -201,4 +208,10 @@ class PlaceBid extends Component
         $this->mount($this->product_post_id);
     }
 
+    public function get_highest_bid(){
+        
+        return Bid::where('product_post_id', $this->product_post_id)
+                ->orderBy('bid', 'desc')
+                ->first();
+    }
 }

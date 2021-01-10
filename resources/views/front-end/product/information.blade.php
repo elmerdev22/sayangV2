@@ -23,12 +23,12 @@
                                 <div class="card-header">
                                     <div class="col-12">
                                         <h5 class="p-0 m-0">
-                                            <span class="p-2">BUY NOW</span>
+                                            <small class="p-2 font-weight-bold">BUY NOW</small>
                                             <label class="switch">
                                                 <input type="checkbox" id="purchase-type-switch" @if($trigger_place_bid) checked="true" @endif>
                                                 <span class="slider round"></span>
                                             </label>
-                                            <span class="p-2">PLACE BID</span>
+                                            <small class="p-2 font-weight-bold">PLACE BID</small>
                                         </h5>
                                     </div>
                                 </div>
@@ -48,93 +48,124 @@
                         @endif
                     </div>
                 </div>
+                
                 <div class="row mt-5">
                     <div class="col-12">
-                        <div class="card widget-user-2 bg-white">
-                            <div class="row ">
-                                <div class="col-md-4">
-                                    <div class="p-4">
+                        <div class="card widget-user-2">
+                            
+                            <div class="card-header bg-light">
+                                <h4 class="card-title">
+                                    About Seller
+                                </h4>
+                            </div>
+                            <div class="card-body">
 
+                                <div class="row text-muted text-sm">
+                                    <div class="col-md-3">
                                         <div class="widget-user-header">
                                             <div class="widget-user-image">
-                                              <img class="img-circle elevation-1 mr-3" src="{{$store_photo}}" alt="User Avatar">
+                                                <img class="img-circle elevation-1 mr-3" src="{{$store_photo}}" alt="User Avatar">
                                             </div>
                                             <!-- /.widget-user-image -->
                                             <h5>{{ucfirst($product->partner_name)}}</h5>
                                             <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-sm">
                                                 <span class="fas fa-store"></span> View Shop
                                             </a>
-                                          </div>
-
-                                        {{-- @livewire('front-end.profile.partner.follow-button', ['partner_id' => $product->partner_id ]) --}}
+                                        </div>
+                                            {{-- @livewire('front-end.profile.partner.follow-button', ['partner_id' => $product->partner_id ]) --}}
                                     </div>
-                                </div>
-                                <div class="col-md-4 pt-3">
-                                    <div class="row widget-user-header">
-                                        <div class="col-12">
-                                            <label>
-                                                <span class="fas fa-star"></span> 
-                                                <span class="text-muted">Ratings :</span>
-                                                <span class="text-warning">{{Utility::get_partner_ratings($product->partner_id)}}</span>
-                                                {{-- <small>(344 rating)</small> --}}
-                                            </label>
-                                        </div>
-                                        <div class="col-12">
-                                            <label>
-                                                <span class="fas fa-store"></span>
-                                                <span class="text-muted">Products :</span>
-                                                <span class="text-warning">{{number_format(Utility::count_products($product->partner_id) ,0)}}</span> 
-                                            </label>
-                                        </div>
-                                        <div class="col-12">
-                                            <label>
-                                                <span class="fas fa-users"></span>
-                                                <span class="text-muted">Followers :</span>
-                                                <span class="text-warning">{{Utility::count_followers($product->partner_id)}}</span> 
-                                            </label>
+                                    <div class="col-md-2">
+                                        <div class="row widget-user-header ">
+                                            <div class="col-12">
+                                                <label>
+                                                    <span class="fas fa-star"></span> 
+                                                    <span class="text-muted">Ratings :</span>
+                                                    <span class="text-warning">{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <label>
+                                                    <span class="fas fa-store"></span>
+                                                    <span class="text-muted">Products :</span>
+                                                    <span class="text-warning">{{number_format(Utility::count_products($product->partner_id) ,0)}}</span> 
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 pt-3">
-                                    <div class="row widget-user-header">
-                                        <div class="col-12">
-                                            <label>
-                                                <span class="fas fa-map-marker-alt"></span> 
-                                                <span class="text-muted">Address :</span>
-                                                {{$product->address}}
-                                            </label>
+                                    <div class="col-md-3">
+                                        <div class="row widget-user-header">
+                                            <div class="col-12">
+                                                <label>
+                                                    <span class="fas fa-users"></span>
+                                                    <span class="text-muted">Joined :</span>
+                                                    <span class="">{{date('F d, Y', strtotime($product->joined))}}</span> 
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <label>
+                                                    <span class="fas fa-users"></span>
+                                                    <span class="text-muted">Followers :</span>
+                                                    <span class="text-warning">{{Utility::count_followers($product->partner_id)}}</span> 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row widget-user-header">
+                                            <div class="col-12">
+                                                <label>
+                                                    <span class="fas fa-map-marker-alt"></span> 
+                                                    <span class="text-muted">Address :</span>
+                                                    <p>{{$product->address}}</p>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /.row -->
                             </div>
-                            <!-- /.row -->
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <nav class="w-100">
-                            <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Partner Ratings</a>
-                                <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">About Product</a>
-                                <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Other details</a>
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h4 class="card-title">
+                                    About Products
+                                </h4>
                             </div>
-                        </nav>
-                        <div class="tab-content p-3" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-                                <div class="card-footer bg-white card-comments">
-                                    @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
-                                </div>
+                            <div class="card-body">
+                                @livewire('front-end.product.information.about')
                             </div>
-                            <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
-                                <div class="card-footer bg-white card-comments">
-                                    @livewire('front-end.product.information.about')
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h4 class="card-title">
+                                    Other Details
+                                </h4>
                             </div>
-                            <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> 
-                                <div class="card-footer bg-white card-comments">
-                                    @livewire('front-end.product.information.other-details')
-                                </div>
+                            <div class="card-body">
+                                @livewire('front-end.product.information.other-details')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h4 class="card-title">
+                                    Seller Ratings
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
                             </div>
                         </div>
                     </div>
@@ -144,7 +175,6 @@
         </div>
         <!-- /.card -->
     </div>
-    <hr>
     <div class="container">
         <div class="row">
             <div class="col-12 mb-3">

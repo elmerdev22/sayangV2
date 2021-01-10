@@ -38,7 +38,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-list-alt"></small> </a>
+                    <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-tag"></small> </a>
                 </li>
               @endif
               
@@ -150,7 +150,7 @@
           
           @if(Utility::top_nav_validate_auth_verify())
             <a href="{{route('front-end.about-us.index')}}" class="list-group-item {{\Route::is('front-end.about-us.index') ? 'active':''}}"><span class="fas fa-info text-center" style="width: 10%;"></span> About Us</a>
-            <a href="{{route('front-end.product.list.index')}}" class="list-group-item {{\Route::is('front-end.product.list.index') ? 'active':''}}"><span class="fas fa-list-alt text-center" style="width: 10%;"></span> Products</a>
+            <a href="{{route('front-end.product.list.index')}}" class="list-group-item {{\Route::is('front-end.product.list.index') ? 'active':''}}"><span class="fas fa-tag text-center" style="width: 10%;"></span> Products</a>
           @endif
           
           @if(!Auth::check())

@@ -100,7 +100,7 @@ class PayNow extends Component
         $order_init = Order::with(['order_bid'])
         ->findOrFail($this->order_id);
 
-        if($order_init->order_bid->id){
+        if($order_init->order_bid){
             $can_repay = true;
         }else{
             $can_repay = Utility::order_can_repay($this->order_id);

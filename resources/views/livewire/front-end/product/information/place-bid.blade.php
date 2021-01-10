@@ -63,9 +63,16 @@
         </div>
     </div>
     <div class="row">
+        @if(session('reach_buy_now_price'))
+            <div class="col-12">
+                <div class="bg-danger rounded py-1 px-2 mt-4">
+                    <small>{{session('reach_buy_now_price')}}</small>
+                </div>
+            </div>
+        @endif
         <div class="col-12">
             @if($allow_purchase == 'allowed')
-                <div class="bg-warning py-1 px-2 mt-4">
+                <div class="bg-warning rounded py-1 px-2 mt-4">
                     <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
@@ -115,19 +122,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $quan = $current_quantity;    
-                        @endphp
                         @forelse ($ranking as $key => $data)
                         <tr>
                             @php
-                                $quan = $quan - $data->quantity;    
+                                $current_quantity -= $data->quantity;    
                             @endphp
                             <td>{{++$key}}</td>
-                            <td>{{$data->user_account->first_name}}</td>
+                            <td>{{$data->user_account->first_name}} </td>
                             <td>₱{{number_format($data->bid, 2)}}</td>
                             <td>{{number_format($data->quantity, 0)}}</td>
-                            <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
+                            <td>
+                                {{$current_quantity + $data->quantity <= 0 ? 'Losing' : 'Winning'}}
+                            </td>
                         </tr>
                         @empty
                         <tr>
@@ -139,7 +145,7 @@
             </div>
             
             @if($allow_purchase == 'allowed' && $view_my_bids)
-                <div>
+                <div class="my-2">
                     <div>
                         <button class="btn btn-warning btn-sm" onclick="all_my_bids()">View all my bids in this product</button>
                     </div>

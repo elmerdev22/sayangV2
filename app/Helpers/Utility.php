@@ -697,11 +697,11 @@ class Utility{
         return Follower::where('partner_id', $partner_id)->count();
     }
 
-    public static function count_products($partner_id){
+    public static function count_products($partner_id, $status = 'active'){
         return DB::table('product_posts')
                 ->join('products', 'products.id', '=', 'product_posts.product_id')
                 ->where('products.partner_id', $partner_id)
-                ->where('product_posts.status', 'active')
+                ->where('product_posts.status', $status)
                 ->count();
     }
 

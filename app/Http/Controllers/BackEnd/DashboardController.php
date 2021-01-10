@@ -73,7 +73,18 @@ class DashboardController extends Controller
 
     public function users($status){
 
-        return User::where('type','user')->where('is_blocked', $status)->count();
+        $data = User::where('type','user');
+        
+        if($status == 0){
+            $data->where('verified_at', '!=', null);
+        }
+        else{
+            $data->where('is_blocked', $status);
+        }
+        
+        $data = $data->count();
+        
+        return $data;
 
     }
 

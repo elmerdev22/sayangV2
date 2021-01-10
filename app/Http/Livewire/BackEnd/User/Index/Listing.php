@@ -31,6 +31,14 @@ class Listing extends Component
 
 		$filter['where']['users.type'] = 'user';
 		
+		if($this->account_status != null){
+			if($this->account_status){
+				$filter['where_not_null'] = 'users.verified_at';
+			}
+			else{
+				$filter['where']['users.verified_at'] = null;
+			}
+		}
 		if($this->block_status != null){
 			$filter['where']['users.is_blocked'] = $this->block_status;
 		}

@@ -117,7 +117,7 @@
                         <div class="col-md-7">
                             <p>Buyer Details</p>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 my-2">
                             <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">
                         </div>
                         <div class="col-12">

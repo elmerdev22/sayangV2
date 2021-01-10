@@ -11,19 +11,18 @@
             </tr>
         </thead>
         <tbody>
-            @php
-                $quan = $quantity;    
-            @endphp
             @forelse ($bid_ranking as $key => $data)
             <tr>
                 @php
-                    $quan = $quan - $data->quantity;    
+                    $quantity -= $data->quantity;    
                 @endphp
                 <td>{{++$key}}</td>
                 <td>{{$data->user_account->first_name}}</td>
                 <td>₱{{number_format($data->bid, 2)}}</td>
                 <td>{{number_format($data->quantity, 0)}}</td>
-                <td>{{$quan >= 0  ? 'Winning' : 'Losing'}}</td>
+                <td>
+                    {{$quantity + $data->quantity <= 0 ? 'Losing' : 'Winning'}}
+                </td>
             </tr>
             @empty
             <tr class="text-center">
