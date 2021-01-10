@@ -116,6 +116,7 @@
                     Sayang Commission: ₱ {{number_format($commission['total_commission'],2)}} <small>({{$commission_percentage}}%)</small><br>
                     @php 
                         $online_payment_fee = 0;
+                        $net_amount         = $commission['net_amount'];
                     @endphp
                     @if($data->order_payment->payment_method != 'cash_on_pickup')
                         @if($data->order_payment->order_payment_log->paymongo_payment_id)
@@ -123,6 +124,7 @@
                                 $paymongo_commission = PaymentUtility::paymongo_commission($data->order_payment->order_payment_log->paymongo_payment_id, $data->order_payment->payment_method);
                                 $online_payment_fee  = $paymongo_commission['fee'];
                                 $foreign_fee         = $paymongo_commission['foreign_fee'];
+                                $net_amount          = $commission['net_amount'] - ($online_payment_fee + $foreign_fee);
                             @endphp
                             
                             @if($data->order_payment->payment_method == 'e_wallet') 
@@ -140,16 +142,34 @@
                             @endif
                         @endif
                     @endif
-                    Net Amount: ₱ {{number_format($commission['net_amount'] - ($online_payment_fee + $foreign_fee),2)}} <br>
+
+                    Net Amount: ₱ {{number_format($net_amount,2)}} <br>
                     <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
                     @if($data->order_payment->order_payment_payout)
-                    
-                    @else
                         <div>
-                            <span class="badge badge-warning">Payout Pending</span>
+                            <span class="badge badge-success">Payout Completed</span>
                         </div>
                         <div class="mt-1">
-                            <button class="btn btn-success btn-sm" type="button">Process Payout</button>
+                            <small>
+                                <b>Payout Note : </b> <br>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo ratione quas voluptates cupiditate omnis.                            
+                            </small>
+                        </div>
+                        <div class="mt-1">
+                            <a href="javascript:void(0);" class="text-blue"><i class="fas fa-download"></i> Download Receipt</a>
+                        </div>
+                    @else
+                        <div>
+                            <span class="badge badge-warning">Payout Pending 
+                                @if($data->order_payment->payment_method == 'cash_on_pickup') 
+                                    (To Receive)
+                                @else 
+                                    (To Pay)
+                                @endif 
+                            </span>
+                        </div>
+                        <div class="mt-1">
+                            <button type="button" class="btn btn-success btn-sm">Process Payout</button>
                         </div>
                     @endif
                     <hr>
