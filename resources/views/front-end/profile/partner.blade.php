@@ -2,23 +2,6 @@
 @section('title','Seller Profile')
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Profile</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Profile</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -26,62 +9,67 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-widget widget-user">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header text-white" style="background: url('{{$data['cover_photo']}}'); background-repeat: no-repeat; background-size: cover;">
-                        </div>
-                        <div class="widget-user-image">
-                            <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">
-                        </div>
-                        <div class="card-footer bg-white">
-                            
-                            <div class="row ">
-                                <div class="col-md-5">
-                                    <div class="p-4">
-                                        <!-- /.widget-user-image -->
-                                        <h3>{{$data['store_name']}}</h3>
-                                        @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
-                                    </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header text-white" style="background: url('{{$data['cover_photo']}}'); background-repeat: no-repeat; background-size: cover;">
                                 </div>
-                                <div class="col-md-4 pt-3">
+                                <div class="widget-user-image">
+                                    <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body bg-white">
+                            <div class="row mt-5 text-muted text-sm">
+                                <div class="col-md-3">
+                                    <!-- /.widget-user-image -->
+                                    <h4>{{$data['store_name']}}</h4>
+                                    @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
+                                </div>
+                                <div class="col-md-2">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-star"></span> 
                                                 <span class="text-muted">Ratings :</span>
-                                                <span class="text-warning">{{$data['ratings']}}</span>
-                                                {{-- <small>(344 rating)</small> --}}
+                                                <span class="text-sm">{{$data['ratings']}}</span>
                                             </label>
                                         </div>
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-store"></span>
                                                 <span class="text-muted">Products :</span>
-                                                <span class="text-warning">{{number_format($data['products'], 0)}}</span> 
+                                                <span class="text-sm">{{number_format($data['products'], 0)}}</span> 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>
+                                                <span class="fas fa-calendar"></span>
+                                                <span class="text-muted">Joined :</span>
+                                                {{date('F d, Y', strtotime($data['store_joined']))}}
                                             </label>
                                         </div>
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-users"></span>
                                                 <span class="text-muted">Followers :</span>
-                                                <span class="text-warning">{{number_format($data['followers'], 0)}}</span> 
+                                                <span class="text-sm">{{number_format($data['followers'], 0)}}</span> 
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 pt-3">
+                                <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>
                                                 <span class="fas fa-map-marker-alt"></span> 
                                                 <span class="text-muted">Address :</span>
-                                                {{$data['store_address']}}
-                                            </label>
-                                        </div>
-                                        <div class="col-12">
-                                            <label>
-                                                <span class="fas fa-calendar"></span>
-                                                <span class="text-muted">Joined :</span>
-                                                {{date('F d, Y', strtotime($data['store_joined']))}}
+                                                <p>
+                                                    {{$data['store_address']}}</p>
                                             </label>
                                         </div>
                                     </div>
@@ -95,10 +83,10 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="w-100">
-                        <div class="nav nav-tabs" id="product-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Products</a>
-                            <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Ratings</a>
-                            <a class="nav-item nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false">Location</a>
+                        <div class="nav nav-tabs text-center text-uppercase border-0 bg-light" id="product-tab" role="tablist">
+                            <a class="nav-item nav-link active col-4" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Products</a>
+                            <a class="nav-item nav-link col-4 " id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Ratings</a>
+                            <a class="nav-item nav-link col-4 " id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false">Location</a>
                         </div>
                     </nav>
                     
