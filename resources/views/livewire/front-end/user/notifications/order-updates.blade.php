@@ -56,7 +56,7 @@
                                     >
                                 
                                         <div class="media pt-2">
-                                            <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
+                                            <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 35px; width: auto;">
                                             <div class="media-body text-left">
                                                 <h3 class="dropdown-item-title">
                                                     {{$row->web_notification_settings->title}}

@@ -66,7 +66,7 @@
                 @endforelse
             </div>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        <a href="{{route('front-end.user.notifications.index')}}" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
 </div>
 {{-- @push('scripts')
