@@ -23,12 +23,12 @@
                                 <div class="card-header">
                                     <div class="col-12">
                                         <h5 class="p-0 m-0">
-                                            <span class="p-2">BUY NOW</span>
+                                            <small class="p-2 font-weight-bold">BUY NOW</small>
                                             <label class="switch">
                                                 <input type="checkbox" id="purchase-type-switch" @if($trigger_place_bid) checked="true" @endif>
                                                 <span class="slider round"></span>
                                             </label>
-                                            <span class="p-2">PLACE BID</span>
+                                            <small class="p-2 font-weight-bold">PLACE BID</small>
                                         </h5>
                                     </div>
                                 </div>
