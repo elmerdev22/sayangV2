@@ -17,7 +17,7 @@ class Listing extends Component
     public $partner, $date_from, $date_to, $reset_filter = false;
     
     public function mount(){
-        $this->sort       = ['orders.created_at'];
+        $this->sort       = ['order_payment_payouts.created_at'];
         $partner          = Utility::auth_partner();
 		$this->partner_id = $partner->partner_id;
     }
@@ -28,6 +28,7 @@ class Listing extends Component
 			'orders.*', 
 			'orders.id as order_id', 
 			'order_payments.payment_method', 
+			'order_payment_logs.paymongo_payment_id', 
 			'order_payments.status as order_payment_status', 
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
