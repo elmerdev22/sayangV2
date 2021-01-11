@@ -48,7 +48,7 @@
                 wire:click="click('{{$row->id}}')">
                 
                         <div class="media">
-                            <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 35px; width: auto;">
+                            <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     {{Str::limit($row->web_notification_settings->title, 18, '...')}}
@@ -66,7 +66,7 @@
                 @endforelse
             </div>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        <a href="{{route('front-end.user.notifications.index')}}" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
 </div>
 {{-- @push('scripts')

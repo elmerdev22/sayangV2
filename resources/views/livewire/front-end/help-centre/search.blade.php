@@ -15,7 +15,7 @@
                                 <div style="max-height: 300px; overflow: auto; ">
                                     <ul class="list-group text-black-50 text-left">
                                         @foreach ($data as $row)
-                                            <li class="list-group-item"><a wire:click="select_question('{{$row->id}}')" href="javascript:void(0);">{{$row->question}}</a></li> 
+                                            <a wire:click="select_question('{{$row->id}}')" href="javascript:void(0);" class="list-group-item list-group-item-action">{{$row->question}}</a>
                                         @endforeach
                                     </ul>
                                 </div>
