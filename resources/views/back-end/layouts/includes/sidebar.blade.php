@@ -63,6 +63,34 @@
                         <p>Catalogs</p>
                     </a>
                 </li>
+
+                <li class="nav-item has-treeview {{Route::is('back-end.payout.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.payout.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-credit-card"></i>
+                        <p>Payouts <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('back-end.payout.to-pay')}}" class="nav-link {{Route::is('back-end.payout.to-pay') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>To Payout</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.payout.to-receive')}}" class="nav-link {{Route::is('back-end.payout.to-receive') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>To Receive</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.payout.completed')}}" class="nav-link {{Route::is('back-end.payout.completed') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Completed</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item has-treeview {{Route::is('back-end.setting.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.setting.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-cogs"></i>

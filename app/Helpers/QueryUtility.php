@@ -15,6 +15,15 @@ class QueryUtility{
 		}
 	}
 
+	private static function where_not($filter, $data){
+		if(isset($filter['where_not'])){
+			foreach($filter['where_not'] as $key => $value){
+				$data = $data->where($value['field'], '!=', $value['value']);
+			}
+			return $data;
+		}
+	}
+	
     private static function where_not_null($filter, $data){
 		if(isset($filter['where_not_null'])){
 			$data = $data->whereNotNull($filter['where_not_null']);
@@ -507,6 +516,7 @@ class QueryUtility{
 			->join('partners', 'partners.id', '=', 'orders.partner_id')
 			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
 			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id')
+			->leftJoin('order_payment_payouts', 'order_payment_payouts.order_payment_id', '=', 'order_payments.id')
 			->leftJoin('user_accounts', 'user_accounts.id', '=', 'billings.user_account_id');
 		
 		if(isset($filter['limit'])){
@@ -514,6 +524,11 @@ class QueryUtility{
 		}
 
 		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_not($filter, $data);
 		if($filtered){
 			$data = $filtered;
 		}

@@ -7,6 +7,7 @@ use App\Model\Order;
 use App\Model\OrderPayment;
 use App\Events\CheckOut;
 use PaymentUtility;
+use UploadUtility;
 use Utility;
 use DB;
 
@@ -24,6 +25,7 @@ class Information extends Component
     public function data(){
         return Order::with([
                 'order_bid',
+                'order_payment.order_payment_payout',
                 'order_payment.bank',
                 'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region'
@@ -35,6 +37,7 @@ class Information extends Component
     public function render(){
         $data        = $this->data();
         $order_total = Utility::order_total($data->id);
+        $component   = $this;
         
         if($data->status == 'order_placed'){
             if($data->order_bid){
@@ -57,7 +60,21 @@ class Information extends Component
             }
         }
 
-        return view('livewire.front-end.partner.order-and-receipt.track.information', compact('data', 'order_total'));
+        return view('livewire.front-end.partner.order-and-receipt.track.information', compact('data', 'order_total', 'component'));
+    }
+
+    public function payout_receipt(){
+        $data     = $this->data();
+        $response = null;
+        
+        if($data->order_payment->order_payment_payout){
+            $receipt = UploadUtility::payout_receipt($data->order_payment->order_payment_payout->key_token);
+            if(count($receipt) > 0){
+                $response = $receipt[0]->getFullUrl();
+            }
+        }
+        
+        return $response; 
     }
 
     public function qr_code($key_token){

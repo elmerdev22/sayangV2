@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use Luigel\Paymongo\Facades\Paymongo;
 use App\Model\Bid;
 use App\Model\Bank;
 use App\Model\Billing;
@@ -29,6 +30,40 @@ class PaymentUtility{
         }
 
         return $response;
+    }
+
+    public static function paymongo_commission($paymongo_payment_id, $payment_type){
+        $response = [];
+
+        if($payment_type == 'e_wallet'){
+            $payment     = Paymongo::payment()->find($paymongo_payment_id);
+            $fee         = $payment->fee / 100;
+            $net_amount  = $payment->amount - $fee;
+            $total       = $payment->amount;
+            $foreign_fee = 0.00;
+        }else if($payment_type == 'card'){
+            $paymentIntent   = Paymongo::paymentIntent()->find($paymongo_payment_id);
+            $payment_details = $paymentIntent->payments;
+            $attribute       = $payment_details[0]['attributes'];
+            $fee             = $attribute['fee'] / 100;
+            $foreign_fee     = $attribute['foreign_fee'] / 100;
+            $net_amount      = $attribute['amount'] - ($fee + $foreign_fee);
+            $total           = $attribute['amount'];
+        }
+
+        $response = [
+            'fee'         => $fee,
+            'foreign_fee' => $foreign_fee,
+            'net_amount'  => $net_amount,
+            'total'       => $total
+        ];
+
+
+        return $response;
+    }
+
+    public static function commission_percentage(){
+        return 6; //Default is 6% (Sayang commission percentage per order transaction)
     }
 
     public static function paymongo_minimum(){
