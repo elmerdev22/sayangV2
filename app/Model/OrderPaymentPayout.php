@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use UploadUtility;
 
-class OrderPaymentPayout extends Model
+class OrderPaymentPayout extends Model implements HasMedia
 {
     use HasMediaTrait;
 

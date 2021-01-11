@@ -145,34 +145,40 @@
 
                     Net Amount: ₱ {{number_format($net_amount,2)}} <br>
                     <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
-                    @if($data->order_payment->order_payment_payout)
-                        <div>
-                            <span class="badge badge-success">Payout Completed</span>
-                        </div>
-                        <div class="mt-1">
-                            <small>
-                                <b>Payout Note : </b> <br>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo ratione quas voluptates cupiditate omnis.                            
-                            </small>
-                        </div>
-                        <div class="mt-1">
-                            <a href="javascript:void(0);" class="text-blue"><i class="fas fa-download"></i> Download Receipt</a>
-                        </div>
-                    @else
-                        <div>
-                            <span class="badge badge-warning">Payout Pending 
-                                @if($data->order_payment->payment_method == 'cash_on_pickup') 
-                                    (To Receive)
-                                @else 
-                                    (To Pay)
-                                @endif 
-                            </span>
-                        </div>
-                        <div class="mt-1">
-                            <button type="button" class="btn btn-success btn-sm">Process Payout</button>
-                        </div>
+                    @if($data->status == 'completed')
+                        @if($data->order_payment->order_payment_payout)
+                            <div>
+                                <span class="badge badge-success">Payout Completed</span> <small class="text-muted">{{date('F/d/Y', strtotime($data->order_payment->order_payment_payout->created_at))}}</small>
+                            </div>
+                            @if($data->order_payment->order_payment_payout->note)
+                                <div class="mt-1">
+                                    <small>
+                                        <b>Payout Note : </b> <br>
+                                        {{ucfirst($data->order_payment->order_payment_payout->note)}}
+                                    </small>
+                                </div>
+                            @endif
+                            @if($component->payout_receipt() != null)
+                                <div class="mt-1">
+                                    <a href="{{$component->payout_receipt()}}" class="text-blue" download><i class="fas fa-download"></i> Download Payout Receipt</a>
+                                </div>
+                            @endif
+                        @else
+                            <div>
+                                <span class="badge badge-warning">Payout Pending 
+                                    @if($data->order_payment->payment_method == 'cash_on_pickup') 
+                                        (To Receive)
+                                    @else 
+                                        (To Pay)
+                                    @endif 
+                                </span>
+                            </div>
+                            <div class="mt-1">
+                                <button type="button" data-toggle="modal" data-target="#modal-process_payout" class="btn btn-success btn-sm">Process Payout</button>
+                            </div>
+                        @endif
+                        <hr>
                     @endif
-                    <hr>
                 @endif
             </p>
 

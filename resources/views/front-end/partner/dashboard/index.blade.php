@@ -1,5 +1,5 @@
 @extends('front-end.partner.layouts.layout')
-@section('title','QR Code')
+@section('title','Dashboard')
 @section('page_header')
     @php 
         $page_header = [

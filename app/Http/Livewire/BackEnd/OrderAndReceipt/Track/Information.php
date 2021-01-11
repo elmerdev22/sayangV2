@@ -4,6 +4,7 @@ namespace App\Http\Livewire\BackEnd\OrderAndReceipt\Track;
 
 use Livewire\Component;
 use App\Model\Order;
+use UploadUtility;
 use Utility;
 
 class Information extends Component
@@ -29,9 +30,24 @@ class Information extends Component
     public function render(){
         $data        = $this->data();
         $order_total = Utility::order_total($data->id);
+        $component   = $this;
         // dd($data->order_payment->order_payment_log);
 
-        return view('livewire.back-end.order-and-receipt.track.information', compact('data', 'order_total'));
+        return view('livewire.back-end.order-and-receipt.track.information', compact('data', 'order_total', 'component'));
+    }
+
+    public function payout_receipt(){
+        $data     = $this->data();
+        $response = null;
+        
+        if($data->order_payment->order_payment_payout){
+            $receipt = UploadUtility::payout_receipt($data->order_payment->order_payment_payout->key_token);
+            if(count($receipt) > 0){
+                $response = $receipt[0]->getFullUrl();
+            }
+        }
+        
+        return $response; 
     }
 
     public function qr_code($key_token){

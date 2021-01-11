@@ -40,7 +40,6 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                <td><span class="badge badge-primary"></span>{{str_replace('_', ' ', $row->payment_method)}}</td>
                                 @php 
                                     $total_amount     = $component->order_total($row->order_id);
                                     $sayang_comission = Utility::sayang_commission($total_amount);

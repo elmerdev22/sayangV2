@@ -34,7 +34,6 @@ class Listing extends Component
 			'order_payment_payouts.created_at as payout_date'
         ];
   
-        $filter['where']['order_payment_payouts.id'] = null;
         $filter['where']['orders.status']            = 'completed';
         $filter['where_not'][] = [
             'field' => 'order_payment_payouts.id',

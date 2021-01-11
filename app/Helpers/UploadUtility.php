@@ -6,10 +6,18 @@ use Illuminate\Support\Str;
 use App\Model\UserAccount;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\OrderPaymentPayout;
 use App\Model\Setting;
 use App\Model\HelpCentre;
 
 class UploadUtility{
+
+    public static function payout_receipt($payout_key_token){
+        $payout     = OrderPaymentPayout::where('key_token', $payout_key_token)->firstOrFail();
+        $media_photo = $payout->getMedia('payout/'.$payout_key_token.'/receipt/');
+
+        return $media_photo;
+    }
 
     public static function product_featured_photo($user_key_token, $product_key_token){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
