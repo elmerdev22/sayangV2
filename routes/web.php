@@ -601,7 +601,26 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             
         });
 
+        // Payouts
+        Route::group(['prefix' => 'payout', 'as' => 'payout.'], function (){
+            $c = 'PayoutController';
+            
+            Route::get('/to-pay', [
+                'as'    => 'to-pay',
+                'uses'  => $c.'@to_pay'
+            ]);
 
+            Route::get('/to-receive', [
+                'as'    => 'to-receive',
+                'uses'  => $c.'@to_receive'
+            ]);
+
+            Route::get('/completed', [
+                'as'    => 'completed',
+                'uses'  => $c.'@completed'
+            ]);
+            
+        });
     });
 });
 

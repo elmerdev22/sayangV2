@@ -138,6 +138,16 @@
                                     <a href="{{$component->payout_receipt()}}" class="text-blue" download><i class="fas fa-download"></i> Download Payout Receipt</a>
                                 </div>
                             @endif
+                        @else
+                            <div>
+                                <span class="badge badge-warning">Payout Pending 
+                                    <!-- @if($data->order_payment->payment_method == 'cash_on_pickup') 
+                                        (To Pay)
+                                    @else
+                                        (To Receive)
+                                    @endif  -->
+                                </span>
+                            </div>
                         @endif
                         <hr>
                     @endif
