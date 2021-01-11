@@ -1,5 +1,8 @@
 <div>
     <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Payout to Pay - (Orders via COP)</h4>
+        </div>
         <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')
@@ -15,7 +18,7 @@
                                 Sayang Commission
                             </th>
                             <th class="table-sort">
-                                Total Deducted
+                                Net Amount
                             </th>
                             <th class="table-sort">
                                 Total Amount

@@ -26,6 +26,7 @@ class Listing extends Component
 			'orders.*', 
 			'orders.id as order_id', 
 			'order_payments.payment_method', 
+			'order_payment_logs.paymongo_payment_id', 
 			'order_payments.status as order_payment_status', 
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',

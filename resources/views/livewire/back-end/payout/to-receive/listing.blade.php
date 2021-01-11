@@ -1,5 +1,8 @@
 <div>
     <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Payout to Receive - (Orders via COP)</h4>
+        </div>
         <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.search')
@@ -34,14 +37,14 @@
                     <tbody>
                         @forelse($data as $row)
                             <tr>
+                                @php 
+                                    $total_amount             = $component->order_total($row->order_id);
+                                    $sayang_commission        = Utility::sayang_commission($total_amount);
+                                @endphp
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
-                                @php 
-                                    $total_amount     = $component->order_total($row->order_id);
-                                    $sayang_comission = Utility::sayang_commission($total_amount);
-                                @endphp
-                                <td>PHP {{number_format($sayang_comission['total_commission'], 2)}}</td>
-                                <td>PHP {{number_format($sayang_comission['net_amount'], 2)}}</td>
+                                <td>PHP {{number_format($sayang_commission['total_commission'], 2)}}</td>
+                                <td>PHP {{number_format($sayang_commission['net_amount'], 2)}}</td>
                                 <td>PHP {{number_format($total_amount, 2)}}</td>
                                 <td>{{date('M/d/Y', strtotime($row->created_at))}}</td>
                                 <td>
@@ -50,7 +53,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center">No Data Found</td>
+                                <td colspan="7" class="text-center">No Data Found</td>
                             </tr>
                         @endforelse
                     </tbody>
