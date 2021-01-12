@@ -14,7 +14,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <!-- @livewire('front-end.partner.payout.to-receive.listing') -->
+            @livewire('front-end.partner.payout.to-receive.listing')
         </div>
     </div>
 @endsection

@@ -1,4 +1,4 @@
-<div class="sticky">
+<div>
     <div class="card card-outline card-sayang">
         <div class="card-body box-profile">
             <div class="text-center">

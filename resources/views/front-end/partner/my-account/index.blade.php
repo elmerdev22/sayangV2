@@ -18,7 +18,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <div class="card card-outline card-sayang mb-3 sticky">
+        <div class="card card-outline card-sayang mb-3">
             <div class="card-header">
                 <h2 class="card-title">
                     Account Information

@@ -166,7 +166,7 @@ class CheckOutController extends Controller
                     $order_no = $order->order_no;
                     
                     if($order->status == 'order_placed'){
-                        if($order->order_bid->id){
+                        if($order->order_bid){
                             $can_repay = true;
                         }else{
                             $can_repay = Utility::order_can_repay($order->id);
