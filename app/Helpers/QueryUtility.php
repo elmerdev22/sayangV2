@@ -516,7 +516,8 @@ class QueryUtility{
 			->join('partners', 'partners.id', '=', 'orders.partner_id')
 			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
 			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id')
-			->leftJoin('order_payment_payouts', 'order_payment_payouts.order_payment_id', '=', 'order_payments.id')
+			->leftJoin('order_payment_payout_items', 'order_payment_payout_items.order_payment_id', '=', 'order_payments.id')
+			->leftJoin('order_payment_payouts', 'order_payment_payouts.id', '=', 'order_payment_payout_items.order_payment_payout_id')
 			->leftJoin('user_accounts', 'user_accounts.id', '=', 'billings.user_account_id');
 		
 		if(isset($filter['limit'])){
@@ -633,5 +634,48 @@ class QueryUtility{
 			return $data->get();
 		}
 
+	}
+
+	public static function order_payment_payouts(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+
+		$data = DB::table('order_payment_payouts')
+			->select($select)
+			->join('partners', 'partners.id', '=', 'order_payment_payouts.partner_id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
 	}
 }

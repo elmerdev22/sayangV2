@@ -8,6 +8,7 @@ use App\Mail\VerificationCheck as MailVerificationCheck;
 use App\Model\Cart;
 use App\Model\Billing;
 use App\Model\Order;
+use App\Model\OrderPaymentPayout;
 use App\Model\Bid;
 use App\Model\Partner;
 use App\Model\User;
@@ -192,6 +193,14 @@ class Utility{
         }
 
         return $response;
+    }
+
+    public static function table_foreign_keys($table){
+    	$conn = Schema::getConnection()->getDoctrineSchemaManager();
+
+		return array_map(function($key) {
+			return $key->getName();
+		}, $conn->listTableForeignKeys($table));
     }
 
     public static function auth_user_admin(){
@@ -652,6 +661,32 @@ class Utility{
             'products'             => $products, //Array for list of products
             'partner_products'     => $data //Array for list of products with partner details
         ];
+    }
+
+    public static function generate_payout_batch_no(){
+        do{
+            $continue     = true;
+            $generated_id = 'PYB'.date('ymd').rand(1000,9999);
+            $check        = OrderPaymentPayout::where('batch_no', $generated_id)->count();
+            if($check == 0){
+                $continue = false;
+            }
+        }while($continue);
+
+        return $generated_id;
+    }
+
+    public static function generate_payout_no(){
+        do{
+            $continue     = true;
+            $generated_id = 'PY'.date('ymd').rand(1000,9999);
+            $check        = OrderPaymentPayout::where('payout_no', $generated_id)->count();
+            if($check == 0){
+                $continue = false;
+            }
+        }while($continue);
+
+        return $generated_id;
     }
 
     public static function generate_billing_no(){

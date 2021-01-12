@@ -274,6 +274,11 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
         Route::group(['prefix' => 'payout', 'as' => 'payout.'], function (){
             $c = 'PayoutController';
             
+            Route::get('/information/{payout_no}', [
+                'as'    => 'information',
+                'uses'  => $c.'@information'
+            ]);
+            
             Route::get('/to-pay', [
                 'as'    => 'to-pay',
                 'uses'  => $c.'@to_pay'
@@ -605,6 +610,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
         Route::group(['prefix' => 'payout', 'as' => 'payout.'], function (){
             $c = 'PayoutController';
             
+            // Route::get('/information/{payout_no}', [
+            //     'as'    => 'information',
+            //     'uses'  => $c.'@information'
+            // ]);
+
             Route::get('/to-pay', [
                 'as'    => 'to-pay',
                 'uses'  => $c.'@to_pay'
