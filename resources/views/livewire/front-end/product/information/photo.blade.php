@@ -12,7 +12,7 @@
     @if($product->reminders)
         <div class="col-12">
             <h5 class="pt-3">Few Reminders</h5>
-            <p>{{nl2br($product->remiders)}}</p>
+            <p>{!! $product->reminders !!}</p>
         </div>
     @endif
 </div>
