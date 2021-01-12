@@ -18,6 +18,7 @@ class Information extends Component
     public $product_id, $account, $partner, $name, $category, $old_category, $sub_categories = [], $tags = [];
     public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
     public $selected_sub_categories = [], $initial_sub_categories=[], $money_input_initialize=[];
+    public $about_product, $other_details;
 
     public function mount($product_id){
         $this->partner       = Utility::auth_partner();
@@ -34,6 +35,8 @@ class Information extends Component
 
         $this->description   = $product->description;
         $this->reminders     = $product->reminders;
+        $this->about_product = $product->about_product;
+        $this->other_details = $product->other_details;
         
         $this->money_input_initialize = [
             'regular_price' => $this->regular_price,
@@ -132,6 +135,8 @@ class Information extends Component
             $product->regular_price = $this->regular_price;
             $product->buy_now_price = $this->buy_now_price;
             $product->lowest_price  = $this->lowest_price;
+            $product->about_product = $this->about_product;
+            $product->other_details = $this->other_details;
             
             if($product->save()){
                 $validator_checker = array();

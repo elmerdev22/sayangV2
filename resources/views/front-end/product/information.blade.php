@@ -136,7 +136,8 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                @livewire('front-end.product.information.about')
+                                {!! $product->about_product != null ? $product->about_product : 'No more about product.' !!}
+                                {{-- @livewire('front-end.product.information.about') --}}
                             </div>
                         </div>
                     </div>
@@ -150,7 +151,8 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                @livewire('front-end.product.information.other-details')
+                                {!! $product->other_details != null ? $product->other_details : 'No Other Details.' !!}
+                                {{-- @livewire('front-end.product.information.other-details') --}}
                             </div>
                         </div>
                     </div>

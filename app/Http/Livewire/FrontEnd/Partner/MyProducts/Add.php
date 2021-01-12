@@ -22,6 +22,7 @@ class Add extends Component
     public $regular_price=0.00, $buy_now_price=0.00, $lowest_price=0.00, $description, $reminders;
     public $featured_photo=0, $photos=[], $price_percentage = [];
     public $discount, $discount_percent;
+    public $about_product, $other_details;
 
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -126,6 +127,8 @@ class Add extends Component
             $product->lowest_price  = $this->lowest_price;
             $product->description   = $this->description;
             $product->reminders     = $this->reminders;
+            $product->about_product = $this->about_product;
+            $product->other_details = $this->other_details;
             $product->slug          = Utility::generate_table_slug('Product', $this->name);
             $product->key_token     = $key_token;
 

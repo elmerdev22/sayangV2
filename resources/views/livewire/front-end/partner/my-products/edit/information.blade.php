@@ -137,6 +137,24 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div wire:ignore>
+                            <label>About Product (optional)</label>
+                            <textarea id="about_product" class="form-control summernote-area" wire:model.lazy="about_product"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div wire:ignore>
+                            <label>Other Details (optional)</label>
+                            <textarea id="other_details" class="form-control summernote-area" wire:model.lazy="other_details"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-footer">
             <div class="text-right">
@@ -151,6 +169,37 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
+        var toolbar = [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ]
+
+        $('#about_product').summernote({
+            toolbar : toolbar,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('about_product', contents)
+                }
+            },
+            height: 300, 
+            placeholder: 'About product here...'
+        });
+
+        $('#other_details').summernote({
+            toolbar : toolbar,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('other_details', contents)
+                }
+            },
+            height: 300, 
+            placeholder: 'Other details here...'
+        });
+
         $('.mask-money').mask("#,##0.00", {reverse: true});
         $('#category').select2({theme: 'bootstrap4'});
         $('#sub_categories').select2(select2_child_input([], false, "Select"));
