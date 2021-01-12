@@ -18,7 +18,7 @@ class OrderPayment extends Model
         return $this->hasOne('App\Model\OrderPaymentLog', 'order_payment_id', 'id');
     }
 
-    public function order_payment_payout(){
-        return $this->hasOne('App\Model\OrderPaymentPayout', 'order_payment_id', 'id');
+    public function order_payment_payout_item(){
+        return $this->hasOne('App\Model\OrderPaymentPayoutItem', 'order_payment_id', 'id');
     }
 }

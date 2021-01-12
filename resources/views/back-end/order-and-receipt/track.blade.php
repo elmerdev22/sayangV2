@@ -87,23 +87,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="modal-process_payout" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Process Payout : {{$order->order_no}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @livewire('back-end.order-and-receipt.track.process-payout', ['order_id' => $order->id])
-                </div>
-            </div>
-        </div>
-    </div>
 @endif
 @endsection
 @section('js')

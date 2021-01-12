@@ -173,9 +173,6 @@
                                     @endif 
                                 </span>
                             </div>
-                            <div class="mt-1">
-                                <button type="button" data-toggle="modal" data-target="#modal-process_payout" class="btn btn-success btn-sm">Process Payout</button>
-                            </div>
                         @endif
                         <hr>
                     @endif

@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-            @livewire('back-end.payout.completed.listing')
+
         </div>
     </div>
     <!-- 

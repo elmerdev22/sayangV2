@@ -12,8 +12,12 @@ class OrderPaymentPayout extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    public function order_payment(){
-        return $this->belongsTo('App\Model\OrderPayment', 'order_payment_id', 'id');
+    public function order_payment_payout_item(){
+        return $this->belongsTo('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
+    }
+
+    public function order_payment_payout_items(){
+        return $this->belongsTo('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
     }
 
     public function registerMediaConversions(Media $media = null){

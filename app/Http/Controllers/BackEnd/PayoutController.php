@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PayoutController extends Controller
 {
+    public function information($payout_no){
+        return view('back-end.payout.information', compact('payout_no'));
+    }
+
     public function to_pay(){
         return view('back-end.payout.to-pay');
     }
