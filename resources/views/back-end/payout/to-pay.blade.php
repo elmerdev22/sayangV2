@@ -59,12 +59,22 @@
                                         <td>PHP {{number_format(rand(100,10000),2)}}</td>
                                         <td>PHP {{number_format(rand(100,10000),2)}}</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="javascript:void(0);">Process</a>
-                                            <a class="btn btn-sm btn-primary" href="javascript:void(0);">View</a>
+                                            <a class="btn btn-sm btn-default" href="javascript:void(0);">Process</a>
+                                            <a class="btn btn-sm btn-warning" href="javascript:void(0);">View</a>
                                         </td>
                                     </tr>
                                 @endfor
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="4" class="text-center">TOTAL</th>
+                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     

@@ -293,6 +293,11 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'completed',
                 'uses'  => $c.'@completed'
             ]);
+
+            Route::get('/completed-view', [
+                'as'    => 'completed_view',
+                'uses'  => $c.'@completed_view'
+            ]);
             
         });
 

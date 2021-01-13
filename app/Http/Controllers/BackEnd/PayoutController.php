@@ -18,8 +18,11 @@ class PayoutController extends Controller
     public function to_receive(){
         return view('back-end.payout.to-receive');
     }
-
+    
     public function completed(){
         return view('back-end.payout.completed');
+    }
+    public function completed_view(){
+        return view('back-end.payout.completed-view');
     }
 }
