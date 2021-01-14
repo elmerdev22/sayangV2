@@ -71,19 +71,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('back-end.payable.to-pay')}}" class="nav-link {{Route::is('back-end.payable.to-pay') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.payable')}}" class="nav-link {{Route::is('back-end.payable.payable') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Payables</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.payable.to-receive')}}" class="nav-link {{Route::is('back-end.payable.to-receive') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.receivable')}}" class="nav-link {{Route::is('back-end.payable.receivable') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Receivables</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.payable.completed')}}" class="nav-link {{Route::is('back-end.payable.completed') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.completed')}}" class="nav-link {{Route::is('back-end.payable.completed.*') || Route::is('back-end.payable.completed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Completed</p>
                             </a>

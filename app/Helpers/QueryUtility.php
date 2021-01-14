@@ -645,7 +645,50 @@ class QueryUtility{
 
 		$data = DB::table('order_payment_payouts')
 			->select($select)
+			->join('order_payment_payout_batches', 'order_payment_payout_batches.id', '=', 'order_payment_payouts.payout_batch_id')
 			->join('partners', 'partners.id', '=', 'order_payment_payouts.partner_id');
+		
+		if(isset($filter['limit'])){
+			$data = $data->limit($filter['limit']);
+		}
+
+		$filtered = self::where($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::where_in($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::date_range_two_field($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		$filtered = self::order_by_raw($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+
+		return $data;
+	}
+
+	public static function order_payment_payout_batches(array $filter = []){
+		if(isset($filter['select'])){
+			$select = $filter['select'];
+		}else{
+			$select = '*';
+		}
+
+		$data = DB::table('order_payment_payout_batches')
+			->select($select);
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

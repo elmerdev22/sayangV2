@@ -9,6 +9,7 @@ use App\Model\Cart;
 use App\Model\Billing;
 use App\Model\Order;
 use App\Model\OrderPaymentPayout;
+use App\Model\OrderPaymentPayoutBatch;
 use App\Model\Bid;
 use App\Model\Partner;
 use App\Model\User;
@@ -667,7 +668,7 @@ class Utility{
         do{
             $continue     = true;
             $generated_id = 'PYB'.date('ymd').rand(1000,9999);
-            $check        = OrderPaymentPayout::where('batch_no', $generated_id)->count();
+            $check        = OrderPaymentPayoutBatch::where('batch_no', $generated_id)->count();
             if($check == 0){
                 $continue = false;
             }
