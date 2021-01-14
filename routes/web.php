@@ -270,9 +270,9 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             
         });
 
-        // Payouts
-        Route::group(['prefix' => 'payout', 'as' => 'payout.'], function (){
-            $c = 'PayoutController';
+        // Payable
+        Route::group(['prefix' => 'payable', 'as' => 'payable.'], function (){
+            $c = 'PayableController';
             
             Route::get('/information/{payout_no}', [
                 'as'    => 'information',

@@ -64,26 +64,26 @@
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview {{Route::is('back-end.payout.*') ? 'menu-open':''}}">
-                    <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.payout.*') ? 'active':''}}">
+                <li class="nav-item has-treeview {{Route::is('back-end.payable.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.payable.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-credit-card"></i>
-                        <p>Payouts <i class="right fas fa-angle-left"></i></p>
+                        <p>Payables <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('back-end.payout.to-pay')}}" class="nav-link {{Route::is('back-end.payout.to-pay') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.to-pay')}}" class="nav-link {{Route::is('back-end.payable.to-pay') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>To Payout</p>
+                                <p>Payables</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.payout.to-receive')}}" class="nav-link {{Route::is('back-end.payout.to-receive') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.to-receive')}}" class="nav-link {{Route::is('back-end.payable.to-receive') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>To Receive</p>
+                                <p>Receivables</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.payout.completed')}}" class="nav-link {{Route::is('back-end.payout.completed') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.payable.completed')}}" class="nav-link {{Route::is('back-end.payable.completed') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Completed</p>
                             </a>

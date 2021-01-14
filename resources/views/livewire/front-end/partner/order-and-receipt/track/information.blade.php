@@ -74,7 +74,7 @@
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
-
+                {{--
                 @if($data->status == 'completed')
                     <hr>
                     <h6 class="text-muted">Commissions</h6>
@@ -152,6 +152,7 @@
                         <hr>
                     @endif
                 @endif
+                --}}
             </p>
 
             @if($is_payment_confirmable)

@@ -12,6 +12,14 @@ class OrderPaymentPayout extends Model implements HasMedia
 {
     use HasMediaTrait;
 
+    public function order_payment_payout_batch(){
+        return $this->hasOne('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
+    }
+
+    public function order_payment_payout_batches(){
+        return $this->hasMany('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
+    }
+
     public function order_payment_payout_item(){
         return $this->belongsTo('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
     }

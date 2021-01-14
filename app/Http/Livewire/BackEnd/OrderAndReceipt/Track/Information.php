@@ -18,7 +18,6 @@ class Information extends Component
     public function data(){
         return Order::with([
                 'order_bid',
-                'order_payment.order_payment_payout',
                 'order_payment.bank',
                 'order_payment.order_payment_log',
                 'billing.philippine_barangay.philippine_city.philippine_province.philippine_region'
@@ -31,7 +30,6 @@ class Information extends Component
         $data        = $this->data();
         $order_total = Utility::order_total($data->id);
         $component   = $this;
-        // dd($data->order_payment->order_payment_log);
 
         return view('livewire.back-end.order-and-receipt.track.information', compact('data', 'order_total', 'component'));
     }

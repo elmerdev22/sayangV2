@@ -1,11 +1,11 @@
 @extends('back-end.layouts.layout')
-@section('title','Payout - To Pay')
+@section('title','Payable - To Pay')
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Payout - To Pay',
+            'title'       => 'Payable - To Pay',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Payout - To Pay'],
+                ['url' => '', 'label' => 'Payable - To Pay'],
             ],
         ];
     @endphp
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-
+        
             <div class="card card-outline card-sayang mb-3">
                 <div class="card-header">
                     <h5 class="card-title">Payout to Pay <small>(Orders via E-Wallet & Card)</small></h5>
@@ -24,60 +24,80 @@
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                     </div>
                 </div>
-                <div class="card-body">  
-                    <div class="mb-2">
-                        <small>//Bali List ito ng payouts na inadd sa Payout to Pay, pending pa ito hindi pa sya totally nasa completed, Gagawin kasi nya jan bago sya mag process ng mga payouts mag aadd muna sya ng ready to payouts ng mga partners, then un nga ung add payout tapos pag nakapag add sya non pending pa un monitoring nya to para dito sya titingin ng mga list ng ttransferan nya ng payouts ng partners, then pag na transfer na nya i-clclick nya ung process button sa table nayan tapos dun sya mag uupload ng receipt at add note (not required) then tsaka sya ma reremarks as completed.</small>
-                    </div>
-                    <div class="table-responsive mt-3">
-                        <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
-                            <thead>
-                                <tr>
-                                    <th>Partner</th>
-                                    <th>Payout No</th>
-                                    <th>Date From</th>
-                                    <th>Date To</th>
-                                    <th>Sayang Commission</th>
-                                    <th>Online Payment Fee</th>
-                                    <th>Net Amount</th>
-                                    <th>Total Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for($x=1; $x<=10; $x++)
-                                    <tr>
-                                        <td>
-                                            <a class="text-blue" href="javascript:void(0);">{{rand(10000,999999)}}</a>
-                                        </td>
-                                        <td>
-                                            <a class="text-blue" href="javascript:void(0);">{{rand(10000,999999)}}</a>
-                                        </td>
-                                        <td>Jan/01/2021</td>
-                                        <td>{{date('M/d/Y')}}</td>
-                                        <td>PHP {{number_format(rand(100,10000),2)}}</td>
-                                        <td>PHP {{number_format(rand(100,10000),2)}}</td>
-                                        <td>PHP {{number_format(rand(100,10000),2)}}</td>
-                                        <td>PHP {{number_format(rand(100,10000),2)}}</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-default" href="javascript:void(0);">Process</a>
-                                            <a class="btn btn-sm btn-warning" href="javascript:void(0);">View</a>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="4" class="text-center">TOTAL</th>
-                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
-                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
-                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
-                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    
+                <div class="card-body">
+                    @for($i=1;$i<=5;$i++)
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card card-warning @if($i != 1) collapsed-card @endif">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            Batch No. #MN20200919-000007-364 | Jan/01/2021 - Jan/15/2021
+                                        </h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                                            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                                        </div>
+                                        <!-- /.card-tools -->
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body p-0 m-0" @if($i != 1) style="display: none;" @endif>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center m-0 p-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 20px;">#</th>
+                                                        <th>Partner</th>
+                                                        <th>Payout No</th>
+                                                        <th>Date From</th>
+                                                        <th>Date To</th>
+                                                        <th>Sayang Commission</th>
+                                                        <th>Online Payment Fee</th>
+                                                        <th>Net Amount</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for($x=1; $x<=10; $x++)
+                                                        <tr>
+                                                            <td class="text-center">{{$x}}.)</td>
+                                                            <td>
+                                                                <a class="text-blue" href="javascript:void(0);">{{rand(10000,999999)}}</a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="text-blue" href="javascript:void(0);">{{rand(10000,999999)}}</a>
+                                                            </td>
+                                                            <td>Jan/01/2021</td>
+                                                            <td>{{date('M/d/Y')}}</td>
+                                                            <td>PHP {{number_format(rand(100,10000),2)}}</td>
+                                                            <td>PHP {{number_format(rand(100,10000),2)}}</td>
+                                                            <td>PHP {{number_format(rand(100,10000),2)}}</td>
+                                                            <td>PHP {{number_format(rand(100,10000),2)}}</td>
+                                                            <td>
+                                                                <a class="btn btn-sm btn-default" href="javascript:void(0);">Process</a>
+                                                                <a class="btn btn-sm btn-warning" href="javascript:void(0);">View</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endfor
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th colspan="4" class="text-center">TOTAL</th>
+                                                        <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                                        <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                                        <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                                        <th>PHP {{number_format(rand(100,10000),2)}}</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
                 </div>
             </div>
 
@@ -118,11 +138,6 @@
 
                         <form method="POST">
                             <hr>
-                            <div class="mb-2">
-                                <small>
-                                    //Lalabas lang tong section nato pag naka select na ng date sa taas tapos pag click ng continue button. Bali lalabas lang dito ung mga partners na may payouts between that date na selected. So kung ang partner walang orders completed between that date wala siya sa list ng magegenerate na payout.
-                                </small>
-                            </div>
                             <div class="form-group">
                                 <b>ORDER DATE: </b> Jan/01/2021 - {{date('M/d/Y')}}
                             </div>
