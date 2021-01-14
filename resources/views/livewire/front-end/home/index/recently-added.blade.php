@@ -1,10 +1,10 @@
 <div>
     <div class="row">
-        <div class="col-12 mb-3 shadow-sm pt-2">
-            <h4 class="title p-2">RECENTLY ADDED</h4>
+        <div class="row">
+            <div class="col-12">
+                <h4 class="title p-2">RECENTLY ADDED</h4>
+            </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-12 mb-3 shadow-sm pt-2">
             <div class="row">
                 @foreach($data as $row)
@@ -12,7 +12,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                                 {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
                             </div>
                             <span class="ends-in rounded-left">

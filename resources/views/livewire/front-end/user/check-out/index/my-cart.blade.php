@@ -1,7 +1,7 @@
 <div>
     <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span>
-            <i class="fas fa-shopping-cart"></i> Selected Items on Cart
+            <i class="fas fa-shopping-cart"></i> Review Cart
             <span class="badge badge-warning badge-pill">{{number_format($total_quantity_items, 0)}}</span>
         </span>
     </h4>
