@@ -69,7 +69,11 @@
 </div>
 <div class="py-3">
   <div class="container">
-    @livewire('front-end.home.category')
+    <div class="card shadow-sm">
+      <div class="card-body ">
+        @livewire('front-end.home.category')
+      </div>
+    </div>
     @livewire('front-end.home.index.most-popular')
     @livewire('front-end.home.index.recently-added')
     @livewire('front-end.home.index.ending-soon')
@@ -82,9 +86,8 @@
 <script>
 $('.owl-carousel').owlCarousel({
     center: false,
-    loop:true,
-    margin:10,
-    dots: true,
+    margin:5,
+    dots: false,
     nav: false,
     autoplay:true,
     autoplayTimeout:2000,
@@ -92,13 +95,14 @@ $('.owl-carousel').owlCarousel({
     responsiveClass:true,
     responsive:{
         0:{
-            items:4
+            items:6,
+            margin:0,
         },
         600:{
-            items:6
+            items:8
         },
         1000:{
-            items:10
+            items:12
         }
     }
 })

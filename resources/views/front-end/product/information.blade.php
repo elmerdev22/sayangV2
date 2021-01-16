@@ -180,10 +180,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mb-3">
-                <h2 class="title" data-aos="fade-right">MORE LIKE THIS</h2>
+                <h2 class="title">MORE LIKE THIS</h2>
             </div>
         </div>
-        @livewire('front-end.product.information.more-like-this')
+        @livewire('front-end.home.index.ending-soon')
+        {{-- @livewire('front-end.product.information.more-like-this') --}}
     </div>
 </section>
 
