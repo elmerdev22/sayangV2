@@ -116,7 +116,13 @@
                                                 <label>
                                                     <span class="fas fa-map-marker-alt"></span> 
                                                     <span class="text-muted">Address :</span>
-                                                    <p>{{$product->address}}</p>
+                                                    <p>{{$product->address}} <br> 
+                                                        <span class="fas fa-hand-point-right"></span> 
+                                                        <u>
+                                                            <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
+                                                        </u>
+                                                    </p>
+                                                    
                                                 </label>
                                             </div>
                                         </div>

@@ -70,7 +70,7 @@
 <div class="py-3">
   <div class="container">
     <div class="card shadow-sm">
-      <div class="card-body ">
+      <div class="card-body p-2">
         @livewire('front-end.home.category')
       </div>
     </div>

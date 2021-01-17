@@ -68,8 +68,13 @@
                                             <label>
                                                 <span class="fas fa-map-marker-alt"></span> 
                                                 <span class="text-muted">Address :</span>
+                                                <p>{{$data['store_address']}} <br> 
+                                                    <span class="fas fa-hand-point-right"></span> 
+                                                    <u>
+                                                        <a href="{{$data['map_address_link']}}" target="_blank" class="text-underline">Get Directions</a>
+                                                    </u>
+                                                </p>
                                                 <p>
-                                                    {{$data['store_address']}}</p>
                                             </label>
                                         </div>
                                     </div>
@@ -84,9 +89,8 @@
                 <div class="col-12">
                     <nav class="w-100">
                         <div class="nav nav-tabs text-center text-uppercase border-0 bg-light" id="product-tab" role="tablist">
-                            <a class="nav-item nav-link active col-4" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Products</a>
-                            <a class="nav-item nav-link col-4 " id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Ratings</a>
-                            <a class="nav-item nav-link col-4 " id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false">Location</a>
+                            <a class="nav-item nav-link active col-6" id="products-tab" data-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Products</a>
+                            <a class="nav-item nav-link col-6 " id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Ratings</a>
                         </div>
                     </nav>
                     
@@ -149,11 +153,6 @@
                         <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> 
                             <div class="card-footer bg-white card-comments">
                                 @livewire('front-end.product.information.ratings', ['partner_id' => $data['partner_id'] ])
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab"> 
-                            <div class="card-footer bg-white card-comments">
-                                Google map here 
                             </div>
                         </div>
                     </div>
