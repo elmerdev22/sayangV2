@@ -4,7 +4,7 @@
         <div class="col-12 pt-2">
             <div class="row">
                 <div class="col-12">
-                    <h4 class="title p-2">MOST POPULAR</h4>
+                    <h4 class="title home-title p-2">MOST POPULAR</h4>
                 </div>
             </div>
             <div class="row">
@@ -22,7 +22,7 @@
                                     <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
                                 </div>
                             </span>
-                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
+                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 1px black">
                                 <div class="row">
                                     <div class="col-7 text-white text-left text-ellipsis">
                                         <small>{{ucfirst($row->partner_name)}}</small>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="row m-0 p-0">
-                                <div class="col-md-6 m-0 p-0">
+                                <div class="col-6 m-0 p-0">
                                     <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
                                         <button class="btn btn-sm btn-dark item-btn">
                                             <span class="font-weight-bold">Buy Now</span><br>
@@ -55,7 +55,7 @@
                                         </button>
                                     </a>
                                 </div>
-                                <div class="col-md-6 m-0 p-0">
+                                <div class="col-6 m-0 p-0">
                                     <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
                                         <button class="btn btn-sm btn-outline-warning text-dark item-btn">
                                             <span class="font-weight-bold">Place Bid</span><br>
