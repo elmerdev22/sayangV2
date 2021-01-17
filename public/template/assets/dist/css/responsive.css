@@ -3,6 +3,9 @@
     .item-info {
         font-size: 9px;
     }
+    .carousel-inner{
+        height: 280px !important;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -17,15 +20,17 @@
         text-align: center;
     }
     .cart-footer .btn{
-        width: 100%;
         margin-top: 3px;
+    }
+    .carousel-inner{
+        height: 150px !important;
     }
 
 }
 @media only screen and (max-width: 450px) {
     .store-info,
     .product-info {
-      font-size: 10px;
+      font-size: 11px;
     }
     .cart-img{
         display: none;
@@ -34,9 +39,27 @@
         display: flex;
         justify-content: center;
     }
-    .cart-footer .btn{
+    .item-btn span{
+        font-size: 11px;
+    }
+    .item-btn small{
+        font-size: 8px;
+    }
+    .home-title{
+        font-size: 18px;
+    }
+    .sayang-card-img-listing{
+        object-fit: cover;
+        height: 150px;
+    }
+    .btn-see-more{
         width: 100%;
-        margin-top: 3px;
+    }
+    .topic-name{
+        font-size: 12px;
+    }
+    .carousel-inner{
+        height: 120px !important;
     }
   }
 

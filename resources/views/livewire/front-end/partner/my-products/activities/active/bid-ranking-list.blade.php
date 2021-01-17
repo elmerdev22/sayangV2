@@ -31,5 +31,4 @@
             @endforelse
         </tbody>
     </table>
-    {{$bid_ranking->render()}}
 </div>

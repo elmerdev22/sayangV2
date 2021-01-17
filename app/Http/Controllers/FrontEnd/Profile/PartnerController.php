@@ -18,15 +18,16 @@ class PartnerController extends Controller
         $store_photo = UploadUtility::account_photo($data->user_account->key_token , 'business-information/store-photo', 'store_photo');
         
         $data = [
-            'partner_id'    => $data->id,
-            'store_name'    => $data->name,
-            'ratings'       => Utility::get_partner_ratings($data->id),
-            'products'      => Utility::count_products($data->id),
-            'followers'     => Utility::count_followers($data->id),
-            'store_address' => $data->address,
-            'store_joined'  => $data->created_at,
-            'cover_photo'   => $cover_photo,
-            'store_photo'   => $store_photo,
+            'partner_id'       => $data->id,
+            'store_name'       => $data->name,
+            'ratings'          => Utility::get_partner_ratings($data->id),
+            'products'         => Utility::count_products($data->id),
+            'followers'        => Utility::count_followers($data->id),
+            'map_address_link' => $data->map_address_link,
+            'store_address'    => $data->address,
+            'store_joined'     => $data->created_at,
+            'cover_photo'      => $cover_photo,
+            'store_photo'      => $store_photo,
         ];
 
         return view('front-end.profile.partner', compact('data'));

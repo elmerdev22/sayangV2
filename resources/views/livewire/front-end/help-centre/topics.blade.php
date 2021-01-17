@@ -3,10 +3,10 @@
         <div class="row">
             @forelse ($data as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6  col-6 text-center">
-                    <div class="card topic-card text-center" wire:click="select_topic('{{$item->id}}')">
+                    <div class="card topic-card text-center" onclick="select_topic('{{$item->id}}')">
                         <img class="card-img-top p-3 text-center img-responsive" style="margin:0 auto; height: 150px; width: auto;" src="{{UploadUtility::help_centre_photos($item->id)}}" alt="Card image cap">
                         <div class="card-footer bg-white ">
-                            <p class="card-text">{{ucwords($item->topic)}}</p>
+                            <p class="card-text topic-name">{{ucwords($item->topic)}}</p>
                         </div>
                     </div>
                 </div>
@@ -79,5 +79,12 @@
     function back(){
         location.reload();
     }
+    function select_topic(id){
+        $.LoadingOverlay("show");
+        @this.call('select_topic', id)
+    }
+    window.livewire.hook('afterDomUpdate', () => {
+        $.LoadingOverlay("hide");
+    });
 </script>   
 @endpush

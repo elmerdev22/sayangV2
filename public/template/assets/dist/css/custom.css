@@ -4,6 +4,10 @@
   --sayang-dark-color: #333333;
   --sayang-light-color: #FFFFFF;
 }
+.carousel-inner{
+  width:100%; 
+  height: 300px !important;
+}
 /* END OF SAYANG CUSTOM BRANDING VARIABLE */
 .category-icon:hover{
   cursor: pointer;
