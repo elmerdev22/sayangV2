@@ -12,20 +12,24 @@ class OrderPaymentPayout extends Model implements HasMedia
 {
     use HasMediaTrait;
 
+    public function partner(){
+        return $this->belongsTo('App\Model\Partner', 'partner_id', 'id');
+    }
+
     public function order_payment_payout_batch(){
-        return $this->hasOne('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
+        return $this->belongsTo('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
     }
 
     public function order_payment_payout_batches(){
-        return $this->hasMany('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
+        return $this->belongsTo('App\Model\OrderPaymentPayoutBatch', 'payout_batch_id', 'id');
     }
 
     public function order_payment_payout_item(){
-        return $this->belongsTo('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
+        return $this->hasOne('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
     }
 
     public function order_payment_payout_items(){
-        return $this->belongsTo('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
+        return $this->HasMany('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
     }
 
     public function registerMediaConversions(Media $media = null){

@@ -11,7 +11,7 @@ use UploadUtility;
 class Partner extends Model implements HasMedia
 {
     use HasMediaTrait;
-    
+
     public function getNameAttribute($value){
         return ucfirst($value);
     }
@@ -42,6 +42,10 @@ class Partner extends Model implements HasMedia
 
     public function orders(){
         return $this->hasMany('App\Model\Order', 'order_id', 'id');
+    }
+
+    public function order_payment_payout(){
+        return $this->hasOne('App\Model\OrderPaymentPayout', 'partner_id', 'id');
     }
 
     public function registerMediaConversions(Media $media = null){
