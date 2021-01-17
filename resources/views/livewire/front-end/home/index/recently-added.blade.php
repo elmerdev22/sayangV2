@@ -70,7 +70,7 @@
                 @endforeach
                 @if ($data->total() > 12)
                     <div class="col-12 mb-3 text-center">
-                        <a href="{{route('front-end.home.all-recently-added')}}" class="btn btn-warning w-25">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
+                        <a href="{{route('front-end.home.all-recently-added')}}" class="btn btn-warning" style="width: 200px;">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
                     </div>
                 @endif
             </div>

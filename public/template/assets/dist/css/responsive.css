@@ -46,6 +46,9 @@
         object-fit: cover;
         height: 150px;
     }
+    .btn-see-more{
+        width: 100%;
+    }
   }
 
 

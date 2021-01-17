@@ -79,5 +79,11 @@
     function back(){
         location.reload();
     }
+    window.livewire.hook('beforeDomUpdate', () => {
+        $.LoadingOverlay("show");
+    });
+    window.livewire.hook('afterDomUpdate', () => {
+        $.LoadingOverlay("hide");
+    });
 </script>   
 @endpush

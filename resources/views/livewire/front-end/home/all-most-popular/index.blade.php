@@ -6,14 +6,14 @@
     </div>
     
     <div class="row">
-        <div class="col-12 mb-3 shadow-sm pt-2">
+        <div class="col-12 mb-3 pt-2">
             <div class="row">
                 @foreach($data as $row)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                                 {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
                             </div>
                             <span class="ends-in rounded-left">
@@ -22,7 +22,7 @@
                                     <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
                                 </div>
                             </span>
-                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 3px black">
+                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 1px black">
                                 <div class="row">
                                     <div class="col-7 text-white text-left text-ellipsis">
                                         <small>{{ucfirst($row->partner_name)}}</small>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="row m-0 p-0">
-                                <div class="col-md-6 m-0 p-0">
+                                <div class="col-6 m-0 p-0">
                                     <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
                                         <button class="btn btn-sm btn-dark item-btn">
                                             <span class="font-weight-bold">Buy Now</span><br>
@@ -55,7 +55,7 @@
                                         </button>
                                     </a>
                                 </div>
-                                <div class="col-md-6 m-0 p-0">
+                                <div class="col-6 m-0 p-0">
                                     <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
                                         <button class="btn btn-sm btn-outline-warning text-dark item-btn">
                                             <span class="font-weight-bold">Place Bid</span><br>
@@ -82,9 +82,11 @@
 <script type="text/javascript">
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
+        $.LoadingOverlay("show");
     });
     window.livewire.hook('afterDomUpdate', () => {
         $('.countdown').countdown("start");
+        $.LoadingOverlay("hide");
     });
     $('.countdown').countdown({
         end: function() {

@@ -127,8 +127,6 @@
             if(price_min > price_max){
                 $('#input-alert-price_range').html(`<div class="invalid-feedback d-block">Invalid Price Range Amount</div>`);
             }else{
-                var card_dom = $('#card-product_listing');
-                card_loader(card_dom, 'show');
                 $('#input-alert-price_range').html('');
                 @this.call('set_price_range', price_min, price_max)
             }
@@ -137,9 +135,6 @@
         $(document).on('click', '#btn-search', function () {
             var key_word = $('#input-search').val();
             if(key_word != ''){
-                var card_dom = $('#card-product_listing');
-                card_loader(card_dom, 'hide');
-                card_loader(card_dom, 'show');
                 @this.call('set_search', key_word)
             }
         });
@@ -185,9 +180,6 @@
             }
         });
 
-        var card_dom = $('#card-product_listing');
-        card_loader(card_dom, 'hide');
-        card_loader(card_dom, 'show');
         @this.call('set_category', category, sub_category);
     }
 
@@ -216,10 +208,6 @@
             $(this).prop('checked', false);
         });
         
-        var card_dom = $('#card-product_listing');
-        card_loader(card_dom, 'hide');
-        card_loader(card_dom, 'show');
-
         @this.call('clear_filter')
     }
     

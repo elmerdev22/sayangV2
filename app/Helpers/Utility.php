@@ -44,6 +44,8 @@ class Utility{
     public static function img_source($type){
         if($type == 'not_found'){
             return 'https://image.freepik.com/free-vector/fixing-pages-found-system-error_45923-201.jpg';
+        }else if($type == 'loading'){
+            return asset('images/gif/loading.gif');
         }
     }
     public static function generate_unique_token($len = 13) {

@@ -163,29 +163,19 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
-        $(document).on('change', '#sort-by', function () {
-            var card_dom = $('#card-product_listing');
-            card_loader(card_dom, 'hide');
-            card_loader(card_dom, 'show');
-        });
+ 
     });
 
     function view_by(type){
-        var card_dom = $('#card-product_listing');
-        card_loader(card_dom, 'hide');
-        card_loader(card_dom, 'show');
         @this.call('view_by', type)
     }
 
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
+        $.LoadingOverlay("show");
     });
     window.livewire.hook('afterDomUpdate', () => {
-        setTimeout(function () {
-            var card_dom = $('#card-product_listing');
-            card_loader(card_dom, 'hide');
-        }, 2000);
-    
+        $.LoadingOverlay("hide");
         $('.countdown').countdown("start");
     });
     $('.countdown').countdown({
