@@ -3,6 +3,9 @@
     .item-info {
         font-size: 9px;
     }
+    .carousel-inner{
+        height: 280px !important;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -18,6 +21,9 @@
     }
     .cart-footer .btn{
         margin-top: 3px;
+    }
+    .carousel-inner{
+        height: 150px !important;
     }
 
 }
@@ -51,6 +57,9 @@
     }
     .topic-name{
         font-size: 12px;
+    }
+    .carousel-inner{
+        height: 100px !important;
     }
   }
 

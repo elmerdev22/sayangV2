@@ -129,14 +129,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
+          <form action="{{route('front-end.product.list.index')}}" method="GET">
           <div class="input-group">
-            <input class="form-control form-control-navbar" type="search" placeholder="Location or Products" aria-label="Search">
+            <input class="form-control form-control-navbar" type="search" name="search" placeholder="Location or Products" aria-label="Search">
             <div class="input-group-append">
               <button class="btn btn-navbar bg-warning" type="submit">
                 <i class="fas fa-search"></i>
               </button>
             </div>
           </div>
+          </form>
         </h5>
       </div>
       <div class="modal-body m-0 p-0">

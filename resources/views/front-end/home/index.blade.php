@@ -21,13 +21,13 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('images/default-photo/banner1.png')}}" alt="First slide">
+        <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/background/20190220/ourmid/pngtree-food-table-cloth-fresh-and-literary-red-image_5750.jpg" alt="First slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('images/default-photo/banner1.png')}}" alt="Second slide">
+        <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-blue-literary-fresh-food-image_15045.jpg" alt="Second slide">
       </div>
       <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('images/default-photo/banner1.png')}}" alt="Third slide">
+        <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-afternoon-tea-blue-green-background-literary-beautiful-image_12325.jpg" alt="Third slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -41,7 +41,7 @@
   </div>
   <div class="main-text hidden-xs d-none d-lg-block ">
     <div class="col-md-12">
-      <section class="jumbotron bg-transparent">
+      <section class="jumbotron bg-transparent ">
         <div class="container">
           <h1 class="jumbotron-heading">
             <b>Nothing goes to waste.</b>
@@ -50,7 +50,7 @@
           <form action="{{route('front-end.product.list.index')}}" method="GET">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg shadow-sm">
                   <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
                   <div class="input-group-append">
                     <button class="btn btn-navbar bg-warning" type="submit">
