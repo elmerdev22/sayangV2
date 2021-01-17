@@ -1,11 +1,12 @@
 <div>
+    
     <div class="row">
-        <div class="row">
-            <div class="col-12">
-                <h4 class="title p-2">RECENTLY ADDED</h4>
+        <div class="col-12 pt-2">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="title p-2">RECENTLY ADDED</h4>
+                </div>
             </div>
-        </div>
-        <div class="col-12 mb-3 shadow-sm pt-2">
             <div class="row">
                 @foreach($data as $row)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
