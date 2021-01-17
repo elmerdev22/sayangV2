@@ -279,14 +279,14 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'uses'  => $c.'@information'
             ]);
             
-            Route::get('/to-pay', [
-                'as'    => 'to-pay',
-                'uses'  => $c.'@to_pay'
+            Route::get('/payable', [
+                'as'    => 'payable',
+                'uses'  => $c.'@payable'
             ]);
 
-            Route::get('/to-receive', [
-                'as'    => 'to-receive',
-                'uses'  => $c.'@to_receive'
+            Route::get('/receivable', [
+                'as'    => 'receivable',
+                'uses'  => $c.'@receivable'
             ]);
 
             Route::get('/completed', [
@@ -294,9 +294,9 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'uses'  => $c.'@completed'
             ]);
 
-            Route::get('/completed-view', [
-                'as'    => 'completed_view',
-                'uses'  => $c.'@completed_view'
+            Route::get('/completed/information/{partner_slug}', [
+                'as'    => 'completed.information',
+                'uses'  => $c.'@completed_information'
             ]);
             
         });

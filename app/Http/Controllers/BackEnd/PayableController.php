@@ -11,18 +11,18 @@ class PayableController extends Controller
         return view('back-end.payable.information', compact('payout_no'));
     }
 
-    public function to_pay(){
-        return view('back-end.payable.to-pay');
+    public function payable(){
+        return view('back-end.payable.payable');
     }
 
-    public function to_receive(){
-        return view('back-end.payable.to-receive');
+    public function receivable(){
+        return view('back-end.payable.receivable');
     }
     
     public function completed(){
         return view('back-end.payable.completed');
     }
-    public function completed_view(){
-        return view('back-end.payable.completed-view');
+    public function completed_information($partner_slug){
+        return view('back-end.payable.completed-information');
     }
 }

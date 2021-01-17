@@ -42,7 +42,7 @@
                                         <td>PHP {{number_format(rand(100,10000),2)}}</td>
                                         <td>PHP {{number_format(rand(100,10000),2)}}</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="{{route('back-end.payout.completed_view')}}">View</a>
+                                            <a class="btn btn-sm btn-warning" href="{{route('back-end.payable.completed.information', ['partner_slug' => 'partner-slug-here'])}}">View</a>
                                         </td>
                                     </tr>
                                 @endfor
