@@ -18,7 +18,7 @@ class Listing extends Component
             'order_payment_payout_batches.*'
         ];
 
-        $filter['order_by'] = 'order_payment_payout_batches.date_from desc';
+        $filter['order_by'] = 'order_payment_payout_batches.date_from asc';
 
         return QueryUtility::order_payment_payout_batches($filter)->get();
     }
