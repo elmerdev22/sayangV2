@@ -8,6 +8,10 @@ use QueryUtility;
 class Listing extends Component
 {
 
+    protected $listeners = [
+        'initialize_process_payout_listing' => '$refresh'
+    ];
+    
     public function data(){
         $filter           = [];
         $filter['select'] = [
@@ -22,7 +26,9 @@ class Listing extends Component
     public function order_payment_payouts($payout_batch_id){
         $filter           = [];
         $filter['select'] = [
-            'order_payment_payouts.*'
+            'order_payment_payouts.*',
+            'partners.name as partner_name',
+            'partner_accounts.key_token as partner_account_key_token'
         ];
         $filter['where']['order_payment_payouts.payout_batch_id'] = $payout_batch_id;
         $filter['where']['order_payment_payouts.status']          = 'pending';

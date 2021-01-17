@@ -8,9 +8,16 @@ use QueryUtility;
 class ProcessPayoutDate extends Component
 {
     public $date_from, $date_to;
+    
+    protected $listeners = [
+        'initialize_process_payout_listing' => 'reset_public'
+    ];
 
+    public function reset_public(){
+        $this->reset();
+    }
+    
     public function render(){
-
         return view('livewire.back-end.payable.payable.process-payout-date');
     }
 

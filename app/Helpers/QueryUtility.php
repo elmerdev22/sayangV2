@@ -647,7 +647,8 @@ class QueryUtility{
 		$data = DB::table('order_payment_payouts')
 			->select($select)
 			->join('order_payment_payout_batches', 'order_payment_payout_batches.id', '=', 'order_payment_payouts.payout_batch_id')
-			->join('partners', 'partners.id', '=', 'order_payment_payouts.partner_id');
+			->join('partners', 'partners.id', '=', 'order_payment_payouts.partner_id')
+			->leftJoin('user_accounts as partner_accounts', 'partner_accounts.id', '=', 'partners.user_account_id');
 		
 		if(isset($filter['limit'])){
 			$data = $data->limit($filter['limit']);

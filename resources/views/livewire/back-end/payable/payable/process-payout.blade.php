@@ -56,6 +56,9 @@
 
 @push('scripts')
 <script type="text/javascript">
+    window.livewire.on('initialize_process_payout_listing', param => {
+        $('#modal-process_payout').modal('hide');    
+    });
 
     function process(){
         Swal.fire({

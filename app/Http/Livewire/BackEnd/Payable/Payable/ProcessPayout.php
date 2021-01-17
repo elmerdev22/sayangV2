@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\BackEnd\Payable\Payable;
 
 use Livewire\Component;
+use App\Model\OrderPaymentPayout;
+use App\Model\OrderPaymentPayoutItem;
+use App\Model\OrderPaymentPayoutBatch;
 use QueryUtility;
 use PaymentUtility;
 use Utility;
@@ -27,6 +30,7 @@ class ProcessPayout extends Component
             $filter = [];
             $filter['select'] = [
                 'orders.*',
+                'order_payments.id as order_payment_id',
                 'order_payments.payment_method',
                 'order_payment_logs.paymongo_payment_id',
                 'partners.name as partner_name',
@@ -81,11 +85,14 @@ class ProcessPayout extends Component
                     
                     $data[$partner_key]['orders'][] = [
                         'order_id'            => $order->id,
+                        'order_payment_id'    => $order->order_payment_id,
                         'payment_method'      => $order->payment_method,
                         'paymongo_payment_id' => $order->paymongo_payment_id,
                         'total_discount'      => $total['total_discount'],
                         'sub_total'           => $total['sub_total'],
                         'sayang_commission'   => $sayang_commission['total_commission'],
+                        'paymongo_fee'        => $paymongo_commission['fee'],
+                        'foreign_fee'         => $paymongo_commission['foreign_fee'],
                         'online_payment_fee'  => $online_payment_fee,
                         'total'               => $total['total'],
                         'net_amount'          => $net_amount,
@@ -94,17 +101,23 @@ class ProcessPayout extends Component
                 foreach($data as $key => $row){
                     $sayang_commission  = 0;
                     $online_payment_fee = 0;
+                    $paymongo_fee       = 0;
+                    $foreign_fee        = 0;
                     $net_amount         = 0;
                     $total_amount       = 0;
 
                     foreach($row['orders'] as $order_row){
                         $sayang_commission  += $order_row['sayang_commission'];
+                        $paymongo_fee       += $order_row['paymongo_fee'];
+                        $foreign_fee        += $order_row['foreign_fee'];
                         $online_payment_fee += $order_row['online_payment_fee'];
                         $total_amount       += $order_row['total'];
                         $net_amount         += $order_row['net_amount'];
                     }
 
                     $data[$key]['sayang_commission']  = $sayang_commission;
+                    $data[$key]['paymongo_fee']       = $paymongo_fee;
+                    $data[$key]['foreign_fee']        = $foreign_fee;
                     $data[$key]['online_payment_fee'] = $online_payment_fee;
                     $data[$key]['net_amount']         = $net_amount;
                     $data[$key]['total_amount']       = $total_amount;
@@ -137,7 +150,81 @@ class ProcessPayout extends Component
         $data = $this->data();
         
         if($data){
-            
+            DB::beginTransaction();
+            $response = ['success' => false, 'message' => 'An error occured'];
+
+            try{
+                $payout_batch                        = new OrderPaymentPayoutBatch();
+                $payout_batch->batch_no              = Utility::generate_payout_batch_no();
+                $payout_batch->date_from             = $this->date_from;
+                $payout_batch->date_to               = $this->date_to;
+                $payout_batch->commission_percentage = PaymentUtility::commission_percentage();
+                $payout_batch->type                  = 'online_payment';
+                $payout_batch->key_token             = Utility::generate_table_token('OrderPaymentPayoutBatch');
+                
+                if($payout_batch->save()){
+                    foreach($data as $row){
+                        if(!in_array($row['partner_key_token'], $key_tokens)){
+                            continue;
+                        }
+
+                        $payout                    = new OrderPaymentPayout();
+                        $payout->payout_batch_id   = $payout_batch->id;
+                        $payout->partner_id        = $row['partner_id'];
+                        $payout->payout_no         = Utility::generate_payout_no();
+                        $payout->total_amount      = $row['total_amount'];
+                        $payout->sayang_commission = $row['sayang_commission'];
+                        $payout->paymongo_fee      = $row['paymongo_fee'];
+                        $payout->foreign_fee       = $row['foreign_fee'];
+                        $payout->net_amount        = $row['net_amount'];
+                        $payout->key_token         = Utility::generate_table_token('OrderPaymentPayout');
+                        
+                        if($payout->save()){
+                            if(count($row['orders']) > 0){
+                                foreach($row['orders'] as $order){
+                                    $payout_item                          = new OrderPaymentPayoutItem();
+                                    $payout_item->order_payment_id        = $order['order_payment_id'];
+                                    $payout_item->order_payment_payout_id = $payout->id;
+                                    $item_success                         = $payout_item->save();
+
+                                    if(!$item_success){
+                                        throw new \Exception('Uncaught Exception');
+                                    }
+                                }
+                            }else{
+                                throw new \Exception('Uncaught Exception');
+                            }
+                        }else{
+                            throw new \Exception('Uncaught Exception');
+                        }
+                    }
+
+                    $response['success'] = true;
+                    $response['message'] = 'Successfully added to pending payables.';
+                }
+            }catch(\Exception $e){
+                DB::rollback();
+                $response['success'] = false;
+                dd($e);
+            }
+
+            if($response['success']){
+                DB::commit();
+                $this->emit('alert', [
+                    'type'    => 'success',
+                    'title'   => 'Successfully Added!',
+                    'message' => $response['message']
+                ]);
+                $this->emit('initialize_process_payout_listing', true);
+                $this->reset();
+            }else{
+                DB::rollback();
+                $this->emit('alert', [
+                    'type'    => 'error',
+                    'title'   => 'Failed!',
+                    'message' => $response['message']
+                ]);
+            }
         }else{
             $this->emit('alert', [
                 'type'    => 'error',

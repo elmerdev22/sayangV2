@@ -918,4 +918,7 @@ class Utility{
         ];
     }
     
+    public static function order_payout_total_orders($payout_id){
+        return DB::table('order_payment_payout_items')->where('order_payment_payout_id', $payout_id)->count();
+    }
 }
