@@ -36,4 +36,8 @@ class SettingController extends Controller
     public function ratings() {
         return view('back-end.setting.ratings.index');
     }
+
+    public function images() {
+        return view('back-end.setting.images.index');
+    }
 }

@@ -251,6 +251,11 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'ratings',
                 'uses'  => $c.'@ratings'
             ]);
+
+            Route::get('/images', [
+                'as'    => 'images',
+                'uses'  => $c.'@images'
+            ]);
             
         });
 

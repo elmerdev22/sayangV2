@@ -8,6 +8,7 @@ use App\Model\Category;
 use App\Model\Product;
 use App\Model\OrderPaymentPayout;
 use App\Model\Setting;
+use App\Model\ImageSetting;
 use App\Model\HelpCentre;
 
 class UploadUtility{
@@ -113,6 +114,25 @@ class UploadUtility{
             }
             else if($settings_key == 'icon'){
                 return asset('images/logo/icon.png');
+            }
+        }
+    }
+
+    public static function image_setting($image_setting_id, $folder_name, $thumb=true){
+        $setting     = ImageSetting::where('id', $image_setting_id)->firstOrFail();
+        $media_photo = $setting->getMedia('content/'.$folder_name);
+
+        if(count($media_photo) > 0){
+            if($thumb){
+                return $media_photo[0]->getFullUrl('thumb');
+            }else{
+                return $media_photo[0]->getFullUrl();
+            }
+        }else if($setting->photo_provider_link){
+            return $setting->photo_provider_link;
+        }else{
+            if($folder_name == 'home-carousel-slider'){
+                return asset('images/default-photo/cover.jpg');
             }
         }
     }

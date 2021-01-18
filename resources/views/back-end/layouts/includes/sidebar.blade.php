@@ -110,6 +110,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('back-end.setting.images')}}" class="nav-link {{Route::is('back-end.setting.images') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Images</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('back-end.setting.header-and-footer')}}" class="nav-link {{Route::is('back-end.setting.header-and-footer') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Header & Footer</p>
