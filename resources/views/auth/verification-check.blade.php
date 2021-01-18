@@ -5,7 +5,7 @@
         $page_header = [
             'title'       => 'Verification',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Verification'],
+                ['url' => '', 'label' => 'Email Verification'],
             ],
         ];
     @endphp

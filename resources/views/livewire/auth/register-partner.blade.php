@@ -40,15 +40,6 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="icheck-warning">
-                <input type="checkbox" id="agree" wire:model="agree">
-                <label for="agree" class="cursorsHover">I am agree with <a href="#" data-toggle="modal" data-target="#terms_and_conditions">Terms & Conditions</a></label>
-            </div>
-            @if(!$agree && $agree_post) 
-                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Please Agree on our Terms & Conditions</span>
-            @endif
-        </div>
-        <div class="form-group">
             <button type="submit" class="btn btn-warning text-white btn-block">
                 Register <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span>
             </button>

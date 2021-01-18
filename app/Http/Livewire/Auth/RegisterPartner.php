@@ -19,7 +19,6 @@ class RegisterPartner extends Component
     }
 
     public function store(){
-        $this->agree_post = false;
 
         $rules = [
 			'first_name'       => 'required|max:150',
@@ -30,10 +29,6 @@ class RegisterPartner extends Component
         ];
         $messages = [];
         $this->validate($rules, $messages);
-        if(!$this->agree){
-            $this->agree_post = true;
-            return false;
-        }
 
         $response = [
             'success' => false,
