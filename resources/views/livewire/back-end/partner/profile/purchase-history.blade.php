@@ -14,7 +14,7 @@
                     <select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
                         <option value="order_placed">Order Placed(COP)</option>
-                        <option value="payment_confirmed">Payment Confirmed</option>
+                        {{-- <option value="payment_confirmed">Payment Confirmed</option> --}}
                         <option value="to_receive">To Receive</option>
                         <option value="completed">Completed</option>
                         <option value="cancelled">Cancelled</option>

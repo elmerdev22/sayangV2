@@ -60,7 +60,11 @@
                                 @endif
                             </p>
                         @else 
-                            • No Questions added.
+                            <h6 class="pl-3 pr-3 pt-2 pb-2 ">
+                                <span class="fa fa-chevron-right">
+                                </span> 
+                                No Questions added.
+                            </h6>
                         @endif
 
 						@php array_push($collection_data, $result->topic, $result->question); @endphp
