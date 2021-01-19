@@ -27,14 +27,12 @@
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
         <!-- Google Font: Quicksand -->
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet"><!-- end of to be removed packages -->
-        <style>    
+        <style>  
             .sayang-card-img-listing{
-            object-fit: cover;
-            height: 210px;
-            /* optional way, set loading as background */
-            background-image: url("{{Utility::img_source('loading')}}");
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
+                /* optional way, set loading as background */
+                background-image: url("{{Utility::img_source('loading')}}");
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
             }
         </style>
     @else
