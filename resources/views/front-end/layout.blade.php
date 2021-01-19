@@ -32,7 +32,8 @@
                 /* optional way, set loading as background */
                 background-image: url("{{Utility::img_source('loading')}}");
                 background-repeat: no-repeat;
-                background-position: 50% 50%;
+                background-size: 50%;
+                background-position: center;
             }
         </style>
     @else
