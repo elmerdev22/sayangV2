@@ -642,10 +642,6 @@ input.input-readonly[readonly]{
   width: 100%;
   height: 170px;
 }
-.sayang-card-img-listing{
-  object-fit: cover;
-  height: 210px;
-}
 /* END OF CUSTOM SAYANG BRANDING THEMES */
 
 /* Tracking orders css */
