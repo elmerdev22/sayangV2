@@ -100,13 +100,13 @@
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
-                {{--
+                
                 @if($data->status == 'completed')
                     <hr>
                     <h6 class="text-muted">Commissions</h6>
                     @php 
-                        if($data->order_payment->order_payment_payout){
-                            $commission_percentage = $data->order_payment->order_payment_payout->commission_percentage;
+                        if($data->order_payment->order_payment_payout_item){
+                            $commission_percentage = $data->order_payment->order_payment_payout_item->order_payment_payout->order_payment_payout_batch->commission_percentage;
                         }else{
                             $commission_percentage = PaymentUtility::commission_percentage();
                         }
@@ -146,31 +146,35 @@
 
                     Net Amount: ₱ {{number_format($net_amount,2)}} <br>
                     <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
+                    
                     @if($data->status == 'completed')
-                        @if($data->order_payment->order_payment_payout)
+                        <hr>
+                        <h6 class="text-muted">Payout</h6>
+                        @if($data->order_payment->order_payment_payout_item)
                             <div>
-                                <span class="badge badge-success">Payout Completed</span> <small class="text-muted">{{date('F/d/Y', strtotime($data->order_payment->order_payment_payout->created_at))}}</small>
+                                <strong>Payout No.:</strong> 
+                                <a class="text-blue" href="{{route('back-end.payable.information', ['payout_no' => $data->order_payment->order_payment_payout_item->order_payment_payout->payout_no])}}">
+                                    {{$data->order_payment->order_payment_payout_item->order_payment_payout->payout_no}}
+                                </a>
                             </div>
-                            @if($data->order_payment->order_payment_payout->note)
-                                <div class="mt-1">
-                                    <small>
-                                        <b>Payout Note : </b> <br>
-                                        {{ucfirst($data->order_payment->order_payment_payout->note)}}
-                                    </small>
-                                </div>
-                            @endif
-                            @if($component->payout_receipt() != null)
-                                <div class="mt-1">
-                                    <a href="{{$component->payout_receipt()}}" class="text-blue" download><i class="fas fa-download"></i> Download Payout Receipt</a>
-                                </div>
-                            @endif
+                            <div>
+                                <strong>Payout Date:</strong> <small class="text-muted">{{date('F/d/Y', strtotime($data->order_payment->order_payment_payout_item->order_payment_payout->created_at))}}</small>
+                            </div>
+                            <div>
+                                @if($data->order_payment->order_payment_payout_item->order_payment_payout->status == 'completed')
+                                    <span class="badge badge-success">Payout Completed</span> 
+                                    <small class="text-muted">@ {{date('F/d/Y', strtotime($data->order_payment->order_payment_payout_item->order_payment_payout->date_completed))}}</small>
+                                @else
+                                    <span class="badge badge-warning">Payout Pending</span> 
+                                @endif
+                            </div>
                         @else
                             <div>
-                                <span class="badge badge-warning">Payout Pending 
+                                <span class="badge badge-danger">Payout Not Process Yet
                                     @if($data->order_payment->payment_method == 'cash_on_pickup') 
-                                        (To Receive)
+                                        (Receivable)
                                     @else 
-                                        (To Pay)
+                                        (Payable)
                                     @endif 
                                 </span>
                             </div>
@@ -178,7 +182,6 @@
                         <hr>
                     @endif
                 @endif
-                --}}
             </p>
 
             <div class="row">
