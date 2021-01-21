@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\BackEnd\Payable\Payable;
 
 use Livewire\Component;
+use App\Model\OrderPaymentPayout;
 use QueryUtility;
 
 class Listing extends Component
@@ -27,6 +28,7 @@ class Listing extends Component
         $filter           = [];
         $filter['select'] = [
             'order_payment_payouts.*',
+            'order_payment_payouts.key_token as payout_key_token',
             'partners.name as partner_name',
             'partner_accounts.key_token as partner_account_key_token'
         ];
@@ -42,5 +44,10 @@ class Listing extends Component
         $component = $this;
 
         return view('livewire.back-end.payable.payable.listing', compact('data', 'component'));
+    }
+
+    public function confirm_process_payout($key_token){
+        $payout = OrderPaymentPayout::where('key_token', $key_token)->firstOrFail();
+        $this->emit('initialize_confirm_process_payout', $payout->id);
     }
 }

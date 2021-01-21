@@ -1,5 +1,6 @@
 <div>
-    @forelse($data as $data_key => $row)
+    @php $is_collapsed = true; @endphp
+    @forelse($data as $row)
         @php 
             $payouts       = $component->order_payment_payouts($row->id);
             $payouts_count = $payouts->count();
@@ -8,7 +9,7 @@
         @if($payouts_count > 0)
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-warning @if($data_key != 0) collapsed-card @endif">
+                    <div class="card card-warning @if(!$is_collapsed) collapsed-card @endif">
                         <div class="card-header">
                             <h3 class="card-title">
                                 Batch No. #{{$row->batch_no}} | {{date('M/d/Y', strtotime($row->date_from))}} - {{date('M/d/Y', strtotime($row->date_to))}}
@@ -20,7 +21,7 @@
                             <!-- /.card-tools -->
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body p-0 m-0" @if($data_key != 0) style="display: none;" @endif>
+                        <div class="card-body p-0 m-0" @if(!$is_collapsed) style="display: none;" @endif>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center m-0 p-0">
                                     <thead>
@@ -72,7 +73,7 @@
                                                 <td>PHP {{number_format($payout->total_amount,2)}}</td>
                                                 <td>{{number_format($total_orders)}}</td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-default" href="javascript:void(0);" data-toggle="modal" data-target="#modal-confirm_process_payout">Process</a>
+                                                    <a class="btn btn-sm btn-default" href="javascript:void(0);" onclick="confirm_process_payout('{{$payout->payout_key_token}}')">Process</a>
                                                     <a class="btn btn-sm btn-warning" href="{{route('back-end.payable.information', ['payout_no' => $payout->payout_no])}}">View</a>
                                                 </td>
                                             </tr>
@@ -96,8 +97,26 @@
                     </div>
                 </div>
             </div>
+            @php $is_collapsed = false; @endphp
         @endif
     @empty
         <h4 class="text-center text-muted">No Pending Payable Found</h4>
     @endforelse
 </div>
+@push('scripts')
+<script type="text/javascript">
+    function confirm_process_payout(key_token){
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Getting Information...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                @this.call('confirm_process_payout', key_token)
+            }
+        });
+    }
+</script>
+@endpush

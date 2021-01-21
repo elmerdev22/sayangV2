@@ -25,11 +25,11 @@ class OrderPaymentPayout extends Model implements HasMedia
     }
 
     public function order_payment_payout_item(){
-        return $this->hasOne('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
+        return $this->hasOne('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_id', 'id');
     }
 
     public function order_payment_payout_items(){
-        return $this->HasMany('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_item_id', 'id');
+        return $this->hasMany('App\Model\OrderPaymentPayoutItem', 'order_payment_payout_id', 'id');
     }
 
     public function registerMediaConversions(Media $media = null){
