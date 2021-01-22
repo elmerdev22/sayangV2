@@ -6,11 +6,14 @@
             'title'       => 'Settings',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'Settings'],
-                ['url' => '', 'label' => 'About'],
+                ['url' => '', 'label' => 'About Us'],
             ],
         ];
     @endphp
     @include('back-end.layouts.includes.page-header', $page_header)
+@endsection
+@section('css')
+<link rel="stylesheet" href="{{asset('template/assets/plugins/summernote/summernote-bs4.css')}}">    
 @endsection
 @section('content')
     <div class="row">
@@ -24,5 +27,5 @@
     -->
 @endsection
 @section('js')
-
+<script src="{{asset('template/assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 @endsection

@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Help Centre')
+@section('title','About Us')
 @section('content')
 
 <section class="content-header">
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="title">Content Here</h2>
+                        {!! Utility::description_settings('about_us') ? Utility::description_settings('about_us')->settings_value : ''; !!}
                     </div>
                 </div>
             </div>

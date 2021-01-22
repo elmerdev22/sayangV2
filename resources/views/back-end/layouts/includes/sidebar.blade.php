@@ -136,7 +136,7 @@
                         <li class="nav-item">
                             <a href="{{route('back-end.setting.about')}}" class="nav-link {{Route::is('back-end.setting.about') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>About</p>
+                                <p>About Us</p>
                             </a>
                         </li>
                         <li class="nav-item">

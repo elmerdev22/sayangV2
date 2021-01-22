@@ -17,7 +17,7 @@ class Index extends Component
 
     public function description_settings($settings_key)
     {
-        $data = Utility::description_settings('terms_and_conditions_partners');
+        $data = Utility::description_settings($settings_key);
         return $data ? $data->settings_value : '';
     }
 
