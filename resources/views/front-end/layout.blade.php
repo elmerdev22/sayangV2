@@ -71,7 +71,7 @@
         </div>
 
         @if(!Request::is('admin/login'))
-            <footer class="pt-5 shadow">
+            <footer class="pt-4 shadow">
                 @include('front-end.footer.index')
             </footer>
         @endif

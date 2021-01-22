@@ -33,9 +33,9 @@
               </li>
 
               @if(Utility::top_nav_validate_auth_verify())
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('front-end.about-us.index')}}">About Us <small class="fas fa-info"></small> </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-tag"></small> </a>

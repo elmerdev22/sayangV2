@@ -6,6 +6,10 @@
     .carousel-inner{
         height: 280px !important;
     }
+    .footer-right{
+       margin-left: 0 !important;
+       text-align: center;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -24,6 +28,10 @@
     }
     .carousel-inner{
         height: 150px !important;
+    }
+    .footer-right{
+       margin-left: 0 !important;
+       text-align: center;
     }
 
 }
