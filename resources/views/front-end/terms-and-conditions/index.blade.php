@@ -25,7 +25,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        {!! Utility::description_settings('terms_and_conditions_users') ? Utility::description_settings('terms_and_conditions_users')->settings_value : ''; !!}
+                        <div class="row">
+                            <div class="col-md-12">                        
+                                {!! Utility::description_settings('terms_and_conditions_users') ? Utility::description_settings('terms_and_conditions_users')->settings_value : ''; !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

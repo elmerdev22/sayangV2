@@ -24,7 +24,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        {!! Utility::description_settings('about_us') ? Utility::description_settings('about_us')->settings_value : ''; !!}
+                        <div class="row">
+                            <div class="col-md-12">
+                                {!! Utility::description_settings('about_us') ? Utility::description_settings('about_us')->settings_value : ''; !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
