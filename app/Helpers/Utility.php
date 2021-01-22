@@ -22,6 +22,7 @@ use App\Model\Follower;
 use App\Model\Setting;
 use App\Model\ProductSubCategory;
 use App\Model\EmailNotificationSetting;
+use App\Model\DescriptionSetting;
 use App\Model\Notification;
 use App\Model\PartnerRating;
 use Carbon\Carbon;
@@ -920,5 +921,9 @@ class Utility{
     
     public static function order_payout_total_orders($payout_id){
         return DB::table('order_payment_payout_items')->where('order_payment_payout_id', $payout_id)->count();
+    }
+
+    public static function description_settings($settings_key){
+        return DescriptionSetting::where('settings_key', $settings_key)->first();
     }
 }

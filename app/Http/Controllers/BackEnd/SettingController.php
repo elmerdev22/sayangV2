@@ -40,4 +40,8 @@ class SettingController extends Controller
     public function images() {
         return view('back-end.setting.images.index');
     }
+
+    public function terms_and_conditions() {
+        return view('back-end.setting.terms-and-conditions.index');
+    }
 }

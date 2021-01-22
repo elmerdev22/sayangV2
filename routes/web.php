@@ -85,6 +85,20 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
         
     });
 
+    Route::group(['as' => 'terms-and-conditions.'], function (){
+
+        $c = 'TermsAndConditionsController';
+        Route::get('/terms-and-conditions/users', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+        Route::get('/terms-and-conditions/partners', [
+            'as' 	=> 'partners',
+            'uses'  => $c.'@partners'
+        ]);
+        
+    });
+
     Route::group(['as' => 'about-us.'], function (){
 
         $c = 'AboutUsController';
@@ -255,6 +269,10 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             Route::get('/images', [
                 'as'    => 'images',
                 'uses'  => $c.'@images'
+            ]);
+            Route::get('/terms-and-conditions', [
+                'as'    => 'terms-and-conditions',
+                'uses'  => $c.'@terms_and_conditions'
             ]);
             
         });
