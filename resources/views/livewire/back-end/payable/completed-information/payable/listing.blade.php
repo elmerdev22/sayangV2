@@ -82,6 +82,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
+                                                    <th></th>
                                                     <th colspan="4" class="text-center">TOTAL</th>
                                                     <th>PHP {{number_format($payout_sayang_commission,2)}}</th>
                                                     <th>PHP {{number_format($payout_total_amount,2)}}</th>
