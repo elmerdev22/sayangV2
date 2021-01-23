@@ -120,10 +120,6 @@
                             <div class="col-4">{{$data->order_payment->bank->name}}</div>
                         @endif
                     </div>
-                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                        plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                    </p>
                 </div>
             <!-- /.col -->
                 <div class="col-6">
@@ -131,10 +127,6 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr>
-                                    <th>Tax (0%)</th>
-                                    <td>₱ 0.00</td>
-                                </tr>
                                 <tr>
                                     <th>Total:</th>
                                     <td>₱ {{number_format($order_total['total'], 2)}}</td>
