@@ -66,7 +66,7 @@
                                     <input type="number" class="form-control form-control-sm text-center" min="1" id="quantity-{{$row->key_token}}" value="{{number_format($quantity)}}" onchange="select_product('{{$row->key_token}}')">
                                 </td>
                                 <td class="text-center">
-                                    <div class="icheck-warning">
+                                    <div class=""> <!-- icheck-warning - Inalis ko muna yung class nag kaka issue kasi sa responsiveness hehe -->
                                         <input type="checkbox" onclick="select_product('{{$row->key_token}}')" id="select-{{$row->key_token}}" @if($component->find_selected_product($row->key_token, 'is_selected')) checked="true" @endif>
                                         <label for="select-{{$row->key_token}}"></label>
                                     </div>

@@ -23,7 +23,7 @@
         <div class="text-right mt-3">
             <div class="form-group">
                 <button type="submit" class="btn btn-warning btn-sm" wire:loading.attr="disabled" wire:target="update">
-                    Continue <i class="fas fa-caret-right"></i> <i class="fas fa-spin fa-spinner" wire:loading wire:target="update_date"></i>
+                    Continue <i class="fas fa-caret-right"></i> <i class="fas fa-spin fa-spinner" wire:loading wire:target="update"></i>
                 </button>
             </div>
         </div>
