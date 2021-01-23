@@ -5,7 +5,7 @@
     <div class="row pt-4">
         <div class="col-12">
             <form wire:submit.prevent="update">
-                <h4 class="title text-center">By clicking on the button below, I agree on the TERMS and AGREEMENT of the platform.</h4>
+                <h4 class="title text-center">By clicking on the button below, I agree on the <u><a href="{{route('front-end.terms-and-conditions.partners')}}">TERMS and CONDITIONS</a></u> of the platform.</h4>
                 <div class="form-group py-4 text-center">
                     <input type="checkbox" class="input-md" id="agree" wire:model="agree">
                     <label for="agree">I Agree to the Terms and Agreement</label><br>

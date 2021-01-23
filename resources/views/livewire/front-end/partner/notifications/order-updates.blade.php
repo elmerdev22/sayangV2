@@ -41,7 +41,7 @@
                                             {{-- if may product post id here --}}
                                         @else 
                                             @if ($row->type == 'new_product_sold')
-                                                href="{{route('front-end.partner.order-and-receipt.payment-confirmed')}}"
+                                                href="{{route('front-end.partner.order-and-receipt.to-receive')}}"
                                             @elseif ($row->type == 'new_cop_request')
                                                 href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
                                             @else 

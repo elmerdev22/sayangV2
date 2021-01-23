@@ -98,21 +98,27 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('back-end.setting.bid')}}" class="nav-link {{Route::is('back-end.setting.bid') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Bid</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('back-end.setting.notifications')}}" class="nav-link {{Route::is('back-end.setting.notifications') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Notifications</p>
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('back-end.setting.bid')}}" class="nav-link {{Route::is('back-end.setting.bid') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Bid</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('back-end.setting.images')}}" class="nav-link {{Route::is('back-end.setting.images') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Images</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.setting.ratings')}}" class="nav-link {{Route::is('back-end.setting.ratings') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Ratings</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -130,13 +136,13 @@
                         <li class="nav-item">
                             <a href="{{route('back-end.setting.about')}}" class="nav-link {{Route::is('back-end.setting.about') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>About</p>
+                                <p>About Us</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('back-end.setting.ratings')}}" class="nav-link {{Route::is('back-end.setting.ratings') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('back-end.setting.terms-and-conditions')}}" class="nav-link {{Route::is('back-end.setting.terms-and-conditions') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Ratings</p>
+                                <p>Terms & Conditions</p>
                             </a>
                         </li>
                     </ul>

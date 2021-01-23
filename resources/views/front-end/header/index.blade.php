@@ -33,9 +33,9 @@
               </li>
 
               @if(Utility::top_nav_validate_auth_verify())
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('front-end.about-us.index')}}">About Us <small class="fas fa-info"></small> </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('front-end.product.list.index')}}">Products <small class="fas fa-tag"></small> </a>
@@ -151,7 +151,7 @@
           <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question text-center" style="width: 10%;"></span> Help Centre</a>
           
           @if(Utility::top_nav_validate_auth_verify())
-            <a href="{{route('front-end.about-us.index')}}" class="list-group-item {{\Route::is('front-end.about-us.index') ? 'active':''}}"><span class="fas fa-info text-center" style="width: 10%;"></span> About Us</a>
+            {{-- <a href="{{route('front-end.about-us.index')}}" class="list-group-item {{\Route::is('front-end.about-us.index') ? 'active':''}}"><span class="fas fa-info text-center" style="width: 10%;"></span> About Us</a> --}}
             <a href="{{route('front-end.product.list.index')}}" class="list-group-item {{\Route::is('front-end.product.list.index') ? 'active':''}}"><span class="fas fa-tag text-center" style="width: 10%;"></span> Products</a>
           @endif
           

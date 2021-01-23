@@ -42,10 +42,10 @@
                         <!-- /.social-auth-links -->
         
                         <p class="mb-1">
-                            <a href="{{ route('password.request') }}" class="text-blue">I forgot my password</a>
+                            <a href="{{ route('password.request') }}" class="text-gray">I forgot my password</a>
                         </p>
                         <p class="mb-0">
-                            <a href="{{route('register')}}" class="text-blue">Register a new account</a>
+                            <a href="{{route('register')}}" class="text-gray">Register a new account</a>
                         </p>
                     </div><!-- /.login-card-body -->
                 </div>
