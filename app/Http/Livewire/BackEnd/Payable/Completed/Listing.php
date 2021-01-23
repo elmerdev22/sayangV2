@@ -28,7 +28,9 @@ class Listing extends Component
             DB::raw("SUM(order_payment_payouts.paymongo_fee) as overall_paymongo_fee"),
             DB::raw("SUM(order_payment_payouts.foreign_fee) as overall_foreign_fee"),
             DB::raw("SUM(order_payment_payouts.net_amount) as overall_net_amount")
-		];
+        ];
+        
+        $filter['where']['order_payment_payouts.status'] = 'completed';
 
         if($this->sort){
 			$sort_table = '';
