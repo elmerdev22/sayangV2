@@ -22,8 +22,6 @@
         var url = param['url'];
         $('#modal-payment_3rd_secure_iframe').html(`<iframe src="`+url+`" title="3D Secure" style="width: 100%; height: 70vh; border: 0px;"></iframe>`);
         setTimeout(function (){
-            var card_dom = $('#card-billing');
-            card_loader(card_dom, 'hide');
             $('#modal-payment_3d_secure').modal('show'); 
         }, 2000);
     });
@@ -44,8 +42,6 @@
     }
 
     function proceed(){
-        var card_dom = $('#card-billing');
-        card_loader(card_dom, 'show');
         @this.call('proceed')
     }
 </script>
