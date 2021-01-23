@@ -23,10 +23,10 @@
                         <!-- /.card-header -->
                         <div class="card-body p-0 m-0" @if(!$is_collapsed) style="display: none;" @endif>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center m-0 p-0">
+                                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center m-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 20px;">#</th>
+                                            <td>#</td>
                                             <th>Partner</th>
                                             <th>Payout No</th>
                                             <th>Sayang Commission</th>
@@ -56,7 +56,7 @@
                                                 $batch_total_orders       += $total_orders;
                                             @endphp
                                             <tr>
-                                                <td class="text-center">{{$payout_key+1}}.)</td>
+                                                <th>{{$payout_key+1}}.)</th>
                                                 <td>
                                                     <a class="text-blue" target="_blank" href="{{route('back-end.partner.profile', ['key_token' => $payout->partner_account_key_token])}}">
                                                         {{$payout->partner_name}}
