@@ -1,5 +1,5 @@
 @extends('back-end.layouts.layout')
-@section('title','Payout - Completed')
+@section('title','Payout - Completed - '.ucfirst($partner->name))
 @section('page_header')
     @php 
         $page_header = [
