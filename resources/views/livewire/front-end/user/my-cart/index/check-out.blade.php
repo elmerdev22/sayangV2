@@ -31,6 +31,7 @@
                     onclick="no_item_alert()" 
                     href="javascript:void(0);" 
                 @else 
+                    onclick="proceed_checkout()" 
                     href="{{route('front-end.user.check-out.index')}}" 
                 @endif 
             > 
@@ -39,9 +40,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script type="text/javascript">
-
-</script>
-@endpush

@@ -3,7 +3,7 @@
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Checkout',
+            'title'       => '<small>Checkout</small>',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'Checkout'],
             ],
@@ -17,16 +17,27 @@
 
     <div class="row">
         <main class="col-md-8">
-            <h4 class="mb-3"><i class="fas fa-file-invoice"></i> Billing address</h4>
-            <div class="card card-sayang" id="card-billing">
-                <div class="card-body">
-                    @livewire('front-end.user.check-out.index.billing')
-                    <hr class="mb-4">
+            <div class="row">
+                <div class="col-md-12">         
+                    <h4 class="mb-3">Billing Address</h4>
+                    <div class="card card-sayang" id="card-billing">
+                        <div class="card-body">
+                            @livewire('front-end.user.check-out.index.billing')
+                        </div>
+                    </div> <!-- card.// -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">        
                     @livewire('front-end.user.check-out.index.payment-method')
-                    <hr class="mb-4">
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-md-12">        
                     @livewire('front-end.user.check-out.index.continue-to-check-out')
                 </div>
-            </div> <!-- card.// -->
+            </div>
+            
         </main> <!-- col.// -->
 
         <aside class="col-md-4 order-md-2 mb-4">
@@ -71,7 +82,7 @@
 </div>
 
 <div class="modal fade" id="modal-add_new_address" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add New Address</h5>
@@ -136,4 +147,10 @@
 
 @section('js')
 <script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
+<script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
+<script>
+    $.LoadingOverlaySetup({
+        image: "{{Utility::img_source('loading')}}",
+    });
+</script>
 @endsection

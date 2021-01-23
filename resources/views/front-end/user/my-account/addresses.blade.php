@@ -38,7 +38,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal-add_address" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New Address</h4>
@@ -56,7 +56,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal-edit_address" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Address</h4>
@@ -70,7 +70,7 @@
             <div class="modal-footer">
                 <div class="text-right">
                     <button type="button" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
-                    <button type="submit" class="btn btn-flat btn-sm btn-success" form="form-edit_address"><i class="fas fa-check"></i> Save</button>
+                    <button type="submit" class="btn btn-flat btn-sm btn-warning" form="form-edit_address"><i class="fas fa-check"></i> Save</button>
                 </div>
             </div>
         </div>

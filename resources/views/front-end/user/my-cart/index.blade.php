@@ -3,7 +3,7 @@
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => '<i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-warning badge-pill badge-total-item-in-cart">'.Utility::total_cart_item().'</span>',
+            'title'       => '<small><i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-warning badge-pill badge-total-item-in-cart">'.Utility::total_cart_item().'</span></small>',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'My Cart'],
             ],
@@ -72,9 +72,12 @@
 </div>
 
 @endsection
-
 @section('js')
+<script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
     <script type="text/javascript">
+        $.LoadingOverlaySetup({
+            image: "{{Utility::img_source('loading')}}",
+        });
         @if(Session::has('check_out_item_alert'))
             no_item_alert();
         @endif
@@ -90,6 +93,10 @@
             }).then((result) => {
                 Swal.close();
             })
+        }
+
+        function proceed_checkout(){
+            $.LoadingOverlay("show");
         }
     </script>
 @endsection

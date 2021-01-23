@@ -76,7 +76,7 @@
                                             'key_token' => $product_row['product_post_key_token'],
                                             'type'      => 'buy_now'
                                         ])}}">
-                                        <img src="{{$product_row['featured_photo']}}" class="img-sm border cart-product-photo-thumb">
+                                        <img src="{{$product_row['featured_photo']}}" class="img-fluid border cart-product-photo-thumb">
                                     </a>
                                 </div>
                                 <div class="col-md-10 text-left">
@@ -192,7 +192,6 @@
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
     });
-    
     window.livewire.hook('afterDomUpdate', () => {
         $('.countdown').countdown("start");
     });
@@ -213,8 +212,7 @@
     });
 
     window.livewire.on('remove_card_listing_loader', param => {
-        var card_dom = $('#card-cart-listing');
-        card_loader(card_dom, 'hide');
+        $('#card-cart-listing').LoadingOverlay("hide");
     });
 
     var event_channel = push_init.subscribe('product-post-update-channel');
@@ -259,9 +257,8 @@
         select_to_checkout_items();
     }
 
-    function select_to_checkout_items(){
-        var card_dom = $('#card-cart-listing');
-        card_loader(card_dom, 'show');
+    function select_to_checkout_items(){        
+        $('#card-cart-listing').LoadingOverlay("show");
         var cart_key_tokens = [];
 
         $(document).find('.check-item').each(function (){
