@@ -112,6 +112,11 @@
                 effectTime: 1500,
                 autoDestroy: false,
             });
+            $('.lazy').lazy({
+                effect: "fadeIn",
+                effectTime: 1000,
+                autoDestroy: false,
+            });
         });
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole    = @if(env('APP_ENV') == 'local') true @else false @endif;
