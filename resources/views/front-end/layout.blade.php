@@ -94,7 +94,6 @@
         <!-- Pusher JS -->
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <!-- Lazy Loading -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
         <!-- Countdown JS -->
         <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
