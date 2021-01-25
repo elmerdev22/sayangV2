@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                                <div class="widget-user-header text-white lazy" data-src="{{$data['cover_photo']}}"  style="background-repeat: no-repeat; background-size: cover;">
+                                <div class="widget-user-header text-white lazy" data-original="{{$data['cover_photo']}}"  style="background-repeat: no-repeat; background-size: cover;">
                                 </div>
                                 <div class="widget-user-image">
                                     <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">

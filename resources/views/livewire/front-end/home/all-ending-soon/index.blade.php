@@ -13,8 +13,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
-                                {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
+                                <img class="card-img-top sayang-card-img-listing img-preloader" data-original="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
@@ -72,7 +71,11 @@
                 @endforeach
                 <div class="col-12 mb-3 text-center">
                     <div class="row justify-content-center">
-                        {{$data->render()}}
+                        @if ($data->total() > 12 && $data->total() > $limit)
+                            <div class="col-12 mb-3 text-center">
+                                <button wire:click="load_more" class="btn btn-warning" style="width: 200px;">See More <span class="" wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -89,6 +92,7 @@
     window.livewire.hook('afterDomUpdate', () => {
         $('.countdown').countdown("start");
         $.LoadingOverlay("hide");
+        $(".sayang-card-img-listing").lazyload({effect : "fadeIn"});
     });
     $('.countdown').countdown({
         end: function() {

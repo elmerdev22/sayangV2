@@ -10,11 +10,10 @@
             <div class="row">
                 @foreach($data as $row)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card mb-4 product-card">
+                    <div wire:ignore class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
-                                {{-- <span class="img-loader-span loader-span loader-quart"></span> --}}
+                                <img class="card-img-top sayang-card-img-listing img-preloader" data-original="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
@@ -70,7 +69,7 @@
                     </div>
                 </div>
                 @endforeach
-                @if ($data->total() > 12)
+                @if ($data->total() > 4)
                     <div class="col-12 mb-3 text-center">
                         <a href="{{route('front-end.home.all-ending-soon')}}" class="btn btn-warning" style="width: 200px;">See More <span wire:loading wire:target="see_more" class="fas fa-spinner fa-spin"></span></a>
                     </div>

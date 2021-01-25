@@ -12,7 +12,7 @@
         <div class="carousel-inner">
             @forelse ($data as $key => $row)
                 <div class="carousel-item {{$key == 0 ? 'active' :''}}">
-                    <img class="d-block w-100" src="{{UploadUtility::image_setting($row->id, 'home-carousel-slider', false)}}" alt="{{$row->settings_name}}">
+                    <img class="d-block w-100 lazy" src="{{UploadUtility::image_setting($row->id, 'home-carousel-slider', false)}}" alt="{{$row->settings_name}}">
                 </div>
             @empty
                 <div class="carousel-item">

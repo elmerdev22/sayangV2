@@ -94,8 +94,8 @@
         <!-- Pusher JS -->
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <!-- Lazy Loading -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
         <!-- Countdown JS -->
         <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
         <!-- Custom JS -->
@@ -106,18 +106,6 @@
     @endif
 
     <script type="text/javascript">
-        $(function() {
-            $('.sayang-card-img-listing').lazy({
-                effect: "fadeIn",
-                effectTime: 1500,
-                autoDestroy: false,
-            });
-            $('.lazy').lazy({
-                effect: "fadeIn",
-                effectTime: 1000,
-                autoDestroy: false,
-            });
-        });
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole    = @if(env('APP_ENV') == 'local') true @else false @endif;
             var pusher_key_app_key = '{{env('PUSHER_APP_KEY')}}';

@@ -46,7 +46,7 @@ class Index extends Component
         $partner      = Partner::find($partner_id);
         $user_account = UserAccount::find($partner->user_account_id);
 
-        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl('thumb');;
+        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl();
     }
 
     public function datetime_format($date){
@@ -57,5 +57,9 @@ class Index extends Component
         $data      = $this->initialize();
         $component = $this;
         return view('livewire.front-end.home.all-recently-added.index', compact('data', 'component'));
+    }
+    
+    public function load_more(){
+        $this->limit += 8;
     }
 }
