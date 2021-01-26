@@ -20,7 +20,7 @@
                     aria-expanded="true"
                 >
                 <a href="javascript:void(0);" class="text-dark">
-                    <h6 class="title"><span class="fa fa-chevron-down"></span> By Category</h6>
+                    <h6>By Category</h6>
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse-category">
@@ -72,7 +72,7 @@
         <article class="filter-group">
             <header class="card-header border-top" data-toggle="collapse" data-target="#collapse-price-range" aria-expanded="true" >
                 <a href="#" class="text-dark">
-                    <h6 class="title"><span class="fa fa-chevron-down"></span> Price Range</h6>
+                    <h6>Price Range</h6>
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse-price-range">

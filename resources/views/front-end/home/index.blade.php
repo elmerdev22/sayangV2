@@ -76,5 +76,26 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
+$('.product-owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        nav:false,
+        loop: false,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:2,
+            },
+            600:{
+                items:3,
+            },
+            1000:{
+                items:4,
+            }
+        }
+    })
 </script>
 @endsection

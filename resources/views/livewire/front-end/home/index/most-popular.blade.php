@@ -13,7 +13,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-original="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">

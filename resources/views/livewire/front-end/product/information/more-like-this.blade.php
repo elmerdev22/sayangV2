@@ -1,57 +1,90 @@
 <div>
-    <div class="row">
-        @for($x=0;$x < 4; $x++)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6" data-aos="fade-up">
-                <div class="card mb-4 product-card">
-                    <div class="text-center w-100">
-                        <img class="card-img-top" src="{{asset('images/default-photo/product1.jpg')}}" alt="Card image cap">
-                        <span class="ends-in">
-                            <div class="countdown text-white">
-                                <span class="fas fa-clock"></span> 4 hrs 2 mins
-                            </div>
-                        </span>
-                        <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px;">
-                            <div class="row">
-                                <div class="col-6 text-white text-left">
-                                    Elmer shop
+    @if ($data->count() > 0)
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h4 class="title home-title p-2">MORE LIKE THIS</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">    
+                <div class="owl-carousel owl-theme">
+                    @foreach($data as $row)
+                        <div class="card mb-4 product-card">
+                            <div class="w-100 text-center">
+                                <div class="overflow-hidden position-relative">
+                                    <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                                 </div>
-                                <div class="col-6 text-right">
-                                    <span class="fas fa-star text-warning"></span> 
-                                    <span class="text-white">4.5</span>
+                                <span class="ends-in rounded-left">
+                                    <div class="countdown text-white">
+                                        <span class="fas fa-clock"></span>
+                                        <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
+                                    </div>
+                                </span>
+                                <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 1px black">
+                                    <div class="row">
+                                        <div class="col-7 text-white text-left text-ellipsis">
+                                            <small>{{ucfirst($row->partner_name)}}</small>
+                                        </div>
+                                        <div class="col-5 text-right">
+                                            @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
+                                                <small class="fas fa-star text-warning"></small> 
+                                                <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-info p-2">
+                                    <div class="row">
+                                        <div class="col-8 font-weight-bold text-left text-ellipsis">
+                                            {{ucfirst($row->product_name)}}
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            {{number_format($row->quantity)}} left
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0">
+                                    <div class="col-6 m-0 p-0">
+                                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
+                                            <button class="btn btn-sm btn-dark item-btn">
+                                                <span class="font-weight-bold">Buy Now</span><br>
+                                                <small class="text-white item-info">
+                                                    PHP {{number_format($row->buy_now_price, 2)}} | 
+                                                    {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% off
+                                                </small>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 m-0 p-0">
+                                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
+                                            <button class="btn btn-sm btn-outline-warning text-dark item-btn">
+                                                <span class="font-weight-bold">Place Bid</span><br>
+                                                <small class="item-info">Bids: {{Utility::bid_details($row->id, 'count')}} | Top: {{Utility::bid_details($row->id, 'top')}}</small>
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-info p-2">
-                            <div class="row">
-                                <div class="col-6 font-weight-bold text-left">
-                                    COCONUT OIL
-                                </div>
-                                <div class="col-6 text-right">
-                                    3 left!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row m-0 p-0">
-                            <div class="col-md-6 m-0 p-0">
-                                <a href="javascript:void(0);">
-                                    <button class="btn btn-sm btn-dark item-btn">
-                                        <span class="font-weight-bold">Buy Now</span><br>
-                                        <small class="text-white item-info">Php: 40.00 | 30%off</small>
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col-md-6 m-0 p-0">
-                                <a href="javascript:void(0);">
-                                    <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                        <span class="font-weight-bold">Place Bid</span><br>
-                                        <small class="item-info">Bids: 5 | Top: 250.00</small>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        @endfor
-    </div>
+        </div>
+    @endif
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    window.livewire.hook('beforeDomUpdate', () => {
+        $('.countdown').countdown("destroy");
+    });
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.countdown').countdown("start");
+    });
+    $('.countdown').countdown({
+        end: function() {
+            @this.call('render')
+        }
+    });
+</script>
+@endpush

@@ -3,6 +3,7 @@
 @section('css')
     <!-- Glasscase css-->
     <link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
+    <link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 <section class="content pb-5">
@@ -184,13 +185,7 @@
         <!-- /.card -->
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <h2 class="title">MORE LIKE THIS</h2>
-            </div>
-        </div>
-        @livewire('front-end.home.index.ending-soon')
-        {{-- @livewire('front-end.product.information.more-like-this') --}}
+        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id])
     </div>
 </section>
 
@@ -220,6 +215,7 @@
 <!-- Glasscase -->
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
 <script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/owl-carousel/js/owl.carousel.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         //If your <ul> has the id "glasscase"
@@ -240,5 +236,26 @@
             }
         });
     });
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        nav:false,
+        loop: false,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:true,
+        responsive:{
+            0:{
+                items:2,
+            },
+            600:{
+                items:3,
+            },
+            1000:{
+                items:4,
+            }
+        }
+    })
 </script>
 @endsection

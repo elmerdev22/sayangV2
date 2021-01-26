@@ -27,7 +27,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-original="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-sm-4 overflow-hidden product-card-img-list">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-original="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                             </div>
                         </div>
                         <div class="col-sm-8 overflow-hidden">
@@ -151,11 +151,11 @@
         @endforelse    
     </div>
 
-    <nav aria-label="Page navigation sample">
-        <div class="row float-right">
-           {{$data->render()}}
+    <div class="row text-center">
+        <div class="col-12">
+            {{$data->render()}}
         </div>
-    </nav>
+    </div>
 </div>
 
 @push('scripts')

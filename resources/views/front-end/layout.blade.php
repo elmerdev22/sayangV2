@@ -94,10 +94,12 @@
         <!-- Pusher JS -->
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <!-- Lazy Loading -->
-        <script src="{{asset('template/assets/dist/js/jquery.lazyload.min.js')}}"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.plugins.min.js"></script>
         <!-- Countdown JS -->
         <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
         <!-- Custom JS -->
+        @yield('js')
         <script src="{{asset('template/assets/dist/js/custom.js')}}"></script>
         <!-- end of to be removed packages -->
     @else
@@ -163,7 +165,6 @@
         });
 
     </script>
-    @yield('js')
     @stack('scripts')
 </body>
 </html>
