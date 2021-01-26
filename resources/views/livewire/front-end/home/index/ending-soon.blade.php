@@ -1,5 +1,4 @@
 <div>
-    
     <div class="row">
         <div class="col-12 pt-2">
             <div class="row">
@@ -10,7 +9,7 @@
             <div class="row">
                 @foreach($data as $row)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div wire:ignore class="card mb-4 product-card">
+                    <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
                                 <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">

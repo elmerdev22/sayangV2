@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- icheck bootstrap -->
         <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('template/assets/plugins/pace-progress/themes/yellow/pace-theme-minimal.css')}}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
         <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
@@ -85,6 +86,7 @@
         <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
         <!-- Bootstrap 4 -->
         <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('template/assets/plugins/pace-progress/pace.min.js')}}"></script>
         <!-- SweetAlert2 -->
         <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
         <!-- Preloader -->
