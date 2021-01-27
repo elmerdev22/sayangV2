@@ -40,6 +40,10 @@ class Listing extends Component
 			$sort_table = substr($sort_table, 0, -2);
 			$filter['order_by'] = $sort_table;
         }
+
+        if($this->search){
+			$filter['or_where_like'] = $this->search;
+		}
         
         return QueryUtility::order_payment_payouts($filter)
                     ->groupBy('order_payment_payouts.partner_id')

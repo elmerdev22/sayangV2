@@ -15,54 +15,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-
-            <div class="card card-outline card-sayang mb-3">
-                <div class="card-header">
-                    <h5 class="card-title">To Receive<small> (Orders via Cash On Pickup)</small></h5>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">  
-                    <h3>//Put seach and sort like our fake datatables</h3>
-                    <div class="table-responsive mt-3">
-                        <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
-                            <thead>
-                                <tr>
-                                    <th>Partner</th>
-                                    <th>Sayang Commission</th>
-                                    <th>Total Orders</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for($x=1; $x<=10; $x++)
-                                    <tr>
-                                        <td>
-                                            <a class="text-blue" href="javascript:void(0);">Elmer Shop {{$x}}</a>
-                                        </td> 
-                                        <td>PHP {{number_format(rand(100,10000),2)}}</td>
-                                        <td>{{rand(1,100)}}</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-view_receivables">View</a>
-                                        </td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th class="text-center">TOTAL</th>
-                                    <th>PHP {{number_format(rand(100,10000),2)}}</th>
-                                    <th>{{rand(1,100)}}</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    
-                </div>
-            </div>
+            @livewire('back-end.payable.receivable.listing')
         </div>
     </div>
     <!-- 
@@ -91,17 +44,20 @@
                                     <input type="date" class="form-control" wire:model="date_to" value="{{date('Y-m-d')}}">
                                 </div>
                             </div>
-                            <div class="text-center mt-3">
+                            <div class="text-right mt-3">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-warning">Filter <i class="fas fa-caret-right"></i></button>
+                                    <button type="submit" class="btn btn-warning btn-sm" wire:loading.attr="disabled" wire:target="update">
+                                        Continue <i class="fas fa-caret-right"></i> <i class="fas fa-spin fa-spinner" wire:loading wire:target="update"></i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
-
+                        <hr>
+                        <div class="form-group">
+                            <b>ORDER DATE: </b> {{date('M/d/Y', strtotime('2020-01-01'))}} - {{date('M/d/Y', strtotime('2020-01-01'))}}
+                        </div>
                         <form method="POST">
-                            <h3>//Put seach and sort like our fake datatables</h3>
                             <div class="table-responsive">
-
                                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                                     <thead>
                                         <tr>
