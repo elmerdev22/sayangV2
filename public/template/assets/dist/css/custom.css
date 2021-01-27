@@ -866,6 +866,13 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
   
   .modal.show .modal-dialog-aside{ transform: translateX(0);  }
 
+  .list-group-item:last-child{
+    border-radius: 0;
+  }
+  .list-group-item:first-child{
+    border-radius: 0;
+  }
+  
 @media screen and (max-width: 567px){
   .product-card-img-list{
     padding-right: 7.5px;
