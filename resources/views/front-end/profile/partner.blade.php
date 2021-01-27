@@ -15,7 +15,7 @@
                                 <div class="widget-user-header text-white lazy" data-src="{{$data['cover_photo']}}"  style="background-repeat: no-repeat; background-size: cover;">
                                 </div>
                                 <div class="widget-user-image">
-                                    <img class="img-circle" style="width: auto; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">
+                                    <img class="img-circle" style="width: 100px; height: 100px;" src="{{$data['store_photo']}}" alt="Card image cap">
                                 </div>
                             </div>
                         </div>

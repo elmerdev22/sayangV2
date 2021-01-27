@@ -12,7 +12,7 @@
                 </div>
             </div>
         </article>
-        <article class="filter-group" id="accordion-category">
+        <article class="filter-group mb-2" id="accordion-category">
             <header class="card-header border-top" 
                     data-toggle="collapse" 
                     data-target="#collapse-category" 
@@ -48,7 +48,7 @@
                                                 <div class="custom-control-label"> All {{ucfirst($category->name)}}
                                             </label>
                                         </li>
-                                        @foreach($category->sub_categories()->get() as $sub_category)
+                                        @foreach($category->sub_categories as $sub_category)
                                             <li>
                                                 <label class="custom-control custom-checkbox product-filter-checkbox">
                                                     <input  type="checkbox" 
@@ -69,7 +69,7 @@
             </div>
         </article> <!-- filter-group  .// -->
 
-        <article class="filter-group">
+        <article class="filter-group mb-2">
             <header class="card-header border-top" data-toggle="collapse" data-target="#collapse-price-range" aria-expanded="true" >
                 <a href="#" class="text-dark">
                     <h6>Price Range</h6>
