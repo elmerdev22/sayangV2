@@ -10,11 +10,11 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h6 class="font-weight-bold text-uppercase">
                         <img style="width: 40px;" class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap">
-                        <a href="{{url('/products')}}">{{$catalog->name}}</a>
+                        <a href="{{url('/products')}}">{{ucfirst($catalog->name)}}</a>
                     </h6>
                     <ul class="list-unstyled">
                         @foreach($catalog->sub_categories as $sub_category)
-                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">{{ucwords($sub_category->name)}}</a></li> 
+                            <li class="nav-item"><a href="{{url('/products')}}" class="nav-link text-small pb-0">{{ucfirst($sub_category->name)}}</a></li> 
                         @endforeach
                     </ul>
                 </div>
@@ -27,7 +27,7 @@
             
             @forelse($data as $catalog)
                 <a href="#catalog-{{$catalog->id}}" class="list-group-item" data-toggle="collapse" data-parent="#MainMenuCategory">
-                    <img style="width: 25px;" class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap"> {{$catalog->name}}
+                    <img style="width: 25px;" class="card-img-top display-inline img-fluid img-circle shadow-sm border " src="{{UploadUtility::category_photo($catalog->key_token)}}" alt="Card image cap"> {{ucfirst($catalog->name)}}
                     
                     @if ($catalog->sub_categories->count() > 0)
                         <i class="fa fa-chevron-left float-right"></i>  
@@ -37,8 +37,8 @@
                     <div class="collapse mb-1" id="catalog-{{$catalog->id}}">
                         @foreach($catalog->sub_categories as $sub_category)
                             <a href="#" class="list-group-item">
-                                <span class="fas fa-chevron-right mr-1 ml-2"></span> 
-                                {{ucwords($sub_category->name)}}
+                                <span class="far fa-circle mr-1 ml-2"></span> 
+                                {{ucfirst($sub_category->name)}}
                             </a>
                         @endforeach
                     </div>

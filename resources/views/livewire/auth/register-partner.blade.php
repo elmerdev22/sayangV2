@@ -45,10 +45,11 @@
             </button>
         </div> <!-- form-group// -->
     </form>
-    <div class="social-auth-links text-center">
-        <p>- Already have an account -</p>
-        <a href="{{route('partner.login')}}" class="btn btn-block btn-warning">
-          Login
-        </a>
-      </div>
+    <div class="text-center">
+        <p class="my-1 text-right">
+            <a href="{{ route('password.request') }}" class="text-gray">I forgot my password</a>
+        </p>
+        <hr>
+        <p>Already have an account? <u><a href="{{route('partner.login')}}" class="text-gray">Login</a></u></p>
+    </div>
 </div>
