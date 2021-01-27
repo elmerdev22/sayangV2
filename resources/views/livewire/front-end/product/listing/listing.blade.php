@@ -1,20 +1,29 @@
 <div>
-    <header class="border-bottom border-top mb-4 py-3">
-        <div class="form-inline">
-            <span class="mr-md-auto my-1" id="total-item_found">{{number_format($total_items,0)}} Items found </span>
-            <select class="mr-2 form-control my-1" id="sort-by" wire:model="sort_by">
-                <option value="latest_items">Latest items</option>
-                <option value="cheapest">Cheapest</option>
-                <!-- <option value="most_popular">Most Popular</option> -->
-                <!-- <option value="trending">Trending</option> -->
-            </select>
-            <div class="btn-group my-1">
-                <a href="#" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
-                    <i class="fa fa-th"></i>
-                </a>
-                <a href="#" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
-                    <i class="fa fa-bars"></i>
-                </a>
+    <header class="mb-4">
+        <div class="row">
+            <div class="col-md-3 pt-2">
+                <span class="">{{number_format($total_items,0)}} Items found </span>
+            </div>
+            <div class="col-md-4">
+                <input type="search" class="form-control my-1 float-lg-right" placeholder="Search">
+            </div>
+            <div class="col-md-3 float-right">
+                <select class="form-control my-1 " id="sort-by" wire:model="sort_by">
+                    <option value="latest_items">Latest items</option>
+                    <option value="cheapest">Cheapest</option>
+                    <option value="most_popular">Ending Soon</option>
+                    <option value="trending">Recently Added</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group my-1 float-right">
+                    <a href="#" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
+                        <i class="fa fa-th"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </header><!-- sect-heading -->

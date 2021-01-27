@@ -345,6 +345,7 @@ class QueryUtility{
 			->select($select)
 			->join('products', 'products.id', '=', 'product_posts.product_id')
 			->leftJoin('partners', 'partners.id', '=', 'products.partner_id')
+			->leftJoin('product_sub_categories', 'product_sub_categories.product_id', '=', 'products.id')
 			->leftJoin('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
 			->leftJoin('users', 'users.id', '=', 'user_accounts.user_id')
 			->leftJoin('philippine_barangays as partner_barangays', 'partner_barangays.id', '=', 'partners.barangay_id')

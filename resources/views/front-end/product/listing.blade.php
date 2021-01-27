@@ -1,17 +1,11 @@
 @extends('front-end.layout')
 @section('title','Product List')
-@section('page_header')
-    @php 
-        $page_header = [
-            'title'       => '',
-            'breadcrumbs' => [
-                ['url' => '', 'label' => 'Products'],
-            ],
-        ];
-    @endphp
-    @include('front-end.includes.page-header', $page_header)
-@endsection
+
 @section('content')
+    <!-- Breadcrumb -->
+    @livewire('front-end.product.listing.breadcrumb')
+    <!-- Breadcrumb.// -->
+
     <div class="row">
         <aside class="col-md-3">
 

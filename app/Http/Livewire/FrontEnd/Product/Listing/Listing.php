@@ -14,6 +14,7 @@ class Listing extends Component
 {
 	use WithPagination;
     public $price_range=[], $search, $category, $limit=9, $sort_by='latest_items', $view_by='grid_view';
+    public $selected_category_id, $selected_sub_category_id;
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
@@ -23,7 +24,7 @@ class Listing extends Component
     public function mount($search){
         if($search != null){
             $this->search = [
-                'type'     => 'searcn',
+                'type'     => 'search',
                 'key_word' => $search
             ];
         }
@@ -35,8 +36,14 @@ class Listing extends Component
     }
 
     public function set_filter($param){
-        $type        = $param['type'];
-        $this->$type = $param;
+        if($param['type'] == 'category'){
+            $this->selected_category_id     = $param['id'];
+            $this->selected_sub_category_id = null;
+        }
+        else{
+            $this->selected_sub_category_id = $param['id'];
+            $this->selected_category_id     = null;
+        }
         $this->resetPage();
     }
 
@@ -70,8 +77,11 @@ class Listing extends Component
             }            
         }
 
-        if(!empty($this->category)){
-            $filter['categories'] = $this->category;
+        if(!empty($this->selected_category_id)){
+            $filter['where']['products.category_id'] = $this->selected_category_id;
+        }
+        else if(!empty($this->selected_sub_category_id)){
+            $filter['where']['product_sub_categories.sub_category_id'] = $this->selected_sub_category_id;
         }
 
         if(!empty($this->search)){

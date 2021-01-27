@@ -5,11 +5,12 @@ namespace App\Http\Livewire\FrontEnd\Product\Listing;
 use Livewire\Component;
 use App\Model\Category;
 use App\Model\SubCategory;
+use QueryUtility;
 
 class SearchFilter extends Component
 {
 
-    public $search;
+    public $search, $selected_category_id;
 
     public function mount($search){
         $this->search = $search;
@@ -17,7 +18,6 @@ class SearchFilter extends Component
 
     public function categories(){
         return Category::with(['sub_categories', 'sub_categories.product_sub_categories'])
-            ->where('is_display', true)
             ->orderBy('name', 'asc')
             ->get();
     }
@@ -49,39 +49,43 @@ class SearchFilter extends Component
         }
     }
 
-    public function set_category($categories, $sub_categories){
-        $category_ids     = [];
-        $sub_category_ids = [];
-
-        foreach($categories as $key_token){
-            $category = Category::where('key_token', $key_token)->first();
-            if($category){
-                $category_ids[] = $category->id;
-            }
-        }
-
-        foreach($sub_categories as $key_token){
-            $sub_category = SubCategory::where('key_token', $key_token)->first();
-            if($sub_category){
-                $sub_category_ids[] = $sub_category->id;
-            }
-        }
+    public function set_filter($id , $type = 'category'){
 
         $this->emit('set_filter', [
-            'type'           => 'category',
-            'categories'     => $category_ids,
-            'sub_categories' => $sub_category_ids
+            'type' => $type,
+            'id'   => $id,
         ]);
-    }
+        
+        if($type == 'category'){
+            $this->selected_category_id = $id;
+        }
+        else{
+            $this->selected_sub_category_id = $id;
+        }
 
-    public function set_search($keyword){
-        $this->emit('set_filter', [
-            'type'     => 'search',
-            'key_word' => $keyword
-        ]);
     }
 
     public function clear_filter(){
         $this->emit('clear_filter', true);
+    }
+
+    public function product_count($id, $type = 'category'){
+        
+        $filter = [];
+        $filter['where']['product_posts.status'] = 'active';
+        
+        if($type == 'category'){
+            if($id != null){
+                $filter['where']['products.category_id'] = $id;
+            }
+        }
+        else{
+            if($id != null){
+                $filter['where']['product_sub_categories.sub_category_id'] = $id;
+            }
+        }
+        
+        $filter['available_quantity']            = true;
+        return QueryUtility::product_posts($filter)->count();
     }
 }
