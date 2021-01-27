@@ -23,6 +23,10 @@ class Breadcrumb extends Component
                 $this->category     = ucfirst($data->name);
                 $this->sub_category = null;
             }
+            else{
+                $this->category     = null;
+                $this->sub_category = null;
+            }
         }
         else{
             $data               = SubCategory::where('id', $param['id'])->first();
