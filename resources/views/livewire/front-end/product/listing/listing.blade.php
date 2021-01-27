@@ -27,7 +27,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-sm-4 overflow-hidden product-card-img-list">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                             </div>
                         </div>
                         <div class="col-sm-8 overflow-hidden">
@@ -175,7 +175,6 @@
     window.livewire.hook('afterDomUpdate', () => {
         $.LoadingOverlay("hide");
         $('.countdown').countdown("start");
-        $(".sayang-card-img-listing").lazyload({effect : "fadeIn"});
     });
     $('.countdown').countdown({
         end: function() {
