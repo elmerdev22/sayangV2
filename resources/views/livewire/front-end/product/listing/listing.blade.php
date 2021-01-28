@@ -58,8 +58,10 @@
                                         <small>{{ucfirst($row->partner_name)}}</small>
                                     </div>
                                     <div class="col-5 text-right">
-                                        <small class="fas fa-star text-warning"></small> 
-                                        <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                        @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
+                                            <small class="fas fa-star text-warning"></small> 
+                                            <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -120,8 +122,10 @@
                                     <div class="store-info bg-transparent">
                                         <div class="text-left text-sm text-ellipsis">
                                             {{ucfirst($row->partner_name)}} 
-                                            <small class="fas fa-star text-warning"></small> 
-                                            <small class="text-dark">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                            @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
+                                                <small class="fas fa-star text-warning"></small> 
+                                                <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -761,7 +761,7 @@ class Utility{
     
                 $response = [
                     'discount'         => $number_1 - $number_2,
-                    'discount_percent' => $discount + 0,
+                    'discount_percent' => number_format($discount + 0 , 0),
                     'percentage'       => $percentage + 0
                 ];            
             }
