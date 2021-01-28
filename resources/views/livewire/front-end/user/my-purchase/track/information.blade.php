@@ -87,6 +87,9 @@
                 Subtotal: ₱ {{number_format($order_total['sub_total'], 2)}} <br>
                 Discount:  ₱ {{number_format($order_total['total_discount'], 2)}} <br>
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
+                @if($data->stastus == 'completed')
+                    <br>Date Completed : {{date('M/d/Y', strtotime($data->date_completed))}}
+                @endif
             </p>
 
             @if($data->order_payment->status == 'pending')

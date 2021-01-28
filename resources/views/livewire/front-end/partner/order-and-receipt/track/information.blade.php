@@ -76,6 +76,7 @@
                 <strong>Total Price: ₱ {{number_format($order_total['total'], 2)}} </strong>
                 
                 @if($data->status == 'completed')
+                    <br>Date Completed : {{date('M/d/Y', strtotime($data->date_completed))}}
                     <hr>
                     <h6 class="text-muted">Commissions</h6>
                     @php 

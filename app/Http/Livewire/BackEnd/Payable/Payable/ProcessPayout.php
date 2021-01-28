@@ -46,7 +46,7 @@ class ProcessPayout extends Component
             ];
             $filter['where']['order_payment_payout_items.id'] = null;
             $filter['date_range'][] = [
-                'field' => 'orders.created_at',
+                'field' => 'orders.date_completed',
                 'from'  => $this->date_from,
                 'to'    => $this->date_to
             ];
