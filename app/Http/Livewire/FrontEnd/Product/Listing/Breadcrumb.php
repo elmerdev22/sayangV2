@@ -11,7 +11,6 @@ class Breadcrumb extends Component
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
-        'clear_filter' => 'clear_filter'
     ];
 
     public function set_filter($param){

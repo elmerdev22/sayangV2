@@ -110,9 +110,6 @@
         $('#input-price_min').val('');
         $('#input-price_max').val('');
         $('#input-search').val('');
-        $('#collapse-category').find('.custom-control-input').each(function () {
-            $(this).prop('checked', false);
-        });
         
         @this.call('clear_filter')
     }
