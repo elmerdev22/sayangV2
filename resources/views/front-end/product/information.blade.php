@@ -65,7 +65,7 @@
                                     <div class="col-md-3">
                                         <div class="widget-user-header">
                                             <div class="widget-user-image">
-                                                <img class="img-circle elevation-1 mr-3 lazy" src="{{$store_photo}}" alt="User Avatar">
+                                                <img class="img-circle img-responsive elevation-1 mr-3 lazy" src="{{$store_photo}}" alt="Store photo" style="width: 50px; height: 50px;">
                                             </div>
                                             <!-- /.widget-user-image -->
                                             <h5>{{ucfirst($product->partner_name)}}</h5>

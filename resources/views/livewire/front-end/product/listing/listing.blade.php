@@ -1,20 +1,37 @@
 <div>
-    <header class="border-bottom border-top mb-4 py-3">
-        <div class="form-inline">
-            <span class="mr-md-auto my-1" id="total-item_found">{{number_format($total_items,0)}} Items found </span>
-            <select class="mr-2 form-control my-1" id="sort-by" wire:model="sort_by">
-                <option value="latest_items">Latest items</option>
-                <option value="cheapest">Cheapest</option>
-                <!-- <option value="most_popular">Most Popular</option> -->
-                <!-- <option value="trending">Trending</option> -->
-            </select>
-            <div class="btn-group my-1">
-                <a href="#" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
-                    <i class="fa fa-th"></i>
-                </a>
-                <a href="#" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
-                    <i class="fa fa-bars"></i>
-                </a>
+    <header class="mb-4">
+        <div class="row">
+            <div class="col-lg-3 col-12 pt-2">
+                <span class="">{{number_format($total_items,0)}} Items found </span>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="input-group my-1 float-right">
+                    <input type="search" class="form-control" id="search" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" onclick="search()">
+                            <span class="fas fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-8 float-right">
+                <select class="form-control my-1 " id="sort-by" wire:model="sort_by">
+                    <option value="">Sort by</option>
+                    <option value="lowest_price">Lowest Price</option>
+                    <option value="highest_price">Highest Price</option>
+                    <option value="ending_soon">Ending Soon</option>
+                    <option value="recently_added">Recently Added</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-4">
+                <div class="btn-group my-1 float-right">
+                    <a href="javascript:void(0);" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
+                        <i class="fa fa-th"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </header><!-- sect-heading -->
@@ -27,7 +44,7 @@
                     <div class="card mb-4 product-card">
                         <div class="w-100 text-center">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             </div>
                             <span class="ends-in rounded-left">
                                 <div class="countdown text-white">
@@ -86,13 +103,13 @@
                     <div class="row">
                         <div class="col-sm-4 overflow-hidden product-card-img-list">
                             <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" data-src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
+                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                             </div>
                         </div>
                         <div class="col-sm-8 overflow-hidden">
                             <div class="product-card-list-information">
                                 <div class="mb-3 product-card-countdown">
-                                    <span class="ends-in" style="position: relative !important;">
+                                    <span class="ends-in rounded" style="position: relative !important;">
                                         <div class="countdown text-white">
                                             <span class="fas fa-clock"></span>
                                             <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
@@ -101,7 +118,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <div class="store-info bg-transparent">
-                                        <div class="text-left text-ellipsis">
+                                        <div class="text-left text-sm text-ellipsis">
                                             {{ucfirst($row->partner_name)}} 
                                             <small class="fas fa-star text-warning"></small> 
                                             <small class="text-dark">{{Utility::get_partner_ratings($row->partner_id)}}</small>
@@ -151,10 +168,12 @@
         @endforelse    
     </div>
 
-    <div class="row text-center">
-        <div class="col-12">
-            {{$data->render()}}
-        </div>
+    <div class="row justify-content-center">
+        @if ($data->total() > 12 && $data->total() > $limit)
+            <div class="col-12 mb-3 text-center">
+                <button wire:click="load_more" class="btn btn-warning" style="width: 200px;">Load More <span class="" wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
+            </div>
+        @endif
     </div>
 </div>
 
@@ -172,16 +191,27 @@
         $('.countdown').countdown("destroy");
         $.LoadingOverlay("show");
     });
+    
     window.livewire.hook('afterDomUpdate', () => {
         $.LoadingOverlay("hide");
         $('.countdown').countdown("start");
-        $(".sayang-card-img-listing").lazyload({effect : "fadeIn"});
     });
+    
     $('.countdown').countdown({
         end: function() {
             @this.call('render')
         }
     });
 
+    $("#search").keyup(function(event) {
+        if (event.keyCode === 13) {
+            search();
+        }
+    });
+    
+    function search(){
+        var search = $('#search').val();
+        @this.set('search', search)
+    }
 </script>
 @endpush

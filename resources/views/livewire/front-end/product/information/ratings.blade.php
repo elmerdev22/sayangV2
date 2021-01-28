@@ -2,7 +2,7 @@
     @forelse($data as $row)
         <div class="post clearfix">
             <div class="user-block">
-                <img class="img-circle img-bordered-sm mr-3" style="width: 50px; height: 50px;" src="{{UploadUtility::account_photo($row->user_account->key_token, 'profile-picture', 'profile')}}" alt="User Image">
+                <img class="img-circle img-bordered-sm mr-3 lazy" style="width: 50px; height: 50px;" src="{{UploadUtility::account_photo($row->user_account->key_token, 'profile-picture', 'profile')}}" alt="User Image">
                     <span class="username">
                         <a href="#">{{$row->user_account->first_name}} {{$row->user_account->last_name}}</a>
                         <a href="#" class="float-right btn-tool">{{Utility::carbon_diff($row->created_at)}}</a>

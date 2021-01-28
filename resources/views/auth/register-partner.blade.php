@@ -14,7 +14,7 @@
   <div class="col-md-5">
     <div class="card">
       <div class="card-body register-card-body">
-        <h4 class="text-center">Be a Partner</h4>
+        <h4 class="text-center">Be a Partner <span class="fas fa-handshake"></span></h4>
         <hr>
         @livewire('auth.register-partner')
       </div>

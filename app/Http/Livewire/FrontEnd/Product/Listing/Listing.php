@@ -13,7 +13,8 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-    public $price_range=[], $search, $category, $limit=9, $sort_by='latest_items', $view_by='grid_view';
+    public $price_range=[], $search, $category, $limit=9, $sort_by='', $view_by='grid_view';
+    public $selected_category_id, $selected_sub_category_id;
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
@@ -21,12 +22,12 @@ class Listing extends Component
     ];
 
     public function mount($search){
-        if($search != null){
-            $this->search = [
-                'type'     => 'searcn',
-                'key_word' => $search
-            ];
-        }
+        // if($search != null){
+        //     $this->search = [
+        //         'type'     => 'search',
+        //         'key_word' => $search
+        //     ];
+        // }
     }
 
     public function clear_filter(){
@@ -35,8 +36,14 @@ class Listing extends Component
     }
 
     public function set_filter($param){
-        $type        = $param['type'];
-        $this->$type = $param;
+        if($param['type'] == 'category'){
+            $this->selected_category_id     = $param['id'];
+            $this->selected_sub_category_id = null;
+        }
+        else{
+            $this->selected_sub_category_id = $param['id'];
+            $this->selected_category_id     = null;
+        }
         $this->resetPage();
     }
 
@@ -70,18 +77,28 @@ class Listing extends Component
             }            
         }
 
-        if(!empty($this->category)){
-            $filter['categories'] = $this->category;
+        if(!empty($this->selected_category_id)){
+            $filter['where']['products.category_id'] = $this->selected_category_id;
+        }
+        else if(!empty($this->selected_sub_category_id)){
+            $filter['where']['product_sub_categories.sub_category_id'] = $this->selected_sub_category_id;
         }
 
         if(!empty($this->search)){
-            $filter['or_where_like'] = $this->search['key_word'];
+            $filter['or_where_like'] = $this->search;
         }
 
-        if($this->sort_by == 'cheapest'){
+        if($this->sort_by == 'lowest_price'){
             $filter['order_by'] = 'product_posts.buy_now_price asc, product_posts.created_at desc';
-        }else{
-            $filter['order_by'] = 'product_posts.updated_at desc';
+        }
+        else if($this->sort_by == 'highest_price'){
+            $filter['order_by'] = 'product_posts.buy_now_price desc, product_posts.created_at desc';
+        }
+        else if($this->sort_by == 'ending_soon'){
+            $filter['order_by'] = 'product_posts.date_end asc';
+        }
+        else if($this->sort_by == 'recently_added'){
+            $filter['order_by'] = 'product_posts.created_at desc';
         }
 
         $query = QueryUtility::product_posts($filter);
@@ -116,5 +133,9 @@ class Listing extends Component
 
     public function view_by($type){
         $this->view_by = $type;
+    }
+    
+    public function load_more(){
+        $this->limit += 9;
     }
 }
