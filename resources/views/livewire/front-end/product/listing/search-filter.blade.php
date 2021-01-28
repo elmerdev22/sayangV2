@@ -67,7 +67,7 @@
 
         <article class="filter-group mb-2">
             <header class="card-header border-top" data-toggle="collapse" data-target="#collapse-price-range" aria-expanded="true" >
-                <a href="#" class="text-dark">
+                <a href="javascript:void(0);" class="text-dark">
                     <h6>Price Range</h6>
                 </a>
             </header>
@@ -96,8 +96,8 @@
 
         <article class="filter-group">
             <header class="card-header border-top">
-                <button type="button" wire:loading.attr="disabled" wire:target="set_price_range, clear_filter" onclick="clear_filter()" class="btn btn-block btn-warning" id="clear-filter">
-                    Clear Filter
+                <button type="button" wire:loading.attr="disabled" wire:target="clear_filter" onclick="clear_filter()" class="btn btn-block btn-warning" id="clear-filter">
+                    Clear Filter <span wire:loading wire:target="clear_filter" class="fas fa-spin fa-spinner"></span>
                 </button>
             </header>
         </article> <!-- filter-group .// -->

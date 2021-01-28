@@ -180,7 +180,7 @@
 @push('scripts')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function (event) {
- 
+        $('#search').val('{{$search}}')
     });
 
     function view_by(type){
@@ -211,6 +211,8 @@
     
     function search(){
         var search = $('#search').val();
+        var url    = '?search='+search;
+        history.pushState(null, null, url);
         @this.set('search', search)
     }
 </script>

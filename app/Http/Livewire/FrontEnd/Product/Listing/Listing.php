@@ -14,20 +14,19 @@ class Listing extends Component
 {
 	use WithPagination;
     public $price_range=[], $search, $category, $limit=9, $sort_by='', $view_by='grid_view';
-    public $selected_category_id, $selected_sub_category_id;
+    public $selected_category_id, $selected_sub_category_id, $partner_id;
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
         'clear_filter' => 'clear_filter'
     ];
 
-    public function mount($search){
-        // if($search != null){
-        //     $this->search = [
-        //         'type'     => 'search',
-        //         'key_word' => $search
-        //     ];
-        // }
+    public function mount($search, $partner_id){
+        $this->partner_id = $partner_id;
+
+        if($search != null){
+            $this->search = $search;
+        }
     }
 
     public function clear_filter(){
@@ -75,6 +74,10 @@ class Listing extends Component
                     'max'   => $this->price_range['price_max'],
                 ];
             }            
+        }
+
+        if(!empty($this->partner_id)){
+            $filter['where']['products.partner_id'] = $this->partner_id;
         }
 
         if(!empty($this->selected_category_id)){

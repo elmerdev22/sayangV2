@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\FrontEnd\Product\Listing;
 
 use Livewire\Component;
+use App\Model\Product;
 use App\Model\Category;
 use App\Model\SubCategory;
 use QueryUtility;
@@ -10,16 +11,21 @@ use QueryUtility;
 class SearchFilter extends Component
 {
 
-    public $search, $selected_category_id;
+    public $search, $selected_category_id, $partner_id;
 
-    public function mount($search){
-        $this->search = $search;
+    public function mount($search, $partner_id = null){
+        $this->search     = $search;
+        $this->partner_id = $partner_id;
     }
 
     public function categories(){
-        return Category::with(['sub_categories', 'sub_categories.product_sub_categories'])
-            ->orderBy('name', 'asc')
-            ->get();
+        $data = Category::with(['sub_categories', 'sub_categories.product_sub_categories'])->orderBy('name', 'asc');
+        if($this->partner_id != null){
+            $partner_category_ids = Product::where('partner_id', $this->partner_id)->pluck('category_id');
+            $data->whereIn('id', $partner_category_ids);
+        }
+        
+        return $data->get();
     }
 
     public function render(){
@@ -83,6 +89,13 @@ class SearchFilter extends Component
             if($id != null){
                 $filter['where']['product_sub_categories.sub_category_id'] = $id;
             }
+        }
+        if($this->partner_id != null){
+            $partner_category_ids = Product::where('partner_id', $this->partner_id)->pluck('category_id');
+            $filter['where_in'][]             = [
+                'field'  => 'products.category_id',
+                'values' => $partner_category_ids
+            ];
         }
         
         $filter['available_quantity']            = true;

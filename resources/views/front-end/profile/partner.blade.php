@@ -96,12 +96,29 @@
                     
                     <div class="tab-content py-3" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
-                            <div class="card-footer bg-white card-comments">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        
+                            <div class="row">
+                                <aside class="col-md-3">
+                                    <div class="d-md-none d-lg-none d-xl-none">
+                                        <button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-warning w-100" type="button"> <span class="fas fa-filter"></span> Filter </button>
                                     </div>
-                                </div>
+                                    <div class="hidden-xs d-none d-md-block d-lg-block ">    
+                                        <div class="card">
+                                            @livewire('front-end.product.listing.search-filter', ['search' => null, 'partner_id' => $data['partner_id']])
+                                        </div> <!-- card.// -->
+                                    </div>
+                                </aside> <!-- col.// -->
+
+                                <main class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card no-box-shadow" id="card-product_listing">
+                                                <div class="card-body p-0">
+                                                    @livewire('front-end.product.listing.listing', ['search' => null, 'partner_id' => $data['partner_id']])
+                                                </div>
+                                            </div> <!-- card.// -->
+                                        </div>
+                                    </div>
+                                </main>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> 
@@ -115,5 +132,28 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
+    
+    <div id="modal_aside_right" class="modal fixed-right fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-aside" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{$data['store_name']}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 m-0">
+                    @livewire('front-end.product.listing.search-filter', ['search' => null, 'partner_id' => $data['partner_id']])
+                </div>
+            </div>
+        </div> <!-- modal-bialog .// -->
+    </div> <!-- modal.// -->
+@endsection
+@section('js')
+<script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
+<script>
+    $.LoadingOverlaySetup({
+        image: "{{Utility::img_source('loading')}}",
+    });
+</script>
 @endsection

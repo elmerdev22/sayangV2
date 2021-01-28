@@ -11,7 +11,13 @@ class Breadcrumb extends Component
 
     protected $listeners = [
         'set_filter'   => 'set_filter',
+        'clear_filter' => 'clear_filter',
+        
     ];
+
+    public function clear_filter($param){
+        $this->reset();
+    }
 
     public function set_filter($param){
 
@@ -23,8 +29,7 @@ class Breadcrumb extends Component
                 $this->sub_category = null;
             }
             else{
-                $this->category     = null;
-                $this->sub_category = null;
+                $this->reset();
             }
         }
         else{

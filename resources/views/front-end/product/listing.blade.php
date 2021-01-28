@@ -8,13 +8,12 @@
 
     <div class="row">
         <aside class="col-md-3">
-
             <div class="d-md-none d-lg-none d-xl-none">
                 <button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-warning w-100" type="button"> <span class="fas fa-filter"></span> Filter </button>
             </div>
             <div class="hidden-xs d-none d-md-block d-lg-block ">    
                 <div class="card">
-                    @livewire('front-end.product.listing.search-filter', ['search' => $search])
+                    @livewire('front-end.product.listing.search-filter', ['search' => $search, 'partner_id' => null ])
                 </div> <!-- card.// -->
             </div>
         </aside> <!-- col.// -->
@@ -24,7 +23,7 @@
                 <div class="col-12">
                     <div class="card no-box-shadow" id="card-product_listing">
                         <div class="card-body p-0">
-                            @livewire('front-end.product.listing.listing', ['search' => $search])
+                            @livewire('front-end.product.listing.listing', ['search' => $search, 'partner_id' => null])
                         </div>
                     </div> <!-- card.// -->
                 </div>
