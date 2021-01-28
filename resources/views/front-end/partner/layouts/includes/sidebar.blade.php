@@ -140,6 +140,33 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.payable.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.payable.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-credit-card"></i>
+                        <p>Payables <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.payable.receivable')}}" class="nav-link {{Route::is('front-end.partner.payable.receivable') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Receivable</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.payable.payable')}}" class="nav-link {{Route::is('front-end.partner.payable.payable') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Payables</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.payable.completed')}}" class="nav-link {{Route::is('front-end.partner.payable.completed') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Completed</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item has-treeview {{Route::is('front-end.partner.notifications.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.notifications.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-bell"></i>
