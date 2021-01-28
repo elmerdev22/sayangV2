@@ -13,7 +13,10 @@
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
                         <tr>
-                            <th>Partner</th>
+                            <th class="table-sort" wire:click="sort('partners.name')">
+                                Partner
+                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'partners.name'])
+                            </th>
                             <th>Sayang Commission</th>
                             <th>Total Amount</th>
                             <th>Total Orders</th>
@@ -41,7 +44,7 @@
                                 <td>PHP {{number_format($order['total_amount'],2)}}</td>
                                 <td>{{number_format($order['total_order'])}}</td>
                                 <td>
-                                    <a class="btn btn-sm btn-warning" href="javascript:void(0);">View</a>
+                                    <a class="btn btn-sm btn-warning" onclick="partner_receivable('{{$row->partner_key_token}}')" href="javascript:void(0);">View</a>
                                 </td>
                             </tr>
                         @empty
@@ -64,3 +67,20 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    function partner_receivable(key_token){
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Getting Information...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                @this.call('partner_receivable', key_token)
+            }
+        });
+    }
+</script>
+@endpush

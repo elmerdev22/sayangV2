@@ -4,6 +4,7 @@ namespace App\Http\Livewire\BackEnd\Payable\Receivable;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Model\Partner;
 use QueryUtility;
 use Utility;
 
@@ -11,6 +12,10 @@ class Listing extends Component
 {
     use WithPagination;
     public $status, $search = '', $show_entries=10, $sort = [], $sort_type='asc';
+
+    public function mount(){
+        $this->sort = ['partners.name'];
+    }
 
     public function data($partner_id=null){
         $filter = [];
@@ -23,7 +28,8 @@ class Listing extends Component
         }else{
             $filter['select'] = [
                 'partners.*',
-                'partners.id as partner_id'
+                'partners.id as partner_id',
+                'partners.key_token as partner_key_token'
             ];
         }
 
@@ -91,5 +97,22 @@ class Listing extends Component
     public function sort($sort){
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
-	}
+    }
+    
+    public function partner_receivable($key_token){
+        
+        $partner = Partner::select([
+                'partners.*',
+                'user_accounts.key_token as account_key_token'
+            ])
+            ->join('user_accounts', 'user_accounts.id', '=', 'partners.user_account_id')
+            ->where('partners.key_token', $key_token)
+            ->firstOrFail();
+
+        $this->emit('partner_receivable', [
+            'partner_id'                => $partner->id,
+            'partner_name'              => ucfirst($partner->name),
+            'partner_account_key_token' => $partner->account_key_token
+        ]);
+    }
 }
