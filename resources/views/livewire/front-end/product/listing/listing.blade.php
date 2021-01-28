@@ -124,7 +124,7 @@
                                             {{ucfirst($row->partner_name)}} 
                                             @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
                                                 <small class="fas fa-star text-warning"></small> 
-                                                <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
+                                                <small>{{Utility::get_partner_ratings($row->partner_id)}}</small>
                                             @endif
                                         </div>
                                     </div>
