@@ -1,12 +1,12 @@
 
-<div class="list-group panel rounded-0">
-    <a href="#account" class="list-group-item rounded-0 {{\Route::is('front-end.user.my-account.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
+<div class="list-group panel">
+    <a href="#account" class="list-group-item {{\Route::is('front-end.user.my-account.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
         <span class="nav-icon fas fa-user"></span> 
         My Account 
         <i class="fa fa-chevron-left float-right"></i>
     </a>
     
-    <div class="collapse rounded-0 {{\Route::is('front-end.user.my-account.*') ? 'show':''}} mb-1" id="account">
+    <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}} mb-1" id="account">
         <a href="{{route('front-end.user.my-account.index')}}" class="list-group-item {{\Route::is('front-end.user.my-account.index') ? 'sayang-link-active':''}}">
             <span class="far fa-circle mr-1 ml-2"></span> 
             Profile 

@@ -18,12 +18,12 @@
         @include('front-end.includes.user.aside')
     </aside> <!-- col.// -->
     <main class="col-md-9">
-        <div class="card card-outline card-sayang mb-3">
+        <div class="card card-sayang mb-3 rounded-0">
             <div class="card-header">
                 <h5 class="card-title">My Addresses</h5> 
                 <div class="card-tools">
                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
-                        <i class="fas fa-plus"></i> Add New Address
+                        <i class="fas fa-plus"></i> Add New
                     </button>
                 </div>
             </div>
@@ -69,8 +69,8 @@
             </div>
             <div class="modal-footer">
                 <div class="text-right">
-                    <button type="button" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
-                    <button type="submit" class="btn btn-flat btn-sm btn-warning" form="form-edit_address"><i class="fas fa-check"></i> Save</button>
+                    <button type="button" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-flat btn-sm btn-warning" form="form-edit_address">Save</button>
                 </div>
             </div>
         </div>

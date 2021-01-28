@@ -114,9 +114,9 @@
         </div>
         <div class="modal-footer">
             <div class="text-right">
-                <button type="button" class="btn btn-flat btn-sm btn-danger" wire:loading.attr="disabled" wire:target="store" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                <button type="button" class="btn btn-flat btn-sm btn-danger" wire:loading.attr="disabled" wire:target="store" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-flat btn-sm btn-warning" wire:loading.attr="disabled" wire:target="store">
-                    <i class="fas fa-check"></i> Add @if($is_checkout_page) and Select @endif <i wire:loading wire:target="store" class="fas fa-spin fa-spinner"></i>
+                    Add @if($is_checkout_page) and Select @endif <i wire:loading wire:target="store" class="fas fa-spin fa-spinner"></i>
                 </button>
             </div>
         </div>    

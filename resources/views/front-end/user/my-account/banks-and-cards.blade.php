@@ -20,12 +20,12 @@
     <main class="col-md-9">
 
         @if($enabled_bank_account)
-            <div class="card card-outline card-sayang mb-3">
+            <div class="card card-sayang mb-3 rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">My Bank Accounts</h5> 
                     <div class="card-tools">
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_bank">
-                            <i class="fas fa-plus"></i> Add New Bank Account
+                            <i class="fas fa-plus"></i> Add New
                         </button>
                     </div>
                 </div>
@@ -36,12 +36,12 @@
         @endif
         
         @if($enabled_debit_credit_card)
-            <div class="card card-outline card-sayang mb-3">
+            <div class="card card-sayang mb-3 rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">My Debit/Credit Cards</h5> 
                     <div class="card-tools">
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_credit_card">
-                            <i class="fas fa-plus"></i> Add New Debit/Credit Cards
+                            <i class="fas fa-plus"></i> Add New
                         </button>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <div>
-    <div class="card card-outline card-sayang mb-3">
+    <div class="card card-sayang mb-3 rounded-0">
         <div class="card-header">
             <h5 class="card-title">Order Placed</h5> 
             <div class="card-tools">

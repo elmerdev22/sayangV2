@@ -18,7 +18,7 @@
         @include('front-end.includes.user.aside')
     </aside> <!-- col.// -->
     <main class="col-md-9">
-        <div class="card card-outline card-sayang mb-3">
+        <div class="card card-sayang mb-3 rounded-0">
             <div class="card-header">
                 <h5 class="card-title"> My Account</h5> 
             </div>
