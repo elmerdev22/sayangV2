@@ -4,7 +4,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Sayang</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);" wire:click="clear_filter">Categories</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Categories</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$category ? $category : 'All'}}</li>
                     @if ($sub_category)
                         <li class="breadcrumb-item active" aria-current="page">{{$sub_category ? $sub_category : ''}}</li> 

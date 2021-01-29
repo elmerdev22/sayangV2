@@ -37,7 +37,7 @@ class Breadcrumb extends Component
 
     public function clear_filter($param){
         $this->reset();
-        $this->emit('clear_filter', true);
+
         $url = route('front-end.product.list.index', ['category' => null , 'sub_category' => null]);
         $this->emit('change_url', $url);
     }
