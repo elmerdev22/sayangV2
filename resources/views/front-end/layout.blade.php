@@ -76,6 +76,9 @@
                 @include('front-end.footer.index')
             </footer>
         @endif
+        <a id="back-to-top" href="#" style="display: none;" class="btn btn-warning rounded back-to-top shadow" role="button" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </a>
     </div>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->

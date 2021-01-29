@@ -167,7 +167,7 @@
         @empty
             <div class="col-12 text-center">
                 <img style="width: 30%" src="{{asset('images/default-photo/no-search.jpg')}}">
-                <h4 class="text-center">No Item Found</h4>
+                <h5 class="text-center">No Item Found</h5>
             </div>
         @endforelse    
     </div>

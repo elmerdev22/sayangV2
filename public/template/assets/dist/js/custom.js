@@ -1,4 +1,13 @@
 
+$(window).bind('scroll', function(){
+    if($(this).scrollTop() > 200) {
+        $("#back-to-top").fadeIn();
+    }
+    else{
+        $("#back-to-top").fadeOut();
+    }
+});
+
 $('.sayang-card-img-listing').lazy({
     effect: "fadeIn",
     effectTime: 1500,
@@ -9,7 +18,6 @@ $('.lazy').lazy({
     effectTime: 1000,
     autoDestroy : false
 });
-
 // Set the date we're counting down to
 var count_down_timer = function count_down_timer(date_time, element_container_id){
     // "Oct 24, 2020 01:30:00" (format)
