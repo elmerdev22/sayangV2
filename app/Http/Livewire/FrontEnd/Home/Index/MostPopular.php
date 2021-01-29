@@ -9,6 +9,7 @@ use App\Model\UserAccount;
 use QueryUtility;
 use UploadUtility;
 use Utility;
+use DB;
 
 class MostPopular extends Component
 {
@@ -22,7 +23,8 @@ class MostPopular extends Component
             'products.regular_price as regular_price',
             'products.partner_id',
             'products.slug as product_slug',
-            'partners.name as partner_name'
+            'partners.name as partner_name',
+            DB::raw('COUNT(bids.product_post_id) as most_popular'),
         ];
         $filter['where']['product_posts.status'] = 'active';
         $filter['available_quantity']            = true;
@@ -34,7 +36,11 @@ class MostPopular extends Component
             'date'       => $date_time
         ];
 
-        return QueryUtility::product_posts($filter)->paginate($this->limit);
+        return QueryUtility::product_posts($filter)
+                ->leftJoin('bids','bids.product_post_id', '=', 'product_posts.id')
+                ->groupBy('product_posts.id')
+                ->orderBy('most_popular', 'desc')
+                ->paginate($this->limit);
     }
 
     public function product_featured_photo($product_id, $partner_id){

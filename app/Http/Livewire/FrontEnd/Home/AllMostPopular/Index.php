@@ -10,7 +10,7 @@ use QueryUtility;
 use UploadUtility;
 use Utility;
 use Livewire\WithPagination;
-
+use DB;
 class Index extends Component
 {
     use WithPagination;
@@ -24,11 +24,12 @@ class Index extends Component
             'products.regular_price as regular_price',
             'products.partner_id',
             'products.slug as product_slug',
-            'partners.name as partner_name'
+            'partners.name as partner_name',
+            DB::raw('COUNT(bids.product_post_id) as most_popular'),
         ];
         $filter['where']['product_posts.status'] = 'active';
         $filter['available_quantity']            = true;
-        $date_time = date('Y-m-d H:i:s');
+                $date_time                       = date('Y-m-d H:i:s');
 
         $filter['date_range_two_field'][] = [
             'field_from' => 'product_posts.date_start',
@@ -36,7 +37,11 @@ class Index extends Component
             'date'       => $date_time
         ];
 
-        return QueryUtility::product_posts($filter)->paginate($this->limit);
+        return QueryUtility::product_posts($filter)
+                ->leftJoin('bids','bids.product_post_id', '=', 'product_posts.id')
+                ->groupBy('product_posts.id')
+                ->orderBy('most_popular', 'desc')
+                ->paginate($this->limit);
     }
 
     public function product_featured_photo($product_id, $partner_id){
