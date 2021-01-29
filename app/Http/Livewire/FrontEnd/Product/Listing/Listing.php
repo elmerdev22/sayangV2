@@ -13,12 +13,13 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-    public $price_range=[], $search, $category, $limit=9, $sort_by='', $view_by='grid_view';
+    public $min_price, $max_price, $search, $category, $limit=12, $sort_by='', $view_by='grid_view';
     public $selected_category_id, $selected_sub_category_id, $partner_id;
 
     protected $listeners = [
-        'set_filter'   => 'set_filter',
-        'clear_filter' => 'clear_filter'
+        'set_filter'      => 'set_filter',
+        'set_price_range' => 'set_price_range',
+        'clear_filter'    => 'clear_filter'
     ];
 
     public function mount($search, $partner_id){
@@ -30,8 +31,13 @@ class Listing extends Component
     }
 
     public function clear_filter(){
-        $this->reset();
+        $this->reset(['search', 'min_price', 'max_price', 'category', 'limit', 'sort_by', 'view_by', 'selected_category_id', 'selected_sub_category_id']);
         $this->resetPage();
+    }
+
+    public function set_price_range($param){
+        $this->min_price = $param['min_price'];
+        $this->max_price = $param['max_price'];
     }
 
     public function set_filter($param){
@@ -66,14 +72,12 @@ class Listing extends Component
             'date'       => $date_time
         ];
 
-        if(!empty($this->price_range)){
-            if(isset($this->price_range['price_min']) && isset($this->price_range['price_max'])){
-                $filter['value_between_min_max'][] = [
-                    'field' => 'product_posts.buy_now_price',
-                    'min'   => $this->price_range['price_min'],
-                    'max'   => $this->price_range['price_max'],
-                ];
-            }            
+        if(!empty($this->min_price) && !empty($this->max_price)){
+            $filter['value_between_min_max'][] = [
+                'field' => 'product_posts.buy_now_price',
+                'min'   => $this->min_price,
+                'max'   => $this->max_price,
+            ];
         }
 
         if(!empty($this->partner_id)){

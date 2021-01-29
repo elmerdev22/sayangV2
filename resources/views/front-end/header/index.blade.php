@@ -52,7 +52,6 @@
               
               @auth
                   <div class="widgets-wrap float-md-right">
-
                   @if(Auth::user()->type == 'user')
                     <div class="widget-header mr-3">
                       <a href="{{route('front-end.'.Auth::user()->type.'.my-account.index')}}" class="widget-view" data-tooltip="My Account" data-tooltip-location="bottom">

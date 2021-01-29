@@ -7,6 +7,7 @@ use App\Model\Product;
 use App\Model\Category;
 use App\Model\SubCategory;
 use QueryUtility;
+use Session;
 
 class SearchFilter extends Component
 {
@@ -34,25 +35,12 @@ class SearchFilter extends Component
         return view('livewire.front-end.product.listing.search-filter', compact('categories'));
     }
 
-    public function set_price_range($price_min, $price_max){
-        if($price_min == '' || $price_max == '' || $price_min == 'Nan' || $price_max == 'Nan'){
-            $this->emit('alert',[
-                'type'  => 'error',
-                'title' => 'Please input price range'
-            ]);
-        }
-        if($price_min > $price_max){
-            $this->emit('alert',[
-                'type'  => 'error',
-                'title' => 'Invalid price range input'
-            ]);
-        }else{
-            $this->emit('set_filter',[
-                'type'      => 'price_range',
-                'price_min' => $price_min,
-                'price_max' => $price_max
-            ]);
-        }
+    public function set_price_range($min_price, $max_price){
+        
+        $this->emit('set_price_range', [
+            'min_price' => $min_price,
+            'max_price' => $max_price,
+        ]);
     }
 
     public function set_filter($id , $type = 'category'){

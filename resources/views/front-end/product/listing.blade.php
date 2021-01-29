@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- Breadcrumb -->
-    @livewire('front-end.product.listing.breadcrumb')
+    @livewire('front-end.product.listing.breadcrumb', ['category' => $data['category'], 'sub_category' => $data['sub_category']])
     <!-- Breadcrumb.// -->
 
     <div class="row">
@@ -13,7 +13,7 @@
             </div>
             <div class="hidden-xs d-none d-md-block d-lg-block ">    
                 <div class="card">
-                    @livewire('front-end.product.listing.search-filter', ['search' => $search, 'partner_id' => null ])
+                    @livewire('front-end.product.listing.search-filter', ['search' => $data['search'], 'partner_id' => null ])
                 </div> <!-- card.// -->
             </div>
         </aside> <!-- col.// -->
@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card no-box-shadow" id="card-product_listing">
                         <div class="card-body p-0">
-                            @livewire('front-end.product.listing.listing', ['search' => $search, 'partner_id' => null])
+                            @livewire('front-end.product.listing.listing', ['search' => $data['search'], 'partner_id' => null])
                         </div>
                     </div> <!-- card.// -->
                 </div>
@@ -41,7 +41,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0 m-0">
-                    @livewire('front-end.product.listing.search-filter', ['search' => $search])
+                    @livewire('front-end.product.listing.search-filter', ['search' => $data['search'] ])
                 </div>
             </div>
         </div> <!-- modal-bialog .// -->

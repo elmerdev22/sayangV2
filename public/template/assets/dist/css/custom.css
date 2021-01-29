@@ -4,6 +4,9 @@
   --sayang-dark-color: #333333;
   --sayang-light-color: #FFFFFF;
 }
+.card{
+  border-radius: 0;
+}
 .carousel-inner{
   width:100%; 
   height: 300px !important;
@@ -902,4 +905,7 @@ input.input-number-remove-arrow::-webkit-inner-spin-button {
   .product-card-btn-purchase{
     margin-left: -7.5px;
   }
+}
+@media all and (min-width: 992px) {
+	.navbar .has-megamenu{position:static!important;}
 }

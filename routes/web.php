@@ -129,15 +129,17 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             ]);
         });
 
+    });
+
+    Route::group(['prefix' => 'products', 'as' => 'product.', 'namespace' => 'Product'], function (){
         Route::group(['as' => 'list.'], function (){
             $c = 'ListingController';
             
-            Route::get('/list', [
+            Route::get('/list/{category?}/{sub_category?}', [
                 'as' 	=> 'index',
                 'uses'  => $c.'@index'
             ]);
         });
-
     });
 
     Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Profile'], function (){
