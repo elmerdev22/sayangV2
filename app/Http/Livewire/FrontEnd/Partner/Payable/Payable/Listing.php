@@ -13,7 +13,7 @@ class Listing extends Component
 {
     use WithPagination;
 
-    public $status, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
+    public $status, $search = '', $show_entries=10, $sort = [], $sort_type='asc';
     public $date_from, $date_to, $reset_filter = false;
     public $partner_id;
     
@@ -116,5 +116,17 @@ class Listing extends Component
     
     public function order_total($order_id){
         return Utility::order_total($order_id)['total'];
-    }
+	}
+	
+	public function select_order($key_tokens){
+		if(count($key_tokens) <= 0){
+			$this->emit('alert', [
+				'type'  => 'error',
+				'title' => 'No Selected Order'
+			]);
+			return false;
+		}
+
+		dd($key_tokens);
+	}
 }

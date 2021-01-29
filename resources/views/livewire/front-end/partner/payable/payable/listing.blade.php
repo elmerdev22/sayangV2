@@ -61,7 +61,7 @@
                                 <td>PHP {{number_format($total_amount, 2)}}</td>
                                 <td class="text-center">
                                     <div class="">
-                                        <input type="checkbox" onclick="select_order('{{$row->order_key_token}}')" id="select-{{$row->order_key_token}}">
+                                        <input type="checkbox" data-key_token="{{$row->order_key_token}}" onclick="select_order_validate()" id="select-{{$row->order_key_token}}" class="select-order">
                                         <label for="select-{{$row->order_key_token}}"></label>
                                     </div>
                                 </td>
@@ -79,14 +79,23 @@
                             <th>PHP {{number_format($overall_total_commission,2)}}</th>
                             <th>PHP {{number_format($overall_total_net_amount,2)}}</th>
                             <th>PHP {{number_format($overall_total_amount,2)}}</th>
-                            <th></th>
+                            <th>
+                                @if(count($data) > 0)
+                                    <div class="">
+                                        <input type="checkbox" onclick="select_all_orders()" id="select-all-orders">
+                                        <label for="select-all-orders"></label>
+                                    </div>
+                                @endif
+                            </th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
             <div class="row">
                 <div class="col-12 text-right">
-                    <button type="button" class="btn btn-warning btn-sm">Proceed Selected Orders <i class="fas fa-caret-right"></i></button>
+                    <button type="button" onclick="select_order()" wire:loading.attr="disabled" wire:target="select_order" class="btn btn-warning btn-sm">
+                        Proceed Selected Orders <i class="fas fa-caret-right"></i> <i wire:loading wire:target="select_order" class="fas fa-spin fa-spinner"></i>
+                    </button>
                 </div>
             </div>
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
@@ -94,3 +103,47 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    function select_order_validate(){
+        var check_all = true;
+
+        $(document).find('.select-order').each(function (){
+            if(!$(this).is(':checked')){
+                check_all = false;
+                $(document).find('#select-all-orders').prop('checked', check_all);
+                return false;
+            }
+        });
+
+        $(document).find('#select-all-orders').prop('checked', check_all);
+    }
+
+    function select_all_orders(){
+        $(document).find('.select-order').each(function (){
+            if($(document).find('#select-all-orders').is(':checked')){
+                $(this).prop('checked', true);
+            }else{
+                $(this).prop('checked', false);
+            }
+        });
+    }
+
+    function select_order(){        
+        var key_tokens = [];
+        $(document).find('.select-order').each(function (){
+            if($(this).is(':checked')){
+                if(typeof $(this).data('key_token') !== 'undefined') {
+                    var key_token = $(this).data('key_token'); 
+                    if(key_token != ''){
+                        key_tokens.push(key_token);
+                    }
+                }
+            }
+        });
+
+        @this.call('select_order', key_tokens)
+    }
+</script>
+@endpush
