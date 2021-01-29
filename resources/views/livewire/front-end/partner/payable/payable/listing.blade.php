@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">  
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
-            {{--@include('back-end.layouts.includes.datatables.search')--}}
+            {{--@include('front-end.includes.datatables.search')--}}
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
@@ -13,15 +13,15 @@
                             <td>#</td>
                             <th class="table-sort" wire:click="sort('orders.order_no')">
                                 Order No. 
-                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.order_no'])
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.order_no'])
                             </th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
-                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.created_at'])
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
                             </th>
                             <th class="table-sort">
                                 Date Completed
-                                @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.date_completed'])
+                                @include('front-end.includes.datatables.sort', ['field' => 'orders.date_completed'])
                             </th>
                             <th class="table-sort">
                                 Sayang Commission
@@ -102,7 +102,7 @@
             @endif
             
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
-            {{--@include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])--}}
+            {{--@include('front-end.includes.datatables.pagination', ['pagination_items' => $data])--}}
         </div>
     </div>
 </div>

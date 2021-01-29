@@ -21,7 +21,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         Payout No. #{{$row->payout_no}} | {{date('M/d/Y', strtotime($row->date_from))}} - {{date('M/d/Y', strtotime($row->date_to))}}
-                                        &nbsp; <small><a class="text-blue" href="{{route('back-end.payable.information', ['payout_no' => $row->payout_no])}}" title="View Payout">(Click to View Payout)</a></small>
+                                        &nbsp; <small><a class="text-blue" href="{{route('front-end.partner.payable.information', ['payout_no' => $row->payout_no])}}" title="View Payout">(Click to View Payout)</a></small>
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
@@ -60,16 +60,14 @@
                                                         <th>{{$order_key+1}}.)</th>
                                                         <td>{{$order->order_no}}</td>
                                                         <td>
-                                                            <a class="text-blue" href="{{route('back-end.user.profile', ['key_token' => $order->buyer_key_token])}}" title="Click to View Profile">
-                                                                {{ucwords($order->buyer_first_name.' '.$order->buyer_last_name)}}
-                                                            </a>
+                                                            {{ucwords($order->buyer_first_name.' '.$order->buyer_last_name)}}
                                                         </td>
                                                         <td>{{date('M/d/Y', strtotime($order->purchase_date))}}</td>
                                                         <td>{{date('M/d/Y', strtotime($order->date_completed))}}</td>
                                                         <td>PHP {{number_format($sayang_commission['total_commission'], 2)}}</td>                          
                                                         <td>PHP {{number_format($total_amount, 2)}}</td>                          
                                                         <td>
-                                                            <a class="btn btn-xs btn-warning" href="{{route('back-end.order-and-receipt.track', ['order_no' => $order->order_no])}}">Track</a>
+                                                            <a class="btn btn-xs btn-warning" href="{{route('front-end.partner.order-and-receipt.track', ['id' => $order->order_no])}}">Track</a>
                                                         </td>
                                                     </tr>
                                                 @empty
@@ -87,7 +85,7 @@
                                                     <th>PHP {{number_format($payout_sayang_commission,2)}}</th>
                                                     <th>PHP {{number_format($payout_total_amount,2)}}</th>
                                                     <th>
-                                                        <a class="btn btn-xs btn-warning" href="{{route('back-end.payable.information', ['payout_no' => $row->payout_no])}}">View Payout</a>
+                                                        <a class="btn btn-xs btn-warning" href="{{route('front-end.partner.payable.information', ['payout_no' => $row->payout_no])}}">View Payout</a>
                                                     </th>
                                                 </tr>
                                             </tfoot>
@@ -101,7 +99,7 @@
                     @php $is_collapsed = true; @endphp
                 @endforeach
                 <!-- NOTE: Always put the pagination after the .table-responsive class -->
-                @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
+                @include('front-end.includes.datatables.pagination', ['pagination_items' => $data])
             @else
                 <h4 class="text-center text-muted">No Completed Payable Found</h4>
             @endif

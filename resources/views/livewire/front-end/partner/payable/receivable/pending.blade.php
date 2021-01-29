@@ -39,7 +39,7 @@
                             @foreach($data as $row)
                                 <tr>
                                     <td>
-                                        <a href="javascript:void(0)" class="text-blue" title="Click to view payout information">
+                                        <a href="{{route('front-end.partner.payable.information', ['payout_no' => $row->payout_no])}}" class="text-blue" title="Click to view payout information">
                                             {{$row->payout_no}}
                                         </a>
                                     </td>
