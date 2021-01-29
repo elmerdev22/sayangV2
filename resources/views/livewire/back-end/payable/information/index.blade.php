@@ -10,9 +10,11 @@
             <div class="form-group">
                 <b>PAYOUT NO. : </b> {{$data->payout_no}}
             </div>
-            <div class="form-group">
-                <b>DATE COVERAGE : </b> {{date('M/d/Y', strtotime($data->order_payment_payout_batch->date_from))}} - {{date('M/d/Y', strtotime($data->order_payment_payout_batch->date_to))}}
-            </div>
+            @if($data->order_payment_payout_batch->date_from && $data->order_payment_payout_batch->date_to)
+                <div class="form-group">
+                    <b>DATE COVERAGE : </b> {{date('M/d/Y', strtotime($data->order_payment_payout_batch->date_from))}} - {{date('M/d/Y', strtotime($data->order_payment_payout_batch->date_to))}}
+                </div>
+            @endif
             <div class="form-group">
                 <b>PAYOUT DATE : </b> {{date('F/d/Y', strtotime($data->created_at))}}
             </div>
