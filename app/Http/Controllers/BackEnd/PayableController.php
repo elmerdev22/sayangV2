@@ -26,7 +26,9 @@ class PayableController extends Controller
         return view('back-end.payable.completed');
     }
     public function completed_information($partner_slug){
-        $partner = Partner::where('slug', $partner_slug)->firstOrFail();
+        $partner = Partner::with(['user_account'])
+            ->where('slug', $partner_slug)
+            ->firstOrFail();
         return view('back-end.payable.completed-information', compact('partner'));
     }
 }

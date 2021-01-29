@@ -128,7 +128,7 @@
                         @if($data->order_payment->order_payment_payout_item)
                             <div>
                                 <strong>Payout No.:</strong> 
-                                <a class="text-blue" href="javascript:void(0);">
+                                <a class="text-blue" href="{{route('front-end.partner.payable.information', ['payout_no' => $data->order_payment->order_payment_payout_item->order_payment_payout->payout_no])}}">
                                     {{$data->order_payment->order_payment_payout_item->order_payment_payout->payout_no}}
                                 </a>
                             </div>

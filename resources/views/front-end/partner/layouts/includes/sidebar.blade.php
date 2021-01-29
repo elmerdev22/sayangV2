@@ -113,33 +113,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview {{Route::is('front-end.partner.payout.*') ? 'menu-open':''}}">
-                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.payout.*') ? 'active':''}}">
-                        <i class="nav-icon fas fa-credit-card"></i>
-                        <p>Payouts <i class="right fas fa-angle-left"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('front-end.partner.payout.to-receive')}}" class="nav-link {{Route::is('front-end.partner.payout.to-receive') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>To Receive</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('front-end.partner.payout.to-pay')}}" class="nav-link {{Route::is('front-end.partner.payout.to-pay') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>To Pay</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('front-end.partner.payout.completed')}}" class="nav-link {{Route::is('front-end.partner.payout.completed') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Completed</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="nav-item has-treeview {{Route::is('front-end.partner.payable.*') ? 'menu-open':''}}">
                     <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.payable.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-credit-card"></i>

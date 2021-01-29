@@ -14,6 +14,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @livewire('front-end.partner.payable.receivable.pending')
             @livewire('front-end.partner.payable.receivable.listing')
         </div>
     </div>
