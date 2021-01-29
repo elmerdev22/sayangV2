@@ -91,13 +91,16 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="row">
-                <div class="col-12 text-right">
-                    <button type="button" onclick="select_order()" wire:loading.attr="disabled" wire:target="select_order" class="btn btn-warning btn-sm">
-                        Proceed Selected Orders <i class="fas fa-caret-right"></i> <i wire:loading wire:target="select_order" class="fas fa-spin fa-spinner"></i>
-                    </button>
+            @if(count($data) > 0)
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button type="button" onclick="select_order()" wire:loading.attr="disabled" wire:target="select_order" class="btn btn-warning btn-sm">
+                            Proceed Selected Orders <i class="fas fa-caret-right"></i> <i wire:loading wire:target="select_order" class="fas fa-spin fa-spinner"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            @endif
+            
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
             {{--@include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])--}}
         </div>
@@ -130,20 +133,29 @@
         });
     }
 
-    function select_order(){        
-        var key_tokens = [];
-        $(document).find('.select-order').each(function (){
-            if($(this).is(':checked')){
-                if(typeof $(this).data('key_token') !== 'undefined') {
-                    var key_token = $(this).data('key_token'); 
-                    if(key_token != ''){
-                        key_tokens.push(key_token);
+    function select_order(){
+        Swal.fire({
+            title             : 'Please wait...',
+            html              : 'Processing...',
+            allowOutsideClick : false,
+            showCancelButton  : false,
+            showConfirmButton : false,
+            onBeforeOpen      : () => {
+                Swal.showLoading();
+                var key_tokens = [];
+                $(document).find('.select-order').each(function (){
+                    if($(this).is(':checked')){
+                        if(typeof $(this).data('key_token') !== 'undefined') {
+                            var key_token = $(this).data('key_token'); 
+                            if(key_token != ''){
+                                key_tokens.push(key_token);
+                            }
+                        }
                     }
-                }
+                });
+                @this.call('select_order', key_tokens)
             }
         });
-
-        @this.call('select_order', key_tokens)
     }
 </script>
 @endpush

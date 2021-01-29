@@ -15,7 +15,11 @@ class Listing extends Component
 
     public $status, $search = '', $show_entries=10, $sort = [], $sort_type='asc';
     public $date_from, $date_to, $reset_filter = false;
-    public $partner_id;
+	public $partner_id;
+	
+	protected $listeners = [
+		'initialize_payable' => '$refresh'
+	];
     
     public function mount(){
         $this->sort       = ['orders.date_completed'];
@@ -127,6 +131,8 @@ class Listing extends Component
 			return false;
 		}
 
-		dd($key_tokens);
+		$this->emit('payable_proceed', [
+			'key_tokens' => $key_tokens
+		]);
 	}
 }

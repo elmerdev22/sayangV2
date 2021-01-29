@@ -1,11 +1,11 @@
 @extends('back-end.layouts.layout')
-@section('title','Payout - To Receive')
+@section('title','Payout - Receivable')
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => 'Payout - To Receive',
+            'title'       => 'Payout - Receivable',
             'breadcrumbs' => [
-                ['url' => '', 'label' => 'Payout - To Receive'],
+                ['url' => '', 'label' => 'Payout - Receivable'],
             ],
         ];
     @endphp
