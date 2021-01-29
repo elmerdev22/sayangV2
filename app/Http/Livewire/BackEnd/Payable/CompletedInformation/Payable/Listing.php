@@ -30,6 +30,7 @@ class Listing extends Component
         $filter['where']['order_payment_payouts.partner_id']  = $this->partner_id;
         $filter['where']['order_payment_payouts.status']      = 'completed';
         $filter['where']['order_payment_payout_batches.type'] = 'online_payment';
+        $filter['order_by']                                   = 'order_payment_payout_batches.created_at desc';
 
         return QueryUtility::order_payment_payouts($filter)->paginate($this->show_entries);
     }
