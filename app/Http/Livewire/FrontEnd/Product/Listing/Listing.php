@@ -30,11 +30,11 @@ class Listing extends Component
         if($search != null){
             $this->search = $search;
         }
-        if($category != null){
+        if($category != null && $sub_category == null){
             $this->selected_category_id = Category::where('slug', $category)->first()->id;
         }
-        if($sub_category != null){
-            $this->selected_category_id = SubCategory::where('slug', $sub_category)->first()->id;
+        if($category != null && $sub_category != null){
+            $this->selected_sub_category_id = SubCategory::where('slug', $sub_category)->first()->id;
         }
     }
 
