@@ -23,7 +23,7 @@
                             <div class="row mt-5 text-muted text-sm">
                                 <div class="col-md-3">
                                     <!-- /.widget-user-image -->
-                                    <h4>{{$data['store_name']}}</h4>
+                                    <h5>{{$data['store_name']}}</h5>
                                     @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
                                 </div>
                                 <div class="col-md-2">

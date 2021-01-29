@@ -60,23 +60,22 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-
                                 <div class="row text-muted text-sm">
-                                    <div class="col-md-3">
-                                        <div class="widget-user-header">
+                                    <div class="col-md-3 pb-2">
+                                        <div class="widget-user-header p-0">
                                             <div class="widget-user-image">
                                                 <img class="img-circle img-responsive elevation-1 mr-3 lazy" src="{{$store_photo}}" alt="Store photo" style="width: 50px; height: 50px;">
                                             </div>
                                             <!-- /.widget-user-image -->
-                                            <h5>{{ucfirst($product->partner_name)}}</h5>
-                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-sm">
-                                                <span class="fas fa-store"></span> View Shop
+                                            <h6>{{ucfirst($product->partner_name)}}</h6>
+                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-xs">
+                                                <span class="fas fa-store"></span> <small>View Shop</small>
                                             </a>
                                         </div>
                                             {{-- @livewire('front-end.profile.partner.follow-button', ['partner_id' => $product->partner_id ]) --}}
                                     </div>
                                     <div class="col-md-2">
-                                        <div class="row widget-user-header ">
+                                        <div class="row">
                                             <div class="col-12">
                                                 <label>
                                                     <span class="fas fa-star"></span> 
@@ -94,7 +93,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="row widget-user-header">
+                                        <div class="row">
                                             <div class="col-12">
                                                 <label>
                                                     <span class="fas fa-users"></span>
@@ -112,7 +111,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="row widget-user-header">
+                                        <div class="row">
                                             <div class="col-12">
                                                 <label>
                                                     <span class="fas fa-map-marker-alt"></span> 
