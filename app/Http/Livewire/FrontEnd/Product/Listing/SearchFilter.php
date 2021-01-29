@@ -56,7 +56,7 @@ class SearchFilter extends Component
         else{
             $this->selected_sub_category_id = $id;
         }
-
+        
     }
 
     public function clear_filter(){

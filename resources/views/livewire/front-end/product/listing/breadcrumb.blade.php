@@ -14,3 +14,10 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    window.livewire.on('change_url', url => {
+        history.pushState(null, null, url);
+    });
+</script>   
+@endpush

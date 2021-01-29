@@ -7,6 +7,8 @@ use Livewire\WithPagination;
 use App\Model\Partner;
 use App\Model\Product;
 use App\Model\UserAccount;
+use App\Model\Category;
+use App\Model\SubCategory;
 use UploadUtility;
 use QueryUtility;
 
@@ -22,11 +24,17 @@ class Listing extends Component
         'clear_filter'    => 'clear_filter'
     ];
 
-    public function mount($search, $partner_id){
+    public function mount($search, $partner_id, $category = null, $sub_category = null){
         $this->partner_id = $partner_id;
 
         if($search != null){
             $this->search = $search;
+        }
+        if($category != null){
+            $this->selected_category_id = Category::where('slug', $category)->first()->id;
+        }
+        if($sub_category != null){
+            $this->selected_category_id = SubCategory::where('slug', $sub_category)->first()->id;
         }
     }
 

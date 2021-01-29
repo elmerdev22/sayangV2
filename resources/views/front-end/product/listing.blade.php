@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card no-box-shadow" id="card-product_listing">
                         <div class="card-body p-0">
-                            @livewire('front-end.product.listing.listing', ['search' => $data['search'], 'partner_id' => null])
+                            @livewire('front-end.product.listing.listing', ['search' => $data['search'], 'partner_id' => null, 'category' => $data['category'], 'sub_category' => $data['sub_category'] ])
                         </div>
                     </div> <!-- card.// -->
                 </div>

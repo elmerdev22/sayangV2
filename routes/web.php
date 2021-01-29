@@ -135,7 +135,7 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
         Route::group(['as' => 'list.'], function (){
             $c = 'ListingController';
             
-            Route::get('/list/{category?}/{sub_category?}', [
+            Route::get('/{category?}/{sub_category?}', [
                 'as' 	=> 'index',
                 'uses'  => $c.'@index'
             ]);
