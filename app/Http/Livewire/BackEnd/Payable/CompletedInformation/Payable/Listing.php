@@ -27,8 +27,9 @@ class Listing extends Component
             'order_payment_payout_batches.commission_percentage'
         ];
 
-        $filter['where']['order_payment_payouts.partner_id'] = $this->partner_id;
-        $filter['where']['order_payment_payouts.status'] = 'completed';
+        $filter['where']['order_payment_payouts.partner_id']  = $this->partner_id;
+        $filter['where']['order_payment_payouts.status']      = 'completed';
+        $filter['where']['order_payment_payout_batches.type'] = 'online_payment';
 
         return QueryUtility::order_payment_payouts($filter)->paginate($this->show_entries);
     }
