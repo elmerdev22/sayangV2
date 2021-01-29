@@ -103,12 +103,12 @@
             <div class="col-12">
                 <div class="card mb-4 product-card">
                     <div class="row">
-                        <div class="col-sm-4 overflow-hidden product-card-img-list">
+                        <div class="col-4 overflow-hidden product-card-img-list">
                             <div class="overflow-hidden position-relative">
                                 <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                             </div>
                         </div>
-                        <div class="col-sm-8 overflow-hidden">
+                        <div class="col-8 overflow-hidden">
                             <div class="product-card-list-information">
                                 <div class="mb-3 product-card-countdown">
                                     <span class="ends-in rounded" style="position: relative !important;">
@@ -131,8 +131,8 @@
                                 </div>
                                 <div class="mb-2">
                                     <div class="product-info">
-                                        <div class="font-weight-bold text-left text-ellipsis">
-                                            {{ucfirst($row->product_name)}} ({{number_format($row->quantity)}} left)
+                                        <div class="text-left text-ellipsis">
+                                            {{ucfirst($row->product_name)}} <small>({{number_format($row->quantity)}} left)</small>
                                         </div>
                                     </div>
                                 </div>
