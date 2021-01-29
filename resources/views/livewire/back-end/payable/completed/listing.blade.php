@@ -26,7 +26,7 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>
-                                    <a class="text-blue" href="javascript:void(0);">{{ucfirst($row->partner_name)}}</a>
+                                    <a class="text-blue" href="{{route('back-end.payable.completed.information', ['partner_slug' => $row->partner_slug])}}">{{ucfirst($row->partner_name)}}</a>
                                 </td> 
                                 <td>PHP {{number_format($row->overall_sayang_commission,2)}}</td>
                                 <td>PHP {{number_format($row->overall_foreign_fee + $row->overall_paymongo_fee,2)}}</td>

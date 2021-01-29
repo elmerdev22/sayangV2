@@ -21,7 +21,7 @@
                     @endphp
                     <tr>
                         <td>
-                            <a href="{{route('back-end.order-and-receipt.track', ['order_no' => $row->order_payment->order->order_no])}}" class="text-blue">{{$row->order_payment->order->order_no}}</a>
+                            <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_payment->order->order_no])}}" class="text-blue">{{$row->order_payment->order->order_no}}</a>
                         </td>
                         <td>
                             {{ucwords($buyer_name)}}
@@ -33,7 +33,7 @@
                         <td>{{date('M/d/Y', strtotime($row->order_payment->order->date_completed))}}</td>
                         <td>{{date('M/d/Y', strtotime($row->order_payment->order->created_at))}}</td>
                         <td>
-                            <a href="{{route('back-end.order-and-receipt.track', ['order_no' => $row->order_payment->order->order_no])}}" class="btn btn-warning btn-sm">View Order</a>
+                            <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_payment->order->order_no])}}" class="btn btn-warning btn-sm">View Order</a>
                         </td>
                     </tr>
                 @endforeach
