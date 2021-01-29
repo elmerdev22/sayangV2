@@ -103,12 +103,12 @@
             <div class="col-12">
                 <div class="card mb-4 product-card">
                     <div class="row">
-                        <div class="col-4 overflow-hidden product-card-img-list">
+                        <div class="col-5 col-md-4 overflow-hidden product-card-img-list">
                             <div class="overflow-hidden position-relative">
                                 <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
                             </div>
                         </div>
-                        <div class="col-8 overflow-hidden">
+                        <div class="col-7 col-md-8 overflow-hidden">
                             <div class="product-card-list-information">
                                 <div class="mb-3 product-card-countdown">
                                     <span class="ends-in rounded" style="position: relative !important;">
