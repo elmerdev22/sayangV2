@@ -661,6 +661,32 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
             ]);
             
         });
+
+        // Payables
+        Route::group(['prefix' => 'payable', 'as' => 'payable.'], function (){
+            $c = 'PayableController';
+            
+            Route::get('/information/{payout_no}', [
+                'as'    => 'information',
+                'uses'  => $c.'@information'
+            ]);
+
+            Route::get('/payable', [
+                'as'    => 'payable',
+                'uses'  => $c.'@payable'
+            ]);
+
+            Route::get('/receivable', [
+                'as'    => 'receivable',
+                'uses'  => $c.'@receivable'
+            ]);
+
+            Route::get('/completed', [
+                'as'    => 'completed',
+                'uses'  => $c.'@completed'
+            ]);
+            
+        });
     });
 });
 
