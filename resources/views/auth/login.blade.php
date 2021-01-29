@@ -1,18 +1,8 @@
 @extends('front-end.layout')
 @section('title','Login')
-@section('page_header')
-    @php 
-        $page_header = [
-            'title'       => '',
-            'breadcrumbs' => [
-                ['url' => '', 'label' => 'Login'],
-            ],
-        ];
-    @endphp
-    @include('front-end.includes.page-header', $page_header)
-@endsection
+
 @section('content')
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-7 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/login-user2.jpg')}}') no-repeat">
     </div>
     <div class="col-md-5">

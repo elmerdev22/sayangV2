@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-warning text-white  btn-block btn-flat">
+                <button type="submit" wire:loading.attr="disabled" wire:target="authenticate" class="btn btn-warning text-white btn-block btn-flat">
                     Sign In <span wire:loading wire:target="authenticate" class="fas fa-spinner fa-spin"></span>
                 </button>
             </div>

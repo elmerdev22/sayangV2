@@ -184,7 +184,7 @@
         <!-- /.card -->
     </div>
     <div class="container">
-        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id])
+        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
     </div>
 </section>
 

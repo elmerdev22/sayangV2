@@ -1,15 +1,15 @@
 <div>
     <div class="row">
-        <div class="col-lg-8">
-            <h3 class="my-2">{{ucfirst($product_post->product->name)}}</h3>
+        <div class="col-lg-6">
+            <h4 class="my-2">{{ucfirst($product_post->product->name)}}</h4>
         </div>
         
-        <div class="col-lg-4">
-            <h3 class="my-2 text-danger text-lg-right">
+        <div class="col-lg-6">
+            <h4 class="my-2 text-danger text-lg-right">
                 @if(!$force_disabled)
                     {{number_format($product_post->quantity)}} LEFT!
                 @endif
-            </h3>
+            </h4>
         </div>
     </div>
 

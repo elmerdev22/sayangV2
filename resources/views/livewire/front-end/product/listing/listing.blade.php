@@ -67,10 +67,10 @@
                             </div>
                             <div class="product-info p-2">
                                 <div class="row">
-                                    <div class="col-8 font-weight-bold text-left text-ellipsis">
+                                    <div class="col-7 text-sm font-weight-bold text-left text-ellipsis">
                                         {{ucfirst($row->product_name)}}
                                     </div>
-                                    <div class="col-4 text-right">
+                                    <div class="col-5 text-sm text-right text-ellipsis">
                                         {{number_format($row->quantity)}} left
                                     </div>
                                 </div>

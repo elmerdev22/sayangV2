@@ -429,6 +429,11 @@ class QueryUtility{
 			$data = $filtered;
 		}
 
+		$filtered = self::where_not($filter, $data);
+		if($filtered){
+			$data = $filtered;
+		}
+		
 		$filtered = self::date_range($filter, $data);
 		if($filtered){
 			$data = $filtered;

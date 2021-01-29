@@ -1,7 +1,7 @@
 @extends('front-end.layout')
 @section('title','Partner Login')
 @section('content')
-<div class="row mt-5 pb-5">
+<div class="row mt-5">
     <div class="col-md-7 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/login-partner2.jpg')}}')  no-repeat center bottom">
     </div>
     <div class="col-md-5">

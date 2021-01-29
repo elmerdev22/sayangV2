@@ -32,30 +32,6 @@
                 </h5>
             </p>
             @php $pic = rand(1,5) @endphp
-
-            {{-- @for ($p = 0; $p < $pic ; $p++)
-                <img class="" style="width: auto; height: 50px;" src="{{asset('images/default-photo/product1.jpg')}}" alt="User Image">
-            @endfor --}}
-
-            {{-- <div class="card-footer card-comments mt-3">
-                <div class="replied">
-                <span class="fas fa-reply"></span> Replied
-                </div>
-                <div class="card-comment">
-                <!-- User image -->
-                <img class="img-circle img-sm" src="{{asset('images/default-photo/store.png')}}" alt="store Image">
-
-                <div class="comment-text">
-                    <span class="username">
-                    Elmer Shop
-                    <span class="text-muted float-right">8:03 PM Today</span>
-                    </span><!-- /.username -->
-                    Thank you! 
-                </div>
-                <!-- /.comment-text -->
-                </div>
-                <!-- /.card-comment -->
-            </div> --}}
         </div>
         <!-- /.card-comment -->
     @empty 

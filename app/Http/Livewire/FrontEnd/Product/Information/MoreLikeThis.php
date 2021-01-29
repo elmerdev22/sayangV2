@@ -12,12 +12,13 @@ use Utility;
 
 class MoreLikeThis extends Component
 {
-    public $product_category_id;
+    public $product_category_id, $product_post_id;
     public $limit = 20;
 
-    public function mount($product_category_id)
+    public function mount($product_category_id, $product_post_id)
     {
         $this->product_category_id = $product_category_id;
+        $this->product_post_id     = $product_post_id;
 
     }
 
@@ -31,6 +32,12 @@ class MoreLikeThis extends Component
             'products.slug as product_slug',
             'partners.name as partner_name'
         ];
+
+        $filter['where_not'][] = [
+            'field' => 'product_posts.id',
+            'value' => $this->product_post_id
+        ];
+        
         $filter['where']['products.category_id'] = $this->product_category_id;
         $filter['where']['product_posts.status'] = 'active';
         $filter['available_quantity']            = true;
