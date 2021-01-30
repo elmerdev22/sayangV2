@@ -44,6 +44,8 @@
     @livewireStyles
 </head>
 <body class="hold-transition layout-top-nav" style="height: auto;">
+    <!-- Load Facebook SDK for JavaScript -->
+    @yield('messenger')
     <!-- End Preloader -->
     <div class="wrapper">
         @if(!Request::is('admin/login'))
