@@ -34,13 +34,9 @@
     @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sayang-layout-navbar-fixed">
-    <!-- Preloader -->
-    <!-- <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon"><span></span><span></span></div>
-        </div>
-    </div> -->
-    <!-- End Preloader -->
+    <!-- Load Facebook SDK for JavaScript -->
+    @yield('messenger')
+    
     <div class="wrapper">
 
         <!-- Navbar header -->

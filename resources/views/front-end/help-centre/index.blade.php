@@ -1,5 +1,8 @@
 @extends('front-end.layout')
 @section('title','Help Centre')
+@section('messenger')
+   @include('front-end.includes.messenger') 
+@endsection
 @section('content')
 
 <section class="content bg-dark">

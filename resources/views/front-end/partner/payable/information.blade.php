@@ -11,6 +11,9 @@
     @endphp
     @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
+@section('messenger')
+   @include('front-end.includes.messenger') 
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">

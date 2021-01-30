@@ -72,7 +72,7 @@
                                         {{$row->order_no}}   
                                     </a>
                                 </td>
-                                <td><span class="badge badge-primary">{{str_replace('_', ' ', $row->payment_method)}}</span></td>
+                                <td><span class="badge badge-info">{{str_replace('_', ' ', $row->payment_method)}}</span></td>
                                 <td>PHP {{number_format($sayang_commission['total_commission'], 2)}}</td>
                                 <td>PHP {{number_format($total_online_payment_fee, 2)}}</td>
                                 <td>PHP {{number_format($net_amount, 2)}}</td>
