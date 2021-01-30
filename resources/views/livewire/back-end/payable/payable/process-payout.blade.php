@@ -4,45 +4,47 @@
         <div class="form-group">
             <b>ORDER DATE: </b> {{date('M/d/Y', strtotime($date_from))}} - {{date('M/d/Y', strtotime($date_to))}}
         </div>
-        <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
-            <thead>
-                <tr>
-                    <th>Partner</th>
-                    <th>Sayang Commission</th>
-                    <th>Online Payment Fee</th>
-                    <th>Net Amount</th>
-                    <th>Total Amount</th>
-                    <th>Total Orders</th>
-                    <th>Select</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($data as $row)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                <thead>
                     <tr>
-                        <td>
-                            <a class="text-blue" target="_blank" href="{{route('back-end.partner.profile', ['key_token' => $row['partner_account_key_token']])}}">
-                                {{ucfirst($row['partner_name'])}}
-                            </a>
-                        </td>
-                        <td>PHP {{number_format($row['sayang_commission'],2)}}</td>
-                        <td>PHP {{number_format($row['online_payment_fee'],2)}}</td>
-                        <td>PHP {{number_format($row['net_amount'],2)}}</td>
-                        <td>PHP {{number_format($row['total_amount'],2)}}</td>                            
-                        <td>{{number_format($row['total_orders'])}}</td>
-                        <td>
-                            <div class="icheck-warning">
-                                <input type="checkbox" id="select-{{$row['partner_key_token']}}" class="select-payout" data-key_token="{{$row['partner_key_token']}}" checked="true">
-                                <label for="select-{{$row['partner_key_token']}}"></label>
-                            </div>
-                        </td>                            
+                        <th>Partner</th>
+                        <th>Sayang Commission</th>
+                        <th>Online Payment Fee</th>
+                        <th>Net Amount</th>
+                        <th>Total Amount</th>
+                        <th>Total Orders</th>
+                        <th>Select</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="text-center text-muted">No Result Found</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($data as $row)
+                        <tr>
+                            <td>
+                                <a class="text-blue" target="_blank" href="{{route('back-end.partner.profile', ['key_token' => $row['partner_account_key_token']])}}">
+                                    {{ucfirst($row['partner_name'])}}
+                                </a>
+                            </td>
+                            <td>PHP {{number_format($row['sayang_commission'],2)}}</td>
+                            <td>PHP {{number_format($row['online_payment_fee'],2)}}</td>
+                            <td>PHP {{number_format($row['net_amount'],2)}}</td>
+                            <td>PHP {{number_format($row['total_amount'],2)}}</td>                            
+                            <td>{{number_format($row['total_orders'])}}</td>
+                            <td>
+                                <div class="icheck-warning">
+                                    <input type="checkbox" id="select-{{$row['partner_key_token']}}" class="select-payout" data-key_token="{{$row['partner_key_token']}}" checked="true">
+                                    <label for="select-{{$row['partner_key_token']}}"></label>
+                                </div>
+                            </td>                            
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">No Result Found</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
         @if(!empty($data))
             <div class="text-right mt-3">
                 <div class="form-group">

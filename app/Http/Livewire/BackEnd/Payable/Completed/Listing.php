@@ -41,12 +41,13 @@ class Listing extends Component
 			$filter['order_by'] = $sort_table;
         }
 
-        if($this->search){
-			$filter['or_where_like'] = $this->search;
-		}
+        // if($this->search){
+		// 	$filter['or_where_like'] = $this->search;
+		// }
         
         return QueryUtility::order_payment_payouts($filter)
                     ->groupBy('order_payment_payouts.partner_id')
+                    ->where('partners.name','like',"%{$this->search}%")
                     ->paginate($this->show_entries);
     }
 

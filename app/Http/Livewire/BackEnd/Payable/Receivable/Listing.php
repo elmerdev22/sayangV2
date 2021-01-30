@@ -53,14 +53,16 @@ class Listing extends Component
 			$filter['order_by'] = $sort_table;
         }
 
-        if($this->search){
-			$filter['or_where_like'] = $this->search;
-		}
+        // if($this->search){
+		// 	$filter['or_where_like'] = $this->search;
+		// }
 
         if($partner_id){
             return QueryUtility::orders($filter);
         }else{
-            return QueryUtility::orders($filter)->groupBy('orders.partner_id')->paginate($this->show_entries);
+            return QueryUtility::orders($filter)->groupBy('orders.partner_id')
+                                ->where('partners.name','like',"%{$this->search}%")
+                                ->paginate($this->show_entries);
         }
     }
 
