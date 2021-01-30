@@ -9,6 +9,9 @@
         </div>
         <div class="card-body">  
 
+            <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
+            @include('back-end.layouts.includes.datatables.search')
+            
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
                     <thead>
