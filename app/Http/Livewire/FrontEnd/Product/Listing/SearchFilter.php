@@ -78,7 +78,11 @@ class SearchFilter extends Component
                 $filter['where']['product_sub_categories.sub_category_id'] = $id;
             }
         }
+
         if($this->partner_id != null){
+            
+            $filter['where']['products.partner_id'] = $this->partner_id;
+
             $partner_category_ids = Product::where('partner_id', $this->partner_id)->pluck('category_id');
             $filter['where_in'][]             = [
                 'field'  => 'products.category_id',
