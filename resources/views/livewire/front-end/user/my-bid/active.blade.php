@@ -39,7 +39,7 @@
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
                                 <td>
-                                    <div class="bg-danger">
+                                    <div class="bg-danger rounded p-1">
                                         <small>
                                             <span class="fas fa-clock"></span> 
                                             <span class="countdown">
