@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\ProductPost;
 use Utility;
-
+use Auth;
 class MyProductsController extends Controller
 {
-    // List
     public function index(){
         return view('front-end.partner.my-products.index');
     }
@@ -26,7 +25,13 @@ class MyProductsController extends Controller
         return view('front-end.partner.my-products.edit', compact('product_id'));
     }
     public function start_sale(){
-        return view('front-end.partner.my-products.start-sale');
+        
+        if(Auth::user()->is_blocked){
+            abort(401);
+        }
+        else{
+            return view('front-end.partner.my-products.start-sale');
+        }
     }
 
     // Activities

@@ -43,6 +43,16 @@ class Utility{
         return Carbon::parse($date)->diffForHumans();
     }
 
+    public static function error_message($type){
+        $data = '';
+
+        if($type == 'blocked_partner_error'){
+            $data = 'Your account has been blocked. you cannot post a new product right now, please contact your administrator for further assistance. ';
+        }
+
+        return $data;
+    }
+
     public static function img_source($type){
         if($type == 'not_found'){
             return 'https://image.freepik.com/free-vector/fixing-pages-found-system-error_45923-201.jpg';

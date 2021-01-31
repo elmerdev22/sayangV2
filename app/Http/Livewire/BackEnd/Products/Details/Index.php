@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Active;
+namespace App\Http\Livewire\BackEnd\Products\Details;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Model\Product;
 use App\Model\Bid;
+use App\Model\UserAccount;
 use App\Model\ProductPost;
 use DB;
 use Utility;
@@ -14,16 +15,20 @@ use UploadUtility;
 use Illuminate\Support\Str; 
 use Carbon\Carbon;
 
-class Details extends Component
+class Index extends Component
 {
     use WithPagination;
-    public $account,$product_post_id,$product_name,$product_quantity,$featured_photo,$search,$cancellation_reason;
+    public $user_id,$product_post_id,$product_name,$product_quantity,$featured_photo,$search,$cancellation_reason;
 
-    public function mount($product_post_id){
-        $this->account          = Utility::auth_user_account();
-        $this->product_post_id  = $product_post_id;
+    public function mount($product_post_id, $user_id){
+        $this->product_post_id = $product_post_id;
+        $this->user_id         = $user_id;
     }
     
+    public function account(){
+        return UserAccount::where('user_id', $this->user_id)->first();
+    }
+
     public function data(){
         
         $filter = [];
@@ -42,10 +47,10 @@ class Details extends Component
     public function render()
     {  
         $data                 = $this->data();
-        $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $data->product_key_token);
+        $this->featured_photo = UploadUtility::product_featured_photo($this->account()->key_token, $data->product_key_token);
         $product_sold         = $this->product_sold();
-
-        return view('livewire.front-end.partner.my-products.activities.active.details', compact('data','product_sold'));
+        // dd($data);
+        return view('livewire.back-end.products.details.index', compact('data','product_sold'));
     }
 
     public function product_sold(){
@@ -92,17 +97,16 @@ class Details extends Component
             $product_post                      = ProductPost::where('id', $this->product_post_id)->first();
             $product_post->status              = 'cancelled';
             $product_post->date_cancelled      = Carbon::now();
-            $product_post->cancelled_by        = 'partner';
+            $product_post->cancelled_by        = 'admin';
             $product_post->cancellation_reason = $this->cancellation_reason;
             if($product_post->save()){
                 
-                $this->emit('alert', [
+                Utility::new_notification($this->account()->id, $this->product_post_id, 'partner_product_post_cancelled', 'activity');
+                $this->emit('alert_link', [
                     'type'     => 'success',
                     'title'    => 'Successfully Cancelled',
                     'message'  => 'Product successfully Cancelled!',
                 ]);
-    
-                return redirect()->route('front-end.partner.my-products.activities.cancelled', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
             }
         }
     }

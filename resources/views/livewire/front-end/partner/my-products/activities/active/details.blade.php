@@ -17,7 +17,7 @@
                                 @foreach($featured_photo as $key => $photo)
                                     <div class="card overflow-hidden">
                                         <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl('thumb')}}" class="sayang-card-photo" alt="Product Photo">
+                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
                                             {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                         </div>
                                     </div>
@@ -176,22 +176,42 @@
             </div>
         </div>
     </div> <!-- card.// -->
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="cancellation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form wire:submit.prevent="cancel">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cancellation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    
+                                    <label>Cancellation Reason*</label>
+                                    <textarea class="form-control" wire:model.lazy="cancellation_reason" placeholder="Input your cancelation reason here..."></textarea>
+                                    @error('cancellation_reason') 
+                                        <span class="text-danger text-sm">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-warning">Submit <span wire:loading wire:target="cancel" class="fas fa-spinner fa-spin"></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @push('scripts')
 <script type="text/javascript">
-    window.livewire.hook('beforeDomUpdate', () => {
-        $('.countdown').countdown("destroy");
-    });
-    window.livewire.hook('afterDomUpdate', () => {
-        $('.countdown').countdown("start");
-    });
-    $('.countdown').countdown({
-        end: function() {
-            @this.call('render')
-        }
-    });
-</script>
-<script>
     function save_quantity(){
         Swal.fire({
             title             : 'Are you sure?',
@@ -210,38 +230,30 @@
     }
 
     function cancellable(){
-        Swal.fire({
-            title: 'Are you sure do you want to cancel this product?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.value) {
-                // If true
-                Swal.fire({
-                    title             : 'Please wait...',
-                    html              : 'Cancelling ...',
-                    allowOutsideClick : false,
-                    showCancelButton  : false,
-                    showConfirmButton : false,
-                    onBeforeOpen      : () => {
-                        Swal.showLoading();
-                        @this.call('cancel')
-                    }
-                });
-            }
-        })
+        $('#cancellation-modal').modal('show')
     }
 
-	function not_cancellable(name){
+	function not_cancellable(){
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
 			text: 'Cant`t cancel because this Product already have transactions',
 		})
     }
+    
+    window.livewire.hook('beforeDomUpdate', () => {
+        $('.countdown').countdown("destroy");
+    });
+    
+    window.livewire.hook('afterDomUpdate', () => {
+        $('.countdown').countdown("start");
+    });
+
+    $('.countdown').countdown({
+        end: function() {
+            @this.call('render')
+        }
+    });
+    
 </script>
 @endpush

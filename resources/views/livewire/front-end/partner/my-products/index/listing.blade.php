@@ -4,7 +4,11 @@
             <h5 class="card-title"> My Product List</h5> 
             <div class="card-tools">
 				<a href="{{route('front-end.partner.my-products.list.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
-				<a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                @if (Auth::user()->is_blocked)
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="cant_add()"><i class="fas fa-plus"></i> Start a Sale </a>
+                @else 
+                    <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                @endif
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
             </div>
         </div>
@@ -74,6 +78,13 @@
 
 @push('scripts')
 <script type="text/javascript">
+    function cant_add(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{Utility::error_message('blocked_partner_error')}}",
+        })
+    }
     function delete_product(key){
         Swal.fire({
             title: 'Are you sure do you want to delete this product?',

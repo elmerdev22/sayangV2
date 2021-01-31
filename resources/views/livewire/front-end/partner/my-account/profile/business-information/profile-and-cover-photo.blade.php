@@ -24,9 +24,8 @@
                 </div>
                 <div class="widget-user-image">
                     <img class="img-circle" src="{{$old_store_photo}}" alt="User Avatar" style="width: 90px; height: 90px;">
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-edit_store_photo">
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-edit_store_photo">
                         <span class="fas fa-edit"></span>
-                        Store Photo
                     </button>
                 </div>
                 <div class="card-footer bg-white">

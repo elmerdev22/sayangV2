@@ -127,7 +127,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
+                                    <a target="_blank" href="{{route('back-end.products.details', ['key_token' => $row->key_token])}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @empty

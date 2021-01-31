@@ -17,7 +17,7 @@
                                 @foreach($featured_photo as $key => $photo)
                                     <div class="card overflow-hidden">
                                         <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl('thumb')}}" class="sayang-card-photo" alt="Product Photo">
+                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
                                             {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                         </div>
                                     </div>
@@ -63,9 +63,22 @@
                                 {{number_format($data->quantity, 0)}}
                             </div>
                         </div>
-                        
                     </div>
                     <hr>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label>Cancelled By</label>
+                            <div>
+                                {{$data->cancelled_by == 'partner' || $data->cancelled_by == null ? 'Partner (You)' : 'Admin'}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Cancellation Reason</label>
+                            <div>
+                                {{$data->cancellation_reason ? $data->cancellation_reason : 'N/A'}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label>Date Cancelled</label>

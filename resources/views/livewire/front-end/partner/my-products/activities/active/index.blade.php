@@ -3,7 +3,12 @@
         <div class="card-header">
             <h5 class="card-title">Active and Upcoming Sales</h5> 
             <div class="card-tools">
-                <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                
+                @if (Auth::user()->is_blocked)
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="cant_add()"><i class="fas fa-plus"></i> Start a Sale </a>
+                @else 
+                    <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                @endif
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
@@ -116,3 +121,14 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    function cant_add(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{Utility::error_message('blocked_partner_error')}}",
+        })
+    }
+</script>
+@endpush

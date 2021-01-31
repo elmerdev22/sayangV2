@@ -147,6 +147,12 @@ class SettingsUtility{
                 'title'   => 'Product is ended!',
                 'message' => 'your product is ended click herefor more details.',
             ],
+            // Partner Notify if product post is cancelled by admin
+            'partner_product_post_cancelled' => [
+                'name'    => 'Partner product post is cancelled by admin',
+                'title'   => 'Product is cancelled!',
+                'message' => 'your product is cancelled click herefor more details.',
+            ],
             // Bidder win
             'bidder_won' => [
                 'name'    => 'Bidder win',

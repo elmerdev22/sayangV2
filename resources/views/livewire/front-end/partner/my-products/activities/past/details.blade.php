@@ -17,7 +17,7 @@
                                 @foreach($featured_photo as $key => $photo)
                                     <div class="card overflow-hidden">
                                         <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl('thumb')}}" class="sayang-card-photo" alt="Product Photo">
+                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
                                             {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                         </div>
                                     </div>

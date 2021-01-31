@@ -25,8 +25,10 @@
                     @if ($row->product_post_id != null)
                         @if ($row->type == 'partner_product_post_end')
                             href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                        @elseif ($row->type == 'partner_product_post_cancelled')
+                            href="{{route('front-end.partner.my-products.activities.cancelled', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                         @else 
-                            href="javascript::void()";
+                            href="javascript:void(0)";
                         @endif 
 
                     @else
@@ -35,7 +37,7 @@
                         @elseif($row->type == 'new_cop_request')
                             href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
                         @else 
-                            href="javascript::void()";
+                            href="javascript:void(0)";
                         @endif 
                     @endif
 

@@ -25,12 +25,7 @@ class AuthPartner
             $user = Auth::user();
 
             if($user->type == 'partner'){
-                if($user->is_blocked){
-                    Session::flash('error', 'Your account was blocked.');
-                    Auth::logout();
-                    return redirect(route('partner.login'))->send();
-                }
-
+                
                 $is_activated = Utility::partner_activated();
                 $route        = Route::is('front-end.partner.account-activation.index');
 

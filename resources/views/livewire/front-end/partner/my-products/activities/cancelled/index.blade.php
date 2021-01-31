@@ -3,7 +3,11 @@
         <div class="card-header">
             <h5 class="card-title">Cancelled Sales</h5> 
             <div class="card-tools">
-                <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                @if (Auth::user()->is_blocked)
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="cant_add()"><i class="fas fa-plus"></i> Start a Sale </a>
+                @else 
+                    <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
+                @endif
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
@@ -45,6 +49,10 @@
                             <th class="text-center">
                                 Status
                             </th>
+                            <th class="text-center table-sort" wire:click="sort('product_posts.cancelled_by')">
+                                Cancelled By
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.cancelled_by'])
+                            </th>
                             <th class="text-center">
                                 Action
                             </th>
@@ -61,6 +69,9 @@
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-danger">Cancelled</span>    
+                                </td>
+                                <td class="text-center">
+                                    {{$row->cancelled_by == 'partner' || $row->cancelled_by == null ? 'You' : 'Admin'}}    
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('front-end.partner.my-products.activities.cancelled', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
@@ -102,3 +113,15 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    function cant_add(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{Utility::error_message('blocked_partner_error')}}",
+        })
+    }
+</script>
+@endpush

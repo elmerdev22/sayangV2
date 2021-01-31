@@ -226,6 +226,10 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'index',
                 'uses'  => $c.'@index'
             ]);
+            Route::get('/{key_token}', [
+                'as'    => 'details',
+                'uses'  => $c.'@details'
+            ]);
 
         });
 
