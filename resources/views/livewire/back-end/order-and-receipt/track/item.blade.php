@@ -16,8 +16,8 @@
                         <td> 
                             ₱ {{number_format($row->price * $row->quantity, 2)}} 
                         </td>
-                        <td width="250"> 
-                            <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-sm">Details</a> 
+                        <td> 
+                            <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-sm float-right">Details</a> 
                         </td>
                     </tr>
                 @endforeach

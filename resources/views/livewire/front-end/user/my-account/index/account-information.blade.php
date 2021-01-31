@@ -12,6 +12,11 @@
             <label class="col-sm-4 col-form-label">Firstname</label>
             <div class="col-sm-8 col-form-label">
                 <input type="text" class="form-control form-control-sm" wire:model.lazy="first_name">
+                @error('first_name')
+                    <span class="invalid-feedback" style="display: block;">
+                        <span>{{$message}}</span>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="form-group row my-0">
@@ -24,6 +29,11 @@
             <label class="col-sm-4 col-form-label">Lastname</label>
             <div class="col-sm-8 col-form-label">
                 <input type="text" class="form-control form-control-sm" wire:model.lazy="last_name">
+                @error('last_name')
+                    <span class="invalid-feedback" style="display: block;">
+                        <span>{{$message}}</span>
+                    </span>
+                @enderror
             </div>
         </div>
         

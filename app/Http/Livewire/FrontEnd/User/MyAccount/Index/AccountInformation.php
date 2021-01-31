@@ -36,6 +36,8 @@ class AccountInformation extends Component
     public function update(){
         
         $rules = [
+			'first_name' => 'required',
+			'last_name'  => 'required',
 			'gender'     => 'required|in:male,female',
 			'birth_date' => 'required|date'
         ];

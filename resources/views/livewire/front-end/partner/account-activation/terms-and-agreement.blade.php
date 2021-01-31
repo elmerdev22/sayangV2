@@ -5,10 +5,10 @@
     <div class="row pt-4">
         <div class="col-12">
             <form wire:submit.prevent="update">
-                <h4 class="title text-center">By clicking on the button below, I agree on the <u><a href="{{route('front-end.terms-and-conditions.partners')}}">TERMS and CONDITIONS</a></u> of the platform.</h4>
+                <h4 class="title text-center step-4-text">By clicking on the button below, I agree on the Terms and Conditions of the platform.</h4>
                 <div class="form-group py-4 text-center">
                     <input type="checkbox" class="input-md" id="agree" wire:model="agree">
-                    <label for="agree">I Agree to the Terms and Agreement</label><br>
+                    <label for="agree">I Agree to the <u><a target="_blank" href="{{route('front-end.terms-and-conditions.partners')}}">Terms and Conditions</a></u></label><br>
                 </div>
                 <button class="btn btn-warning" onclick="stepper1.previous()"><span class="fas fa-chevron-left"></span> Previous</button>
                 <button type="submit" class="btn btn-warning text-white float-right" {{$agree ? '':'disabled="true"'}}>Proceed <span class="fas fa-chevron-right"></span></button>
