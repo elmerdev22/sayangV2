@@ -69,16 +69,17 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <b>SAYANG BANK INFORMATION</b> <br>
-                        @for($x=1;$x<=2;$x++)
+                        @forelse($component->admin_bank_accounts() as $bank)
                             <blockquote class="quote-warning">
                                 <div class="text-muted">
-                                    Sayang PH Bank <small class="text-muted"><i>(bank account, di pa ito dynamic)</i></small> <br>
-                                    BDO Unibank Inc. <small class="text-muted"><i>(bank account, di pa ito dynamic)</i></small> <br>
-                                    1028300000 <small class="text-muted"><i>(bank account, di pa ito dynamic)</i></small> <br>
+                                    {{ucfirst($bank->account_name)}}<br>
+                                    {{ucwords($bank->bank->name)}}<br>
+                                    {{$bank->account_no}}
                                 </div>
                             </blockquote>
-                        @endfor
-                        <!-- <small class="text-muted">No bank account provided.</small> -->
+                        @empty
+                            <small class="text-muted">No bank account provided.</small>
+                        @endforelse
                     </div>    
                 </div>
                 <div class="col-md-7">
