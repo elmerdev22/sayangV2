@@ -60,7 +60,7 @@
                                 <td>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                     @if($confirmable['is_payment_confirmable'] && $can_repay)
-                                        <button href="javascript:void(0);" class="btn btn-warning btn-sm">Confirm</button>
+                                        <button href="javascript:void(0);" onclick="confirm_order('{{$row->key_token}}','{{$row->order_no}}')" class="btn btn-warning btn-sm">Confirm</button>
                                     @else
                                         <button href="javascript:void(0);" title="Can't confirm (Expired, Item Sold out, Ended)" disabled="true" class="btn btn-warning btn-sm">Confirm</button>
                                     @endif
@@ -84,6 +84,33 @@
 </div>
 @push('scripts')
 <script type="text/javascript">
+    function confirm_order(key_token, order_no){
+        Swal.fire({
+            title: 'Confirm Order?',
+            text: "Are you sure you want to confirm this Order No. "+order_no+" ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Order Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('confirm_order', key_token)
+                    }
+                });
+            }
+        });
+    }
+
     function cancel_order(key_token, order_no){
         Swal.fire({
             title: 'Cancel Order?',
@@ -110,7 +137,6 @@
             }
         });
     }
-
     
 </script>
 @endpush

@@ -5,8 +5,13 @@ namespace App\Http\Livewire\FrontEnd\Partner\OrderAndReceipt\OrderPlaced;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Model\Order;
+use App\Model\OrderPayment;
+use App\Events\CheckOut;
+use PaymentUtility;
+use UploadUtility;
 use QueryUtility;
 use Utility;
+use DB;
 
 class Index extends Component
 {
@@ -107,6 +112,69 @@ class Index extends Component
 			$this->emit('alert', [
 				'type'  => 'error',
 				'title' => 'Cannot cancel this order'
+			]);
+		}
+	}
+
+	public function confirm_order($key_token){
+		$order = Order::with(['order_payment', 'billing'])
+			->where('key_token', $key_token)
+			->firstOrFail();
+
+		$confirm = $this->confirmable([
+			'payment_method' => $order->order_payment->payment_method,
+			'status'         => $order->status
+		]);
+		$can_repay   = Utility::order_can_repay($order->id);
+
+		if($confirm['is_payment_confirmable'] && $can_repay){
+
+			DB::beginTransaction();
+            $response = ['success' => false];
+    
+            try{
+                $pay_order = PaymentUtility::pay_order($order->id, [], true);
+    
+                if($pay_order['success']){
+                    $pay_order['message'];
+                    $pay_order['product_posts'];
+
+                    $response['success'] = true;
+                }
+    
+            }catch(\Exception $e){
+    
+            }
+    
+            if($response['success']){
+                DB::commit();
+                if(isset($pay_order['product_posts'])){
+                    if(count($pay_order['product_posts']) > 0){
+                        foreach($pay_order['product_posts'] as $key => $product_post){
+                            event(new CheckOut($product_post));
+                        }
+                    }
+                }
+                $user_account_id = $order->billing->user_account_id;
+                Utility::new_notification($user_account_id, null, 'confirmed_cop_request', 'order_updates');
+                $this->emit('alert',[
+                    'type'    => 'success',
+                    'title'   => 'Order Successfully Confirmed',
+                    'message' => 'Order No. #'.$order->order_no.' was confirmed.'
+				]);
+				$this->emit('initialize_order_placed', true);
+			}else{
+                DB::rollback();
+                $this->emit('alert',[
+                    'type'  => 'error',
+                    'title' => 'An error occured'
+                ]);
+			}
+			
+		}else{
+			$this->emit('alert', [
+				'type'  => 'error',
+				'title' => 'Cannot confirm this order'
 			]);
 		}
 	}
