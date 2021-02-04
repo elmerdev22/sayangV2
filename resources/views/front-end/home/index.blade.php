@@ -4,35 +4,31 @@
 <link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-<div class="container">
+<div class="container-fluid m-0 p-0">
     <!-- Home Carousel Slider Banner-->
     @livewire('front-end.home.carousel-slider')
     <!-- .End Home Carousel Slider Banner-->
-    <div class="hidden-xs d-none d-lg-block " style="position: absolute; top: 80px;">
-        <div class="col-md-12">
-            <section class="jumbotron bg-transparent ">
-                <div class="container">
-                    <h1 class="jumbotron-heading">
-                        <b>Nothing goes to waste.</b>
-                    </h1>
-                    <p class="lead font-weight-normal">Explore exciting deals near you.</p>
-                        <form action="{{route('front-end.product.list.index')}}" method="GET">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="input-group input-group-lg shadow-sm">
-                                        <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-navbar bg-warning" type="submit">
-                                              <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
+    <div class="hidden-xs d-none d-lg-block my-auto" style="position: absolute; top: 10%; left: 9%;">
+        <div class="jumbotron my-auto text-white" style="background-color:rgba(128,128,128, 0.4);">
+            <div class="container">
+                <h1 class="display-4">Nothing goes to waste.</h1>
+                <p class="lead">Explore exciting deals near you.</p>
+                    <form action="{{route('front-end.product.list.index')}}" method="GET">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="input-group input-group-lg shadow-sm">
+                                    <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-navbar bg-warning" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </p>
-                </div>
-            </section>
+                        </div>
+                    </form>
+                </p>
+            </div>
         </div>
     </div>
 </div>
