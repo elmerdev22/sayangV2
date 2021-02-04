@@ -11,10 +11,19 @@ use DB;
 class CancelOrder extends Component
 {
 
-    public $cancelation_reason, $order_no;
+    public $cancelation_reason, $order_no, $redirect=true;
 
-    public function mount($order_no){
+    protected $listeners = [
+        'initialize_cancel_order' => 'initialize'
+    ];
+
+    public function mount($order_no=null){
         $this->order_no = $order_no;
+        $this->redirect = false;
+    }
+
+    public function initialize($param){
+        $this->order_no = $param['order_no'];
     }
 
     public function data(){
@@ -62,10 +71,19 @@ class CancelOrder extends Component
             DB::commit();
             $user_account_id = $this->data()->billing->user_account_id;
             Utility::new_notification($user_account_id, null, 'cancelled_cop_request', 'order_updates');
-            $this->emit('alert_link',[
-                'type'  => 'success',
-                'title' => 'Order Successfully Cancelled'
-            ]);
+            if($this->redirect){
+                $this->emit('alert_link',[
+                    'type'  => 'success',
+                    'title' => 'Order Successfully Cancelled'
+                ]);
+            }else{
+                $this->emit('alert',[
+                    'type'    => 'success',
+                    'title'   => 'Order Successfully Cancelled',
+                    'message' => 'Order #'.$this->order_no.' was cancelled.'
+                ]);
+                $this->emit('initialize_order_placed', true);
+            }
         }else{
             DB::rollback();
             $this->emit('alert',[

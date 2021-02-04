@@ -13,7 +13,11 @@ class Index extends Component
     use WithPagination;
 
     public $partner, $status, $search = '', $show_entries=10, $sort = [], $sort_type='desc';
-    
+	
+	protected $listeners = [
+		'initialize_order_placed' => '$refresh'
+	];
+
     public function mount(){
         $this->partner = Utility::auth_partner();
         $this->sort    = ['orders.created_at'];
@@ -56,13 +60,54 @@ class Index extends Component
 	}
 
     public function render(){
-    	$data = $this->data();
-
-        return view('livewire.front-end.partner.order-and-receipt.order-placed.index', compact('data'));
+    	$data      = $this->data();
+    	$component = $this;
+        return view('livewire.front-end.partner.order-and-receipt.order-placed.index', compact('data', 'component'));
     }
 
     public function sort($sort){
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
+	}
+
+	public function confirmable($param){
+		$is_payment_confirmable = false;
+		$is_cancellable         = false;
+
+        if($param['payment_method'] == 'cash_on_pickup'){
+            if($param['status'] == 'order_placed'){
+                $is_payment_confirmable = true;
+                $is_cancellable         = true;
+            }
+        }else if($param['status'] == 'order_placed'){
+            $is_cancellable = true;
+		}
+		
+		return [
+			'is_payment_confirmable' => $is_payment_confirmable,
+			'is_cancellable'         => $is_cancellable
+		];
+	}
+
+	public function cancel_order($key_token){
+		$order = Order::with(['order_payment'])
+			->where('key_token', $key_token)
+			->firstOrFail();
+
+		$confirm = $this->confirmable([
+			'payment_method' => $order->order_payment->payment_method,
+			'status'         => $order->status
+		]);
+
+		if($confirm['is_cancellable']){
+			$this->emit('initialize_cancel_order', [
+				'order_no' => $order->order_no
+			]);
+		}else{
+			$this->emit('alert', [
+				'type'  => 'error',
+				'title' => 'Cannot cancel this order'
+			]);
+		}
 	}
 }
