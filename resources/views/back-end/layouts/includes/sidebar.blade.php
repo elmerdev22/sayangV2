@@ -33,6 +33,20 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview {{Route::is('back-end.account.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('back-end.account.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Account <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('back-end.account.bank')}}" class="nav-link {{Route::is('back-end.account.bank.*') || Route::is('back-end.account.bank') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Banks</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('back-end.partner.index')}}" class="nav-link {{Route::is('back-end.partner.*') ? 'active':''}}">
                         <i class="nav-icon fas fa-building"></i>

@@ -14,6 +14,10 @@ class Bank extends Model
         return $this->hasOne('App\Model\UserAccountBank', 'bank_id', 'id');
     }
 
+    public function admin_bank_account(){
+        return $this->hasOne('App\Model\AdminBankAccount', 'bank_id', 'id');
+    }
+
     public function order_payment(){
         return $this->belongsTo('App\Model\OrderPayment', 'bank_id', 'id');
     }
