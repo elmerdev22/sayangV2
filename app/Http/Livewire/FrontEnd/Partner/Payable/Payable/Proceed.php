@@ -4,6 +4,7 @@ namespace App\Http\Livewire\FrontEnd\Partner\Payable\Payable;
 
 use Livewire\WithFileUploads;
 use Livewire\Component;
+use App\Model\AdminBankAccount;
 use App\Model\OrderPaymentPayout;
 use App\Model\OrderPaymentPayoutItem;
 use App\Model\OrderPaymentPayoutBatch;
@@ -28,6 +29,12 @@ class Proceed extends Component
 
     public function initialize($param){
         $this->key_tokens = $param['key_tokens'];
+    }
+
+    public function admin_bank_accounts(){
+        return AdminBankAccount::with(['bank'])
+            ->where('is_active', true)
+            ->get();
     }
 
     public function data(){

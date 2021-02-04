@@ -42,7 +42,7 @@ class Add extends Component
     public function store(){
         $rules = [
             'account_no'   => 'required|numeric',
-            'account_name' => 'required',
+            'account_name' => 'required|max:100',
             'bank'         => 'required|numeric|in:'.implode(',', $this->active_payments),
             'is_default'   => 'nullable'
         ];

@@ -39,6 +39,14 @@
                     </thead>
                     <tbody>
                         @forelse($data as $row)
+                            @php 
+                                $confirmable_data = [
+                                    'payment_method' => $row->payment_method,
+                                    'status'         => $row->status
+                                ];
+                                $confirmable = $component->confirmable($confirmable_data);
+                                $can_repay   = Utility::order_can_repay($row->id);
+                            @endphp
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
@@ -51,6 +59,14 @@
                                 </td>
                                 <td>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                    @if($confirmable['is_payment_confirmable'] && $can_repay)
+                                        <button href="javascript:void(0);" onclick="confirm_order('{{$row->key_token}}','{{$row->order_no}}')" class="btn btn-warning btn-sm">Confirm</button>
+                                    @else
+                                        <button href="javascript:void(0);" title="Can't confirm (Expired, Item Sold out, Ended)" disabled="true" class="btn btn-warning btn-sm">Confirm</button>
+                                    @endif
+                                    @if($confirmable['is_cancellable'])
+                                        <button href="javascript:void(0);" onclick="cancel_order('{{$row->key_token}}','{{$row->order_no}}')" class="btn btn-danger btn-sm">Cancel</button>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
@@ -66,26 +82,61 @@
         </div>
     </div> <!-- card.// -->
 </div>
-{{-- @push('scripts')
-<script>
-    function confirm(order_no){
+@push('scripts')
+<script type="text/javascript">
+    function confirm_order(key_token, order_no){
         Swal.fire({
             title: 'Confirm Order?',
-            text: "are you sure you want to confirm this Order No. "+order_no+" ?",
-            icon: 'info',
+            text: "Are you sure you want to confirm this Order No. "+order_no+" ?",
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes!'
+            confirmButtonText: 'Yes'
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                'Order Confirmed!',
-                order_no+ ' is confirmed!',
-                'success'
-                )
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Updating Order Status...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('confirm_order', key_token)
+                    }
+                });
             }
-        })
+        });
     }
+
+    function cancel_order(key_token, order_no){
+        Swal.fire({
+            title: 'Cancel Order?',
+            text: "Are you sure you want to cancel this Order No. "+order_no+" ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                // If true
+                Swal.fire({
+                    title             : 'Please wait...',
+                    html              : 'Cancelling Order...',
+                    allowOutsideClick : false,
+                    showCancelButton  : false,
+                    showConfirmButton : false,
+                    onBeforeOpen      : () => {
+                        Swal.showLoading();
+                        @this.call('cancel_order', key_token)
+                    }
+                });
+            }
+        });
+    }
+    
 </script>
-@endpush --}}
+@endpush

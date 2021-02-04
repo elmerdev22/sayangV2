@@ -171,6 +171,17 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
             
         });
 
+        // Account
+        Route::group(['prefix' => 'account', 'as' => 'account.'], function (){
+            $c = 'AccountController';
+            
+            Route::get('/bank', [
+                'as'    => 'bank',
+                'uses'  => $c.'@bank'
+            ]);
+            
+        });
+
         // Catalog
         Route::group(['prefix' => 'catalog', 'as' => 'catalog.'], function (){
             $c = 'CatalogController';
