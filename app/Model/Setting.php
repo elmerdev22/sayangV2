@@ -14,7 +14,7 @@ class Setting extends Model implements HasMedia
     use HasMediaTrait;
     
     protected $fillable = [
-        'settings_group'
+        'settings_group','settings_key'
     ];
 
     public function registerMediaConversions(Media $media = null){

@@ -43,22 +43,12 @@ class Index extends Component
 
         try{
 
-            $data                 = Setting::firstOrNew(['settings_group' => $this->settings_group ,'settings_key' => $type]);
-            $data->settings_group = $this->settings_group;
-            $data->settings_name  = ucfirst($type);
-            $data->settings_key   = $type;
-            
-            $type      = $this->$type->getRealPath();
-            $file_name = $this->$type->getClientOriginalName();
-            
-            $collection = 'content/'.$type;
-            $data->clearMediaCollection($collection);
-            $data->addMedia($$type)->usingFileName($file_name)->toMediaCollection($collection);    
-            
-            if($data->save()){
-                $response['success'] = true;
+            if($type == 'logo'){
+                $response['success'] = $this->save_logo();
             }
-
+            else{
+                $response['success'] = $this->save_icon();
+            }
         }catch(\Exception $e){
             $response['success'] = false;
         }
@@ -80,6 +70,50 @@ class Index extends Component
                 'title'   => 'Failed',
                 'message' => 'An error occured while Adding data'
             ]);
+        }
+    }
+
+    public function save_icon(){
+        
+        $data                 = Setting::firstOrNew(['settings_group' => $this->settings_group ,'settings_key' => 'icon']);
+        $data->settings_group = $this->settings_group;
+        $data->settings_name  = ucfirst('icon');
+        $data->settings_key   = 'icon';
+        
+        $type      = $this->icon->getRealPath();
+        $file_name = $this->icon->getClientOriginalName();
+        
+        $collection = 'content/icon';
+        $data->clearMediaCollection($collection);
+        $data->addMedia($type)->usingFileName($file_name)->toMediaCollection($collection);    
+        
+        if($data->save()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function save_logo(){
+        
+        $data                 = Setting::firstOrNew(['settings_group' => $this->settings_group ,'settings_key' => 'logo']);
+        $data->settings_group = $this->settings_group;
+        $data->settings_name  = ucfirst('logo');
+        $data->settings_key   = 'logo';
+        
+        $type      = $this->logo->getRealPath();
+        $file_name = $this->logo->getClientOriginalName();
+        
+        $collection = 'content/logo';
+        $data->clearMediaCollection($collection);
+        $data->addMedia($type)->usingFileName($file_name)->toMediaCollection($collection);    
+        
+        if($data->save()){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }
