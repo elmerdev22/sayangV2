@@ -60,7 +60,7 @@
                                     </td>
                                 </tr>
                         @empty
-                            <tr>
+                            <tr class="border">
                                 <td colspan="1">
                                     <p class="text-center">No Notifications.</p>
                                 </td>

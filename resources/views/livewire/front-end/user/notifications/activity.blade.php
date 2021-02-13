@@ -12,7 +12,7 @@
             <div class="table-responsive mt-3">
                 <table class="table table-bordered table-hover table-borderless table-cell-nowrap text-center">
                     <thead>
-                        <tr>
+                        <tr class="border">
                             <th class="text-center">Activity</th>
                         </tr>
                     </thead>
@@ -58,7 +58,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr>
+                            <tr class="border">
                                 <td colspan="1">No Notifications.</td>
                             </tr>
                         @endforelse

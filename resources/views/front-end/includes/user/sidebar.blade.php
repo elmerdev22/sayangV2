@@ -2,7 +2,7 @@
 <div class="list-group">
     <article class="list-group-item">
         <header class="filter-header">
-            <a href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" class="">
+            <a href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" class="{{\Route::is('front-end.user.my-account.*') ? '':'text-dark'}}">
                 <i class="icon-control fa fa-chevron-down"></i>
                 <h6 class="title">My Account</h6>
             </a>
@@ -28,7 +28,7 @@
     </article>
     <article class="list-group-item">
         <header class="filter-header">
-            <a href="#" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" class="">
+            <a href="#" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" class="{{\Route::is('front-end.user.my-purchase.*') ? '':'text-dark'}}">
                 <i class="icon-control fa fa-chevron-down"></i>
                 <h6 class="title">My Purchase</h6>
             </a>
@@ -55,7 +55,7 @@
     </article>
     <article class="list-group-item">
         <header class="filter-header">
-            <a href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" class="">
+            <a href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" class="{{\Route::is('front-end.user.notifications.*') ? '':'text-dark'}}">
                 <i class="icon-control fa fa-chevron-down"></i>
                 <h6 class="title">Notifications</h6>
             </a>
@@ -73,7 +73,7 @@
     </article>
     <article class="list-group-item">
         <header class="filter-header">
-            <a href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" class="">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" class="{{\Route::is('front-end.user.my-bids.*') ? '':'text-dark'}}">
                 <i class="icon-control fa fa-chevron-down"></i>
                 <h6 class="title">My Bids</h6>
             </a>
