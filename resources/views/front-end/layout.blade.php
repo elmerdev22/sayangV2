@@ -48,8 +48,12 @@
 		<script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
         <!-- Pusher JS -->
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-
-		@yield('js')
+        <!-- Countdown JS -->
+        <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
+        <!-- Custom JS -->
+        @yield('js')
+		
+        <script src="{{asset('template/assets/dist/js/custom.js')}}"></script>
 
 		@livewireScripts
 		

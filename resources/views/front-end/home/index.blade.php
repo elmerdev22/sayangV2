@@ -159,22 +159,17 @@
             <h3 class="section-title">Categories</h3>
         </header><!-- sect-heading -->
         <!-- ============== COMPONENT SLIDER ITEMS OWL  ============= -->
-        <div class="slider-items-owl owl-carousel owl-theme">
-            @for ($i = 0; $i < 12; $i++)
-                <div class="item-slide">
-                    <figure class="box item-logo">
-                        <a href="#"><img src="https://sayang-ph.com/storage/catalog/category-photo/13/conversions/Beverages-thumb.jpg"></a>
-                        <figcaption class="border-top pt-2">36 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div>
-            @endfor
-        </div>
+        @livewire('front-end.home.category')
         <!-- ============== COMPONENT SLIDER ITEMS OWL .end // ============= -->
     </div><!-- container // -->
 </section>
         
 <section class="section-name  padding-y-sm">
     <div class="container">
+        {{-- <header class="section-heading">
+            <h3 class="section-title">Help us rescue these products!</h3>
+        </header><!-- sect-heading --> --}}
+
         <header class="section-heading">
             <a href="#" class="btn btn-outline-primary float-right">See all</a>
             <h3 class="section-title">Popular products</h3>
@@ -183,53 +178,7 @@
         <div class="row">
             @for ($i = 0; $i < 8; $i++)
                 <div class="col-6 col-md-4 col-lg-3">
-                    <div href="#" class="card card-product-grid">
-                        <a href="#" class="img-wrap"> <img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c"> </a>
-                        <span class="topbar">
-                            <span class="badge badge-primary p-2">
-                                <span class="fa fa-clock"></span>
-                                3d 14h 25m 38s
-                            </span>
-                            {{-- <span class="float-right">50% off</span> --}}
-                        </span>
-                        <figcaption class="info-wrap">
-                            
-                            <div class="mt-2">
-                                <var class="title">Product name</var> <!-- price-wrap.// -->
-                                <span class="float-right">3 LEFT</span>
-                            </div> <!-- action-wrap.end -->
-                            <div class="mt-2">
-                                <var class="price">₱150.00 <small><del>₱200.00</small></del></var> <!-- price-wrap.// -->
-                                <a href="#" class="btn btn-sm btn-primary float-right">Buy now</a>
-                            </div> <!-- action-wrap.end -->
-                            <div class="mt-2">
-                                <var class="price">₱100.00 <small>Bid: 3</small></var> <!-- price-wrap.// -->
-                                <a href="#" class="btn btn-sm btn-outline-primary float-right">Bid now</a>
-                            </div> <!-- action-wrap.end -->
-                            <div class="mt-3">
-                                <div class="row text-center">
-                                    <div class="col-4">
-                                        <span class="text-primary">
-                                            <i class="fa fa-seedling"></i>
-                                        </span>
-                                        <small>0.5</small>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="text-info">
-                                            <i class="fa fa-tint"></i>
-                                        </span>
-                                        <small>2.3</small>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="text-warning">
-                                            <i class="fa fa-bolt"></i>
-                                        </span>
-                                        <small>4</small>
-                                    </div>
-                                </div>
-                            </div> <!-- action-wrap.end -->
-                        </figcaption>
-                    </div>
+                    @include('front-end.product.product-card-grid')
                 </div> <!-- col.// -->
             @endfor
         </div> <!-- row.// -->

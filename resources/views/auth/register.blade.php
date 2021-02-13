@@ -15,8 +15,8 @@
                 <!-- ============================ COMPONENT REGISTER  FORM END.// ================================= -->
 
                 <p class="text-center">-OR-</p>
-                <a href="#" class="btn btn-light btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Register with Facebook</a>
-                <a href="#" class="btn btn-light btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+                <a href="{{route('login-redirect.socialite', ['provider' => 'facebook', 'type' => 'user'])}}" class="btn btn-light btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Register with Facebook</a>
+                <a href="{{route('login-redirect.socialite', ['provider' => 'google', 'type' => 'user'])}}" class="btn btn-light btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
             </article><!-- card-body.// -->
         </div> <!-- card .// -->
         <p class="text-center mt-4">Have an account? <a href="{{url('/login')}}">Sign In</a></p>

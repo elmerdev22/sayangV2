@@ -4,7 +4,7 @@
     <nav class="navbar navbar-main navbar-expand-lg navbar-light ">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="https://sayang-ph.com/storage/content/logo/77/conversions/Copy-of-Copy-of-Copy-of-Copy-of-SAYANG%21-thumb.jpg" class="logo">
+                <img src="{{UploadUtility::content_photo('logo')}}" class="logo">
             </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main_nav2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

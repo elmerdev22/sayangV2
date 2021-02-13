@@ -12,29 +12,26 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-<div class="row justify-content-center">
-    <div class="login-box pb-5">
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <div class="login-logo">
-                    <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" style="width: 100px; height: 100px;" src="{{UploadUtility::content_photo('icon')}}">
-                    </div>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content" style="min-height:84vh">
+    <div class="container">
+        <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <img class="icon icon-lg rounded-circle border" style="width: 100px; height: 100px;" src="{{UploadUtility::content_photo('icon')}}">
                 </div>
-                <p class="login-box-msg">Sign in to start your session</p>
-                @if(\Session::has('login_provider_alert'))
-                    <p class="text-danger text-center">
-                        <i class="fas fa-exclamation-triangle"></i> {!!\Session::get('login_provider_alert')!!}
-                    </p>
-                @endif
-
+                <!-- ============================ COMPONENT LOGIN FORM  ================================= -->
                 @livewire('auth.login-admin')
-
-            </div><!-- /.login-card-body -->
-        </div>
+                <!-- ============================ COMPONENT LOGIN  FORM END.// ================================= -->
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+        <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
     </div>
-</div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
 @endsection
 @section('js')
     @if(session('success_change_password'))

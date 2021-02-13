@@ -12,12 +12,12 @@
                 <span class="fas fa-times"></span>
             </div>
             <div class="col-md-5">
-                <div class="input-group input-group-sm">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <button type="button" 
                             wire:loading.attr="disabled" 
                             wire:target="buy_now, add_to_cart, update_cart" 
-                            class="btn btn-default" 
+                            class="btn btn-light" 
                             id="btn-quantity-minus" 
                             @if($quantity <= 1 || $force_disabled) 
                                 disabled="true" 
@@ -29,7 +29,7 @@
                         @endif 
                         wire:loading.attr="readonly" 
                         wire:target="buy_now, add_to_cart, update_cart" 
-                        class="form-control form-control-sm text-center input-number-remove-arrow" 
+                        class="form-control text-center input-number-remove-arrow" 
                         id="quantity" 
                         min="1" 
                         max="{{$current_quantity}}">
@@ -37,7 +37,7 @@
                         <button type="button" 
                             wire:loading.attr="disabled" 
                             wire:target="buy_now, add_to_cart, update_cart" 
-                            class="btn btn-default" 
+                            class="btn btn-light" 
                             id="btn-quantity-plus" 
                             @if($quantity >= $current_quantity || $force_disabled) 
                                 disabled="true" 
@@ -54,7 +54,7 @@
     </div>
     @if($allow_purchase == 'allowed')
         <p class="mt-4">You save ₱{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
-        <div class="bg-warning py-1 px-2">
+        <div class="bg-primary py-1 px-2 rounded">
             <h4 class="mb-0 text-white">Your Total: ₱{{number_format($buy_now_price, 2)}}</h4>
         </div>
     @endif
@@ -63,7 +63,7 @@
         @if($allow_purchase == 'allowed')
             <div class="row">
                 <div class="col-lg-6 col-md-12 p-1">
-                    <button type="button" class="btn btn-default w-100" 
+                    <button type="button" class="btn btn-light btn-block" 
                         @if($force_disabled)
                             disabled="true"
                         @else
@@ -90,7 +90,7 @@
                             @endif
                         @endif
                         
-                        class="btn btn-default w-100" 
+                        class="btn btn-light w-100" 
                         wire:loading.attr="disabled" 
                         wire:target="buy_now, add_to_cart, update_cart"
                         >
@@ -109,7 +109,7 @@
                                 'key_token' => $product_post->key_token,
                                 'type'      => 'buy_now'
                             ])}}" 
-                            class="btn btn-default w-100">
+                            class="btn btn-light btn-block">
                             Login to Purchase
                         </a>
                     @endif

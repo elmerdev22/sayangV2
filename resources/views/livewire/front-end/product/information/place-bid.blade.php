@@ -9,46 +9,46 @@
                             Bid Increment
                             ₱ {{number_format($bid_increment, 2)}} 
                         </label>
-                        <div class="input-group input-group-sm">
+                        <div class="input-group">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-bid-price-minus" {{$lowest_bid >= $bid ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
+                                <button type="button" class="btn btn-light" id="btn-bid-price-minus" {{$lowest_bid >= $bid ? 'disabled' : ''}}><span class="fas fa-minus"></span></button>
                             </div>
                             <input type="text" class="form-control text-center" id="bid-price" min="{{$lowest_bid}}" wire:model="bid">
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-default" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
+                                <button type="button" class="btn btn-light" id="btn-bid-price-plus"><span class="fas fa-plus"></span></button>
                             </div>
-                            @error('bid')
+                        </div>
+                        @error('bid')
                             <div class="text-center">
                                 <small class="text-danger">{{$message}}</small>
                             </div>
-                            @enderror
-                            @if(session('minimum_bid'))
+                        @enderror
+                        @if(session('minimum_bid'))
                             <div class="text-center">
                                 <small class="text-danger">{{session('minimum_bid')}}</small>
                             </div>
-                            @endif
-                            @if(session('buy_now_price_reach'))
+                        @endif
+                        @if(session('buy_now_price_reach'))
                             <div class="text-center">
                                 <small class="text-danger">{{session('buy_now_price_reach')}}</small>
                             </div>
-                            @endif
-                        </div>
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <label>Quantity</label>
-                        <div class="input-group input-group-sm">
+                        <div class="input-group">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-quantity-minus-2" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
+                                <button type="button" class="btn btn-light" id="btn-quantity-minus-2" @if($quantity <= 1) disabled="true" @endif><span class="fas fa-minus"></span></button>
                             </div>
                             <input type="number" class="form-control text-center input-number-remove-arrow" id="quantity-2" min="1" max="{{$current_quantity}}" wire:model="quantity">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-default" id="btn-quantity-plus-2" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
+                                <button type="button" class="btn btn-light rounded-right" id="btn-quantity-plus-2" @if($quantity >= $current_quantity) disabled="true" @endif><span class="fas fa-plus"></span></button>
                             </div>
                         </div>
                         @if(session('quantity_required'))
-                        <div class="text-center">
-                            <small class="text-danger">{{session('quantity_required')}}</small>
-                        </div>
+                            <div class="text-center">
+                                <small class="text-danger">{{session('quantity_required')}}</small>
+                            </div>
                         @endif
                     </div>
                 @else
@@ -64,19 +64,19 @@
     </div>
     <div class="row">
         @if(session('reach_buy_now_price'))
-            <div class="col-12">
-                <div class="bg-danger rounded py-1 px-2 mt-4">
-                    <small>{{session('reach_buy_now_price')}}</small>
+            <div class="col-12 mt-3">
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> {{session('reach_buy_now_price')}}
                 </div>
             </div>
         @endif
         <div class="col-12">
             @if($allow_purchase == 'allowed')
-                <div class="bg-warning rounded py-1 px-2 mt-4">
+                <div class="bg-primary rounded py-1 px-2 mt-4">
                     <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
-                    <button class="btn btn-default w-100" onclick="confirm_bid('{{$bid != null ? number_format($bid, 2) : $bid}}')">
+                    <button class="btn btn-light w-100" onclick="confirm_bid('{{$bid != null ? number_format($bid, 2) : $bid}}')">
                         CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
@@ -88,7 +88,7 @@
                                 'key_token' => $product_post->key_token,
                                 'type'      => 'place_bid'
                             ])}}" 
-                            class="btn btn-default w-100">
+                            class="btn btn-light w-100">
                             Login to Bid
                         </a>
                     </div>
@@ -118,6 +118,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Bid</th>
                             <th scope="col">Qty</th>
+                            <th scope="col">Allocated Qty</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -126,18 +127,20 @@
                         <tr>
                             @php
                                 $current_quantity -= $data->quantity;    
+                                $allocated_quantity = $current_quantity + $data->quantity < 0 ? 0 : $current_quantity + $data->quantity;
                             @endphp
                             <td>{{++$key}}</td>
                             <td>{{$data->user_account->first_name}} </td>
                             <td>₱{{number_format($data->bid, 2)}}</td>
                             <td>{{number_format($data->quantity, 0)}}</td>
+                            <td>{{number_format($allocated_quantity, 0)}}</td>
                             <td>
                                 {{$current_quantity + $data->quantity <= 0 ? 'Losing' : 'Winning'}}
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5">No Bids.</td>
+                            <td colspan="6">No Bids.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -147,7 +150,7 @@
             @if($allow_purchase == 'allowed' && $view_my_bids)
                 <div class="my-2">
                     <div>
-                        <button class="btn btn-warning btn-sm" onclick="all_my_bids()">View all my bids in this product</button>
+                        <button class="btn btn-primary btn-sm" onclick="all_my_bids()">View all my bids in this product</button>
                     </div>
                 </div>
             @endif

@@ -1,26 +1,26 @@
 <div>
-    <div class="row">
-        <div class="col-lg-6">
-            <h4 class="my-2">{{ucfirst($product_post->product->name)}}</h4>
-        </div>
-        
-        <div class="col-lg-6">
-            <h4 class="my-2 text-danger text-lg-right">
-                @if(!$force_disabled)
-                    {{number_format($product_post->quantity)}} LEFT!
-                @endif
-            </h4>
-        </div>
+    
+    <h2 class="title">{{ucfirst($product_post->product->name)}}</h2>
+    <div class="rating-wrap my-3">
+        <small class="label-rating text-muted">{{ucfirst($product_post->product->partner->name)}}</small>
+        <span class="badge badge-warning"> <i class="fa fa-star"></i>
+            {{Utility::get_partner_ratings($product_post->product->partner->id)}}
+        </span>
+        <small class="label-rating text-muted">132 reviews</small>
     </div>
 
-    <a href="{{route('front-end.profile.partner.index', ['slug' => $product_post->product->partner->slug ])}}">
-        <p>{{ucfirst($product_post->product->partner->name)}}
-            <span class="fas fa-star text-warning"></span>
-            <small>({{Utility::get_partner_ratings($product_post->product->partner->id)}})</small>
-        </p>
-    </a>
-    <p class="text-justify">{!! $product_post->product->description !!}</p>
-    <div class="bg-danger p-2 w-50 text-center rounded">
+    <div class="mb-3"> 
+        <var class="price h4">
+            @if(!$force_disabled)
+                {{number_format($product_post->quantity)}} LEFT!
+            @endif
+        </var> 
+        @if(!$force_disabled)
+            <span class="text-muted">Left</span> 
+        @endif
+    </div> 
+    
+    <div class="bg-primary mb-3 p-2 w-50 text-center text-white rounded">
         <span class="fas fa-clock"></span> 
         <span class="countdown">
             @if($force_disabled)
@@ -30,6 +30,23 @@
             @endif
         </span>
     </div>
+
+    <p>
+        {!! $product_post->product->description !!}
+    </p>
+
+    @if(!$force_disabled)
+        <dl class="row">
+        <dt class="col-sm-3">Model#</dt>
+        <dd class="col-sm-9">Odsy-1000</dd>
+        
+        <dt class="col-sm-3">Color</dt>
+        <dd class="col-sm-9">Brown</dd>
+        
+        <dt class="col-sm-3">Delivery</dt>
+            <dd class="col-sm-9">Russia, USA, and Europe </dd>
+        </dl>
+    @endif
 </div>
 
 @push('scripts')
