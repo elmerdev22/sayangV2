@@ -1,12 +1,8 @@
 <div>
-    <div class="card card-sayang mb-3 rounded-0">
-        <div class="card-header">
-            <h5 class="card-title">Win Bids</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </div>
+    <div class="card">
+        <header class="card-header">
+            <strong class="d-inline-block mr-3">Win Bids</strong>
+        </header>
         <div class="card-body">
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('front-end.includes.datatables.search')
@@ -62,10 +58,10 @@
                                         @if($row->order_bid_id)
                                             <a class="btn btn-info btn-sm" href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}">View Order</a>
                                         @else
-                                            <a class="btn btn-warning btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
+                                            <a class="btn btn-primary btn-sm" onclick="pay_now('{{$row->bid_key_token}}')" href="javascript:void(0);">Pay now</a>
                                         @endif
                                     @endif
-                                    <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
+                                    <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-primary btn-sm">View</a>
                                 </td>
                             </tr>
                         @empty

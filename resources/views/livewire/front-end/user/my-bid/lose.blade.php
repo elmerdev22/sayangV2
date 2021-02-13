@@ -1,12 +1,8 @@
 <div>
-    <div class="card card-sayang mb-3 rounded-0">
-        <div class="card-header">
-            <h5 class="card-title">Lose Bids</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </div>
+    <div class="card">
+        <header class="card-header">
+            <strong class="d-inline-block mr-3">Lose Bids</strong>
+        </header>
         <div class="card-body">
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('front-end.includes.datatables.search')
@@ -36,7 +32,7 @@
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_start))}}</td>
                                 <td>{{date('M/d/Y h:iA', strtotime($row->date_end))}}</td>
                                 <td>
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-warning btn-sm">View</a>
+                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->product_key_token, 'type' => 'place_bid'])}}" class="btn btn-primary btn-sm">View</a>
                                 </td>
                             </tr>
                         @empty

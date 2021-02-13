@@ -26,20 +26,20 @@
                                         &nbsp;&nbsp; Default &nbsp;&nbsp;
                                     </button>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-default" onclick="set_default('{{$row->key_token}}')" >
+                                    <button type="button" class="btn btn-sm btn-light" onclick="set_default('{{$row->key_token}}')" >
                                         Set as Default
                                     </button>
                                 @endif
                             </div>
                             <div class="float-xs-none float-sm-none float-md-right">
-                                <button type="button" class="btn btn-sm btn-default" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn btn-sm btn-light" title="Edit" onclick="edit('{{$row->key_token}}')"><i class="fas fa-edit"></i></button>
                                 <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data('{{$row->key_token}}')"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
                 </blockquote>
             @empty
-                <h4 class="text-muted">No Address Found</h4>
+                <p class="text-center">You don't have addresses yet.</p>
             @endforelse
         </div>
     </div>

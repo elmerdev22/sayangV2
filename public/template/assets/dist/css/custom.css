@@ -1,8 +1,8 @@
 /* SAYANG CUSTOM BRANDING VARIABLE */
 :root {
-  --sayang-color: #FFDE59;
+  --sayang-color: #66bb6a;
   --sayang-dark-color: #333333;
-  --sayang-light-color: #FFFFFF;
+  --sayang-light-color: lighten( --sayang-color, 10%);
 }
 .card{
   border-radius: 0;
@@ -47,19 +47,19 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #FFDE59; 
+  background: #66bb6a; 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFDE59; 
+  background: #66bb6a; 
 }
 /**/
 a{
   color: black;
 }
 a:hover{
-  color: #FFDE59;
+  color: #66bb6a;
 }
  .btn{
     border-radius: 0;
@@ -73,7 +73,7 @@ a:hover{
 
 /* TAB BACKGROUND COLOR */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-  background-color: #FFDE59;
+  background-color: #66bb6a;
 }
 
 .widget-header {
@@ -129,7 +129,7 @@ a:hover{
 }
 
 /*.form-control:focus{
-    border-color: #FFDE59;
+    border-color: #66bb6a;
 }*/
 .content-wrapper-front-end {
     padding-top: 70px;
@@ -192,11 +192,11 @@ a:hover{
 .nav-tabs .nav-item.show .nav-link {
   border: 0;
   background-color: #f8f9fa;
-  border-bottom: 3px solid #FFDE59;
+  border-bottom: 3px solid #66bb6a;
 }
 /*Span timeer countdown*/
 span.ends-in {
-    background-color: #FFDE59;
+    background-color: #66bb6a;
     display: inline-block;
     font-size: 12px;
     color: #fff;
@@ -316,8 +316,8 @@ input:checked + .slider:before {
 }
 /*PAgination*/
 .page-item.active .page-link{
-  background-color: #FFDE59;
-  border-color: #FFDE59;
+  background-color: #66bb6a;
+  border-color: #66bb6a;
 }
 
 /*all product list menu*/
@@ -333,7 +333,7 @@ input:checked + .slider:before {
   color: #343a40; 
 }
 .list-menu a:hover {
-  color: #FFDE59; 
+  color: #66bb6a; 
 }
 
 /*Account Activation*/
@@ -341,7 +341,7 @@ input:checked + .slider:before {
   color: black;
 }
 .account-activation a:hover{
-  color:#FFDE59;
+  color:#66bb6a;
 }
 /*cart footer*/
 .cart-footer .btn-warning{
@@ -510,11 +510,11 @@ input:checked + .slider:before {
 }
 
 .list-group-item.active{
-  background-color: #FFDE59;
-  border-color: #FFDE59;
+  background-color: #66bb6a;
+  border-color: #66bb6a;
 }
 .active .bs-stepper-circle{
-  background-color: #FFDE59;
+  background-color: #66bb6a;
 }
 
 @media all {

@@ -1,39 +1,28 @@
 @extends('front-end.layout')
 @section('title','Register')
 @section('content')
-<div class="row mt-5">
-  <div class="col-md-6 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/register-user2.jpg')}}') no-repeat">
-  </div>
-  <div class="col-md-6">
-    <div class="row justify-content-center">
-      <div class="col-md-10 pb-5">
-          <!-- /.login-logo -->
-        <div class="card">
-          <div class="card-body register-card-body">
-            <h4 class="text-center">Register New User</h4>
-                <hr>
 
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+        <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+            <article class="card-body">
+                <header class="mb-4"><h4 class="card-title">Register</h4></header>
+                
+                <!-- ============================ COMPONENT REGISTER FORM  ================================= -->
                 @livewire('auth.register')
+                <!-- ============================ COMPONENT REGISTER  FORM END.// ================================= -->
 
-                <div class="social-auth-links text-center">
-                  <p>- OR -</p>
-                  <a href="{{route('login-redirect.socialite', ['provider' => 'facebook', 'type' => 'user'])}}" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i>
-                    Sign up using Facebook
-                  </a>
-                  <a href="{{route('login-redirect.socialite', ['provider' => 'google', 'type' => 'user'])}}" class="btn btn-block btn-danger">
-                    <i class="fab fa-google mr-2"></i>
-                    Sign up using Google
-                  </a>
-                </div>
-
-                <a href="{{url('/login')}}" class="text-gray">I already have an account</a>
-              </div>
-              <!-- /.form-box -->
-          </div>
-        </div>
-      </div>
+                <p class="text-center">-OR-</p>
+                <a href="#" class="btn btn-light btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Register with Facebook</a>
+                <a href="#" class="btn btn-light btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+        <p class="text-center mt-4">Have an account? <a href="{{url('/login')}}">Sign In</a></p>
+        <br><br>
+        <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
     </div>
-  </div>
-</div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->  
 @endsection

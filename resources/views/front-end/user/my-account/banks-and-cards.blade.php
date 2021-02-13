@@ -12,47 +12,52 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
 
-        @if($enabled_bank_account)
-            <div class="card card-sayang mb-3 rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">My Bank Accounts</h5> 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_bank">
-                            <i class="fas fa-plus"></i> Add New
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    @livewire('front-end.user.my-account.banks.listing')
-                </div> <!-- card-body .// -->
-            </div> <!-- card.// -->
-        @endif
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.sidebar')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                @if($enabled_bank_account)
+                    <div class="card">
+                        
+                        <header class="card-header">
+                            <strong class="d-inline-block mr-3">My Bank Accounts</strong>
+                            
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add_bank">
+                                <i class="fas fa-plus"></i> Add New
+                            </button>
+                        </header>
+                        <div class="card-body">
+                            @livewire('front-end.user.my-account.banks.listing')
+                        </div> <!-- card-body .// -->
+                    </div> <!-- card.// -->
+                @endif
         
-        @if($enabled_debit_credit_card)
-            <div class="card card-sayang mb-3 rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">My Debit/Credit Cards</h5> 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_credit_card">
-                            <i class="fas fa-plus"></i> Add New
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    @livewire('front-end.user.my-account.credit-card.listing')
-                </div> <!-- card-body .// -->
-            </div> <!-- card.// -->
-        @endif
-    </main> <!-- col.// -->
-</div>
+                @if($enabled_debit_credit_card)
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="d-inline-block mr-3">My Debit/Credit Cards</strong>
 
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add_credit_card">
+                                <i class="fas fa-plus"></i> Add New
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            @livewire('front-end.user.my-account.credit-card.listing')
+                        </div> <!-- card-body .// -->
+                    </div> <!-- card.// -->
+                @endif
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>    
 @if($enabled_bank_account)
     <!-- Modal -->
     <div class="modal fade" id="modal-add_bank" tabindex="-1" role="dialog">

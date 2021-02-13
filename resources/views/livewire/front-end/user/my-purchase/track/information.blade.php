@@ -123,7 +123,7 @@
                 @endif
                 @if($data->status != 'order_placed' && $data->status != 'cancelled')
                     <div class="col-6">
-                        QR Code : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
+                        QR Code : <a class="btn btn-sm btn-outline-primary" href="javascript:void(0);" onclick="qr_code('{{$data->key_token}}')"><span class="fas fa-qrcode"></span></a>
                     </div>
                 @endif
                 @if($data->status == 'completed')

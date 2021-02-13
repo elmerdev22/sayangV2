@@ -1,24 +1,36 @@
 @extends('front-end.layout')
 @section('title','Be a Partner')
 @section('content')
-<div class="row mt-5 pb-5">
-  <div class="col-md-7 d-none d-md-block d-lg-block " style="background: url('{{asset('images/default-photo/register-partner2.jpg')}}') no-repeat center bottom">
-    <div class="jumbotron bg-transparent ">
-      <h1 class="jumbotron-heading display-3">
-        <b>Grow with us.</b>
-      </h1>
-      <p class="lead">Zero Waste. Maximum Profits.</p>
-      <p>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 d-none d-md-block d-lg-block" style="background: url('{{asset('images/default-photo/login-partner2.jpg')}}')  no-repeat center ">
+                <div class="jumbotron bg-transparent ">
+                    <h1 class="jumbotron-heading display-3">
+                        <b>Grow with us.</b>
+                    </h1>
+                    <p class="lead">Zero Waste. Maximum Profits.</p>
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <!-- ============================ COMPONENT REGISTER   ================================= -->
+                <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+                    <article class="card-body">
+                        <header class="mb-4"><h4 class="card-title">Be a Partner</h4></header>
+                        
+                        <!-- ============================ COMPONENT REGISTER FORM  ================================= -->
+                        @livewire('auth.register-partner')
+                        <!-- ============================ COMPONENT REGISTER  FORM END.// ================================= -->
+        
+                    </article><!-- card-body.// -->
+                </div> <!-- card .// -->
+                <p class="text-center mt-4">Have an account? <a href="{{route('partner.login')}}">Sign In</a></p>
+                <br><br>
+                <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+            </div>
+        </div> <!-- row.// -->
     </div>
-  </div>
-  <div class="col-md-5">
-    <div class="card">
-      <div class="card-body register-card-body">
-        <h4 class="text-center">Be a Partner <span class="fas fa-handshake"></span></h4>
-        <hr>
-        @livewire('auth.register-partner')
-      </div>
-    </div>
-  </div>
-</div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->  
 @endsection

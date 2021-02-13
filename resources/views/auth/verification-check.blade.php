@@ -12,17 +12,22 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-<div class="row justify-content-center">
-    <div class="login-box pb-5">
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content" style="min-height:84vh">
+    <div class="container">
+        <!-- ============================ COMPONENT VERIFICATION CHECK   ================================= -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card-body">
                 @livewire('auth.verification-check')
-            </div>
-            <!-- /.login-card-body -->
-        </div>
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+        <p class="text-center mt-4">Don't have account? <a href="#">Sign up</a></p>
+        <br><br>
+        <!-- ============================ COMPONENT VERIFICATION CHECK  END.// ================================= -->
     </div>
-</div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
 
 <!-- Modal -->
 <div id="modal-change_email" class="modal fade" @if($request_new_email) data-backdrop="static" @endif role="dialog" tabindex="-1">
@@ -30,7 +35,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{$request_new_email ? 'Set-Up New Email Address':'Change Email Address'}}</h4>
+                <h6 class="modal-title">{{$request_new_email ? 'Set-Up New Email Address':'Change Email Address'}}</h6>
                 @if(!$request_new_email)
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 @endif
@@ -39,14 +44,16 @@
                 @livewire('auth.change-email')
 
                 @if($request_new_email)
-                    <strong>NOTE: </strong> You don't have email address yet, please set new email address.
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>NOTE: </strong> You don't have email address yet, please set new email address.
+                    </div>
                 @endif
             </div>
             <div class="modal-footer">
                 @if(!$request_new_email)
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                 @endif
-                <button type="submit" class="btn btn-warning" form="form-change_email"><i class="fas fa-check"></i> {{$request_new_email ? 'Set':'Change'}}  and Send Code</button>
+                <button type="submit" class="btn btn-primary" form="form-change_email">{{$request_new_email ? 'Set':'Change'}}  and Send Code</button>
             </div>
         </div>
     </div>

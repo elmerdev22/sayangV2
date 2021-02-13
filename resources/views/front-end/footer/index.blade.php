@@ -1,19 +1,70 @@
-<div class="container pb-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="d-flex flex-md-row flex-column align-items-center">
-                <div class="px-2 d-none d-md-block"><img src="{{UploadUtility::content_photo('logo')}}" height="45" class="d-inline-block align-top" alt=""></div>
-                <div class="px-2"><a href="{{route('front-end.about-us.index')}}">About Us</a></div>
-                <div class="px-2"><a href="{{route('front-end.help-centre.index')}}">Help Centre</a></div>
-                <div class="px-2"><a href="{{route('front-end.terms-and-conditions.index')}}">Terms & Conditions</a></div>
-                <div class="d-block d-md-none w-100 text-center">
-                    <hr>
-                    <img src="{{UploadUtility::content_photo('logo')}}" height="45" class="d-inline-block align-top" alt="">
-                </div>
-                <div class="px-2 footer-right ml-auto">
-                    © {{date('Y')}} All Rights Reserved by <a href="#">{{env('APP_NAME')}}</a>                
-                </div>
+<footer class="section-footer border-top">
+    <div class="container">
+        <section class="footer-top padding-y">
+            <div class="row">
+                <aside class="col-md col-6">
+                    <h6 class="title">Brands</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Adidas</a></li>
+                        <li> <a href="#">Puma</a></li>
+                        <li> <a href="#">Reebok</a></li>
+                        <li> <a href="#">Nike</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Company</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">About us</a></li>
+                        <li> <a href="#">Career</a></li>
+                        <li> <a href="#">Find a store</a></li>
+                        <li> <a href="#">Rules and terms</a></li>
+                        <li> <a href="#">Sitemap</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Help</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Contact us</a></li>
+                        <li> <a href="#">Money refund</a></li>
+                        <li> <a href="#">Order status</a></li>
+                        <li> <a href="#">Shipping info</a></li>
+                        <li> <a href="#">Open dispute</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md col-6">
+                    <h6 class="title">Account</h6>
+                    <ul class="list-unstyled">
+                        <li> <a href="#"> User Login </a></li>
+                        <li> <a href="#"> User register </a></li>
+                        <li> <a href="#"> Account Setting </a></li>
+                        <li> <a href="#"> My Orders </a></li>
+                    </ul>
+                </aside>
+                <aside class="col-md">
+                    <h6 class="title">Social</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                        <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
+                        <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                        <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                    </ul>
+                </aside>
+            </div> <!-- row.// -->
+        </section>	<!-- footer-top.// -->
+
+        <section class="footer-bottom border-top row">
+            <div class="col-md-2">
+                <p class="text-muted"> &copy 2019 Company name </p>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col-md-8 text-md-center">
+                <span  class="px-2">info@pixsellz.io</span>
+                <span  class="px-2">+879-332-9375</span>
+                <span  class="px-2">Street name 123, Avanue abc</span>
+            </div>
+            <div class="col-md-2 text-md-right text-muted">
+                <i class="fab fa-lg fa-cc-visa"></i>
+                <i class="fab fa-lg fa-cc-mastercard"></i>
+            </div>
+        </section>
+    </div><!-- //container -->
+</footer>

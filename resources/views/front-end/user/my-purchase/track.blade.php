@@ -13,44 +13,51 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        <div class="card card-outline card-sayang mb-3">
-            <header class="card-header">
-                <strong class="d-inline-block mr-3">Order ID: {{$order_no}} </strong>
-                @if($order->status == 'completed')
-                    <span>Completed Date: {{date('F/d/Y h:i A', strtotime($order->date_completed))}}</span>
-                @else
-                    <span>Order Date: {{date('F/d/Y h:i A', strtotime($order_date))}}</span>
-                @endif
-            </header>
-            <div class="card-body">
-                @if($order->status != 'cancelled')
-                    <div class="row">
-                        <div class="col-12">
-                            @livewire('front-end.user.my-purchase.track.status', ['order_no' => $order_no])
-                        </div>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="col-12">
-                        @livewire('front-end.user.my-purchase.track.information', ['order_no' => $order_no])
-                    </div>
-                </div>
-                <div class="row mt-2 pt-2 border">
-                    <div class="col-12">
-                        @livewire('front-end.user.my-purchase.track.item', ['order_no' => $order_no])
-                    </div>
-                </div>
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// --> 
-    </main> <!-- col.// -->
-</div>
 
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.sidebar')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                <div class="card">
+                    <header class="card-header">
+                        <strong class="d-inline-block mr-3">Order ID: {{$order_no}} </strong>
+                        @if($order->status == 'completed')
+                            <span>Completed Date: {{date('F/d/Y h:i A', strtotime($order->date_completed))}}</span>
+                        @else
+                            <span>Order Date: {{date('F/d/Y h:i A', strtotime($order_date))}}</span>
+                        @endif
+                    </header>
+                    <div class="card-body">
+                        @if($order->status != 'cancelled')
+                            <div class="row">
+                                <div class="col-12">
+                                    @livewire('front-end.user.my-purchase.track.status', ['order_no' => $order_no])
+                                </div>
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-12">
+                                @livewire('front-end.user.my-purchase.track.information', ['order_no' => $order_no])
+                            </div>
+                        </div>
+                        <div class="row mt-2 pt-2 border">
+                            <div class="col-12">
+                                @livewire('front-end.user.my-purchase.track.item', ['order_no' => $order_no])
+                            </div>
+                        </div>
+                    </div> <!-- card-body .// -->
+                </div> <!-- card.// --> 
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>
 <!-- Modal -->
 <div class="modal fade" id="modal-qr_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

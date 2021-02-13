@@ -13,64 +13,157 @@
 @endsection
 @section('content')
 
-<div class="container">
+
+<section class="section-content padding-y bg">
+    <div class="container">
+    
+    <!-- ============================ COMPONENT 1 ================================= -->
+    
     <div class="row">
-        <main class="col-md-9">
-            <div class="card card-sayang" id="card-cart-listing">
-                <div class="table-responsive">
-                    @livewire('front-end.user.my-cart.index.listing')
-                </div>
-                <div class="card-body border-top">
-                    <div class="row cart-footer">
-                        <div class="col-sm-6">
-                            <a href="/" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
-                        </div>
-                        <div class="col-sm-6">
-                            {{-- <a href="{{route('account.checkout')}}" class="btn btn-warning text-white float-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- card.// -->
-
-        </main> <!-- col.// -->
-
-        <aside class="col-md-3">
-            {{-- <div class="card card-sayang mb-3">
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Get a voucher?</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="" placeholder="Enter code here">
-                                <span class="input-group-append"> 
-                                <button class="btn btn-warning text-white">Apply</button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div> <!-- card-body.// -->
-            </div> --}}
-            <div class="card card-sayang sticky">
-                <div class="card-body">
-                    @livewire('front-end.user.my-cart.index.check-out')
-                    <!-- <div class="row">
-                        <div class="col-12">
-                            <p class="text-center">
-                            <img src="{{asset('images/default-photo/payments.png')}}" height="26">
-                                {{-- <span class="fab fa-cc-visa fa-2x"></span>
-                                <span class="fab fa-cc-stripe fa-2x"></span>
-                                <span class="fab fa-cc-paypal fa-2x"></span>
-                                <span class="fab fa-cc-mastercard fa-2x"></span>
-                                <span class="fab fa-cc-amex fa-2x"></span> --}}
-                            </p>  
-                        </div>
-                    </div> -->
-                </div> <!-- card-body.// -->
-            </div>  <!-- card .// -->
+        <aside class="col-lg-9">
+    <div class="card">
+    <table class="table table-borderless table-shopping-cart">
+    <thead class="text-muted">
+    <tr class="small text-uppercase">
+      <th scope="col">Product</th>
+      <th scope="col" width="120">Quantity</th>
+      <th scope="col" width="120">Price</th>
+      <th scope="col" class="text-right" width="200"> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <figure class="itemside align-items-center">
+                <div class="aside"><img src="../images/items/11.jpg" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">Camera Canon EOS M50 Kit</a>
+                    <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>	
+                <option>3</option>	
+                <option>4</option>	
+            </select> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">$1156.00</var> 
+                <small class="text-muted"> $315.20 each </small> 
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+        <a href="" class="btn btn-light"> Remove</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <figure class="itemside align-items-center">
+                <div class="aside"><img src="../images/items/10.jpg" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">ADATA Premier ONE microSDXC</a>
+                    <p class="text-muted small">Size: 256 GB  <br> Brand: ADATA </p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>	
+                <option>3</option>	
+                <option>4</option>	
+            </select> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">$149.97</var> 
+                <small  class="text-muted"> $75.00 each </small>  
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+        <a href="" class="btn btn-light btn-round"> Remove</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <figure class="itemside align-items-center">
+                <div class="aside"><img src="../images/items/9.jpg" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">Logitec headset for gaming</a>
+                    <p class="small text-muted">Version: CUH-ZCT2E  <br> Brand: Sony</p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>	
+                <option>3</option>	
+            </select> 
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">$98.00</var> 
+                <small class="text-muted"> $578.00 each</small> 
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+            <a href="" class="btn btn-light btn-round"> Remove</a>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <div class="card-body border-top">
+        
+        <a href="#" class="btn btn-light">Continue Shopping</a>
+    </div> <!-- card-body.// -->
+    
+    </div> <!-- card.// -->
+    
         </aside> <!-- col.// -->
-    </div>
-</div>
-
+        <aside class="col-lg-3">
+    
+    
+    <div class="card">
+    <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Total price:</dt>
+              <dd class="text-right">$69.97</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Discount:</dt>
+              <dd class="text-right text-danger">- $10.00</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Total:</dt>
+              <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
+            </dl>
+            <hr>
+            <p class="text-center mb-3">
+                <img src="../images/misc/payments.png" height="26">
+            </p>
+            <a href="#" class="btn btn-primary btn-block"> Make Purchase </a>
+    </div> <!-- card-body.// -->
+    </div> <!-- card.// -->
+    
+        </aside> <!-- col.// -->
+    
+    
+    </div> <!-- row.// -->
+    <!-- ============================ COMPONENT 1 END .// ================================= -->
+    
+    </div> <!-- container .//  -->
+</section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    
 @endsection
 @section('js')
 <script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>

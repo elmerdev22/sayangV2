@@ -1,12 +1,8 @@
 <div>
-    <div class="card card-sayang mb-3 rounded-0">
-        <div class="card-header">
-            <h5 class="card-title">Purchase List</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </div>
+    <div class="card">
+        <header class="card-header">
+            <strong class="d-inline-block mr-3">My Purchase List</strong>
+        </header>
         <div class="card-body">
             <!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('front-end.includes.datatables.search')
@@ -58,7 +54,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                    <a href="{{route('front-end.user.my-purchase.track', ['id' => $row->order_no])}}" class="btn btn-primary btn-sm">Track</a>
                                 </td>
                             </tr>
                         @empty

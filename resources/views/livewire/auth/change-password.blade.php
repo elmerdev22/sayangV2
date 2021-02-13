@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="form-group">
-        	<button type="submit" class="btn btn-warning float-right">Save <span wire:loading wire:target="change_pass" class="fas fa-spinner fa-spin"></span></button>
+        	<button type="submit" class="btn btn-primary float-right">Save <span wire:loading wire:target="change_pass" class="fas fa-spinner fa-spin"></span></button>
         </div>
     </form>
 </div>

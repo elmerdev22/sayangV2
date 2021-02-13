@@ -1,10 +1,10 @@
 <div>
     <div class="my-account-profile border-right mb-4">
         <div class="text-center">
-            <img class="profile-user-img img-fluid img-circle m-2" src="{{$photo_url}}" alt="User profile picture" style="width: 120px; height: 120px;">
+            <img class="icon icon-lg rounded-circle border m-2" src="{{$photo_url}}" alt="" style="width: 120px; height: 120px;">
         </div>
         <div class="text-center mt-1">
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-edit_profile_picture">Select Profile</button>
+            <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modal-edit_profile_picture">Select Profile</button>
         </div>
         <div class="text-center mt-1">
             <small>

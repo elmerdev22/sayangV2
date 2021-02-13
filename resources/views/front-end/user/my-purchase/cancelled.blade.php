@@ -13,15 +13,22 @@
 @endsection
 @section('content')
           
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        @livewire('front-end.user.my-purchase.cancelled.index')
-    </main> <!-- col.// -->
-</div>
-
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.sidebar')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                @livewire('front-end.user.my-purchase.cancelled.index')
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>     
 <!-- Modal -->
 <div class="modal fade" id="modal-qr_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

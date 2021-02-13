@@ -13,35 +13,39 @@
 @endsection
 @section('content')
           
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        <div class="card card-sayang mb-3 rounded-0">
-            <div class="card-header">
-                <h5 class="card-title">My Addresses</h5> 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-add_address">
-                        <i class="fas fa-plus"></i> Add New
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                
-                @livewire('front-end.user.my-account.addresses.listing')
-
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// -->
-    </main> <!-- col.// -->
-</div>
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.sidebar')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                <div class="card">
+                    <header class="card-header">
+                        <strong class="d-inline-block mr-3">My Addresses</strong>
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add_address">
+                            <i class="fas fa-plus"></i> Add New
+                        </button>
+                    </header>
+                    <div class="card-body">
+                        @livewire('front-end.user.my-account.addresses.listing')
+                    </div> <!-- card-body .// -->
+                </div> <!-- card.// -->
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>
 
 <!-- Modal -->
 <div class="modal fade" id="modal-add_address" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add New Address</h5>
+                <h6 class="modal-title">Add New Address</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -59,7 +63,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Address</h4>
+                <h6 class="modal-title">Edit Address</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -69,8 +73,8 @@
             </div>
             <div class="modal-footer">
                 <div class="text-right">
-                    <button type="button" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-flat btn-sm btn-warning" form="form-edit_address">Save</button>
+                    <button type="button" class="btn btn-flat btn-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-flat btn-primary" form="form-edit_address">Save</button>
                 </div>
             </div>
         </div>

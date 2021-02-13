@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row py-2">
         <div class="col-sm-6"><h4>Representative Details</h4></div>
         <div class="col-sm-6"><p class="text-right">Please complete all fields <span class="fas fa-info-circle"></span></p></div>
     </div>
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-warning bs-stepper-previous" wire:target="representative_id" wire:loading.attr="disabled"><span class="fas fa-chevron-left"></span> Previous</button>
-                <button type="submit" class="btn btn-warning text-white float-right" wire:target="representative_id" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
+                <button type="button" class="btn btn-primary bs-stepper-previous" wire:target="representative_id" wire:loading.attr="disabled"><span class="fas fa-chevron-left"></span> Previous</button>
+                <button type="submit" class="btn btn-primary text-white float-right" wire:target="representative_id" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
             </form>
         </div>
     </div>

@@ -12,37 +12,43 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        <div class="card card-sayang mb-3 rounded-0">
-            <div class="card-header">
-                <h5 class="card-title"> My Account</h5> 
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        @livewire('front-end.user.my-account.index.profile-picture')
-                    </div>
-                    <div class="col-md-8">
-                        @livewire('front-end.user.my-account.index.account-information')
-                    </div>
-                </div>
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// -->
-    </main> <!-- col.// -->
-</div>
-
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.sidebar')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                <div class="card">
+                    <header class="card-header">
+                        <strong class="d-inline-block mr-3">My Profile</strong>
+                    </header>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @livewire('front-end.user.my-account.index.profile-picture')
+                            </div>
+                            <div class="col-md-8">
+                                @livewire('front-end.user.my-account.index.account-information')
+                            </div>
+                        </div>
+                    </div> <!-- card-body .// -->
+                </div> <!-- card.// -->
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>
 <!-- Modal -->
 <div id="modal-edit_profile_picture" class="modal fade" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Upload New Photo</h5>
+                <h6 class="modal-title">Upload New Photo</h6>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

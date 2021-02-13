@@ -11,10 +11,10 @@
         </div>
 
         <div class="text-right">
-            <button type="submit" class="btn btn-warning btn-sm" wire:loading.attr="disabled" wire:target="update">
+            <button type="button" class="btn btn-light" wire:loading.attr="disabled" wire:target="update" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="update">
                 Submit <span class="fas fa-spin fa-spinner" wire:loading wire:target="update"></span>
             </button>
-            <button type="button" class="btn btn-danger btn-sm" wire:loading.attr="disabled" wire:target="update" data-dismiss="modal">Cancel</button>
         </div>
     </form>
 </div>
