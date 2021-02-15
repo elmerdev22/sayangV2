@@ -9,7 +9,7 @@
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
     <div style="background: url('https://image.freepik.com/free-photo/hand-watering-plants-female-hand-holding-tree-nature-field-grass-forest-conservation-concept_34998-384.jpg')" class="page-holder bg-cover">
-        <div class="container centered-hero py-5"  style="text-shadow: 2px 2px 5px #000000;">
+        <div class="container centered-hero py-5" style="text-shadow: 2px 2px 5px #000000;">
             <header class="text-center text-white py-5">
                     <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>
                     <p class="lead mb-0">Explore exciting deals near you.</p>
@@ -28,7 +28,8 @@
                     </form>
                 </div>
             </div>
-            
+            <div style="top:0; bottom: 0;">
+                
             <header class="section-heading">
                 <h3 class="section-title text-center text-white pt-5">Together we've Rescued</h3>
             </header><!-- sect-heading -->
@@ -64,6 +65,7 @@
                         </figcaption> --}}
                     </figure> <!-- iconbox // -->
                 </div> <!-- col // -->
+            </div>
             </div>
         </div>
         
@@ -185,6 +187,54 @@
     </div><!-- container // -->
 </section>
 
+<section class="section-name padding-y-sm" style="background-color: #10093f">
+    <div class="container">
+        <div style="min-height:300px; ">
+            <h1 class="display-3 font-weight-bold text-white">WAGING THE WAR<br>AGAINTS WASTE</h1>
+            <p class="text-white" style="max-width: 600px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                tempor incididunt.
+            </p>
+            <a href="" class="btn btn-light">Join the movement now <span class="fas fa-arrow-right"></span></a>
+        </div>
+    </div>
+</section>
+<section class="section-name  padding-y-sm">
+    <div class="container">
+        {{-- <header class="section-heading">
+            <h3 class="section-title">Help us rescue these products!</h3>
+        </header><!-- sect-heading --> --}}
+
+        <header class="section-heading">
+            <a href="#" class="btn btn-outline-primary float-right">See all</a>
+            <h3 class="section-title">Popular products</h3>
+        </header><!-- sect-heading -->
+
+        <div class="row">
+            @for ($i = 0; $i < 8; $i++)
+                <div class="col-6 col-md-4 col-lg-3">
+                    @include('front-end.product.product-card-grid')
+                </div> <!-- col.// -->
+            @endfor
+        </div> <!-- row.// -->
+    </div><!-- container // -->
+</section>
+<section class="section-name  padding-t-sm">
+    <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
+        <div class="card-img-overlay white">
+            <div class="container">
+                <h1 class="display-3 font-weight-bold" style="font-family: league spartan">BECOME A PARTNER</h1>
+                <p class="card-text" style="max-width: 600px: ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt.
+                </p>
+                <a href="{{url('register/partner')}}" class="btn btn-light">Join the movement now <span class="fas fa-arrow-right"></span></a>
+            </div>
+        </div>
+  </div>
+</section>
 <!-- ========================= SECTION  END// ========================= -->
 @endsection
 @section('js')

@@ -1,5 +1,9 @@
 @extends('front-end.layout')
 @section('title', ucfirst($product->name))
+@section('css')
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
+
+@endsection
 @section('content')
 <section class="section-content padding-y bg">
     <div class="container">
@@ -7,16 +11,15 @@
         <div class="card">
             <div class="row no-gutters">
                 <aside class="col-md-6">
-                    <article class="gallery-wrap"> 
-                        <div class="img-big-wrap">
-                            <a href="#"><img src="/images/items/12.jpg"></a>
-                        </div> <!-- img-big-wrap.// -->
-                        <div class="thumbs-wrap">
-                            <a href="#" class="item-thumb"> <img src="/images/items/12-1.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="/images/items/12-2.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="/images/items/12.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="/images/items/4.jpg"></a>
-                        </div> <!-- thumbs-wrap.// -->
+                    <article class="gallery-wrap pt-2"> 
+                        <div class="col-12">
+                            <ul id="glasscase" class="gc-start">
+                                @for ($i = 0; $i < 10; $i++)
+                                <li><img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c" alt="Photo"/></li>
+                                <li><img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c" alt="Photo"/></li>
+                                @endfor
+                            </ul>
+                        </div>
                     </article> <!-- gallery-wrap .end// -->
                     <div class="row p-4">
                         <div class="col-12">
@@ -62,6 +65,7 @@
         </div> <!-- card.// -->
         <!-- ============================ PRODUCT DETAILS END .// ================================= -->
     </div> <!-- container .//  -->
+    
 </section>
 <!-- Modal -->
 <div class="modal fade" id="my-all-bids" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -83,8 +87,10 @@
 </div>
 @endsection
 @section('js')
+<script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
+        $('#glasscase').glassCase({ 'thumbsPosition': 'bottom'});
         $(document).on('change', '#purchase-type-switch', function () {
             if($(this).is(':checked')){
                 place_bid = true;

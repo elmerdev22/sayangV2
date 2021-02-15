@@ -1,12 +1,21 @@
 <div class="card card-product-grid">
-    <a href="#" class="img-wrap"> <img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c"> </a>
-    <span class="topbar">
-        <span class="badge badge-primary p-2">
-            <span class="fa fa-clock"></span>
-            3d 14h 25m 38s
+    
+    <div class="img-wrap"> <img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c">
+        <span class="topbar">
+            <span class="badge badge-primary p-2" style="position: static">
+                <span class="fa fa-clock"></span>
+                3d 14h 25m 38s
+            </span>
+            <span class="badge badge-danger p-2 float-right" style="position: static">
+                50% OFF
+            </span>
+            {{-- <span class="float-right" style="text-shadow: 1px 1px 2px">50% off</span> --}}
         </span>
-        <span class="float-right">50% off</span>
-    </span>
+{{--         
+        <span class="btn-overlay" style="opacity: 1;">
+            50% off Retail
+        </span>  --}}
+    </div>
     <figcaption class="info-wrap">
         
         <div class="mt-2">
@@ -16,12 +25,13 @@
             </div>
         </div> <!-- action-wrap.end -->
         <div class="mt-2">
+            <div></div>
             <var class="price">₱150.00 <small><del>₱200.00</small></del></var> <!-- price-wrap.// -->
-            <a href="#" class="btn btn-sm btn-primary float-right">Buy now</a>
+            <a href="#" class="btn btn-sm btn-primary float-right" style="width: 70px;">Buy now</a>
         </div> <!-- action-wrap.end -->
         <div class="mt-2">
-            <var class="price">₱100.00 <small>Bid: 3</small></var> <!-- price-wrap.// -->
-            <a href="#" class="btn btn-sm btn-outline-primary float-right">Bid now</a>
+            <var class="price">₱100.00 <small>Bids: 3</small></var> <!-- price-wrap.// -->
+            <a href="#" class="btn btn-sm btn-outline-primary float-right" style="width: 70px;">Bid now</a>
         </div> <!-- action-wrap.end -->
         <div class="mt-3">
             <div class="row text-center">
