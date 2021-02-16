@@ -1,7 +1,7 @@
 <div>
     <div class="text-center">
         <div>
-            <img class="profile-user-img img-fluid img-circle" src="{{$photo ? $photo->temporaryUrl() : $old_photo}}" alt="User profile picture" style="width: 100px; height: 100px;">
+            <img class="profile-user-img img-fluid img-circle" src="{{$photo ? UploadUtility::livewire_tmp_url($photo) : $old_photo}}" alt="User profile picture" style="width: 100px; height: 100px;">
         </div>
         
         @error('photo')

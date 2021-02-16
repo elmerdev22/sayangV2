@@ -8,7 +8,16 @@ $(window).bind('scroll', function(){
     }
 });
 
-
+$('.sayang-card-img-listing').lazy({
+    effect: "fadeIn",
+    effectTime: 1500,
+    autoDestroy : false
+});
+$('.lazy').lazy({
+    effect: "fadeIn",
+    effectTime: 1000,
+    autoDestroy : false
+});
 // Set the date we're counting down to
 var count_down_timer = function count_down_timer(date_time, element_container_id){
     // "Oct 24, 2020 01:30:00" (format)
@@ -81,6 +90,7 @@ var qtyMinus = function qtyMinus(dom_field, interval=1){
 		}
 	}
 }
+
 var qtyPlus = function qtyPlus(dom_field, interval=1){
 	var value = $(dom_field).val();
 	    value = value.replace(',', '');
@@ -108,22 +118,6 @@ var qtyPlus = function qtyPlus(dom_field, interval=1){
 		}
 	}
 }
-
-var card_loader = function card_loader(dom, toggle='show'){
-    var loader = `<div class="sayang-custom-card-overlay overlay"><i class="fas fa-spinner fa-spin fa-2x"></i></div>`;
-
-    if(toggle == 'show'){
-        $(document).find(dom).append(loader);
-    }else if(toggle == 'hide'){
-        $(document).find(dom).find('.sayang-custom-card-overlay').remove();
-    }
-}
-
-$('.img-preloader').each(function () {
-    $(this).on('load', function () {
-        $(this).next('.img-loader-span').hide();
-    });    
-});
 
 $('input[type=number]').each(function () {
     $(this).on('keydown', function () {

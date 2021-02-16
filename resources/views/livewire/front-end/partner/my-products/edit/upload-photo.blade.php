@@ -6,7 +6,7 @@
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                         <div class="card overflow-hidden sayang-photo-bordered">
                             <div class="position-relative">
-                                <img src="{{$photo->temporaryUrl()}}" class="sayang-card-photo" alt="Product Photo">
+                                <img src="{{ UploadUtility::livewire_tmp_url($photo) }}" class="sayang-card-photo" alt="Product Photo">
                             </div>
                         </div>
                     </div>

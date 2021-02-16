@@ -171,7 +171,7 @@
                                             <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                                                 <div class="card overflow-hidden @if($key == $featured_photo) sayang-featured-photo-bordered @else sayang-photo-bordered @endif">
                                                     <div class="position-relative">
-                                                        <img src="{{$photo->temporaryUrl()}}" class="sayang-card-photo" alt="Product Photo">
+                                                        <img src="{{ UploadUtility::livewire_tmp_url($photo) }}" class="sayang-card-photo" alt="Product Photo">
                                                         @if($key == $featured_photo)
                                                             <div class="sayang-featured-photo-overlay">Featured</div>
                                                         @else

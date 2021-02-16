@@ -4,7 +4,7 @@
             
             <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? $cover_photo->temporaryUrl() : $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
+                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? UploadUtility::livewire_tmp_url($cover_photo) : $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
                     <h3 class="widget-user-desc text-right">
                         @if ($cover_photo)
                             <button class="btn btn-warning btn-sm" wire:click="update_cover_photo">

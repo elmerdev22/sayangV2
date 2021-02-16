@@ -15,7 +15,6 @@
     <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon')}}">
     
     @yield('css')
-    @if(env('APP_DEPLOY') == 'production')
       <!-- Kindly removed once the packages need is working properly -->
           <!-- Font Awesome -->
           <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -24,15 +23,15 @@
           <!-- icheck bootstrap -->
           <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
           <!-- Theme style -->
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
+          <link href="{{ mix('css/AdminLTE.css') }}" rel="stylesheet">
+          {{-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}"> --}}
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
+          {{-- Scroll Bar --}}
+          <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
           <!-- Google Font: Quicksand -->
           <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
           <!-- end of to be removed packages -->
-    @else
-      <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
     @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sayang-layout-navbar-fixed">
@@ -80,7 +79,6 @@
   <!-- jQuery -->
 
   @livewireScripts
-  @if(env('APP_DEPLOY') == 'production')
     <!-- Kindly removed once the packages need is working properly -->
     <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
@@ -88,14 +86,11 @@
     <!-- SweetAlert2 -->
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
     <!-- Admin lte -->
-     <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
-    <!-- AOS script-->
+    <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
+    <!-- SCroll bar -->
+    <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <!-- end of to be removed packages -->
-  @else
-    <script src="{{ mix('js/app.js') }}"></script>
-  @endif
-
 
   <script type="text/javascript">
     window.livewire.on('notif_alert', param => {
