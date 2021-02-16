@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
                                 <div class="text-center overflow-hidden">
-                                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $store_photo ? $store_photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="Photo">
+                                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $store_photo ? UploadUtility::livewire_tmp_url($store_photo) : asset('images/default-photo/image.png')}}" alt="Photo">
                                 </div>
                                 <div class="form-group">
                                     <label for="store_photo">Store Photo* 

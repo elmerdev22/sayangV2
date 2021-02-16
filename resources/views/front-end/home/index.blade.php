@@ -246,7 +246,7 @@
             $('.slider-items-owl').owlCarousel({
                 loop:true,
                 margin:5,
-                nav:true,
+                nav:false,
                 autoplay:true,
                 autoplayTimeout:2000,
                 autoplayHoverPause:true,
