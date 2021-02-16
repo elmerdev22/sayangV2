@@ -4,7 +4,7 @@
 # /public/css
 /public/js
 /public/mix-manifest.json
-/public/fonts
+# /public/fonts
 /public/vendor
 /storage/*.key
 /vendor
