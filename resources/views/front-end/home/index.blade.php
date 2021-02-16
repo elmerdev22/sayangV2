@@ -179,7 +179,7 @@
 
         <div class="row">
             @for ($i = 0; $i < 8; $i++)
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     @include('front-end.product.product-card-grid')
                 </div> <!-- col.// -->
             @endfor
@@ -253,7 +253,7 @@
                 navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
                 responsive:{
                     0:{
-                        items:4
+                        items:3
                     },
                     640:{
                         items:6
