@@ -213,7 +213,7 @@
 
         <div class="row">
             @for ($i = 0; $i < 8; $i++)
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     @include('front-end.product.product-card-grid')
                 </div> <!-- col.// -->
             @endfor
