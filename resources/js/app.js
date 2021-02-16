@@ -1,5 +1,3 @@
 
-// require('./jquery-2.0.0.min');
-// require('./bootstrap.bundle.min');
-// require('./sweetalert2.min');
-require('./custom');
+window.Swal = require('sweetalert2');
+window.$    = window.jQuery = require('./jquery-2.0.0.min')

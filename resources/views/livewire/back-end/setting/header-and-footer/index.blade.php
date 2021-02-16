@@ -16,7 +16,7 @@
                             <div class="text-center overflow-hidden">
                                 
                                 @if ($logo)
-                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ $logo->temporaryUrl()}}" alt="">
+                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ UploadUtility::livewire_tmp_url($logo)}}" alt="">
                                 @else
                                     <img class="mb-2 mt-1 img-thumbnail" src="{{$current_logo}}" alt="">
                                 @endif
@@ -53,7 +53,7 @@
                             <div class="text-center overflow-hidden">
                                 
                                 @if ($icon)
-                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ $icon->temporaryUrl()}}" alt="">
+                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ UploadUtility::livewire_tmp_url($icon)}}" alt="">
                                 @else
                                     <img class="mb-2 mt-1 img-thumbnail" src="{{$current_icon}}" alt="">
                                 @endif

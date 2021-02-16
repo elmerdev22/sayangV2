@@ -85,7 +85,7 @@
                                 <div class="col-12">
                                     <div class="card overflow-hidden sayang-photo-bordered">
                                         <div class="position-relative">
-                                            <img src="{{$photo->temporaryUrl()}}" class="img-fluid" alt="Product Photo">
+                                            <img src="{{ UploadUtility::livewire_tmp_url($photo) }}" class="img-fluid" alt="Product Photo">
                                         </div>
                                     </div>
                                 </div>

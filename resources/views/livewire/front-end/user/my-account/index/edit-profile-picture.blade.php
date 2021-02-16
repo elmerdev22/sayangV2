@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="text-center overflow-hidden">
-                    <img class="icon icon-lg rounded-circle border mb-2" src="{{ $photo ? $photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="Photo">
+                    <img class="icon icon-lg rounded-circle border mb-2" src="{{ $photo ? UploadUtility::livewire_tmp_url($photo) : asset('images/default-photo/image.png')}}" alt="Photo">
                 </div>
                 <div class="form-group">
                     <label for="photo">Photo*</label>

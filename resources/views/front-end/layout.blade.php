@@ -45,7 +45,7 @@
         <!-- Bootstrap 4 -->
         <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 		<!-- SweetAlert2 -->
-		<script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
+		{{-- <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script> --}}
         <!-- Pusher JS -->
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <!-- Countdown JS -->

@@ -168,4 +168,12 @@ class UploadUtility{
         }
     }
 
+    public static function livewire_tmp_url($photo){
+        $path       = $photo->getFilename();
+        $full_path  = \Storage::path('livewire-tmp/'.$path);
+        $base64     = base64_encode(\Storage::get('livewire-tmp/'.$path));
+        $image_data = 'data:'.mime_content_type($full_path) . ';base64,' . $base64;
+        
+        return $image_data;
+    }
 }
