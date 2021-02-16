@@ -200,7 +200,7 @@
         </div>
     </div>
 </section>
-<section class="section-name  padding-y-sm">
+<section class="section-name padding-y-sm">
     <div class="container">
         {{-- <header class="section-heading">
             <h3 class="section-title">Help us rescue these products!</h3>
@@ -220,7 +220,7 @@
         </div> <!-- row.// -->
     </div><!-- container // -->
 </section>
-<section class="section-name  padding-t-sm">
+<section class="section-name padding-t-sm">
     <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
         <div class="card-img-overlay white">
             <div class="container">
