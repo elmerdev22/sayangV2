@@ -5,6 +5,7 @@
 <!-- plugin: owl carousel  -->
 <link href="plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
 <link href="plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
@@ -116,12 +117,12 @@
 <section class="section-content padding-y" style="background-color: #10093f">
     <div class="container">
         <header class="section-heading pb-2 text-center">
-            <h3 class="section-title text-white">Everyday, thousands of products are locked up, never to be sold again</h3>
-            <p class="text-muted"> Content Content Content Content Content Content Content Content Content</p>
+            <h3 class="section-title text-white" data-aos="fade-up">Everyday, thousands of products are locked up, never to be sold again</h3>
+            <p class="text-muted" data-aos="fade-up" data-aos-delay="50"> Content Content Content Content Content Content Content Content Content</p>
         </header><!-- sect-heading -->
         <div class="row">
             <div class="col-md-4 py-3">
-                <div class="card bg-dark">
+                <div class="card bg-dark" data-aos="zoom-in">
                     <img src="https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg" class="card-img opacity">
                     <div class="card-img-overlay text-white">
                         <h5 class="card-title">Trees</h5>
@@ -131,7 +132,7 @@
                 </div> 
             </div> <!-- col.// -->
             <div class="col-md-4 py-3">
-                <div class="card bg-dark">
+                <div class="card bg-dark" data-aos="zoom-in">
                     <img src="https://image.freepik.com/free-photo/plant-growing-ground_1150-19317.jpg" class="card-img opacity">
                     <div class="card-img-overlay text-white">
                         <h5 class="card-title">Water</h5>
@@ -141,7 +142,7 @@
                 </div>
             </div> <!-- col.// -->
             <div class="col-md-4 py-3">
-                <div class="card bg-dark">
+                <div class="card bg-dark" data-aos="zoom-in">
                     <img src="https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg" class="card-img opacity">
                     <div class="card-img-overlay text-white">
                         <h5 class="card-title">Energy</h5>
@@ -158,7 +159,7 @@
 <section class="section-name bg padding-y-sm">
     <div class="container">
         <header class="section-heading">
-            <h3 class="section-title">Categories</h3>
+            <h3 class="section-title"data-aos="fade-right">Categories</h3>
         </header><!-- sect-heading -->
         <!-- ============== COMPONENT SLIDER ITEMS OWL  ============= -->
         @livewire('front-end.home.category')
@@ -174,7 +175,7 @@
 
         <header class="section-heading">
             <a href="#" class="btn btn-outline-primary float-right">See all</a>
-            <h3 class="section-title">Popular products</h3>
+            <h3 class="section-title" data-aos="fade-right">Popular products</h3>
         </header><!-- sect-heading -->
 
         <div class="row">
@@ -190,13 +191,13 @@
 <section class="section-name padding-y-sm" style="background-color: #10093f">
     <div class="container">
         <div style="min-height:300px; ">
-            <h1 class="display-3 font-weight-bold text-white">WAGING THE WAR<br>AGAINTS WASTE</h1>
-            <p class="text-white" style="max-width: 600px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">WAGING THE WAR<br>AGAINTS WASTE</h1>
+            <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
                 tempor incididunt.
             </p>
-            <a href="" class="btn btn-light">Join the movement now <span class="fas fa-arrow-right"></span></a>
+            <a href="" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
         </div>
     </div>
 </section>
@@ -224,13 +225,13 @@
     <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
         <div class="card-img-overlay white">
             <div class="container">
-                <h1 class="display-3 font-weight-bold" style="font-family: league spartan">BECOME A PARTNER</h1>
-                <p class="card-text" style="max-width: 600px: ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                <h1 class="display-3 font-weight-bold" data-aos="fade-right" data-aos-delay="50">BECOME A PARTNER</h1>
+                <p class="card-text" style="max-width: 600px: " data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt.
                 </p>
-                <a href="{{url('register/partner')}}" class="btn btn-light">Join the movement now <span class="fas fa-arrow-right"></span></a>
+                <a href="{{url('register/partner')}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
             </div>
         </div>
   </div>
@@ -239,6 +240,13 @@
 @endsection
 @section('js')
 <script src="plugins/owlcarousel/owl.carousel.min.js"></script>   
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 700, // values from 0 to 3000, with step 50ms
+        once: true
+    });
+  </script>
 <script type="text/javascript">
     // jquery ready start
     $(document).ready(function() {
