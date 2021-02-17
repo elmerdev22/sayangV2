@@ -24,7 +24,7 @@
             @enderror
         </div> <!-- form-group// -->
         <div class="form-group">
-            <a href="#" class="float-right">Forgot password?</a> 
+            <a href="{{ route('password.request') }}" class="float-right">Forgot password?</a> 
             <label class="float-left custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="remember" wire:model="remember"> 
             <div class="custom-control-label"> Remember </div> </label>

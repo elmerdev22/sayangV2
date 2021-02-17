@@ -2,7 +2,6 @@
 @section('title', ucfirst($product->name))
 @section('css')
 <link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
-
 @endsection
 @section('content')
 <section class="section-content padding-y bg">

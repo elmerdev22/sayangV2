@@ -52,7 +52,6 @@
         <script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
         <!-- Custom JS -->
         @yield('js')
-		
         <script src="{{asset('template/assets/dist/js/custom.js')}}"></script>
 
 		@livewireScripts
