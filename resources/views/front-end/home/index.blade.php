@@ -159,7 +159,7 @@
 <section class="section-name bg padding-y-sm">
     <div class="container">
         <header class="section-heading">
-            <h3 class="section-title"data-aos="fade-right">Categories</h3>
+            <h5 class="section-title" data-aos="fade-right">Categories</h5>
         </header><!-- sect-heading -->
         <!-- ============== COMPONENT SLIDER ITEMS OWL  ============= -->
         @livewire('front-end.home.category')
@@ -175,7 +175,7 @@
 
         <header class="section-heading">
             <a href="#" class="btn btn-outline-primary float-right">See all</a>
-            <h3 class="section-title" data-aos="fade-right">Popular products</h3>
+            <h5 class="section-title" data-aos="fade-right">Help Us Rescue these products</h5>
         </header><!-- sect-heading -->
 
         <div class="row">
@@ -209,7 +209,7 @@
 
         <header class="section-heading">
             <a href="#" class="btn btn-outline-primary float-right">See all</a>
-            <h3 class="section-title">Popular products</h3>
+            <h5 class="section-title" data-aos="fade-right">Hurry! Last chance to rescue these products! </h5>
         </header><!-- sect-heading -->
 
         <div class="row">

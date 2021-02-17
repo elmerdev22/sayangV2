@@ -1,4 +1,4 @@
-<div class="card card-product-grid" data-aos="zoom-in">
+<div class="card card-product-grid" >
     
     <div class="img-wrap"> <img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c">
         <span class="topbar">
