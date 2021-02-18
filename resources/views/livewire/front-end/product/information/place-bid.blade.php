@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <label>
                             Bid Increment
-                            ₱ {{number_format($bid_increment, 2)}} 
+                            {{Utility::currency_code()}} {{number_format($bid_increment, 2)}} 
                         </label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -55,7 +55,7 @@
                     <div class="col-12 text-center">
                         <label>
                             Bid Increment
-                            ₱ {{number_format($bid_increment, 2)}} 
+                            {{Utility::currency_code()}} {{number_format($bid_increment, 2)}} 
                         </label>
                     </div>
                 @endif
@@ -73,7 +73,7 @@
         <div class="col-12">
             @if($allow_purchase == 'allowed')
                 <div class="bg-primary rounded py-1 px-2 mt-4">
-                    <h4 class="mb-0 text-white">Your Total: ₱{{number_format($total_amount, 2)}}</h4>
+                    <h4 class="mb-0 text-white">Your Total: {{Utility::currency_code()}}{{number_format($total_amount, 2)}}</h4>
                 </div>
                 <div class="py-2 px-3 mt-4">
                     <button class="btn btn-light w-100" onclick="confirm_bid('{{$bid != null ? number_format($bid, 2) : $bid}}')">
@@ -118,7 +118,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Bid</th>
                             <th scope="col">Qty</th>
-                            <th scope="col">Allocated Qty</th>
+                            {{-- <th scope="col">Allocated Qty</th> --}}
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -127,13 +127,13 @@
                         <tr>
                             @php
                                 $current_quantity -= $data->quantity;    
-                                $allocated_quantity = $current_quantity + $data->quantity < 0 ? 0 : $current_quantity + $data->quantity;
+                                $allocated_quantity = $data->quantity;
                             @endphp
                             <td>{{++$key}}</td>
                             <td>{{$data->user_account->first_name}} </td>
-                            <td>₱{{number_format($data->bid, 2)}}</td>
+                            <td>{{Utility::currency_code()}}{{number_format($data->bid, 2)}}</td>
                             <td>{{number_format($data->quantity, 0)}}</td>
-                            <td>{{number_format($allocated_quantity, 0)}}</td>
+                            {{-- <td>{{number_format($allocated_quantity, 0)}}</td> --}}
                             <td>
                                 {{$current_quantity + $data->quantity <= 0 ? 'Losing' : 'Winning'}}
                             </td>
@@ -212,7 +212,7 @@
 
     function confirm_bid(bid){
         Swal.fire({
-        title: 'Your Bid is : ₱'+bid,
+        title: 'Your Bid is : {{Utility::currency_code()}}'+bid,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',

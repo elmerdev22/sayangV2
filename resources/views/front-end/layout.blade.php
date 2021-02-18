@@ -69,7 +69,7 @@
 				var total_item_in_cart = parseInt(param['total']);
 				$(document).find('.badge-total-item-in-cart').each(function () {
 					if(total_item_in_cart > 0){
-						$(this).html('<span class="badge badge-warning">'+total_item_in_cart+'</span>');
+						$(this).html('<span class="notify">'+total_item_in_cart+'</span>');
 					}else{
 						$(this).html('');
 					}

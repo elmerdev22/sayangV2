@@ -4,9 +4,9 @@
         @if($allow_purchase == 'allowed')
             <div class="col-md-5">
                 <h4>
-                    ₱{{number_format($product_post->buy_now_price, 2)}} 
+                    {{Utility::currency_code()}}{{number_format($product_post->buy_now_price, 2)}} 
                 </h4>
-                <small><del>₱{{number_format($product_post->product->regular_price, 2)}}</del></small>
+                <small><del>{{Utility::currency_code()}}{{number_format($product_post->product->regular_price, 2)}}</del></small>
             </div>
             <div class="col-md-2 text-center">
                 <span class="fas fa-times"></span>
@@ -47,15 +47,15 @@
             </div>
         @else
             <div class="col-12">
-                <h4>₱{{number_format($product_post->buy_now_price, 2)}} </h4> 
-                <small><del>₱{{number_format($product_post->product->regular_price, 2)}}</del></small>
+                <h4>{{Utility::currency_code()}}{{number_format($product_post->buy_now_price, 2)}} </h4> 
+                <small><del>{{Utility::currency_code()}}{{number_format($product_post->product->regular_price, 2)}}</del></small>
             </div>
         @endif
     </div>
     @if($allow_purchase == 'allowed')
-        <p class="mt-4">You save ₱{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
+        <p class="mt-4">You save {{Utility::currency_code()}}{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
         <div class="bg-primary py-1 px-2 rounded">
-            <h4 class="mb-0 text-white">Your Total: ₱{{number_format($buy_now_price, 2)}}</h4>
+            <h4 class="mb-0 text-white">Your Total: {{Utility::currency_code()}}{{number_format($buy_now_price, 2)}}</h4>
         </div>
     @endif
     
@@ -132,7 +132,7 @@
                     @if($force_disabled)
                         <div class="text-center">Item Not Available</div>
                     @else
-                        Login as User to Purchase
+                        <p class="font-weight-bold">Login as User to Purchase</p>
                     @endif
                 </div>
             </div>

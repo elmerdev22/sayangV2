@@ -9,12 +9,10 @@
             <span class="badge badge-danger p-2 float-right" style="position: static">
                 50% OFF
             </span>
-            {{-- <span class="float-right" style="text-shadow: 1px 1px 2px">50% off</span> --}}
         </span>
-{{--         
-        <span class="btn-overlay" style="opacity: 1;">
-            50% off Retail
-        </span>  --}}
+        <a class="btn-overlay" href="#">
+            <i class="fa fa-search-plus"></i> Quick view
+        </a>
     </div>
     <figcaption class="info-wrap">
         

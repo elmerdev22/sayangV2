@@ -13,7 +13,7 @@ use DB;
 
 class MostPopular extends Component
 {
-    public $limit = 12;
+    public $limit = 8;
 
     public function initialize(){
         $filter = [];
@@ -40,7 +40,8 @@ class MostPopular extends Component
                 ->leftJoin('bids','bids.product_post_id', '=', 'product_posts.id')
                 ->groupBy('product_posts.id')
                 ->orderBy('most_popular', 'desc')
-                ->paginate($this->limit);
+                ->limit($this->limit)
+                ->get(); 
     }
 
     public function product_featured_photo($product_id, $partner_id){

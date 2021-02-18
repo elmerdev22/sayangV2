@@ -42,6 +42,10 @@ class Utility{
     public static function carbon_diff($date){
         return Carbon::parse($date)->diffForHumans();
     }
+    
+    public static function currency_code(){
+        return '₱';
+    }
 
     public static function error_message($type){
         $data = '';

@@ -23,7 +23,14 @@
                         <a href="{{route('front-end.user.my-cart.index')}}" class="widget-header mr-3">
                             <div class="icon">
                                 <i class="icon-sm rounded-circle border fa fa-shopping-cart"></i>
-                                <span class="notify">0</span>
+                                @php 
+                                    $total_cart_item = Utility::total_cart_item();
+                                @endphp
+                                <span class="badge-total-item-in-cart">
+                                    @if($total_cart_item > 0)
+                                        <span class="notify">{{$total_cart_item}}</span>
+                                    @endif
+                                </span>
                             </div>
                         </a>
                         <a href="#" class="widget-header mr-3">
