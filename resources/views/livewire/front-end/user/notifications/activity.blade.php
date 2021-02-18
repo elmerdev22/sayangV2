@@ -13,7 +13,7 @@
                 <table class="table table-bordered table-hover table-borderless table-cell-nowrap text-center">
                     <thead>
                         <tr class="border">
-                            <th class="text-center">Activity</th>
+                            <th class="text-center" colspan="3">Activity</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +59,7 @@
                             </tr>
                         @empty
                             <tr class="border">
-                                <td colspan="1">No Notifications.</td>
+                                <td colspan="3">No Notifications.</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -30,9 +30,8 @@
                 <main class="col-md-6 border-left">
                     <article class="content-body">
                         @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id, 'force_disabled' => $force_disabled])
-                    
                     <hr>
-                    {{-- @if(!$force_disabled) --}}
+                    @if(!$force_disabled)
                         <div class="text-center">
                             <div class="col-12">
                                 <h5 class="p-0 m-0">
@@ -57,7 +56,7 @@
                             </div>
                             <!-- End of Place Bid -->
                         </div>
-                    {{-- @endif --}}
+                    @endif
                     </article> <!-- product-info-aside .// -->
                 </main> <!-- col.// -->
             </div> <!-- row.// -->

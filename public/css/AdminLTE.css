@@ -29775,10 +29775,6 @@ blockquote.quote-gray-dark h6 {
   color: #1F2D3D;
 }
 
-.bg-gradient-primary {
-  background: #66bb6a linear-gradient(180deg, #7dc580, #66bb6a) repeat-x !important;
-}
-
 .bg-gradient-primary.btn.disabled,
 .bg-gradient-primary.btn:disabled,
 .bg-gradient-primary.btn:not(:disabled):not(.disabled):active,
@@ -29792,10 +29788,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-primary.btn:hover {
-  background: #4dae52 linear-gradient(180deg, #68ba6c, #4dae52) repeat-x !important;
-}
-
 .bg-gradient-primary.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-primary.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-primary.btn:active,
@@ -29804,19 +29796,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-primary.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-primary.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-primary.btn:active,
-.bg-gradient-primary.btn.active {
-  background: #49a54e linear-gradient(180deg, #64b369, #49a54e) repeat-x !important;
-}
-
 .bg-gradient-secondary {
   color: #ffffff;
-}
-
-.bg-gradient-secondary {
-  background: #6c757d linear-gradient(180deg, #828a91, #6c757d) repeat-x !important;
 }
 
 .bg-gradient-secondary.btn.disabled,
@@ -29832,10 +29813,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-secondary.btn:hover {
-  background: #5a6268 linear-gradient(180deg, #737a7f, #5a6268) repeat-x !important;
-}
-
 .bg-gradient-secondary.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-secondary.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-secondary.btn:active,
@@ -29844,19 +29821,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-secondary.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-secondary.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-secondary.btn:active,
-.bg-gradient-secondary.btn.active {
-  background: #545b62 linear-gradient(180deg, #6e747a, #545b62) repeat-x !important;
-}
-
 .bg-gradient-success {
   color: #ffffff;
-}
-
-.bg-gradient-success {
-  background: #28a745 linear-gradient(180deg, #48b461, #28a745) repeat-x !important;
 }
 
 .bg-gradient-success.btn.disabled,
@@ -29872,10 +29838,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-success.btn:hover {
-  background: #218838 linear-gradient(180deg, #429a56, #218838) repeat-x !important;
-}
-
 .bg-gradient-success.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-success.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-success.btn:active,
@@ -29884,19 +29846,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-success.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-success.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-success.btn:active,
-.bg-gradient-success.btn.active {
-  background: #1e7e34 linear-gradient(180deg, #409152, #1e7e34) repeat-x !important;
-}
-
 .bg-gradient-info {
   color: #ffffff;
-}
-
-.bg-gradient-info {
-  background: #17a2b8 linear-gradient(180deg, #3ab0c3, #17a2b8) repeat-x !important;
 }
 
 .bg-gradient-info.btn.disabled,
@@ -29912,10 +29863,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-info.btn:hover {
-  background: #138496 linear-gradient(180deg, #3696a6, #138496) repeat-x !important;
-}
-
 .bg-gradient-info.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-info.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-info.btn:active,
@@ -29924,19 +29871,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-info.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-info.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-info.btn:active,
-.bg-gradient-info.btn.active {
-  background: #117a8b linear-gradient(180deg, #358e9c, #117a8b) repeat-x !important;
-}
-
 .bg-gradient-warning {
   color: #1F2D3D;
-}
-
-.bg-gradient-warning {
-  background: #66bb6a linear-gradient(180deg, #7dc580, #66bb6a) repeat-x !important;
 }
 
 .bg-gradient-warning.btn.disabled,
@@ -29952,10 +29888,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-warning.btn:hover {
-  background: #4dae52 linear-gradient(180deg, #68ba6c, #4dae52) repeat-x !important;
-}
-
 .bg-gradient-warning.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-warning.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-warning.btn:active,
@@ -29964,19 +29896,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-warning.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-warning.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-warning.btn:active,
-.bg-gradient-warning.btn.active {
-  background: #49a54e linear-gradient(180deg, #64b369, #49a54e) repeat-x !important;
-}
-
 .bg-gradient-danger {
   color: #ffffff;
-}
-
-.bg-gradient-danger {
-  background: #dc3545 linear-gradient(180deg, #e15361, #dc3545) repeat-x !important;
 }
 
 .bg-gradient-danger.btn.disabled,
@@ -29992,10 +29913,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-danger.btn:hover {
-  background: #c82333 linear-gradient(180deg, #d04452, #c82333) repeat-x !important;
-}
-
 .bg-gradient-danger.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-danger.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-danger.btn:active,
@@ -30004,19 +29921,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-danger.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-danger.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-danger.btn:active,
-.bg-gradient-danger.btn.active {
-  background: #bd2130 linear-gradient(180deg, #c7424f, #bd2130) repeat-x !important;
-}
-
 .bg-gradient-light {
   color: #1F2D3D;
-}
-
-.bg-gradient-light {
-  background: #f8f9fa linear-gradient(180deg, #f9fafb, #f8f9fa) repeat-x !important;
 }
 
 .bg-gradient-light.btn.disabled,
@@ -30032,10 +29938,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-light.btn:hover {
-  background: #e2e6ea linear-gradient(180deg, #e6eaed, #e2e6ea) repeat-x !important;
-}
-
 .bg-gradient-light.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-light.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-light.btn:active,
@@ -30044,19 +29946,8 @@ blockquote.quote-gray-dark h6 {
   color: #1F2D3D;
 }
 
-.bg-gradient-light.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-light.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-light.btn:active,
-.bg-gradient-light.btn.active {
-  background: #dae0e5 linear-gradient(180deg, #e0e5e9, #dae0e5) repeat-x !important;
-}
-
 .bg-gradient-dark {
   color: #ffffff;
-}
-
-.bg-gradient-dark {
-  background: #343a40 linear-gradient(180deg, #52585d, #343a40) repeat-x !important;
 }
 
 .bg-gradient-dark.btn.disabled,
@@ -30072,10 +29963,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-dark.btn:hover {
-  background: #23272b linear-gradient(180deg, #44474b, #23272b) repeat-x !important;
-}
-
 .bg-gradient-dark.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-dark.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-dark.btn:active,
@@ -30084,19 +29971,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-dark.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-dark.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-dark.btn:active,
-.bg-gradient-dark.btn.active {
-  background: #1d2124 linear-gradient(180deg, #3f4245, #1d2124) repeat-x !important;
-}
-
 .bg-gradient-lightblue {
   color: #ffffff;
-}
-
-.bg-gradient-lightblue {
-  background: #3c8dbc linear-gradient(180deg, #599ec6, #3c8dbc) repeat-x !important;
 }
 
 .bg-gradient-lightblue.btn.disabled,
@@ -30112,10 +29988,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-lightblue.btn:hover {
-  background: #33779f linear-gradient(180deg, #528bad, #33779f) repeat-x !important;
-}
-
 .bg-gradient-lightblue.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-lightblue.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-lightblue.btn:active,
@@ -30124,19 +29996,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-lightblue.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-lightblue.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-lightblue.btn:active,
-.bg-gradient-lightblue.btn.active {
-  background: #307095 linear-gradient(180deg, #4f85a5, #307095) repeat-x !important;
-}
-
 .bg-gradient-navy {
   color: #ffffff;
-}
-
-.bg-gradient-navy {
-  background: #001f3f linear-gradient(180deg, #26415c, #001f3f) repeat-x !important;
 }
 
 .bg-gradient-navy.btn.disabled,
@@ -30152,10 +30013,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-navy.btn:hover {
-  background: #000c19 linear-gradient(180deg, #26303c, #000c19) repeat-x !important;
-}
-
 .bg-gradient-navy.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-navy.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-navy.btn:active,
@@ -30164,19 +30021,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-navy.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-navy.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-navy.btn:active,
-.bg-gradient-navy.btn.active {
-  background: #00060c linear-gradient(180deg, #262b30, #00060c) repeat-x !important;
-}
-
 .bg-gradient-olive {
   color: #ffffff;
-}
-
-.bg-gradient-olive {
-  background: #3d9970 linear-gradient(180deg, #5aa885, #3d9970) repeat-x !important;
 }
 
 .bg-gradient-olive.btn.disabled,
@@ -30192,10 +30038,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-olive.btn:hover {
-  background: #327e5c linear-gradient(180deg, #519174, #327e5c) repeat-x !important;
-}
-
 .bg-gradient-olive.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-olive.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-olive.btn:active,
@@ -30204,19 +30046,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-olive.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-olive.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-olive.btn:active,
-.bg-gradient-olive.btn.active {
-  background: #2e7555 linear-gradient(180deg, #4d8a6f, #2e7555) repeat-x !important;
-}
-
 .bg-gradient-lime {
   color: #1F2D3D;
-}
-
-.bg-gradient-lime {
-  background: #01ff70 linear-gradient(180deg, #27ff85, #01ff70) repeat-x !important;
 }
 
 .bg-gradient-lime.btn.disabled,
@@ -30232,10 +30063,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-lime.btn:hover {
-  background: #00da5f linear-gradient(180deg, #26e077, #00da5f) repeat-x !important;
-}
-
 .bg-gradient-lime.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-lime.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-lime.btn:active,
@@ -30244,19 +30071,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-lime.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-lime.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-lime.btn:active,
-.bg-gradient-lime.btn.active {
-  background: #00cd5a linear-gradient(180deg, #26d573, #00cd5a) repeat-x !important;
-}
-
 .bg-gradient-fuchsia {
   color: #ffffff;
-}
-
-.bg-gradient-fuchsia {
-  background: #f012be linear-gradient(180deg, #f236c8, #f012be) repeat-x !important;
 }
 
 .bg-gradient-fuchsia.btn.disabled,
@@ -30272,10 +30088,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-fuchsia.btn:hover {
-  background: #cf0da3 linear-gradient(180deg, #d631b1, #cf0da3) repeat-x !important;
-}
-
 .bg-gradient-fuchsia.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-fuchsia.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-fuchsia.btn:active,
@@ -30284,19 +30096,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-fuchsia.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-fuchsia.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-fuchsia.btn:active,
-.bg-gradient-fuchsia.btn.active {
-  background: #c30c9a linear-gradient(180deg, #cc30a9, #c30c9a) repeat-x !important;
-}
-
 .bg-gradient-maroon {
   color: #ffffff;
-}
-
-.bg-gradient-maroon {
-  background: #d81b60 linear-gradient(180deg, #de3d78, #d81b60) repeat-x !important;
 }
 
 .bg-gradient-maroon.btn.disabled,
@@ -30312,10 +30113,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-maroon.btn:hover {
-  background: #b61751 linear-gradient(180deg, #c13a6b, #b61751) repeat-x !important;
-}
-
 .bg-gradient-maroon.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-maroon.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-maroon.btn:active,
@@ -30324,19 +30121,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-maroon.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-maroon.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-maroon.btn:active,
-.bg-gradient-maroon.btn.active {
-  background: #ab154c linear-gradient(180deg, #b83867, #ab154c) repeat-x !important;
-}
-
 .bg-gradient-blue {
   color: #1F2D3D;
-}
-
-.bg-gradient-blue {
-  background: #66bb6a linear-gradient(180deg, #7dc580, #66bb6a) repeat-x !important;
 }
 
 .bg-gradient-blue.btn.disabled,
@@ -30352,10 +30138,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-blue.btn:hover {
-  background: #4dae52 linear-gradient(180deg, #68ba6c, #4dae52) repeat-x !important;
-}
-
 .bg-gradient-blue.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-blue.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-blue.btn:active,
@@ -30364,19 +30146,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-blue.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-blue.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-blue.btn:active,
-.bg-gradient-blue.btn.active {
-  background: #49a54e linear-gradient(180deg, #64b369, #49a54e) repeat-x !important;
-}
-
 .bg-gradient-indigo {
   color: #ffffff;
-}
-
-.bg-gradient-indigo {
-  background: #6610f2 linear-gradient(180deg, #7d34f4, #6610f2) repeat-x !important;
 }
 
 .bg-gradient-indigo.btn.disabled,
@@ -30392,10 +30163,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-indigo.btn:hover {
-  background: #560bd0 linear-gradient(180deg, #6f30d7, #560bd0) repeat-x !important;
-}
-
 .bg-gradient-indigo.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-indigo.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-indigo.btn:active,
@@ -30404,19 +30171,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-indigo.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-indigo.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-indigo.btn:active,
-.bg-gradient-indigo.btn.active {
-  background: #510bc4 linear-gradient(180deg, #6b30cd, #510bc4) repeat-x !important;
-}
-
 .bg-gradient-purple {
   color: #ffffff;
-}
-
-.bg-gradient-purple {
-  background: #6f42c1 linear-gradient(180deg, #855eca, #6f42c1) repeat-x !important;
 }
 
 .bg-gradient-purple.btn.disabled,
@@ -30432,10 +30188,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-purple.btn:hover {
-  background: #5e37a6 linear-gradient(180deg, #7655b3, #5e37a6) repeat-x !important;
-}
-
 .bg-gradient-purple.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-purple.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-purple.btn:active,
@@ -30444,19 +30196,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-purple.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-purple.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-purple.btn:active,
-.bg-gradient-purple.btn.active {
-  background: #59339d linear-gradient(180deg, #7252ac, #59339d) repeat-x !important;
-}
-
 .bg-gradient-pink {
   color: #ffffff;
-}
-
-.bg-gradient-pink {
-  background: #e83e8c linear-gradient(180deg, #eb5b9d, #e83e8c) repeat-x !important;
 }
 
 .bg-gradient-pink.btn.disabled,
@@ -30472,10 +30213,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-pink.btn:hover {
-  background: #e41c78 linear-gradient(180deg, #e83e8c, #e41c78) repeat-x !important;
-}
-
 .bg-gradient-pink.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-pink.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-pink.btn:active,
@@ -30484,19 +30221,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-pink.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-pink.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-pink.btn:active,
-.bg-gradient-pink.btn.active {
-  background: #d91a72 linear-gradient(180deg, #df3c87, #d91a72) repeat-x !important;
-}
-
 .bg-gradient-red {
   color: #ffffff;
-}
-
-.bg-gradient-red {
-  background: #dc3545 linear-gradient(180deg, #e15361, #dc3545) repeat-x !important;
 }
 
 .bg-gradient-red.btn.disabled,
@@ -30512,10 +30238,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-red.btn:hover {
-  background: #c82333 linear-gradient(180deg, #d04452, #c82333) repeat-x !important;
-}
-
 .bg-gradient-red.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-red.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-red.btn:active,
@@ -30524,19 +30246,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-red.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-red.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-red.btn:active,
-.bg-gradient-red.btn.active {
-  background: #bd2130 linear-gradient(180deg, #c7424f, #bd2130) repeat-x !important;
-}
-
 .bg-gradient-orange {
   color: #1F2D3D;
-}
-
-.bg-gradient-orange {
-  background: #fd7e14 linear-gradient(180deg, #fd9137, #fd7e14) repeat-x !important;
 }
 
 .bg-gradient-orange.btn.disabled,
@@ -30552,10 +30263,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-orange.btn:hover {
-  background: #e96b02 linear-gradient(180deg, #ec8128, #e96b02) repeat-x !important;
-}
-
 .bg-gradient-orange.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-orange.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-orange.btn:active,
@@ -30564,19 +30271,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-orange.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-orange.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-orange.btn:active,
-.bg-gradient-orange.btn.active {
-  background: #dc6502 linear-gradient(180deg, #e17c28, #dc6502) repeat-x !important;
-}
-
 .bg-gradient-yellow {
   color: #1F2D3D;
-}
-
-.bg-gradient-yellow {
-  background: #66bb6a linear-gradient(180deg, #7dc580, #66bb6a) repeat-x !important;
 }
 
 .bg-gradient-yellow.btn.disabled,
@@ -30592,10 +30288,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-yellow.btn:hover {
-  background: #4dae52 linear-gradient(180deg, #68ba6c, #4dae52) repeat-x !important;
-}
-
 .bg-gradient-yellow.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-yellow.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-yellow.btn:active,
@@ -30604,19 +30296,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-yellow.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-yellow.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-yellow.btn:active,
-.bg-gradient-yellow.btn.active {
-  background: #49a54e linear-gradient(180deg, #64b369, #49a54e) repeat-x !important;
-}
-
 .bg-gradient-green {
   color: #ffffff;
-}
-
-.bg-gradient-green {
-  background: #28a745 linear-gradient(180deg, #48b461, #28a745) repeat-x !important;
 }
 
 .bg-gradient-green.btn.disabled,
@@ -30632,10 +30313,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-green.btn:hover {
-  background: #218838 linear-gradient(180deg, #429a56, #218838) repeat-x !important;
-}
-
 .bg-gradient-green.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-green.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-green.btn:active,
@@ -30644,19 +30321,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-green.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-green.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-green.btn:active,
-.bg-gradient-green.btn.active {
-  background: #1e7e34 linear-gradient(180deg, #409152, #1e7e34) repeat-x !important;
-}
-
 .bg-gradient-teal {
   color: #ffffff;
-}
-
-.bg-gradient-teal {
-  background: #20c997 linear-gradient(180deg, #41d1a7, #20c997) repeat-x !important;
 }
 
 .bg-gradient-teal.btn.disabled,
@@ -30672,10 +30338,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-teal.btn:hover {
-  background: #1ba87e linear-gradient(180deg, #3db591, #1ba87e) repeat-x !important;
-}
-
 .bg-gradient-teal.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-teal.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-teal.btn:active,
@@ -30684,19 +30346,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-teal.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-teal.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-teal.btn:active,
-.bg-gradient-teal.btn.active {
-  background: #199d76 linear-gradient(180deg, #3cac8b, #199d76) repeat-x !important;
-}
-
 .bg-gradient-cyan {
   color: #ffffff;
-}
-
-.bg-gradient-cyan {
-  background: #17a2b8 linear-gradient(180deg, #3ab0c3, #17a2b8) repeat-x !important;
 }
 
 .bg-gradient-cyan.btn.disabled,
@@ -30712,10 +30363,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-cyan.btn:hover {
-  background: #138496 linear-gradient(180deg, #3696a6, #138496) repeat-x !important;
-}
-
 .bg-gradient-cyan.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-cyan.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-cyan.btn:active,
@@ -30724,19 +30371,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-cyan.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-cyan.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-cyan.btn:active,
-.bg-gradient-cyan.btn.active {
-  background: #117a8b linear-gradient(180deg, #358e9c, #117a8b) repeat-x !important;
-}
-
 .bg-gradient-white {
   color: #1F2D3D;
-}
-
-.bg-gradient-white {
-  background: #ffffff linear-gradient(180deg, white, #ffffff) repeat-x !important;
 }
 
 .bg-gradient-white.btn.disabled,
@@ -30752,10 +30388,6 @@ blockquote.quote-gray-dark h6 {
   color: #121a24;
 }
 
-.bg-gradient-white.btn:hover {
-  background: #ececec linear-gradient(180deg, #efefef, #ececec) repeat-x !important;
-}
-
 .bg-gradient-white.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-white.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-white.btn:active,
@@ -30764,19 +30396,8 @@ blockquote.quote-gray-dark h6 {
   color: #1F2D3D;
 }
 
-.bg-gradient-white.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-white.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-white.btn:active,
-.bg-gradient-white.btn.active {
-  background: #e6e6e6 linear-gradient(180deg, #eaeaea, #e6e6e6) repeat-x !important;
-}
-
 .bg-gradient-gray {
   color: #ffffff;
-}
-
-.bg-gradient-gray {
-  background: #6c757d linear-gradient(180deg, #828a91, #6c757d) repeat-x !important;
 }
 
 .bg-gradient-gray.btn.disabled,
@@ -30792,10 +30413,6 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-gray.btn:hover {
-  background: #5a6268 linear-gradient(180deg, #737a7f, #5a6268) repeat-x !important;
-}
-
 .bg-gradient-gray.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-gray.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-gray.btn:active,
@@ -30804,19 +30421,8 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
-.bg-gradient-gray.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-gray.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-gray.btn:active,
-.bg-gradient-gray.btn.active {
-  background: #545b62 linear-gradient(180deg, #6e747a, #545b62) repeat-x !important;
-}
-
 .bg-gradient-gray-dark {
   color: #ffffff;
-}
-
-.bg-gradient-gray-dark {
-  background: #343a40 linear-gradient(180deg, #52585d, #343a40) repeat-x !important;
 }
 
 .bg-gradient-gray-dark.btn.disabled,
@@ -30832,23 +30438,12 @@ blockquote.quote-gray-dark h6 {
   color: #ececec;
 }
 
-.bg-gradient-gray-dark.btn:hover {
-  background: #23272b linear-gradient(180deg, #44474b, #23272b) repeat-x !important;
-}
-
 .bg-gradient-gray-dark.btn:not(:disabled):not(.disabled):active,
 .bg-gradient-gray-dark.btn:not(:disabled):not(.disabled).active,
 .bg-gradient-gray-dark.btn:active,
 .bg-gradient-gray-dark.btn.active {
   border-color: #171a1d;
   color: #ffffff;
-}
-
-.bg-gradient-gray-dark.btn:not(:disabled):not(.disabled):active,
-.bg-gradient-gray-dark.btn:not(:disabled):not(.disabled).active,
-.bg-gradient-gray-dark.btn:active,
-.bg-gradient-gray-dark.btn.active {
-  background: #1d2124 linear-gradient(180deg, #3f4245, #1d2124) repeat-x !important;
 }
 
 [class^=bg-].disabled {

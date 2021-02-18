@@ -1,5 +1,5 @@
 <div>
-    <button type="button" onclick="proceed()" class="btn btn-warning btn-block">Continue to checkout <span wire:loading.attr="disabled" wire:loading wire:target="proceed"><i class="fas fa-spinner fa-spin"></i></span></button>
+    <button type="button" onclick="proceed()" class="btn btn-primary btn-block">Continue to checkout <span wire:loading.attr="disabled" wire:loading wire:target="proceed"><i class="fas fa-spinner fa-spin"></i></span></button>
 </div>
 
 @push('scripts')

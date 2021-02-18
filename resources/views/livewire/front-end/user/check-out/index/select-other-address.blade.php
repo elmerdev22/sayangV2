@@ -2,33 +2,34 @@
     <div class="row">
         <div class="col-lg-12">
             @forelse($data as $row)
-                <blockquote class="@if($row->is_default) quote-warning @else quote-secondary @endif">
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="fas fa-user"></span> <strong>{{ucwords($row->full_name)}} @if($row->is_default)<span class="badge badge-info">Default</span>@endif</strong>
+                <div class="row border-bottom p-3">
+                    <div class="col-sm-8">
+
+                        <dl class="row">
+                            <dd class="col-sm-12">{{ucwords($row->full_name)}} @if($row->is_default)<span class="badge badge-info">Default</span>@endif</dd>
+        
+                            <dd class="col-sm-12">{{Utility::mobile_number_ph_format($row->contact_no)}}</dd>
+        
+                            <dd class="col-sm-12">
+                                {{$row->address}} <br>
+                                {{$row->philippine_barangay->name}}, {{$row->philippine_barangay->philippine_city->name}}, <br>
+                                {{$row->philippine_barangay->philippine_city->philippine_province->name}}, 
+                                {{$row->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$row->zip_code}} <br>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="float-xs-none float-sm-none float-md-right">
+                            <button type="button" class="btn btn-primary btn-sm" title="Select Address" onclick="select('{{$row->key_token}}')"><i class="fas fa-check"></i> SELECT</button>
                         </div>
                     </div>
-                    <div>
-                        <span class="fas fa-phone"></span> {{Utility::mobile_number_ph_format($row->contact_no)}}
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <span class="fas fa-map-marker"></span>
-                            {{$row->address}} <br>
-                            {{$row->philippine_barangay->name}}, {{$row->philippine_barangay->philippine_city->name}}, <br>
-                            {{$row->philippine_barangay->philippine_city->philippine_province->name}}, 
-                            {{$row->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$row->zip_code}} <br>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="float-xs-none float-sm-none float-md-right">
-                                <button type="button" class="btn btn-sm btn-warning" title="Select Address" onclick="select('{{$row->key_token}}')"><i class="fas fa-check"></i> SELECT</button>
-                            </div>
-                        </div>
-                    </div>
-                </blockquote>
+                </div>
             @empty
-                <h4 class="text-muted">No Address Found</h4>
+                <h6 class="text-muted">No Address Found</h6>
             @endforelse
+        </div>
+        <div class="col-12 pt-3">
+            <button type="button" class="btn btn-light float-right" data-dismiss="modal"><span class="fas fa-times"></span> Close</button>
         </div>
     </div>
 </div>

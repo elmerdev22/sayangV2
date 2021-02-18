@@ -33,10 +33,8 @@
                                 </span>
                             </div>
                         </a>
-                        <a href="#" class="widget-header mr-3">
-                            <div class="icon">
-                                <i class="icon-sm rounded-circle border fa fa-bell"></i>
-                            </div>
+                        <a href="{{route('front-end.user.notifications.index')}}" class="widget-header mr-3">
+                            @livewire('front-end.user.header.notification')
                         </a>
                     @endif
                     <div class="widget-header icontext">

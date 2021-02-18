@@ -4,6 +4,10 @@
   --sayang-dark-color: #333333;
   --sayang-light-color: #FFFFFF;
 }
+.btn-warning,
+.btn-primary{
+  color: white !important;
+}
 .card{
   border-radius: 0;
 }
