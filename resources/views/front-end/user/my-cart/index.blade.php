@@ -33,11 +33,11 @@
     
 @endsection
 @section('js')
-{{-- <script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script> --}}
+<script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
     <script type="text/javascript">
-        // $.LoadingOverlaySetup({
-        //     image: "{{Utility::img_source('loading')}}",
-        // });
+        $.LoadingOverlaySetup({
+            image: "{{Utility::img_source('loading')}}",
+        });
         @if(Session::has('check_out_item_alert'))
             no_item_alert();
         @endif
@@ -52,8 +52,8 @@
             })
         }
 
-        // function proceed_checkout(){
-        //     $.LoadingOverlay("show");
-        // }
+        function proceed_checkout(){
+            $.LoadingOverlay("show");
+        }
     </script>
 @endsection
