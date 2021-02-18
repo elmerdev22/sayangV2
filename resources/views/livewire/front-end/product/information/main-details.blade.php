@@ -37,15 +37,12 @@
 
     @if(!$force_disabled)
         <dl class="row">
-        <dt class="col-sm-3">Model#</dt>
-        <dd class="col-sm-9">Odsy-1000</dd>
+        <dt class="col-sm-3">Weight</dt>
+        <dd class="col-sm-9">2.3 kilograms</dd>
         
-        <dt class="col-sm-3">Color</dt>
-        <dd class="col-sm-9">Brown</dd>
+        <dt class="col-sm-3">Condition</dt>
+        <dd class="col-sm-9">Brandnew</dd>
         
-        <dt class="col-sm-3">Delivery</dt>
-            <dd class="col-sm-9">Russia, USA, and Europe </dd>
-        </dl>
     @endif
 </div>
 

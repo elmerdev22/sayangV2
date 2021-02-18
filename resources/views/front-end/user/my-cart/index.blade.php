@@ -32,7 +32,7 @@
 </section>
     
 @endsection
-@section('js')
+{{-- @section('js')
 <script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
     <script type="text/javascript">
         $.LoadingOverlaySetup({
@@ -56,4 +56,4 @@
             $.LoadingOverlay("show");
         }
     </script>
-@endsection
+@endsection --}}

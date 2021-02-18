@@ -16,7 +16,7 @@
             </dd>
         </dl>
     @else
-        <h4 class="text-muted mb-3 mt-3">You don't have address yet.</h4>
+        <p class="text-muted mb-3 mt-3">You don't have address yet.</p>
     @endif
     <hr>
     <div class="">
