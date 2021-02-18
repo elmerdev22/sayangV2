@@ -25,7 +25,7 @@
                     </div>
                 </div>
             @empty
-                <h6 class="text-muted">No Address Found</h6>
+                <p class="text-muted text-center">No Address Found</p>
             @endforelse
         </div>
         <div class="col-12 pt-3">

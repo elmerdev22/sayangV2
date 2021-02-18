@@ -12,23 +12,26 @@
     <div class="mb-3"> 
         <var class="price h4">
             @if(!$force_disabled)
-                {{number_format($product_post->quantity)}} LEFT!
+                {{number_format($product_post->quantity)}}
             @endif
         </var> 
         @if(!$force_disabled)
-            <span class="text-muted">Left</span> 
+            <span class="text-muted">LEFT!</span> 
         @endif
     </div> 
-    
-    <div class="bg-primary mb-3 p-2 w-50 text-center text-white rounded">
-        <span class="fas fa-clock"></span> 
-        <span class="countdown">
-            @if($force_disabled)
-                {{ucwords(Utility::product_post_status($product_post_id))}}
-            @else
-                {{$component->datetime_format($product_post->date_end)}}
-            @endif
-        </span>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="bg-primary mb-3 p-2 w-100 text-center text-white rounded">
+                <span class="fas fa-clock"></span> 
+                <span class="countdown">
+                    @if($force_disabled)
+                        {{ucwords(Utility::product_post_status($product_post_id))}}
+                    @else
+                        {{$component->datetime_format($product_post->date_end)}}
+                    @endif
+                </span>
+            </div>
+        </div>
     </div>
 
     <p>
