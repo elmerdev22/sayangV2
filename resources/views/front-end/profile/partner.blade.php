@@ -2,9 +2,104 @@
 @section('title','Seller Profile')
 
 @section('content')
+<section class="section-name bg padding-y" style="background:linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('{{$data['cover_photo']}}') no-repeat center center /cover;">
+    <div class="container">
+        <div class="icontext mb-3">
+            <img class="icon icon-lg rounded-circle" src="{{$data['store_photo']}}">
+            <div class="text text-white" style="text-shadow: 2px 2px 5px #000000;">
+                <h5 class="title pb-2">{{$data['store_name']}}</h5>
+                @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
+            </div>
+        </div>
+    </div><!-- container // -->
+</section>
 
+<section class="section-content pt-4">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="card-group">
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h5 class="card-title">{{Utility::get_partner_ratings($data['partner_id'])}}</h5>
+                            <span>Products</span>
+                        </div>
+                    </figure>
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h5 class="card-title">{{number_format(Utility::count_products($data['partner_id']) ,0)}}</h5>
+                            <span>Ratings</span>
+                        </div>
+                    </figure>
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h5 class="card-title">{{Utility::count_followers($data['partner_id'])}}</h5>
+                            <span>Followers</span>
+                        </div>
+                    </figure>
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h6 class="card-title">{{date('F d, Y', strtotime($data['store_joined']))}}</h6>
+                            <span>Joined</span>
+                        </div>
+                    </figure>
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h6 class="card-title">
+                                <span class="fas fa-hand-point-right"></span> 
+                                <u>
+                                    <a href="{{$data['map_address_link']}}" target="_blank" class="text-underline">Get Directions</a>
+                                </u>
+                            </h6>
+                            <span>Address</span>
+                        </div>
+                    </figure>
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
+<section class="section-content padding-y-sm">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item w-50 text-center bg">
+                        <a class="nav-link active" id="products-tab" data-toggle="pill" href="#products" role="tab" aria-controls="products" aria-selected="true">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item w-50 text-center bg">
+                        <a class="nav-link" id="ratings-tab" data-toggle="pill" href="#ratings" role="tab" aria-controls="ratings" aria-selected="false">
+                            Ratings
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+                        <div class="row">
+                            <aside class="col-md-3">
+                                @livewire('front-end.product.listing.search-filter', ['search' => null, 'partner_id' => $data['partner_id']])
+                            </aside> <!-- col.// -->
+                            <main class="col-md-9">
+                                @livewire('front-end.product.listing.listing', ['search' => null, 'partner_id' => $data['partner_id']])
+                            </main> <!-- col.// -->
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="ratings-tab">
+                        @livewire('front-end.product.information.ratings', ['partner_id' => $data['partner_id'] ])
+                    </div>
+                </div>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
     <!-- Main content -->
-    <section class="content">
+    {{-- <section class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -130,7 +225,7 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-    </section>
+    </section> --}}
     <!-- /.content -->
     
     <div id="modal_aside_right" class="modal fixed-right fade" tabindex="-1" role="dialog">
@@ -154,6 +249,7 @@
 <script>
     $.LoadingOverlaySetup({
         image: "{{Utility::img_source('loading')}}",
+        imageAnimation: false,
     });
 </script>
 @endsection

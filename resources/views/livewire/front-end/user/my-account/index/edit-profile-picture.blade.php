@@ -7,6 +7,7 @@
                 </div>
                 <div class="form-group">
                     <label for="photo">Photo*</label>
+                    <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
                     <input type="file" id="photo" class="form-control-file @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photo">
                         <div>
                             <small>File Size: Maximum of 2MB</small>

@@ -2,6 +2,7 @@
 @section('title', ucfirst($product->name))
 @section('css')
 <link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
+<link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 <section class="section-content padding-y bg">
@@ -60,6 +61,94 @@
     </div> <!-- container .//  -->
     
 </section>
+<section class="section-content pb-3 bg">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <figure class="icontext mb-2">
+                                <div class="icon">
+                                    <img class="rounded-circle img-sm border" src="{{$store_photo}}">
+                                </div>
+                                <div class="text">
+                                    <div class="mb-2">
+                                        <strong> {{ucfirst($product->partner_name)}} </strong>
+                                    </div>
+                                    <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-md-8 pt-3">
+                            <div class="row">
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Ratings</span>
+                                    <span>{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Products</span>
+                                    <span>{{number_format(Utility::count_products($product->partner_id) ,0)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Followers</span>
+                                    <span>{{Utility::count_followers($product->partner_id)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Joined</span>
+                                    <span>{{date('F d, Y', strtotime($product->joined))}}</span>
+                                </div>
+                                <div class="col-lg-8 col-12 p-1">
+                                    <span class="font-weight-bold">Address</span>
+                                    <span>{{$product->address}}</span>
+                                    <br>
+                                    <span class="fas fa-hand-point-right text-muted"></span> 
+                                    <u>
+                                        <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
+                                    </u>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
+<section class="section-content pb-3 bg">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="card">
+                    <div class="card-body">
+                        <header class="section-heading">
+                            <h5>About Products </h5>  
+                        </header>
+                        <p>
+                            {!! $product->about_product != null ? $product->about_product : 'No more about product.' !!}
+                        </p>
+                    </div> <!-- card-body.// -->
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
+<section class="section-content pb-3 bg">
+    <div class="container">
+        @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
+    </div>
+</section>
+<section class="section-content padding-y">
+    <div class="container">
+        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
+    </div>
+</section>
 <!-- Modal -->
 <div class="modal fade" id="my-all-bids" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog" role="document">
@@ -81,6 +170,7 @@
 @endsection
 @section('js')
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/owl-carousel/js/owl.carousel.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
         $('#glasscase').glassCase({ 'thumbsPosition': 'bottom'});
@@ -99,6 +189,25 @@
                 $(document).find('#buy-now-section').show();
             }
         });
+        $('.owl-carousel').owlCarousel({
+            margin:10,
+            responsiveClass:true,
+            loop: false,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                600:{
+                    items:2,
+                },
+                1000:{
+                    items:4,
+                }
+            }
+        })
     });
 </script>
 @endsection

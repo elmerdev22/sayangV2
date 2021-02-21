@@ -182,7 +182,7 @@
             </table>
         </div>
         <div class="card-body border-top">
-            <a href="/" class="btn btn-light">Continue Shopping</a>
+            <a href="/" class="btn btn-light"> « Continue Shopping</a>
         </div> <!-- card-body.// -->
     </div> <!-- card.// -->
 </div>
