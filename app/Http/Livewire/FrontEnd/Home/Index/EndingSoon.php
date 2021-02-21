@@ -12,7 +12,7 @@ use Utility;
 
 class EndingSoon extends Component
 {
-    public $limit = 4;
+    public $limit = 8;
 
     public function initialize(){
         $filter = [];

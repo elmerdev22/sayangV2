@@ -38,31 +38,18 @@
                         <figure class="item-feature">
                             <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
                             <span class="text-white ">10,000 trees  </span>
-                            {{-- <figcaption class="pt-3">
-                                <h5 class="title">Trees</h5>
-                                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
-                            </figcaption> --}}
                         </figure> <!-- iconbox // -->
                     </div><!-- col // -->
                     <div class="col-4 py-3">
                         <figure  class="item-feature">
                             <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
                             <span class="text-white">10 gal of water</span>
-                            {{-- <figcaption class="pt-3">
-                                <h5 class="title">Water</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    </p>
-                            </figcaption> --}}
                         </figure> <!-- iconbox // -->
                     </div><!-- col // -->
                     <div class="col-4 py-3">
                         <figure  class="item-feature">
                             <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
                             <span class="text-white">10 kw of energry</span>
-                            {{-- <figcaption class="pt-3">
-                                <h5 class="title">Energy</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-                            </figcaption> --}}
                         </figure> <!-- iconbox // -->
                     </div> <!-- col // -->
                 </div>
@@ -155,7 +142,7 @@
 </section>
         
 <!-- ========================= SECTION  ========================= -->
-<section class="section-name bg padding-y-sm">
+<section class="section-name padding-y-sm">
     <div class="container">
         <header class="section-heading">
             <h5 class="section-title">Categories</h5>
@@ -199,7 +186,7 @@
         @livewire('front-end.home.index.ending-soon')
     </div><!-- container // -->
 </section>
-<section class="section-name padding-y-sm">
+<section class="section-name pt-2">
     <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
         <div class="container">
             <div class="row py-3">
@@ -238,9 +225,9 @@
                 margin:5,
                 nav:false,
                 autoplay:true,
+                dots:false,
                 autoplayTimeout:2000,
                 autoplayHoverPause:true,
-                navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
                 responsive:{
                     0:{
                         items:3
