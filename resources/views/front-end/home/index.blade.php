@@ -1,5 +1,5 @@
 @extends('front-end.layout')
-@section('title','Auctions for Every Juan!')
+@section('title', Utility::settings('home_title'))
 @section('content')
 @section('css')
 <!-- plugin: owl carousel  -->

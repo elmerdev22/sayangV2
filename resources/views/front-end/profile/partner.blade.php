@@ -6,8 +6,8 @@
     <div class="container">
         <div class="icontext mb-3">
             <img class="icon icon-lg rounded-circle" src="{{$data['store_photo']}}">
-            <div class="text text-white" style="text-shadow: 2px 2px 5px #000000;">
-                <h5 class="title pb-2">{{$data['store_name']}}</h5>
+            <div class="text text-white">
+                <h5 class="title pb-2" style="text-shadow: 2px 2px 5px #000000;">{{$data['store_name']}}</h5>
                 @livewire('front-end.profile.partner.follow-button', ['partner_id' => $data['partner_id'] ])
             </div>
         </div>

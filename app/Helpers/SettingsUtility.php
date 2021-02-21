@@ -79,6 +79,16 @@ class SettingsUtility{
                 'name'  => 'Icon',
                 'value' => null,
             ],
+            'app_name' => [
+                'group' => $group['content'],
+                'name'  => 'App Name',
+                'value' => 'Sayang! PH',
+            ],
+            'home_title' => [
+                'group' => $group['content'],
+                'name'  => 'Home Title',
+                'value' => 'Auctions for Every Juan!',
+            ],
 
         ];
 
