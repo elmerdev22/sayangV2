@@ -3,7 +3,7 @@
 @section('page_header')
     @php 
         $page_header = [
-            'title'       => '<small><i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-warning badge-pill badge-total-item-in-cart">'.Utility::total_cart_item().'</span></small>',
+            'title'       => '<small><i class="fas fa-shopping-cart"></i> My Cart <span class="badge badge-primary badge-pill badge-total-item-in-cart">'.Utility::total_cart_item().'</span></small>',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'My Cart'],
             ],

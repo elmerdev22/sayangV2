@@ -27,7 +27,7 @@
                         </div> <!-- action-wrap.end -->
                         <div class="mt-2">
                             <div></div>
-                            <var class="price">{{Utility::currency_code()}}{{number_format($row->buy_now_price, 2)}} <small><del>{{Utility::currency_code()}}200.00</small></del></var> <!-- price-wrap.// -->
+                            <var class="price">{{Utility::currency_code()}}{{number_format($row->buy_now_price, 2)}} <small><del>{{Utility::currency_code()}}{{number_format($row->regular_price, 2)}}</small></del></var> <!-- price-wrap.// -->
                             <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="btn btn-sm btn-primary float-right" style="width: 70px;">Buy now</a>
                         </div> <!-- action-wrap.end -->
                         <div class="mt-2">
@@ -35,7 +35,7 @@
                                 <var class="price">{{Utility::currency_code()}}{{Utility::bid_details($row->id, 'top')}} 
                             @endif
                             <small>Bids: {{Utility::bid_details($row->id, 'count')}}</small></var> <!-- price-wrap.// -->
-                            <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}" class="btn btn-sm btn-outline-primary float-right" style="width: 70px;">Bid now</a>
+                            <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}" class="btn btn-sm btn-light float-right" style="width: 70px;">Bid now</a>
                         </div> <!-- action-wrap.end -->
                         <div class="mt-3">
                             <div class="row text-center">

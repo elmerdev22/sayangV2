@@ -13,7 +13,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="#"> Categories </a></li>
                     <li class="nav-item"><a class="nav-link" href="#"> Help Centre </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"> Products </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('front-end.product.list.index')}}"> Products </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('partner.register')}}"> Be a Partner </a>
                     </li>

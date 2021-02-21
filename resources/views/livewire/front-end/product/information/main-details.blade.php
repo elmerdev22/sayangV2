@@ -6,7 +6,6 @@
         <span class="badge badge-warning"> <i class="fa fa-star"></i>
             {{Utility::get_partner_ratings($product_post->product->partner->id)}}
         </span>
-        <small class="label-rating text-muted">132 reviews</small>
     </div>
 
     <div class="mb-3"> 

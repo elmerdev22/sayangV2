@@ -6,8 +6,8 @@
                 <figure class="box item-logo">
                     <a href="{{route('front-end.product.list.index', ['category' => $catalog->slug])}}">
                         <img src="{{UploadUtility::category_photo($catalog->key_token)}}">
+                        <figcaption class="pt-2 text-dark">{{ucfirst($catalog->name)}}</figcaption>
                     </a>
-                    <figcaption class=" pt-2">{{ucfirst($catalog->name)}}</figcaption>
                 </figure> <!-- item-logo.// -->
             </div>
         @empty

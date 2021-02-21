@@ -2,11 +2,32 @@
 @section('title','Product List')
 
 @section('content')
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Category products</h2>
+            <!-- Breadcrumb -->
+            @livewire('front-end.product.listing.breadcrumb', ['category' => $data['category'], 'sub_category' => $data['sub_category']])
+            <!-- Breadcrumb.// -->
+        </div> <!-- container //  -->
+    </section>
+
+    <section class="section-content padding-y">
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-3">
+                    @livewire('front-end.product.listing.search-filter', ['search' => $data['search'], 'partner_id' => null ])
+                </aside> <!-- col.// -->
+                <main class="col-md-9">
+                    @livewire('front-end.product.listing.listing', ['search' => $data['search'], 'partner_id' => null, 'category' => $data['category'], 'sub_category' => $data['sub_category'] ])
+                </main> <!-- col.// -->
+            </div>
+        </div> <!-- container .//  -->
+    </section>
     <!-- Breadcrumb -->
-    @livewire('front-end.product.listing.breadcrumb', ['category' => $data['category'], 'sub_category' => $data['sub_category']])
+    {{-- @livewire('front-end.product.listing.breadcrumb', ['category' => $data['category'], 'sub_category' => $data['sub_category']]) --}}
     <!-- Breadcrumb.// -->
 
-    <div class="row">
+    {{-- <div class="row">
         <aside class="col-md-3">
             <div class="d-md-none d-lg-none d-xl-none">
                 <button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-warning w-100" type="button"> <span class="fas fa-filter"></span> Filter </button>
@@ -45,7 +66,7 @@
                 </div>
             </div>
         </div> <!-- modal-bialog .// -->
-    </div> <!-- modal.// -->
+    </div> <!-- modal.// --> --}}
 
 @endsection
 
