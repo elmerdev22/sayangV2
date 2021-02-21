@@ -2,7 +2,7 @@
     <article class="accordion" id="accordion_pay">
         <div class="card m-0">
             <header class="card-header">
-                {{-- <img src="{{asset('images/icons/payments/cop.png')}}" class="float-right" height="24">  --}}
+                <img src="{{asset('images/icons/payments/cash.jpg')}}" class="float-right" height="24"> 
                 <label class="form-check" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="true">
                     <input class="form-check-input" name="payment-option" 
                         {{$payment_method == 'cash_on_pickup' ? 'checked':'' }} 

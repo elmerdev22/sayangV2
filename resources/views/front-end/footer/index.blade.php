@@ -61,6 +61,7 @@
             <div class="col-md-2 text-center text-md-left text-muted">
                 <i class="fab fa-lg fa-cc-visa"></i>
                 <i class="fab fa-lg fa-cc-mastercard"></i>
+                <i class="fab fa-lg fa-cc-amex"></i>
             </div>
         </section>
     </div><!-- //container -->

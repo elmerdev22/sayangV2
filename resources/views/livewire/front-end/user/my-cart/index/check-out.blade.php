@@ -15,7 +15,7 @@
             </dl>
             <hr>
             <p class="text-center mb-3">
-                <img src="../images/misc/payments.png" height="26">
+                <img src="{{asset('images/icons/payments/payments.png')}}" height="26">
             </p>
             <a class="btn btn-primary btn-block"
                 @if($is_disabled) 

@@ -79,7 +79,12 @@
                                             <img src="{{$product_row['featured_photo']}}" class="img-sm">
                                         </div>
                                         <figcaption class="info">
-                                            <a href="#" class="title text-dark">{{$product_row['name']}}</a>
+                                            <a href="{{route('front-end.product.information.redirect', [
+                                                'slug'      => $product_row['product_slug'],
+                                                'key_token' => $product_row['product_post_key_token'],
+                                                'type'      => 'buy_now'
+                                            ])}}"
+                                            class="title text-dark">{{$product_row['name']}}</a>
                                             <p class="text-muted small">
                                                 <small class="bg-primary p-1 rounded text-white"> 
                                                     <span class="fas fa-clock"></span> 

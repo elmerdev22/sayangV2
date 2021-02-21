@@ -17,7 +17,7 @@
             </header>
             <div class="row justify-content-center align-items-center">
                 <div class="col-8">
-                    <form>
+                    <form action="{{route('front-end.product.list.index')}}" method="GET">
                         <div class="input-group input-group-lg shadow-sm">
                             <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
                             <div class="input-group-append">
@@ -29,44 +29,43 @@
                     </form>
                 </div>
             </div>
-            <div style="top:0; bottom: 0;">
-                
-            <header class="section-heading">
-                <h3 class="section-title text-center text-white pt-5">Together we've Rescued</h3>
-            </header><!-- sect-heading -->
-            <div class="row text-center">
-                <div class="col-4 py-3">	
-                    <figure class="item-feature">
-                        <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
-                        <span class="text-white ">10,000 trees</span>
-                        {{-- <figcaption class="pt-3">
-                            <h5 class="title">Trees</h5>
-                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
-                        </figcaption> --}}
-                    </figure> <!-- iconbox // -->
-                </div><!-- col // -->
-                <div class="col-4 py-3">
-                    <figure  class="item-feature">
-                        <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
-                        <span class="text-white">10 Cm gallons of water</span>
-                        {{-- <figcaption class="pt-3">
-                            <h5 class="title">Water</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                </p>
-                        </figcaption> --}}
-                    </figure> <!-- iconbox // -->
-                </div><!-- col // -->
-                <div class="col-4 py-3">
-                    <figure  class="item-feature">
-                        <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
-                        <span class="text-white">10 GW of energry</span>
-                        {{-- <figcaption class="pt-3">
-                            <h5 class="title">Energy</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-                        </figcaption> --}}
-                    </figure> <!-- iconbox // -->
-                </div> <!-- col // -->
-            </div>
+            <div>
+                <header class="section-heading">
+                    <h3 class="section-title text-center text-white pt-5">Together we've Rescued</h3>
+                </header><!-- sect-heading -->
+                <div class="row text-center">
+                    <div class="col-4 py-3">	
+                        <figure class="item-feature">
+                            <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
+                            <span class="text-white ">10,000 trees  </span>
+                            {{-- <figcaption class="pt-3">
+                                <h5 class="title">Trees</h5>
+                                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
+                            </figcaption> --}}
+                        </figure> <!-- iconbox // -->
+                    </div><!-- col // -->
+                    <div class="col-4 py-3">
+                        <figure  class="item-feature">
+                            <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
+                            <span class="text-white">10 gal of water</span>
+                            {{-- <figcaption class="pt-3">
+                                <h5 class="title">Water</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    </p>
+                            </figcaption> --}}
+                        </figure> <!-- iconbox // -->
+                    </div><!-- col // -->
+                    <div class="col-4 py-3">
+                        <figure  class="item-feature">
+                            <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
+                            <span class="text-white">10 kw of energry</span>
+                            {{-- <figcaption class="pt-3">
+                                <h5 class="title">Energy</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                            </figcaption> --}}
+                        </figure> <!-- iconbox // -->
+                    </div> <!-- col // -->
+                </div>
             </div>
         </div>
         
@@ -192,10 +191,6 @@
 </section>
 <section class="section-name padding-y-sm">
     <div class="container">
-        {{-- <header class="section-heading">
-            <h3 class="section-title">Help us rescue these products!</h3>
-        </header><!-- sect-heading --> --}}
-
         <header class="section-heading">
             <a href="{{route('front-end.product.list.index')}}" class="btn btn-outline-primary float-right">See all</a>
             <h5 class="section-title">Hurry! Last chance to rescue these products! </h5>
@@ -204,20 +199,24 @@
         @livewire('front-end.home.index.ending-soon')
     </div><!-- container // -->
 </section>
-<section class="section-name padding-t-sm">
+<section class="section-name padding-y-sm">
     <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
-        <div class="card-img-overlay white">
-            <div class="container">
-                <h1 class="display-3 font-weight-bold" data-aos="fade-right" data-aos-delay="50">BECOME A PARTNER</h1>
-                <p class="card-text" style="max-width: 600px: " data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt.
-                </p>
-                <a href="{{url('register/partner')}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-12">
+                    <div style="min-height:300px;">
+                        <h1 class="display-3 text-white font-weight-bold" data-aos="fade-right" data-aos-delay="50">BECOME A PARTNER</h1>
+                        <p class="card-text text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt.
+                        </p>
+                        <a href="{{url('register/partner')}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
-  </div>
+    </div>
 </section>
 <!-- ========================= SECTION  END// ========================= -->
 @endsection

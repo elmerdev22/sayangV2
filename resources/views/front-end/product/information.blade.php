@@ -11,21 +11,16 @@
             <div class="row no-gutters">
                 <aside class="col-md-6">
                     <article class="gallery-wrap pt-2"> 
-                        <div class="col-12">
-                            <ul id="glasscase" class="gc-start">
-                                @for ($i = 0; $i < 10; $i++)
-                                <li><img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c" alt="Photo"/></li>
-                                <li><img src="https://cf.shopee.ph/file/9c351aa6daa7481e95dad5cca896e15c" alt="Photo"/></li>
-                                @endfor
-                            </ul>
-                        </div>
+                        @livewire('front-end.product.information.photo', ['product_id' => $product->product_id])
                     </article> <!-- gallery-wrap .end// -->
-                    <div class="row p-4">
-                        <div class="col-12">
-                            <h5>Few Reminders</h5>
-                            <p>Virgil Abloh’s Off-White is a streetwear-inspired collection that continues to break away from the conventions of mainstream fashion. Made in Italy, these black and brown Odsy-1000 low-top sneakers.</p>
+                    @if($product->reminders)
+                        <div class="row p-4">
+                            <div class="col-12">
+                                <h5>Few Reminders</h5>
+                                <p>{!! $product->reminders !!}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </aside>
                 <main class="col-md-6 border-left">
                     <article class="content-body">
