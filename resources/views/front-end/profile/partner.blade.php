@@ -2,7 +2,7 @@
 @section('title','Seller Profile')
 
 @section('content')
-<section class="section-name bg padding-y" style="background:linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('{{$data['cover_photo']}}') no-repeat center center /cover;">
+<section class="section-name bg padding-y" style="background:linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('{{$data['cover_photo']}}') no-repeat center center /cover;  background-attachment: fixed;">
     <div class="container">
         <div class="icontext mb-3">
             <img class="icon icon-lg rounded-circle" src="{{$data['store_photo']}}">

@@ -99,7 +99,7 @@
                     <article class="card card-product-list">
                         <div class="row no-gutters">
                             <aside class="col-md-3">
-                                <a href="#" class="img-wrap">
+                                <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="img-wrap">
                                     <span class="badge badge-danger p-2" >
                                         {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% OFF
                                     </span>
@@ -108,7 +108,7 @@
                             </aside> <!-- col.// -->
                             <div class="col-md-6">
                                 <div class="info-main">
-                                    <a href="#" class="h5 title text-truncate">{{ucfirst($row->product_name)}}</a>
+                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="h5 title text-truncate">{{ucfirst($row->product_name)}}</a>
                                     <div>
                                         <span class="badge badge-primary p-2" style="position: static">
                                             <span class="fa fa-clock"></span>

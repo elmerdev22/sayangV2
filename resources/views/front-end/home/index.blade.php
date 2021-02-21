@@ -9,7 +9,7 @@
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
-    <div style="background: url('{{Utility::home_background_random()}}')" class="page-holder bg-cover">
+    <div style="background: url('{{Utility::home_background_random()}}'); background-attachment: fixed; " class="page-holder bg-cover">
         <div class="container centered-hero py-5" style="text-shadow: 2px 2px 5px #000000;">
             <header class="text-center text-white py-5">
                     <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>
@@ -187,7 +187,7 @@
     </div><!-- container // -->
 </section>
 <section class="section-name pt-2">
-    <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;">
+    <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;  background-attachment: fixed; ">
         <div class="container">
             <div class="row py-3">
                 <div class="col-12">

@@ -20,7 +20,7 @@
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
             <div class="card-body">
                 <div class="text-center mb-4">
-                    <img class="icon icon-lg rounded-circle border" style="width: 100px; height: 100px;" src="{{UploadUtility::content_photo('icon')}}">
+                    <img class="icon icon-lg rounded-circle border" style="width: 100px; height: 100px;" src="{{UploadUtility::content_photo('icon', false)}}">
                 </div>
                 <!-- ============================ COMPONENT LOGIN FORM  ================================= -->
                 @livewire('auth.login-admin')
