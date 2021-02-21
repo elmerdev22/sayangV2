@@ -141,22 +141,18 @@
 @push('scripts')
 <script type="text/javascript">
     window.livewire.on('remove_loading_card', param => {
-        // $('#accordion_pay').LoadingOverlay("hide");
         Swal.close();
     });
 
     function initialize_payment_key_token(key_token){
-        // $('#accordion_pay').LoadingOverlay("show");
         @this.call('initialize_payment_key_token', key_token)
     }
 
     function change_payment_method(method){
-        // $('#accordion_pay').LoadingOverlay("show");
         @this.call('change_payment_method', method)
     }
 
     function set_e_wallet(type){
-        // $('#accordion_pay').LoadingOverlay("show");
         @this.call('set_e_wallet', type)
     }
 </script>

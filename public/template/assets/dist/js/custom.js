@@ -8,9 +8,6 @@ $(window).bind('scroll', function(){
     }
 });
 
-$.LoadingOverlaySetup({
-    imageAnimation: false,
-});
 // Set the date we're counting down to
 var count_down_timer = function count_down_timer(date_time, element_container_id){
     // "Oct 24, 2020 01:30:00" (format)

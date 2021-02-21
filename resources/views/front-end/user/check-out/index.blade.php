@@ -131,9 +131,11 @@
 
 @section('js')
 <script src="{{asset('template/assets/dist/js/loadingoverlay.min.js')}}"></script>
+<script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 <script>
     $.LoadingOverlaySetup({
         image: "{{Utility::img_source('loading')}}",
+        imageAnimation: false,
     });
 </script>
 @endsection

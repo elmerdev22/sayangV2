@@ -37,6 +37,7 @@
     <script type="text/javascript">
         $.LoadingOverlaySetup({
             image: "{{Utility::img_source('loading')}}",
+            imageAnimation: false,
         });
         @if(Session::has('check_out_item_alert'))
             no_item_alert();

@@ -76,6 +76,7 @@
 <script>
     $.LoadingOverlaySetup({
         image: "{{Utility::img_source('loading')}}",
+        imageAnimation: false,
     });
 </script>
 @endsection

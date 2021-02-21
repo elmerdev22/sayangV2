@@ -35,14 +35,19 @@
             showCancelButton  : false,
             showConfirmButton : false,
             onBeforeOpen      : () => {
-                Swal.showLoading();
+                $.LoadingOverlay("hide");
                 @this.call('paymongo_pay_card', null, true)
             }
         });
     }
 
     function proceed(){
+        $.LoadingOverlay("show");
         @this.call('proceed')
     }
+    
+    window.livewire.hook('afterDomUpdate', () => {
+        $.LoadingOverlay("hide");
+    });
 </script>
 @endpush
