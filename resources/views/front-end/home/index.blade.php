@@ -9,7 +9,7 @@
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
-    <div style="background: url('https://image.freepik.com/free-photo/hand-watering-plants-female-hand-holding-tree-nature-field-grass-forest-conservation-concept_34998-384.jpg')" class="page-holder bg-cover">
+    <div style="background: url('{{Utility::home_background_random()}}')" class="page-holder bg-cover">
         <div class="container centered-hero py-5" style="text-shadow: 2px 2px 5px #000000;">
             <header class="text-center text-white py-5">
                     <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>

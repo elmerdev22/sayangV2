@@ -25,6 +25,7 @@ use App\Model\EmailNotificationSetting;
 use App\Model\DescriptionSetting;
 use App\Model\Notification;
 use App\Model\PartnerRating;
+use App\Model\ImageSetting;
 use Carbon\Carbon;
 use UploadUtility;
 use PaymentUtility;
@@ -939,5 +940,11 @@ class Utility{
 
     public static function description_settings($settings_key){
         return DescriptionSetting::where('settings_key', $settings_key)->first();
+    }
+
+    public static function home_background_random(){
+        
+        $data = ImageSetting::inRandomOrder()->where('settings_group', 'home_bg_image')->first();
+        return UploadUtility::image_setting($data->id, 'home-bg-image');
     }
 }
