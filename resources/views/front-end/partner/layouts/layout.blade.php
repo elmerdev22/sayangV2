@@ -12,6 +12,7 @@
     @else
       <title>@yield('title') | {{ env('APP_NAME') }}</title>
     @endif
+      <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon', false)}}">
       <!-- Kindly removed once the packages need is working properly -->
       <!-- Font Awesome -->
       <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">

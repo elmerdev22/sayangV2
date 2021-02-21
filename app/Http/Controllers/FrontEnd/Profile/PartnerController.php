@@ -29,7 +29,7 @@ class PartnerController extends Controller
             'cover_photo'      => $cover_photo,
             'store_photo'      => $store_photo,
         ];
-
+        
         return view('front-end.profile.partner', compact('data'));
     }
 }

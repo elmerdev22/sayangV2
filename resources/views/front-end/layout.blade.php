@@ -12,7 +12,7 @@
 			<title>@yield('title') | {{ env('APP_NAME') }}</title>
 		@endif
 
-		<link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon')}}">
+		<link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon', false)}}">
 			<link href="{{ mix('css/app.css') }}" rel="stylesheet">
 		@yield('css')
 

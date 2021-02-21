@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card card-outline card-sayang">
                 <div class="card-header">
-                    <h5 class="card-title"> Home Carousel Slider Banner</h5> 
+                    <h5 class="card-title"> Home Random Full Background Banner</h5> 
                     <div class="card-tools">
                         <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add-image-banner"><span class="fas fa-plus"></span> Add Image</button>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>                        

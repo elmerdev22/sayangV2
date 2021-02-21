@@ -20,8 +20,8 @@ class Index extends Component
 
     public function render()
     {
-        $this->current_logo = UploadUtility::content_photo('logo');
-        $this->current_icon = UploadUtility::content_photo('icon');
+        $this->current_logo = UploadUtility::content_photo('logo', false);
+        $this->current_icon = UploadUtility::content_photo('icon', false);
         return view('livewire.back-end.setting.header-and-footer.index');
     }
 
@@ -34,7 +34,7 @@ class Index extends Component
         $response  = ['success' => false, 'message' => ''];
         
         $rules = [
-            $type => 'required|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
+            $type => 'required|mimes:jpeg,png,jpg,gif,svg,ico,icon|max:2048',
         ];
 
         $this->validate($rules);

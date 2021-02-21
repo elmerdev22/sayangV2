@@ -11,7 +11,6 @@
             </button>
             <div class="navbar-collapse collapse" id="main_nav2" style="">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="#"> Categories </a></li>
                     <li class="nav-item"><a class="nav-link" href="#"> Help Centre </a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('front-end.product.list.index')}}"> Products </a>
