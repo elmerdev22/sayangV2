@@ -68,6 +68,14 @@
                                 Order No. 
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.order_no'])
                             </th>
+                            <th class="table-sort" wire:click="sort('order_items.price')">
+                                Amount
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_items.price'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('order_items.quantity')">
+                                Quantity
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_items.quantity'])
+                            </th>
                             <th class="table-sort" wire:click="sort('partners.name')">
                                 Partner
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'partners.name'])
@@ -95,6 +103,8 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{$row->order_no}}</td>
+                                <td>{{number_format($row->price, 2)}}</td>
+                                <td>{{number_format($row->quantity, 0)}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
                                 <td>{{date('M/d/Y', strtotime($row->created_at))}}</td>

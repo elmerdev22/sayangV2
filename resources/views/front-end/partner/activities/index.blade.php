@@ -1,5 +1,5 @@
 @extends('front-end.partner.layouts.layout')
-@section('title','Activities')
+@section('title','Activities - Past')
 @section('page_header')
     @php 
         $page_header = [

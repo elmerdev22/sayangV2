@@ -30,6 +30,22 @@
                             <div id="qr-reader" class="w-100"></div>
                             <div id="qr-reader-results"></div>
                             <div id="reader" class="w-100"></div>
+                            <div class="py-3 text-center">
+                                -OR-
+                            </div>
+                            <form>
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Order No.</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div> <!-- card-body .// -->

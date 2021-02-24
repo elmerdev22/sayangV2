@@ -521,6 +521,7 @@ class QueryUtility{
 			->join('billings', 'billings.id', '=', 'orders.billing_id')
 			->join('partners', 'partners.id', '=', 'orders.partner_id')
 			->leftJoin('user_accounts as partner_accounts', 'partner_accounts.id', '=', 'partners.user_account_id')
+			->leftJoin('order_items', 'order_items.order_id', '=', 'orders.id')
 			->leftJoin('order_payments', 'order_payments.order_id', '=', 'orders.id')
 			->leftJoin('order_payment_logs', 'order_payment_logs.order_payment_id', '=', 'order_payments.id')
 			->leftJoin('order_payment_payout_items', 'order_payment_payout_items.order_payment_id', '=', 'order_payments.id')

@@ -22,6 +22,14 @@
                                 Buyer Name
                                 @include('front-end.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
                             </th>
+                            <th class="table-sort" wire:click="sort('order_items.price')">
+                                Amount
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_items.price'])
+                            </th>
+                            <th class="table-sort" wire:click="sort('order_items.quantity')">
+                                Quantity
+                                @include('front-end.includes.datatables.sort', ['field' => 'order_items.quantity'])
+                            </th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
@@ -46,6 +54,8 @@
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+                                <td>{{number_format($row->price, 2)}}</td>
+                                <td>{{number_format($row->quantity, 0)}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_payment_confirmed))}}</td>
                                 <td>

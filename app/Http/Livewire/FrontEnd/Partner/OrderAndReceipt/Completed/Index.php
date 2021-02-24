@@ -26,6 +26,8 @@ class Index extends Component
 			'order_payments.payment_method', 
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
+			'order_items.quantity',
+			'order_items.price',
 		];
 		$filter['where']['orders.partner_id'] = $this->partner->id;
 		$filter['where']['orders.status']     = 'completed';
