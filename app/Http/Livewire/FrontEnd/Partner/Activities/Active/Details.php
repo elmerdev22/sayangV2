@@ -32,6 +32,7 @@ class Details extends Component
 			'products.regular_price as regular_price', 
 			'products.name as product_name', 
 			'product_posts.*',
+            'products.slug as product_slug',
         ];
         
         $filter['where']['product_posts.id']  = $this->product_post_id;

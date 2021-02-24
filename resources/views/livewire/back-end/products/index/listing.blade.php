@@ -94,8 +94,9 @@
                                 Date Posted
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.created_at'])
                             </th>
-                            <th class="text-center">
+                            <th class="table-sort" wire:click="sort('product_posts.status')">
                                 Status
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.status'])
                             </th>
                             <th class="text-center">
                                 Action

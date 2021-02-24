@@ -43,7 +43,7 @@
                             <a href="{{url('/register')}}" class="btn btn-light"> 
                                 <span class="text"> Register </span>
                             </a>
-                            <a href="{{url('/login')}}" class="btn btn-outline-primary"> 
+                            <a href="{{url('/login')}}" class="btn btn-primary"> 
                                 <span class="text"> Login </span>
                             </a>
                         </div>

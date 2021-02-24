@@ -34,6 +34,9 @@
                                 @endif
                             </div>
                             <div class="col-12 mb-2">
+                                <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $data->product_slug, 'key_token' => $data->key_token, 'type' => 'buy_now'])}}" class="btn btn-default btn-sm btn-block">View Live Preview <span class="fas fa-eye"></span></a>
+                            </div>
+                            <div class="col-12 mb-2">
                                 @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
                                     <label>Time Left</label>
                                     <div class="bg-warning p-1 text-center">
@@ -217,7 +220,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                                        <a href="{{route('back-end.order-and-receipt.track', ['order_no' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -232,7 +235,7 @@
                             </div>
                             <div class="col-12">
                                 <hr>
-                                @livewire('front-end.partner.my-products.activities.active.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
+                                @livewire('front-end.partner.activities.active.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
                             </div>
                             @else 
                             @endif
