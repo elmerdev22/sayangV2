@@ -36,7 +36,7 @@
                             <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $data->product_slug, 'key_token' => $data->key_token, 'type' => 'buy_now'])}}" class="btn btn-default btn-sm btn-block">View Live Preview <span class="fas fa-eye"></span></a>
                         </div>
                         <div class="col-12 mb-2">
-                            @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
+                            @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($data->date_start)))
                                 <label>Time Left</label>
                                 <div class="bg-warning p-1 text-center">
                                     <span class="fas fa-clock"></span> 

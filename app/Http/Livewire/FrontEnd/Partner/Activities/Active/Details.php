@@ -48,7 +48,7 @@ class Details extends Component
 
         return view('livewire.front-end.partner.activities.active.details', compact('data','product_sold'));
     }
-
+    
     public function product_sold(){
         
 		$filter = [];
@@ -103,7 +103,7 @@ class Details extends Component
                     'message'  => 'Product successfully Cancelled!',
                 ]);
     
-                return redirect()->route('front-end.partner.activities.cancelled', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
+                return redirect()->route('front-end.partner.activities.cancelled_details', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
             }
         }
     }

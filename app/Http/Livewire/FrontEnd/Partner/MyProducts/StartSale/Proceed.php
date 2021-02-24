@@ -39,8 +39,7 @@ class Proceed extends Component
     }
 
     public function set_date($type, $timestamp){
-        $this->$type = date('Y-m-d H:00:00', strtotime($timestamp));
-        // dd($type.' = '.$this->$type);
+        $this->$type = date('Y-m-d h:i:s', strtotime($timestamp));
     }
 
     public function followers(){
