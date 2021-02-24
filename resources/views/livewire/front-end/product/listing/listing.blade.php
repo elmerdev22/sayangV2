@@ -35,7 +35,7 @@
             @if($view_by == 'grid_view')
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-product-grid" >
-                        <div class="img-wrap"> 
+                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="img-wrap"> 
                             <img src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                             <span class="topbar">
                                 <span class="badge badge-primary p-2" style="position: static">
@@ -46,10 +46,7 @@
                                     {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% OFF
                                 </span>
                             </span>
-                            <a class="btn-overlay" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
-                                <i class="fa fa-search-plus"></i> Quick view
-                            </a>
-                        </div>
+                        </a>
                         <figcaption class="info-wrap">
                             <div class="mt-2">
                                 <div class="row">
@@ -115,7 +112,9 @@
                                             <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
                                         </span>
                                     </div>
-                                    <p class="py-3"> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
+                                    <p class="py-3"> 
+                                        {{ucfirst(Str::limit($row->product_description, 160, ' ...'))}}
+                                    </p>
                                     <div class="row ">
                                         <div class="col-4">
                                             <span class="text-primary">

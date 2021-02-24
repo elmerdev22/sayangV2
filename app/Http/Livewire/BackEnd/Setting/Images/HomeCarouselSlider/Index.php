@@ -34,7 +34,7 @@ class Index extends Component
         $response  = ['success' => false, 'message' => ''];
         
         $rules = [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ];
 
         $this->validate($rules);

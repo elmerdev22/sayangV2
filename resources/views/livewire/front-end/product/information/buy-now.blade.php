@@ -53,6 +53,29 @@
         @endif
     </div>
     @if($allow_purchase == 'allowed')
+        <p class="mt-2">From this purchase, you'll rescue</p>
+        <small>
+            <div class="row text-center">
+                <div class="col-4">	
+                    <figure class="item-feature">
+                        <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
+                        <span>10,000 trees  </span>
+                    </figure> <!-- iconbox // -->
+                </div><!-- col // -->
+                <div class="col-4">	
+                    <figure  class="item-feature">
+                        <span class="text-info"><i class="fa fa fa-tint"></i></span>	
+                        <span>10 gal of water</span>
+                    </figure> <!-- iconbox // -->
+                </div><!-- col // -->
+                <div class="col-4">	
+                    <figure  class="item-feature">
+                        <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
+                        <span>10 kw of energry</span>
+                    </figure> <!-- iconbox // -->
+                </div> <!-- col // -->
+            </div>
+        </small>
         <p class="mt-4">You save {{Utility::currency_code()}}{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
         <div class="bg-primary py-1 px-2 rounded">
             <h4 class="mb-0 text-white">Your Total: {{Utility::currency_code()}}{{number_format($buy_now_price, 2)}}</h4>

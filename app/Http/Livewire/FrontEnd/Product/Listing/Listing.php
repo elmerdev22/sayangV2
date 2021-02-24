@@ -68,6 +68,7 @@ class Listing extends Component
             'products.regular_price as regular_price',
             'products.partner_id',
             'products.slug as product_slug',
+            'products.description as product_description',
             'partners.name as partner_name'
         ];
         $filter['where']['product_posts.status'] = 'active';

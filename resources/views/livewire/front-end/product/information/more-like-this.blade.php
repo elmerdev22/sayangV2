@@ -13,7 +13,7 @@
                 <div class="owl-carousel owl-theme">
                     @foreach($data as $row)
                         <div class="card card-product-grid" >
-                            <div class="img-wrap"> 
+                            <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="img-wrap"> 
                                 <img src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
                                 <span class="topbar">
                                     <span class="badge badge-primary p-2" style="position: static">
@@ -24,10 +24,7 @@
                                         {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% OFF
                                     </span>
                                 </span>
-                                <a class="btn-overlay" href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
-                                    <i class="fa fa-search-plus"></i> Quick view
-                                </a>
-                            </div>
+                            </a>
                             <figcaption class="info-wrap">
                                 <div class="mt-2">
                                     <div class="row">

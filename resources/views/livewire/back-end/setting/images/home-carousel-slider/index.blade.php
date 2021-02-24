@@ -100,11 +100,11 @@
                                             <input type="file" id="photo" accept=".png, .jpeg, .jpg, .gif, .docx, .pdf" wire:model="photo">
                                         </div>
                                     </div>
+                                    {{-- <div>
+                                        <small>Recommended size: 1,280 x 720 pixels</small>
+                                    </div> --}}
                                     <div>
-                                        <small>Recommended size: 960 x 350 pixels</small>
-                                    </div>
-                                    <div>
-                                        <small>File Size: Maximum of 2MB</small>
+                                        <small>File Size: Maximum of 5MB</small>
                                     </div>
                                     <div>
                                         <small>File Extension: .png, .jpeg, .jpeg</small>

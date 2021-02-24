@@ -8,16 +8,38 @@
         </span>
     </div>
 
-    <div class="mb-3"> 
-        <var class="price h4">
-            @if(!$force_disabled)
-                {{number_format($product_post->quantity)}}
-            @endif
-        </var> 
-        @if(!$force_disabled)
-            <span class="text-muted">LEFT!</span> 
-        @endif
-    </div> 
+    <div class="row mb-4">
+        <div class="col-3">		
+            <figure class="item-feature">
+                <var class="price h4">
+                    @if(!$force_disabled)
+                        {{number_format($product_post->quantity)}}
+                    @endif
+                </var> 
+                @if(!$force_disabled)
+                    <span class="text-muted">LEFT!</span> 
+                @endif
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-3 pt-1">	
+            <figure class="item-feature">
+                <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
+                <span>3</span>
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-3 pt-1">	
+            <figure  class="item-feature">
+                <span class="text-info"><i class="fa fa fa-tint"></i></span>	
+                <span>2</span>
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-3 pt-1">	
+            <figure  class="item-feature">
+                <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
+                <span>0.4</span>
+            </figure> <!-- iconbox // -->
+        </div> <!-- col // -->
+    </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="bg-primary mb-3 p-2 w-100 text-center text-white rounded">

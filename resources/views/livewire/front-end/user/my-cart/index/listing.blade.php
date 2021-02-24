@@ -25,7 +25,7 @@
                             <th scope="col">Product</th>
                             <th scope="col" width="200">Quantity</th>
                             <th scope="col" width="150">Price</th>
-                            <th scope="col" class="text-right">Action</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                 @endif

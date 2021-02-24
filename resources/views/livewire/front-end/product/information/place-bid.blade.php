@@ -70,8 +70,31 @@
                 </div>
             </div>
         @endif
-        <div class="col-12">
+        <div class="col-12 mt-3">
             @if($allow_purchase == 'allowed')
+                <p>From this purchase, you'll rescue</p>
+                <small>
+                    <div class="row text-center">
+                        <div class="col-4">	
+                            <figure class="item-feature">
+                                <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
+                                <span>10,000 trees  </span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">	
+                            <figure  class="item-feature">
+                                <span class="text-info"><i class="fa fa fa-tint"></i></span>	
+                                <span>10 gal of water</span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">	
+                            <figure  class="item-feature">
+                                <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
+                                <span>10 kw of energry</span>
+                            </figure> <!-- iconbox // -->
+                        </div> <!-- col // -->
+                    </div>
+                </small>
                 <div class="bg-primary rounded py-1 px-2 mt-4">
                     <h4 class="mb-0 text-white">Your Total: {{Utility::currency_code()}}{{number_format($total_amount, 2)}}</h4>
                 </div>

@@ -38,27 +38,22 @@
                             @livewire('front-end.user.header.notification')
                         </a>
                     @endif
-                    <div class="widget-header icontext">
-                        <a href="{{url('/login')}}" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
-                        
-                        @if (Auth::check())
-                            <div class="text">
-                                <span class="text-muted">Hi, {{Auth::user()->name}}</span>
-                                <div> 
-                                    <a href="{{url('/login')}}">My account</a> <span class="dark-transp"> | </span>
-                                    <a href="{{route('auth.logout', ['redirect' => 'user_login'])}}"> Logout</a>
-                                </div>
+                    @if (!Auth::check())
+                        <div class="text">
+                            <a href="{{url('/register')}}" class="btn btn-light"> 
+                                <span class="text"> Register </span>
+                            </a>
+                            <a href="{{url('/login')}}" class="btn btn-outline-primary"> 
+                                <span class="text"> Login </span>
+                            </a>
+                        </div>
+                    @else 
+                        <a href="{{url('/login')}}" class="widget-header mr-3">
+                            <div class="icon">
+                                <i class="icon-sm rounded-circle border fa fa-user"></i>
                             </div>
-                        @else 
-                            <div class="text">
-                                <span class="text-muted">Welcome guest!</span>
-                                <div> 
-                                    <a href="{{url('/login')}}">Sign in</a> <span class="dark-transp"> | </span>
-                                    <a href="{{url('/register')}}"> Register</a>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+                        </a>
+                    @endif
                 </div> 
             </div> <!-- navbar-collapse.// -->
         </div> <!-- container.// -->
