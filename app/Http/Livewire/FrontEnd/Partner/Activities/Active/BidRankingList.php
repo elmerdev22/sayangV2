@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Past;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Active;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,7 +18,7 @@ class BidRankingList extends Component
     public function render()
     {
         $bid_ranking = $this->bid_ranking();
-        return view('livewire.front-end.partner.my-products.activities.past.bid-ranking-list', compact('bid_ranking'));
+        return view('livewire.front-end.partner.activities.active.bid-ranking-list', compact('bid_ranking'));
     }
     
     public function bid_ranking(){
@@ -30,3 +30,4 @@ class BidRankingList extends Component
     }
 
 }
+

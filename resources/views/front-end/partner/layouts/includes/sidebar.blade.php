@@ -60,10 +60,31 @@
                                 <p>List</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.activities.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.activities.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>Activities <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.activities.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.activities.*') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.activities.active')}}" class="nav-link {{Route::is('front-end.partner.activities.active_details') || Route::is('front-end.partner.activities.active')  ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Activities</p>
+                                <p>Active</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.activities.past')}}" class="nav-link {{Route::is('front-end.partner.activities.past_details') || Route::is('front-end.partner.activities.past') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Past</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.activities.cancelled')}}" class="nav-link {{Route::is('front-end.partner.activities.cancelled_details') || Route::is('front-end.partner.activities.cancelled') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Cancelled</p>
                             </a>
                         </li>
                     </ul>

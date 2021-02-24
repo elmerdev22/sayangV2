@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Past;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Past;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -44,7 +44,7 @@ class Details extends Component
         $bid_ranking_list     = $this->ranking_list();
         $product_sold         = $this->product_sold();
 
-        return view('livewire.front-end.partner.my-products.activities.past.details', compact('data','bid_ranking_list','product_sold'));
+        return view('livewire.front-end.partner.activities.past.details', compact('data','bid_ranking_list','product_sold'));
     }
 
     public function ranking_list(){

@@ -5,22 +5,25 @@
         $page_header = [
             'title'       => 'Activities',
             'breadcrumbs' => [
-                ['url' => route('front-end.partner.my-products.activities.index'), 'label' => 'Activities'],
-                ['url' => '', 'label' => 'View Product Post'],
+                ['url' => '', 'label' => 'Cancelled'],
             ],
         ];
     @endphp
     @include('front-end.partner.layouts.includes.page-header', $page_header)
 @endsection
 @section('content')
+@if (Auth::user()->is_blocked)
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-danger p-2" role="alert">
+                <small>{{Utility::error_message('blocked_partner_error')}}</small>
+            </div>
+        </div>
+    </div>
+@endif
 <div class="row">
     <div class="col-12">
-        @livewire('front-end.partner.my-products.activities.active.details', ['product_post_id' => $product_post_id])
+        @livewire('front-end.partner.activities.cancelled.index')
     </div>
 </div>
-
-@endsection
-@section('js')
-<!-- Countdown JS -->
-<script src="{{asset('template/assets/dist/js/countdown.js')}}"></script>
 @endsection

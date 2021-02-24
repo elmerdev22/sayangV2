@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Cancelled;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Active;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -32,7 +32,7 @@ class Index extends Component
         ];
         
 		$filter['where']['products.partner_id']  = $this->partner->id;
-		$filter['where']['product_posts.status'] = 'cancelled';
+		$filter['where']['product_posts.status'] = 'active';
 		
 		if($this->search){
 			$filter['or_where_like'] = $this->search;
@@ -57,11 +57,11 @@ class Index extends Component
     public function render()
     {
         $data = $this->data();
-        return view('livewire.front-end.partner.my-products.activities.cancelled.index' , compact('data'));
+        return view('livewire.front-end.partner.activities.active.index' , compact('data'));
     }
     
     public function sort($sort){
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
-    }
+	}
 }

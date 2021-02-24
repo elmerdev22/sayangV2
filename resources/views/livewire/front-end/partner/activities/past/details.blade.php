@@ -142,7 +142,7 @@
                         </div>
                         <div class="col-12">
                             <hr>
-                            @livewire('front-end.partner.my-products.activities.past.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
+                            @livewire('front-end.partner.activities.past.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
 
                         </div>
                         @else 

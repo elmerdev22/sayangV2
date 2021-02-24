@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Cancelled;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Cancelled;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -42,7 +42,7 @@ class Details extends Component
         $data                 = $this->data();
         $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $data->product_key_token);
 
-        return view('livewire.front-end.partner.my-products.activities.cancelled.details', compact('data'));
+        return view('livewire.front-end.partner.activities.cancelled.details', compact('data'));
     }
 
 }

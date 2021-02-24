@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Active;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Active;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -45,7 +45,7 @@ class Details extends Component
         $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $data->product_key_token);
         $product_sold         = $this->product_sold();
 
-        return view('livewire.front-end.partner.my-products.activities.active.details', compact('data','product_sold'));
+        return view('livewire.front-end.partner.activities.active.details', compact('data','product_sold'));
     }
 
     public function product_sold(){
@@ -102,7 +102,7 @@ class Details extends Component
                     'message'  => 'Product successfully Cancelled!',
                 ]);
     
-                return redirect()->route('front-end.partner.my-products.activities.cancelled', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
+                return redirect()->route('front-end.partner.activities.cancelled', ['slug' => Str::slug($this->data()->product_name ), 'key_token' => $this->data()->key_token ]);
             }
         }
     }

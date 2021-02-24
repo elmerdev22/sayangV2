@@ -8,10 +8,6 @@
                 @else 
                     <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                 @endif
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
             </div>
         </div>
         <div class="card-body">
@@ -76,7 +72,7 @@
                                     <span class="badge badge-danger">Ended</span>    
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
+                                    <a href="{{route('front-end.partner.activities.past_details', ['slug' => $row->product_slug ,'key_token' => $row->key_token] )}}" class="btn btn-sm btn-flat btn-warning" title="View Details"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @empty

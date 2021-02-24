@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\FrontEnd\Partner\MyProducts\Activities\Past;
+namespace App\Http\Livewire\FrontEnd\Partner\Activities\Past;
 
 
 use Livewire\Component;
@@ -58,7 +58,7 @@ class Index extends Component
     public function render()
     {
         $data = $this->data();
-        return view('livewire.front-end.partner.my-products.activities.past.index' , compact('data'));
+        return view('livewire.front-end.partner.activities.past.index' , compact('data'));
     }
     
     public function sort($sort){
