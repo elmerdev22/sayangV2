@@ -947,4 +947,16 @@ class Utility{
         $data = ImageSetting::inRandomOrder()->where('settings_group', 'home_bg_image')->where('is_display', true)->first();
         return UploadUtility::image_setting($data->id, 'home-bg-image');
     }
+
+    public static function days(){
+        return [
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+            7 => 'Sunday',
+        ];
+    }
 }
