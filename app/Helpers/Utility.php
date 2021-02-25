@@ -960,7 +960,7 @@ class Utility{
         ];
     }
 
-    public static function store_hours()
+    public static function store_hours($partner_id)
     {
         $response = [
             'is_set'     => false,
@@ -969,8 +969,7 @@ class Utility{
             'status'     => '',
         ];  
 
-        $partner         = self::auth_partner();
-        $data            = Partner::with(['operating_hours'])->where('id', $partner->id)->first();
+        $data            = Partner::with(['operating_hours'])->where('id', $partner_id)->first();
         $operating_hours = $data->operating_hours->where('day', date('w'))->first();
         
         if($operating_hours){

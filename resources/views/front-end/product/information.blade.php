@@ -80,7 +80,7 @@
                                     </div>
                                     <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-sm btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
                                     @php
-                                        $store_hours = Utility::store_hours();
+                                        $store_hours = Utility::store_hours($product->partner_id);
                                     @endphp
                                     @if($store_hours['is_set'])
                                     

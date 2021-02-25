@@ -18,7 +18,6 @@ class MainDetails extends Component
     public function mount($product_post_id, $force_disabled){
         $this->product_post_id = $product_post_id;
         $this->force_disabled  = $force_disabled;
-        $this->store_hours     = Utility::store_hours();
         $this->initialize();
     }
 
@@ -33,6 +32,8 @@ class MainDetails extends Component
     public function initialize(){
         $this->product_post = ProductPost::with(['product', 'product.partner'])
             ->find($this->product_post_id);
+
+        $this->store_hours = Utility::store_hours($this->product_post->product->partner->id);
     }
 
     public function datetime_format($date){
