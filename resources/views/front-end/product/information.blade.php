@@ -83,11 +83,12 @@
                                         $store_hours = Utility::store_hours();
                                     @endphp
                                     @if($store_hours['is_set'])
+                                    
                                         <div class="text-muted">
-                                            <small>{{$store_hours['status']}}</small>
+                                            <small>{{$store_hours['open_time']}} - {{$store_hours['close_time']}}</small>
                                         </div>
                                         <div class="text-muted">
-                                            <small>({{$store_hours['open_time']}} - {{$store_hours['close_time']}})</small>
+                                            <small>({{$store_hours['status']}})</small>
                                         </div>
                                     @endif
                                 </div>
