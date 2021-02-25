@@ -53,6 +53,11 @@
                                 <i class="icon-sm rounded-circle border fa fa-user"></i>
                             </div>
                         </a>
+                        <a href="{{route('auth.logout', ['redirect' => 'user_login'])}}" class="widget-header mr-3">
+                            <div class="icon">
+                                <i class="icon-sm rounded-circle border fa fa-sign-out-alt"></i>
+                            </div>
+                        </a>
                     @endif
                 </div> 
             </div> <!-- navbar-collapse.// -->

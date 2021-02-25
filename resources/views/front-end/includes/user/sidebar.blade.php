@@ -23,7 +23,7 @@
                         <a href="{{route('front-end.user.my-account.change-password')}}" class="{{\Route::is('front-end.user.my-account.change-password') ? 'text-primary':'text-dark'}}">Change password</a>
                     </li>
                 @endif
-                </ul>
+            </ul>
         </div> <!-- collapse -filter-content  .// -->
     </article>
     <article class="list-group-item">
@@ -50,7 +50,7 @@
                 <li class="list-group-item">
                     <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="{{\Route::is('front-end.user.my-purchase.cancelled') ? 'text-primary':'text-dark'}}">Cancelled</a>
                 </li>
-                </ul>
+            </ul>
         </div> <!-- collapse -filter-content  .// -->
     </article>
     <article class="list-group-item">
@@ -68,7 +68,7 @@
                 <li class="list-group-item">
                     <a href="{{route('front-end.user.notifications.activity')}}" class="{{\Route::is('front-end.user.notifications.activity') ? 'text-primary':'text-dark'}}">Activity</a>
                 </li>
-                </ul>
+            </ul>
         </div> <!-- collapse -filter-content  .// -->
     </article>
     <article class="list-group-item">

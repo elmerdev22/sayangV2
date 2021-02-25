@@ -22,22 +22,35 @@
                 <article class="card-group">
                     <figure class="card bg">
                         <div class="p-3">
-                             <h5 class="card-title">{{Utility::get_partner_ratings($data['partner_id'])}}</h5>
-                            <span>Products</span>
-                        </div>
-                    </figure>
-                    <figure class="card bg">
-                        <div class="p-3">
-                             <h5 class="card-title">{{number_format(Utility::count_products($data['partner_id']) ,0)}}</h5>
+                             <h6 class="card-title">{{Utility::get_partner_ratings($data['partner_id'])}}</h6>
                             <span>Ratings</span>
                         </div>
                     </figure>
                     <figure class="card bg">
                         <div class="p-3">
-                             <h5 class="card-title">{{Utility::count_followers($data['partner_id'])}}</h5>
+                             <h6 class="card-title">{{number_format(Utility::count_products($data['partner_id']) ,0)}}</h6>
+                            <span>Products</span>
+                        </div>
+                    </figure>
+                    <figure class="card bg">
+                        <div class="p-3">
+                             <h6 class="card-title">{{Utility::count_followers($data['partner_id'])}}</h6>
                             <span>Followers</span>
                         </div>
                     </figure>
+                    @php
+                        $store_hours = Utility::store_hours($data['partner_id']);
+                    @endphp
+                    @if($store_hours['is_set'])
+                        <figure class="card bg">
+                            <div class="p-3">
+                                <h6 class="card-title">
+                                    {{$store_hours['open_time']}} - {{$store_hours['close_time']}}
+                                </h6>
+                                <span>Store Hours <small>({{$store_hours['status']}})</small></span>
+                            </div>
+                        </figure>
+                    @endif
                     <figure class="card bg">
                         <div class="p-3">
                              <h6 class="card-title">{{date('F d, Y', strtotime($data['store_joined']))}}</h6>

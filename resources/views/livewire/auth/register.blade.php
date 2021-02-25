@@ -55,7 +55,7 @@
             <label class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="agree" wire:model="agree"> 
                 <div class="custom-control-label"> I'm agree with 
-                    <a href="{{route('front-end.terms-and-conditions.index')}}">terms and contitions</a>  
+                    <a target="_blank" href="{{route('front-end.terms-and-conditions.index')}}">terms and conditions</a>  
                 </div> 
             </label>
 

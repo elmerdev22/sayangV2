@@ -77,7 +77,7 @@ class CancelOrder extends Component
                     'title' => 'Order Successfully Cancelled'
                 ]);
             }else{
-                $this->emit('alert',[
+                $this->emit('alert_link',[
                     'type'    => 'success',
                     'title'   => 'Order Successfully Cancelled',
                     'message' => 'Order #'.$this->order_no.' was cancelled.'
