@@ -21,6 +21,7 @@
             @livewire('back-end.partner.profile.partner-information', ['key_token' => $data->key_token])
             @livewire('back-end.partner.profile.representative-information', ['key_token' => $data->key_token])
             @livewire('back-end.partner.profile.bank-and-card', ['key_token' => $data->key_token])
+            @livewire('back-end.partner.profile.operating-hours', ['key_token' => $data->key_token])
             @livewire('back-end.partner.profile.purchase-history', ['key_token' => $data->key_token])
         </div>
     </div>
