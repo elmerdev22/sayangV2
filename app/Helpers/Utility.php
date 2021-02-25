@@ -959,4 +959,37 @@ class Utility{
             7 => 'Sunday',
         ];
     }
+
+    public static function store_hours()
+    {
+        $response = [
+            'is_set'     => false,
+            'open_time'  => '',
+            'close_time' => '',
+            'status'     => '',
+        ];  
+
+        $partner         = self::auth_partner();
+        $data            = Partner::with(['operating_hours'])->where('id', $partner->id)->first();
+        $operating_hours = $data->operating_hours->where('day', date('w'))->first();
+        
+        if($operating_hours){
+            if($operating_hours->status){
+                $response['is_set'] = true;
+            }
+            
+            $response['open_time']  = date('h:i a', strtotime($operating_hours->open_time));
+            $response['close_time'] = date('h:i a', strtotime($operating_hours->close_time));
+            
+            $currentTime = Carbon::now();
+
+            if($currentTime->between($operating_hours->open_time, $operating_hours->close_time, true)){
+                $response['status'] = 'Open now';
+            }else{
+                $response['status'] = 'Close now';
+            }
+        }
+
+        return $response;
+    }
 }

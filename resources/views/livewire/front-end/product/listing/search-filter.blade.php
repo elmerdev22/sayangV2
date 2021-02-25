@@ -85,7 +85,7 @@
                 </div><!-- card-body.// -->
             </div>
         </article> <!-- filter-group .// -->
-        <article class="filter-group">
+        {{-- <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
                     <i class="icon-control fa fa-chevron-down"></i>
@@ -115,7 +115,7 @@
                     </label>
                 </div><!-- card-body.// -->
             </div>
-        </article> <!-- filter-group .// -->
+        </article> <!-- filter-group .// --> --}}
         <article class="filter-group">
             <div class="filter-content">
                 <div class="card-body">

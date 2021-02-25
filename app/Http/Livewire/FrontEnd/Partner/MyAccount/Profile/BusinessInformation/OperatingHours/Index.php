@@ -14,14 +14,26 @@ class Index extends Component
     public function mount(){
         
         $this->partner = Utility::auth_partner();
-
-        $this->days = Utility::days();
+        $this->days    = Utility::days();
     }
 
     public function render()
     {
         $data = Partner::with(['operating_hours'])->where('id', $this->partner->id)->first();
         return view('livewire.front-end.partner.my-account.profile.business-information.operating-hours.index', compact('data'));
+    }
+
+    public function edit($id)
+    {
+        $this->selected_id = $id;
+        $data              = OperatingHour::find($id);
+        
+        if($data->open_time){
+            $this->open_time = $data->open_time;
+        }
+        if($data->close_time){
+            $this->close_time = $data->close_time;
+        } 
     }
 
     public function save(){

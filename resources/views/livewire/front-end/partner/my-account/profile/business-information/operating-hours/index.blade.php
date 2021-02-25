@@ -87,7 +87,7 @@
 <script>
     function edit(id , day){
         @this.set('day_word', day)
-        @this.set('selected_id', id)
+        @this.call('edit', id)
         $('#modal-operating_hours').modal('show');
     }
 </script>    

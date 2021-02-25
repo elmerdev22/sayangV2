@@ -2,14 +2,19 @@
     
     <h2 class="title">{{ucfirst($product_post->product->name)}}</h2>
     <div class="rating-wrap my-3">
-        <small class="label-rating text-muted">{{ucfirst($product_post->product->partner->name)}}</small>
+        <small class="text-muted">{{ucfirst($product_post->product->partner->name)}}</small>
         <span class="badge badge-warning"> <i class="fa fa-star"></i>
             {{Utility::get_partner_ratings($product_post->product->partner->id)}}
         </span>
+        @if($store_hours['is_set'])
+            <div>
+                <small class="text-muted">Store hours: {{$store_hours['open_time']}} - {{$store_hours['close_time']}} ({{$store_hours['status']}})</small>
+            </div>
+        @endif
     </div>
 
     <div class="row mb-4">
-        <div class="col-3">		
+        <div class="col-12 col-md-3">		
             <figure class="item-feature">
                 <var class="price h4">
                     @if(!$force_disabled)
@@ -21,19 +26,19 @@
                 @endif
             </figure> <!-- iconbox // -->
         </div><!-- col // -->
-        <div class="col-3 pt-1">	
+        <div class="col-4 col-md-3 pt-1 text-center">	
             <figure class="item-feature">
                 <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
                 <span>3</span>
             </figure> <!-- iconbox // -->
         </div><!-- col // -->
-        <div class="col-3 pt-1">	
+        <div class="col-4 col-md-3 pt-1 text-center">
             <figure  class="item-feature">
                 <span class="text-info"><i class="fa fa fa-tint"></i></span>	
                 <span>2</span>
             </figure> <!-- iconbox // -->
         </div><!-- col // -->
-        <div class="col-3 pt-1">	
+        <div class="col-4 col-md-3 pt-1 text-center">	
             <figure  class="item-feature">
                 <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
                 <span>0.4</span>
@@ -61,11 +66,9 @@
 
     @if(!$force_disabled)
         <dl class="row">
-        <dt class="col-sm-3">Weight</dt>
-        <dd class="col-sm-9">2.3 kilograms</dd>
-        
-        <dt class="col-sm-3">Condition</dt>
-        <dd class="col-sm-9">Brandnew</dd>
+            <dt class="col-sm-3">Weight</dt>
+            <dd class="col-sm-9">2.3 kilograms</dd>
+        </dl>
         
     @endif
 </div>

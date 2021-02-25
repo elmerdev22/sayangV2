@@ -4,10 +4,10 @@ namespace App\Http\Livewire\FrontEnd\Product\Information;
 
 use Livewire\Component;
 use App\Model\ProductPost;
-
+use Utility;
 class MainDetails extends Component
 {
-    public $product_post_id, $product_post;
+    public $product_post_id, $product_post, $store_hours;
     public $force_disabled = false;
 
     protected $listeners = [
@@ -18,6 +18,7 @@ class MainDetails extends Component
     public function mount($product_post_id, $force_disabled){
         $this->product_post_id = $product_post_id;
         $this->force_disabled  = $force_disabled;
+        $this->store_hours     = Utility::store_hours();
         $this->initialize();
     }
 
