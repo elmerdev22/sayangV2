@@ -1,44 +1,47 @@
 <div>
     @if($data)
-        <div class="card">
-            <div class="card-header">
-                <strong class="d-inline-block mr-3">Items</strong>
-            </div>
-            <div class="card-body">
-                <table class="table table-hover table-sm text-center">
-                    <thead>
-                        <tr class="border-bottom">
-                            <th scope="col">Item</th>
-                            <th scope="col">Bid Qty</th>
-                            <th scope="col">Bid Price</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Expiration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-12 overflow-hidden">
-                                        <img src="{{$component->product_featured_photo($data->product_id)}}" class="img-sm border">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        <p class="title mb-0">{{ucfirst($data->product_name)}}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{number_format($data->bid_quantity,0)}}</td>
-                            <td>PHP {{number_format($data->bid_price,2)}}</td>
-                            <td>PHP {{number_format($total_price,2)}}</td>
-                            <td>{{$component->expiration($data->date_end)}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br>
+        <article class="card card-body mb-3">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <figure class="itemside align-items-center">
+                        <div class="aside"><img src="{{$component->product_featured_photo($data->product_id)}}" class="img-sm"></div>
+                        <figcaption class="info">
+                            <a href="#" class="title text-dark">{{ucfirst($data->product_name)}}</a>
+                            <p class="small text-muted">
+                                Bid amount: {{Utility::currency_code()}}{{number_format($data->bid_price,2)}}  
+                                <br> 
+                                Quantity: {{number_format($data->bid_quantity,0)}}
+                                <br>
+                                Total amount: {{Utility::currency_code()}}{{number_format($total_price,2)}}
+                            </p>
+                        </figcaption>
+                    </figure>
+                    {{-- <figure class="itemside">
+                        <div class="aside"><img src="{{$component->product_featured_photo($data->product_id)}}" class="border img-sm"></div>
+                        <figcaption class="info">
+                            <a href="#" class="title">{{ucfirst($data->product_name)}}</a>
+                            <div>
+                                <span class="text-muted">Bid amount: {{Utility::currency_code()}}{{number_format($data->bid_price,2)}}</span>
+                            </div>
+                            <div>
+                                <span class="text-muted">Quantity: {{number_format($data->bid_quantity,0)}}</span>
+                            </div>
+                            <div>
+                                <span class="text-muted">Total amount: {{Utility::currency_code()}}{{number_format($total_price,2)}}</span>
+                            </div>
+                        </figcaption>
+                    </figure>  --}}
+                </div> <!-- col.// -->
+                <div class="col">
+                    <div>
+                        <small class="text-muted">
+                            Expiration
+                        </small>
+                    </div>
+                    <div class="h6"> {{$component->expiration($data->date_end)}} </div>
+                </div>
+            </div> <!-- row.// -->
+        </article>
         <div class="card">
             <header class="card-header">
                 <strong class="d-inline-block mr-3">Biiling Address</strong>
