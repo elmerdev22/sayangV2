@@ -8,7 +8,7 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
                 <div class="col-12 text-right">
-                    <a href="javascript:void(0)" onclick="window.print()" class="btn btn-warning"><i class="fas fa-print"></i> Print</a>
+                    <a href="javascript:void(0)" onclick="window.print()" class="btn btn-success"><i class="fas fa-print"></i> Print</a>
                     <!-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                         <i class="fas fa-download"></i> Generate PDF
                     </button> -->
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4>
-                        <img src="{{asset('images/logo/logo.png')}}" class="float-left" height="50px">
+                        <img src="{{ UploadUtility::content_photo('logo', false) }}" class="float-left" height="50px">
                         <small class="float-right">Date: {{date('F/d/Y')}}</small>
                     </h4>
                 </div>

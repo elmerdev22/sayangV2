@@ -128,7 +128,7 @@
                 @endif
                 @if($data->status == 'completed')
                     <div class="col-6">
-                        View Invoice : <a class="btn btn-sm btn-outline-warning" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
+                        View Invoice : <a class="btn btn-sm btn-outline-primary" href="javascript:void(0);" data-toggle="modal" data-target="#modal-invoice"><span class="fas fa-file-invoice"></span></a>
                     </div>
                 @endif
                 @if($data->status == 'cancelled')

@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $data->order_no])}}">
+                    <a target="_blank" href="{{route('front-end.partner.order-and-receipt.track', ['id' => $data->order_no])}}">
                         <i class="fas fa-link"></i> Click here to view full order information
                     </a>
                 </div>

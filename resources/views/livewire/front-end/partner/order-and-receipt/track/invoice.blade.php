@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <h4>
-                    <img src="{{asset('images/logo/logo.png')}}" class="float-left" height="50px">
+                    <img src="{{ UploadUtility::content_photo('logo', false) }}" class="float-left" height="50px">
                     <small class="float-right">Date: {{date('F/d/Y')}}</small>
                 </h4>
             </div>
