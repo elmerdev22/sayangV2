@@ -64,13 +64,12 @@
         {!! $product_post->product->description !!}
     </p>
 
-    @if(!$force_disabled)
-        <dl class="row">
-            <dt class="col-sm-3">Weight</dt>
-            <dd class="col-sm-9">2.3 kilograms</dd>
-        </dl>
-        
-    @endif
+    {{-- @if(!$force_disabled) --}}
+    <dl class="row">
+        <dt class="col-sm-3">Weight</dt>
+        <dd class="col-sm-9">{{$product_post->product->weight ? $product_post->product->weight : 'Not set'}}</dd>
+    </dl>
+    {{-- @endif --}}
 </div>
 
 @push('scripts')

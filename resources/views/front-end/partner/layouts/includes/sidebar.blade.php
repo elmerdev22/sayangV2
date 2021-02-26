@@ -55,9 +55,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.list.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.*')  ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.list.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.index')  ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.my-products.list.add')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.add')  ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Add</p>
                             </a>
                         </li>
                     </ul>

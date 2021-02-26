@@ -18,7 +18,7 @@ class Information extends Component
     public $product_id, $account, $partner, $name, $category, $old_category, $sub_categories = [], $tags = [];
     public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
     public $selected_sub_categories = [], $initial_sub_categories=[], $money_input_initialize=[];
-    public $about_product, $other_details;
+    public $about_product, $weight;
 
     public function mount($product_id){
         $this->partner       = Utility::auth_partner();
@@ -36,7 +36,7 @@ class Information extends Component
         $this->description   = $product->description;
         $this->reminders     = $product->reminders;
         $this->about_product = $product->about_product;
-        $this->other_details = $product->other_details;
+        $this->weight = $product->weight;
         
         $this->money_input_initialize = [
             'regular_price' => $this->regular_price,
@@ -107,7 +107,8 @@ class Information extends Component
             'buy_now_price'  => ['required', new Money(), 'lte:regular_price'],
             'lowest_price'   => ['required', new Money(), 'lte:buy_now_price'],
             'description'    => 'required',
-            'reminders'      => 'nullable',
+            'reminders'      => 'required',
+            'weight'         => 'required',
         ];
 
         $this->emit('money_input_field', [
@@ -136,7 +137,7 @@ class Information extends Component
             $product->buy_now_price = $this->buy_now_price;
             $product->lowest_price  = $this->lowest_price;
             $product->about_product = $this->about_product;
-            $product->other_details = $this->other_details;
+            $product->weight = $this->weight;
             
             if($product->save()){
                 $validator_checker = array();
