@@ -8,12 +8,12 @@
                             <th scope="col" width="5" class="text-center">
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" 
+                                            class="custom-control-input"
                                             @if($is_disabled_all) 
                                                 disabled="true"
                                             @else 
                                                 onclick="select_all_items()"
                                                 id="check-all"
-                                                class="custom-control-input"
                                                 @if($is_check_all)
                                                     checked="true"
                                                 @endif
@@ -37,6 +37,7 @@
                                     <input type="checkbox" 
                                         @if($row['is_disabled']) 
                                             disabled="true"
+                                            class="custom-control-input"
                                         @else 
                                             onclick="select_store_items('{{$key}}')"
                                             id="check-store-{{$key}}"
@@ -60,6 +61,7 @@
                                         <input type="checkbox" 
                                             @if($product_row['is_disabled']) 
                                                 disabled="true"
+                                                class="custom-control-input"
                                             @else
                                                 @if($product_row['is_checkout'])
                                                     checked="true"

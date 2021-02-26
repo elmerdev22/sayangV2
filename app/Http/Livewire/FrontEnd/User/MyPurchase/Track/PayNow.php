@@ -51,14 +51,16 @@ class PayNow extends Component
                 $this->card_token = null;
             }else{
                 $this->emit('alert', [
-                    'type'  => 'error',
-                    'title' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.PaymentUtility::paymongo_minimum()
+                    'type'    => 'error',
+                    'title'   => 'Oops...',
+                    'message' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.PaymentUtility::paymongo_minimum()
                 ]);
             }
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid E-Wallet.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid E-Wallet.'
             ]);
         }
 
@@ -71,8 +73,9 @@ class PayNow extends Component
             $this->card_token = $card->key_token;
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid Card.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid Card.',
             ]);
         }
 
@@ -86,8 +89,9 @@ class PayNow extends Component
             $this->card_token     = null;
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid Payment Method.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid Payment Method.'
             ]);
         }
 
@@ -188,7 +192,8 @@ class PayNow extends Component
                         }else{
                             $this->emit('alert', [
                                 'type'    => 'error',
-                                'title'   => 'Please Select E-Wallet Type.'
+                                'title'   => 'Oops...',
+                                'message' => 'Please Select E-Wallet Type.'
                             ]);
                         }
                     }else if($this->payment_method == 'card'){
@@ -324,7 +329,8 @@ class PayNow extends Component
                         }else{
                             $this->emit('alert', [
                                 'type'    => 'error',
-                                'title'   => 'Please Select Card'
+                                'title'   => 'Oops...',
+                                'message' => 'Please Select Card.'
                             ]);
                         }
                     }else{
@@ -337,7 +343,8 @@ class PayNow extends Component
                 }else{
                     $this->emit('alert', [
                         'type'    => 'error',
-                        'title'   => 'Please select payment method'
+                        'title'   => 'Oops...',
+                        'message' => 'Please select payment method'
                     ]);
                 }
             }else{

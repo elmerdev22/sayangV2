@@ -36,11 +36,12 @@
                 <h4 class="modal-title">Pay Now</h4>
             </div>
             <div class="modal-body">
-                <div class="card box-shadow-none" id="card-payment_method">
+                @livewire('front-end.user.my-bid.win.pay-now')
+                {{-- <div class="card box-shadow-none" id="card-payment_method">
                     <div class="card-body p-0">
                         @livewire('front-end.user.my-bid.win.pay-now')
                     </div>
-                </div>                
+                </div>                 --}}
             </div>
         </div>
     </div>

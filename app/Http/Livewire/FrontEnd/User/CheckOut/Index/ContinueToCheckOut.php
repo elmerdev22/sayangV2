@@ -104,7 +104,7 @@ class ContinueToCheckOut extends Component
                     $this->emit('remove_loading_card', true);
                     $this->emit('alert', [
                         'type'    => 'error',
-                        'title'   => 'Warning',
+                        'title'   => 'Oops...',
                         'message' => 'Invalid payment method.'
                     ]);
                     return false;
@@ -131,7 +131,7 @@ class ContinueToCheckOut extends Component
                             $this->emit('remove_loading_card', true);
                             $this->emit('alert', [
                                 'type'    => 'error',
-                                'title'   => 'Warning',
+                                'title'   => 'Oops...',
                                 'message' => 'Invalid e-wallet.'
                             ]);
                             return false;

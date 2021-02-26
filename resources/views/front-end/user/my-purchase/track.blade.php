@@ -114,14 +114,10 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Payment Method</h4>
+                    <h6 class="modal-title">Payment Method</h6>
                 </div>
                 <div class="modal-body">
-                    <div class="card box-shadow-none" id="card-payment_method">
-                        <div class="card-body p-0">
-                            @livewire('front-end.user.my-purchase.track.pay-now', ['order_no' => $order_no])
-                        </div>
-                    </div>                
+                    @livewire('front-end.user.my-purchase.track.pay-now', ['order_no' => $order_no])
                 </div>
             </div>
         </div>
