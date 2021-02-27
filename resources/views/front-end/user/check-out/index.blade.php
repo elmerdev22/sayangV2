@@ -16,7 +16,7 @@
     <div class="container">
         <!-- ============================ COMPONENT 2 ================================= -->
         <div class="row">
-            <main class="col-md-8">
+            <main class="col-md-8 pb-3">
                 <article class="card mb-4">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Review cart</h4>

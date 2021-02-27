@@ -1,5 +1,186 @@
 <div>
-    <div class="card">
+    <div class="card d-md-none d-lg-none d-xl-none">
+        <div class="table-responsive">
+            <table class="table table-borderless table-shopping-cart">
+                @if(count($data) > 0)
+                    <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                            <th scope="col" width="5" class="text-center">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" 
+                                            class="custom-control-input"
+                                            @if($is_disabled_all) 
+                                                disabled="true"
+                                            @else 
+                                                onclick="select_all_items()"
+                                                id="check-all"
+                                                @if($is_check_all)
+                                                    checked="true"
+                                                @endif
+                                            @endif
+                                        >
+                                    <div class="custom-control-label" for="check-all"></div>
+                                </label>
+                            </th>
+                            <th scope="col">Product</th>
+                        </tr>
+                    </thead>
+                @endif
+                <tbody>
+                    @forelse($data as $key => $row)
+                        <tr>
+                            <td>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" 
+                                        @if($row['is_disabled']) 
+                                            disabled="true"
+                                            class="custom-control-input"
+                                        @else 
+                                            onclick="select_store_items('{{$key}}')"
+                                            id="check-store-{{$key}}"
+                                            class="check-store custom-control-input"
+                                            @if($row['is_check_all'])
+                                                checked="true"
+                                            @endif
+                                        @endif
+                                        >
+                                    <div class="custom-control-label" for="check-store-{{$key}}"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <span class="fas fa-store"></span> {{strtoupper($row['partner_name'])}}
+                            </td>
+                        </tr> 
+                        @foreach($row['products'] as $product_key => $product_row)
+                            <tr>
+                                <td>
+                                    <label class="custom-control custom-checkbox ">
+                                        <input type="checkbox" 
+                                            @if($product_row['is_disabled']) 
+                                                disabled="true"
+                                                class="custom-control-input"
+                                            @else
+                                                @if($product_row['is_checkout'])
+                                                    checked="true"
+                                                @endif
+                                                class="check-item check-store-{{$key}} custom-control-input" 
+                                                data-key_token="{{$product_row['cart_key_token']}}" 
+                                                id="check-{{$product_row['cart_key_token']}}" 
+                                                onclick="select_to_checkout_items()"
+                                            @endif
+                                        >
+                                        <div class="custom-control-label" for="check-{{$product_row['cart_key_token']}}"></div>
+                                    </label>
+                                </td>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside">
+                                            <img src="{{$product_row['featured_photo']}}" class="img-sm">
+                                        </div>
+                                        <figcaption class="info">
+                                            <a href="{{route('front-end.product.information.redirect', [
+                                                'slug'      => $product_row['product_slug'],
+                                                'key_token' => $product_row['product_post_key_token'],
+                                                'type'      => 'buy_now'
+                                            ])}}"
+                                            class="title text-dark">{{$product_row['name']}}</a>
+                                            <p class="text-muted small">
+                                                <small class="bg-primary p-1 rounded text-white text-truncate"> 
+                                                    <span class="fas fa-clock"></span> 
+                                                    @if($product_row['post_status'] != 'active')
+                                                        <span>{{ucfirst($product_row['post_status'])}}</span> 
+                                                    @else
+                                                        <span class="countdown">{{$product_row['date_end']}}</span>
+                                                    @endif
+                                                </small> 
+                                            </p>
+                                            <p class="my-1">
+                                                <div class="price-wrap @if($product_row['is_disabled']) text-line-through @endif">
+                                                    <var class="price">
+                                                        {{Utility::currency_code()}}{{number_format($product_row['total_price'], 2)}}
+                                                    </var> 
+                                                    <small class="text-muted @if($product_row['is_disabled']) text-line-through @endif"> 
+                                                        {{Utility::currency_code()}}{{number_format($product_row['buy_now_price'], 2)}} each
+                                                    </small> 
+                                                </div> <!-- price-wrap .// -->
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="input-group my-1 d-md-none d-lg-none d-xl-none">
+                                        <div class="input-group-prepend">
+                                            <button type="button" 
+                                                @if($product_row['is_disabled']) 
+                                                    disabled="true" 
+                                                @else
+                                                    onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
+                                                @endif 
+                                                    id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
+                                                    class="btn btn-light btn-quantity-minus" 
+                                            ><span class="fas fa-minus"></span></button>
+                                        </div>
+                                        <input type="number" 
+                                            @if($product_row['is_disabled']) 
+                                                disabled="true" 
+                                            @else
+                                                onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
+                                            @endif 
+                                            class="form-control text-center input-number-remove-arrow quantity" 
+                                            id="quantity-{{$product_row['cart_key_token']}}"
+                                            min="1" max="{{$product_row['current_quantity']}}"
+                                            data-key_token="{{$product_row['cart_key_token']}}"
+                                            value="{{$product_row['selected_quantity']}}"
+                                            >
+                                        <div class="input-group-append">
+                                            <button type="button" 
+                                                @if($product_row['is_disabled'] || $product_row['selected_quantity'] == $product_row['current_quantity']) 
+                                                    disabled="true" 
+                                                @else
+                                                    onclick="quantity_update('{{$product_row['cart_key_token']}}')"
+                                                @endif 
+                                                class="btn btn-light btn-quantity-plus" 
+                                                id="btn-quantity-plus-{{$product_row['cart_key_token']}}" 
+                                            ><span class="fas fa-plus"></span></button>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="btn btn-light my-1" onclick="delete_item('{{$product_row['cart_key_token']}}')">Remove</a> 
+                                </td>
+                            </tr>
+                        @endforeach
+                        
+                        <tr class="border-top">
+                            <td class="text-right" colspan="2">
+                                <div class="price-wrap"> 
+                                    <div class="price">
+                                        @if($row['is_disabled']) 
+                                            {{Utility::currency_code()}} 0.00
+                                        @else
+                                            {{Utility::currency_code()}} {{number_format($row['sub_total'], 2)}}
+                                        @endif
+                                    </div> 
+                                    <small class="text-muted"> SUB-TOTAL </small> 
+                                </div> <!-- price-wrap .// -->
+                            </td>
+                            <td></td>
+                        </tr>
+                    @empty
+                        <tr class="text-center bg-white">
+                            <td colspan="5" class="text-center">
+                                <img width="150" src="https://image.freepik.com/free-vector/user-rating-feedback-customer-reviews-cartoon-web-icon-e-commerce-online-shopping-internet-buying-trust-metrics-top-rated-product_335657-778.jpg">
+                                <p>
+                                    Your Cart is Empty!
+                                </p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="card-body border-top">
+            <a href="/" class="btn btn-light"> « Continue Shopping</a>
+        </div> <!-- card-body.// -->
+    </div> <!-- card.// -->
+
+    <div class="card hidden-xs d-none d-md-block d-lg-block">
         <div class="table-responsive">
             <table class="table table-borderless table-shopping-cart">
                 @if(count($data) > 0)
@@ -101,7 +282,7 @@
                                     </figure>
                                 </td>
                                 <td> 
-                                    <div class="input-group">
+                                    <div class="input-group ">
                                         <div class="input-group-prepend">
                                             <button type="button" 
                                                 @if($product_row['is_disabled']) 
@@ -187,6 +368,7 @@
             <a href="/" class="btn btn-light"> « Continue Shopping</a>
         </div> <!-- card-body.// -->
     </div> <!-- card.// -->
+    
 </div>
 
 @push('scripts')
