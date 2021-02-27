@@ -106,7 +106,7 @@
                                             </p>
                                         </figcaption>
                                     </figure>
-                                    <div class="input-group my-1 d-md-none d-lg-none d-xl-none">
+                                    <div class="input-group my-1">
                                         <div class="input-group-prepend">
                                             <button type="button" 
                                                 @if($product_row['is_disabled']) 
@@ -142,7 +142,12 @@
                                             ><span class="fas fa-plus"></span></button>
                                         </div>
                                     </div>
-                                    <a href="javascript:void(0);" class="btn btn-light my-1" onclick="delete_item('{{$product_row['cart_key_token']}}')">Remove</a> 
+                                    @if(!$product_row['is_disabled'])
+                                        <p>
+                                            <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
+                                            <a href="javascript:void(0);" class="btn btn-light float-right my-1" onclick="delete_item('{{$product_row['cart_key_token']}}')">Remove</a> 
+                                        </p>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -318,6 +323,11 @@
                                             ><span class="fas fa-plus"></span></button>
                                         </div>
                                     </div>
+                                    @if(!$product_row['is_disabled'])
+                                        <p>
+                                            <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
+                                        </p>
+                                    @endif
                                 </td>
                                 <td> 
                                     <div class="price-wrap @if($product_row['is_disabled']) text-line-through @endif">
