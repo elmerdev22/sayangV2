@@ -15,7 +15,14 @@
     <div class="container">
         <div class="row">
             <aside class="col-md-3">
-                @livewire('front-end.product.listing.search-filter', ['search' => $data['search'], 'partner_id' => null ])
+                <div class="d-md-none d-lg-none d-xl-none">
+                    <button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-primary btn-block mb-2" type="button"> Filter </button>
+                </div>
+                <div class="hidden-xs d-none d-md-block d-lg-block ">    
+                    <div class="card">
+                        @livewire('front-end.product.listing.search-filter', ['search' => $data['search'], 'partner_id' => null ])
+                    </div> <!-- card.// -->
+                </div>
             </aside> <!-- col.// -->
             <main class="col-md-9">
                 @livewire('front-end.product.listing.listing', ['search' => $data['search'], 'partner_id' => null, 'category' => $data['category'], 'sub_category' => $data['sub_category'] ])
@@ -26,14 +33,14 @@
 <div id="modal_aside_right" class="modal fixed-right fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-aside" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-0">
                 <h5 class="modal-title">Filter</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body p-0 m-0">
-                @livewire('front-end.product.listing.search-filter', ['search' => $data['search'] ])
+                @livewire('front-end.product.listing.search-filter', ['search' => $data['search'], 'partner_id' => null ])
             </div>
         </div>
     </div> <!-- modal-bialog .// -->

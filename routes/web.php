@@ -539,32 +539,6 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
                 
             });
 
-            // My activities List
-            // Route::group(['prefix' => 'activities', 'as' => 'activities.'], function (){
-            //     $c = 'MyProductsController';
-                
-            //     // My Activities
-            //     Route::get('/', [
-            //         'as' 	=> 'index',
-            //         'uses'  => $c.'@activities'
-            //     ]);
-
-            //     Route::get('/active/{slug}/{key_token}', [
-            //         'as' 	=> 'active',
-            //         'uses'  => $c.'@active'
-            //     ]);
-
-            //     Route::get('/past/{slug}/{key_token}', [
-            //         'as' 	=> 'past',
-            //         'uses'  => $c.'@past'
-            //     ]);
-
-            //     Route::get('/cancelled/{slug}/{key_token}', [
-            //         'as' 	=> 'cancelled',
-            //         'uses'  => $c.'@cancelled'
-            //     ]);
-                
-            // });
         });
 
         // My Activities

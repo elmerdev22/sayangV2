@@ -156,11 +156,11 @@
         @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
     </div>
 </section>
-<section class="section-content padding-y">
-    <div class="container">
-        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
-    </div>
-</section>
+
+<!-- More Like This -->
+    @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
+<!-- More Like This .//end -->
+
 <!-- Modal -->
 <div class="modal fade" id="my-all-bids" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog" role="document">

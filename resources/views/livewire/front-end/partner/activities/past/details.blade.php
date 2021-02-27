@@ -90,7 +90,7 @@
                             <label>Product Sold</label>
                         </div>
                         <div class="col-md-7">
-                            <p>Buyer Details | Total Sold: 2</p>
+                            <p>Order Details | Total Sold: 2</p>
                         </div>
                         <div class="col-md-5">
                             <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">

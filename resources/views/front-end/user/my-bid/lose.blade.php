@@ -18,7 +18,7 @@
         <div class="row">
             <aside class="col-md-3">
                 <!--   SIDEBAR   -->
-                @include('front-end.includes.user.sidebar')
+                @include('front-end.includes.user.aside')
                 <!--   SIDEBAR .//END   -->
             </aside>
             <main class="col-md-9">

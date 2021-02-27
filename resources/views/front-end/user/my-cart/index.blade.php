@@ -18,7 +18,7 @@
         <!-- ============================ COMPONENT 1 ================================= -->
         
         <div class="row">
-            <aside class="col-lg-9">
+            <aside class="col-lg-9 pb-2">
                 @livewire('front-end.user.my-cart.index.listing')
             </aside> <!-- col.// -->
             <!-- col.// -->
