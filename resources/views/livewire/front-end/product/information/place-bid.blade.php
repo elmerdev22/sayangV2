@@ -96,9 +96,9 @@
                     </div>
                 </small>
                 <div class="bg-primary rounded py-1 px-2 mt-4">
-                    <h4 class="mb-0 text-white">Your Total: {{Utility::currency_code()}}{{number_format($total_amount, 2)}}</h4>
+                    <h5 class="mb-0 p-1 text-white">Your Total: {{Utility::currency_code()}}{{number_format($total_amount, 2)}}</h5>
                 </div>
-                <div class="py-2 px-3 mt-4">
+                <div class="py-2 mt-4">
                     <button class="btn btn-light w-100" onclick="confirm_bid('{{$bid != null ? number_format($bid, 2) : $bid}}')">
                         CONFIRM BID <span wire:loading wire:target="confirm_bid" class="fas fa-spinner fa-spin"></span>
                     </button>

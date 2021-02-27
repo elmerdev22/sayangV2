@@ -41,13 +41,13 @@
                             </div>
                             
                             <!-- Buy now -->
-                            <div class="p-3" id="buy-now-section" @if($trigger_place_bid) style="display: none;" @endif>
+                            <div class="py-3" id="buy-now-section" @if($trigger_place_bid) style="display: none;" @endif>
                                 @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Buy now -->
 
                             <!-- Place Bid -->
-                            <div class="p-3" id="place-bid-section" @if(!$trigger_place_bid) style="display: none;" @endif>
+                            <div class="py-3" id="place-bid-section" @if(!$trigger_place_bid) style="display: none;" @endif>
                                 @livewire('front-end.product.information.place-bid', ['product_post_id' => $product->product_post_id])
                             </div>
                             <!-- End of Place Bid -->
