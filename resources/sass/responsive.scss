@@ -68,9 +68,16 @@
 			flex-direction: column;
 		}
 	}
-
-
-
-
-	
+    .step-4-text{
+        font-size: 15px;
+    }
+    .bs-stepper .step-trigger .bs-stepper-circle{
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        text-align: center;
+    }
+    .tracking-wrap .text {
+        font-size: 10px;
+    }
 }

@@ -9,8 +9,65 @@
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
-    <div style="background: url('{{Utility::home_background_random()}}'); background-attachment: fixed; " class="page-holder bg-cover">
-        <div class="container centered-hero py-5" style="text-shadow: 2px 2px 5px #000000;">
+    <div style="background: url('{{Utility::home_background_random()}}'); background-attachment: fixed; text-shadow: 2px 2px 5px #383636;" class="page-holder bg-cover">
+        <div class="container">
+            <div class="row padding-y">
+                <div class="col-12">
+                    <header class="text-center text-white py-5">
+                        <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>
+                        <p class="lead mb-0">Explore exciting deals near you.</p>
+                    </header>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-8">
+                            <form action="{{route('front-end.product.list.index')}}" method="GET">
+                                <div class="input-group input-group-lg shadow-sm">
+                                    <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-navbar bg-primary" type="submit">
+                                            <i class="fas fa-search text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 0; left: 50%;">
+                <div style="position: relative; left: -50%;">
+                    <div class="row">
+                        <div class="col-12">
+                            <header>
+                                <h3 class="text-center text-white pt-5">Together we've Rescued</h3>
+                            </header><!-- sect-heading -->
+                        </div>
+                        <div class="col-12">
+                            <div class="row text-center">
+                                <div class="col-4 pt-3">	
+                                    <figure class="item-feature">
+                                        <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
+                                        <span class="text-white ">10,000 trees  </span>
+                                    </figure> <!-- iconbox // -->
+                                </div><!-- col // -->
+                                <div class="col-4 pt-3">
+                                    <figure  class="item-feature">
+                                        <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
+                                        <span class="text-white">10 gal of water</span>
+                                    </figure> <!-- iconbox // -->
+                                </div><!-- col // -->
+                                <div class="col-4 pt-3">
+                                    <figure  class="item-feature">
+                                        <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
+                                        <span class="text-white">10 kw of energry</span>
+                                    </figure> <!-- iconbox // -->
+                                </div> <!-- col // -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="container centered-hero py-5" style="text-shadow: 2px 2px 5px #000000;">
             <header class="text-center text-white py-5">
                     <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>
                     <p class="lead mb-0">Explore exciting deals near you.</p>
@@ -54,7 +111,7 @@
                     </div> <!-- col // -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         
     </div>
 </section>
