@@ -138,13 +138,39 @@
             <div class="col-md-12">
                 <article class="card">
                     <div class="card-body">
+                        <div class="row">
+                            <aside class="col-md-6">
+                                <h5>Parameters</h5>
+                                <dl class="row">
+                                    <dt class="col-sm-3">Length</dt>
+                                    <dd class="col-sm-9">{{$product->length ? $product->length : 'Not set'}}</dd>
+                
+                                    <dt class="col-sm-3">Width</dt>
+                                    <dd class="col-sm-9">{{$product->width ? $product->width : 'Not set'}}</dd>
+                
+                                    <dt class="col-sm-3">Height</dt>
+                                    <dd class="col-sm-9">{{$product->height ? $product->height : 'Not set'}}</dd>
+                
+                                </dl>
+                            </aside>
+                            
+                            @if($product->paper_packaging)
+                                <aside class="col-md-6">
+                                    <h5>Packaging</h5>
+                                    <ul class="list-check">
+                                        <li>Paper packaging</li>
+                                    </ul>
+                                </aside>
+                            @endif
+                        </div> <!-- row.// -->
+                        <hr>
                         <header class="section-heading">
                             <h5>About Products </h5>  
                         </header>
                         <p>
                             {!! $product->about_product != null ? $product->about_product : 'No more about product.' !!}
                         </p>
-                    </div> <!-- card-body.// -->
+                    </div>
                 </article>
             </div> <!-- col.// -->
         </div> <!-- row.// -->

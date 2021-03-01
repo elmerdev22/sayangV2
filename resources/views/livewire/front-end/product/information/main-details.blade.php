@@ -79,35 +79,6 @@
             </div>
         </div>
     </dl>
-    <dl class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <dt class="col-sm-4">Length</dt>
-                <dd class="col-sm-8">{{$product_post->product->length ? $product_post->product->length : 'Not set'}}</dd>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <dt class="col-sm-4">Width</dt>
-                <dd class="col-sm-8">{{$product_post->product->width ? $product_post->product->width : 'Not set'}}</dd>
-            </div>
-        </div>
-    </dl>
-    <dl class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <dt class="col-sm-4">Height</dt>
-                <dd class="col-sm-8">{{$product_post->product->height ? $product_post->product->height : 'Not set'}}</dd>
-            </div>
-        </div>
-        @if($product_post->product->paper_packaging)
-            <div class="col-md-6">
-                <ul class="list-check mb-4">
-                    <li>Paper packaging</li>
-                </ul>
-            </div>
-        @endif
-    </dl>
     {{-- @endif --}}
 </div>
 
