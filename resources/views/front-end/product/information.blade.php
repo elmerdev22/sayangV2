@@ -164,11 +164,8 @@
                             @endif
                         </div> <!-- row.// -->
                         <hr>
-                        <header class="section-heading">
-                            <h5>About Products </h5>  
-                        </header>
                         <p>
-                            {!! $product->about_product != null ? $product->about_product : 'No more about product.' !!}
+                            {!! $product->about_product ? $product->about_product : 'No more about product.' !!}
                         </p>
                     </div>
                 </article>
