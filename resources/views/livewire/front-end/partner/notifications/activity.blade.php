@@ -39,7 +39,7 @@
                                     <a target="_blank" 
                                         @if ($row->product_post_id != null) 
                                             @if ($row->type == 'partner_product_post_end')
-                                                href="{{route('front-end.partner.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                                                href="{{route('front-end.partner.activities.past_details', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                                             @else 
                                                 href="javascript:void(0);";
                                             @endif 

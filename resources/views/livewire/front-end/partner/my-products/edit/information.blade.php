@@ -138,15 +138,70 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label for="weight">Weight*</label>
-                        <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="Ex: 2 Kilogram" wire:model.lazy="weight">
+                        <label for="length">Length*</label>
+                        <input type="text" class="form-control @error('length') is-invalid @enderror" id="length" placeholder="" wire:model.lazy="length">
+                        @error('length') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="width">Width*</label>
+                        <input type="text" class="form-control @error('width') is-invalid @enderror" id="width" placeholder="" wire:model.lazy="width">
+                        @error('width') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="height">Height*</label>
+                        <input type="text" class="form-control @error('height') is-invalid @enderror" id="height" placeholder="" wire:model.lazy="height">
+                        @error('height') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="weight">Gross Weight* <small>(Kilograms)</small></label>
+                        <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="" wire:model.lazy="weight">
                         @error('weight') 
                             <span class="invalid-feedback">
                                 <span>{{$message}}</span>
                             </span> 
                         @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="shelf_life">Shelf Life* <small>(Months)</small></label>
+                        <input type="text" class="form-control @error('shelf_life') is-invalid @enderror" id="shelf_life" placeholder="" wire:model.lazy="shelf_life">
+                        @error('shelf_life') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="paper_packaging">Paper packaging</label>
+                        <div class="icheck-primary float-righ form-controlt">
+                            <input type="checkbox" wire:model.lazy="paper_packaging" id="paper_packaging">
+                            <label for="paper_packaging">With paper packaging?</label>
+                        </div>
                     </div>
                 </div>
             </div>

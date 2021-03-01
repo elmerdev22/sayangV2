@@ -51,7 +51,18 @@
                                 </td>
                                 <td class="text-left"> 
                                     <p class="title mb-0">{{$row->web_notification_settings->title}}</p>
-                                    <small class="text-muted">{{$row->web_notification_settings->message}}</small>
+                                    <small class="text-muted">
+                                        @if ($row->product_post_id != null)
+                                            @php
+                                                $message = str_replace('{product}', $row->product_post->product->name, $row->web_notification_settings->message);    
+                                            @endphp
+                                        @else 
+                                            @php
+                                                $message = $row->web_notification_settings->message;    
+                                            @endphp
+                                        @endif
+                                        {{$message}}
+                                    </small>
                                 </td>
                                 <td>
                                     <span class="text-muted text-sm float-right">{{Utility::carbon_diff($row->created_at)}}</span>

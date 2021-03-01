@@ -14,7 +14,7 @@
             <div class="row padding-y">
                 <div class="col-12">
                     <header class="text-center text-white py-5">
-                        <h1 class="display-3 font-weight-bold mb-4" >Nothing Goes to Waste</h1>
+                        <h1 class="display-3 font-weight-bold mb-4" >NOTHING GOES TO WASTE</h1>
                         <p class="lead mb-0">Explore exciting deals near you.</p>
                     </header>
                     <div class="row justify-content-center align-items-center">
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-12">
                             <header>
-                                <h3 class="text-center text-white pt-5">Together we've Rescued</h3>
+                                <h3 class="text-center text-white pt-5">Together, we’ve rescued</h3>
                             </header><!-- sect-heading -->
                         </div>
                         <div class="col-12">

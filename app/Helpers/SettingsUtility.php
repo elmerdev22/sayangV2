@@ -112,25 +112,43 @@ class SettingsUtility{
             'partner_product_post_end' => [
                 'name'    => 'Partner product post is ended',
                 'subject' => 'Product is ended!',
-                'message' => 'your product is ended click the button below to proceed!',
+                'message' => 'your product {product} is ended click the button below to proceed!',
             ],
             // Bidder win
             'bidder_won' => [
                 'name'    => 'Bidder win',
                 'subject' => 'your bid is won!',
-                'message' => 'congratulation your bid is won!',
+                'message' => 'congratulation your bid is won on product {product}.',
             ],
             // Bidder lose
             'bidder_lose' => [
                 'name'    => 'Bidder lose',
                 'subject' => 'your bid is lose!',
-                'message' => 'try again, your bid is lose!',
+                'message' => 'try again, your bid is lose on product {product}.',
             ],
             // Product post sold out
             'product_post_sold_out' => [
                 'name'    => 'Product sold out',
                 'subject' => 'Product sold out!',
-                'message' => 'product sold, click the button below for more details',
+                'message' => 'product sold on product {product}, click the button below for more details',
+            ],
+            // New Cash on Delivery Request
+            'new_cop_request' => [
+                'name'    => 'New Cash on Pickup Request',
+                'subject' => 'COP Request!',
+                'message' => 'New Cash on Pickup Request, click the here for more details',
+            ],
+            // Cancelled cop request
+            'cancelled_cop_request' => [
+                'name'    => 'Cancelled Cash on Pickup Request',
+                'subject' => 'COP request cancelled!',
+                'message' => 'COP request cancelled, click the here for more details',
+            ],
+            // Confirm cop request
+            'confirmed_cop_request' => [
+                'name'    => 'Confirmed Cash on Pickup Request',
+                'subject' => 'COP request Confirmed!',
+                'message' => 'COP request Confirmed, click the here for more details',
             ],
 
         ];
@@ -155,31 +173,31 @@ class SettingsUtility{
             'partner_product_post_end' => [
                 'name'    => 'Partner product post is ended',
                 'title'   => 'Product is ended!',
-                'message' => 'your product is ended click herefor more details.',
+                'message' => 'your product {product} is ended click herefor more details.',
             ],
             // Partner Notify if product post is cancelled by admin
             'partner_product_post_cancelled' => [
                 'name'    => 'Partner product post is cancelled by admin',
                 'title'   => 'Product is cancelled!',
-                'message' => 'your product is cancelled click herefor more details.',
+                'message' => 'your product {product} is cancelled click herefor more details.',
             ],
             // Bidder win
             'bidder_won' => [
                 'name'    => 'Bidder win',
                 'title'   => 'your bid is won!',
-                'message' => 'Your bid is won click here to more details',
+                'message' => 'Your bid is won on product {product} click here to more details',
             ],
             // Bidder lose
             'bidder_lose' => [
                 'name'    => 'Bidder lose',
                 'title'   => 'your bid is lose!',
-                'message' => 'Your bid is lose click here to more details',
+                'message' => 'Your bid is lose on product {product} click here to more details',
             ],
             // Product post sold out
             'product_post_sold_out' => [
                 'name'    => 'Product sold out',
                 'title'   => 'Product sold out!',
-                'message' => 'product sold, click the here for more details',
+                'message' => 'product sold on product {product}, click the here for more details',
             ],
             // New Cash on Delivery Request
             'new_cop_request' => [
@@ -191,31 +209,31 @@ class SettingsUtility{
             'new_product_sold' => [
                 'name'    => 'New Product Sold',
                 'title'   => 'New Product Sold!',
-                'message' => 'New Product Sold, click the here for more details',
+                'message' => 'New Product Sold on product {product}, click the here for more details',
             ],
             // Cancelled cop request
             'cancelled_cop_request' => [
                 'name'    => 'Cancelled Cash on Pickup Request',
                 'title'   => 'COP request cancelled!',
-                'message' => 'COP request cancelled!, click the here for more details',
+                'message' => 'COP request cancelled, click the here for more details',
             ],
             // Confirm cop request
             'confirmed_cop_request' => [
                 'name'    => 'Confirmed Cash on Pickup Request',
                 'title'   => 'COP request Confirmed!',
-                'message' => 'COP request Confirmed!, click the here for more details',
+                'message' => 'COP request Confirmed, click the here for more details',
             ],
             // Order Completed
             'order_completed' => [
                 'name'    => 'Order Completed',
                 'title'   => 'Order Completed!',
-                'message' => 'Order Completed!, click the here for more details',
+                'message' => 'Order Completed! , click the here for more details',
             ],
             // Partner New Product Post
             'partner_new_product_post' => [
                 'name'    => 'Partner New Post Product',
                 'title'   => 'New Post Product!',
-                'message' => 'New Post Product , click the here for more details',
+                'message' => 'New Post Product {product} , click the here for more details',
             ],
 
         ];
