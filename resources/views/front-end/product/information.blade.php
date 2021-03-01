@@ -140,7 +140,7 @@
                     <div class="card-body">
                         <div class="row">
                             <aside class="col-md-6">
-                                <h5>Parameters</h5>
+                                <h5>Dimensions</h5>
                                 <dl class="row">
                                     <dt class="col-sm-3">Length</dt>
                                     <dd class="col-sm-9">{{$product->length ? $product->length : 'Not set'}}</dd>
