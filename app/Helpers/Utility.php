@@ -997,10 +997,11 @@ class Utility{
         $product_post = ProductPost::with(['product'])->where('id', $product_post_id)->first();
 
         $elements = [
-            'trees1' => 0.0015,
-            'trees2' => 0.017,
-            'water'  => 0.06,
-            'energy' => 0.00957
+            'trees_wppv'  => 0.0015,
+            'trees_wppa'  => 0.017,
+            'trees_woppv' => 0.0015,
+            'water'       => 0.06,
+            'energy'      => 0.00957
         ];
 
         $per = [
@@ -1016,10 +1017,10 @@ class Utility{
         ];
 
         if($product_post->product->paper_packaging){
-            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees1'] + $per['trees'] * $elements['trees2'];
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees_wppv'] + $per['trees'] * $elements['trees_wppa'];
         }
         else{
-            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees1'];
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees_woppv'];
         }
 
         $data['water']  = $product_post->buy_now_price / $per['water'] * $elements['water'];

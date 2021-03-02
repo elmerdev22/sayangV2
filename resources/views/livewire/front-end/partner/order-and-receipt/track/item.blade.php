@@ -11,10 +11,10 @@
                         </td>
                         <td> 
                             <p class="title mb-0">{{ucfirst($row->product_post->product->name)}}</p>
-                            <small class="price text-muted">₱ {{number_format($row->price, 2)}} x {{$row->quantity}}</small>
+                            <small class="price text-muted">{{Utility::currency_code()}}{{number_format($row->price, 2)}} x {{$row->quantity}}</small>
                         </td>
                         <td> 
-                            ₱ {{number_format($row->price * $row->quantity, 2)}} 
+                            {{Utility::currency_code()}}{{number_format($row->price * $row->quantity, 2)}} 
                         </td>
                         <td> 
                             <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug, 'key_token' => $row->product_post->key_token, 'type' => 'buy_now'])}}" class="btn btn-warning btn-sm float-right">Details</a> 
