@@ -78,19 +78,19 @@
                         <div class="col-4">	
                             <figure class="item-feature">
                                 <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
-                                <span>10,000 trees  </span>
+                                <span>{{Utility::elements_multiplier($product_post->id)['trees'] * $quantity}} trees  </span>
                             </figure> <!-- iconbox // -->
                         </div><!-- col // -->
                         <div class="col-4">	
                             <figure  class="item-feature">
                                 <span class="text-info"><i class="fa fa fa-tint"></i></span>	
-                                <span>10 gal of water</span>
+                                <span>{{Utility::elements_multiplier($product_post->id)['water'] * $quantity}} gal of water</span>
                             </figure> <!-- iconbox // -->
                         </div><!-- col // -->
                         <div class="col-4">	
                             <figure  class="item-feature">
                                 <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
-                                <span>10 kw of energry</span>
+                                <span>{{Utility::elements_multiplier($product_post->id)['energy'] * $quantity}} kw of energry</span>
                             </figure> <!-- iconbox // -->
                         </div> <!-- col // -->
                     </div>

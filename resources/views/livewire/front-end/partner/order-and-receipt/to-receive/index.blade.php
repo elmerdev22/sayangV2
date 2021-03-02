@@ -55,6 +55,7 @@
                                     <span class="badge badge-info">To Receive</span>
                                 </td>
                                 <td>
+                                    <a href="" data-toggle="modal" data-target="#view_items" class="btn btn-outline-primary btn-sm">View Items</a>
                                     <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                 </td>
                             </tr>
@@ -70,4 +71,38 @@
             @include('front-end.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
     </div> <!-- card.// -->
+    <!-- Modal -->
+    <div class="modal fade" id="view_items" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order No.: PN21030102019</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <table class="table table-sm table-bordered table-cell-nowrap table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>Items</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i = 0; $i < 5; $i++)
+                            <tr>
+                                <td>Product {{$i}}</td>
+                                <td>{{$i}}</td>
+                            </tr>
+                        @endfor
+                    </tbody>
+                </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -163,10 +163,12 @@
                                 </aside>
                             @endif
                         </div> <!-- row.// -->
-                        <hr>
-                        <p>
-                            {!! $product->about_product ? $product->about_product : 'No more about product.' !!}
-                        </p>
+                        @if ($product->about_product)
+                            <hr>
+                            <p>
+                                {!! $product->about_product !!}
+                            </p>
+                        @endif
                     </div>
                 </article>
             </div> <!-- col.// -->

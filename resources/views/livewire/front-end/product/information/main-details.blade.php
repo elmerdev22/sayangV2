@@ -29,19 +29,19 @@
         <div class="col-4 col-md-3 pt-1 text-center">	
             <figure class="item-feature">
                 <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
-                <span>3</span>
+                <span>{{Utility::elements_multiplier($product_post->id)['trees']}}</span>
             </figure> <!-- iconbox // -->
         </div><!-- col // -->
         <div class="col-4 col-md-3 pt-1 text-center">
             <figure  class="item-feature">
                 <span class="text-info"><i class="fa fa fa-tint"></i></span>	
-                <span>2</span>
+                <span>{{Utility::elements_multiplier($product_post->id)['water']}}</span>
             </figure> <!-- iconbox // -->
         </div><!-- col // -->
         <div class="col-4 col-md-3 pt-1 text-center">	
             <figure  class="item-feature">
                 <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
-                <span>0.4</span>
+                <span>{{Utility::elements_multiplier($product_post->id)['energy']}}</span>
             </figure> <!-- iconbox // -->
         </div> <!-- col // -->
     </div>

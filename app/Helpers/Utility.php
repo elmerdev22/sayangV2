@@ -991,4 +991,46 @@ class Utility{
 
         return $response;
     }
+
+    public static function elements_multiplier($product_post_id){
+
+        $product_post = ProductPost::with(['product'])->where('id', $product_post_id)->first();
+
+        $elements = [
+            'trees1' => 0.0015,
+            'trees2' => 0.017,
+            'water'  => 0.06,
+            'energy' => 0.00957
+        ];
+
+        $per = [
+            'trees'  => 1,
+            'water'  => 0.89,
+            'energy' => 0.89 
+        ];
+
+        $data = [
+            'trees'  => null,
+            'water'  => $elements['water'],
+            'energy' => $elements['energy']
+        ];
+
+        if($product_post->product->paper_packaging){
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees1'] + $per['trees'] * $elements['trees2'];
+        }
+        else{
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees1'];
+        }
+
+        $data['water']  = $product_post->buy_now_price / $per['water'] * $elements['water'];
+        $data['energy'] = $product_post->buy_now_price / $per['energy'] * $elements['energy'];
+        
+        $response = [
+            'trees'  => number_format( $data['trees'], 3),
+            'water'  => number_format( $data['water'], 3),
+            'energy' => number_format( $data['energy'], 3),
+        ];
+
+        return $response;
+    }
 }
