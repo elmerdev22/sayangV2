@@ -1,5 +1,5 @@
 <div>
-    <div class="my-account-profile border-right mb-4">
+    <div class="my-account-profile mb-4">
         <div class="text-center">
             <img class="icon icon-lg rounded-circle border m-2" src="{{$photo_url}}" alt="" style="width: 120px; height: 120px;">
         </div>

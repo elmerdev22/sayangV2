@@ -118,7 +118,7 @@
                             <label>Order History</label>
                         </div>
                         <div class="col-md-7">
-                            <p>Order Details | Total Sold: 2</p>
+                            <p>Order Details</p>
                         </div>
                         <div class="col-md-5 my-2">
                             <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">

@@ -22,6 +22,47 @@
         </div>
     @endif
     <div class="row">
+        <div class="col-md-4">
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
+                    <p>Trees</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-seedling text-primary"></i>
+                </div>
+            </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-4">
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
+                    <p>Water</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-tint text-info"></i>
+                </div>
+            </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-4">
+            <div class="small-box bg-white">
+                <div class="inner">
+                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
+                    <p>Energy</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-bolt" style="color: #ff9017"></i>
+                </div>
+            </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small card -->
             <div class="small-box bg-white">
