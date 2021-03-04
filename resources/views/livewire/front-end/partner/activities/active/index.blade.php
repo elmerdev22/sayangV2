@@ -35,9 +35,16 @@
                                 Lowest Price 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.lowest_price'])
                             </th>
+                            <th class="table-sort" wire:click="sort('product_posts.total_quantity')">
+                                Total Quantity 
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.total_quantity'])
+                            </th>
                             <th class="table-sort" wire:click="sort('product_posts.quantity')">
-                                Quantity 
+                                Remaining Quantity 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.quantity'])
+                            </th>
+                            <th class="table-sort">
+                                Total Sold 
                             </th>
                             <th class="table-sort" wire:click="sort('product_posts.date_start')">
                                 Date Start
@@ -66,7 +73,9 @@
                                 {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
                                 <td>{{number_format($row->buy_now_price, 2)}}</td>
                                 <td>{{number_format($row->lowest_price, 2)}}</td>
+                                <td>{{number_format($row->total_quantity, 0)}}</td>
                                 <td>{{number_format($row->quantity, 0)}}</td>
+                                <td>{{number_format(Utility::product_sold($row->id), 0)}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_start))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_end))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
@@ -83,7 +92,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="text-center">No Data Found</td>
+                                <td colspan="10" class="text-center">No Data Found</td>
                             </tr>
                         @endforelse
                     </tbody>

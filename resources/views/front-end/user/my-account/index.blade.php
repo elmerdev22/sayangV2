@@ -27,7 +27,7 @@
                         <strong class="d-inline-block mr-3">My Profile</strong>
                     </header>
                     <div class="card-body"><p>
-                        <span>Saved in Terms of Elements</span>
+                        <span>So far, you've rescued</span>
                         <div class="row mb-3">
                             <div class="col-sm-4 mb-1">
                                 <article class="card card-body">

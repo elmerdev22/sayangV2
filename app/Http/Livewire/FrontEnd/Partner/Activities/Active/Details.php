@@ -64,11 +64,11 @@ class Details extends Component
 		return QueryUtility::order_items($filter)->where('orders.order_no', 'like', '%'.$this->search.'%')->paginate(5);
     }
 
-    public function save_quantity(){
-        $product_post           = ProductPost::where('id', $this->product_post_id)->first();
-        $product_post->quantity = $this->product_quantity;
+    public function save_quantity($type){
+        $product_post                   = ProductPost::where('id', $this->product_post_id)->first();
+        $product_post->total_quantity   = $type == 'add' ? $product_post->total_quantity + $this->product_quantity : $product_post->total_quantity - $this->product_quantity;
+        $product_post->quantity         = $type == 'add' ? $product_post->quantity + $this->product_quantity : $product_post->quantity - $this->product_quantity;
         if($product_post->save()){
-            
             $this->emit('alert', [
                 'type'     => 'success',
                 'title'    => 'Successfully Saved',

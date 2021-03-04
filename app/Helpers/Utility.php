@@ -28,6 +28,7 @@ use App\Model\PartnerRating;
 use App\Model\ImageSetting;
 use Carbon\Carbon;
 use UploadUtility;
+use QueryUtility;
 use PaymentUtility;
 use Schema;
 use Mail;
@@ -1033,5 +1034,21 @@ class Utility{
         ];
 
         return $response;
+    }
+
+    public static function product_sold($product_post_id){
+        $filter = [];
+		$filter['select'] = [
+			'orders.*'
+        ];
+        
+		$filter['where']['order_items.product_post_id']  = $product_post_id;
+
+		$filter['where_in'][] = [
+            'field'  => 'orders.status',
+            'values' => ['completed','to_receive']
+        ];
+
+		return QueryUtility::order_items($filter)->count();
     }
 }

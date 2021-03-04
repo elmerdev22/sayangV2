@@ -76,42 +76,62 @@
                 </div>
                 <div class="col-md-8">
                     <div class="row my-4">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Regular Price</label>
                             <div>
                                 {{number_format($data->regular_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Buy now Price</label>
                             <div>
                                 {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Lowest Price</label>
                             <div>
                                 {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-sm-4">
+                            <label>Total Quantity</label>
+                            <div>
+                                {{number_format($data->total_quantity, 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Total Sold</label>
+                            <div>
+                                {{number_format(Utility::product_sold($data->id), 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Quantity</label>
+                                <label>Remaining Quantity</label>
                                 @if ($data->quantity <= 0)
                                     <div>
                                         {{$data->quantity}}
                                     </div>
                                 @else 
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control form-control-sm text-center" id="quantity" min="1" value="{{$data->quantity}}">
+                                        <input type="number" class="form-control form-control-sm text-center" disabled id="quantity" min="1" value="{{$data->quantity}}">
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-warning btn-sm" onclick="save_quantity()">Save</button>
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="save_quantity('add')">
+                                                <span class="fas fa-plus"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="save_quantity('minus')">
+                                                <span class="fas fa-minus"></span>
+                                            </button>
                                         </div>
                                     </div>
                                 @endif
                             </div>
                         </div>
-                        
+                    </div>
+                    <div class="row my-4">
                         @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
                         <hr>
                         <div class="col-12">
@@ -194,7 +214,6 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    
                                     <label>Cancellation Reason*</label>
                                     <textarea class="form-control" wire:model.lazy="cancellation_reason" placeholder="Input your cancelation reason here..."></textarea>
                                     @error('cancellation_reason') 
@@ -215,23 +234,29 @@
 </div>
 @push('scripts')
 <script type="text/javascript">
-    function save_quantity(){
-        Swal.fire({
-            title             : 'Are you sure?',
-            text              : "You want to update the quantity?",
-            icon              : 'info',
-            showCancelButton  : true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor : '#d33',
-            confirmButtonText : 'Yes!'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                @this.set('product_quantity', $('#quantity').val())
-                @this.call('save_quantity')
-            }
-        })
-    }
 
+    function save_quantity(type){
+        var title = type == 'add' ? 'Add Quantity' : 'Deduct Quantity';
+        (async () => {
+                const { value: quantity } = await Swal.fire({
+                    title: title,
+                    input: 'number',
+                    inputLabel: 'Quantity',
+                    inputValue: 1,
+                    inputAttributes: {
+                        min: 1,
+                    },
+                    validationMessage: 'Minimum Quantity is 1',
+                    confirmButtonText: 'Save',  
+                })
+
+                if (quantity) {
+                    @this.set('product_quantity', quantity)
+                    @this.call('save_quantity', type)
+                }
+        })()
+    }
+    
     function cancellable(){
         $('#cancellation-modal').modal('show')
     }

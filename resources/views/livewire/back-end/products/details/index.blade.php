@@ -99,37 +99,47 @@
                             </div>
                         @endif
                     </div>
-                    
                 </div>
                 <div class="col-md-8">
-                    <div class="row">
-                        
-                        <div class="col-sm-3">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
                             <label>Regular Price</label>
                             <div>
                                 {{number_format($data->regular_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Buy now Price</label>
                             <div>
                                 {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Lowest Price</label>
                             <div>
                                 {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            
-                            <label>Quantity</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>Total Quantity</label>
+                            <div>
+                                {{number_format($data->total_quantity, 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Total Sold</label>
+                            <div>
+                                {{number_format(Utility::product_sold($data->id), 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Remaining Quantity</label>
                             <div>
                                 {{number_format($data->quantity, 0)}}
                             </div>
                         </div>
-                        
                     </div>
                     @if ($data->status == 'cancelled')
                         <hr>
@@ -183,7 +193,7 @@
                                 <label>Order History</label>
                             </div>
                             <div class="col-md-7">
-                                <p>Buyer Details</p>
+                                <p>Order Details</p>
                             </div>
                             <div class="col-md-5 my-2">
                                 <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">

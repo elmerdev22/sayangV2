@@ -69,33 +69,89 @@
                 <article class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
-                            <figure class="icontext mb-2">
-                                <div class="icon">
-                                    <img class="rounded-circle img-sm border" src="{{$store_photo}}">
-                                </div>
-                                <div class="text">
-                                    <div class="mb-2">
-                                        <strong> {{ucfirst($product->partner_name)}} </strong>
-                                    </div>
-                                    <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-sm btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
-                                    @php
-                                        $store_hours = Utility::store_hours($product->partner_id);
-                                    @endphp
-                                    @if($store_hours['is_set'])
-                                    
-                                        <div class="text-muted">
-                                            <small>{{$store_hours['open_time']}} - {{$store_hours['close_time']}}</small>
+                        <div class="col-md-3">
+                            <dl class="row">
+                                <dt class="col-12">
+                                    <figure class="icontext mb-2">
+                                        <div class="icon">
+                                            <img class="rounded-circle img-sm border" src="{{$store_photo}}">
                                         </div>
-                                        <div class="text-muted">
-                                            <small>({{$store_hours['status']}})</small>
+                                        <div class="text">
+                                            <div class="mb-2">
+                                                <strong> {{ucfirst($product->partner_name)}} </strong>
+                                            </div>
+                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-sm btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
+                                            {{-- @php
+                                                $store_hours = Utility::store_hours($product->partner_id);
+                                            @endphp
+                                            @if($store_hours['is_set'])
+                                            
+                                                <div class="text-muted">
+                                                    <small>{{$store_hours['open_time']}} - {{$store_hours['close_time']}}</small>
+                                                </div>
+                                                <div class="text-muted">
+                                                    <small>({{$store_hours['status']}})</small>
+                                                </div>
+                                            @endif --}}
                                         </div>
-                                    @endif
-                                </div>
-                            </figure>
+                                    </figure>
+                                </dt>
+            
+                            </dl>
                         </div>
-                        <div class="col-md-8 pt-3">
-                            <div class="row">
+                        <div class="col-md-3">
+                            <dl class="row">
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Ratings</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                </dd>
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Products</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{number_format(Utility::count_products($product->partner_id) ,0)}}</span>
+                                </dd>
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Followers</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{Utility::count_followers($product->partner_id)}}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                @php
+                                    $store_hours = Utility::store_hours($product->partner_id);
+                                @endphp
+                                @if($store_hours['is_set'])
+                                    <dt class="col-sm-3">
+                                        <span class="font-weight-bold">Store Hours</span>
+                                    </dt>
+                                    <dd class="col-sm-9">
+                                        <span>{{$store_hours['open_time']}} - {{$store_hours['close_time']}} ({{$store_hours['status']}})</span>
+                                    </dd>
+                                @endif
+                                <dt class="col-sm-3">
+                                    <span class="font-weight-bold">Joined</span>
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <span>{{date('F d, Y', strtotime($product->joined))}}</span>
+                                </dd>
+                                <dt class="col-sm-3">
+                                    <span class="font-weight-bold">Address</span>
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <span>{{$product->address}} </span>
+                                    <span class="fas fa-hand-point-right text-muted"></span> 
+                                    <u>
+                                        <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
+                                    </u>
+                                </dd>
+                            </dl>
+                            {{-- <div class="row">
                                 <div class="col-lg-4 col-6 p-1">
                                     <span class="font-weight-bold">Ratings</span>
                                     <span>{{Utility::get_partner_ratings($product->partner_id)}}</span>
@@ -121,7 +177,7 @@
                                         <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
                                     </u>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
