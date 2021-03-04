@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificationTableSeeder::class);
         $this->call(EmailNotificationSettingTableSeeder::class);
         $this->call(WebNotificationSettingTableSeeder::class);
+        $this->call(DescriptionSettingTableSeeder::class);
         $this->call(UserTableSeeder::class);
     }
 }

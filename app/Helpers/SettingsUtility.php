@@ -5,6 +5,7 @@ use App\Model\Setting;
 use App\Model\Rating;
 use App\Model\EmailNotificationSetting;
 use App\Model\WebNotificationSetting;
+use App\Model\DescriptionSetting;
 use DB;
 class SettingsUtility{
 
@@ -20,9 +21,8 @@ class SettingsUtility{
     public static function settings($key=null){
         
         $group = [
-            'bids'              => 'bids',
-            'content'           => 'content',
-            'web_notifications' => 'web_notifications',
+            'bids'    => 'bids',
+            'content' => 'content',
         ];
 
         $response = [
@@ -272,6 +272,33 @@ class SettingsUtility{
         }
     }
 
+    public static function description_settings($key=null){
+        
+        $group = [
+            'advocacy_section' => 'advocacy_section',
+        ];
+        
+        $response = [
+            // Advocacy Section
+            'header' => [
+                'group' => $group['advocacy_section'],
+                'name'  => 'Header',
+                'value' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+            ],
+            'sub_header' => [
+                'group' => $group['advocacy_section'],
+                'name'  => 'Subheader',
+                'value' => 'The hidden environmental cost of unsold items from traditional groceries and e-commerce sites.',
+            ],
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
+    
     public static function settings_set_default(){
         Setting::truncate();
         $success = true;
@@ -387,6 +414,38 @@ class SettingsUtility{
             }
         }catch(\Exception $e){
             $success = false;
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+    
+    public static function description_settings_set_default(){
+        DescriptionSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::description_settings() as $settings_key => $settings_value){
+                $settings                 = new DescriptionSetting();
+                $settings->settings_key   = $settings_key;
+                $settings->settings_value = $settings_value['value'];
+                $settings->settings_group = $settings_value['group'];
+                $settings->settings_name  = $settings_value['name'];
+                $save                     = $settings->save();
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+            dd($e);
         }
 
         if($success){

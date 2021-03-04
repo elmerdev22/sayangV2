@@ -44,4 +44,8 @@ class SettingController extends Controller
     public function terms_and_conditions() {
         return view('back-end.setting.terms-and-conditions.index');
     }
+
+    public function home() {
+        return view('back-end.setting.home.index');
+    }
 }

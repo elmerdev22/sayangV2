@@ -112,12 +112,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('back-end.setting.notifications')}}" class="nav-link {{Route::is('back-end.setting.notifications') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Notifications</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('back-end.setting.bid')}}" class="nav-link {{Route::is('back-end.setting.bid') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Bid</p>
@@ -133,6 +127,18 @@
                             <a href="{{route('back-end.setting.ratings')}}" class="nav-link {{Route::is('back-end.setting.ratings') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Ratings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.setting.notifications')}}" class="nav-link {{Route::is('back-end.setting.notifications') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Notifications</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('back-end.setting.home')}}" class="nav-link {{Route::is('back-end.setting.home') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Home Page</p>
                             </a>
                         </li>
                         <li class="nav-item">

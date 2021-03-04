@@ -160,8 +160,8 @@
 <section class="section-content padding-y" style="background-color: #10093f">
     <div class="container">
         <header class="section-heading pb-2 text-center">
-            <h3 class="section-title text-white" data-aos="fade-up">Everyday, thousands of products are locked up, never to be sold again</h3>
-            <p class="text-muted" data-aos="fade-up" data-aos-delay="50"> Content Content Content Content Content Content Content Content Content</p>
+            <h3 class="section-title text-white" data-aos="fade-up">{{Utility::description_settings('header')->settings_value}}</h3>
+            <p class="text-muted" data-aos="fade-up" data-aos-delay="50"> {{Utility::description_settings('sub_header')->settings_value}}</p>
         </header><!-- sect-heading -->
         <div class="row">
             <div class="col-md-4 py-3">
@@ -169,7 +169,8 @@
                     <img src="https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg" class="card-img opacity">
                     <div class="card-img-overlay text-white">
                         <h5 class="card-title">Trees</h5>
-                        <p class="card-text">This is a wider card with a text below</p>
+                        <p class="card-text">This is a wider card with a text below
+                        </p>
                         <a href="#" class="btn btn-light">Discover</a>
                     </div>
                 </div> 

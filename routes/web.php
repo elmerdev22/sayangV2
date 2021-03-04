@@ -287,11 +287,17 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'images',
                 'uses'  => $c.'@images'
             ]);
+
             Route::get('/terms-and-conditions', [
                 'as'    => 'terms-and-conditions',
                 'uses'  => $c.'@terms_and_conditions'
             ]);
             
+            Route::get('/home', [
+                'as'    => 'home',
+                'uses'  => $c.'@home'
+            ]);
+
         });
 
         // Orders and Receipt
