@@ -59,19 +59,19 @@
                 <div class="col-4">	
                     <figure class="item-feature">
                         <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
-                        <span>{{Utility::elements_multiplier($product_post->id)['trees'] * $quantity}} trees  </span>
+                        <span>{{number_format(Utility::elements_multiplier($product_post->id)['trees'] * $quantity, $elements_round_off)}} trees  </span>
                     </figure> <!-- iconbox // -->
                 </div><!-- col // -->
                 <div class="col-4">	
                     <figure  class="item-feature">
                         <span class="text-info"><i class="fa fa fa-tint"></i></span>	
-                        <span>{{Utility::elements_multiplier($product_post->id)['water'] * $quantity}} gal of water</span>
+                        <span>{{number_format(Utility::elements_multiplier($product_post->id)['water'] * $quantity, $elements_round_off)}} gal of water</span>
                     </figure> <!-- iconbox // -->
                 </div><!-- col // -->
                 <div class="col-4">	
                     <figure  class="item-feature">
                         <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
-                        <span>{{Utility::elements_multiplier($product_post->id)['energy'] * $quantity}} kw of energry</span>
+                        <span>{{number_format(Utility::elements_multiplier($product_post->id)['energy'] * $quantity, $elements_round_off)}} kw of energry</span>
                     </figure> <!-- iconbox // -->
                 </div> <!-- col // -->
             </div>

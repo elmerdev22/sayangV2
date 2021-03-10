@@ -130,6 +130,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('back-end.setting.elements')}}" class="nav-link {{Route::is('back-end.setting.elements') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Elements</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('back-end.setting.notifications')}}" class="nav-link {{Route::is('back-end.setting.notifications') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Notifications</p>
@@ -139,12 +145,6 @@
                             <a href="{{route('back-end.setting.home')}}" class="nav-link {{Route::is('back-end.setting.home') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Home Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('back-end.setting.header-and-footer')}}" class="nav-link {{Route::is('back-end.setting.header-and-footer') ? 'sayang-nav-link-active':''}}">
-                                <i class="nav-icon fas"></i>
-                                <p>Header & Footer</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -160,6 +160,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('back-end.setting.header-and-footer')}}" class="nav-link {{Route::is('back-end.setting.header-and-footer') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Header & Footer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('back-end.setting.terms-and-conditions')}}" class="nav-link {{Route::is('back-end.setting.terms-and-conditions') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Terms & Conditions</p>
@@ -167,7 +173,6 @@
                         </li>
                     </ul>
                 </li>
-                
             </ul>
         </nav><!-- /.sidebar-menu -->
     </div><!-- /.sidebar -->

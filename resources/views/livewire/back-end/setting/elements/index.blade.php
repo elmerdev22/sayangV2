@@ -1,7 +1,7 @@
 <div>
 	<div class="card card-outline card-sayang mb-3">
         <div class="card-header">
-            <h5 class="card-title"> Bids Settings</h5> 
+            <h5 class="card-title"> Elements Settings</h5> 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                         <label>{{$row->settings_name}}</label>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control text-center" min="1" max="100" disabled value="{{$row->settings_value}}">
+                            <input type="number" class="form-control text-center" min="0" disabled value="{{$row->settings_value}}">
                             <div class="input-group-append bg-warning">
                             <button class="btn btn-default" onclick="edit('{{$row->id}}')"><span class="fas fa-edit"></span></button>
                             </div>
@@ -39,7 +39,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Settings Value</label>
-                            <input type="number" class="form-control text-center" min="1" wire:model.lazy="settings_value">
+                            <input type="text" class="form-control text-center" wire:model.lazy="settings_value">
                             @error('settings_value')
                                 <span class="invalid-feedback" style="display: block;">
                                     <span>{{$message}}</span>

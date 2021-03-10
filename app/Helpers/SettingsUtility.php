@@ -23,8 +23,9 @@ class SettingsUtility{
     public static function settings($key=null){
         
         $group = [
-            'bids'    => 'bids',
-            'content' => 'content',
+            'bids'     => 'bids',
+            'content'  => 'content',
+            'elements' => 'elements',
         ];
 
         $response = [
@@ -92,6 +93,58 @@ class SettingsUtility{
                 'value' => 'Auctions for Every Juan!',
             ],
 
+            // Elements Trees
+            'trees_wppv' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees with paper packaging per kg',
+                'value' => 0.0015,
+            ],
+            'trees_wppa' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees with paper packaging additional per kg',
+                'value' => 0.017,
+            ],
+            'trees_woppv' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees without paper packaging per kg',
+                'value' => 0.0015,
+            ],
+            'trees_per_kg' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees per kilogram',
+                'value' => 1,
+            ],
+
+            // Elements Water
+            'water' => [
+                'group' => $group['elements'],
+                'name'  => 'Water value',
+                'value' => 0.06,
+            ],
+            'water_per_buy_now_price' => [
+                'group' => $group['elements'],
+                'name'  => 'Water per buy now price',
+                'value' => 0.89,
+            ],
+
+            // Elements enery
+            'energy' => [
+                'group' => $group['elements'],
+                'name'  => 'Energy value',
+                'value' => 0.00957,
+            ],
+            'energy_per_buy_now_price' => [
+                'group' => $group['elements'],
+                'name'  => 'Energy per buy now price',
+                'value' => 0.89,
+            ],
+
+            // Elements round off total value
+            'elements_round_off' => [
+                'group' => $group['elements'],
+                'name'  => 'Elements Total value Round off',
+                'value' => 3,
+            ],
         ];
 
         if($key){

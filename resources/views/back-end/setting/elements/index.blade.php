@@ -6,7 +6,7 @@
             'title'       => 'Settings',
             'breadcrumbs' => [
                 ['url' => '', 'label' => 'Settings'],
-                ['url' => '', 'label' => 'Notifications'],
+                ['url' => '', 'label' => 'Elements'],
             ],
         ];
     @endphp
@@ -16,8 +16,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-            @livewire('back-end.setting.notifications.email')
-            @livewire('back-end.setting.notifications.web')
+            @livewire('back-end.setting.elements.index')
         </div>
     </div>
     <!-- 

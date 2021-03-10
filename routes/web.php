@@ -297,6 +297,10 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'home',
                 'uses'  => $c.'@home'
             ]);
+            Route::get('/elements', [
+                'as'    => 'elements',
+                'uses'  => $c.'@elements'
+            ]);
 
         });
 

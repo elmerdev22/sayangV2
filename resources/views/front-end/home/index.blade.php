@@ -266,7 +266,7 @@
     $(document).ready(function() {
         if ($('.slider-items-owl').length > 0) { // check if element exists
             $('.slider-items-owl').owlCarousel({
-                loop:true,
+                loop:false,
                 margin:5,
                 nav:false,
                 autoplay:true,

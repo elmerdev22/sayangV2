@@ -1001,17 +1001,17 @@ class Utility{
         $product_post = ProductPost::with(['product'])->where('id', $product_post_id)->first();
 
         $elements = [
-            'trees_wppv'  => 0.0015,
-            'trees_wppa'  => 0.017,
-            'trees_woppv' => 0.0015,
-            'water'       => 0.06,
-            'energy'      => 0.00957
+            'trees_wppv'  => Utility::settings('trees_wppv'),
+            'trees_wppa'  => Utility::settings('trees_wppa'),
+            'trees_woppv' => Utility::settings('trees_woppv'),
+            'water'       => Utility::settings('water'),
+            'energy'      => Utility::settings('energy')
         ];
 
         $per = [
-            'trees'  => 1,
-            'water'  => 0.89,
-            'energy' => 0.89 
+            'trees'  => Utility::settings('trees_per_kg'),
+            'water'  => Utility::settings('water_per_buy_now_price'),
+            'energy' => Utility::settings('energy_per_buy_now_price') 
         ];
 
         $data = [
@@ -1030,10 +1030,12 @@ class Utility{
         $data['water']  = $product_post->buy_now_price / $per['water'] * $elements['water'];
         $data['energy'] = $product_post->buy_now_price / $per['energy'] * $elements['energy'];
         
+        $decimal_places = Utility::settings('elements_round_off');
+
         $response = [
-            'trees'  => number_format( $data['trees'], 3),
-            'water'  => number_format( $data['water'], 3),
-            'energy' => number_format( $data['energy'], 3),
+            'trees'  => number_format($data['trees'], $decimal_places),
+            'water'  => number_format($data['water'], $decimal_places),
+            'energy' => number_format($data['energy'], $decimal_places),
         ];
 
         return $response;

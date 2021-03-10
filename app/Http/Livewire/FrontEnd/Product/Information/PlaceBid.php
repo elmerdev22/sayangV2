@@ -18,7 +18,7 @@ class PlaceBid extends Component
     protected $listeners = ['reload-ranking-list' => 'refresh'];
 
     public $view_my_bids = false;
-    public $product_post_id, $product_post, $allow_purchase, $account;
+    public $product_post_id, $product_post, $allow_purchase, $account, $elements_round_off;
     public $total_amount, $quantity, $current_quantity, $bid, $lowest_price, $lowest_bid, $bid_increment;
     public $ranking_top_show;
 
@@ -30,8 +30,9 @@ class PlaceBid extends Component
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
 
-        $bid_increment_percent  = Utility::settings('bid_increment_percent');
-        $this->ranking_top_show = Utility::settings('ranking_top_show');
+        $this->elements_round_off = Utility::settings('elements_round_off');
+        $bid_increment_percent    = Utility::settings('bid_increment_percent');
+        $this->ranking_top_show   = Utility::settings('ranking_top_show');
 
         $this->bid_increment    = round( ($bid_increment_percent / 100) * $product_post->buy_now_price );
 
