@@ -80,7 +80,7 @@ class Index extends Component
             $this->emit('alert', [
                 'type'    => 'error',
                 'title'   => 'Failed',
-                'message' => 'An error occured while Adding Category'
+                'message' => 'An error occured while Saving'
             ]);
         }
     }

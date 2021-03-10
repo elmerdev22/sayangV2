@@ -205,13 +205,16 @@
 <section class="section-name padding-y-sm" style="background-color: #10093f">
     <div class="container">
         <div style="min-height:300px; ">
-            <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">WAGING THE WAR<br>AGAINTS WASTE</h1>
-            <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                tempor incididunt.
+            <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
+                {{Utility::image_settings('title_1','advocacy_section_2')['settings_name']}}
+            </h1>
+            <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
+                {!! Utility::image_settings('title_1','advocacy_section_2')['description'] !!}
             </p>
-            <a href="" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+            @php
+                $url = Auth::check() ? '/' : '/register';
+            @endphp
+            <a href="{{$url}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
         </div>
     </div>
 </section>
@@ -230,14 +233,17 @@
         <div class="container">
             <div class="row py-3">
                 <div class="col-12">
-                    <div style="min-height:300px;">
-                        <h1 class="display-3 text-white font-weight-bold" data-aos="fade-right" data-aos-delay="50">BECOME A PARTNER</h1>
-                        <p class="card-text text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt.
+                    <div style="min-height:300px; ">
+                        <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
+                            {{Utility::image_settings('become_a_partner','become_a_partner_section')['settings_name']}}
+                        </h1>
+                        <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
+                            {!! Utility::image_settings('become_a_partner','become_a_partner_section')['description'] !!}
                         </p>
-                        <a href="{{url('register/partner')}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+                        @php
+                            $url = Auth::check() ? '/' : '/register/partner';
+                        @endphp
+                        <a href="{{$url}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
                     </div>
                 </div>
             </div>

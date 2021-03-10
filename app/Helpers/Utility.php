@@ -943,6 +943,10 @@ class Utility{
         return DescriptionSetting::where('settings_key', $settings_key)->first();
     }
 
+    public static function image_settings($settings_key, $settings_group){
+        return ImageSetting::where('settings_key', $settings_key)->where('settings_group', $settings_group)->first();
+    }
+
     public static function home_background_random(){
         
         $data = ImageSetting::inRandomOrder()->where('settings_group', 'home_bg_image')->where('is_display', true)->first();

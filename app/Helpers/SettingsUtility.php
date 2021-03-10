@@ -304,8 +304,10 @@ class SettingsUtility{
     public static function image_settings($key=null){
         
         $group = [
-            'home_bg_image'    => 'home_bg_image',
-            'advocacy_section' => 'advocacy_section',
+            'home_bg_image'      => 'home_bg_image',
+            'advocacy_section'   => 'advocacy_section',
+            'advocacy_section_2' => 'advocacy_section_2',
+            'become_a_partner_section'   => 'become_a_partner_section',
         ];
         
         $response = [
@@ -335,6 +337,22 @@ class SettingsUtility{
                 'name'        => 'Energy',
                 'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
                 'arrangement' => 3,
+            ],
+                
+            // Advocacy Section 2
+            'title_1' => [
+                'group'       => $group['advocacy_section_2'],
+                'name'        => 'WAGING THE WAR AGAINTS WASTE',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt. tempor incididunt.',
+                'arrangement' => null,
+            ],
+                
+            // Become a partner
+            'become_a_partner' => [
+                'group'       => $group['become_a_partner_section'],
+                'name'        => 'BECOME A PARTNER',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.',
+                'arrangement' => null,
             ],
         ];
 

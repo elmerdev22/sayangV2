@@ -22,6 +22,18 @@
             @livewire('back-end.setting.home.advocacy-section.index')
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- CONTENT HERE -->
+            @livewire('back-end.setting.home.advocacy-section2.index')
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- CONTENT HERE -->
+            @livewire('back-end.setting.home.become-a-partner-section.index')
+        </div>
+    </div>
     <!-- 
         NOTE: Always wrap the content in .row > .col-* 
     -->
