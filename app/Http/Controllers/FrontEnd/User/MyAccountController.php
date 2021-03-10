@@ -4,14 +4,17 @@ namespace App\Http\Controllers\FrontEnd\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Order;
 use Utility;
 use Auth;
 
 class MyAccountController extends Controller
 {
     public function index(){
-        $account              = Utility::auth_user_account();
-        return view('front-end.user.my-account.index', compact('account'));
+        $account  = Utility::auth_user_account();
+        $elements = Utility::rescued_elements_computation('user');
+        
+        return view('front-end.user.my-account.index', compact('account','elements'));
     }
 
     public function addresses(){

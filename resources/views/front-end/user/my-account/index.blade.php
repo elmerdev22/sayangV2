@@ -38,7 +38,7 @@
                                             </span>
                                         </div>
                                         <figcaption class="info">
-                                            <h6 class="title">{{number_format(rand(10,1000), 2)}}</h6>
+                                            <h6 class="title">{{$elements['trees']}}</h6>
                                             <p>Trees</p>
                                         </figcaption>
                                     </figure> <!-- iconbox // -->
@@ -53,8 +53,8 @@
                                             </span>
                                         </div>
                                         <figcaption class="info">
-                                            <h6 class="title">{{number_format(rand(10,1000), 2)}}</h6>
-                                            <p>Water</p>
+                                            <h6 class="title">{{$elements['water']}}</h6>
+                                            <p>gal of water</p>
                                         </figcaption>
                                     </figure> <!-- iconbox // -->
                                 </article>
@@ -68,8 +68,8 @@
                                             </span>
                                         </div>
                                         <figcaption class="info">
-                                            <h6 class="title">{{number_format(rand(10,1000), 2)}}</h6>
-                                            <p>Energy</p>
+                                            <h6 class="title">{{$elements['energy']}}</h6>
+                                            <p>kw of energy</p>
                                         </figcaption>
                                     </figure> <!-- iconbox // -->
                                 </article>

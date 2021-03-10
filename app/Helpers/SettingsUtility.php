@@ -262,9 +262,9 @@ class SettingsUtility{
             ],
             // New PRoduct Sold
             'new_product_sold' => [
-                'name'    => 'New Product Sold',
-                'title'   => 'New Product Sold!',
-                'message' => 'New Product Sold on product {product}, click the here for more details',
+                'name'    => 'New Order Sold',
+                'title'   => 'New Order Sold!',
+                'message' => 'New Order Sold, click the here for more details',
             ],
             // Cancelled cop request
             'cancelled_cop_request' => [

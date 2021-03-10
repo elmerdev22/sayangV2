@@ -21,7 +21,9 @@ class HomeController extends Controller
             'become_a_partner_section' => $become_a_partner_section,
         ];
 
-        return view('front-end.home.index', compact('data'));
+        $elements = Utility::rescued_elements_computation('all');
+
+        return view('front-end.home.index', compact('data','elements'));
     }
 
     public function all_most_popular(){

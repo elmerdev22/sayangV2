@@ -22,10 +22,15 @@
         </div>
     @endif
     <div class="row">
+        <div class="col-12">
+            <p>So far, you've rescued</p>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
+                    <h3 class="font-weight-normal">{{$elements['trees']}}</h3>
                     <p>Trees</p>
                 </div>
                 <div class="icon">
@@ -38,8 +43,8 @@
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
-                    <p>Water</p>
+                    <h3 class="font-weight-normal">{{$elements['water']}}</h3>
+                    <p>gal of water</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-tint text-info"></i>
@@ -51,8 +56,8 @@
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{number_format(rand(100,1000) ,2)}}</h3>
-                    <p>Energy</p>
+                    <h3 class="font-weight-normal">{{$elements['energy']}}</h3>
+                    <p>kw of energy</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-bolt" style="color: #ff9017"></i>

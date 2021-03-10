@@ -21,7 +21,9 @@ class DashboardController extends Controller
             'total_products_cancelled' => Utility::count_products(self::partner()->id, 'cancelled'),
         ];
 
-        return view('front-end.partner.dashboard.index', compact('data'));
+        $elements = Utility::rescued_elements_computation('partner');
+
+        return view('front-end.partner.dashboard.index', compact('data','elements'));
     }
 
     public function partner(){

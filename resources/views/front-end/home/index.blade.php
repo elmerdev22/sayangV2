@@ -46,19 +46,19 @@
                                 <div class="col-4 pt-3">	
                                     <figure class="item-feature">
                                         <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
-                                        <span class="text-white ">10,000 trees  </span>
+                                        <span class="text-white ">{{$elements['trees']}} trees  </span>
                                     </figure> <!-- iconbox // -->
                                 </div><!-- col // -->
                                 <div class="col-4 pt-3">
                                     <figure  class="item-feature">
                                         <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
-                                        <span class="text-white">10 gal of water</span>
+                                        <span class="text-white">{{$elements['water']}} gal of water</span>
                                     </figure> <!-- iconbox // -->
                                 </div><!-- col // -->
                                 <div class="col-4 pt-3">
                                     <figure  class="item-feature">
                                         <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
-                                        <span class="text-white">10 kw of energry</span>
+                                        <span class="text-white">{{$elements['energy']}} kw of energy</span>
                                     </figure> <!-- iconbox // -->
                                 </div> <!-- col // -->
                             </div>

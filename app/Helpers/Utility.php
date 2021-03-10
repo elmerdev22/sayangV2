@@ -1001,17 +1001,17 @@ class Utility{
         $product_post = ProductPost::with(['product'])->where('id', $product_post_id)->first();
 
         $elements = [
-            'trees_wppv'  => Utility::settings('trees_wppv'),
-            'trees_wppa'  => Utility::settings('trees_wppa'),
-            'trees_woppv' => Utility::settings('trees_woppv'),
-            'water'       => Utility::settings('water'),
-            'energy'      => Utility::settings('energy')
+            'trees_wppv'  => self::settings('trees_wppv'),
+            'trees_wppa'  => self::settings('trees_wppa'),
+            'trees_woppv' => self::settings('trees_woppv'),
+            'water'       => self::settings('water'),
+            'energy'      => self::settings('energy')
         ];
 
         $per = [
-            'trees'  => Utility::settings('trees_per_kg'),
-            'water'  => Utility::settings('water_per_buy_now_price'),
-            'energy' => Utility::settings('energy_per_buy_now_price') 
+            'trees'  => self::settings('trees_per_kg'),
+            'water'  => self::settings('water_per_buy_now_price'),
+            'energy' => self::settings('energy_per_buy_now_price') 
         ];
 
         $data = [
@@ -1030,7 +1030,7 @@ class Utility{
         $data['water']  = $product_post->buy_now_price / $per['water'] * $elements['water'];
         $data['energy'] = $product_post->buy_now_price / $per['energy'] * $elements['energy'];
         
-        $decimal_places = Utility::settings('elements_round_off');
+        $decimal_places = self::settings('elements_round_off');
 
         $response = [
             'trees'  => number_format($data['trees'], $decimal_places),
@@ -1054,6 +1054,46 @@ class Utility{
             'values' => ['completed','to_receive']
         ];
 
-		return QueryUtility::order_items($filter)->count();
+		return QueryUtility::order_items($filter)->sum('order_items.quantity');
+    }
+
+    public static function rescued_elements_computation($type){
+        
+		$filter = [];
+		$filter['select'] = [
+			'orders.id', 
+		];
+		
+        if($type == 'user'){
+            $account = self::auth_user_account();
+            $filter['where']['billings.user_account_id'] = $account->id;
+        }
+        else if($type == 'partner'){
+            $partner = self::auth_partner();
+            $filter['where']['orders.partner_id'] = $partner->id;
+        }
+        
+        $filter['where_in'][] = [
+            'field'  => 'orders.status',
+            'values' => ['to_receive', 'completed']
+        ];
+
+		$orders = QueryUtility::orders($filter)->pluck('id');
+
+        $order_item = OrderItem::whereIn('order_id', $orders->toArray())->get();
+
+        $elements = [
+            'trees'  => 0,
+            'water'  => 0,
+            'energy' => 0,
+        ];  
+
+        foreach($order_item as $row){
+            $elements['trees']  += self::elements_multiplier($row->product_post_id)['trees'];
+            $elements['water']  += self::elements_multiplier($row->product_post_id)['water'];
+            $elements['energy'] += self::elements_multiplier($row->product_post_id)['energy'];
+        }
+
+        return $elements;
     }
 }
