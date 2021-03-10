@@ -206,10 +206,10 @@
     <div class="container">
         <div style="min-height:300px; ">
             <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
-                {{Utility::image_settings('title_1','advocacy_section_2')['settings_name']}}
+                {{$data['advocacy_section_2']['settings_name']}}
             </h1>
             <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
-                {!! Utility::image_settings('title_1','advocacy_section_2')['description'] !!}
+                {!! $data['advocacy_section_2']['description'] !!}
             </p>
             @php
                 $url = Auth::check() ? '/' : '/register';
@@ -229,16 +229,16 @@
     </div><!-- container // -->
 </section>
 <section class="section-name pt-2">
-    <div class="card-banner " style="min-height:300px; background-image: url('https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg'); border-radius: 0;  background-attachment: fixed; ">
+    <div class="card-banner " style="min-height:300px; background-image: url('{{UploadUtility::image_setting($data['become_a_partner_section']['id'], 'become-a-partner')}}'); border-radius: 0;  background-attachment: fixed; ">
         <div class="container">
             <div class="row py-3">
                 <div class="col-12">
                     <div style="min-height:300px; ">
                         <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
-                            {{Utility::image_settings('become_a_partner','become_a_partner_section')['settings_name']}}
+                            {{$data['become_a_partner_section']['settings_name']}}
                         </h1>
                         <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
-                            {!! Utility::image_settings('become_a_partner','become_a_partner_section')['description'] !!}
+                            {!! $data['become_a_partner_section']['description'] !!}
                         </p>
                         @php
                             $url = Auth::check() ? '/' : '/register/partner';

@@ -11,10 +11,14 @@ class HomeController extends Controller
 {
     public function index(){
         
-        $advocacy_section_card = ImageSetting::orderBy('arrangement','asc')->where('settings_group','advocacy_section')->get();
+        $advocacy_section_card    = ImageSetting::orderBy('arrangement','asc')->where('settings_group','advocacy_section')->get();
+        $advocacy_section_2       = Utility::image_settings('title_1','advocacy_section_2');
+        $become_a_partner_section = Utility::image_settings('become_a_partner','become_a_partner_section');
         
         $data = [
-            'advocacy_section_card' => $advocacy_section_card,
+            'advocacy_section_card'    => $advocacy_section_card,
+            'advocacy_section_2'       => $advocacy_section_2,
+            'become_a_partner_section' => $become_a_partner_section,
         ];
 
         return view('front-end.home.index', compact('data'));

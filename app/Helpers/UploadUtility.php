@@ -96,7 +96,7 @@ class UploadUtility{
         }
     }
 
-    public static function content_photo($settings_key, $thumb=true){
+    public static function content_photo($settings_key, $thumb=false){
         $setting     = Setting::where('settings_key', $settings_key)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$settings_key);
 
@@ -118,7 +118,7 @@ class UploadUtility{
         }
     }
 
-    public static function image_setting($image_setting_id, $folder_name, $thumb=true){
+    public static function image_setting($image_setting_id, $folder_name, $thumb=false){
         $setting     = ImageSetting::where('id', $image_setting_id)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$folder_name);
 
@@ -136,6 +136,9 @@ class UploadUtility{
             }
             else if($folder_name == 'advocacy-section'){
                 return 'https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg';
+            }
+            else if($folder_name == 'become-a-partner'){
+                return 'https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg';
             }
         }
     }

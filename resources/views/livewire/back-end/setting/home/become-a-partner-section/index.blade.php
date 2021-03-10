@@ -10,6 +10,31 @@
         <div class="card-body">
             <form wire:submit.prevent="save">
                 <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="photo">Background Photo* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
+                            <div class="text-center overflow-hidden">
+                                
+                                @if ($photo)
+                                    <img class="mb-2 mt-1 img-fluid img-responsive" src="{{UploadUtility::livewire_tmp_url($photo) }}" alt="">
+                                @else
+                                    <img class="mb-2 mt-1 img-fluid img-responsive" src="{{$photo_url}}" alt="">
+                                @endif
+
+                                <div class="form-control upload-btn-wrapper btn btn-default">
+                                    <i class="fas fa-upload"></i> Upload Photo <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
+                                    <input type="file" class="upload-btn" wire:model="photo" accept="image/*"/>
+                                </div>
+                            </div>
+                            @error('photo')
+                                <span class="invalid-feedback" style="display: block;">
+                                    <span>{{$message}}</span>
+                                </span> 
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Header</label>
