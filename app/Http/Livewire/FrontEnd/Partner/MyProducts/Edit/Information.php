@@ -41,7 +41,7 @@ class Information extends Component
         $this->height          = $product->height;
         $this->length          = $product->length;
         $this->shelf_life      = $product->shelf_life;
-        $this->paper_packaging = $product->paper_packaging;
+        $product->paper_packaging = $this->paper_packaging ? 1 : 0;
         
         $this->money_input_initialize = [
             'regular_price' => $this->regular_price,

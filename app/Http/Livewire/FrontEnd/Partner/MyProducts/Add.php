@@ -138,7 +138,7 @@ class Add extends Component
             $product->height          = $this->height;
             $product->length          = $this->length;
             $product->shelf_life      = $this->shelf_life;
-            $product->paper_packaging = $this->paper_packaging;
+            $product->paper_packaging = $this->paper_packaging ? 1 : 0;
             $product->slug            = Utility::generate_table_slug('Product', $this->name);
             $product->key_token       = $key_token;
 
