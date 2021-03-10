@@ -6,6 +6,8 @@ use App\Model\Rating;
 use App\Model\EmailNotificationSetting;
 use App\Model\WebNotificationSetting;
 use App\Model\DescriptionSetting;
+use App\Model\ImageSetting;
+use Utility;
 use DB;
 class SettingsUtility{
 
@@ -298,6 +300,50 @@ class SettingsUtility{
             return $response;
         }
     }
+
+    public static function image_settings($key=null){
+        
+        $group = [
+            'home_bg_image'    => 'home_bg_image',
+            'advocacy_section' => 'advocacy_section',
+        ];
+        
+        $response = [
+            // Home Background Image
+            'home_bg_image_1' => [
+                'group'       => $group['home_bg_image'],
+                'name'        => 'Home Background Image',
+                'description' => null,
+                'arrangement' => null,
+            ],
+
+            // Advocacy Section
+            'trees' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Trees',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 1,
+            ],
+            'water' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Water',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 2,
+            ],
+            'energy' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Energy',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 3,
+            ],
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
     
     public static function settings_set_default(){
         Setting::truncate();
@@ -437,6 +483,40 @@ class SettingsUtility{
                 $settings->settings_value = $settings_value['value'];
                 $settings->settings_group = $settings_value['group'];
                 $settings->settings_name  = $settings_value['name'];
+                $save                     = $settings->save();
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+            dd($e);
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+    
+    public static function image_settings_set_default(){
+        // ImageSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::image_settings() as $settings_key => $settings_value){
+                $settings                 = ImageSetting::firstOrNew(['settings_key' => $settings_key]);
+                $settings->settings_key   = $settings_key;
+                $settings->description    = $settings_value['description'];
+                $settings->settings_group = $settings_value['group'];
+                $settings->settings_name  = $settings_value['name'];
+                $settings->arrangement    = $settings_value['arrangement'];
+                $settings->key_token      = Utility::generate_table_token('ImageSetting');
                 $save                     = $settings->save();
                 if(!$save){
                     $success = false;

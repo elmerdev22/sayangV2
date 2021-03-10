@@ -134,6 +134,9 @@ class UploadUtility{
             if($folder_name == 'home-carousel-slider'){
                 return asset('images/default-photo/cover.jpg');
             }
+            else if($folder_name == 'advocacy-section'){
+                return 'https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg';
+            }
         }
     }
 

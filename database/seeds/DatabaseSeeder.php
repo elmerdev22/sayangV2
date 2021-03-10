@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmailNotificationSettingTableSeeder::class);
         $this->call(WebNotificationSettingTableSeeder::class);
         $this->call(DescriptionSettingTableSeeder::class);
+        $this->call(ImageSettingTableSeeder::class);
         $this->call(UserTableSeeder::class);
     }
 }

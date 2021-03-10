@@ -164,37 +164,18 @@
             <p class="text-muted" data-aos="fade-up" data-aos-delay="50"> {{Utility::description_settings('sub_header')->settings_value}}</p>
         </header><!-- sect-heading -->
         <div class="row">
-            <div class="col-md-4 py-3">
-                <div class="card bg-dark" data-aos="zoom-in">
-                    <img src="https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg" class="card-img opacity">
-                    <div class="card-img-overlay text-white">
-                        <h5 class="card-title">Trees</h5>
-                        <p class="card-text">This is a wider card with a text below
-                        </p>
-                        <a href="#" class="btn btn-light">Discover</a>
-                    </div>
-                </div> 
-            </div> <!-- col.// -->
-            <div class="col-md-4 py-3">
-                <div class="card bg-dark" data-aos="zoom-in">
-                    <img src="https://image.freepik.com/free-photo/plant-growing-ground_1150-19317.jpg" class="card-img opacity">
-                    <div class="card-img-overlay text-white">
-                        <h5 class="card-title">Water</h5>
-                        <p class="card-text">This is a wider card with text below</p>
-                        <a href="#" class="btn btn-light">Discover</a>
-                    </div>
-                </div>
-            </div> <!-- col.// -->
-            <div class="col-md-4 py-3">
-                <div class="card bg-dark" data-aos="zoom-in">
-                    <img src="https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg" class="card-img opacity">
-                    <div class="card-img-overlay text-white">
-                        <h5 class="card-title">Energy</h5>
-                        <p class="card-text">This is a wider card with text below</p>
-                        <a href="#" class="btn btn-light">Discover</a>
-                    </div>
-                </div>
-            </div> <!-- col.// -->
+            @foreach ($data['advocacy_section_card'] as $row)
+                <div class="col-md-4 py-3">
+                    <div class="card bg-dark" data-aos="zoom-in">
+                        <img src="{{UploadUtility::image_setting($row->id, 'advocacy-section')}}" class="card-img opacity">
+                        <div class="card-img-overlay text-white">
+                            <h5 class="card-title">{{$row->settings_name}}</h5>
+                            <p class="card-text">{{$row->description}}</p>
+                            <a href="{{$row->redirect}}" class="btn btn-light">Discover</a>
+                        </div>
+                    </div> 
+                </div> <!-- col.// -->
+            @endforeach
         </div> <!-- row.// -->
     </div> <!-- container .//  -->
 </section>

@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
-            @livewire('back-end.setting.home.index')
+            @livewire('back-end.setting.home.advocacy-section.index')
         </div>
     </div>
     <!-- 
