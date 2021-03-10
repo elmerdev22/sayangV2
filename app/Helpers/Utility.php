@@ -1089,9 +1089,11 @@ class Utility{
         ];  
 
         foreach($order_item as $row){
-            $elements['trees']  += self::elements_multiplier($row->product_post_id)['trees'];
-            $elements['water']  += self::elements_multiplier($row->product_post_id)['water'];
-            $elements['energy'] += self::elements_multiplier($row->product_post_id)['energy'];
+            for($x = 0; $x < $row->quantity; $x++){
+                $elements['trees']  += self::elements_multiplier($row->product_post_id)['trees'];
+                $elements['water']  += self::elements_multiplier($row->product_post_id)['water'];
+                $elements['energy'] += self::elements_multiplier($row->product_post_id)['energy'];
+            }
         }
 
         return $elements;
