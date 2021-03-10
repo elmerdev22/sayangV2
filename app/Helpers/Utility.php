@@ -948,8 +948,7 @@ class Utility{
     }
 
     public static function home_background_random(){
-        
-        $data = ImageSetting::inRandomOrder()->where('settings_group', 'home_bg_image')->where('is_display', true)->first();
+        $data = ImageSetting::where('settings_group', 'home_bg_image')->where('is_display', true)->inRandomOrder()->first();
         return UploadUtility::image_setting($data->id, 'home-bg-image');
     }
 
