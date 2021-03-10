@@ -41,7 +41,7 @@ class Information extends Component
         $this->height          = $product->height;
         $this->length          = $product->length;
         $this->shelf_life      = $product->shelf_life;
-        $product->paper_packaging = $this->paper_packaging ? 1 : 0;
+        $this->paper_packaging = $product->paper_packaging;
         
         $this->money_input_initialize = [
             'regular_price' => $this->regular_price,
@@ -151,7 +151,7 @@ class Information extends Component
             $product->height          = $this->height;
             $product->length          = $this->length;
             $product->shelf_life      = $this->shelf_life;
-            $product->paper_packaging = $this->paper_packaging;
+            $product->paper_packaging = $this->paper_packaging ? 1 : 0 ;
             
             if($product->save()){
                 $validator_checker = array();
