@@ -17,7 +17,7 @@
                     else{
                         $user_account_token = $row->product_post->product->partner->user_account->key_token;
                         $product_token      = $row->product_post->product->key_token;
-                        $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
+                        $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token, true);
                     }
                 @endphp
                 

@@ -32,8 +32,8 @@ class Index extends Component
     }
 
     public function featured_photo($user_key_token, $product_key_token){
-        $featured = UploadUtility::product_featured_photo($user_key_token, $product_key_token);
-        return $featured[0]->getFullUrl('thumb');
+        $featured = UploadUtility::product_featured_photo($user_key_token, $product_key_token, true);
+        return $featured;
     }
 
     public function render(){

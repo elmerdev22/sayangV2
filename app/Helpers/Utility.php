@@ -625,7 +625,7 @@ class Utility{
                 'products'     => []
             ];
 
-            $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token);
+            $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token, true);
 
             $product = [
                 'product_id'             => $product_id,
@@ -633,7 +633,7 @@ class Utility{
                 'name'                   => $row->product_post->product->name,
                 'is_checkout'            => $row->is_checkout,
                 'is_disabled'            => $is_disabled,
-                'featured_photo'         => $featured_photo[0]->getFullUrl('thumb'),
+                'featured_photo'         => $featured_photo,
                 'total_price'            => $total_price,
                 'regular_price'          => $row->product_post->product->regular_price,
                 'product_post_key_token' => $row->product_post->key_token,

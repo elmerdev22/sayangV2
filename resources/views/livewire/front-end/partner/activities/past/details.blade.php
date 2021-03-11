@@ -14,14 +14,12 @@
                         <div class="col-12">
                             <label>Featured Photo :</label>
                             @if(!empty($featured_photo))
-                                @foreach($featured_photo as $key => $photo)
-                                    <div class="card overflow-hidden">
-                                        <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
-                                            {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
-                                        </div>
+                                <div class="card overflow-hidden">
+                                    <div class="position-relative">
+                                        <img src="{{$featured_photo}}" class="sayang-card-photo" alt="Product Photo">
+                                        {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                     </div>
-                                @endforeach
+                                </div>
                             @endif
                         </div>
                         <div class="col-12 mb-2">

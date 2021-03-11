@@ -148,7 +148,7 @@ class PayNow extends Component
         $product        = Product::with(['partner', 'partner.user_account'])->findOrFail($product_id);
         $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token);
 
-        return $featured_photo[0]->getFullUrl('thumb');
+        return $featured_photo;
     }
 
     public function expiration($date_ended, $check_if_expired=false){

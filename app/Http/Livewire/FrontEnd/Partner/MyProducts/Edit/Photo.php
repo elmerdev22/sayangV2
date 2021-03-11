@@ -28,8 +28,8 @@ class Photo extends Component
 
     public function initialize(){
         $product              = Product::findOrFail($this->product_id);
-        $this->media_photos   = UploadUtility::product_photos($this->account->key_token, $product->key_token);
-        $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $product->key_token);
+        $this->media_photos   = UploadUtility::product_photos($this->account->key_token, $product->key_token, true , true);
+        $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $product->key_token, true , true);
     }
 
     public function render(){

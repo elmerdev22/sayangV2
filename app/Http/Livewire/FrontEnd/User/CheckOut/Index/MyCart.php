@@ -34,7 +34,7 @@ class MyCart extends Component
     
     public function product_featured_photo($product_id){
         $product        = Product::with(['partner', 'partner.user_account'])->findOrFail($product_id);
-        $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token);
+        $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token, true);
 
         return $featured_photo;
     }

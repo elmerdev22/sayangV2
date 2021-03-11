@@ -124,8 +124,8 @@
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->status == 'active')
-                                        @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($row->date_start)))
-                                            <span class="badge badge-warning">Active</span>    
+                                        @if (date('Y-m-d H:i:s') >= date('Y-m-d H:i:s', strtotime($row->date_start)))
+                                            <span class="badge badge-success">Active</span>    
                                         @else
                                             <span class="badge badge-info">Upcoming</span>    
                                         @endif

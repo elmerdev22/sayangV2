@@ -14,20 +14,19 @@
                         <div class="col-12">
                             <label>Featured Photo :</label>
                             @if(!empty($featured_photo))
-                                @foreach($featured_photo as $key => $photo)
-                                    <div class="card overflow-hidden">
-                                        <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
-                                            {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
-                                        </div>
+                                <div class="card overflow-hidden">
+                                    <div class="position-relative">
+                                        <img src="{{$featured_photo}}" class="sayang-card-photo" alt="Product Photo">
+                                        {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                     </div>
-                                @endforeach
+                                </div>
                             @endif
                         </div>
                         @if ($data->status == 'active')
                             <div class="col-12 mb-2">
                                 <label>Status</label> : 
-                                @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($data->date_start)))
+                                
+                                @if (date('Y-m-d H:i:s') >= date('Y-m-d H:i:s', strtotime($data->date_start)))
                                     <span class="badge badge-success">Active</span>    
                                 @else
                                     <span class="badge badge-info">Upcoming</span>    

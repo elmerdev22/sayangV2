@@ -20,33 +20,43 @@ class UploadUtility{
         return $media_photo;
     }
 
-    public static function product_featured_photo($user_key_token, $product_key_token, $thumb=false){
+    public static function product_featured_photo($user_key_token, $product_key_token, $thumb=false, $modify = false){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
         $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/featured-photo/');
-
-        if(count($media_photo) > 0){
-            if($thumb){
-                return $media_photo[0]->getFullUrl('thumb');
+        
+        if($modify){
+            return $media_photo;
+        }
+        else{
+            if(count($media_photo) > 0){
+                if($thumb){
+                    return $media_photo[0]->getFullUrl('thumb');
+                }else{
+                    return $media_photo[0]->getFullUrl();
+                }
             }else{
-                return $media_photo[0]->getFullUrl();
+                return asset('images/default-photo/image.png');
             }
-        }else{
-            return asset('images/default-photo/image.png');
         }
     }
 
-    public static function product_photos($user_key_token, $product_key_token, $thumb=false){
+    public static function product_photos($user_key_token, $product_key_token, $thumb=false, $modify = false){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
         $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/photo/');
         
-        if(count($media_photo) > 0){
-            if($thumb){
-                return $media_photo[0]->getFullUrl('thumb');
+        if($modify){
+            return $media_photo;
+        }
+        else{
+            if(count($media_photo) > 0){
+                if($thumb){
+                    return $media_photo[0]->getFullUrl('thumb');
+                }else{
+                    return $media_photo[0]->getFullUrl();
+                }
             }else{
-                return $media_photo[0]->getFullUrl();
+                return asset('images/default-photo/image.png');
             }
-        }else{
-            return asset('images/default-photo/image.png');
         }
     }
 
