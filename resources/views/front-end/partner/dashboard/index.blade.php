@@ -30,7 +30,7 @@
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{$elements['trees']}}</h3>
+                    <h3 class="font-weight-normal">{{$data['element_trees']}}</h3>
                     <p>Trees</p>
                 </div>
                 <div class="icon">
@@ -43,7 +43,7 @@
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{$elements['water']}}</h3>
+                    <h3 class="font-weight-normal">{{$data['element_water']}}</h3>
                     <p>gal of water</p>
                 </div>
                 <div class="icon">
@@ -56,7 +56,7 @@
         <div class="col-md-4">
             <div class="small-box bg-white">
                 <div class="inner">
-                    <h3 class="font-weight-normal">{{$elements['energy']}}</h3>
+                    <h3 class="font-weight-normal">{{$data['element_energy']}}</h3>
                     <p>kw of energy</p>
                 </div>
                 <div class="icon">
