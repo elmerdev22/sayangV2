@@ -13,8 +13,8 @@ class Photo extends Component
     public function mount($product_id){
         $product              = Product::with(['partner.user_account'])->findOrFail($product_id);
         $this->product        = $product;
-        $this->media_photos   = UploadUtility::product_photos($product->partner->user_account->key_token, $product->key_token);
-        $this->featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token);
+        $this->media_photos   = UploadUtility::product_photos($product->partner->user_account->key_token, $product->key_token, true , true);
+        $this->featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token, true , true);
     }
 
     public function render(){
