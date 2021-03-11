@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WebNotificationSettingTableSeeder::class);
         $this->call(DescriptionSettingTableSeeder::class);
         $this->call(ImageSettingTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
         $this->call(UserTableSeeder::class);
     }
 }

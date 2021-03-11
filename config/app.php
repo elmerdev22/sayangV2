@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -227,7 +228,8 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         'Socialite'    => Laravel\Socialite\Facades\Socialite::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'QrCode'       => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Excel'        => Maatwebsite\Excel\Facades\Excel::class,
         
         //Utility
         'Utility'              => App\Helpers\Utility::class,

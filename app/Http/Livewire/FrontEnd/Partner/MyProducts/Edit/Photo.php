@@ -45,15 +45,14 @@ class Photo extends Component
             try{
                 $product             = Product::findOrFail($this->product_id);
                 $to_featured         = $media_photos[$key];
-                $old_featured        = $this->featured_photo[0];
+                $old_featured        = count($this->featured_photo) > 0 ? $this->featured_photo[0] : 0;
                 $featured_collection = $this->account->key_token.'/product/'.$product->key_token.'/featured-photo/';
                 $photos_collection   = $this->account->key_token.'/product/'.$product->key_token.'/photo/';
 
                 $to_featured->move($product, $featured_collection);
-                $old_featured->move($product, $photos_collection);
+                $old_featured ? $old_featured->move($product, $photos_collection) : '';
                 $response['success'] = true;
             }catch(\Exception $e){
-                // dd($e);
                 $response['success'] = false;
             }
 

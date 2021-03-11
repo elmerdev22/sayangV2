@@ -3,6 +3,7 @@
         <div class="card-header">
             <h5 class="card-title"> My Product List</h5> 
             <div class="card-tools">
+				<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-import_product"><i class="fas fa-file-import"></i> Import </button>
 				<a href="{{route('front-end.partner.my-products.list.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
                 @if (Auth::user()->is_blocked)
                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="cant_add()"><i class="fas fa-plus"></i> Start a Sale </a>

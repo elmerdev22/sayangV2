@@ -528,6 +528,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
                     'as' 	=> 'index',
                     'uses'  => $c.'@index'
                 ]);
+
+                Route::post('/import', [
+                    'as' 	=> 'import',
+                    'uses'  => $c.'@import'
+                ]);
                 
                 // Add Product in Menu
                 Route::get('/add', [
