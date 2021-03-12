@@ -74,8 +74,8 @@ class Listing extends Component
 		if(Utility::is_product_deletable($product->id)){
 			$response = ['success' => false];
 			try{
-				$media_photos   = UploadUtility::product_photos($account->key_token, $product->key_token);
-				$featured_photo = UploadUtility::product_featured_photo($account->key_token, $product->key_token);
+				$media_photos   = UploadUtility::product_photos($account->key_token, $product->key_token, true , true);
+				$featured_photo = UploadUtility::product_featured_photo($account->key_token, $product->key_token, true , true);
 		
 				if(!empty($media_photos)){
 					foreach($media_photos as $key => $row){
