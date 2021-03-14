@@ -4,7 +4,6 @@
             <h4 class="title p-2">ALL MOST POPULAR</h4>
         </div>
     </div>
-    
     <div class="row">
         <div class="col-12 mb-3 pt-2">
             <div class="row">

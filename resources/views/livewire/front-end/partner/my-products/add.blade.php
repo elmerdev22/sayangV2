@@ -276,7 +276,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <small>File Size: Maximum of 1MB</small>
+                                                <small>File Size: Maximum of 2MB</small>
                                             </div>
                                             <div>
                                                 <small>File Extension: .png, .jpeg, .jpeg</small>
