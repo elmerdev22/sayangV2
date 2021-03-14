@@ -15,7 +15,6 @@
                 <div class="col-12">
                     <header class="text-center text-white py-5">
                         <h1 class="display-3 font-weight-bold mb-4" >NOTHING GOES TO WASTE</h1>
-                        <p class="lead mb-0">Explore exciting deals near you.</p>
                     </header>
                     <div class="row justify-content-center align-items-center">
                         <div class="col-8">
@@ -46,19 +45,19 @@
                                 <div class="col-4 pt-3">	
                                     <figure class="item-feature">
                                         <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
-                                        <span class="text-white ">{{$elements['trees']}} trees  </span>
+                                        <span class="text-white ">{{$data['element_trees']}} trees  </span>
                                     </figure> <!-- iconbox // -->
                                 </div><!-- col // -->
                                 <div class="col-4 pt-3">
                                     <figure  class="item-feature">
                                         <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
-                                        <span class="text-white">{{$elements['water']}} gal of water</span>
+                                        <span class="text-white">{{$data['element_water']}} gal of water</span>
                                     </figure> <!-- iconbox // -->
                                 </div><!-- col // -->
                                 <div class="col-4 pt-3">
                                     <figure  class="item-feature">
                                         <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
-                                        <span class="text-white">{{$elements['energy']}} kw of energy</span>
+                                        <span class="text-white">{{$data['element_energy']}} kw of energy</span>
                                     </figure> <!-- iconbox // -->
                                 </div> <!-- col // -->
                             </div>

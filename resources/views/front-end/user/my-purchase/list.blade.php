@@ -55,9 +55,10 @@
             @php $checkout_status = Session::get('checkout_payment'); @endphp
             @if($checkout_status['success'])
                 var config = {
-                    position : 'center',
-                    icon     : 'success',
-                    title    : 'Order Successfully Processed'
+                    position: 'center',
+                    icon    : 'success',
+                    title   : 'Successful!',
+                    html    : 'Order Successfully Processed'
                 };
                 Swal.fire(config);
             @else
