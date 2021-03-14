@@ -41,9 +41,13 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 @foreach ($data as $item)
-                                    <a wire:ignore.self class="btn btn-light btn-sm m-1 cursor-pointer" id="rate-{{$item->id}}" onclick="rate('{{$item->id}}')" data-value="{{$item->rating}}">{{$item->rating}}</a>
+                                    <div class="form-group" wire:ignore.self>
+                                        <label class="float-left custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input cursor-pointer" id="rate-{{$item->id}}" onclick="rate('{{$item->id}}')" data-value="{{$item->rating}}"> 
+                                        <div class="custom-control-label"> {{$item->rating}} </div> </label>
+                                    </div> <!-- form-group form-check .// -->
                                 @endforeach
                             </div>
                         </div>
@@ -68,19 +72,16 @@
     var select_array = [];
 
     function rate(id){
-        select_array = []
         var selected = $('#rate-'+id);
-
-        if(selected.hasClass('btn-primary')){
-            selected.removeClass('btn-primary').addClass('btn-light');
-        }
-        else{
-            selected.removeClass('btn-light').addClass('btn-primary');
-        }
-        $( ".btn-outline-primary" ).each(function( index ) {
-            var value = $( this ).data('value');
+        var value = $(selected).data('value');
+        if($(selected).prop("checked") == true){
+            console.log("Checkbox is checked.");
             select_array.push(value);
-        });
+        }
+        else if($(selected).prop("checked") == false){
+            console.log("Checkbox is unchecked.");
+            select_array.splice( $.inArray(value, select_array), 1 );
+        }
         console.log(select_array);
         @this.set('rating', select_array )
 
@@ -96,6 +97,7 @@
         
         /* 2. Action to perform on click */
         $('#stars li').on('click', function(){
+            select_array = [];
             var onStar = parseInt($(this).data('value'), 10); // The star currently selected
             var stars = $(this).parent().children('li.star');
             
