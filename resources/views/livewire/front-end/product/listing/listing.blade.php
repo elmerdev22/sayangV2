@@ -130,7 +130,7 @@
         @empty
             <div class="col-12 text-center">
                 <img style="width: 30%" src="{{asset('images/default-photo/no-search.jpg')}}">
-                <h5 class="text-center">No Item Found</h5>
+                <h5 class="text-center font-weight-light">No Item(s) Found</h5>
             </div>
         @endforelse   
     </div> <!-- row.// -->

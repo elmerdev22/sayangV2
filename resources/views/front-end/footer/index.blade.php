@@ -5,18 +5,18 @@
                 <aside class="col-md col-12">
                     <h6 class="title">{{ Utility::settings('app_name') }}</h6>
                     <ul class="list-unstyled">
-                        <li> <a href="#">About us</a></li>
-                        <li> <a href="#">Terms & Condition (Partner)</a></li>
-                        <li> <a href="#">Terms & Condition (User)</a></li>
+                        <li> <a href="{{route('front-end.about-us.index')}}">About us</a></li>
+                        <li> <a href="{{route('front-end.terms-and-conditions.index')}}">Terms & Condition (Partner)</a></li>
+                        <li> <a href="{{route('front-end.terms-and-conditions.partners')}}">Terms & Condition (User)</a></li>
                     </ul>
                 </aside>
                 <aside class="col-md col-12">
                     <h6 class="title">Account</h6>
                     <ul class="list-unstyled">
-                        <li> <a href="#"> User Login </a></li>
-                        <li> <a href="#"> User register </a></li>
-                        <li> <a href="#"> Partner Login </a></li>
-                        <li> <a href="#"> Partner register </a></li>
+                        <li> <a href="{{url('/login')}}"> User Login </a></li>
+                        <li> <a href="{{url('/register')}}"> User register </a></li>
+                        <li> <a href="{{route('partner.login')}}"> Partner Login </a></li>
+                        <li> <a href="{{route('partner.register')}}"> Partner register </a></li>
                     </ul>
                 </aside>
                 <aside class="col-md col-12">
@@ -31,7 +31,7 @@
                 <aside class="col-md col-12">
                     <h6 class="title">Help</h6>
                     <ul class="list-unstyled">
-                        <li> <a href="#">Help Centre</a></li>
+                        <li> <a href="{{route('front-end.help-centre.index')}}">Help Centre</a></li>
                         <li> <a href="#">Contact Us</a></li>
                     </ul>
                 </aside>

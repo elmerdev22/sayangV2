@@ -61,7 +61,7 @@ class Utility{
 
     public static function img_source($type){
         if($type == 'not_found'){
-            return 'https://image.freepik.com/free-vector/fixing-pages-found-system-error_45923-201.jpg';
+            return 'https://image.freepik.com/free-vector/city-construction_146998-4151.jpg';
         }else if($type == 'loading'){
             return asset('images/gif/loading.gif');
         }
