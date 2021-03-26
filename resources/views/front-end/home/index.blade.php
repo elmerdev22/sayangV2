@@ -17,7 +17,7 @@
                         <h1 class="display-3 font-weight-bold mb-4 home-title">NOTHING GOES TO WASTE</h1>
                     </header>
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-8">
+                        <div class="col-10 col-lg-8">
                             <form action="{{route('front-end.product.list.index')}}" method="GET">
                                 <div class="input-group input-group-lg">
                                     <input class="form-control form-control-navbar border-none shadow-none" type="search" name="search" placeholder="Location or Products" aria-label="Search">
