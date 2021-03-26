@@ -2,11 +2,11 @@
     <a href="{{$buy_now}}" class="img-wrap"> 
         <img src="{{$featured}}">
         <span class="topbar">
-            <span class="badge badge-primary p-2" style="position: static">
+            <span class="badge badge-primary p-2 float-right" style="position: static">
                 <span class="fa fa-clock"></span>
                 <span class="countdown">{{$countdown}}</span>
             </span>
-            <span class="badge badge-danger p-2 float-right" style="position: static">
+            <span class="badge badge-danger p-2" style="position: static">
                 {{$discount_percentage}}% OFF
             </span>
         </span>
