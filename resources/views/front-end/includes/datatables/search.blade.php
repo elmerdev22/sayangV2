@@ -4,7 +4,7 @@
 			Show 
 				<select class="border rounded" wire:model="show_entries">
 					@foreach(Utility::datatables_show_entries() as $value)
-						<option value="{{$value}}">{{$value}}</option>
+						<option value="{{$value == 1 && $data->total() > 0 ? $data->total() : $value }}">{{$value == 1 ? 'All' : $value}}</option>
 					@endforeach
 				</select> 
 			Entries	

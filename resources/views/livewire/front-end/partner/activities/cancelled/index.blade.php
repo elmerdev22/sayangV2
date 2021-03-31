@@ -112,6 +112,9 @@
 
 @push('scripts')
 <script>
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
     function cant_add(){
         Swal.fire({
             icon: 'error',

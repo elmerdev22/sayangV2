@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover sayang-datatables">
+                    <table class="table table-bordered table-hover table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">Notification name</th>

@@ -89,62 +89,72 @@
     <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
     <!-- SCroll bar -->
     <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="{{asset('template/assets/dist/js/export/FileSaver.min.js') }}"></script>
+    <script src="{{asset('template/assets/dist/js/export/tableexport.min.js') }}"></script>
+    <script>
+      ExportTable();
+      function ExportTable(filename){
+          $('.sayang-datatables').tableExport({
+              position: 'top',
+              formats : ['xls', 'csv'],
+          });
+          $('.xls').addClass('btn btn-primary btn-sm mx-1');
+          $('.csv').addClass('btn btn-primary btn-sm mx-1');
+      }
+    </script>
     <!-- end of to be removed packages -->
-
-  <script type="text/javascript">
-    window.livewire.on('notif_alert', param => {
-      Swal.fire({
-        position: param['position'],
-        icon: param['type'],
-        title: param['message'],
-        showConfirmButton: param['confirm_button'],
-        timer: param['timer']
-      })
-    });
-
-    window.livewire.on('alert', param => {
-      var config = {
-        position  : 'center',
-      };
-
-      if('title' in param)
-        config['title'] = param['title'];
-      if('type' in param)
-        config['icon'] = param['type'];
-      if('message' in param)
-        config['html'] = param['message'];
-      if('showConfirmButton' in param)
-        config['showConfirmButton'] = param['showConfirmButton'];
-      if('timer' in param)
-        config['timer'] = param['timer'];
-
-      Swal.fire(config);
-    });
-
-    window.livewire.on('alert_link', param => {
-      Swal.fire({
-          position         : 'center',
-          icon             : param['type'],
-          html             : param['message'],
-          title            : param['title'],
-          showConfirmButton: true,
-          allowOutsideClick: false,
-      }).then((result) => {
-          if(result.value){
-            if('redirect' in param){
-              window.location = param['redirect'];                       
-            }else{
-              window.location.reload();                       
-            }
-          }
+    <script type="text/javascript">
+      window.livewire.on('notif_alert', param => {
+        Swal.fire({
+          position: param['position'],
+          icon: param['type'],
+          title: param['message'],
+          showConfirmButton: param['confirm_button'],
+          timer: param['timer']
+        })
       });
-    });
-    
-    
-  </script>
 
-  @yield('js')
-  @stack('scripts')
+      window.livewire.on('alert', param => {
+        var config = {
+          position  : 'center',
+        };
+
+        if('title' in param)
+          config['title'] = param['title'];
+        if('type' in param)
+          config['icon'] = param['type'];
+        if('message' in param)
+          config['html'] = param['message'];
+        if('showConfirmButton' in param)
+          config['showConfirmButton'] = param['showConfirmButton'];
+        if('timer' in param)
+          config['timer'] = param['timer'];
+
+        Swal.fire(config);
+      });
+
+      window.livewire.on('alert_link', param => {
+        Swal.fire({
+            position         : 'center',
+            icon             : param['type'],
+            html             : param['message'],
+            title            : param['title'],
+            showConfirmButton: true,
+            allowOutsideClick: false,
+        }).then((result) => {
+            if(result.value){
+              if('redirect' in param){
+                window.location = param['redirect'];                       
+              }else{
+                window.location.reload();                       
+              }
+            }
+        });
+      });
+      
+      
+    </script>
+    @yield('js')
+    @stack('scripts')
 </body>
 </html>

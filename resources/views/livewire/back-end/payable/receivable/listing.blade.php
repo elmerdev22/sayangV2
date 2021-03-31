@@ -85,5 +85,9 @@
             }
         });
     }
+    
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
 </script>
 @endpush

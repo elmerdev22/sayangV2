@@ -106,3 +106,10 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
+</script>
+@endpush

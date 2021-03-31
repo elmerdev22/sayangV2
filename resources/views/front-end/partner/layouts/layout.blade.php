@@ -79,14 +79,27 @@
   <!-- Bootstrap 4 -->
   <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- SweetAlert2 -->
-  <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
+  <script src="{{asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
   <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
   <!-- Admin lte -->
   <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
   <!-- SCroll bar -->
   <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-  <!-- Pusher-->
-  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+  <script src="{{asset('template/assets/dist/js/export/FileSaver.min.js') }}"></script>
+  <script src="{{asset('template/assets/dist/js/export/tableexport.min.js') }}"></script>
+    
+  <script>
+    ExportTable();
+    function ExportTable(filename){
+        $('.sayang-datatables').tableExport({
+            position: 'top',
+            formats : ['xls', 'csv'],
+        });
+        $('.xls').addClass('btn btn-primary btn-sm mx-1');
+        $('.csv').addClass('btn btn-primary btn-sm mx-1');
+    }
+  </script>
   <!-- end of to be removed packages -->
 
   <script type="text/javascript">
