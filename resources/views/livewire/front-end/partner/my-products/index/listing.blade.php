@@ -78,6 +78,11 @@
 
 @push('scripts')
 <script type="text/javascript">
+
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
+
     function cant_add(){
         Swal.fire({
             icon: 'error',
@@ -119,5 +124,6 @@
 			text: 'Cant`t delete because this product already have transactions',
 		})
 	}
+
 </script>
 @endpush

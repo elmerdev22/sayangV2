@@ -5,7 +5,7 @@
             <b>ORDER DATE: </b> {{date('M/d/Y', strtotime($date_from))}} - {{date('M/d/Y', strtotime($date_to))}}
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+            <table class="table table-bordered table-hover table-sm table-cell-nowrap text-center">
                 <thead>
                     <tr>
                         <th>Partner</th>

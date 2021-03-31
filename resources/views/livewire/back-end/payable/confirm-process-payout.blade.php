@@ -1,7 +1,7 @@
 <div>
     @if($data)
         <div class="table-responsive">
-            <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
+            <table class="table table-bordered table-hover table-sm table-cell-nowrap">
                 <thead>
                     <tr>
                         <th colspan="2">PAYOUT INFORMATION</th>

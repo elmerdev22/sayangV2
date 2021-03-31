@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover sayang-datatables text-center">
+                                <table class="table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th scope="col">Photo</th>

@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                <table class="table table-bordered table-hover table-sm table-cell-nowrap text-center">
                     <thead>
                         <tr>
                             <th>Activity</th>

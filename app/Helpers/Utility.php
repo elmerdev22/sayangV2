@@ -381,7 +381,7 @@ class Utility{
     }
 
     public static function datatables_show_entries(){
-        return ['10', '25', '50', '100', '300', '500', '1000'];
+        return ['1','10', '25', '50', '100', '300', '500', '1000'];
     }
 
     public static function top_nav_validate_auth_verify(){
