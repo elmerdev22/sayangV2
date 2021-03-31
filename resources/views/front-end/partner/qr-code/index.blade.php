@@ -33,19 +33,17 @@
                             <div class="py-3 text-center">
                                 -OR-
                             </div>
-                            <form>
-                                <div class="row text-center">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label>Order No.</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary">Search</button>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Order No.</label>
+                                        <input type="text" class="form-control text-center" id="order_no">
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" onclick="input_order_no()">Search <span id="btn-loading" class="fas fa-spinner fa-spin" style="display: none;"></span></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- card-body .// -->
