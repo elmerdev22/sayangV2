@@ -1,6 +1,6 @@
 <div>
     <div class="table-responsive">
-        <table class="table table-hover sayang-datatables">
+        <table class="table table-hover">
             <tbody>
                 @foreach($data as $row)
                     <tr>
