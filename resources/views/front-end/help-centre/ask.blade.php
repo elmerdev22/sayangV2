@@ -4,31 +4,24 @@
    @include('front-end.includes.messenger') 
 @endsection
 @section('content')
-
-<section class="content bg-dark">
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg-primary">
     <div class="container">
         @livewire('front-end.help-centre.search')
-    </div> 
+    </div> <!-- container //  -->
 </section>
-<section class="content-header my-2">
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Topics</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('front-end.help-centre.index')}}">Help Centre</a></li>
-                    <li class="breadcrumb-item active">Results</li>
-                </ol>
+<!-- ========================= SECTION INTRO END// ========================= -->
+    
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">    
+        <div class="row">
+            <div class="col-12 mb-3">
+                <a href="{{route('front-end.help-centre.index')}}" class="btn btn-light float-right" onclick="back()"><i class="fas fa-arrow-alt-circle-left"></i>
+                    Go Back to Topics
+                </a>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="content">
-    <div class="container">
 		<div class="row">
 			@if($results->count() > 0)
 				<div class="col-12 mb-2">
@@ -82,6 +75,28 @@
 			</div>
 			@endforelse
 		</div>
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+{{-- <section class="content bg-dark">
+    <div class="container">
+        @livewire('front-end.help-centre.search')
     </div> 
 </section>
+<section class="content-header my-2">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Topics</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('front-end.help-centre.index')}}">Help Centre</a></li>
+                    <li class="breadcrumb-item active">Results</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section> --}}
 @endsection
