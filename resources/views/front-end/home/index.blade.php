@@ -165,7 +165,7 @@
                 {!! $data['advocacy_section_2']['description'] !!}
             </p>
             @php
-                $url = Auth::check() ? '/' : '/register';
+                $url = Auth::check() ? '/about-us' : '/register';
             @endphp
             <a href="{{$url}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
         </div>
