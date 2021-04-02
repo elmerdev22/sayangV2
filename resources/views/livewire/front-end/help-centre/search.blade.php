@@ -1,13 +1,13 @@
 <div>
     <div class="row justify-content-center ">
-        <div class="col-md-7 my-5 text-center">
-            <h1 class="display-5 pb-2 help-centre-title">We’re Here to Help!</h1>
+        <div class="col-md-7 text-center">
+            <h2 class="title-page text-white">We’re Here to Help!</h2>
             <form method="GET" action="{{route('front-end.help-centre.ask')}}" id="ask-form">
                 <div class="input-group input-group-lg">
-                    <input class="form-control form-control-navbar border-0" type="search" placeholder="Ask away" aria-label="Search" autocomplete="off" name="question" wire:model="search" required>
+                    <input class="form-control form-control-navbar border-none shadow-none" type="search" placeholder="Ask away" aria-label="Search" autocomplete="off" name="question" wire:model="search" required>
                     <div class="input-group-append">
-                        <button class="btn btn-navbar bg-warning" type="submit">
-                            <span class="fas fa-search"></span>
+                        <button class="btn btn-light" type="submit">
+                            <i class="fa fa-search"></i>
                         </button>
                     </div>
                     <div class="position-absolute mt-5 shadow w-100" style="z-index: 2;">
