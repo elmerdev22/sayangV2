@@ -18,9 +18,9 @@ class ImageSetting extends Model implements HasMedia
     ];
 
     public function registerMediaConversions(Media $media = null){
-        $height = 350;
-        $width  = 960;
-
+        $height = 2400;
+        $width  = 1600;
+        
         $this->addMediaConversion('thumb')->height($height)->width($width);
     }
 }

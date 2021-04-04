@@ -148,6 +148,10 @@ class UploadUtility{
         $setting     = ImageSetting::where('id', $image_setting_id)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$folder_name);
 
+        if($folder_name == 'home-bg-image'){
+            $thumb = true;
+        }
+
         if(count($media_photo) > 0){
             if($thumb){
                 return $media_photo[0]->getFullUrl('thumb');
@@ -157,7 +161,7 @@ class UploadUtility{
         }else if($setting->photo_provider_link){
             return $setting->photo_provider_link;
         }else{
-            if($folder_name == 'home-carousel-slider'){
+            if($folder_name == 'home-bg-image'){
                 return asset('images/default-photo/cover.jpg');
             }
             else if($folder_name == 'advocacy-section'){
