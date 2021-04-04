@@ -20,7 +20,7 @@ class UploadUtility{
         return $media_photo;
     }
 
-    public static function product_featured_photo($user_key_token, $product_key_token, $thumb=false, $modify = false){
+    public static function product_featured_photo($user_key_token, $product_key_token, $thumb=true, $modify = false){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
         $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/featured-photo/');
         
@@ -148,7 +148,7 @@ class UploadUtility{
         $setting     = ImageSetting::where('id', $image_setting_id)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$folder_name);
 
-        if($folder_name == 'home-bg-image'){
+        if($folder_name == 'home-bg-image' || $folder_name == 'become-a-partner'){
             $thumb = true;
         }
 
