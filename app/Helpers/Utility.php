@@ -853,11 +853,18 @@ class Utility{
         \Mail::to($email)->send(new EmailNotification($email_notification_details));
     }
 
-    public static function email_notification_details($settings_key, $url_link){
+    public static function email_notification_details($settings_key, $url_link, $product_post_id = null){
+        
+        $product_post = ProductPost::with(['product'])->where('id',$product_post_id)->first();
+        $message      = self::email_notification_settings($settings_key)->message;
+        
+        if($product_post_id != null){
+            $message = str_replace('{product}', $product_post->product->name, $message);    
+        }
 
         $data = [
             'subject'  => self::email_notification_settings($settings_key)->subject,
-            'message'  => self::email_notification_settings($settings_key)->message,
+            'message'  => $message,
             'url_link' => $url_link,
         ];
 

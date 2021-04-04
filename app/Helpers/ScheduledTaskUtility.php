@@ -54,7 +54,7 @@ class ScheduledTaskUtility{
                                 $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won', $notification_type);
                                 
                                 if($notification_check){
-                                    $email_notification_details = Utility::email_notification_details('bidder_won', $url_link);
+                                    $email_notification_details = Utility::email_notification_details('bidder_won', $url_link, $product_post->id);
                                     Utility::send_notification($email_notification_details, $bid->user_account->user->email);
                                 }
 
@@ -66,7 +66,7 @@ class ScheduledTaskUtility{
                                 $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_won', $notification_type);
                                 
                                 if($notification_check){
-                                    $email_notification_details = Utility::email_notification_details('bidder_won',$url_link);
+                                    $email_notification_details = Utility::email_notification_details('bidder_won',$url_link, $product_post->id);
                                     Utility::send_notification($email_notification_details, $bid->user_account->user->email);
                                 }
                             }
@@ -80,7 +80,7 @@ class ScheduledTaskUtility{
                             $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'bidder_lose', $notification_type);
                             
                             if($notification_check){
-                                $email_notification_details = Utility::email_notification_details('bidder_lose',$url_link);
+                                $email_notification_details = Utility::email_notification_details('bidder_lose',$url_link, $product_post->id);
                                 Utility::send_notification($email_notification_details, $bid->user_account->user->email);
                             }
                         }
@@ -91,7 +91,7 @@ class ScheduledTaskUtility{
                         $notification_check = Utility::notification_check($bid->user_account_id, $bid->product_post_id, 'product_post_sold_out', $notification_type);
                             
                         if($notification_check){
-                            $email_notification_details = Utility::email_notification_details('product_post_sold_out',$url_link);
+                            $email_notification_details = Utility::email_notification_details('product_post_sold_out',$url_link, $product_post->id);
                             Utility::send_notification($email_notification_details, $bid->user_account->user->email);
                         }
                     }
@@ -105,7 +105,7 @@ class ScheduledTaskUtility{
                     $notification_check = Utility::notification_check($row->partner_id, $row->id, 'partner_product_post_end', $notification_type);
                             
                     if($notification_check){
-                        $email_notification_details = Utility::email_notification_details('partner_product_post_end',$url_link);
+                        $email_notification_details = Utility::email_notification_details('partner_product_post_end',$url_link, $product_post->id);
                         Utility::send_notification($email_notification_details, $row->partner_email);
                     }
                 }

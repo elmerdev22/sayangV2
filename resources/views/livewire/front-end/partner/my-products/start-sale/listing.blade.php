@@ -11,7 +11,7 @@
         	<!-- NOTE: Always put the show entries & search before the .table-responsive class -->
         	@include('front-end.includes.datatables.search')
         	<div class="table-responsive mt-3">
-        		<table class="table table-bordered table-hover sayang-datatables table-cell-nowrap">
+        		<table class="table table-bordered table-hover table-sm table-cell-nowrap">
 	        		<thead>
 	        			<tr>
 	        				<th class="table-sort" wire:click="sort('categories.name')">

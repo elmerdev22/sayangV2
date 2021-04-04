@@ -76,7 +76,7 @@
                 </div> <!-- col // -->
             </div>
         </small>
-        <p class="mt-4">You save {{Utility::currency_code()}}{{number_format($price_percentage['discount']), 2}} ({{$price_percentage['discount_percent']}}% off)</p>
+        <p class="mt-4">You save {{Utility::currency_code()}}{{number_format($price_percentage['discount'], 2)}} ({{$price_percentage['discount_percent']}}% off)</p>
         <div class="bg-primary py-1 px-2 rounded">
             <h5 class="mb-0 p-1 text-white">Your Total: {{Utility::currency_code()}}{{number_format($buy_now_price, 2)}}</h5>
         </div>
