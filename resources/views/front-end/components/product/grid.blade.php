@@ -32,23 +32,23 @@
         </div> <!-- action-wrap.end -->
         <div class="mt-3">
             <div class="row text-center">
-                <div class="col-4">
-                    <div class="text-primary">
+                <div class="col-4 text-truncate">
+                    <span class="text-primary">
                         <i class="fa fa-seedling"></i>
-                    </div>
+                    </span>
                     <small>{{$elements_trees}}</small>
                 </div>
-                <div class="col-4">
-                    <div class="text-info inline-block">
+                <div class="col-4 text-truncate">
+                    <span class="text-info">
                         <i class="fa fa-tint"></i>
-                    </div>
-                    <small>{{$elements_water}}</small>
+                    </span>
+                    <small class="text-truncate">{{$elements_water}}</small>
                 </div>
-                <div class="col-4">
-                    <div class="text-warning">
+                <div class="col-4 text-truncate">
+                    <span class="text-warning">
                         <i class="fa fa-bolt"></i>
-                    </div>
-                    <small>{{$elements_energy}}</small>
+                    </span>
+                    <small class="text-truncate">{{$elements_energy}}</small>
                 </div>
             </div>
         </div> <!-- action-wrap.end -->
