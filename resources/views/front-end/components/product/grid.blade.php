@@ -2,7 +2,7 @@
     <a href="{{$buy_now}}" class="img-wrap"> 
         <img src="{{$featured}}">
         <span class="topbar">
-            <span class="badge badge-primary p-2 float-right" style="position: static">
+            <span class="badge p-2 float-right" style="position: static; color:white; background-color: #cfcfcf">
                 <span class="fa fa-clock"></span>
                 <span class="countdown">{{$countdown}}</span>
             </span>

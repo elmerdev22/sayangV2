@@ -54,8 +54,8 @@
         <div class="form-group">
             <label class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="agree" wire:model="agree"> 
-                <div class="custom-control-label"> I'm agree with 
-                    <a target="_blank" href="{{route('front-end.terms-and-conditions.index')}}">terms and conditions</a>  
+                <div class="custom-control-label"> I agree with the 
+                    <a target="_blank" href="{{route('front-end.terms-and-conditions.index')}}">Terms and Conditions</a>  
                 </div> 
             </label>
 

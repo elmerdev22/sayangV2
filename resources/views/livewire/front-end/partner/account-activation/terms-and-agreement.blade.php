@@ -5,11 +5,11 @@
     <div class="row pt-4">
         <div class="col-12">
             <form wire:submit.prevent="update">
-                <h4 class="title text-center step-4-text font-weight-normal">By clicking on the button below, I agree on the Terms and Conditions of the platform.</h4>
+                <h4 class="title text-center step-4-text font-weight-normal">By clicking on the button below, I agree with the Terms and Conditions of the platform.</h4>
                 <div class="form-group py-4">
                 <label class="custom-control custom-checkbox float-right">
                     <input type="checkbox" class="custom-control-input " id="agree" wire:model="agree"> 
-                    <div class="custom-control-label"> I'm agree with 
+                    <div class="custom-control-label"> I agree with the 
                         <a target="_blank" href="{{route('front-end.terms-and-conditions.partners')}}">Terms and Conditions</a>  
                     </div> 
                 </label>

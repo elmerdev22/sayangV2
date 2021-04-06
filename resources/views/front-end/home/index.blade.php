@@ -9,59 +9,56 @@
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
-    <div style="background: url('{{Utility::home_background_random()}}'); background-attachment: fixed; text-shadow: 2px 2px 5px #383636;" class="page-holder bg-cover">
+    <div style="background: url('{{Utility::home_background_random()}}'); text-shadow: 2px 2px 5px #383636;" class="page-holder bg-cover">
         <div class="container">
             <div class="row padding-y">
                 <div class="col-12">
                     <header class="text-center text-white py-5">
-                        <h1 class="display-3 font-weight-bold mb-4 home-title">NOTHING GOES TO WASTE</h1>
+                        <h1 class="display-1 font-weight-bold mb-4 home-title" style="font-family: League Spartan">NOTHING GOES TO <br> WASTE</h1>
                     </header>
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-10 col-lg-8">
+                        <div class="col-10 col-lg-5">
                             <form action="{{route('front-end.product.list.index')}}" method="GET">
                                 <div class="input-group input-group-lg">
-                                    <input class="form-control form-control-navbar border-none shadow-none" type="search" name="search" placeholder="Location or Products" aria-label="Search">
-                                    <div class="input-group-append">
+                                    <input class="form-control form-control-navbar border-none shadow-none" type="search" name="search" placeholder="Type in your location or search for a product" aria-label="Search">
+                                    {{-- <div class="input-group-append">
                                         <button class="btn btn-navbar bg-primary" type="submit">
                                             <i class="fas fa-search text-white"></i>
                                         </button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="position: absolute; bottom: 0; left: 50%;">
-                <div style="position: relative; left: -50%;">
-                    <div class="row">
-                        <div class="col-12">
-                            <header>
-                                <h3 class="text-center text-white pt-5 subheader">Together, we’ve rescued</h3>
-                            </header><!-- sect-heading -->
-                        </div>
-                        <div class="col-12">
-                            <div class="row text-center">
-                                <div class="col-4 pt-3">	
-                                    <figure class="item-feature">
-                                        <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
-                                        <span class="text-white ">{{$data['element_trees']}} trees  </span>
-                                    </figure> <!-- iconbox // -->
-                                </div><!-- col // -->
-                                <div class="col-4 pt-3">
-                                    <figure  class="item-feature">
-                                        <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
-                                        <span class="text-white">{{$data['element_water']}} gal of water</span>
-                                    </figure> <!-- iconbox // -->
-                                </div><!-- col // -->
-                                <div class="col-4 pt-3">
-                                    <figure  class="item-feature">
-                                        <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
-                                        <span class="text-white">{{$data['element_energy']}} kw of energy</span>
-                                    </figure> <!-- iconbox // -->
-                                </div> <!-- col // -->
-                            </div>
-                        </div>
+            
+            <div class="row w-100" style="bottom: 0%; left: 0%; right: 0%; position: absolute;">
+                <div class="col-12">
+                    <header>
+                        <h2 class="text-center text-white subheader">Together, we’ve rescued</h2>
+                    </header><!-- sect-heading -->
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="row text-center">
+                        <div class="col-4">	
+                            <figure class="item-feature">
+                                <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
+                                <span class="text-white ">{{$data['element_trees']}} trees  </span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">
+                            <figure class="item-feature">
+                                <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
+                                <span class="text-white">{{$data['element_water']}} gal of water</span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">
+                            <figure class="item-feature">
+                                <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
+                                <span class="text-white">{{$data['element_energy']}} kw of energy</span>
+                            </figure> <!-- iconbox // -->
+                        </div> <!-- col // -->
                     </div>
                 </div>
             </div>
@@ -69,47 +66,6 @@
     </div>
 </section>
 <!-- ========================= SECTION HERO END// ========================= -->
-
-<!-- ========================= SECTION SPECIAL ========================= -->
-{{-- <section class="section-specials padding-y border-bottom">
-    <div class="container">	
-        <header class="section-heading pb-2">
-            <h3 class="section-title text-center">Together we've Rescued</h3>
-        </header><!-- sect-heading -->
-        <div class="row text-center">
-            <div class="col-md-4 py-3">	
-                <figure class="item-feature">
-                    <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span>
-                    <figcaption class="pt-3">
-                        <h5 class="title">Trees</h5>
-                        <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
-                    </figcaption>
-                </figure> <!-- iconbox // -->
-            </div><!-- col // -->
-            <div class="col-md-4 py-3">
-                <figure  class="item-feature">
-                    <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
-                    <figcaption class="pt-3">
-                        <h5 class="title">Water</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            </p>
-                    </figcaption>
-                </figure> <!-- iconbox // -->
-            </div><!-- col // -->
-            <div class="col-md-4 py-3">
-                <figure  class="item-feature">
-                    <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
-                    <figcaption class="pt-3">
-                        <h5 class="title">Energy</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-                    </figcaption>
-                </figure> <!-- iconbox // -->
-            </div> <!-- col // -->
-        </div>
-    </div> <!-- container.// -->
-</section> --}}
-<!-- ========================= SECTION SPECIAL END// ========================= -->
-        
 <section class="section-content padding-y" style="background-color: #10093f">
     <div class="container">
         <header class="section-heading pb-2 text-center">

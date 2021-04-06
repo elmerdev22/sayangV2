@@ -14,12 +14,12 @@
             </button>
             <div class="navbar-collapse collapse" id="main_nav2" style="">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{route('front-end.help-centre.index')}}"> Help Centre </a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('front-end.help-centre.index')}}">Help Centre <span class="fas fa-question"></span> </a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('front-end.product.list.index')}}"> Products </a>
+                        <a class="nav-link" href="{{route('front-end.product.list.index')}}"> Products <span class="fas fa-tag"></span> </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('partner.register')}}"> Be a Partner </a>
+                        <a class="nav-link" href="{{route('partner.register')}}"> Be a Partner <span class="fas fa-rocket"></span> </a>
                     </li>
                 </ul>
                 <div class="d-flex justify-content-end">

@@ -11574,6 +11574,10 @@ input[type=number] {
   transform: translateX(0);
 }
 
+.item-feature {
+  font-size: 20px;
+}
+
 /* ================== HELPERS  =================== */
 
 a:hover {
