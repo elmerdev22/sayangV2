@@ -14,7 +14,7 @@
             <div class="row padding-y">
                 <div class="col-12">
                     <header class="text-center text-white py-5">
-                        <h1 class="display-1 font-weight-bold mb-4 home-title" style="font-family: League Spartan">NOTHING GOES TO <br> WASTE</h1>
+                        <h1 class="display-1 mb-4 home-title">NOTHING GOES TO <br> WASTE</h1>
                     </header>
                     <div class="row justify-content-center align-items-center">
                         <div class="col-10 col-lg-5">
@@ -42,19 +42,19 @@
                 <div class="col-12 mt-4">
                     <div class="row text-center">
                         <div class="col-4">	
-                            <figure class="item-feature">
+                            <figure class="item-feature item-feature-home">
                                 <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
                                 <span class="text-white ">{{$data['element_trees']}} trees  </span>
                             </figure> <!-- iconbox // -->
                         </div><!-- col // -->
                         <div class="col-4">
-                            <figure class="item-feature">
+                            <figure class="item-feature item-feature-home">
                                 <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
                                 <span class="text-white">{{$data['element_water']}} gal of water</span>
                             </figure> <!-- iconbox // -->
                         </div><!-- col // -->
                         <div class="col-4">
-                            <figure class="item-feature">
+                            <figure class="item-feature item-feature-home">
                                 <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
                                 <span class="text-white">{{$data['element_energy']}} kw of energy</span>
                             </figure> <!-- iconbox // -->

@@ -20,7 +20,13 @@
   font-weight: 700; }
 /*
 font-family: "Roboto", sans-serif;
-*//*!
+*/@font-face {
+  font-family: 'league_spartan';
+  src: url(/fonts/leaguespartan-bold-webfont.woff2?19b922afedc307f26171308f17c57648) format('woff2'),
+       url(/fonts/leaguespartan-bold-webfont.woff?d5782a317401e40323444717981ae0da) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}/*!
  * Font Awesome Free 5.8.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -78,8 +84,8 @@ INCLUDE STYLES AND COMPONENTS
     font-size: 20px;
   }
 
-  .item-feature {
-    font-size: 15px;
+  .item-feature-home {
+    font-size: 15px !important;
   }
 }
 
@@ -168,8 +174,8 @@ INCLUDE STYLES AND COMPONENTS
     font-size: 15px;
   }
 
-  .item-feature {
-    font-size: 12px;
+  .item-feature-home {
+    font-size: 10px !important;
   }
 }
 
@@ -11574,8 +11580,12 @@ input[type=number] {
   transform: translateX(0);
 }
 
-.item-feature {
+.item-feature-home {
   font-size: 20px;
+}
+
+.home-title {
+  font-family: "league_spartan" !important;
 }
 
 /* ================== HELPERS  =================== */
