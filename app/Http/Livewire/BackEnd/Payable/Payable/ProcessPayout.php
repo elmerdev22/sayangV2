@@ -56,7 +56,8 @@ class ProcessPayout extends Component
 
             if($orders->count() > 0){
                 foreach($orders->get() as $order){
-                    $total = Utility::order_total($order->id);
+                    $partner_key = null;
+                    $total       = Utility::order_total($order->id);
 
                     foreach($data as $data_key => $data_checker){
                         if($data_checker['partner_id'] == $order->partner_id){
@@ -65,7 +66,7 @@ class ProcessPayout extends Component
                         }
                     }
 
-                    if(!isset($partner_key)){
+                    if($partner_key === null){
                         $data[] = [
                             'partner_id'                => $order->partner_id,
                             'partner_name'              => $order->partner_name,
@@ -205,7 +206,6 @@ class ProcessPayout extends Component
             }catch(\Exception $e){
                 DB::rollback();
                 $response['success'] = false;
-                dd($e);
             }
 
             if($response['success']){
