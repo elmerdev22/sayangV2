@@ -11586,6 +11586,7 @@ input[type=number] {
 
 .home-title {
   font-family: "league_spartan" !important;
+  letter-spacing: 5px;
 }
 
 /* ================== HELPERS  =================== */
