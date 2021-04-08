@@ -11,10 +11,10 @@
 <section class="section-intro ">
     <div style="background: url('{{Utility::home_background_random()}}'); text-shadow: 2px 2px 5px #383636;" class="page-holder bg-cover">
         <div class="container">
-            <div class="row padding-y">
+            <div class="row pt-4">
                 <div class="col-12">
                     <header class="text-center text-white py-5">
-                        <h1 class="display-1 mb-4 home-title">NOTHING GOES TO <br> WASTE</h1>
+                        <h1 class="display-2 mb-4 home-title">NOTHING GOES TO <br> WASTE</h1>
                     </header>
                     <div class="row justify-content-center align-items-center">
                         <div class="col-10 col-lg-5">
@@ -34,12 +34,12 @@
             </div>
             
             <div class="row w-100" style="bottom: 0%; left: 0%; right: 0%; position: absolute;">
-                <div class="col-12">
+                <div class="col-12 mb-2">
                     <header>
-                        <h2 class="text-center text-white subheader">Together, we’ve rescued</h2>
+                        <h3 class="text-center text-white subheader">Together, we’ve rescued</h3>
                     </header><!-- sect-heading -->
                 </div>
-                <div class="col-12 mt-4">
+                <div class="col-12">
                     <div class="row text-center">
                         <div class="col-4">	
                             <figure class="item-feature item-feature-home">

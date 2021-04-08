@@ -76,6 +76,9 @@
                                 Buyer Name
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
                             </th>
+                            <th>Total Discount</th>
+                            <th>Sub Total</th>
+                            <th>Total</th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.created_at'])
@@ -93,10 +96,16 @@
                     </thead>
                     <tbody>
                         @forelse($data as $row)
+                            @php
+                                $order_total = Utility::order_total($row->id);
+                            @endphp
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucfirst($row->partner_name)}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+                                <td>{{number_format($order_total['total_discount'], 2)}}</td>
+                                <td>{{number_format($order_total['sub_total'], 2)}}</td>
+                                <td>{{number_format($order_total['total'], 2)}}</td>
                                 <td>{{date('M/d/Y', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->payment_method == 'cash_on_pickup')
@@ -130,13 +139,12 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">No Data Found</td>
+                                <td colspan="10" class="text-center">No Data Found</td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
-            
             <!-- NOTE: Always put the pagination after the .table-responsive class -->
             @include('back-end.layouts.includes.datatables.pagination', ['pagination_items' => $data])
         </div>
