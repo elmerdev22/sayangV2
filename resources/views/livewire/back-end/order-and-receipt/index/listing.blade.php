@@ -76,9 +76,9 @@
                                 Buyer Name
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
                             </th>
-                            <th>Total Discount</th>
-                            <th>Sub Total</th>
-                            <th>Total</th>
+                            <th>Discount</th>
+                            <th>Subtotal</th>
+                            <th>Total Price</th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
                                 @include('back-end.layouts.includes.datatables.sort', ['field' => 'orders.created_at'])
