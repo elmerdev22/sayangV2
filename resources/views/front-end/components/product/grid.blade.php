@@ -1,4 +1,4 @@
-<div class="card card-product-grid" >
+<div class="card card-product-grid">
     <a href="{{$buy_now}}" class="img-wrap"> 
         <img src="{{$featured}}">
         <span class="topbar">
@@ -30,7 +30,7 @@
             <small>Bids: {{$bid_details_count}}</small></var> <!-- price-wrap.// -->
             <a href="{{$bid_now}}" class="btn btn-sm btn-light float-right" style="width: 70px;">Bid now</a>
         </div> <!-- action-wrap.end -->
-        <div class="mt-3">
+        <div class="mt-3 elements-section">
             <div class="row text-center">
                 <div class="col-4 text-truncate">
                     <span class="text-primary">
