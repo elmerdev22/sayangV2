@@ -141,30 +141,36 @@
                             <th scope="col">Name</th>
                             <th scope="col">Bid</th>
                             <th scope="col">Qty</th>
-                            {{-- <th scope="col">Allocated Qty</th> --}}
+                            <th scope="col">Allocated Qty</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($ranking as $key => $data)
-                        <tr>
-                            @php
-                                $current_quantity -= $data->quantity;    
-                                $allocated_quantity = $data->quantity;
-                            @endphp
-                            <td>{{++$key}}</td>
-                            <td>{{$data->user_account->first_name}} </td>
-                            <td>{{Utility::currency_code()}}{{number_format($data->bid, 2)}}</td>
-                            <td>{{number_format($data->quantity, 0)}}</td>
-                            {{-- <td>{{number_format($allocated_quantity, 0)}}</td> --}}
-                            <td>
-                                {{$current_quantity + $data->quantity <= 0 ? 'Losing' : 'Winning'}}
-                            </td>
-                        </tr>
+                            <tr>
+                                @php
+                                    $current_quantity -= $data->quantity;
+                                    $updated_quantity  = $current_quantity + $data->quantity;
+                                @endphp
+                                <td>{{++$key}}</td>
+                                <td>{{$data->user_account->first_name}} </td>
+                                <td>{{Utility::currency_code()}}{{number_format($data->bid, 2)}}</td>
+                                <td>{{number_format($data->quantity, 0)}}</td>
+                                <td>
+                                    @if ($updated_quantity >= $data->quantity)
+                                        {{number_format($data->quantity, 0)}}
+                                    @else
+                                        {{number_format($updated_quantity < 0 ? 0 : $updated_quantity, 0)}}
+                                    @endif
+                                </td>
+                                <td>
+                                    {{$updated_quantity <= 0 ? 'Losing' : 'Winning'}}
+                                </td>
+                            </tr>
                         @empty
-                        <tr>
-                            <td colspan="6">No Bids.</td>
-                        </tr>
+                            <tr>
+                                <td colspan="6">No Bids.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
