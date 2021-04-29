@@ -13,7 +13,7 @@ use UploadUtility;
 class ProfileAndCoverPhoto extends Component
 {
     use WithFileUploads;
-    public $account, $partner, $followers, $ratings, $products, $old_store_photo, $store_photo, $old_cover_photo, $cover_photo;
+    public $account, $partner, $followers, $ratings, $products, $old_store_photo, $store_photo, $old_cover_photo, $cover_photo, $slug;
     
     public function mount(){
         $this->partner         = Utility::auth_partner();
@@ -23,6 +23,7 @@ class ProfileAndCoverPhoto extends Component
         $this->followers       = Utility::count_followers($this->partner->id);
         $this->ratings         = Utility::get_partner_ratings($this->partner->id);
         $this->products        = Utility::count_products($this->partner->id);
+        $this->slug            = $this->partner->slug;
     }
     public function render()
     {

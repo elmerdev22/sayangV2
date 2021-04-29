@@ -12,16 +12,22 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        @livewire('front-end.user.my-purchase.to-receive.index')
-    </main> <!-- col.// -->
-</div>
-
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.aside')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                @livewire('front-end.user.my-purchase.to-receive.index')
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>       
 <!-- Modal -->
 <div class="modal fade" id="modal-qr_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -48,9 +54,10 @@
             @php $checkout_status = Session::get('checkout_payment'); @endphp
             @if($checkout_status['success'])
                 var config = {
-                    position : 'center',
-                    icon     : 'success',
-                    title    : 'Order Successfully Processed'
+                    position: 'center',
+                    icon    : 'success',
+                    title   : 'Successful!',
+                    html    : 'Order Successfully Processed'
                 };
                 Swal.fire(config);
             @else

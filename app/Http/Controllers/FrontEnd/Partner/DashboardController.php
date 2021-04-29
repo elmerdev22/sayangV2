@@ -10,6 +10,9 @@ use Utility;
 class DashboardController extends Controller
 {
     public function index(){
+        $decimal_places = Utility::settings('elements_round_off');
+        $elements       = Utility::rescued_elements_computation('partner');
+
         $data = [
             'order_placed'             => self::data('order_placed'),
             'to_receive'               => self::data('to_receive'),
@@ -19,9 +22,13 @@ class DashboardController extends Controller
             'total_products_active'    => Utility::count_products(self::partner()->id, 'active'),
             'total_products_ended'     => Utility::count_products(self::partner()->id, 'done'),
             'total_products_cancelled' => Utility::count_products(self::partner()->id, 'cancelled'),
+            'element_trees'            => number_format($elements['trees'], $decimal_places),
+            'element_water'            => number_format($elements['water'], $decimal_places),
+            'element_energy'           => number_format($elements['energy'], $decimal_places),
         ];
 
-        return view('front-end.partner.dashboard.index', compact('data'));
+
+        return view('front-end.partner.dashboard.index', compact('data','elements'));
     }
 
     public function partner(){

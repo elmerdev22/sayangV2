@@ -101,14 +101,16 @@ class PayNow extends Component
                 $this->card_token = null;
             }else{
                 $this->emit('alert', [
-                    'type'  => 'error',
-                    'title' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.PaymentUtility::paymongo_minimum()
+                    'type'    => 'error',
+                    'title'   => 'Oops...',
+                    'message' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.PaymentUtility::paymongo_minimum()
                 ]);
             }
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid E-Wallet.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid E-Wallet.'
             ]);
         }
 
@@ -121,8 +123,9 @@ class PayNow extends Component
             $this->card_token = $card->key_token;
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid Card.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid Card.'
             ]);
         }
 
@@ -145,7 +148,7 @@ class PayNow extends Component
         $product        = Product::with(['partner', 'partner.user_account'])->findOrFail($product_id);
         $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token);
 
-        return $featured_photo[0]->getFullUrl('thumb');
+        return $featured_photo;
     }
 
     public function expiration($date_ended, $check_if_expired=false){
@@ -170,8 +173,9 @@ class PayNow extends Component
             $this->payment_method = $method;
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid Payment Method.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid Payment Method.'
             ]);
         }
 
@@ -199,24 +203,27 @@ class PayNow extends Component
                                         ->first();
                                     if(!$card){
                                         $this->emit('alert', [
-                                            'type'  => 'error',
-                                            'title' => 'Invalid Card.'
+                                            'type'    => 'error',
+                                            'title'   => 'Oops...',
+                                            'message' => 'Invalid Card.'
                                         ]);
                                         $this->emit('remove_loading_card', true);
                                         return false;
                                     }
                                 }else{
                                     $this->emit('alert', [
-                                        'type'  => 'error',
-                                        'title' => 'No Selected Credit/Debit Card.'
+                                        'type'    => 'error',
+                                        'title'   => 'Oops...',
+                                        'message' => 'No Selected Credit/Debit Card.'
                                     ]);
                                     $this->emit('remove_loading_card', true);
                                     return false;
                                 }
                             }else{
                                 $this->emit('alert', [
-                                    'type'  => 'error',
-                                    'title' => 'Minimum for '.str_replace('_', '-', $this->payment_method).' is PHP '.PaymentUtility::paymongo_minimum()
+                                    'type'    => 'error',
+                                    'title'   => 'Oops...',
+                                    'message' => 'Minimum for '.str_replace('_', '-', $this->payment_method).' is PHP '.PaymentUtility::paymongo_minimum()
                                 ]);
                                 $this->emit('remove_loading_card', true);
                                 return false;
@@ -224,8 +231,9 @@ class PayNow extends Component
                         }else if($this->payment_method == 'e_wallet'){
                             if($this->total_price < PaymentUtility::paymongo_minimum()){
                                 $this->emit('alert', [
-                                    'type'  => 'error',
-                                    'title' => 'Minimum for '.str_replace('_', '-', $this->payment_method).' is PHP '.PaymentUtility::paymongo_minimum()
+                                    'type'    => 'error',
+                                    'title'   => 'Oops...',
+                                    'message' => 'Minimum for '.str_replace('_', '-', $this->payment_method).' is PHP '.PaymentUtility::paymongo_minimum()
                                 ]);
                                 $this->emit('remove_loading_card', true);
                                 return false;
@@ -236,8 +244,9 @@ class PayNow extends Component
                                 }
                                 if(!in_array($this->e_wallet, $available_ewallet)){
                                     $this->emit('alert', [
-                                        'type'  => 'error',
-                                        'title' => 'Invalid E-Wallet.'
+                                        'type'    => 'error',
+                                        'title'   => 'Oops...',
+                                        'message' => 'Invalid E-Wallet.'
                                     ]);
                                     $this->emit('remove_loading_card', true);
                                     return false;   
@@ -247,8 +256,9 @@ class PayNow extends Component
     
                         }else{
                             $this->emit('alert', [
-                                'type'  => 'error',
-                                'title' => 'Invalid Payment Method.'
+                                'type'    => 'error',
+                                'title'   => 'Oops...',
+                                'message' => 'Invalid Payment Method.'
                             ]);
                             $this->emit('remove_loading_card', true);
                             return false;

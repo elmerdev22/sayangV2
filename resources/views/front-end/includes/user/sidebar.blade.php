@@ -1,97 +1,97 @@
 
-<div class="list-group panel">
-    <a href="#account" class="list-group-item {{\Route::is('front-end.user.my-account.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
-        <span class="nav-icon fas fa-user"></span> 
-        My Account 
-        <i class="fa fa-chevron-left float-right"></i>
-    </a>
-    
-    <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}} mb-1" id="account">
-        <a href="{{route('front-end.user.my-account.index')}}" class="list-group-item {{\Route::is('front-end.user.my-account.index') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span> 
-            Profile 
-        </a>
-        <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="list-group-item {{\Route::is('front-end.user.my-account.banks-and-cards') ? 'sayang-link-active':''}}"">
-            <span class="far fa-circle mr-1 ml-2"></span> 
-            Banks & Cards 
-        </a>
-        <a href="{{route('front-end.user.my-account.addresses')}}" class="list-group-item {{\Route::is('front-end.user.my-account.addresses') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span> 
-            Addresses 
-        </a>
-        @if (Auth::user()->provider == 'default')
-        <a href="{{route('front-end.user.my-account.change-password')}}" class="list-group-item {{\Route::is('front-end.user.my-account.change-password') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span> 
-            Change Password 
-        </a>
-        @endif
-    </div>
-
-    <a href="#purchase" class="list-group-item {{\Route::is('front-end.user.my-purchase.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
-        <span class="nav-icon fas fa-shopping-bag"></span> My Purchase 
-        <i class="fa fa-chevron-left float-right"></i>
-    </a>
-
-    <div class="collapse {{\Route::is('front-end.user.my-purchase.*') ? 'show':''}} mb-1" id="purchase">
-        <a href="{{route('front-end.user.my-purchase.list')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.list') || \Route::is('front-end.user.my-purchase.list.track') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            List
-        </a>
-        <a href="{{route('front-end.user.my-purchase.order-placed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.order-placed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Order Placed
-        </a>
-        <a href="{{route('front-end.user.my-purchase.to-receive')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.to-receive') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            To Receive/Pickup
-        </a>
-        <a href="{{route('front-end.user.my-purchase.completed')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.completed') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Completed
-        </a>
-        <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="list-group-item {{\Route::is('front-end.user.my-purchase.cancelled') || \Route::is('front-end.user.my-purchase.completed-details') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Cancelled
-        </a>
-    </div>
-
-    <a href="#notification" class="list-group-item {{\Route::is('front-end.user.notifications.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
-        <span class="nav-icon fas fa-bell"></span> Notifications 
-        <i class="fa fa-chevron-left float-right"></i>
-    </a>
-    
-    <div class="collapse {{\Route::is('front-end.user.notifications.*') ? 'show':''}} mb-1" id="notification">
-        <a href="{{route('front-end.user.notifications.index')}}" class="list-group-item {{\Route::is('front-end.user.notifications.index') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Order Updates
-        </a>
-        <a href="{{route('front-end.user.notifications.activity')}}" class="list-group-item {{\Route::is('front-end.user.notifications.activity') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Activity
-        </a>
-    </div>
-    
-    <a href="#bids" class="list-group-item {{\Route::is('front-end.user.my-bids.*') ? 'active':''}}" data-toggle="collapse" data-parent="#MainMenu">
-        <span class="nav-icon fas fa-list-alt"></span> My Bids 
-        <i class="fa fa-chevron-left float-right"></i>
-    </a>
-
-    <div class="collapse {{\Route::is('front-end.user.my-bids.*') ? 'show':''}} mb-1" id="bids">
-        <a href="{{route('front-end.user.my-bids.active')}}" class="list-group-item {{\Route::is('front-end.user.my-bids.active') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Active
-        </a>
-        <a href="{{route('front-end.user.my-bids.win')}}" class="list-group-item {{\Route::is('front-end.user.my-bids.win') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Win
-        </a>
-        <a href="{{route('front-end.user.my-bids.lose')}}" class="list-group-item {{\Route::is('front-end.user.my-bids.lose') ? 'sayang-link-active':''}}">
-            <span class="far fa-circle mr-1 ml-2"></span>
-            Lose
-        </a>
-    </div>
-
-    {{-- <a href="#" class="list-group-item" data-parent="#MainMenu">
-        <span class="fas fa-money-bill"></span> My Vouchers  
-    </a> --}}
+<div class="list-group">
+    <article class="list-group-item">
+        <header class="filter-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" class="{{\Route::is('front-end.user.my-account.*') ? '':'text-dark'}}">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">My Account</h6>
+            </a>
+        </header>
+        <div class="collapse {{\Route::is('front-end.user.my-account.*') ? 'show':''}}" id="collapse1" style="">	
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-account.index')}}" class="{{\Route::is('front-end.user.my-account.index') ? 'text-primary':'text-dark'}}">Profile</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="{{\Route::is('front-end.user.my-account.banks-and-cards') ? 'text-primary':'text-dark'}}">Banks & Cards</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-account.addresses')}}" class="{{\Route::is('front-end.user.my-account.addresses') ? 'text-primary':'text-dark'}}">Address</a>
+                </li>
+                @if (Auth::user()->provider == 'default')
+                    <li class="list-group-item">
+                        <a href="{{route('front-end.user.my-account.change-password')}}" class="{{\Route::is('front-end.user.my-account.change-password') ? 'text-primary':'text-dark'}}">Change password</a>
+                    </li>
+                @endif
+            </ul>
+        </div> <!-- collapse -filter-content  .// -->
+    </article>
+    <article class="list-group-item">
+        <header class="filter-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" class="{{\Route::is('front-end.user.my-purchase.*') ? '':'text-dark'}}">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">My Purchase</h6>
+            </a>
+        </header>
+        <div class="collapse {{\Route::is('front-end.user.my-purchase.*') ? 'show':''}}" id="collapse2" style="">	
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-purchase.list')}}" class="{{\Route::is('front-end.user.my-purchase.list') ? 'text-primary':'text-dark'}}">List</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-purchase.order-placed')}}" class="{{\Route::is('front-end.user.my-purchase.order-placed') ? 'text-primary':'text-dark'}}">Order Placed</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-purchase.to-receive')}}" class="{{\Route::is('front-end.user.my-purchase.to-receive') ? 'text-primary':'text-dark'}}">To Receive/Pickup</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-purchase.completed')}}" class="{{\Route::is('front-end.user.my-purchase.completed') ? 'text-primary':'text-dark'}}">Completed</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-purchase.cancelled')}}" class="{{\Route::is('front-end.user.my-purchase.cancelled') ? 'text-primary':'text-dark'}}">Cancelled</a>
+                </li>
+            </ul>
+        </div> <!-- collapse -filter-content  .// -->
+    </article>
+    <article class="list-group-item">
+        <header class="filter-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" class="{{\Route::is('front-end.user.notifications.*') ? '':'text-dark'}}">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Notifications</h6>
+            </a>
+        </header>
+        <div class="collapse {{\Route::is('front-end.user.notifications.*') ? 'show':''}}" id="collapse3" style="">	
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.notifications.index')}}" class="{{\Route::is('front-end.user.notifications.index') ? 'text-primary':'text-dark'}}">Order Updates</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.notifications.activity')}}" class="{{\Route::is('front-end.user.notifications.activity') ? 'text-primary':'text-dark'}}">Activity</a>
+                </li>
+            </ul>
+        </div> <!-- collapse -filter-content  .// -->
+    </article>
+    <article class="list-group-item">
+        <header class="filter-header">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" class="{{\Route::is('front-end.user.my-bids.*') ? '':'text-dark'}}">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">My Bids</h6>
+            </a>
+        </header>
+        <div class="collapse {{\Route::is('front-end.user.my-bids.*') ? 'show':''}}" id="collapse4" style="">	
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-bids.active')}}" class="{{\Route::is('front-end.user.my-bids.active') ? 'text-primary':'text-dark'}}">Active</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-bids.win')}}" class="{{\Route::is('front-end.user.my-bids.win') ? 'text-primary':'text-dark'}}">Win</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{route('front-end.user.my-bids.lose')}}" class="{{\Route::is('front-end.user.my-bids.lose') ? 'text-primary':'text-dark'}}">Lose</a>
+                </li>
+            </ul>
+        </div> <!-- collapse -filter-content  .// -->
+    </article>
 </div>
+<br>
+<a class="btn btn-light btn-block" href="{{route('auth.logout', ['redirect' => 'user_login'])}}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 

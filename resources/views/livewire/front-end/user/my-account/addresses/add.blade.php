@@ -104,18 +104,18 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="is_default" @if($force_default) disabled checked @else wire:model="is_default" @endif>
-                            <label for="is_default">Set as default address</label>
-                        </div>
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="is_default" @if($force_default) disabled checked @else wire:model="is_default" @endif>
+                            <div class="custom-control-label"> Set as default address </div> 
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <div class="text-right">
-                <button type="button" class="btn btn-flat btn-sm btn-danger" wire:loading.attr="disabled" wire:target="store" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-flat btn-sm btn-warning" wire:loading.attr="disabled" wire:target="store">
+                <button type="button" class="btn btn-light" wire:loading.attr="disabled" wire:target="store" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="store">
                     Add @if($is_checkout_page) and Select @endif <i wire:loading wire:target="store" class="fas fa-spin fa-spinner"></i>
                 </button>
             </div>

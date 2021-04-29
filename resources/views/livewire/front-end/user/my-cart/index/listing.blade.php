@@ -1,374 +1,197 @@
 <div>
-    {{-- Mobile View --}}
-    <div class="display-none">
-        <table class="table table-borderless table-hover table-shopping-cart d-sm-none d-md-none d-lg-none">
-            @if(count($data) > 0)
-                <thead>
-                    <tr class="border-bottom">
-                        <th scope="col" width="10" class="text-center">
-                            <span class="icheck-warning">
-                                <input type="checkbox" 
-                                    @if($is_disabled_all) 
-                                        disabled="true"
-                                    @else 
-                                        onclick="select_all_items()"
-                                        id="check-all"
-                                        @if($is_check_all)
-                                            checked="true"
-                                        @endif
-                                    @endif
-                                >
-                                <label for="check-all"></label>
-                            </span>
-                        </th>
-                        <th scope="col">PRODUCTS</th>
-                    </tr>
-                </thead>
-            @endif
-            <tbody>
-                @forelse($data as $key => $row)
-                    <tr class="border">
-                        <td>
-                            <span class="icheck-warning">
-                                <input type="checkbox"
-                                    @if($row['is_disabled']) 
-                                        disabled="true"
-                                    @else 
-                                        onclick="select_store_items('{{$key}}')"
-                                        id="check-store-{{$key}}"
-                                        class="check-store"
-                                        @if($row['is_check_all'])
-                                            checked="true"
-                                        @endif
-                                    @endif
-                                >
-                                <label for="check-store-{{$key}}"></label>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="fas fa-store"></span> {{strtoupper($row['partner_name'])}}
-                        </td>
-                    </tr>
-                    @foreach($row['products'] as $product_key => $product_row)
-                        <tr>
-                            <td class="text-center">
-                                <span class="icheck-warning">
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-borderless table-shopping-cart">
+                @if(count($data) > 0)
+                    <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                            <th scope="col" width="5" class="text-center">
+                                <label class="custom-control custom-checkbox">
                                     <input type="checkbox" 
-                                        @if($product_row['is_disabled']) 
+                                            class="custom-control-input"
+                                            @if($is_disabled_all) 
+                                                disabled="true"
+                                            @else 
+                                                onclick="select_all_items()"
+                                                id="check-all"
+                                                @if($is_check_all)
+                                                    checked="true"
+                                                @endif
+                                            @endif
+                                        >
+                                    <div class="custom-control-label" for="check-all"></div>
+                                </label>
+                            </th>
+                            <th scope="col">Product</th>
+                            <th scope="col" width="200">Quantity</th>
+                            <th scope="col" width="150">Price</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                @endif
+                <tbody>
+                    @forelse($data as $key => $row)
+                        <tr>
+                            <td>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" 
+                                        @if($row['is_disabled']) 
                                             disabled="true"
-                                        @else
-                                            @if($product_row['is_checkout'])
+                                            class="custom-control-input"
+                                        @else 
+                                            onclick="select_store_items('{{$key}}')"
+                                            id="check-store-{{$key}}"
+                                            class="check-store custom-control-input"
+                                            @if($row['is_check_all'])
                                                 checked="true"
                                             @endif
-                                            class="check-item check-store-{{$key}}" 
-                                            data-key_token="{{$product_row['cart_key_token']}}" 
-                                            id="check-{{$product_row['cart_key_token']}}" 
-                                            onclick="select_to_checkout_items()"
                                         @endif
-                                    >
-                                    <label for="check-{{$product_row['cart_key_token']}}"></label>
-                                </span>
+                                        >
+                                    <div class="custom-control-label" for="check-store-{{$key}}"></div>
+                                </label>
                             </td>
                             <td>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="{{route('front-end.product.information.redirect', [
-                                                'slug'      => $product_row['product_slug'],
-                                                'key_token' => $product_row['product_post_key_token'],
-                                                'type'      => 'buy_now'
-                                            ])}}">
-                                            <img src="{{$product_row['featured_photo']}}" class="img-fluid border cart-product-photo-thumb">
-                                        </a>
-                                    </div>
-                                    <div class="col-8 text-left">
-                                        <a href="{{route('front-end.product.information.redirect', [
-                                                'slug'      => $product_row['product_slug'],
-                                                'key_token' => $product_row['product_post_key_token'],
-                                                'type'      => 'buy_now'
-                                            ])}}">
-                                            <small class="title mb-0 ">{{$product_row['name']}}</small>
-                                        </a>
-                                        <br>
-                                        <small class="bg-danger p-1 rounded"> 
-                                            <span class="fas fa-clock"></span> 
-                                            @if($product_row['post_status'] != 'active')
-                                                <span>{{ucfirst($product_row['post_status'])}}</span> 
+                                <span class="fas fa-store"></span> {{strtoupper($row['partner_name'])}}
+                            </td>
+                        </tr> 
+                        @foreach($row['products'] as $product_key => $product_row)
+                            <tr>
+                                <td>
+                                    <label class="custom-control custom-checkbox ">
+                                        <input type="checkbox" 
+                                            @if($product_row['is_disabled']) 
+                                                disabled="true"
+                                                class="custom-control-input"
                                             @else
-                                                <span class="countdown">{{$product_row['date_end']}}</span>
+                                                @if($product_row['is_checkout'])
+                                                    checked="true"
+                                                @endif
+                                                class="check-item check-store-{{$key}} custom-control-input" 
+                                                data-key_token="{{$product_row['cart_key_token']}}" 
+                                                id="check-{{$product_row['cart_key_token']}}" 
+                                                onclick="select_to_checkout_items()"
                                             @endif
-                                        </small> 
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-8 text-center">
-                                                
-                                        <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend">
-                                                <button type="button" 
-                                                    @if($product_row['is_disabled']) 
-                                                        disabled="true" 
+                                        >
+                                        <div class="custom-control-label" for="check-{{$product_row['cart_key_token']}}"></div>
+                                    </label>
+                                </td>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside">
+                                            <img src="{{$product_row['featured_photo']}}" class="img-sm">
+                                        </div>
+                                        <figcaption class="info">
+                                            <a href="{{route('front-end.product.information.redirect', [
+                                                'slug'      => $product_row['product_slug'],
+                                                'key_token' => $product_row['product_post_key_token'],
+                                                'type'      => 'buy_now'
+                                            ])}}"
+                                            class="title text-dark">{{$product_row['name']}}</a>
+                                            <p class="text-muted small">
+                                                <small class="bg-primary p-1 rounded text-white"> 
+                                                    <span class="fas fa-clock"></span> 
+                                                    @if($product_row['post_status'] != 'active')
+                                                        <span>{{ucfirst($product_row['post_status'])}}</span> 
                                                     @else
-                                                        onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
-                                                    @endif 
-                                                        id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
-                                                        class="btn btn-default btn-quantity-minus" 
-                                                ><span class="fas fa-minus"></span></button>
-                                            </div>
-                                            <input type="number" 
+                                                        <span class="countdown">{{$product_row['date_end']}}</span>
+                                                    @endif
+                                                </small> 
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> 
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <button type="button" 
                                                 @if($product_row['is_disabled']) 
                                                     disabled="true" 
                                                 @else
-                                                    onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
+                                                    onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
                                                 @endif 
-                                                class="form-control form-control-sm text-center input-number-remove-arrow quantity" 
-                                                id="quantity-{{$product_row['cart_key_token']}}"
-                                                min="1" max="{{$product_row['current_quantity']}}"
-                                                data-key_token="{{$product_row['cart_key_token']}}"
-                                                value="{{$product_row['selected_quantity']}}"
-                                                >
-                                            <div class="input-group-append">
-                                                <button type="button" 
-                                                    @if($product_row['is_disabled'] || $product_row['selected_quantity'] == $product_row['current_quantity']) 
-                                                        disabled="true" 
-                                                    @else
-                                                        onclick="quantity_update('{{$product_row['cart_key_token']}}')"
-                                                    @endif 
-                                                    class="btn btn-default btn-quantity-plus" 
-                                                    id="btn-quantity-plus-{{$product_row['cart_key_token']}}" 
-                                                ><span class="fas fa-plus"></span></button>
-                                            </div>
+                                                    id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
+                                                    class="btn btn-light btn-quantity-minus" 
+                                            ><span class="fas fa-minus"></span></button>
                                         </div>
-                                        @if(!$product_row['is_disabled'])
-                                            <span>
-                                                <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
-                                            </span>
-                                        @endif
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" onclick="delete_item('{{$product_row['cart_key_token']}}')"> <span class="fas fa-trash"></span></a> 
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                    <tr class="bg-light">
-                        <td></td>
-                        <td colspan="2">
-                            <div class="price-wrap"> 
-                                <div class="price">
-                                    @if($row['is_disabled']) 
-                                        ₱ 0.00
-                                    @else
-                                        ₱ {{number_format($row['sub_total'], 2)}}
-                                    @endif
-                                </div> 
-                                <small class="text-muted"> SUB-TOTAL </small> 
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                    </tr>
-                @empty
-                    <tr class="text-center bg-white">
-                        <td colspan="5" class="text-center">
-                            <img width="150" src="https://image.freepik.com/free-vector/user-rating-feedback-customer-reviews-cartoon-web-icon-e-commerce-online-shopping-internet-buying-trust-metrics-top-rated-product_335657-778.jpg">
-                            <h3>
-                                Your Cart is Empty!
-                            </h3>
-                        </td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
-    </div>
-    {{-- Laptop/Destop View --}}
-    <div class="d-none d-sm-block d-md-block d-lg-block">
-        <table class="table table-borderless table-hover table-shopping-cart ">
-            @if(count($data) > 0)
-                <thead>
-                    <tr class="border-bottom">
-                        <th scope="col" width="10" class="text-center">
-                            <span class="icheck-warning">
-                                <input type="checkbox" 
-                                    @if($is_disabled_all) 
-                                        disabled="true"
-                                    @else 
-                                        onclick="select_all_items()"
-                                        id="check-all"
-                                        @if($is_check_all)
-                                            checked="true"
-                                        @endif
-                                    @endif
-                                >
-                                <label for="check-all"></label>
-                            </span>
-                        </th>
-                        <th scope="col">PRODUCTS</th>
-                        <th scope="col" width="150">QUANTITY</th>
-                        <th scope="col" width="130">PRICE</th>
-                        <th scope="col" class="text-right" width="50">ACTIONS</th>
-                    </tr>
-                </thead>
-            @endif
-            <tbody>
-                @forelse($data as $key => $row)
-                    <tr class="border">
-                        <td colspan="1">
-                            <span class="icheck-warning">
-                                <input type="checkbox"
-                                    @if($row['is_disabled']) 
-                                        disabled="true"
-                                    @else 
-                                        onclick="select_store_items('{{$key}}')"
-                                        id="check-store-{{$key}}"
-                                        class="check-store"
-                                        @if($row['is_check_all'])
-                                            checked="true"
-                                        @endif
-                                    @endif
-                                >
-                                <label for="check-store-{{$key}}"></label>
-                            </span>
-                        </td>
-                        <td colspan="4">
-                            <span class="fas fa-store"></span> {{strtoupper($row['partner_name'])}}
-                        </td>
-                    </tr>
-                    @foreach($row['products'] as $product_key => $product_row)
-                        <tr>
-                            <td class="text-center">
-                                <span class="icheck-warning">
-                                    <input type="checkbox" 
-                                        @if($product_row['is_disabled']) 
-                                            disabled="true"
-                                        @else
-                                            @if($product_row['is_checkout'])
-                                                checked="true"
-                                            @endif
-                                            class="check-item check-store-{{$key}}" 
-                                            data-key_token="{{$product_row['cart_key_token']}}" 
-                                            id="check-{{$product_row['cart_key_token']}}" 
-                                            onclick="select_to_checkout_items()"
-                                        @endif
-                                    >
-                                    <label for="check-{{$product_row['cart_key_token']}}"></label>
-                                </span>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-2 overflow-hidden">
-                                        <a href="{{route('front-end.product.information.redirect', [
-                                                'slug'      => $product_row['product_slug'],
-                                                'key_token' => $product_row['product_post_key_token'],
-                                                'type'      => 'buy_now'
-                                            ])}}">
-                                            <img src="{{$product_row['featured_photo']}}" class="img-fluid border cart-product-photo-thumb">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10 text-left">
-                                        <a href="{{route('front-end.product.information.redirect', [
-                                                'slug'      => $product_row['product_slug'],
-                                                'key_token' => $product_row['product_post_key_token'],
-                                                'type'      => 'buy_now'
-                                            ])}}">
-                                            <p class="title mb-0">{{$product_row['name']}}</p>
-                                        </a>
-                                        <small class="bg-danger p-1 rounded"> 
-                                            <span class="fas fa-clock"></span> 
-                                            @if($product_row['post_status'] != 'active')
-                                                <span>{{ucfirst($product_row['post_status'])}}</span> 
-                                            @else
-                                                <span class="countdown">{{$product_row['date_end']}}</span>
-                                            @endif
-                                        </small> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td> 
-                                <div class="input-group input-group-sm">
-                                    <div class="input-group-prepend">
-                                        <button type="button" 
+                                        <input type="number" 
                                             @if($product_row['is_disabled']) 
                                                 disabled="true" 
                                             @else
-                                                onclick="quantity_update('{{$product_row['cart_key_token']}}', false)"
+                                                onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
                                             @endif 
-                                                id="btn-quantity-minus-{{$product_row['cart_key_token']}}" 
-                                                class="btn btn-default btn-quantity-minus" 
-                                        ><span class="fas fa-minus"></span></button>
+                                            class="form-control text-center input-number-remove-arrow quantity" 
+                                            id="quantity-{{$product_row['cart_key_token']}}"
+                                            min="1" max="{{$product_row['current_quantity']}}"
+                                            data-key_token="{{$product_row['cart_key_token']}}"
+                                            value="{{$product_row['selected_quantity']}}"
+                                            >
+                                        <div class="input-group-append">
+                                            <button type="button" 
+                                                @if($product_row['is_disabled'] || $product_row['selected_quantity'] == $product_row['current_quantity']) 
+                                                    disabled="true" 
+                                                @else
+                                                    onclick="quantity_update('{{$product_row['cart_key_token']}}')"
+                                                @endif 
+                                                class="btn btn-light btn-quantity-plus" 
+                                                id="btn-quantity-plus-{{$product_row['cart_key_token']}}" 
+                                            ><span class="fas fa-plus"></span></button>
+                                        </div>
                                     </div>
-                                    <input type="number" 
-                                        @if($product_row['is_disabled']) 
-                                            disabled="true" 
-                                        @else
-                                            onkeyup="quantity_update('{{$product_row['cart_key_token']}}', 'force')"
-                                        @endif 
-                                        class="form-control form-control-sm text-center input-number-remove-arrow quantity" 
-                                        id="quantity-{{$product_row['cart_key_token']}}"
-                                        min="1" max="{{$product_row['current_quantity']}}"
-                                        data-key_token="{{$product_row['cart_key_token']}}"
-                                        value="{{$product_row['selected_quantity']}}"
-                                        >
-                                    <div class="input-group-append">
-                                        <button type="button" 
-                                            @if($product_row['is_disabled'] || $product_row['selected_quantity'] == $product_row['current_quantity']) 
-                                                disabled="true" 
-                                            @else
-                                                onclick="quantity_update('{{$product_row['cart_key_token']}}')"
-                                            @endif 
-                                            class="btn btn-default btn-quantity-plus" 
-                                            id="btn-quantity-plus-{{$product_row['cart_key_token']}}" 
-                                        ><span class="fas fa-plus"></span></button>
-                                    </div>
-                                </div>
-                                @if(!$product_row['is_disabled'])
-                                    <span>
-                                        <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
-                                    </span>
-                                @endif
-                            </td>
+                                    @if(!$product_row['is_disabled'])
+                                        <p>
+                                            <small class="text-muted"> {{$product_row['current_quantity']}} LEFT </small> 
+                                        </p>
+                                    @endif
+                                </td>
+                                <td> 
+                                    <div class="price-wrap @if($product_row['is_disabled']) text-line-through @endif">
+                                        <var class="price">
+                                            {{Utility::currency_code()}}{{number_format($product_row['total_price'], 2)}}
+                                        </var> 
+                                        <small class="text-muted @if($product_row['is_disabled']) text-line-through @endif"> 
+                                            {{Utility::currency_code()}}{{number_format($product_row['buy_now_price'], 2)}} each 
+                                        </small> 
+                                    </div> <!-- price-wrap .// -->
+                                </td>
+                                <td class="text-right"> 
+                                    <a href="javascript:void(0);" class="btn btn-light" onclick="delete_item('{{$product_row['cart_key_token']}}')">Remove</a> 
+                                </td>
+                            </tr>
+                        @endforeach
+                        
+                        <tr class="border-top">
+                            <td colspan="3"></td>
                             <td>
                                 <div class="price-wrap"> 
-                                    <div class="price @if($product_row['is_disabled']) text-line-through @endif">
-                                        ₱ {{number_format($product_row['total_price'], 2)}}
+                                    <div class="price">
+                                        @if($row['is_disabled']) 
+                                            {{Utility::currency_code()}} 0.00
+                                        @else
+                                            {{Utility::currency_code()}} {{number_format($row['sub_total'], 2)}}
+                                        @endif
                                     </div> 
-                                    <small class="text-muted @if($product_row['is_disabled']) text-line-through @endif"> 
-                                        ₱ {{number_format($product_row['buy_now_price'], 2)}} each 
-                                    </small> 
+                                    <small class="text-muted"> SUB-TOTAL </small> 
                                 </div> <!-- price-wrap .// -->
                             </td>
-                            <td class="text-right"> 
-                                <a href="javascript:void(0);" class="btn btn-outline-danger btn-sm" onclick="delete_item('{{$product_row['cart_key_token']}}')"> <span class="fas fa-trash"></span></a> 
+                            <td></td>
+                        </tr>
+                    @empty
+                        <tr class="text-center bg-white">
+                            <td colspan="5" class="text-center">
+                                <img width="150" src="https://image.freepik.com/free-vector/user-rating-feedback-customer-reviews-cartoon-web-icon-e-commerce-online-shopping-internet-buying-trust-metrics-top-rated-product_335657-778.jpg">
+                                <p>
+                                    Your Cart is Empty!
+                                </p>
                             </td>
                         </tr>
-                    @endforeach
-                    <tr class="bg-light">
-                        <td colspan="3"></td>
-                        <td>
-                            <div class="price-wrap"> 
-                                <div class="price">
-                                    @if($row['is_disabled']) 
-                                        ₱ 0.00
-                                    @else
-                                        ₱ {{number_format($row['sub_total'], 2)}}
-                                    @endif
-                                </div> 
-                                <small class="text-muted"> SUB-TOTAL </small> 
-                            </div> <!-- price-wrap .// -->
-                        </td>
-                        <td></td>
-                    </tr>
-                @empty
-                    <tr class="text-center bg-white">
-                        <td colspan="5" class="text-center">
-                            <img width="150" src="https://image.freepik.com/free-vector/user-rating-feedback-customer-reviews-cartoon-web-icon-e-commerce-online-shopping-internet-buying-trust-metrics-top-rated-product_335657-778.jpg">
-                            <h3>
-                                Your Cart is Empty!
-                            </h3>
-                        </td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
-    </div>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="card-body border-top">
+            <a href="/" class="btn btn-light"> « Continue Shopping</a>
+        </div> <!-- card-body.// -->
+    </div> <!-- card.// -->
 </div>
 
 @push('scripts')

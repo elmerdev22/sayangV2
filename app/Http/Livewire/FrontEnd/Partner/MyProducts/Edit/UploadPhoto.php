@@ -7,18 +7,21 @@ use Livewire\WithFileUploads;
 use App\Model\Product;
 use DB;
 use Utility;
+use UploadUtility;
 
 class UploadPhoto extends Component
 {
     use WithFileUploads;
 
-    public $partner, $account, $product;
+    public $partner, $account, $product, $featured_photo;
     public $photos = [];
 
     public function mount($product_id){
-        $this->partner = Utility::auth_partner();
-        $this->account = Utility::auth_user_account();
-        $this->product = Product::findOrFail($product_id);
+        $this->partner        = Utility::auth_partner();
+        $this->account        = Utility::auth_user_account();
+        $this->product        = Product::findOrFail($product_id);
+        $this->featured_photo = UploadUtility::product_featured_photo($this->account->key_token, $this->product->key_token, true , true);
+
     }
 
     public function render(){
@@ -39,11 +42,20 @@ class UploadPhoto extends Component
         
         try{
             $product    = Product::findOrFail($this->product->id);
-            $collection = $this->account->key_token.'/product/'.$product->key_token.'/photo/';
+            
+            $old_featured = count($this->featured_photo) > 0 ? true : false;
+            $collection   = $this->account->key_token.'/product/'.$product->key_token.'/photo/';
 
             foreach($this->photos as $key => $photo){
+                if(!$old_featured && $key == 0){
+                    $collection = $this->account->key_token.'/product/'.$product->key_token.'/featured-photo/';
+                }else{
+                    $collection = $this->account->key_token.'/product/'.$product->key_token.'/photo/';
+                }
+
                 $product->addMedia($photo->getRealPath())->usingFileName($photo->getClientOriginalName())->toMediaCollection($collection);
             }
+
             $response['success'] = true;
         }catch(\Exception $e){
             $response['success'] = false;

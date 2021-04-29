@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-sayang-primary elevation-2">
     <!-- Brand Logo -->
     <a href="/" class="brand-link logo-switch text-center" target="_blank">
-        <img src="{{ UploadUtility::content_photo('icon') }}" alt="Sayang Admin Logo Small" class="brand-image-xl logo-xs">
-        <img src="{{ UploadUtility::content_photo('logo') }}" alt="Sayang Admin Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
+        <img src="{{ UploadUtility::content_photo('icon', false) }}" alt="Sayang Admin Logo Small" class="brand-image-xl logo-xs">
+        <img src="{{ UploadUtility::content_photo('logo', false) }}" alt="Sayang Admin Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
     </a>
     <!-- Sidebar -->
     <div class="sidebar sayang-sidebar">
@@ -55,15 +55,42 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.list.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.*')  ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.list.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.index')  ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('front-end.partner.my-products.activities.index')}}" class="nav-link {{Route::is('front-end.partner.my-products.activities.*') ? 'sayang-nav-link-active':''}}">
+                            <a href="{{route('front-end.partner.my-products.list.add')}}" class="nav-link {{Route::is('front-end.partner.my-products.list.add')  ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Activities</p>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{Route::is('front-end.partner.activities.*') ? 'menu-open':''}}">
+                    <a href="javascript:void(0);" class="nav-link {{Route::is('front-end.partner.activities.*') ? 'active':''}}">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>Activities <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.activities.active')}}" class="nav-link {{Route::is('front-end.partner.activities.active_details') || Route::is('front-end.partner.activities.active')  ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Active</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.activities.past')}}" class="nav-link {{Route::is('front-end.partner.activities.past_details') || Route::is('front-end.partner.activities.past') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Past</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('front-end.partner.activities.cancelled')}}" class="nav-link {{Route::is('front-end.partner.activities.cancelled_details') || Route::is('front-end.partner.activities.cancelled') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Cancelled</p>
                             </a>
                         </li>
                     </ul>

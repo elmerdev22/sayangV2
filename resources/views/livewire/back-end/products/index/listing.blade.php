@@ -78,9 +78,16 @@
                                 Lowest Price 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.lowest_price'])
                             </th>
+                            <th class="table-sort" wire:click="sort('product_posts.total_quantity')">
+                                Total Quantity 
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.total_quantity'])
+                            </th>
                             <th class="table-sort" wire:click="sort('product_posts.quantity')">
-                                Quantity 
+                                Remaining Quantity 
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.quantity'])
+                            </th>
+                            <th class="table-sort">
+                                Total Sold 
                             </th>
                             <th class="table-sort" wire:click="sort('product_posts.date_start')">
                                 Date Start
@@ -94,8 +101,9 @@
                                 Date Posted
                                 @include('front-end.includes.datatables.sort', ['field' => 'product_posts.created_at'])
                             </th>
-                            <th class="text-center">
+                            <th class="table-sort" wire:click="sort('product_posts.status')">
                                 Status
+                                @include('front-end.includes.datatables.sort', ['field' => 'product_posts.status'])
                             </th>
                             <th class="text-center">
                                 Action
@@ -106,17 +114,18 @@
                         @forelse($data as $row)
                             <tr>
                                 <td>{{ucfirst($row->product_name)}}</td>
-                                {{-- <td>{{number_format($row->regular_price, 2)}}</td> --}}
                                 <td>{{number_format($row->buy_now_price, 2)}}</td>
                                 <td>{{number_format($row->lowest_price, 2)}}</td>
+                                <td>{{number_format($row->total_quantity, 0)}}</td>
                                 <td>{{number_format($row->quantity, 0)}}</td>
+                                <td>{{number_format(Utility::product_sold($row->id), 0)}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_start))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_end))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>
                                     @if($row->status == 'active')
-                                        @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($row->date_start)))
-                                            <span class="badge badge-warning">Active</span>    
+                                        @if (date('Y-m-d H:i:s') >= date('Y-m-d H:i:s', strtotime($row->date_start)))
+                                            <span class="badge badge-success">Active</span>    
                                         @else
                                             <span class="badge badge-info">Upcoming</span>    
                                         @endif
@@ -166,3 +175,10 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
+</script>
+@endpush

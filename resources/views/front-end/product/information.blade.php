@@ -1,199 +1,253 @@
 @extends('front-end.layout')
 @section('title', ucfirst($product->name))
 @section('css')
-    <!-- Glasscase css-->
-    <link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
-    <link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('template/assets/dist/css/glasscase.min.css')}}">
+<link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
-<section class="content pb-5">
-    <div class="container my-5">
-        <!-- Default box -->
-        <div class="card border-0 shadow-none">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-12 col-md-7">
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- ============================ PRODUCT DETAILS ================================= -->
+        <div class="card">
+            <div class="row no-gutters">
+                <aside class="col-md-6">
+                    <article class="gallery-wrap pt-2"> 
                         @livewire('front-end.product.information.photo', ['product_id' => $product->product_id])
-                    </div>
-                    <div class="col-12 col-md-5">
-                        @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id, 'force_disabled' => $force_disabled])
-                        <hr>
-                        @if(!$force_disabled)
-                            <div class="card text-center sticky">
-
-                                <div class="card-header">
-                                    <div class="col-12">
-                                        <h5 class="p-0 m-0">
-                                            <small class="p-2 font-weight-bold">BUY NOW</small>
-                                            <label class="switch">
-                                                <input type="checkbox" id="purchase-type-switch" @if($trigger_place_bid) checked="true" @endif>
-                                                <span class="slider round"></span>
-                                            </label>
-                                            <small class="p-2 font-weight-bold">PLACE BID</small>
-                                        </h5>
-                                    </div>
-                                </div>
-                                
-                                <!-- Buy now -->
-                                <div class="p-3" id="buy-now-section" @if($trigger_place_bid) style="display: none;" @endif>
-                                    @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
-                                </div>
-                                <!-- End of Buy now -->
-
-                                <!-- Place Bid -->
-                                <div class="p-3" id="place-bid-section" @if(!$trigger_place_bid) style="display: none;" @endif>
-                                    @livewire('front-end.product.information.place-bid', ['product_post_id' => $product->product_post_id])
-                                </div>
-                                <!-- End of Place Bid -->
+                    </article> <!-- gallery-wrap .end// -->
+                    @if($product->reminders)
+                        <div class="row p-4">
+                            <div class="col-12">
+                                <h5>Few Reminders</h5>
+                                <p>{!! $product->reminders !!}</p>
                             </div>
+                        </div>
+                    @endif
+                </aside>
+                <main class="col-md-6 border-left">
+                    <article class="content-body">
+                        @livewire('front-end.product.information.main-details', ['product_post_id' => $product->product_post_id, 'force_disabled' => $force_disabled])
+                    <hr>
+                    @if(!$force_disabled)
+                        <div class="text-center">
+                            <div class="col-12">
+                                <h5 class="p-0 m-0">
+                                    <small class="p-2 font-weight-bold">BUY NOW</small>
+                                    <label class="switch">
+                                        <input type="checkbox" id="purchase-type-switch" @if($trigger_place_bid) checked="true" @endif>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <small class="p-2 font-weight-bold">PLACE BID</small>
+                                </h5>
+                            </div>
+                            
+                            <!-- Buy now -->
+                            <div class="py-3" id="buy-now-section" @if($trigger_place_bid) style="display: none;" @endif>
+                                @livewire('front-end.product.information.buy-now', ['product_post_id' => $product->product_post_id])
+                            </div>
+                            <!-- End of Buy now -->
+
+                            <!-- Place Bid -->
+                            <div class="py-3" id="place-bid-section" @if(!$trigger_place_bid) style="display: none;" @endif>
+                                @livewire('front-end.product.information.place-bid', ['product_post_id' => $product->product_post_id])
+                            </div>
+                            <!-- End of Place Bid -->
+                        </div>
+                    @endif
+                    </article> <!-- product-info-aside .// -->
+                </main> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div> <!-- card.// -->
+        <!-- ============================ PRODUCT DETAILS END .// ================================= -->
+    </div> <!-- container .//  -->
+    
+</section>
+<section class="section-content pb-3 bg">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <dl class="row">
+                                <dt class="col-12">
+                                    <figure class="icontext mb-2">
+                                        <div class="icon">
+                                            <img class="rounded-circle img-sm border" src="{{$store_photo}}">
+                                        </div>
+                                        <div class="text">
+                                            <div class="mb-2">
+                                                <strong> {{ucfirst($product->partner_name)}} </strong>
+                                            </div>
+                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-sm btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
+                                            {{-- @php
+                                                $store_hours = Utility::store_hours($product->partner_id);
+                                            @endphp
+                                            @if($store_hours['is_set'])
+                                            
+                                                <div class="text-muted">
+                                                    <small>{{$store_hours['open_time']}} - {{$store_hours['close_time']}}</small>
+                                                </div>
+                                                <div class="text-muted">
+                                                    <small>({{$store_hours['status']}})</small>
+                                                </div>
+                                            @endif --}}
+                                        </div>
+                                    </figure>
+                                </dt>
+            
+                            </dl>
+                        </div>
+                        <div class="col-md-3">
+                            <dl class="row">
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Ratings</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                </dd>
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Products</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{number_format(Utility::count_products($product->partner_id) ,0)}}</span>
+                                </dd>
+                                <dt class="col-sm-5">
+                                    <span class="font-weight-bold">Followers</span>
+                                </dt>
+                                <dd class="col-sm-7">
+                                    <span>{{Utility::count_followers($product->partner_id)}}</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                @php
+                                    $store_hours = Utility::store_hours($product->partner_id);
+                                @endphp
+                                @if($store_hours['is_set'])
+                                    <dt class="col-sm-3">
+                                        <span class="font-weight-bold">Store Hours</span>
+                                    </dt>
+                                    <dd class="col-sm-9">
+                                        <span>{{$store_hours['open_time']}} - {{$store_hours['close_time']}} ({{$store_hours['status']}})</span>
+                                    </dd>
+                                @endif
+                                <dt class="col-sm-3">
+                                    <span class="font-weight-bold">Joined</span>
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <span>{{date('F d, Y', strtotime($product->joined))}}</span>
+                                </dd>
+                                <dt class="col-sm-3">
+                                    <span class="font-weight-bold">Address</span>
+                                </dt>
+                                <dd class="col-sm-9">
+                                    <span>{{$product->address}} </span>
+                                    <span class="fas fa-hand-point-right text-muted"></span> 
+                                    <u>
+                                        <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
+                                    </u>
+                                </dd>
+                            </dl>
+                            {{-- <div class="row">
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Ratings</span>
+                                    <span>{{Utility::get_partner_ratings($product->partner_id)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Products</span>
+                                    <span>{{number_format(Utility::count_products($product->partner_id) ,0)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Followers</span>
+                                    <span>{{Utility::count_followers($product->partner_id)}}</span>
+                                </div>
+                                <div class="col-lg-4 col-6 p-1">
+                                    <span class="font-weight-bold">Joined</span>
+                                    <span>{{date('F d, Y', strtotime($product->joined))}}</span>
+                                </div>
+                                <div class="col-lg-8 col-12 p-1">
+                                    <span class="font-weight-bold">Address</span>
+                                    <span>{{$product->address}}</span>
+                                    <br>
+                                    <span class="fas fa-hand-point-right text-muted"></span> 
+                                    <u>
+                                        <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
+                                    </u>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
+<section class="section-content pb-3 bg">
+    <div class="container">
+        <!-- ============================ COMPONENT 1 ================================= -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <aside class="col-md-6">
+                                <h5>Dimensions</h5>
+                                <dl class="row">
+                                    <dt class="col-sm-3">Length</dt>
+                                    <dd class="col-sm-9">{{$product->length ? $product->length : 'Not set'}}</dd>
+                
+                                    <dt class="col-sm-3">Width</dt>
+                                    <dd class="col-sm-9">{{$product->width ? $product->width : 'Not set'}}</dd>
+                
+                                    <dt class="col-sm-3">Height</dt>
+                                    <dd class="col-sm-9">{{$product->height ? $product->height : 'Not set'}}</dd>
+                
+                                </dl>
+                            </aside>
+                            
+                            @if($product->paper_packaging)
+                                <aside class="col-md-6">
+                                    <h5>Packaging</h5>
+                                    <ul class="list-check">
+                                        <li>Paper packaging</li>
+                                    </ul>
+                                </aside>
+                            @endif
+                        </div> <!-- row.// -->
+                        @if ($product->about_product)
+                            <hr>
+                            <p>
+                                {!! $product->about_product !!}
+                            </p>
                         @endif
                     </div>
-                </div>
-                
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="card widget-user-2">
-                            
-                            <div class="card-header bg-light">
-                                <h4 class="card-title">
-                                    About Seller
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row text-muted text-sm">
-                                    <div class="col-md-3 pb-2">
-                                        <div class="widget-user-header p-0">
-                                            <div class="widget-user-image">
-                                                <img class="img-circle img-responsive elevation-1 mr-3 lazy" src="{{$store_photo}}" alt="Store photo" style="width: 50px; height: 50px;">
-                                            </div>
-                                            <!-- /.widget-user-image -->
-                                            <h6>{{ucfirst($product->partner_name)}}</h6>
-                                            <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-outline-warning text-dark btn-xs">
-                                                <span class="fas fa-store"></span> <small>View Shop</small>
-                                            </a>
-                                        </div>
-                                            {{-- @livewire('front-end.profile.partner.follow-button', ['partner_id' => $product->partner_id ]) --}}
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label>
-                                                    <span class="fas fa-star"></span> 
-                                                    <span class="text-muted">Ratings :</span>
-                                                    <span class="text-warning">{{Utility::get_partner_ratings($product->partner_id)}}</span>
-                                                </label>
-                                            </div>
-                                            <div class="col-12">
-                                                <label>
-                                                    <span class="fas fa-store"></span>
-                                                    <span class="text-muted">Products :</span>
-                                                    <span class="text-warning">{{number_format(Utility::count_products($product->partner_id) ,0)}}</span> 
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label>
-                                                    <span class="fas fa-users"></span>
-                                                    <span class="text-muted">Joined :</span>
-                                                    <span class="">{{date('F d, Y', strtotime($product->joined))}}</span> 
-                                                </label>
-                                            </div>
-                                            <div class="col-12">
-                                                <label>
-                                                    <span class="fas fa-users"></span>
-                                                    <span class="text-muted">Followers :</span>
-                                                    <span class="text-warning">{{Utility::count_followers($product->partner_id)}}</span> 
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label>
-                                                    <span class="fas fa-map-marker-alt"></span> 
-                                                    <span class="text-muted">Address :</span>
-                                                    <p>{{$product->address}} <br> 
-                                                        <span class="fas fa-hand-point-right"></span> 
-                                                        <u>
-                                                            <a href="{{$product->map_address_link}}" target="_blank" class="text-underline">Get Directions</a>
-                                                        </u>
-                                                    </p>
-                                                    
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-light">
-                                <h4 class="card-title">
-                                    About Products
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                {!! $product->about_product != null ? $product->about_product : 'No more about product.' !!}
-                                {{-- @livewire('front-end.product.information.about') --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-light">
-                                <h4 class="card-title">
-                                    Other Details
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                {!! $product->other_details != null ? $product->other_details : 'No Other Details.' !!}
-                                {{-- @livewire('front-end.product.information.other-details') --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-light">
-                                <h4 class="card-title">
-                                    Seller Ratings
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-    </div>
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ============================ COMPONENT 1 END .// ================================= -->
+    </div> <!-- container .//  -->
+</section>
+<section class="section-content pb-3 bg">
     <div class="container">
-        @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
+        @livewire('front-end.product.information.ratings', ['partner_id' => $product->partner_id])
     </div>
 </section>
+
+<!-- More Like This -->
+    @livewire('front-end.product.information.more-like-this', ['product_category_id' => $product->category_id, 'product_post_id' => $product->product_post_id])
+<!-- More Like This .//end -->
 
 <!-- Modal -->
 <div class="modal fade" id="my-all-bids" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">My Bids in this Product</h5>
+                <h6 class="modal-title" id="exampleModalLabel">My Bids in this Product</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -208,16 +262,10 @@
 </div>
 @endsection
 @section('js')
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-{{-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb151db1c817c52"></script> --}}
-
-<!-- Glasscase -->
 <script src="{{asset('template/assets/dist/js/glasscase.min.js')}}"></script>
-<script src="{{asset('template/assets/plugins/money-mask/jquery.maskMoney.min.js')}}"></script>
 <script src="{{asset('template/assets/plugins/owl-carousel/js/owl.carousel.js')}}"></script>
 <script type="text/javascript">
     $(document).ready( function () {
-        //If your <ul> has the id "glasscase"
         $('#glasscase').glassCase({ 'thumbsPosition': 'bottom'});
         $(document).on('change', '#purchase-type-switch', function () {
             if($(this).is(':checked')){
@@ -234,27 +282,25 @@
                 $(document).find('#buy-now-section').show();
             }
         });
-    });
-    $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        responsiveClass:true,
-        nav:false,
-        loop: false,
-        autoplay:true,
-        autoplayTimeout:2000,
-        autoplayHoverPause:true,
-        responsive:{
-            0:{
-                items:2,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:4,
+        $('.owl-carousel').owlCarousel({
+            margin:10,
+            responsiveClass:true,
+            loop: false,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                600:{
+                    items:2,
+                },
+                1000:{
+                    items:4,
+                }
             }
-        }
-    })
+        })
+    });
 </script>
 @endsection

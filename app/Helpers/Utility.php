@@ -25,8 +25,10 @@ use App\Model\EmailNotificationSetting;
 use App\Model\DescriptionSetting;
 use App\Model\Notification;
 use App\Model\PartnerRating;
+use App\Model\ImageSetting;
 use Carbon\Carbon;
 use UploadUtility;
+use QueryUtility;
 use PaymentUtility;
 use Schema;
 use Mail;
@@ -42,6 +44,10 @@ class Utility{
     public static function carbon_diff($date){
         return Carbon::parse($date)->diffForHumans();
     }
+    
+    public static function currency_code(){
+        return '₱';
+    }
 
     public static function error_message($type){
         $data = '';
@@ -55,7 +61,7 @@ class Utility{
 
     public static function img_source($type){
         if($type == 'not_found'){
-            return 'https://image.freepik.com/free-vector/fixing-pages-found-system-error_45923-201.jpg';
+            return 'https://image.freepik.com/free-vector/city-construction_146998-4151.jpg';
         }else if($type == 'loading'){
             return asset('images/gif/loading.gif');
         }
@@ -375,7 +381,7 @@ class Utility{
     }
 
     public static function datatables_show_entries(){
-        return ['10', '25', '50', '100', '300', '500', '1000'];
+        return ['1','10', '25', '50', '100', '300', '500', '1000'];
     }
 
     public static function top_nav_validate_auth_verify(){
@@ -619,7 +625,7 @@ class Utility{
                 'products'     => []
             ];
 
-            $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token);
+            $featured_photo = UploadUtility::product_featured_photo($row->product_post->product->partner->user_account->key_token, $row->product_post->product->key_token, true);
 
             $product = [
                 'product_id'             => $product_id,
@@ -627,7 +633,7 @@ class Utility{
                 'name'                   => $row->product_post->product->name,
                 'is_checkout'            => $row->is_checkout,
                 'is_disabled'            => $is_disabled,
-                'featured_photo'         => $featured_photo[0]->getFullUrl('thumb'),
+                'featured_photo'         => $featured_photo,
                 'total_price'            => $total_price,
                 'regular_price'          => $row->product_post->product->regular_price,
                 'product_post_key_token' => $row->product_post->key_token,
@@ -847,11 +853,18 @@ class Utility{
         \Mail::to($email)->send(new EmailNotification($email_notification_details));
     }
 
-    public static function email_notification_details($settings_key, $url_link){
+    public static function email_notification_details($settings_key, $url_link, $product_post_id = null){
+        
+        $product_post = ProductPost::with(['product'])->where('id',$product_post_id)->first();
+        $message      = self::email_notification_settings($settings_key)->message;
+        
+        if($product_post_id != null){
+            $message = str_replace('{product}', $product_post->product->name, $message);    
+        }
 
         $data = [
             'subject'  => self::email_notification_settings($settings_key)->subject,
-            'message'  => self::email_notification_settings($settings_key)->message,
+            'message'  => $message,
             'url_link' => $url_link,
         ];
 
@@ -935,5 +948,161 @@ class Utility{
 
     public static function description_settings($settings_key){
         return DescriptionSetting::where('settings_key', $settings_key)->first();
+    }
+
+    public static function image_settings($settings_key, $settings_group){
+        return ImageSetting::where('settings_key', $settings_key)->where('settings_group', $settings_group)->first();
+    }
+
+    public static function home_background_random(){
+        $data = ImageSetting::where('settings_group', 'home_bg_image')->where('is_display', true)->inRandomOrder()->first();
+        return UploadUtility::image_setting($data->id, 'home-bg-image');
+    }
+
+    public static function days(){
+        return [
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+            7 => 'Sunday',
+        ];
+    }
+
+    public static function store_hours($partner_id)
+    {
+        $response = [
+            'is_set'     => false,
+            'open_time'  => '',
+            'close_time' => '',
+            'status'     => '',
+        ];  
+
+        $data            = Partner::with(['operating_hours'])->where('id', $partner_id)->first();
+        $operating_hours = $data->operating_hours->where('day', date('w'))->first();
+        
+        if($operating_hours){
+            if($operating_hours->status){
+                $response['is_set'] = true;
+            }
+            
+            $response['open_time']  = date('h:i a', strtotime($operating_hours->open_time));
+            $response['close_time'] = date('h:i a', strtotime($operating_hours->close_time));
+            
+            $currentTime = Carbon::now();
+
+            if($currentTime->between($operating_hours->open_time, $operating_hours->close_time, true)){
+                $response['status'] = 'Open now';
+            }else{
+                $response['status'] = 'Close now';
+            }
+        }
+
+        return $response;
+    }
+
+    public static function elements_multiplier($product_post_id){
+
+        $product_post = ProductPost::with(['product'])->where('id', $product_post_id)->first();
+
+        $elements = [
+            'trees_wppv'  => self::settings('trees_wppv'),
+            'trees_wppa'  => self::settings('trees_wppa'),
+            'trees_woppv' => self::settings('trees_woppv'),
+            'water'       => self::settings('water'),
+            'energy'      => self::settings('energy')
+        ];
+
+        $per = [
+            'trees'  => self::settings('trees_per_kg'),
+            'water'  => self::settings('water_per_buy_now_price'),
+            'energy' => self::settings('energy_per_buy_now_price') 
+        ];
+
+        $data = [
+            'trees'  => null,
+            'water'  => $elements['water'],
+            'energy' => $elements['energy']
+        ];
+
+        if($product_post->product->paper_packaging){
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees_wppv'] + $per['trees'] * $elements['trees_wppa'];
+        }
+        else{
+            $data['trees'] = $product_post->product->weight / $per['trees'] * $elements['trees_woppv'];
+        }
+
+        $data['water']  = $product_post->buy_now_price / $per['water'] * $elements['water'];
+        $data['energy'] = $product_post->buy_now_price / $per['energy'] * $elements['energy'];
+        
+        $decimal_places = self::settings('elements_round_off');
+
+        $response = [
+            'trees'  => number_format($data['trees'], $decimal_places),
+            'water'  => number_format($data['water'], $decimal_places),
+            'energy' => number_format($data['energy'], $decimal_places),
+        ];
+
+        return $response;
+    }
+
+    public static function product_sold($product_post_id){
+        $filter = [];
+		$filter['select'] = [
+			'orders.*'
+        ];
+        
+		$filter['where']['order_items.product_post_id']  = $product_post_id;
+
+		$filter['where_in'][] = [
+            'field'  => 'orders.status',
+            'values' => ['completed','to_receive']
+        ];
+
+		return QueryUtility::order_items($filter)->sum('order_items.quantity');
+    }
+
+    public static function rescued_elements_computation($type){
+        
+		$filter = [];
+		$filter['select'] = [
+			'orders.id', 
+		];
+		
+        if($type == 'user'){
+            $account = self::auth_user_account();
+            $filter['where']['billings.user_account_id'] = $account->id;
+        }
+        else if($type == 'partner'){
+            $partner = self::auth_partner();
+            $filter['where']['orders.partner_id'] = $partner->id;
+        }
+        
+        $filter['where_in'][] = [
+            'field'  => 'orders.status',
+            'values' => ['to_receive', 'completed']
+        ];
+
+		$orders = QueryUtility::orders($filter)->pluck('id');
+
+        $order_item = OrderItem::whereIn('order_id', $orders->toArray())->get();
+
+        $elements = [
+            'trees'  => 0,
+            'water'  => 0,
+            'energy' => 0,
+        ];  
+
+        foreach($order_item as $row){
+            for($x = 0; $x < $row->quantity; $x++){
+                $elements['trees']  += self::elements_multiplier($row->product_post_id)['trees'];
+                $elements['water']  += self::elements_multiplier($row->product_post_id)['water'];
+                $elements['energy'] += self::elements_multiplier($row->product_post_id)['energy'];
+            }
+        }
+
+        return $elements;
     }
 }

@@ -4,7 +4,7 @@
             
             <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? $cover_photo->temporaryUrl() : $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
+                <div class="widget-user-header text-white" style="background: url('{{ $cover_photo ? UploadUtility::livewire_tmp_url($cover_photo) : $old_cover_photo }}'); background-repeat: no-repeat; background-size: cover;">
                     <h3 class="widget-user-desc text-right">
                         @if ($cover_photo)
                             <button class="btn btn-warning btn-sm" wire:click="update_cover_photo">
@@ -30,6 +30,9 @@
                 </div>
                 <div class="card-footer bg-white">
                     <div class="row text-center">
+                        <div class="col-12 pb-3">
+                            <a target="_blank" href="{{route('front-end.profile.partner.index', ['slug' => $slug ])}}" class="btn btn-primary btn-sm">View Live Preview <span class="fa fa-eye"></span></a>
+                        </div>
                         <div class="col-md-4 border pt-2">
                             <label>
                                 <span class="fas fa-star"></span> 
@@ -72,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
                                 <div class="text-center overflow-hidden">
-                                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $store_photo ? $store_photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="Photo">
+                                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $store_photo ? UploadUtility::livewire_tmp_url($store_photo) : asset('images/default-photo/image.png')}}" alt="Photo">
                                 </div>
                                 <div class="form-group">
                                     <label for="store_photo">Store Photo* 

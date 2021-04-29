@@ -5,6 +5,9 @@ use App\Model\Setting;
 use App\Model\Rating;
 use App\Model\EmailNotificationSetting;
 use App\Model\WebNotificationSetting;
+use App\Model\DescriptionSetting;
+use App\Model\ImageSetting;
+use Utility;
 use DB;
 class SettingsUtility{
 
@@ -20,9 +23,9 @@ class SettingsUtility{
     public static function settings($key=null){
         
         $group = [
-            'bids'              => 'bids',
-            'content'           => 'content',
-            'web_notifications' => 'web_notifications',
+            'bids'     => 'bids',
+            'content'  => 'content',
+            'elements' => 'elements',
         ];
 
         $response = [
@@ -79,7 +82,69 @@ class SettingsUtility{
                 'name'  => 'Icon',
                 'value' => null,
             ],
+            'app_name' => [
+                'group' => $group['content'],
+                'name'  => 'App Name',
+                'value' => 'Sayang! PH',
+            ],
+            'home_title' => [
+                'group' => $group['content'],
+                'name'  => 'Home Title',
+                'value' => 'Auctions for Every Juan!',
+            ],
 
+            // Elements Trees
+            'trees_wppv' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees with paper packaging per kg',
+                'value' => 0.0015,
+            ],
+            'trees_wppa' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees with paper packaging additional per kg',
+                'value' => 0.017,
+            ],
+            'trees_woppv' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees without paper packaging per kg',
+                'value' => 0.0015,
+            ],
+            'trees_per_kg' => [
+                'group' => $group['elements'],
+                'name'  => 'Trees per kilogram',
+                'value' => 1,
+            ],
+
+            // Elements Water
+            'water' => [
+                'group' => $group['elements'],
+                'name'  => 'Water value',
+                'value' => 0.06,
+            ],
+            'water_per_buy_now_price' => [
+                'group' => $group['elements'],
+                'name'  => 'Water per buy now price',
+                'value' => 0.89,
+            ],
+
+            // Elements enery
+            'energy' => [
+                'group' => $group['elements'],
+                'name'  => 'Energy value',
+                'value' => 0.00957,
+            ],
+            'energy_per_buy_now_price' => [
+                'group' => $group['elements'],
+                'name'  => 'Energy per buy now price',
+                'value' => 0.89,
+            ],
+
+            // Elements round off total value
+            'elements_round_off' => [
+                'group' => $group['elements'],
+                'name'  => 'Elements Total value Round off',
+                'value' => 3,
+            ],
         ];
 
         if($key){
@@ -102,25 +167,43 @@ class SettingsUtility{
             'partner_product_post_end' => [
                 'name'    => 'Partner product post is ended',
                 'subject' => 'Product is ended!',
-                'message' => 'your product is ended click the button below to proceed!',
+                'message' => 'your product {product} is ended click the button below to proceed!',
             ],
             // Bidder win
             'bidder_won' => [
                 'name'    => 'Bidder win',
                 'subject' => 'your bid is won!',
-                'message' => 'congratulation your bid is won!',
+                'message' => 'congratulation your bid is won on product {product}.',
             ],
             // Bidder lose
             'bidder_lose' => [
                 'name'    => 'Bidder lose',
                 'subject' => 'your bid is lose!',
-                'message' => 'try again, your bid is lose!',
+                'message' => 'try again, your bid is lose on product {product}.',
             ],
             // Product post sold out
             'product_post_sold_out' => [
                 'name'    => 'Product sold out',
                 'subject' => 'Product sold out!',
-                'message' => 'product sold, click the button below for more details',
+                'message' => 'product sold on product {product}, click the button below for more details',
+            ],
+            // New Cash on Delivery Request
+            'new_cop_request' => [
+                'name'    => 'New Cash on Pickup Request',
+                'subject' => 'COP Request!',
+                'message' => 'New Cash on Pickup Request, click the here for more details',
+            ],
+            // Cancelled cop request
+            'cancelled_cop_request' => [
+                'name'    => 'Cancelled Cash on Pickup Request',
+                'subject' => 'COP request cancelled!',
+                'message' => 'COP request cancelled, click the here for more details',
+            ],
+            // Confirm cop request
+            'confirmed_cop_request' => [
+                'name'    => 'Confirmed Cash on Pickup Request',
+                'subject' => 'COP request Confirmed!',
+                'message' => 'COP request Confirmed, click the here for more details',
             ],
 
         ];
@@ -145,31 +228,31 @@ class SettingsUtility{
             'partner_product_post_end' => [
                 'name'    => 'Partner product post is ended',
                 'title'   => 'Product is ended!',
-                'message' => 'your product is ended click herefor more details.',
+                'message' => 'your product {product} is ended click herefor more details.',
             ],
             // Partner Notify if product post is cancelled by admin
             'partner_product_post_cancelled' => [
                 'name'    => 'Partner product post is cancelled by admin',
                 'title'   => 'Product is cancelled!',
-                'message' => 'your product is cancelled click herefor more details.',
+                'message' => 'your product {product} is cancelled click herefor more details.',
             ],
             // Bidder win
             'bidder_won' => [
                 'name'    => 'Bidder win',
                 'title'   => 'your bid is won!',
-                'message' => 'Your bid is won click here to more details',
+                'message' => 'Your bid is won on product {product} click here to more details',
             ],
             // Bidder lose
             'bidder_lose' => [
                 'name'    => 'Bidder lose',
                 'title'   => 'your bid is lose!',
-                'message' => 'Your bid is lose click here to more details',
+                'message' => 'Your bid is lose on product {product} click here to more details',
             ],
             // Product post sold out
             'product_post_sold_out' => [
                 'name'    => 'Product sold out',
                 'title'   => 'Product sold out!',
-                'message' => 'product sold, click the here for more details',
+                'message' => 'product sold on product {product}, click the here for more details',
             ],
             // New Cash on Delivery Request
             'new_cop_request' => [
@@ -179,33 +262,33 @@ class SettingsUtility{
             ],
             // New PRoduct Sold
             'new_product_sold' => [
-                'name'    => 'New Product Sold',
-                'title'   => 'New Product Sold!',
-                'message' => 'New Product Sold, click the here for more details',
+                'name'    => 'New Order Sold',
+                'title'   => 'New Order Sold!',
+                'message' => 'New Order Sold, click the here for more details',
             ],
             // Cancelled cop request
             'cancelled_cop_request' => [
                 'name'    => 'Cancelled Cash on Pickup Request',
                 'title'   => 'COP request cancelled!',
-                'message' => 'COP request cancelled!, click the here for more details',
+                'message' => 'COP request cancelled, click the here for more details',
             ],
             // Confirm cop request
             'confirmed_cop_request' => [
                 'name'    => 'Confirmed Cash on Pickup Request',
                 'title'   => 'COP request Confirmed!',
-                'message' => 'COP request Confirmed!, click the here for more details',
+                'message' => 'COP request Confirmed, click the here for more details',
             ],
             // Order Completed
             'order_completed' => [
                 'name'    => 'Order Completed',
                 'title'   => 'Order Completed!',
-                'message' => 'Order Completed!, click the here for more details',
+                'message' => 'Order Completed! , click the here for more details',
             ],
             // Partner New Product Post
             'partner_new_product_post' => [
                 'name'    => 'Partner New Post Product',
                 'title'   => 'New Post Product!',
-                'message' => 'New Post Product , click the here for more details',
+                'message' => 'New Post Product {product} , click the here for more details',
             ],
 
         ];
@@ -244,6 +327,95 @@ class SettingsUtility{
         }
     }
 
+    public static function description_settings($key=null){
+        
+        $group = [
+            'advocacy_section' => 'advocacy_section',
+        ];
+        
+        $response = [
+            // Advocacy Section
+            'header' => [
+                'group' => $group['advocacy_section'],
+                'name'  => 'Header',
+                'value' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+            ],
+            'sub_header' => [
+                'group' => $group['advocacy_section'],
+                'name'  => 'Subheader',
+                'value' => 'The hidden environmental cost of unsold items from traditional groceries and e-commerce sites.',
+            ],
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
+
+    public static function image_settings($key=null){
+        
+        $group = [
+            'home_bg_image'      => 'home_bg_image',
+            'advocacy_section'   => 'advocacy_section',
+            'advocacy_section_2' => 'advocacy_section_2',
+            'become_a_partner_section'   => 'become_a_partner_section',
+        ];
+        
+        $response = [
+            // Home Background Image
+            'home_bg_image_1' => [
+                'group'       => $group['home_bg_image'],
+                'name'        => 'Home Background Image',
+                'description' => null,
+                'arrangement' => null,
+            ],
+
+            // Advocacy Section
+            'trees' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Trees',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 1,
+            ],
+            'water' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Water',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 2,
+            ],
+            'energy' => [
+                'group'       => $group['advocacy_section'],
+                'name'        => 'Energy',
+                'description' => 'Everyday, thousands of essential and usable products are locked up, never to be sold again.',
+                'arrangement' => 3,
+            ],
+                
+            // Advocacy Section 2
+            'title_1' => [
+                'group'       => $group['advocacy_section_2'],
+                'name'        => 'WAGING THE WAR AGAINTS WASTE',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt. tempor incididunt.',
+                'arrangement' => null,
+            ],
+                
+            // Become a partner
+            'become_a_partner' => [
+                'group'       => $group['become_a_partner_section'],
+                'name'        => 'BECOME A PARTNER',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.',
+                'arrangement' => null,
+            ],
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
+    
     public static function settings_set_default(){
         Setting::truncate();
         $success = true;
@@ -359,6 +531,72 @@ class SettingsUtility{
             }
         }catch(\Exception $e){
             $success = false;
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+    
+    public static function description_settings_set_default(){
+        DescriptionSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::description_settings() as $settings_key => $settings_value){
+                $settings                 = new DescriptionSetting();
+                $settings->settings_key   = $settings_key;
+                $settings->settings_value = $settings_value['value'];
+                $settings->settings_group = $settings_value['group'];
+                $settings->settings_name  = $settings_value['name'];
+                $save                     = $settings->save();
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+            dd($e);
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+    
+    public static function image_settings_set_default(){
+        // ImageSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::image_settings() as $settings_key => $settings_value){
+                $settings                 = ImageSetting::firstOrNew(['settings_key' => $settings_key]);
+                $settings->settings_key   = $settings_key;
+                $settings->description    = $settings_value['description'];
+                $settings->settings_group = $settings_value['group'];
+                $settings->settings_name  = $settings_value['name'];
+                $settings->arrangement    = $settings_value['arrangement'];
+                $settings->key_token      = Utility::generate_table_token('ImageSetting');
+                $save                     = $settings->save();
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+            dd($e);
         }
 
         if($success){

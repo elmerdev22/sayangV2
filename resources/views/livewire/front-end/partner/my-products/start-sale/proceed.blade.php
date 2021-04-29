@@ -10,7 +10,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                     </div>
-                    <input type="text" value="" class="form-control input-readonly" id="start_date" readonly="true" placeholder="MM/DD/YYYY @ HH:00A">
+                    <input type="text" value="" class="form-control input-readonly" id="start_date" readonly="true" placeholder="MM/DD/YYYY @ hh:mm A">
                 </div>
                 <!-- /.input group -->
             </div>
@@ -21,7 +21,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-clock"></i></span>
                     </div>
-                    <input type="text" value="" class="form-control input-readonly" id="end_date" readonly="true" placeholder="MM/DD/YYYY @ HH:00A">
+                    <input type="text" value="" class="form-control input-readonly" id="end_date" readonly="true" placeholder="MM/DD/YYYY @ hh:mm A">
                 </div>
                 <!-- /.input group -->
             </div>
@@ -96,7 +96,7 @@
         var type = 'start_date';
         var date = picker.startDate['_d'];
         @this.call('set_date', type, date)
-        $('#'+type).val(moment(date).format('MM/DD/YYYY @ HH:00A'));
+        $('#'+type).val(moment(date).format('MM/DD/YYYY @ hh:mm A'));
         end_daterangepicker_init(picker, date);
         init_end_date(date);
     }
@@ -112,7 +112,7 @@
             var date = new Date(picker.endDate['_d']);
         }
 
-        $('#'+type).val(moment(date).format('MM/DD/YYYY @ HH:00A'));
+        $('#'+type).val(moment(date).format('MM/DD/YYYY @ hh:mm A'));
         @this.call('set_date', type, date)
     }
 
@@ -132,7 +132,7 @@
     }
 
     function init_end_date(minDate=null){
-        var datetime_config = date_config(60);
+        var datetime_config = date_config(15);
         var min_seconds     = {{$min_hours}} * 3600;
         var max_seconds     = {{$max_hours}} * 3600;
 
@@ -165,7 +165,7 @@
             autoUpdateInput    : false,
             timePickerIncrement: timePickerIncrement,
             locale             : {
-                format: 'MM/DD/YYYY @ HH:00A'
+                format: 'MM/DD/YYYY @ hh:mm A'
             }
         };
     }

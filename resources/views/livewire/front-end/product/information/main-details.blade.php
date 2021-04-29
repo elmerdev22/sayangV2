@@ -1,35 +1,85 @@
 <div>
-    <div class="row">
-        <div class="col-lg-6">
-            <h4 class="my-2">{{ucfirst($product_post->product->name)}}</h4>
-        </div>
-        
-        <div class="col-lg-6">
-            <h4 class="my-2 text-danger text-lg-right">
+    
+    <h2 class="title">{{ucfirst($product_post->product->name)}}</h2>
+    <div class="rating-wrap my-3">
+        <small class="text-muted">{{ucfirst($product_post->product->partner->name)}}</small>
+        <span class="badge badge-warning"> <i class="fa fa-star"></i>
+            {{Utility::get_partner_ratings($product_post->product->partner->id)}}
+        </span>
+        @if($store_hours['is_set'])
+            <div>
+                <small class="text-muted">Store hours: {{$store_hours['open_time']}} - {{$store_hours['close_time']}} ({{$store_hours['status']}})</small>
+            </div>
+        @endif
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 col-md-3">		
+            <figure class="item-feature">
+                <var class="price h4">
+                    @if(!$force_disabled)
+                        {{number_format($product_post->quantity)}}
+                    @endif
+                </var> 
                 @if(!$force_disabled)
-                    {{number_format($product_post->quantity)}} LEFT!
+                    <span class="text-muted">LEFT!</span> 
                 @endif
-            </h4>
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-4 col-md-3 pt-1 text-center">	
+            <figure class="item-feature">
+                <span class="text-primary"><i class="fa fa fa-seedling"></i></span> 
+                <span>{{Utility::elements_multiplier($product_post->id)['trees']}}</span>
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-4 col-md-3 pt-1 text-center">
+            <figure  class="item-feature">
+                <span class="text-info"><i class="fa fa fa-tint"></i></span>	
+                <span>{{Utility::elements_multiplier($product_post->id)['water']}}</span>
+            </figure> <!-- iconbox // -->
+        </div><!-- col // -->
+        <div class="col-4 col-md-3 pt-1 text-center">	
+            <figure  class="item-feature">
+                <span class="text-warning"><i class="fa fa fa-bolt"></i></span>
+                <span>{{Utility::elements_multiplier($product_post->id)['energy']}}</span>
+            </figure> <!-- iconbox // -->
+        </div> <!-- col // -->
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="bg-primary mb-3 p-2 w-100 text-center text-white rounded">
+                <span class="fas fa-clock"></span> 
+                <span class="countdown">
+                    @if($force_disabled)
+                        {{ucwords(Utility::product_post_status($product_post_id))}}
+                    @else
+                        {{$component->datetime_format($product_post->date_end)}}
+                    @endif
+                </span>
+            </div>
         </div>
     </div>
 
-    <a href="{{route('front-end.profile.partner.index', ['slug' => $product_post->product->partner->slug ])}}">
-        <p>{{ucfirst($product_post->product->partner->name)}}
-            <span class="fas fa-star text-warning"></span>
-            <small>({{Utility::get_partner_ratings($product_post->product->partner->id)}})</small>
-        </p>
-    </a>
-    <p class="text-justify">{!! $product_post->product->description !!}</p>
-    <div class="bg-danger p-2 w-50 text-center rounded">
-        <span class="fas fa-clock"></span> 
-        <span class="countdown">
-            @if($force_disabled)
-                {{ucwords(Utility::product_post_status($product_post_id))}}
-            @else
-                {{$component->datetime_format($product_post->date_end)}}
-            @endif
-        </span>
-    </div>
+    <p>
+        {!! $product_post->product->description !!}
+    </p>
+
+    {{-- @if(!$force_disabled) --}}
+    <dl class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <dt class="col-sm-4">Weight</dt>
+                <dd class="col-sm-8">{{$product_post->product->weight ? $product_post->product->weight.' kilogram(s)' : 'Not set'}}</dd>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <dt class="col-sm-4">Shelf life</dt>
+                <dd class="col-sm-8">{{$product_post->product->shelf_life ? $product_post->product->shelf_life.' month(s)' : 'Not set'}}</dd>
+            </div>
+        </div>
+    </dl>
+    {{-- @endif --}}
 </div>
 
 @push('scripts')

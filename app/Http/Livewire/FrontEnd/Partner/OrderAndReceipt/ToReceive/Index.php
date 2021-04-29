@@ -65,4 +65,9 @@ class Index extends Component
     	$this->sort_type   = $this->sort_type == 'asc' ? 'desc' : 'asc';
     	return $this->sort = explode('|', $sort);
 	}
+
+	public function order_items($order_no){
+		
+		$this->emit('initialize_order_items', ['order_no' => $order_no]);
+	}
 }

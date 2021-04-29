@@ -9,14 +9,42 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <form wire:submit.prevent="save_content('app_name')">
+                        <div class="form-group">
+                            <label>App Name</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" wire:model.lazy="app_name">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="btn btn-primary" type="button">Save </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form wire:submit.prevent="save_content('home_title')">
+                        <div class="form-group">
+                            <label>Home Title</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" wire:model.lazy="home_title">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="btn btn-primary" type="button">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <form role="form" wire:submit.prevent="update('logo')">
                         <div class="form-group">
                             <label for="logo">Logo* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
                             <div class="text-center overflow-hidden">
                                 
                                 @if ($logo)
-                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ $logo->temporaryUrl()}}" alt="">
+                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ UploadUtility::livewire_tmp_url($logo)}}" alt="">
                                 @else
                                     <img class="mb-2 mt-1 img-thumbnail" src="{{$current_logo}}" alt="">
                                 @endif
@@ -46,14 +74,14 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <form role="form" wire:submit.prevent="update('icon')">
                         <div class="form-group">
-                            <label for="icon">Icon* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
+                            <label for="icon">Icon* <small class="text-muted"><i>Note: .ico, .icon only(to become transparent). </i></small></label>
                             <div class="text-center overflow-hidden">
                                 
                                 @if ($icon)
-                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ $icon->temporaryUrl()}}" alt="">
+                                    <img class="mb-2 mt-1 img-thumbnail" src="{{ UploadUtility::livewire_tmp_url($icon)}}" alt="">
                                 @else
                                     <img class="mb-2 mt-1 img-thumbnail" src="{{$current_icon}}" alt="">
                                 @endif

@@ -1,181 +1,144 @@
 <div>
-    <header class="mb-4">
-        <div class="row">
-            <div class="col-lg-3 col-12 pt-2">
-                <span class="">{{number_format($total_items,0)}} Items found </span>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="input-group my-1 float-right">
-                    <input type="search" class="form-control" id="search" placeholder="Search">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-warning" onclick="search()">
-                            <span class="fas fa-search"></span>
-                        </button>
-                    </div>
+    
+    <header class="border-bottom mb-4 pb-2">
+        <div class="form-inline">
+            <span class="mr-md-auto my-1">{{number_format($total_items,0)}} Items found </span>
+            
+            <div class="input-group my-1 mr-2">
+                <input type="search" class="form-control" id="search" placeholder="Search">
+                <div class="input-group-prepend">
+                    <button class="btn btn-primary rounded-right" onclick="search()">
+                        <span class="fas fa-search"></span>
+                    </button>
                 </div>
             </div>
-            <div class="col-lg-3 col-8 float-right">
-                <select class="form-control my-1 " id="sort-by" wire:model="sort_by">
-                    <option value="">Sort by</option>
-                    <option value="lowest_price">Lowest Price</option>
-                    <option value="highest_price">Highest Price</option>
-                    <option value="ending_soon">Ending Soon</option>
-                    <option value="recently_added">Recently Added</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-4">
-                <div class="btn-group my-1 float-right">
-                    <a href="javascript:void(0);" class="btn btn-outline-warning @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
-                        <i class="fa fa-th"></i>
-                    </a>
-                    <a href="javascript:void(0);" class="btn btn-outline-warning @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </div>
+            <select class="form-control mr-2 my-1 " id="sort-by" wire:model="sort_by">
+                <option value="">Sort by</option>
+                <option value="lowest_price">Lowest Price</option>
+                <option value="highest_price">Highest Price</option>
+                <option value="ending_soon">Ending Soon</option>
+                <option value="recently_added">Recently Added</option>
+            </select>
+            <div class="btn-group my-1">
+                <a href="javascript:void(0);" class="btn btn-outline-secondary @if($view_by == 'grid_view') active @endif" @if($view_by != 'grid_view') onclick="view_by('grid_view')" @endif>
+                    <i class="fa fa-th"></i>
+                </a>
+                <a href="javascript:void(0);" class="btn btn-outline-secondary @if($view_by == 'list_view') active @endif" @if($view_by != 'list_view') onclick="view_by('list_view')" @endif> 
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
         </div>
     </header><!-- sect-heading -->
-
+    
     <div class="row">
         @forelse($data as $row)
             @if($view_by == 'grid_view')
-                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                    
-                    <div class="card mb-4 product-card">
-                        <div class="w-100 text-center">
-                            <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
-                            </div>
-                            <span class="ends-in rounded-left">
-                                <div class="countdown text-white">
-                                    <span class="fas fa-clock"></span>
-                                    <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
-                                </div>
-                            </span>
-                            <div class="store-info p-1 mx-1 bg-transparent" style="margin-top: -30px; text-shadow: 0 0 1px black">
-                                <div class="row">
-                                    <div class="col-7 text-white text-left text-ellipsis">
-                                        <small>{{ucfirst($row->partner_name)}}</small>
-                                    </div>
-                                    <div class="col-5 text-right">
-                                        @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
-                                            <small class="fas fa-star text-warning"></small> 
-                                            <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info p-2">
-                                <div class="row">
-                                    <div class="col-7 font-weight-bold text-left text-ellipsis">
-                                        {{ucfirst($row->product_name)}}
-                                    </div>
-                                    <div class="col-5 text-right text-ellipsis">
-                                        {{number_format($row->quantity)}} left
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row m-0 p-0">
-                                <div class="col-6 m-0 p-0">
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
-                                        <button class="btn btn-sm btn-dark item-btn">
-                                            <span class="font-weight-bold">Buy Now</span><br>
-                                            <small class="text-white item-info">
-                                                PHP {{number_format($row->buy_now_price, 2)}} | 
-                                                {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% off
-                                            </small>
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col-6 m-0 p-0">
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
-                                        <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                            <span class="font-weight-bold">Place Bid</span><br>
-                                            <small class="item-info">Bids: {{Utility::bid_details($row->id, 'count')}} | Top: {{Utility::bid_details($row->id, 'top')}}</small>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @else
-            <div class="col-12">
-                <div class="card mb-4 product-card">
-                    <div class="row">
-                        <div class="col-5 col-md-4 overflow-hidden product-card-img-list">
-                            <div class="overflow-hidden position-relative">
-                                <img class="card-img-top sayang-card-img-listing img-preloader" src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}" alt="Card image cap">
-                            </div>
-                        </div>
-                        <div class="col-7 col-md-8 overflow-hidden">
-                            <div class="product-card-list-information">
-                                <div class="mb-3 product-card-countdown">
-                                    <span class="ends-in rounded" style="position: relative !important;">
-                                        <div class="countdown text-white">
-                                            <span class="fas fa-clock"></span>
-                                            <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="store-info bg-transparent">
-                                        <div class="text-left text-sm text-ellipsis">
-                                            {{ucfirst($row->partner_name)}} 
-                                            @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
-                                                <small class="fas fa-star text-warning"></small> 
-                                                <small>{{Utility::get_partner_ratings($row->partner_id)}}</small>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="product-info">
-                                        <div class="text-left text-ellipsis">
-                                            {{ucfirst($row->product_name)}} <small>({{number_format($row->quantity)}} left)</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    @component('front-end.components.product.grid')
+                        @slot('featured', $component->product_featured_photo($row->product_id, $row->partner_id))
+                        @slot('countdown', $component->datetime_format($row->date_end))
+                        @slot('discount_percentage', Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent'])
 
-                            <div class="row product-card-btn-purchase">
-                                <div class="col-6 product-card-buy-now col-sm-5">
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}">
-                                        <button class="btn btn-sm btn-dark item-btn">
-                                            <span class="font-weight-bold">Buy Now</span><br>
-                                            <small class="text-white item-info">
-                                                PHP {{number_format($row->buy_now_price, 2)}} | 
-                                                {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% off
-                                            </small>
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col-6 product-card-place-bid col-sm-5">
-                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}">
-                                        <button class="btn btn-sm btn-outline-warning text-dark item-btn">
-                                            <span class="font-weight-bold">Place Bid</span><br>
-                                            <small class="item-info">Bids: {{Utility::bid_details($row->id, 'count')}} | Top: {{Utility::bid_details($row->id, 'top')}}</small>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @slot('buy_now', route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now']))
+                        @slot('bid_now', route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid']))
+
+                        @slot('product_name', ucfirst($row->product_name))
+                        @slot('quantity_left', number_format($row->quantity, 0))
+                        @slot('buy_now_price', Utility::currency_code().''.number_format($row->buy_now_price, 2))
+                        @slot('regular_price', Utility::currency_code().''.number_format($row->regular_price, 2))
+                        @slot('bid_details_top', Utility::bid_details($row->id, 'top'))
+                        @slot('bid_details_top_price', Utility::currency_code().''.Utility::bid_details($row->id, 'top'))
+                        @slot('bid_details_count', Utility::bid_details($row->id, 'count'))
+
+                        @slot('elements_trees', Utility::elements_multiplier($row->id)['trees'])
+                        @slot('elements_water', Utility::elements_multiplier($row->id)['water'])
+                        @slot('elements_energy', Utility::elements_multiplier($row->id)['energy'])
+                    @endcomponent
+                </div> <!-- col.// -->
+            @else
+                <div class="col-12">
+                    <article class="card card-product-list">
+                        <div class="row no-gutters">
+                            <aside class="col-md-3">
+                                <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="img-wrap">
+                                    <span class="badge badge-danger p-2" >
+                                        {{Utility::price_percentage($row->regular_price, $row->buy_now_price)['discount_percent']}}% OFF
+                                    </span>
+                                    <img src="{{$component->product_featured_photo($row->product_id, $row->partner_id)}}">
+                                </a>
+                            </aside> <!-- col.// -->
+                            <div class="col-md-6">
+                                <div class="info-main">
+                                    <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="h5 title text-truncate">{{ucfirst($row->product_name)}}</a>
+                                    <div>
+                                        <span class="badge badge-primary p-2" style="position: static">
+                                            <span class="fa fa-clock"></span>
+                                            <span class="countdown">{{$component->datetime_format($row->date_end)}}</span>
+                                        </span>
+                                    </div>
+                                    <p class="py-3"> 
+                                        {{ucfirst(Str::limit($row->product_description, 160, ' ...'))}}
+                                    </p>
+                                    <div class="row ">
+                                        <div class="col-4">
+                                            <span class="text-primary">
+                                                <i class="fa fa-seedling"></i>
+                                            </span>
+                                            <small>{{Utility::elements_multiplier($row->id)['trees']}}</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <span class="text-info">
+                                                <i class="fa fa-tint"></i>
+                                            </span>
+                                            <small>{{Utility::elements_multiplier($row->id)['water']}}</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <span class="text-warning">
+                                                <i class="fa fa-bolt"></i>
+                                            </span>
+                                            <small>{{Utility::elements_multiplier($row->id)['energy']}}</small>
+                                        </div>
+                                    </div>
+                                </div> <!-- info-main.// -->
+                            </div> <!-- col.// -->
+                            <aside class="col-sm-3">
+                                <div class="info-aside">
+                                    <br>
+                                    <p>
+                                        <div class="price-wrap">
+                                            <span class="price h5">{{Utility::currency_code()}}{{number_format($row->buy_now_price, 2)}}</span>	
+                                            <del class="price-old"> {{Utility::currency_code()}}{{number_format($row->regular_price, 2)}}</del>
+                                        </div>
+                                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'buy_now'])}}" class="btn btn-primary btn-block"> Buy now </a>
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <div class="price-wrap">
+                                            @if(Utility::bid_details($row->id, 'top') != 'None')
+                                                <span class="price h5">{{Utility::currency_code()}}{{Utility::bid_details($row->id, 'top')}}</span>
+                                            @endif
+                                            <small class="text-muted ml-1">Bids: {{Utility::bid_details($row->id, 'count')}}</small>
+                                        </div> 
+                                        <a href="{{route('front-end.product.information.redirect', ['slug' => $row->product_slug, 'key_token' => $row->key_token, 'type' => 'place_bid'])}}" class="btn btn-light btn-block"> Bid now </a>
+                                    </p>
+                                </div> <!-- info-aside.// -->
+                            </aside> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </article>
                 </div>
-            </div>
             @endif
         @empty
             <div class="col-12 text-center">
                 <img style="width: 30%" src="{{asset('images/default-photo/no-search.jpg')}}">
-                <h5 class="text-center">No Item Found</h5>
+                <h5 class="text-center font-weight-light">No Item(s) Found</h5>
             </div>
-        @endforelse    
-    </div>
-
+        @endforelse   
+    </div> <!-- row.// -->
+    
     <div class="row justify-content-center">
-        @if ($data->total() > 12 && $data->total() > $limit)
+        @if ($data->total() > 6 && $data->total() > $limit)
             <div class="col-12 mb-3 text-center">
-                <button wire:click="load_more" class="btn btn-warning" style="width: 200px;">Load More <span class="" wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
+                <button wire:click="load_more" class="btn btn-primary" style="width: 200px;">Load More <span class="" wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
             </div>
         @endif
     </div>

@@ -1,23 +1,19 @@
 <div>
-    <div class="card card-sayang mb-3 rounded-0">
-        <div class="card-header">
-            <h5 class="card-title">Activity</h5> 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                </button>
-            </div>
-        </div>
+    <div class="card">
+        <header class="card-header">
+            <strong class="d-inline-block mr-3">Activity</strong>
+        </header>
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                    <a class="float-right cursor-pointer" wire:click="read_all()"><u>Mark all as read</u></a>
+                    <a href="javascript:void(0);" class="float-right" wire:click="read_all()"><u>Mark all as read</u></a>
                 </div>
             </div>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                <table class="table table-bordered table-hover table-borderless table-cell-nowrap text-center">
                     <thead>
-                        <tr>
-                            <th class="text-center">Activity</th>
+                        <tr class="border">
+                            <th class="text-center" colspan="3">Activity</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,45 +26,51 @@
                                 else{
                                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
                                     $product_token      = $row->product_post->product->key_token;
-                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
+                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token, true);
                                 }
                             @endphp
 
-                            <tr style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
+                            <tr class="clickable-row border"
+                                @if ($row->product_post_id != null) 
+                                    @if ($row->type == 'bidder_won')
+                                        data-href="{{route('front-end.user.my-bids.win')}}"
+                                    @elseif($row->type == 'bidder_lose')
+                                        data-href="{{route('front-end.user.my-bids.lose')}}"
+                                    @elseif($row->type == 'partner_new_product_post')
+                                        data-href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug , 'key_token' => $row->product_post->key_token , 'type' => 'buy_now'])}}"
+                                    @else 
+                                        data-href="#";
+                                    @endif 
+                                @endif 
+                                @if ($row->is_read == 0)
+                                    wire:click="click('{{$row->id}}')"
+                                @endif
+                                style="background-color:  {{$row->is_read == 0 ? 'whitesmoke': ''}} ; cursor: pointer;">
                                 <td>
-                                    <a target="_blank" 
-                                        @if ($row->product_post_id != null) 
-                                            @if ($row->type == 'bidder_won')
-                                                href="{{route('front-end.user.my-bids.win')}}"
-                                            @elseif($row->type == 'bidder_lose')
-                                                href="{{route('front-end.user.my-bids.lose')}}"
-                                            @elseif($row->type == 'partner_new_product_post')
-                                                href="{{route('front-end.product.information.redirect', ['slug' => $row->product_post->product->slug , 'key_token' => $row->product_post->key_token , 'type' => 'buy_now'])}}"
-                                            @else 
-                                                href="#";
-                                            @endif 
-                                        @endif 
-                                        @if ($row->is_read == 0)
-                                            wire:click="click('{{$row->id}}')"
+                                    <img src="{{$featured_photo}}" class="img-xs">
+                                </td>
+                                <td class="text-left"> 
+                                    <p class="title mb-0">{{$row->web_notification_settings->title}}</p>
+                                    <small class="text-muted">
+                                        @if ($row->product_post_id != null)
+                                            @php
+                                                $message = str_replace('{product}', $row->product_post->product->name, $row->web_notification_settings->message);    
+                                            @endphp
+                                        @else 
+                                            @php
+                                                $message = $row->web_notification_settings->message;    
+                                            @endphp
                                         @endif
-                                    >
-                                
-                                        <div class="media pt-2">
-                                            <img src="{{$featured_photo}}" class="img-size-50 mr-3 img-circle" style="height: 45px;">
-                                            <div class="media-body text-left">
-                                                <h3 class="dropdown-item-title">
-                                                    {{$row->web_notification_settings->title}}
-                                                    <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
-                                                </h3>
-                                                <p class="text-sm">{{$row->web_notification_settings->message}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                        {{$message}}
+                                    </small>
+                                </td>
+                                <td>
+                                    <span class="text-muted text-sm float-right">{{Utility::carbon_diff($row->created_at)}}</span>
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan="1">No Notifications.</td>
+                            <tr class="border">
+                                <td colspan="3">No Notifications.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -79,4 +81,14 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.open($(this).data("href"));
+        });
+    });
+</script>   
+@endpush
 

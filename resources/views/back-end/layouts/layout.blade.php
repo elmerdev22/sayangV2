@@ -8,14 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(Request::is('/'))
-      <title>{{ env('APP_NAME') }} - @yield('title')</title>
+      <title>{{ Utility::settings('app_name') }} - @yield('title')</title>
     @else
-      <title>@yield('title') | {{ env('APP_NAME') }}</title>
+      <title>@yield('title') | {{ Utility::settings('app_name') }}</title>
     @endif
-    <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon')}}">
+    <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon', false)}}">
     
     @yield('css')
-    @if(env('APP_DEPLOY') == 'production')
       <!-- Kindly removed once the packages need is working properly -->
           <!-- Font Awesome -->
           <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -24,15 +23,15 @@
           <!-- icheck bootstrap -->
           <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
           <!-- Theme style -->
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
+          <link href="{{ mix('css/AdminLTE.css') }}" rel="stylesheet">
+          {{-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}"> --}}
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
           <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
+          {{-- Scroll Bar --}}
+          <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
           <!-- Google Font: Quicksand -->
           <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
           <!-- end of to be removed packages -->
-    @else
-      <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
     @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed sayang-layout-navbar-fixed">
@@ -80,7 +79,6 @@
   <!-- jQuery -->
 
   @livewireScripts
-  @if(env('APP_DEPLOY') == 'production')
     <!-- Kindly removed once the packages need is working properly -->
     <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
@@ -88,68 +86,75 @@
     <!-- SweetAlert2 -->
     <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
     <!-- Admin lte -->
-     <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
-    <!-- AOS script-->
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
+    <!-- SCroll bar -->
+    <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{asset('template/assets/dist/js/export/FileSaver.min.js') }}"></script>
+    <script src="{{asset('template/assets/dist/js/export/tableexport.min.js') }}"></script>
+    <script>
+      ExportTable();
+      function ExportTable(filename){
+          $('.sayang-datatables').tableExport({
+              position: 'top',
+              formats : ['xls', 'csv'],
+          });
+          $('.xls').addClass('btn btn-primary btn-sm mx-1');
+          $('.csv').addClass('btn btn-primary btn-sm mx-1');
+      }
+    </script>
     <!-- end of to be removed packages -->
-  @else
-    <script src="{{ mix('js/app.js') }}"></script>
-  @endif
-
-
-  <script type="text/javascript">
-    window.livewire.on('notif_alert', param => {
-      Swal.fire({
-        position: param['position'],
-        icon: param['type'],
-        title: param['message'],
-        showConfirmButton: param['confirm_button'],
-        timer: param['timer']
-      })
-    });
-
-    window.livewire.on('alert', param => {
-      var config = {
-        position  : 'center',
-      };
-
-      if('title' in param)
-        config['title'] = param['title'];
-      if('type' in param)
-        config['icon'] = param['type'];
-      if('message' in param)
-        config['html'] = param['message'];
-      if('showConfirmButton' in param)
-        config['showConfirmButton'] = param['showConfirmButton'];
-      if('timer' in param)
-        config['timer'] = param['timer'];
-
-      Swal.fire(config);
-    });
-
-    window.livewire.on('alert_link', param => {
-      Swal.fire({
-          position         : 'center',
-          icon             : param['type'],
-          html             : param['message'],
-          title            : param['title'],
-          showConfirmButton: true,
-          allowOutsideClick: false,
-      }).then((result) => {
-          if(result.value){
-            if('redirect' in param){
-              window.location = param['redirect'];                       
-            }else{
-              window.location.reload();                       
-            }
-          }
+    <script type="text/javascript">
+      window.livewire.on('notif_alert', param => {
+        Swal.fire({
+          position: param['position'],
+          icon: param['type'],
+          title: param['message'],
+          showConfirmButton: param['confirm_button'],
+          timer: param['timer']
+        })
       });
-    });
-    
-    
-  </script>
 
-  @yield('js')
-  @stack('scripts')
+      window.livewire.on('alert', param => {
+        var config = {
+          position  : 'center',
+        };
+
+        if('title' in param)
+          config['title'] = param['title'];
+        if('type' in param)
+          config['icon'] = param['type'];
+        if('message' in param)
+          config['html'] = param['message'];
+        if('showConfirmButton' in param)
+          config['showConfirmButton'] = param['showConfirmButton'];
+        if('timer' in param)
+          config['timer'] = param['timer'];
+
+        Swal.fire(config);
+      });
+
+      window.livewire.on('alert_link', param => {
+        Swal.fire({
+            position         : 'center',
+            icon             : param['type'],
+            html             : param['message'],
+            title            : param['title'],
+            showConfirmButton: true,
+            allowOutsideClick: false,
+        }).then((result) => {
+            if(result.value){
+              if('redirect' in param){
+                window.location = param['redirect'];                       
+              }else{
+                window.location.reload();                       
+              }
+            }
+        });
+      });
+      
+      
+    </script>
+    @yield('js')
+    @stack('scripts')
 </body>
 </html>

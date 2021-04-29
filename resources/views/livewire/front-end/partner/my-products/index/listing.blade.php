@@ -3,13 +3,13 @@
         <div class="card-header">
             <h5 class="card-title"> My Product List</h5> 
             <div class="card-tools">
+				<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-import_product"><i class="fas fa-file-import"></i> Import </button>
 				<a href="{{route('front-end.partner.my-products.list.add')}}" class="btn btn-warning btn-sm"><i class="fas fa-plus"></i> Product </a>
                 @if (Auth::user()->is_blocked)
                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="cant_add()"><i class="fas fa-plus"></i> Start a Sale </a>
                 @else 
                     <a href="{{route('front-end.partner.my-products.list.start-sale')}}" class="btn btn-danger btn-sm"><i class="fas fa-plus"></i> Start a Sale </a>
                 @endif
-                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
             </div>
         </div>
         <div class="card-body">
@@ -78,6 +78,11 @@
 
 @push('scripts')
 <script type="text/javascript">
+
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
+
     function cant_add(){
         Swal.fire({
             icon: 'error',
@@ -119,5 +124,6 @@
 			text: 'Cant`t delete because this product already have transactions',
 		})
 	}
+
 </script>
 @endpush

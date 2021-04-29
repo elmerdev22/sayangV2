@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row py-4">
         <p><span class="fas fa-hand-point-right"></span> First things first. Before you can start selling, we would need to know more details about you and your business.</p>
     </div>
     <div class="row">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-warning text-white float-right" wire:target="dti_certificate_file" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
+                <button type="submit" class="btn btn-primary text-white float-right" wire:target="dti_certificate_file" wire:loading.attr="disabled">Next <span class="fas fa-chevron-right"></span></button>
             </form>
         </div>
     </div>

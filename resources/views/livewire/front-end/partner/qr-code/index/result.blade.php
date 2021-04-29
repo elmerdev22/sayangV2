@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $data->order_no])}}">
+                    <a target="_blank" href="{{route('front-end.partner.order-and-receipt.track', ['id' => $data->order_no])}}">
                         <i class="fas fa-link"></i> Click here to view full order information
                     </a>
                 </div>
@@ -111,6 +111,7 @@
             $('#result-order-no').html(param['order_no']);
             setTimeout(() => {
                 $('#modal-qr_result').modal("show");
+                reset_input();
                 Swal.close();
             }, 3000);
         }else{
@@ -180,5 +181,23 @@
             html5QrcodeScanner.render(onScanSuccess);
         });
     }
+
+    function input_order_no(){
+        $('#btn-loading').show();
+        $('.btn').prop('disabled', true);
+        var order_no = $('#order_no').val();
+
+        @this.call('input_order_no', order_no)
+    }
+    
+    function reset_input(){
+        $('.btn').prop('disabled', false);
+        $('#btn-loading').hide();
+    }
+
+    window.livewire.on('alert', param => {
+        reset_input();
+    });
+
 </script>
 @endpush

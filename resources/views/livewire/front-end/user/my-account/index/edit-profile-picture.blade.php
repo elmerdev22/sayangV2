@@ -3,14 +3,15 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="text-center overflow-hidden">
-                    <img class="mb-2 mt-1 sayang-img-upload-preview" src="{{ $photo ? $photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="Photo">
+                    <img class="icon icon-lg rounded-circle border mb-2" src="{{ $photo ? UploadUtility::livewire_tmp_url($photo) : asset('images/default-photo/image.png')}}" alt="Photo">
                 </div>
                 <div class="form-group">
                     <label for="photo">Photo*</label>
+                    <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
                     <input type="file" id="photo" class="form-control-file @error('photo') is-invalid @enderror" accept=".jpg, .jpeg, .png" wire:model="photo">
-                    <div>
-                        <small>File Size: Maximum of 2MB</small>
-                    </div>
+                        <div>
+                            <small>File Size: Maximum of 2MB</small>
+                        </div>
                     <div>
                         <small>File Extension: .png, .jpeg, .jpeg</small>
                     </div>
@@ -21,8 +22,8 @@
                     @enderror
                 </div>
                 <div class="form-group mt-2">
-                    <button wire:target="photo" wire:loading.attr="disabled" type="submit" class="btn btn-warning float-right">
-                        Save <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>
+                    <button wire:target="photo" wire:loading.attr="disabled" type="submit" class="btn btn-primary float-right">
+                        Save <span wire:loading wire:target="update" class="fas fa-spinner fa-spin"></span>
                     </button>
                 </div>
             </div>

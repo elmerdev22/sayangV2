@@ -14,24 +14,26 @@
                         <div class="col-12">
                             <label>Featured Photo :</label>
                             @if(!empty($featured_photo))
-                                @foreach($featured_photo as $key => $photo)
-                                    <div class="card overflow-hidden">
-                                        <div class="position-relative">
-                                            <img src="{{$photo->getFullUrl()}}" class="sayang-card-photo" alt="Product Photo">
-                                            {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
-                                        </div>
+                                <div class="card overflow-hidden">
+                                    <div class="position-relative">
+                                        <img src="{{$featured_photo}}" class="sayang-card-photo" alt="Product Photo">
+                                        {{-- <div class="sayang-featured-photo-overlay">Featured</div> --}}
                                     </div>
-                                @endforeach
+                                </div>
                             @endif
                         </div>
                         @if ($data->status == 'active')
                             <div class="col-12 mb-2">
                                 <label>Status</label> : 
-                                @if (date('Y-m-d h:i:s a') >= date('Y-m-d h:i:s a', strtotime($data->date_start)))
+                                
+                                @if (date('Y-m-d H:i:s') >= date('Y-m-d H:i:s', strtotime($data->date_start)))
                                     <span class="badge badge-success">Active</span>    
                                 @else
                                     <span class="badge badge-info">Upcoming</span>    
                                 @endif
+                            </div>
+                            <div class="col-12 mb-2">
+                                <a target="_blank" href="{{route('front-end.product.information.redirect', ['slug' => $data->product_slug, 'key_token' => $data->key_token, 'type' => 'buy_now'])}}" class="btn btn-default btn-sm btn-block">View Live Preview <span class="fas fa-eye"></span></a>
                             </div>
                             <div class="col-12 mb-2">
                                 @if (date('Y-m-d') >= date('Y-m-d', strtotime($data->date_start)))
@@ -96,37 +98,47 @@
                             </div>
                         @endif
                     </div>
-                    
                 </div>
                 <div class="col-md-8">
-                    <div class="row">
-                        
-                        <div class="col-sm-3">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
                             <label>Regular Price</label>
                             <div>
                                 {{number_format($data->regular_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Buy now Price</label>
                             <div>
                                 {{number_format($data->buy_now_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Lowest Price</label>
                             <div>
                                 {{number_format($data->lowest_price, 2)}}
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            
-                            <label>Quantity</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>Total Quantity</label>
+                            <div>
+                                {{number_format($data->total_quantity, 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Total Sold</label>
+                            <div>
+                                {{number_format(Utility::product_sold($data->id), 0)}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Remaining Quantity</label>
                             <div>
                                 {{number_format($data->quantity, 0)}}
                             </div>
                         </div>
-                        
                     </div>
                     @if ($data->status == 'cancelled')
                         <hr>
@@ -180,7 +192,7 @@
                                 <label>Order History</label>
                             </div>
                             <div class="col-md-7">
-                                <p>Buyer Details</p>
+                                <p>Order Details</p>
                             </div>
                             <div class="col-md-5 my-2">
                                 <input type="search" class="form-control form-control-sm" placeholder="Search Order no." wire:model="search">
@@ -217,7 +229,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('front-end.partner.order-and-receipt.track', ['id' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
+                                                        <a href="{{route('back-end.order-and-receipt.track', ['order_no' => $row->order_no])}}" class="btn btn-warning btn-sm">Track</a>
                                                     </td>
                                                 </tr>
                                             @empty
@@ -232,7 +244,7 @@
                             </div>
                             <div class="col-12">
                                 <hr>
-                                @livewire('front-end.partner.my-products.activities.active.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
+                                @livewire('front-end.partner.activities.active.bid-ranking-list', ['product_post_id' => $product_post_id, 'quantity' => $data->quantity ])
                             </div>
                             @else 
                             @endif

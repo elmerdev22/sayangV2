@@ -287,11 +287,21 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'images',
                 'uses'  => $c.'@images'
             ]);
+
             Route::get('/terms-and-conditions', [
                 'as'    => 'terms-and-conditions',
                 'uses'  => $c.'@terms_and_conditions'
             ]);
             
+            Route::get('/home', [
+                'as'    => 'home',
+                'uses'  => $c.'@home'
+            ]);
+            Route::get('/elements', [
+                'as'    => 'elements',
+                'uses'  => $c.'@elements'
+            ]);
+
         });
 
         // Orders and Receipt
@@ -518,6 +528,11 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
                     'as' 	=> 'index',
                     'uses'  => $c.'@index'
                 ]);
+
+                Route::post('/import', [
+                    'as' 	=> 'import',
+                    'uses'  => $c.'@import'
+                ]);
                 
                 // Add Product in Menu
                 Route::get('/add', [
@@ -539,32 +554,44 @@ Route::group(['middleware' => ['auth', 'verification.check', 'auth.partner']], f
                 
             });
 
-            // My activities List
-            Route::group(['prefix' => 'activities', 'as' => 'activities.'], function (){
-                $c = 'MyProductsController';
-                
-                // My Activities
-                Route::get('/', [
-                    'as' 	=> 'index',
-                    'uses'  => $c.'@activities'
-                ]);
+        });
 
-                Route::get('/active/{slug}/{key_token}', [
-                    'as' 	=> 'active',
-                    'uses'  => $c.'@active'
-                ]);
+        // My Activities
+        Route::group(['prefix' => 'activities', 'as' => 'activities.'], function (){
 
-                Route::get('/past/{slug}/{key_token}', [
-                    'as' 	=> 'past',
-                    'uses'  => $c.'@past'
-                ]);
+            $c = 'ActivitiesController';
+            // List
+            Route::get('/active', [
+                'as' 	=> 'active',
+                'uses'  => $c.'@active'
+            ]);
 
-                Route::get('/cancelled/{slug}/{key_token}', [
-                    'as' 	=> 'cancelled',
-                    'uses'  => $c.'@cancelled'
-                ]);
-                
-            });
+            Route::get('/past', [
+                'as' 	=> 'past',
+                'uses'  => $c.'@past'
+            ]);
+
+            Route::get('/cancelled', [
+                'as' 	=> 'cancelled',
+                'uses'  => $c.'@cancelled'
+            ]);
+
+            // Details
+            Route::get('/active/{slug}/{key_token}', [
+                'as' 	=> 'active_details',
+                'uses'  => $c.'@active_details'
+            ]);
+
+            Route::get('/past/{slug}/{key_token}', [
+                'as' 	=> 'past_details',
+                'uses'  => $c.'@past_details'
+            ]);
+
+            Route::get('/cancelled/{slug}/{key_token}', [
+                'as' 	=> 'cancelled_details',
+                'uses'  => $c.'@cancelled_details'
+            ]);
+
         });
 
 

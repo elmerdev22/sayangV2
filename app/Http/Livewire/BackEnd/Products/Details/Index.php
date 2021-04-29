@@ -36,6 +36,7 @@ class Index extends Component
 			'products.key_token as product_key_token', 
 			'products.regular_price as regular_price', 
 			'products.name as product_name', 
+            'products.slug as product_slug',
 			'product_posts.*',
         ];
         

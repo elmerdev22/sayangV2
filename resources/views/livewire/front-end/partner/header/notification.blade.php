@@ -17,18 +17,20 @@
                     else{
                         $user_account_token = $row->product_post->product->partner->user_account->key_token;
                         $product_token      = $row->product_post->product->key_token;
-                        $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
+                        $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token, true);
                     }
                 @endphp
                 
                 <a target="_blank" 
                     @if ($row->product_post_id != null)
                         @if ($row->type == 'partner_product_post_end')
-                            href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                            href="{{route('front-end.partner.activities.past_details', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                         @elseif ($row->type == 'partner_product_post_cancelled')
-                            href="{{route('front-end.partner.my-products.activities.cancelled', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                            href="{{route('front-end.partner.activities.cancelled_details', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                        @elseif($row->type == 'new_cop_request')
+                            href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
                         @else 
-                            href="javascript:void(0)";
+                            href="javascript:void(0);";
                         @endif 
 
                     @else
@@ -37,7 +39,7 @@
                         @elseif($row->type == 'new_cop_request')
                             href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
                         @else 
-                            href="javascript:void(0)";
+                            href="javascript:void(0);";
                         @endif 
                     @endif
 
@@ -50,7 +52,18 @@
                                     {{Str::limit($row->web_notification_settings->title, 20, '...')}}
                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                 </h3>
-                                <p class="text-sm">{{Str::limit($row->web_notification_settings->message, 35, '...')}}</p>
+                                <p class="text-sm">
+                                    @if ($row->product_post_id != null)
+                                        @php
+                                            $message = str_replace('{product}', $row->product_post->product->name, $row->web_notification_settings->message);    
+                                        @endphp
+                                    @else 
+                                        @php
+                                            $message = $row->web_notification_settings->message;    
+                                        @endphp
+                                    @endif
+                                    {{Str::limit($message, 35, '...')}}
+                                </p>
                             </div>
                         </div>
                     </a>

@@ -21,16 +21,16 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             @if(!$row->is_default)
-                                <button type="button" class="btn btn-sm btn-default" onclick="set_default('{{$row->key_token}}')">Set Default</button>
+                                <button type="button" class="btn btn-light btn-sm" onclick="set_default('{{$row->key_token}}')">Set Default</button>
                             @else
-                                <button type="button" class="btn btn-sm btn-info" disabled="true">
+                                <button type="button" class="btn btn-info btn-sm" disabled="true">
                                     &nbsp;&nbsp; Default &nbsp;&nbsp;
                                 </button>
                             @endif
-                            <!-- <button type="button" class="btn btn-sm btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')">
+                            <!-- <button type="button" class="btn btn-primary" title="Edit" onclick="edit('{{$row->key_token}}')">
                                 <i class="fas fa-pen"></i>
                             </button> -->
-                            <button type="button" class="btn btn-sm btn-danger" title="Delete" onclick="delete_data('{{$row->key_token}}')">
+                            <button type="button" class="btn btn-light btn-sm" title="Delete" onclick="delete_data('{{$row->key_token}}')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>

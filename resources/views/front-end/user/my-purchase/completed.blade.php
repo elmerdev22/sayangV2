@@ -12,34 +12,22 @@
     @include('front-end.includes.page-header', $page_header)
 @endsection
 @section('content')
-          
-<div class="row">
-    <aside class="col-md-3 mb-3">
-        @include('front-end.includes.user.aside')
-    </aside> <!-- col.// -->
-    <main class="col-md-9">
-        @livewire('front-end.user.my-purchase.completed.listing')
-    </main> <!-- col.// -->
-</div>
+<section class="section-content padding-y bg">
+    <div class="container">
+        <!-- =========================  COMPONENT MY PROFILE ========================= --> 
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                @include('front-end.includes.user.aside')
+                <!--   SIDEBAR .//END   -->
+            </aside>
+            <main class="col-md-9">
+                @livewire('front-end.user.my-purchase.completed.listing')
+            </main>
+        </div> <!-- row.// -->
+        <!-- =========================  COMPONENT MY PROFILE.// ========================= --> 
+    </div> <!-- container .//  -->
+</section>         
 
-<!-- QR Code Modal -->
-<div class="modal fade" id="modal-qr_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Order No. : <span id="modal-qr_code_order_no"></span></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                @livewire('front-end.user.my-purchase.qr-code')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 @livewire('front-end.user.ratings.index')
 @endsection

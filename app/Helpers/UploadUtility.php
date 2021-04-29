@@ -20,18 +20,44 @@ class UploadUtility{
         return $media_photo;
     }
 
-    public static function product_featured_photo($user_key_token, $product_key_token){
+    public static function product_featured_photo($user_key_token, $product_key_token, $thumb=true, $modify = false){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
         $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/featured-photo/');
-
-        return $media_photo;
+        
+        if($modify){
+            return $media_photo;
+        }
+        else{
+            if(count($media_photo) > 0){
+                if($thumb){
+                    return $media_photo[0]->getFullUrl('thumb');
+                }else{
+                    return $media_photo[0]->getFullUrl();
+                }
+            }else{
+                return asset('images/default-photo/image.png');
+            }
+        }
     }
 
-    public static function product_photos($user_key_token, $product_key_token){
+    public static function product_photos($user_key_token, $product_key_token, $thumb=false, $modify = false){
         $product     = Product::where('key_token', $product_key_token)->firstOrFail();
         $media_photo = $product->getMedia($user_key_token.'/product/'.$product_key_token.'/photo/');
         
-        return $media_photo;
+        if($modify){
+            return $media_photo;
+        }
+        else{
+            if(count($media_photo) > 0){
+                if($thumb){
+                    return $media_photo[0]->getFullUrl('thumb');
+                }else{
+                    return $media_photo[0]->getFullUrl();
+                }
+            }else{
+                return asset('images/default-photo/image.png');
+            }
+        }
     }
 
     public static function account_photo($user_key_token, $path, $type, $thumb=true){
@@ -96,7 +122,7 @@ class UploadUtility{
         }
     }
 
-    public static function content_photo($settings_key, $thumb=true){
+    public static function content_photo($settings_key, $thumb=false){
         $setting     = Setting::where('settings_key', $settings_key)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$settings_key);
 
@@ -118,9 +144,13 @@ class UploadUtility{
         }
     }
 
-    public static function image_setting($image_setting_id, $folder_name, $thumb=true){
+    public static function image_setting($image_setting_id, $folder_name, $thumb=false){
         $setting     = ImageSetting::where('id', $image_setting_id)->firstOrFail();
         $media_photo = $setting->getMedia('content/'.$folder_name);
+
+        if($folder_name == 'home-bg-image' || $folder_name == 'become-a-partner'){
+            $thumb = true;
+        }
 
         if(count($media_photo) > 0){
             if($thumb){
@@ -131,8 +161,14 @@ class UploadUtility{
         }else if($setting->photo_provider_link){
             return $setting->photo_provider_link;
         }else{
-            if($folder_name == 'home-carousel-slider'){
+            if($folder_name == 'home-bg-image'){
                 return asset('images/default-photo/cover.jpg');
+            }
+            else if($folder_name == 'advocacy-section'){
+                return 'https://image.freepik.com/free-photo/farmer-hand-watering-young-baby-plants_35892-713.jpg';
+            }
+            else if($folder_name == 'become-a-partner'){
+                return 'https://image.freepik.com/free-photo/two-confident-business-man-shaking-hands-during-meeting-office-success-dealing-greeting-partner-concept_1423-185.jpg';
             }
         }
     }
@@ -168,4 +204,12 @@ class UploadUtility{
         }
     }
 
+    public static function livewire_tmp_url($photo){
+        $path       = $photo->getFilename();
+        $full_path  = \Storage::path('livewire-tmp/'.$path);
+        $base64     = base64_encode(\Storage::get('livewire-tmp/'.$path));
+        $image_data = 'data:'.mime_content_type($full_path) . ';base64,' . $base64;
+        
+        return $image_data;
+    }
 }

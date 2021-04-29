@@ -12,7 +12,7 @@ use Utility;
 
 class EndingSoon extends Component
 {
-    public $limit = 4;
+    public $limit = 8;
 
     public function initialize(){
         $filter = [];
@@ -44,7 +44,7 @@ class EndingSoon extends Component
         $partner      = Partner::find($partner_id);
         $user_account = UserAccount::find($partner->user_account_id);
 
-        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl();
+        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token);
     }
 
     public function datetime_format($date){

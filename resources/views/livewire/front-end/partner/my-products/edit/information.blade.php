@@ -127,7 +127,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="reminders">Few Reminders (optional)</label>
+                        <label for="reminders">Few Reminders*</label>
                         <textarea class="form-control @error('reminders') is-invalid @enderror" id="reminders" placeholder="Reminders here..." wire:model.lazy="reminders"></textarea>
                         @error('reminders') 
                             <span class="invalid-feedback">
@@ -138,19 +138,79 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="length">Length*</label>
+                        <input type="text" class="form-control @error('length') is-invalid @enderror" id="length" placeholder="" wire:model.lazy="length">
+                        @error('length') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="width">Width*</label>
+                        <input type="text" class="form-control @error('width') is-invalid @enderror" id="width" placeholder="" wire:model.lazy="width">
+                        @error('width') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="height">Height*</label>
+                        <input type="text" class="form-control @error('height') is-invalid @enderror" id="height" placeholder="" wire:model.lazy="height">
+                        @error('height') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="weight">Gross Weight* <small>(Kilograms)</small></label>
+                        <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" placeholder="" wire:model.lazy="weight">
+                        @error('weight') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="shelf_life">Shelf Life* <small>(Months)</small></label>
+                        <input type="text" class="form-control @error('shelf_life') is-invalid @enderror" id="shelf_life" placeholder="" wire:model.lazy="shelf_life">
+                        @error('shelf_life') 
+                            <span class="invalid-feedback">
+                                <span>{{$message}}</span>
+                            </span> 
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="paper_packaging">Paper packaging</label>
+                        <div class="icheck-primary float-righ form-controlt">
+                            <input type="checkbox" wire:model.lazy="paper_packaging" id="paper_packaging">
+                            <label for="paper_packaging">With paper packaging?</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="form-group">
                         <div wire:ignore>
                             <label>About Product (optional)</label>
                             <textarea id="about_product" class="form-control summernote-area" wire:model.lazy="about_product"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div wire:ignore>
-                            <label>Other Details (optional)</label>
-                            <textarea id="other_details" class="form-control summernote-area" wire:model.lazy="other_details"></textarea>
                         </div>
                     </div>
                 </div>
@@ -187,17 +247,6 @@
             },
             height: 300, 
             placeholder: 'About product here...'
-        });
-
-        $('#other_details').summernote({
-            toolbar : toolbar,
-            callbacks: {
-                onChange: function(contents, $editable) {
-                    @this.set('other_details', contents)
-                }
-            },
-            height: 300, 
-            placeholder: 'Other details here...'
         });
 
         $('.mask-money').mask("#,##0.00", {reverse: true});

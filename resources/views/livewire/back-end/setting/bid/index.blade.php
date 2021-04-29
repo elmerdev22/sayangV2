@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="row">
                 @foreach ($data as $row)
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label>{{$row->settings_name}}</label>
                         <div class="input-group mb-3">
                             <input type="number" class="form-control text-center" min="1" max="100" disabled value="{{$row->settings_value}}">

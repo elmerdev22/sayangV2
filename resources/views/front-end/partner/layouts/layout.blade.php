@@ -8,28 +8,28 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(Request::is('/'))
-      <title>{{ env('APP_NAME') }} - @yield('title')</title>
+      <title>{{ Utility::settings('app_name') }} - @yield('title')</title>
     @else
-      <title>@yield('title') | {{ env('APP_NAME') }}</title>
+      <title>@yield('title') | {{ Utility::settings('app_name') }}</title>
     @endif
-    @if(env('APP_DEPLOY') == 'production')
+      <link rel="icon" type="image/icon" href="{{UploadUtility::content_photo('icon', false)}}">
       <!-- Kindly removed once the packages need is working properly -->
-          <!-- Font Awesome -->
-          <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">
-          <!-- Ionicons -->
-          <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-          <!-- icheck bootstrap -->
-          <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-          <!-- Theme style -->
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}">
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
-          <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
-          <!-- Google Font: Quicksand -->
-          <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
-          <!-- end of to be removed packages -->
-    @else
-      <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @endif
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="{{asset('template/assets/plugins/fontawesome-free/css/all.min.css')}}">
+      <!-- Ionicons -->
+      <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+      <!-- icheck bootstrap -->
+      <link rel="stylesheet" href="{{asset('template/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+      <!-- Theme style -->
+      <link href="{{ mix('css/AdminLTE.css') }}" rel="stylesheet">
+      {{-- <link rel="stylesheet" href="{{asset('template/assets/dist/css/adminlte.css')}}"> --}}
+      <link rel="stylesheet" href="{{asset('template/assets/dist/css/custom.css')}}">
+      <link rel="stylesheet" href="{{asset('template/assets/dist/css/responsive.css')}}">
+      <link rel="stylesheet" href="{{asset('template/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+      <!-- Google Font: Quicksand -->
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+      <!-- end of to be removed packages -->
+    
     @yield('css')
     @livewireStyles
 </head>
@@ -74,22 +74,33 @@
   <!-- jQuery -->
 
   @livewireScripts
-  @if(env('APP_DEPLOY') == 'production')
-    <!-- Kindly removed once the packages need is working properly -->
-    <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- SweetAlert2 -->
-    <script src="{{ asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
-    <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
-    <!-- Admin lte -->
-    <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
-    <!-- Pusher-->
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <!-- end of to be removed packages -->
-  @else
-    <script src="{{ mix('js/app.js') }}"></script>
-  @endif
+  <!-- Kindly removed once the packages need is working properly -->
+  <script src="{{asset('template/assets/plugins/jquery/jquery.min.js')}}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{asset('template/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- SweetAlert2 -->
+  <script src="{{asset('template/assets/dist/js/sweetalert2.min.js') }}"></script>
+  <script src="{{asset('template/assets/dist/js/animate.js')}}"></script>
+  <!-- Admin lte -->
+  <script src="{{asset('template/assets/dist/js/adminlte.min.js')}}"></script>
+  <!-- SCroll bar -->
+  <script src="{{asset('template/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+
+  <script src="{{asset('template/assets/dist/js/export/FileSaver.min.js') }}"></script>
+  <script src="{{asset('template/assets/dist/js/export/tableexport.min.js') }}"></script>
+    
+  <script>
+    ExportTable();
+    function ExportTable(filename){
+        $('.sayang-datatables').tableExport({
+            position: 'top',
+            formats : ['xls', 'csv'],
+        });
+        $('.xls').addClass('btn btn-primary btn-sm mx-1');
+        $('.csv').addClass('btn btn-primary btn-sm mx-1');
+    }
+  </script>
+  <!-- end of to be removed packages -->
 
   <script type="text/javascript">
     window.livewire.on('alert', param => {

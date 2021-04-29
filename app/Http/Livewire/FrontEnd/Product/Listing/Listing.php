@@ -15,7 +15,7 @@ use QueryUtility;
 class Listing extends Component
 {
 	use WithPagination;
-    public $min_price, $max_price, $search, $category, $limit=12, $sort_by='', $view_by='grid_view';
+    public $min_price, $max_price, $search, $category, $limit=6, $sort_by='', $view_by='grid_view';
     public $selected_category_id, $selected_sub_category_id, $partner_id;
 
     protected $listeners = [
@@ -68,6 +68,7 @@ class Listing extends Component
             'products.regular_price as regular_price',
             'products.partner_id',
             'products.slug as product_slug',
+            'products.description as product_description',
             'partners.name as partner_name'
         ];
         $filter['where']['product_posts.status'] = 'active';
@@ -130,7 +131,7 @@ class Listing extends Component
         $partner      = Partner::find($partner_id);
         $user_account = UserAccount::find($partner->user_account_id);
 
-        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token)[0]->getFullUrl();
+        return UploadUtility::product_featured_photo($user_account->key_token, $product->key_token);
     }
 
     public function datetime_format($date){
@@ -142,7 +143,6 @@ class Listing extends Component
         $total_items = $query->count();
         $data        = $query->paginate($this->limit);
         $component   = $this;
-        
         return view('livewire.front-end.product.listing.listing', compact('data', 'component', 'total_items'));
     }
 

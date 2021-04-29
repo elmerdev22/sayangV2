@@ -1,97 +1,200 @@
 @extends('front-end.layout')
-@section('title','Auctions for Every Juan!')
-@section('css')
-<link href="{{asset('template/assets/plugins/owl-carousel/css/owl.carousel.css')}}" rel="stylesheet" />
-@endsection
+@section('title', Utility::settings('home_title'))
 @section('content')
-<div class="container-fluid m-0 p-0">
-    <!-- Home Carousel Slider Banner-->
-    @livewire('front-end.home.carousel-slider')
-    <!-- .End Home Carousel Slider Banner-->
-    <div class="hidden-xs d-none d-lg-block my-auto" style="position: absolute; top: 10%; left: 9%;">
-        <div class="jumbotron my-auto text-white" style="background-color:rgba(128,128,128, 0.4);">
-            <div class="container">
-                <h1 class="display-4">Nothing goes to waste.</h1>
-                <p class="lead">Explore exciting deals near you.</p>
-                    <form action="{{route('front-end.product.list.index')}}" method="GET">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="input-group input-group-lg shadow-sm">
-                                    <input class="form-control form-control-navbar border-0" type="search" name="search" placeholder="Location or Products" aria-label="Search">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-navbar bg-warning" type="submit">
-                                            <i class="fas fa-search"></i>
+@section('css')
+<!-- plugin: owl carousel  -->
+<link href="plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
+<link href="plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+@endsection
+<!-- ========================= SECTION HERO ========================= -->
+<section class="section-intro ">
+    <div style="background: url('{{Utility::home_background_random()}}'); text-shadow: 2px 2px 5px #383636;" class="page-holder bg-cover">
+        <div class="container">
+            <div class="row pt-4">
+                <div class="col-12">
+                    <header class="text-center text-white py-5">
+                        <h1 class="display-2 mb-4 home-title">NOTHING GOES TO <br> WASTE</h1>
+                    </header>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-10 col-lg-5">
+                            <form action="{{route('front-end.product.list.index')}}" method="GET">
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control form-control-navbar border-none shadow-none" type="search" name="search" placeholder="Type in your location or search for a product" aria-label="Search">
+                                    {{-- <div class="input-group-append">
+                                        <button class="btn btn-navbar bg-primary" type="submit">
+                                            <i class="fas fa-search text-white"></i>
                                         </button>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </form>
-                </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row w-100" style="bottom: 0%; left: 0%; right: 0%; position: absolute;">
+                <div class="col-12 mb-2">
+                    <header>
+                        <h3 class="text-center text-white subheader">Together, we’ve rescued</h3>
+                    </header><!-- sect-heading -->
+                </div>
+                <div class="col-12">
+                    <div class="row text-center">
+                        <div class="col-4">	
+                            <figure class="item-feature item-feature-home">
+                                <span class="text-primary"><i class="fa fa-2x fa-seedling"></i></span> 
+                                <span class="text-white ">{{$data['element_trees']}} trees  </span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">
+                            <figure class="item-feature item-feature-home">
+                                <span class="text-info"><i class="fa fa-2x fa-tint"></i></span>	
+                                <span class="text-white">{{$data['element_water']}} gal of water</span>
+                            </figure> <!-- iconbox // -->
+                        </div><!-- col // -->
+                        <div class="col-4">
+                            <figure class="item-feature item-feature-home">
+                                <span class="text-warning"><i class="fa fa-2x fa-bolt"></i></span>
+                                <span class="text-white">{{$data['element_energy']}} kw of energy</span>
+                            </figure> <!-- iconbox // -->
+                        </div> <!-- col // -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="py-3">
+</section>
+<!-- ========================= SECTION HERO END// ========================= -->
+<section class="section-content padding-y" style="background-color: #10093f">
     <div class="container">
-        <div class="card shadow-sm">
-            <div class="card-body p-2">
-                @livewire('front-end.home.category')
+        <header class="section-heading pb-2 text-center">
+            <h3 class="section-title text-white" data-aos="fade-up">{{Utility::description_settings('header')->settings_value}}</h3>
+            <p class="text-muted" data-aos="fade-up" data-aos-delay="50"> {{Utility::description_settings('sub_header')->settings_value}}</p>
+        </header><!-- sect-heading -->
+        <div class="row">
+            @foreach ($data['advocacy_section_card'] as $row)
+                <div class="col-md-4 py-3">
+                    <div class="card bg-dark" data-aos="zoom-in">
+                        <img src="{{UploadUtility::image_setting($row->id, 'advocacy-section')}}" class="card-img opacity" style="height: 230px; width: auto; object-fit: cover;">
+                        <div class="card-img-overlay text-white">
+                            <h5 class="card-title">{{$row->settings_name}}</h5>
+                            <p class="card-text">{{$row->description}}</p>
+                            <a href="{{$row->redirect}}" class="btn btn-light">Discover</a>
+                        </div>
+                    </div> 
+                </div> <!-- col.// -->
+            @endforeach
+        </div> <!-- row.// -->
+    </div> <!-- container .//  -->
+</section>
+        
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h5 class="section-title">Categories</h5>
+        </header><!-- sect-heading -->
+        <!-- ============== COMPONENT SLIDER ITEMS OWL  ============= -->
+        @livewire('front-end.home.category')
+        <!-- ============== COMPONENT SLIDER ITEMS OWL .end // ============= -->
+    </div><!-- container // -->
+</section>
+        
+<section class="section-name  padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <a href="{{route('front-end.product.list.index')}}" class="btn btn-outline-primary float-right">See all</a>
+            <h5 class="section-title">Help Us Rescue these products</h5>
+        </header><!-- sect-heading -->
+        @livewire('front-end.home.index.most-popular')
+    </div><!-- container // -->
+</section>
+
+<section class="section-name padding-y-sm" style="background-color: #10093f">
+    <div class="container">
+        <div style="min-height:300px; ">
+            <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
+                {{$data['advocacy_section_2']['settings_name']}}
+            </h1>
+            <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
+                {!! $data['advocacy_section_2']['description'] !!}
+            </p>
+            @php
+                $url = Auth::check() ? '/about-us' : '/register';
+            @endphp
+            <a href="{{$url}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+        </div>
+    </div>
+</section>
+<section class="section-name padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <a href="{{route('front-end.product.list.index')}}" class="btn btn-outline-primary float-right">See all</a>
+            <h5 class="section-title">Hurry! Last chance to rescue these products! </h5>
+        </header><!-- sect-heading -->
+
+        @livewire('front-end.home.index.ending-soon')
+    </div><!-- container // -->
+</section>
+<section class="section-name pt-2">
+    <div class="card-banner " style="min-height:300px; background-image: url('{{UploadUtility::image_setting($data['become_a_partner_section']['id'], 'become-a-partner')}}'); border-radius: 0;  background-attachment: fixed; ">
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-12">
+                    <div style="min-height:300px; ">
+                        <h1 class="display-3 font-weight-bold text-white" data-aos="fade-right" data-aos-delay="50">
+                            {{$data['become_a_partner_section']['settings_name']}}
+                        </h1>
+                        <p class="text-white" style="max-width: 600px" data-aos="fade-right" data-aos-delay="100">
+                            {!! $data['become_a_partner_section']['description'] !!}
+                        </p>
+                        @php
+                            $url = Auth::check() ? '/' : '/register/partner';
+                        @endphp
+                        <a href="{{$url}}" class="btn btn-light" data-aos="fade-right" data-aos-delay="150">Join the movement now <span class="fas fa-arrow-right"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
-        @livewire('front-end.home.index.most-popular')
-        @livewire('front-end.home.index.recently-added')
-        @livewire('front-end.home.index.ending-soon')
     </div>
-</div>
-
+</section>
+<!-- ========================= SECTION  END// ========================= -->
 @endsection
 @section('js')
-<script src="{{asset('template/assets/plugins/owl-carousel/js/owl.carousel.js')}}"></script>
+<script src="plugins/owlcarousel/owl.carousel.min.js"></script>   
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-$('.owl-carousel').owlCarousel({
-    center: false,
-    margin:5,
-    dots: false,
-    nav: false,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:true,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:6,
-            margin:0,
-        },
-        600:{
-            items:8
-        },
-        1000:{
-            items:12
-        }
-    }
-})
-
-$('.product-owl-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        responsiveClass:true,
-        nav:false,
-        loop: false,
-        autoplay:true,
-        autoplayTimeout:2000,
-        autoplayHoverPause:true,
-        responsive:{
-            0:{
-                items:2,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:4,
-            }
-        }
-    })
+    AOS.init({
+        duration: 700, // values from 0 to 3000, with step 50ms
+        once: true
+    });
+  </script>
+<script type="text/javascript">
+    // jquery ready start
+    $(document).ready(function() {
+        if ($('.slider-items-owl').length > 0) { // check if element exists
+            $('.slider-items-owl').owlCarousel({
+                loop:false,
+                margin:5,
+                nav:false,
+                autoplay:true,
+                dots:false,
+                autoplayTimeout:2000,
+                autoplayHoverPause:true,
+                responsive:{
+                    0:{
+                        items:3
+                    },
+                    640:{
+                        items:6
+                    },
+                    1024:{
+                        items:8
+                    }
+                }
+            })
+        } 
+    }); 
 </script>
 @endsection

@@ -16,7 +16,7 @@
                             <td>₱{{number_format($data->bid, 2)}}</td>
                             <td>{{number_format($data->quantity, 0)}}</td>
                             <td>
-                                <button class="btn btn-danger btn-xs" onclick="delete_selected('{{$data->id}}', '{{number_format($data->bid, 2)}}')">
+                                <button class="btn btn-light btn-sm" onclick="delete_selected('{{$data->id}}', '{{number_format($data->bid, 2)}}')">
                                     <span class="fas fa-trash"></span>
                                 </button>
                             </td>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-md-6">        
-                <button type="button" class="btn btn-danger btn-sm float-right" onclick="delete_all()" >Delete all</button>
+                <button type="button" class="btn btn-light btn-sm float-right" onclick="delete_all()" >Delete all</button>
             </div>
         </div>
     @endif

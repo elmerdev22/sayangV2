@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\FrontEnd\Partner;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\ProductPost;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Utility;
+use Session;
 use Auth;
+use DB;
 class MyProductsController extends Controller
 {
     public function index(){
@@ -34,42 +39,20 @@ class MyProductsController extends Controller
         }
     }
 
-    // Activities
-    public function activities(){
-        return view('front-end.partner.my-products.activities.index');
-    }
+    public function import(Request $request){
+        
+		$rules = [
+            'file' => 'required|mimes:csv,xlsx,xls',
+        ];
 
-    public function active($slug, $key_token){
-        $product_post = ProductPost::with(['product'])
-                ->whereHas('product', function ($query){
-                    $query->where('partner_id', Utility::auth_partner()->id);
-                })
-                ->where('key_token', $key_token)
-                ->firstOrFail();
-        $product_post_id = $product_post->id;
+        $validator = Validator::make($request->all(), $rules);
 
-        return view('front-end.partner.my-products.activities.active.details', compact('product_post_id'));
-    }
-    public function past($slug, $key_token){
-        $product_post = ProductPost::with(['product'])
-                ->whereHas('product', function ($query){
-                    $query->where('partner_id', Utility::auth_partner()->id);
-                })
-                ->where('key_token', $key_token)
-                ->firstOrFail();
-        $product_post_id = $product_post->id;
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-        return view('front-end.partner.my-products.activities.past.details', compact('product_post_id'));
-    }
-    public function cancelled($slug, $key_token){
-        $product_post = ProductPost::with(['product'])
-                ->whereHas('product', function ($query){
-                    $query->where('partner_id', Utility::auth_partner()->id);
-                })
-                ->where('key_token', $key_token)
-                ->firstOrFail();
-        $product_post_id = $product_post->id;
-
-        return view('front-end.partner.my-products.activities.cancelled.details', compact('product_post_id'));
+        Excel::import(new ProductsImport, $request->file('file'));
+        Session::flash('success', 'Your file successfully import in products!');
+        return back();
     }
 }

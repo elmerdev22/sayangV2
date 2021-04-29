@@ -5,7 +5,8 @@ namespace App\Http\Controllers\FrontEnd\Partner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Utility;
-
+use App\Model\Partner;
+use App\Model\OperatingHour;
 class MyAccountController extends Controller
 {
     public function index(){

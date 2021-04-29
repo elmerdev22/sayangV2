@@ -39,8 +39,7 @@ class Proceed extends Component
     }
 
     public function set_date($type, $timestamp){
-        $this->$type = date('Y-m-d H:00:00', strtotime($timestamp));
-        // dd($type.' = '.$this->$type);
+        $this->$type = date('Y-m-d H:i:s', strtotime($timestamp));
     }
 
     public function followers(){
@@ -74,16 +73,17 @@ class Proceed extends Component
         DB::beginTransaction();
         try{
             foreach($this->selected_products as $key => $row){
-                $product_post                = new ProductPost();
-                $product_post->product_id    = $row['product_id'];
-                $product_post->buy_now_price = $row['buy_now_price'];
-                $product_post->lowest_price  = $row['lowest_price'];
-                $product_post->quantity      = $row['quantity'];
-                $product_post->date_start    = $this->start_date;
-                $product_post->date_end      = $this->end_date;
-                $product_post->status        = 'active';
-                $product_post->is_set        = true;
-                $product_post->key_token     = Utility::generate_table_token('ProductPost');
+                $product_post                 = new ProductPost();
+                $product_post->product_id     = $row['product_id'];
+                $product_post->buy_now_price  = $row['buy_now_price'];
+                $product_post->lowest_price   = $row['lowest_price'];
+                $product_post->total_quantity = $row['quantity'];
+                $product_post->quantity       = $row['quantity'];
+                $product_post->date_start     = $this->start_date;
+                $product_post->date_end       = $this->end_date;
+                $product_post->status         = 'active';
+                $product_post->is_set         = true;
+                $product_post->key_token      = Utility::generate_table_token('ProductPost');
                 $product_post->save();
 
                 foreach($this->followers() as $row){

@@ -7,6 +7,7 @@ use App\Mail\EmailNotification;
 use App\Model\PartnerRepresentative;
 use App\Model\PartnerBankAccount;
 use App\Model\UserAccount;
+use App\Model\OperatingHour;
 use App\Model\Partner;
 use App\Model\User;
 use UploadUtility;
@@ -50,6 +51,18 @@ class AccountInformation extends Component
     		$partner 			   = Partner::find($this->data->partner->id);
     		$partner->is_activated = true;
     		if($partner->save()){
+                
+                $partner_op = Partner::with(['operating_hours'])->where('id', $partner->id)->first();
+
+                if($partner_op->operating_hours->count() <= 0){
+                    for($x = 1; $x <= 7; $x++){
+                        $data             = OperatingHour::firstOrNew(['partner_id' => $partner->id, 'day' => $x]);
+                        $data->day        = $x;
+                        $data->partner_id = $partner->id;
+                        $data->save();
+                    }
+                }
+
                 $notification_check = Utility::notification_check($this->data->id, null, 'application_approved_by_admin','activity');
 
                 if($notification_check){

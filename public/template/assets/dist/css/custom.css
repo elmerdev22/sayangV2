@@ -1,8 +1,12 @@
 /* SAYANG CUSTOM BRANDING VARIABLE */
 :root {
-  --sayang-color: #FFDE59;
+  --sayang-color: #66bb6a;
   --sayang-dark-color: #333333;
   --sayang-light-color: #FFFFFF;
+}
+.btn-warning,
+.btn-primary{
+  color: white !important;
 }
 .card{
   border-radius: 0;
@@ -34,46 +38,9 @@
   border:0;
   box-shadow : 0px 0px 0px 0px;
 }
-/*scroll bar*/
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #FFDE59; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #FFDE59; 
-}
-/**/
-a{
-  color: black;
-}
-a:hover{
-  color: #FFDE59;
-}
- .btn{
-    border-radius: 0;
-} 
-.btn-warning{
-  color: white;
-} 
-.btn-warning:hover{
-  color: white;
-}
-
 /* TAB BACKGROUND COLOR */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-  background-color: #FFDE59;
+  background-color: var(--sayang-color);
 }
 
 .widget-header {
@@ -129,7 +96,7 @@ a:hover{
 }
 
 /*.form-control:focus{
-    border-color: #FFDE59;
+    border-color: var(--sayang-color);
 }*/
 .content-wrapper-front-end {
     padding-top: 70px;
@@ -192,11 +159,11 @@ a:hover{
 .nav-tabs .nav-item.show .nav-link {
   border: 0;
   background-color: #f8f9fa;
-  border-bottom: 3px solid #FFDE59;
+  border-bottom: 3px solid var(--sayang-color);
 }
 /*Span timeer countdown*/
 span.ends-in {
-    background-color: #FFDE59;
+    background-color: var(--sayang-color);
     display: inline-block;
     font-size: 12px;
     color: #fff;
@@ -316,8 +283,8 @@ input:checked + .slider:before {
 }
 /*PAgination*/
 .page-item.active .page-link{
-  background-color: #FFDE59;
-  border-color: #FFDE59;
+  background-color: var(--sayang-color);
+  border-color: var(--sayang-color);
 }
 
 /*all product list menu*/
@@ -333,7 +300,7 @@ input:checked + .slider:before {
   color: #343a40; 
 }
 .list-menu a:hover {
-  color: #FFDE59; 
+  color: var(--sayang-color); 
 }
 
 /*Account Activation*/
@@ -341,7 +308,7 @@ input:checked + .slider:before {
   color: black;
 }
 .account-activation a:hover{
-  color:#FFDE59;
+  color:var(--sayang-color);
 }
 /*cart footer*/
 .cart-footer .btn-warning{
@@ -510,11 +477,11 @@ input:checked + .slider:before {
 }
 
 .list-group-item.active{
-  background-color: #FFDE59;
-  border-color: #FFDE59;
+  background-color: var(--sayang-color);
+  border-color: var(--sayang-color);
 }
 .active .bs-stepper-circle{
-  background-color: #FFDE59;
+  background-color: var(--sayang-color);
 }
 
 @media all {
@@ -626,7 +593,7 @@ input.input-readonly[readonly]{
   left: 5px;
   padding: 3px 14px;
   font-size: 14px;
-  background: rgba(255, 222, 89, 0.8);
+  background: var(--sayang-color);
   color: #FFFFFF;
 }
 .sayang-remove-photo-overlay{

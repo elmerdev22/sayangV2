@@ -14,7 +14,7 @@
 							<div class="text-center overflow-hidden">
 								
 								@if ($photo)
-									<img class="mb-2 mt-1 imagePreview" src="{{ $photo->temporaryUrl()}}" alt="">
+									<img class="mb-2 mt-1 imagePreview" src="{{ UploadUtility::livewire_tmp_url($photo) }}" alt="">
 								@else
 									<img class="mb-2 mt-1 imagePreview" src="{{$photo_url}}" alt="">
 								@endif

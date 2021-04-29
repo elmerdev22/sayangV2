@@ -59,7 +59,7 @@ class Listing extends Component
                 'name'                   => $row->product_post->product->name,
                 'is_checkout'            => $row->is_checkout,
                 'is_disabled'            => $is_disabled,
-                'featured_photo'         => $featured_photo[0]->getFullUrl('thumb'),
+                'featured_photo'         => $featured_photo,
                 'total_price'            => $total_price,
                 'regular_price'          => $row->product_post->product->regular_price,
                 'product_post_key_token' => $row->product_post->key_token,
@@ -148,7 +148,7 @@ class Listing extends Component
 
     public function product_featured_photo($product_id){
         $product        = Product::with(['partner', 'partner.user_account'])->findOrFail($product_id);
-        $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token);
+        $featured_photo = UploadUtility::product_featured_photo($product->partner->user_account->key_token, $product->key_token, true);
 
         return $featured_photo;
     }

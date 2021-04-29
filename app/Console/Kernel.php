@@ -24,12 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
         $schedule->command('ProductPost:Update')
             ->timezone('Asia/Manila')
-            ->hourly();
+            ->everyMinute();
     }
 
     /**

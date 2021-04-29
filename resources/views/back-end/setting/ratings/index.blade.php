@@ -23,6 +23,3 @@
         NOTE: Always wrap the content in .row > .col-* 
     -->
 @endsection
-@section('js')
-
-@endsection

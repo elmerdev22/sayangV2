@@ -7,22 +7,24 @@
                 @error('first_name') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
-            </div>
+            </div> <!-- form-group end.// -->
             <div class="col form-group">
                 <label>Last name</label>
                 <input type="text" class="form-control text-capitalize @error('last_name') is-invalid @enderror" wire:model="last_name" autocomplete="off">
                 @error('last_name') 
                     <span class="invalid-feedback">{{$message}}</span>
                 @enderror
-            </div>
-        </div>
+            </div> <!-- form-group end.// -->
+        </div> <!-- form-row end.// -->
         <div class="form-group">
-            <label>Email <small class="text-muted">(We'll never share your email with anyone else.)</small></label> 
+            <label>Email</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model="email" autocomplete="off">
             @error('email') 
                 <span class="invalid-feedback">{{$message}}</span>
             @enderror
-        </div>
+            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div> <!-- form-group end.// -->
+        
         
         <div class="form-group">
             <label>Contact no.</label>
@@ -48,17 +50,23 @@
                 @enderror
             </div>
         </div>
+        
         <div class="form-group">
-            <div class="icheck-warning">
-                <input type="checkbox" id="agree" wire:model="agree">
-                <label for="agree" class="cursorsHover">I'm agree with <a target="_blank" href="{{route('front-end.terms-and-conditions.index')}}">Terms & Conditions</a></label>
-            </div>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="agree" wire:model="agree"> 
+                <div class="custom-control-label"> I agree with the 
+                    <a target="_blank" href="{{route('front-end.terms-and-conditions.index')}}">Terms and Conditions</a>  
+                </div> 
+            </label>
+
             @if(!$agree && $agree_post) 
-                <span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Please Agree on our Terms & Conditions</span>
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> Please agree on our Terms & Conditions
+                </div>
             @endif
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-warning text-white  btn-block"> Register <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span> </button>
-        </div>
+            <button type="submit" class="btn btn-primary text-white  btn-block"> Register <span wire:loading wire:target="store" class="fas fa-spinner fa-spin"></span> </button>
+        </div>     
     </form>
 </div>

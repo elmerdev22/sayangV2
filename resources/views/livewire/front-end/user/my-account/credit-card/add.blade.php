@@ -89,10 +89,13 @@
             </div>
 
             <div class="form-group">
-                <div class="icheck-primary">
-                    <input type="checkbox" id="is_default_card" @if($force_default) disabled checked @else wire:model="is_default" @endif>
-                    <label for="is_default_card">Set as default credit card</label>
-                </div>
+                
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input"  id="is_default_card" @if($force_default) disabled checked @else wire:model="is_default" @endif>
+                    <div class="custom-control-label"> 
+                        Set as default credit card
+                    </div> 
+                </label>
             </div>
 
             @if($error_message)
@@ -105,8 +108,8 @@
         </div>
         <div class="modal-footer">
             <div class="text-right">
-                <button type="button" wire:loading.attr="disabled" wire:target="store" class="btn btn-flat btn-sm btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" wire:loading.attr="disabled" wire:target="store" class="btn btn-flat btn-sm btn-warning">
+                <button type="button" wire:loading.attr="disabled" wire:target="store" class="btn btn-light" data-dismiss="modal">Close</button>
+                <button type="submit" wire:loading.attr="disabled" wire:target="store" class="btn btn-primary">
                     Add @if($is_checkout_page) and Select @endif <span wire:loading wire:target="store"><i class="fas fa-spinner fa-spin"></i></span>
                 </button>
             </div>

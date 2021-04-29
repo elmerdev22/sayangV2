@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                <table class="table table-bordered table-hover table-sm table-cell-nowrap text-center">
                     <thead>
                         <tr>
                             <th>Activity</th>
@@ -30,7 +30,7 @@
                                 else{
                                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
                                     $product_token      = $row->product_post->product->key_token;
-                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
+                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token, true);
                                 }
                             @endphp
 
@@ -39,9 +39,9 @@
                                     <a target="_blank" 
                                         @if ($row->product_post_id != null) 
                                             @if ($row->type == 'partner_product_post_end')
-                                                href="{{route('front-end.partner.my-products.activities.past', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
+                                                href="{{route('front-end.partner.activities.past_details', ['slug' => $row->product_post->product->slug ,'key_token' => $row->product_post->key_token] )}}" 
                                             @else 
-                                                href="javascript::void()";
+                                                href="javascript:void(0);";
                                             @endif 
                                         @endif 
                                         @if ($row->is_read == 0)
@@ -56,7 +56,17 @@
                                                     {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                                 </h3>
-                                                <p class="text-sm">{{$row->web_notification_settings->message}}</p>
+                                                
+                                                @if ($row->product_post_id != null)
+                                                    @php
+                                                        $message = str_replace('{product}', $row->product_post->product->name, $row->web_notification_settings->message);    
+                                                    @endphp
+                                                @else 
+                                                    @php
+                                                        $message = $row->web_notification_settings->message;    
+                                                    @endphp
+                                                @endif
+                                                <p class="text-sm">{{$message}}</p>
                                             </div>
                                         </div>
                                     </a>

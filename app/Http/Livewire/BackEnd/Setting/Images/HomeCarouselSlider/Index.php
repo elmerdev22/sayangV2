@@ -19,12 +19,12 @@ class Index extends Component
     public $photo, $collection, $total;
 
     public function mount(){
-        $this->collection = 'content/home-carousel-slider';
+        $this->collection = 'content/home-bg-image';
     }
 
     public function render()
     {
-        $data = ImageSetting::orderBy('arrangement','asc')->paginate(10);
+        $data = ImageSetting::orderBy('arrangement','asc')->where('settings_group', 'home_bg_image')->paginate(10);
         $this->total = $data->total();
         return view('livewire.back-end.setting.images.home-carousel-slider.index', compact('data'));
     }
@@ -34,7 +34,7 @@ class Index extends Component
         $response  = ['success' => false, 'message' => ''];
         
         $rules = [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ];
 
         $this->validate($rules);
@@ -45,8 +45,8 @@ class Index extends Component
 
             $data                 = new ImageSetting();
             $data->arrangement    = $this->total + 1;
-            $data->settings_group = 'Home_carousel_slider_banner';
-            $data->settings_name  = 'Home Carousel Slider Banner';
+            $data->settings_group = 'home_bg_image';
+            $data->settings_name  = 'Home Background Image';
             $data->key_token      = Utility::generate_table_token('ImageSetting');
             
             $photo     = $this->photo->getRealPath();
@@ -56,6 +56,10 @@ class Index extends Component
             $data->addMedia($photo)->usingFileName($file_name)->toMediaCollection($collection);    
             
             if($data->save()){
+                $img               = ImageSetting::find($data->id);
+                $img->settings_key = 'home_bg_image_'.$img->id;
+                $img->save();
+
                 $response['success'] = true;
             }
 

@@ -12,7 +12,7 @@
 						<div class="form-group">
 							<label for="photo">Photo* <small class="text-muted"><i>png, jpg, jpeg. </i></small></label>
 							<div class="text-center overflow-hidden">
-								<img class="mb-2 mt-1 imagePreview" src="{{ $photo ? $photo->temporaryUrl() : asset('images/default-photo/image.png')}}" alt="">
+								<img class="mb-2 mt-1 imagePreview" src="{{ $photo ? UploadUtility::livewire_tmp_url($photo) : asset('images/default-photo/image.png')}}" alt="">
 
 								<div class="form-control upload-btn-wrapper btn btn-default">
 									<i class="fas fa-upload"></i> Upload Photo <span wire:loading wire:target="photo" class="fas fa-spinner fa-spin"></span>

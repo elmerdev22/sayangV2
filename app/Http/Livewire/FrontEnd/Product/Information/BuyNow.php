@@ -10,7 +10,7 @@ use Utility;
 class BuyNow extends Component
 {
 
-    public $product_post_id, $product_post;
+    public $product_post_id, $product_post, $elements_round_off;
     public $buy_now_price, $quantity, $current_quantity, $allow_purchase;
     public $force_disabled = false, $price_percentage = [];
 
@@ -30,7 +30,9 @@ class BuyNow extends Component
         }else{
             $this->quantity = 0;
         }
-        
+
+        $this->elements_round_off = Utility::settings('elements_round_off');
+
         $this->allow_purchase = Utility::allow_purchase();
         $this->calculate_buy_now_price();
         $this->price_percentage = Utility::price_percentage($product_post->product->regular_price, $product_post->buy_now_price);

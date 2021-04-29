@@ -18,7 +18,7 @@ class Information extends Component
     public $product_id, $account, $partner, $name, $category, $old_category, $sub_categories = [], $tags = [];
     public $regular_price, $buy_now_price, $lowest_price, $description, $reminders;
     public $selected_sub_categories = [], $initial_sub_categories=[], $money_input_initialize=[];
-    public $about_product, $other_details;
+    public $about_product, $weight, $width, $height, $length, $shelf_life, $paper_packaging;
 
     public function mount($product_id){
         $this->partner       = Utility::auth_partner();
@@ -33,10 +33,15 @@ class Information extends Component
         $this->buy_now_price = $product->buy_now_price;
         $this->lowest_price  = $product->lowest_price;
 
-        $this->description   = $product->description;
-        $this->reminders     = $product->reminders;
-        $this->about_product = $product->about_product;
-        $this->other_details = $product->other_details;
+        $this->description     = $product->description;
+        $this->reminders       = $product->reminders;
+        $this->about_product   = $product->about_product;
+        $this->weight          = $product->weight;
+        $this->width           = $product->width;
+        $this->height          = $product->height;
+        $this->length          = $product->length;
+        $this->shelf_life      = $product->shelf_life;
+        $this->paper_packaging = $product->paper_packaging;
         
         $this->money_input_initialize = [
             'regular_price' => $this->regular_price,
@@ -107,7 +112,12 @@ class Information extends Component
             'buy_now_price'  => ['required', new Money(), 'lte:regular_price'],
             'lowest_price'   => ['required', new Money(), 'lte:buy_now_price'],
             'description'    => 'required',
-            'reminders'      => 'nullable',
+            'reminders'      => 'required',
+            'weight'         => 'required|numeric',
+            'width'          => 'required',
+            'height'         => 'required',
+            'length'         => 'required',
+            'shelf_life'     => 'required|numeric|min:0',
         ];
 
         $this->emit('money_input_field', [
@@ -129,14 +139,19 @@ class Information extends Component
                 $product->slug = Utility::generate_table_slug('Product', $this->name);
             }
             
-            $product->category_id   = $this->category;
-            $product->description   = $this->description;
-            $product->reminders     = $this->reminders;
-            $product->regular_price = $this->regular_price;
-            $product->buy_now_price = $this->buy_now_price;
-            $product->lowest_price  = $this->lowest_price;
-            $product->about_product = $this->about_product;
-            $product->other_details = $this->other_details;
+            $product->category_id     = $this->category;
+            $product->description     = $this->description;
+            $product->reminders       = $this->reminders;
+            $product->regular_price   = $this->regular_price;
+            $product->buy_now_price   = $this->buy_now_price;
+            $product->lowest_price    = $this->lowest_price;
+            $product->about_product   = $this->about_product;
+            $product->weight          = $this->weight;
+            $product->width           = $this->width;
+            $product->height          = $this->height;
+            $product->length          = $this->length;
+            $product->shelf_life      = $this->shelf_life;
+            $product->paper_packaging = $this->paper_packaging ? 1 : 0 ;
             
             if($product->save()){
                 $validator_checker = array();

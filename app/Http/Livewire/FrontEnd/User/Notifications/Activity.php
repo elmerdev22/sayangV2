@@ -23,7 +23,7 @@ class Activity extends Component
     public function render()
     {   
         $data = QueryUtility::notifications($this->account->id, 'activity');
-
+        // dd($data);
         return view('livewire.front-end.user.notifications.activity', compact('data'));
     }
     

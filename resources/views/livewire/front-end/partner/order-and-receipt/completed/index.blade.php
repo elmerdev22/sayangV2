@@ -22,6 +22,9 @@
                                 Buyer Name
                                 @include('front-end.includes.datatables.sort', ['field' => 'user_accounts.first_name|user_accounts.last_name'])
                             </th>
+                            <th>Discount</th>
+                            <th>Subtotal</th>
+                            <th>Total Price</th>
                             <th class="table-sort" wire:click="sort('orders.created_at')">
                                 Purchase Date
                                 @include('front-end.includes.datatables.sort', ['field' => 'orders.created_at'])
@@ -43,9 +46,15 @@
                     </thead>
                     <tbody>
                         @forelse($data as $row)
+                            @php
+                                $order_total = Utility::order_total($row->id);
+                            @endphp
                             <tr>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{ucwords($row->user_account_first_name.' '.$row->user_account_last_name)}}</td>
+                                <td>{{number_format($order_total['total_discount'], 2)}}</td>
+                                <td>{{number_format($order_total['sub_total'], 2)}}</td>
+                                <td>{{number_format($order_total['total'], 2)}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->created_at))}}</td>
                                 <td>{{date('M/d/Y h:i:s a', strtotime($row->date_completed))}}</td>
                                 <td>
@@ -60,7 +69,7 @@
                             </tr>
                         @empty
 	        				<tr>
-	        					<td colspan="7" class="text-center">No Data Found</td>
+	        					<td colspan="10" class="text-center">No Data Found</td>
 	        				</tr>
                         @endforelse
                     </tbody>
@@ -71,3 +80,10 @@
         </div>
     </div> <!-- card.// -->
 </div>
+@push('scripts')
+<script>
+    window.livewire.hook('afterDomUpdate', () => {
+		ExportTable();
+    });
+</script>
+@endpush

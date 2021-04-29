@@ -22,7 +22,7 @@ class Add extends Component
     public $regular_price=0.00, $buy_now_price=0.00, $lowest_price=0.00, $description, $reminders;
     public $featured_photo=0, $photos=[], $price_percentage = [];
     public $discount, $discount_percent;
-    public $about_product, $other_details;
+    public $about_product, $weight, $width, $height, $length, $shelf_life, $paper_packaging;
 
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -97,11 +97,16 @@ class Add extends Component
             'buy_now_price'  => ['required', new Money(), 'lte:regular_price'],
             'lowest_price'   => ['required', new Money(), 'lte:buy_now_price'],
             'description'    => 'required',
-            'reminders'      => 'nullable',
+            'reminders'      => 'required',
+            'weight'         => 'required|numeric',
+            'width'          => 'required',
+            'height'         => 'required',
+            'length'         => 'required',
+            'shelf_life'     => 'required|numeric|min:0',
             'photos'         => 'required',
             'photos.*'       => 'image|mimes:jpeg,jpg,png|max:2048'
         ];
-        
+
         $this->compute_price_percentage();
         $this->emit('money_input_field', [
             'regular_price' => $this->regular_price,
@@ -117,20 +122,25 @@ class Add extends Component
 
         try{
             // Do the insert of product here...
-            $key_token              = Utility::generate_table_token('Product');
-            $product                = new Product();
-            $product->partner_id    = $this->partner->id;
-            $product->category_id   = $this->category;
-            $product->name          = $this->name;
-            $product->regular_price = $this->regular_price;
-            $product->buy_now_price = $this->buy_now_price;
-            $product->lowest_price  = $this->lowest_price;
-            $product->description   = $this->description;
-            $product->reminders     = $this->reminders;
-            $product->about_product = $this->about_product;
-            $product->other_details = $this->other_details;
-            $product->slug          = Utility::generate_table_slug('Product', $this->name);
-            $product->key_token     = $key_token;
+            $key_token                = Utility::generate_table_token('Product');
+            $product                  = new Product();
+            $product->partner_id      = $this->partner->id;
+            $product->category_id     = $this->category;
+            $product->name            = $this->name;
+            $product->regular_price   = $this->regular_price;
+            $product->buy_now_price   = $this->buy_now_price;
+            $product->lowest_price    = $this->lowest_price;
+            $product->description     = $this->description;
+            $product->reminders       = $this->reminders;
+            $product->about_product   = $this->about_product;
+            $product->weight          = $this->weight;
+            $product->width           = $this->width;
+            $product->height          = $this->height;
+            $product->length          = $this->length;
+            $product->shelf_life      = $this->shelf_life;
+            $product->paper_packaging = $this->paper_packaging ? 1 : 0;
+            $product->slug            = Utility::generate_table_slug('Product', $this->name);
+            $product->key_token       = $key_token;
 
             if($product->save()){
                 $validator_checker = array();

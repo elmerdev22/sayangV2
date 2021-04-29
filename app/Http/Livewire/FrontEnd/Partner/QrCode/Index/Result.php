@@ -12,7 +12,7 @@ use Utility;
 class Result extends Component
 {
 
-    public $qr_code, $partner, $order_no;
+    public $qr_code, $partner, $order_no, $input_order_no;
 
     public function mount(){
         $this->partner = Utility::auth_partner();
@@ -107,4 +107,18 @@ class Result extends Component
         }
     }
     
+    public function input_order_no($input_order_no){
+        $order = Order::where('order_no', $input_order_no)->first();
+
+        if($order){
+            $this->scan($order->qr_code);
+        }
+        else{
+            $this->emit('alert', [
+                'type'    => 'error',
+                'title'   => 'Oops..',
+                'message' => 'Invalid Order No. please try again.'
+            ]);
+        }
+    }
 }

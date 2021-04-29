@@ -1,179 +1,204 @@
 <div>
     @if($data)
-        <table class="table table-borderless table-hover table-shopping-cart table-custom">
-            <thead>
-                <tr class="border-bottom">
-                    <th scope="col">Item</th>
-                    <th scope="col">Bid Qty</th>
-                    <th scope="col">Bid Price</th>
-                    <th scope="col">Total Price</th>
-                    <th scope="col">Expiration</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-12 overflow-hidden">
-                                <img src="{{$component->product_featured_photo($data->product_id)}}" class="img-sm border cart-product-photo-thumb">
+        <article class="card card-body mb-3">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <figure class="itemside align-items-center">
+                        <div class="aside"><img src="{{$component->product_featured_photo($data->product_id)}}" class="img-sm"></div>
+                        <figcaption class="info">
+                            <a href="#" class="title text-dark">{{ucfirst($data->product_name)}}</a>
+                            <p class="small text-muted">
+                                Bid amount: {{Utility::currency_code()}}{{number_format($data->bid_price,2)}}  
+                                <br> 
+                                Quantity: {{number_format($data->bid_quantity,0)}}
+                                <br>
+                                Total amount: {{Utility::currency_code()}}{{number_format($total_price,2)}}
+                            </p>
+                        </figcaption>
+                    </figure>
+                    {{-- <figure class="itemside">
+                        <div class="aside"><img src="{{$component->product_featured_photo($data->product_id)}}" class="border img-sm"></div>
+                        <figcaption class="info">
+                            <a href="#" class="title">{{ucfirst($data->product_name)}}</a>
+                            <div>
+                                <span class="text-muted">Bid amount: {{Utility::currency_code()}}{{number_format($data->bid_price,2)}}</span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-left">
-                                <p class="title mb-0">{{ucfirst($data->product_name)}}</p>
+                            <div>
+                                <span class="text-muted">Quantity: {{number_format($data->bid_quantity,0)}}</span>
                             </div>
-                        </div>
-                    </td>
-                    <td>{{number_format($data->bid_quantity,0)}}</td>
-                    <td>PHP {{number_format($data->bid_price,2)}}</td>
-                    <td>PHP {{number_format($total_price,2)}}</td>
-                    <td>{{$component->expiration($data->date_end)}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <h4>Billing Information</h4>
-            @if($address)
-                <div class="mb-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="fas fa-user"></span> <strong>{{ucwords($address->full_name)}}</strong>
-                        </div>
-                    </div>
+                            <div>
+                                <span class="text-muted">Total amount: {{Utility::currency_code()}}{{number_format($total_price,2)}}</span>
+                            </div>
+                        </figcaption>
+                    </figure>  --}}
+                </div> <!-- col.// -->
+                <div class="col">
                     <div>
-                        <span class="fas fa-phone"></span> {{Utility::mobile_number_ph_format($address->contact_no)}}
+                        <small class="text-muted">
+                            Expiration
+                        </small>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="fas fa-map-marker"></span>
+                    <div class="h6"> {{$component->expiration($data->date_end)}} </div>
+                </div>
+            </div> <!-- row.// -->
+        </article>
+        <div class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Biiling Address</strong>
+                <a href="{{route('front-end.user.my-account.addresses')}}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-plus"></i> Add New
+                </a>
+            </header>
+            <div class="card-body">
+                @if($address)
+                    <dl class="row">
+                        <dt class="col-sm-3">Fullname</dt>
+                        <dd class="col-sm-9">{{ucwords($address->full_name)}}</dd>
+
+                        <dt class="col-sm-3">Contact number</dt>
+                        <dd class="col-sm-9">{{Utility::mobile_number_ph_format($address->contact_no)}}</dd>
+
+                        <dt class="col-sm-3">Address</dt>
+                        <dd class="col-sm-9">
                             {{$address->address}} <br>
                             {{$address->philippine_barangay->name}}, {{$address->philippine_barangay->philippine_city->name}}, <br>
                             {{$address->philippine_barangay->philippine_city->philippine_province->name}}, 
                             {{$address->philippine_barangay->philippine_city->philippine_province->philippine_region->name}}, {{$address->zip_code}} <br>
-                        </div>
-                    </div>        
-                </div>
-            @else
-                <p class="text-muted mb-3 mt-3">You don't have address yet.</p>
-            @endif
+                        </dd>
+                    </dl>
+                @else
+                    <p class="text-muted mb-3 mt-3 text-center">You don't have address yet.</p>
+                @endif
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Payment Method</strong>
+            </header>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 text-center mb-3">
+                        <button type="button" 
+                            class="btn {{$payment_method == 'cash_on_pickup' ? 'btn-primary':'btn-light' }}" 
+                            @if($payment_method != 'cash_on_pickup') 
+                                onclick="change_payment_method('cash_on_pickup')" 
+                            @endif
+                        ><span class="fas fa-truck"></span> Cash on Pickup @if($payment_method == 'cash_on_pickup') <span class="fas fa-check"></span> @endif</button>
+                        <button type="button" 
+                            class="btn {{$payment_method == 'e_wallet' ? 'btn-primary':'btn-light' }}" 
+                            @if($payment_method != 'e_wallet') 
+                                onclick="change_payment_method('e_wallet')" 
+                            @endif
+                        ><span class="fas fa-money-bill"></span> E-Wallet @if($payment_method == 'e_wallet') <span class="fas fa-check"></span> @endif</button>
+                        <button type="button" 
+                            class="btn {{$payment_method == 'card' ? 'btn-primary':'btn-light' }}" 
+                            @if($payment_method != 'card') 
+                                onclick="change_payment_method('card')" 
+                            @endif
+                        ><span class="fas fa-credit-card"></span> Debit/Credit Card @if($payment_method == 'card') <span class="fas fa-check"></span> @endif</button>
+                    </div>
+                    <div class="col-12">
+                        @if($payment_method == 'cash_on_pickup')
+                            <div class="p-3">
+                                <p>
+                                    Payment via Cash on Pick-up
+                                </p>
+                            </div>
+                            <!-- <p>Description here...</p> -->
+                        @elseif($payment_method == 'e_wallet')
+                            <div class="p-3">
+                                <strong>Select Payment :</strong>
+                                <div class="row py-3">
+                                    <div class="col-12">
+                                        <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" 
+                                            @if($e_wallet != 'gcash') 
+                                                @if($total_price >= PaymentUtility::paymongo_minimum())
+                                                    onclick="set_e_wallet('gcash')" 
+                                                @endif
+                                            @endif
+                                        >
+                                            @if($total_price < PaymentUtility::paymongo_minimum())
+                                                <div class="payment-channel-disabled">(Minimum of PHP {{number_format(PaymentUtility::paymongo_minimum())}})</div>
+                                            @endif
+                                            @if($e_wallet == 'gcash') 
+                                                <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
+                                            @endif
+                                            <img src="{{asset('images/icons/payments/gcash.png')}}" height="42px" alt="GCash Photo">
+                                        </div>
+                                        <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" 
+                                            @if($e_wallet != 'grab_pay') 
+                                                @if($total_price >= PaymentUtility::paymongo_minimum())
+                                                    onclick="set_e_wallet('grab_pay')" 
+                                                @endif
+                                            @endif
+                                        >
+                                            @if($total_price < PaymentUtility::paymongo_minimum())
+                                                <div class="payment-channel-disabled">(Minimum of PHP {{number_format(PaymentUtility::paymongo_minimum())}})</div>
+                                            @endif
+                                            @if($e_wallet == 'grab_pay') 
+                                                <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
+                                            @endif
+                                            <img src="{{asset('images/icons/payments/grab-pay.png')}}" height="42px" alt="Grab Pay Photo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        @else
+                            <div class="p-3">
+                                <strong>Select Credit/Debit Card :</strong>
+                                @if($total_price < PaymentUtility::paymongo_minimum())
+                                    <p>(Minimum of PHP {{PaymentUtility::paymongo_minimum()}})</p>
+                                @else
+                                    @forelse($credit_cards as $row)
+                                        <div class="row mb-3">
+                                            <div class="col-sm-1">
+                                                <span class="icheck-primary">
+                                                    <input  type="radio" 
+                                                            id="op-radio-{{$row->key_token}}" 
+                                                            name="bank" 
+                                                            @if($card_token == $row->key_token) 
+                                                                checked="true" 
+                                                            @else 
+                                                                onclick="set_card_token('{{$row->key_token}}')"
+                                                            @endif>
+                                                    <label for="op-radio-{{$row->key_token}}"></label>
+                                                </span>
+                                            </div>
+                                            
+                                            <dt class="col-sm-3">Card Holder Name</dt>
+                                            <dd class="col-sm-8">{{ucwords($row->card_holder)}}</dd>
 
-            <a class="btn btn-sm btn-warning" href="{{route('front-end.user.my-account.addresses')}}"><i class="fas fa-plus"></i> Add New Addresses</a>
-        <hr>
-        <h4>Payment Method</h4>
-        <div class="row mb-3">
-            <div class="col-12">
-                <button type="button" 
-                    class="btn btn-sm {{$payment_method == 'cash_on_pickup' ? 'btn-warning':'btn-default' }}" 
-                    @if($payment_method != 'cash_on_pickup') 
-                        onclick="change_payment_method('cash_on_pickup')" 
-                    @endif
-                ><span class="fas fa-truck"></span> Cash on Pickup @if($payment_method == 'cash_on_pickup') <span class="fas fa-check"></span> @endif</button>
-                <button type="button" 
-                    class="btn btn-sm {{$payment_method == 'e_wallet' ? 'btn-warning':'btn-default' }}" 
-                    @if($payment_method != 'e_wallet') 
-                        onclick="change_payment_method('e_wallet')" 
-                    @endif
-                ><span class="fas fa-money-bill"></span> E-Wallet @if($payment_method == 'e_wallet') <span class="fas fa-check"></span> @endif</button>
-                <button type="button" 
-                    class="btn btn-sm {{$payment_method == 'card' ? 'btn-warning':'btn-default' }}" 
-                    @if($payment_method != 'card') 
-                        onclick="change_payment_method('card')" 
-                    @endif
-                ><span class="fas fa-credit-card"></span> Debit/Credit Card @if($payment_method == 'card') <span class="fas fa-check"></span> @endif</button>
+                                            <dt class="col-sm-1"></dt>
+                                            <dt class="col-sm-3">Card Number</dt>
+                                            <dd class="col-sm-8">{{$row->card_no}}</dd>
+
+                                            <dt class="col-sm-1"></dt>
+                                            <dt class="col-sm-3">CVV</dt>
+                                            <dd class="col-sm-8">{{$row->card_verification_value}}</dd>
+                                        </div>
+                                    @empty
+                                        <p class="text-muted py-3">You don't have debit/credit card yet.</p>
+                                    @endforelse
+
+                                    <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-plus"></i> Add New Debit/Credit Card
+                                    </a>
+                                @endif
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
 
-        @if($payment_method == 'cash_on_pickup')
-            <p class="mb-3"><b>Payment via Cash on Pick-up</b></p>
-            <!-- <p>Description here...</p> -->
-        @elseif($payment_method == 'e_wallet')        
-            <h5><b>Select Payment</b></h5>
-            <div class="row">
-                <div class="col-12">
-                    <div class="payment-channel-wrapper @if($e_wallet == 'gcash') active @endif" 
-                        @if($e_wallet != 'gcash') 
-                            @if($total_price >= PaymentUtility::paymongo_minimum())
-                                onclick="set_e_wallet('gcash')" 
-                            @endif
-                        @endif
-                    >
-                        @if($total_price < PaymentUtility::paymongo_minimum())
-                            <div class="payment-channel-disabled">(Minimum of PHP {{number_format(PaymentUtility::paymongo_minimum())}})</div>
-                        @endif
-                        @if($e_wallet == 'gcash') 
-                            <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
-                        @endif
-                        <img src="{{asset('images/icons/payments/gcash.png')}}" height="42px" alt="GCash Photo">
-                    </div>
-                    <div class="payment-channel-wrapper @if($e_wallet == 'grab_pay') active @endif" 
-                        @if($e_wallet != 'grab_pay') 
-                            @if($total_price >= PaymentUtility::paymongo_minimum())
-                                onclick="set_e_wallet('grab_pay')" 
-                            @endif
-                        @endif
-                    >
-                        @if($total_price < PaymentUtility::paymongo_minimum())
-                            <div class="payment-channel-disabled">(Minimum of PHP {{number_format(PaymentUtility::paymongo_minimum())}})</div>
-                        @endif
-                        @if($e_wallet == 'grab_pay') 
-                            <span class="fas fa-check fa-lg mr-2 payment-channel-selected-icon"></span>
-                        @endif
-                        <img src="{{asset('images/icons/payments/grab-pay.png')}}" height="42px" alt="Grab Pay Photo">
-                    </div>
-                </div>
-            </div>
-        @else
-            <h5 class="mb-3"><b>Select Credit/Debit Card</b></h5>
-            @if($total_price < PaymentUtility::paymongo_minimum())
-                <p>(Minimum of PHP {{PaymentUtility::paymongo_minimum()}})</p>
-            @else
-                @forelse($credit_cards as $row)
-                    <div class="row mb-3">
-                        <div class="col-1">
-                            <span class="icheck-warning">
-                                <input  type="radio" 
-                                        id="op-radio-{{$row->key_token}}" 
-                                        name="bank" 
-                                        @if($card_token == $row->key_token) 
-                                            checked="true" 
-                                        @else 
-                                            onclick="set_card_token('{{$row->key_token}}')"
-                                        @endif>
-                                <label for="op-radio-{{$row->key_token}}"></label>
-                            </span>
-                        </div>
-                        <div class="col-9 col-md-3">
-                            <div title="Card Holder Name">
-                                <span class="fas fa-user"></span> {{ucwords($row->card_holder)}}
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div title="Card No.">
-                                <span class="fas fa-credit-card"></span> {{$row->card_no}}
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div title="CVV">
-                                <span class="fas fa-key"></span> {{$row->card_verification_value}}
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-muted">You don't have debit/credit card yet.</p>
-                @endforelse
-
-                <a href="{{route('front-end.user.my-account.banks-and-cards')}}" class="btn btn-warning btn-sm">
-                    <i class="fas fa-plus"></i> Add New Debit/Credit Card
-                </a>
-            @endif
-        @endif
-
         <div class="row mt-3">
             <div class="col-12 text-right">
-                <button type="button" class="btn btn-sm btn-warning" wire:loading.attr="disabled" wire:target="proceed" onclick="proceed()">
-                    Proceed <span class="fas fa-spin fa-spinner" wire:loading wire:target="proceed"></span>
-                </button>
-                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
+                <button type="button" class="btn btn-light" data-dismiss="modal">
                     Cancel
+                </button>
+                <button type="button" class="btn btn-primary" wire:loading.attr="disabled" wire:target="proceed" onclick="proceed()">
+                    Proceed <span class="fas fa-spin fa-spinner" wire:loading wire:target="proceed"></span>
                 </button>
             </div>
         </div>
@@ -219,30 +244,30 @@
 
     window.livewire.on('remove_loading_card', param => {
         var card_dom = $('#card-payment_method');
-        card_loader(card_dom, 'hide');
+        // card_loader(card_dom, 'hide');
     });
 
     function change_payment_method(method){
         var card_dom = $('#card-payment_method');
-        card_loader(card_dom, 'show');
+        // card_loader(card_dom, 'show');
         @this.call('change_payment_method', method)
     }
 
     function set_card_token(key_token){
         var card_dom = $('#card-payment_method');
-        card_loader(card_dom, 'show');
+        // card_loader(card_dom, 'show');
         @this.call('set_card_token', key_token)
     }
 
     function set_e_wallet(type){
         var card_dom = $('#card-payment_method');
-        card_loader(card_dom, 'show');
+        // card_loader(card_dom, 'show');
         @this.call('set_e_wallet', type)
     }
 
     function proceed(){
         var card_dom = $('#card-payment_method');
-        card_loader(card_dom, 'show');
+        // card_loader(card_dom, 'show');
         @this.call('proceed')
     }
 </script>

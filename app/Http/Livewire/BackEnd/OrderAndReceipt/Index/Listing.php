@@ -29,7 +29,7 @@ class Listing extends Component
 			'user_accounts.first_name as user_account_first_name',
 			'user_accounts.last_name as user_account_last_name',
 			'partners.name as partner_name',
-			'partners.key_token as partners_key_token'
+			'partners.key_token as partners_key_token',
 		];
 
 		if($this->status != null){

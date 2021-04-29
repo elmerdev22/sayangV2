@@ -18,7 +18,7 @@ class PlaceBid extends Component
     protected $listeners = ['reload-ranking-list' => 'refresh'];
 
     public $view_my_bids = false;
-    public $product_post_id, $product_post, $allow_purchase, $account;
+    public $product_post_id, $product_post, $allow_purchase, $account, $elements_round_off;
     public $total_amount, $quantity, $current_quantity, $bid, $lowest_price, $lowest_bid, $bid_increment;
     public $ranking_top_show;
 
@@ -30,8 +30,9 @@ class PlaceBid extends Component
         $this->product_post    = $product_post;
         $this->product_post_id = $product_post_id;
 
-        $bid_increment_percent  = Utility::settings('bid_increment_percent');
-        $this->ranking_top_show = Utility::settings('ranking_top_show');
+        $this->elements_round_off = Utility::settings('elements_round_off');
+        $bid_increment_percent    = Utility::settings('bid_increment_percent');
+        $this->ranking_top_show   = Utility::settings('ranking_top_show');
 
         $this->bid_increment    = round( ($bid_increment_percent / 100) * $product_post->buy_now_price );
 
@@ -152,10 +153,7 @@ class PlaceBid extends Component
         $next_bid        = $get_highest_bid + $this->bid_increment;
 
         $this->validate([
-            'bid' => ['required','numeric','min:'.$next_bid.'',
-            Rule::unique('bids')->where(function ($query) use ($product_post_id) {
-                return $query->where('product_post_id', $product_post_id);
-            })]
+            'bid' => ['required','numeric','min:'.$next_bid.'']
         ]);
         
         $to              = Carbon::now();
@@ -165,11 +163,12 @@ class PlaceBid extends Component
         if($this->bid < $this->lowest_bid){
             Session::flash('minimum_bid', 'The minimum Bid is '.$this->lowest_bid);
         }
-        else if($this->bid >= $this->product_post->buy_now_price){
-            Session::flash('reach_buy_now_price', 'Your Bid reach the buy now price. please buy now instead.');
-        }
         else{
             
+            if($this->bid >= $this->product_post->buy_now_price){
+                $this->bid = $get_highest_bid;
+                Session::flash('reach_buy_now_price', 'Your Bid reach the buy now price, your latest bid change to highest bid.');
+            }
             if($diff_in_minutes < $popcorn_bidding_last_minutes){
                 
                 $new_date_end = date('Y-m-d H:i',strtotime('+'.$popcorn_bidding_additional_minutes.' minutes',strtotime($from)));

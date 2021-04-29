@@ -1,0 +1,213 @@
+
+$primary: #66bb6a !default;
+
+.page-holder {
+    min-height: 100vh;
+}
+.bg-cover {
+    background-size: cover !important;
+}
+.centered-hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.active .bs-stepper-circle{
+    background-color: $primary !important;
+}
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+    display:inline-block;
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+    font-size:1.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+    color: $primary;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+    color: $primary;
+}
+
+/*SWicth css */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 28px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: $primary;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 30px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+.notify{
+    background-color: $primary !important ;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.payment-channel-wrapper{
+    padding: 8px;
+    padding-left: 15px;
+    border: 1px solid #e4e4e4;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    position: relative;
+}
+.payment-channel-wrapper.active{
+    border: 1px solid $primary;
+}
+.payment-channel-wrapper.active .payment-channel-selected-icon{
+    color: $primary;
+}
+.payment-channel-wrapper .payment-channel-disabled{
+    font-weight: 700;
+    padding: 15px;
+    text-align: center;
+    cursor: default;
+    position: absolute;
+    bottom:0px;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    background: rgba(197, 197, 197, 0.7);
+    text-shadow: 1px 0px 3px #fff;
+}
+
+/* Custom Modals */
+.modal .modal-dialog-aside{ 
+	width: 350px; max-width:80%; height: 100%; margin:0;transform: translate(0); transition: transform .2s;
+}
+.modal .modal-dialog-aside .modal-content{  height: inherit; border:0; border-radius: 0;}
+.modal .modal-dialog-aside .modal-content .modal-body{ overflow-y: auto }
+.modal.fixed-left .modal-dialog-aside{ margin-left:auto;  transform: translateX(100%); }
+.modal.fixed-right .modal-dialog-aside{ margin-right:auto; transform: translateX(-100%); }
+.modal.show .modal-dialog-aside{ transform: translateX(0);  }
+
+.item-feature-home{
+    font-size: 15px;
+}
+
+.home-title{
+    font-family: 'league_spartan' !important;
+    letter-spacing: 5px;
+    font-size: 75px;
+}
+
+.card-product-grid:hover .elements-section{
+    opacity: 1 !important;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
+}
+
+.elements-section {
+    opacity: 0;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}

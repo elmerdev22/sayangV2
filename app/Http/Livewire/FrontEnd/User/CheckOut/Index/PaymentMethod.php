@@ -97,14 +97,16 @@ class PaymentMethod extends Component
                 $this->initialize_payment_key_token();
             }else{
                 $this->emit('alert', [
-                    'type'  => 'error',
-                    'title' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.$this->paymongo_minimum
+                    'type'    => 'error',
+                    'title'   => 'Oops...',
+                    'message' => 'Minimum for '.str_replace('_', '', $type).' is PHP '.$this->paymongo_minimum
                 ]);
             }
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid E-Wallet.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid E-Wallet.'
             ]);
         }
 
@@ -119,8 +121,9 @@ class PaymentMethod extends Component
             $this->initialize_payment_key_token();
         }else{
             $this->emit('alert', [
-                'type'  => 'error',
-                'title' => 'Invalid Payment Method.'
+                'type'    => 'error',
+                'title'   => 'Oops...',
+                'message' => 'Invalid Payment Method.'
             ]);
         }
 

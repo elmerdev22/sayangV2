@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered table-hover sayang-datatables table-cell-nowrap text-center">
+                <table class="table table-bordered table-hover table-sm table-cell-nowrap text-center">
                     <thead>
                         <tr>
                             <th>Order Updates</th>
@@ -30,7 +30,7 @@
                                 else{
                                     $user_account_token = $row->product_post->product->partner->user_account->key_token;
                                     $product_token      = $row->product_post->product->key_token;
-                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token)[0]->getFullUrl('thumb');
+                                    $featured_photo     = UploadUtility::product_featured_photo($user_account_token, $product_token, true);
                                 }
                             @endphp
 
@@ -39,6 +39,9 @@
                                     <a target="_blank" 
                                         @if ($row->product_post_id != null) 
                                             {{-- if may product post id here --}}
+                                            @if ($row->type == 'new_cop_request')
+                                                href="{{route('front-end.partner.order-and-receipt.order-placed')}}" 
+                                            @endif
                                         @else 
                                             @if ($row->type == 'new_product_sold')
                                                 href="{{route('front-end.partner.order-and-receipt.to-receive')}}"
@@ -60,7 +63,18 @@
                                                     {{$row->web_notification_settings->title}}
                                                     <small class="float-right text-muted">{{Utility::carbon_diff($row->created_at)}}</small>
                                                 </h3>
-                                                <p class="text-sm">{{$row->web_notification_settings->message}}</p>
+                                                <p class="text-sm">
+                                                    @if ($row->product_post_id != null)
+                                                        @php
+                                                            $message = str_replace('{product}', $row->product_post->product->name, $row->web_notification_settings->message);    
+                                                        @endphp
+                                                    @else 
+                                                        @php
+                                                            $message = $row->web_notification_settings->message;    
+                                                        @endphp
+                                                    @endif
+                                                    {{$message}}
+                                                </p>
                                             </div>
                                         </div>
                                     </a>

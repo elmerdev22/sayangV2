@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card card-outline card-sayang">
                 <div class="card-header">
-                    <h5 class="card-title"> Home Carousel Slider Banner</h5> 
+                    <h5 class="card-title"> Home Random Full Background Banner</h5> 
                     <div class="card-tools">
                         <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#add-image-banner"><span class="fas fa-plus"></span> Add Image</button>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>                        
@@ -16,11 +16,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover sayang-datatables text-center">
+                                <table class="table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th scope="col">Photo</th>
-                                            <th scope="col">Arrangement</th>
                                             <th scope="col">Is Display</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -29,10 +28,7 @@
                                         @forelse ($data as $row)
                                             <tr>
                                                 <td class="w-50">
-                                                    <img class="img-fluid " src="{{UploadUtility::image_setting($row->id, 'home-carousel-slider')}}">
-                                                </td>
-                                                <td>
-                                                    {{$row->arrangement ? $row->arrangement : 'None'}} <button class="btn btn-default btn-xs ml-1" onclick="edit_arrangement('{{$row->id}}','{{$row->arrangement}}')"><span class=" fas fa-edit"></span></button>
+                                                    <img class="img-fluid " src="{{UploadUtility::image_setting($row->id, 'home-bg-image')}}">
                                                 </td>
                                                 <td>            
                                                     <div class="icheck-warning">
@@ -85,7 +81,7 @@
                                 <div class="col-12">
                                     <div class="card overflow-hidden sayang-photo-bordered">
                                         <div class="position-relative">
-                                            <img src="{{$photo->temporaryUrl()}}" class="img-fluid" alt="Product Photo">
+                                            <img src="{{ UploadUtility::livewire_tmp_url($photo) }}" class="img-fluid" alt="Product Photo">
                                         </div>
                                     </div>
                                 </div>
@@ -105,10 +101,10 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <small>Recommended size: 960 x 350 pixels</small>
+                                        <small>Recommended size: 2400 x 1600 pixels</small>
                                     </div>
                                     <div>
-                                        <small>File Size: Maximum of 2MB</small>
+                                        <small>File Size: Maximum of 5MB</small>
                                     </div>
                                     <div>
                                         <small>File Extension: .png, .jpeg, .jpeg</small>
@@ -146,25 +142,6 @@
 </div>
 @push('scripts')
 <script>
-    function edit_arrangement(id, current_arrangement){
-        (async () => {
-                const { value: arrangement } = await Swal.fire({
-                    title: 'Arrangement',
-                    input: 'number',
-                    inputLabel: 'arrangement',
-                    inputValue: current_arrangement,
-                    inputAttributes: {
-                        min: 1,
-                    },
-                    validationMessage: 'Minimum arrangement is 1',
-                    confirmButtonText: 'Save',  
-                })
-
-                if (arrangement) {
-                    @this.call('update_arrangement', id , arrangement)
-                }
-        })()
-    }
     function delete_swal(id){
         Swal.fire({
             title: 'Are you sure do you want to delete this image ?',

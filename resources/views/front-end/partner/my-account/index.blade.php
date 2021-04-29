@@ -45,6 +45,17 @@
                 @livewire('front-end.partner.my-account.profile.business-information.representative-information')
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
+        <div class="card card-outline card-sayang mb-3">
+            <div class="card-header">
+                <h2 class="card-title">
+                    Operating Hours
+                </h2>
+            </div>
+            <div class="card-body">
+                @livewire('front-end.partner.my-account.profile.business-information.operating-hours.index')
+               
+            </div> <!-- card-body .// -->
+        </div> <!-- card.// -->
     </div>
 </div>
 

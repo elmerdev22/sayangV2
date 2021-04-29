@@ -24,6 +24,9 @@
                             </div>
                             <div class="card-footer bg-white">
                                 <div class="row text-center">
+                                    <div class="col-12 pb-3">
+                                        <a target="_blank" href="{{route('front-end.profile.partner.index', ['slug' => $slug ])}}" class="btn btn-primary btn-sm">View Live Preview <span class="fa fa-eye"></span></a>
+                                    </div>
                                     <div class="col-md-4 border pt-2">
                                         <label>
                                             <span class="fas fa-star"></span> 

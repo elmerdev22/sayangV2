@@ -3,6 +3,8 @@
 		Showing {{$data->firstItem() == null ? 0 : $data->firstItem()}} to {{$data->lastItem() == null ? 0 : $data->lastItem()}} out of {{number_format($data->total(), 0)}} items
 	</div>
 	<div class="col-sm-6 col-md-8 col-lg-8 text-center text-sm-right">
-		{{$data->links()}}
+		<span class="float-right">
+			{{$data->links()}}
+		</span>
 	</div>
 </div>

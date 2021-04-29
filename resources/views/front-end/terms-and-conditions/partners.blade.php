@@ -2,38 +2,27 @@
 @section('title','Terms and Conditions (Partners)')
 @section('content')
 
-<section class="content-header">
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg-primary">
     <div class="container">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h4>Terms and Conditions <small>(Partners)</small></h4>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Terms and Conditions</li>
-                    <li class="breadcrumb-item active">Partners</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+        <h2 class="title-page text-white">Terms and Condition for Partners</h2>
+    </div> <!-- container //  -->
 </section>
-
-<section class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">                        
-                                {!! Utility::description_settings('terms_and_conditions_partners') ? Utility::description_settings('terms_and_conditions_partners')->settings_value : ''; !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- ========================= SECTION INTRO END// ========================= -->
+    
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">      
+        @if (Utility::description_settings('terms_and_conditions_partners'))
+            {!! Utility::description_settings('terms_and_conditions_partners')->settings_value !!}
+        @else 
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img class="img-thumbnail border-0" src="{{Utility::img_source('not_found')}}">
+                </div> 
             </div>
-        </div>
-    </div> 
+        @endif                          
+    </div> <!-- container .//  -->
 </section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
 @endsection
