@@ -49,11 +49,12 @@ class Result extends Component
 
     public function scan($qr_code){
         $order = Order::where('partner_id', $this->partner->id)->where('qr_code', $qr_code)->first();
-        $this->order_no = $order->order_no;
+
         if($order){
-            $success       = true;
-            $this->qr_code = $qr_code;
-            $order_no      = $order->order_no;
+            $success        = true;
+            $this->qr_code  = $qr_code;
+            $order_no       = $order->order_no;
+            $this->order_no = $order->order_no;
         }else{
             $success  = false;
             $order_no = '';
