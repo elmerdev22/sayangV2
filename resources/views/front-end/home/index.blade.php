@@ -76,7 +76,7 @@
             @foreach ($data['advocacy_section_card'] as $row)
                 <div class="col-md-4 py-3">
                     <div class="card bg-dark" data-aos="zoom-in">
-                        <img src="{{UploadUtility::image_setting($row->id, 'advocacy-section')}}" class="card-img opacity">
+                        <img src="{{UploadUtility::image_setting($row->id, 'advocacy-section')}}" class="card-img opacity" style="height: 230px; width: auto; object-fit: cover;">
                         <div class="card-img-overlay text-white">
                             <h5 class="card-title">{{$row->settings_name}}</h5>
                             <p class="card-text">{{$row->description}}</p>
