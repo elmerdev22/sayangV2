@@ -17,7 +17,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label>Order Status</label>
+                    <label>Product Status</label>
                     <select class="form-control" wire:model="status">
                         <option value="" selected>All</option>
                         <option value="active">Active/Incoming</option>
@@ -141,7 +141,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="text-center">No Data Found</td>
+                                <td colspan="11" class="text-center">No Data Found</td>
                             </tr>
                         @endforelse
                     </tbody>
