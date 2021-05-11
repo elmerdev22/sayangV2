@@ -139,12 +139,12 @@
     }
     
     function apply_partners(){
-        var partners = []; 
+        var partner_ids = []; 
         $("input:checkbox[name=partners]:checked").each(function(){
-            partners.push($(this).val());
+            partner_ids.push($(this).val());
         });
 
-        @this.set('partner_ids', partners)
+        @this.call('set_partners', partner_ids)
     }
 </script>
 @endpush

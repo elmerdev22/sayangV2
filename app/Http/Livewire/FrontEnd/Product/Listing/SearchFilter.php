@@ -15,7 +15,7 @@ use Session;
 class SearchFilter extends Component
 {
 
-    public $search, $selected_category_id, $partner_id, $partner_ids = [];
+    public $search, $selected_category_id, $partner_id;
     public $region, $province, $city, $barangay;
 
     public function mount($search, $partner_id = null){
@@ -47,6 +47,10 @@ class SearchFilter extends Component
             'min_price' => $min_price,
             'max_price' => $max_price,
         ]);
+    }
+
+    public function set_partners($partner_ids){
+        $this->emit('set_partners', $partner_ids);
     }
 
     public function set_filter($id , $type = 'category'){
@@ -94,14 +98,6 @@ class SearchFilter extends Component
                 'field'  => 'products.category_id',
                 'values' => $partner_category_ids
             ];
-        }
-        else{
-            if(!empty($this->partner_ids)){
-                $filter['where_in'][]             = [
-                    'field'  => 'products.partner_id',
-                    'values' => $this->partner_ids
-                ];
-            }
         }
         
         $filter['available_quantity']            = true;

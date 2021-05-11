@@ -16,11 +16,12 @@ class Listing extends Component
 {
 	use WithPagination;
     public $min_price, $max_price, $search, $category, $limit=6, $sort_by='', $view_by='grid_view';
-    public $selected_category_id, $selected_sub_category_id, $partner_id;
+    public $selected_category_id, $selected_sub_category_id, $partner_id, $partner_ids = [];
 
     protected $listeners = [
         'set_filter'      => 'set_filter',
         'set_price_range' => 'set_price_range',
+        'set_partners'    => 'set_partners',
         'clear_filter'    => 'clear_filter'
     ];
 
@@ -41,6 +42,10 @@ class Listing extends Component
     public function clear_filter(){
         $this->reset(['search', 'min_price', 'max_price', 'category', 'limit', 'sort_by', 'view_by', 'selected_category_id', 'selected_sub_category_id']);
         $this->resetPage();
+    }
+
+    public function set_partners($partner_ids){
+        $this->partner_ids = $partner_ids;
     }
 
     public function set_price_range($param){
@@ -91,6 +96,14 @@ class Listing extends Component
 
         if(!empty($this->partner_id)){
             $filter['where']['products.partner_id'] = $this->partner_id;
+        }
+        else{
+            if(!empty($this->partner_ids)){
+                $filter['where_in'][] = [
+                    'field'  => 'products.partner_id',
+                    'values' => $this->partner_ids
+                ];
+            }
         }
 
         if(!empty($this->selected_category_id)){
