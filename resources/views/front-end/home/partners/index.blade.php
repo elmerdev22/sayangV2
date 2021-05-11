@@ -30,7 +30,21 @@
         </div>
     </div> <!-- container .//  -->
 </section>
-
+<div id="modal_aside_right" class="modal fixed-right fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-aside" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Filter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0 m-0">
+                @livewire('front-end.home.partners.filter')
+            </div>
+        </div>
+    </div> <!-- modal-bialog .// -->
+</div> <!-- modal.// --> 
 @endsection
 
 @section('js')
