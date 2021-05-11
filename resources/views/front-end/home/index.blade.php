@@ -193,40 +193,40 @@
         </header><!-- sect-heading -->
         <div class="row">
             <div class="col-md-4">
-                <article class="card-body">
+                <article class="card-body" data-aos="fade-up">
                     <figure class="text-center">
                         <span>
                             <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/1.png')}}">
                         </span>
                         <figcaption class="pt-4">
                         <h5 class="title">Register</h5>
-                        <p>Register for an account with us or login via Facebook or Google. No sign-up fees required!</p>
+                        <p class="text-justify">Register for an account with us or login via Facebook or Google. No sign-up fees required!</p>
                         </figcaption>
                     </figure> <!-- iconbox // -->
                 </article> <!-- panel-lg.// -->
             </div><!-- col // -->
             <div class="col-md-4">
-                <article class="card-body">
+                <article class="card-body" data-aos="fade-up">
                     <figure class="text-center">
                         <span>
                             <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/2.png')}}">
                         </span>
                         <figcaption class="pt-4">
                         <h5 class="title">Buy or Bid</h5>
-                        <p>You can either directly buy or bid on a product. "Buy now" guarantees you the item by paying at a fixed price. On the otherhand, bids give you the chance to get the item at a lower price.</p>
+                        <p class="text-justify">You can either directly buy or bid on a product. "Buy now" guarantees you the item by paying at a fixed price. On the otherhand, bids give you the chance to get the item at a lower price.</p>
                         </figcaption>
                     </figure> <!-- iconbox // -->
                 </article> <!-- panel-lg.// -->
             </div> <!-- col // -->
             <div class="col-md-4">
-                <article class="card-body">
+                <article class="card-body" data-aos="fade-up">
                     <figure class="text-center">
                         <span>
                             <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/3.png')}}">
                         </span>
                         <figcaption class="pt-4">
                         <h5 class="title">Pay and Pickup</h5>
-                        <p>Whether you chose the buy or bid, you will be able to use our array of payment options to complete the transaction. It's now time to pickup the item at your earliest convenience.</p>
+                        <p class="text-justify">Whether you chose the buy or bid, you will be able to use our array of payment options to complete the transaction. It's now time to pickup the item at your earliest convenience.</p>
                         </figcaption>
                     </figure> <!-- iconbox // -->
                 </article> <!-- panel-lg.// -->
