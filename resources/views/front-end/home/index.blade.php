@@ -21,11 +21,6 @@
                             <form action="{{route('front-end.product.list.index')}}" method="GET">
                                 <div class="input-group input-group-lg">
                                     <input class="form-control form-control-navbar border-none shadow-none" type="search" name="search" placeholder="Type in your location or search for a product" aria-label="Search">
-                                    {{-- <div class="input-group-append">
-                                        <button class="btn btn-navbar bg-primary" type="submit">
-                                            <i class="fas fa-search text-white"></i>
-                                        </button>
-                                    </div> --}}
                                 </div>
                             </form>
                         </div>
@@ -100,6 +95,38 @@
         <!-- ============== COMPONENT SLIDER ITEMS OWL .end // ============= -->
     </div><!-- container // -->
 </section>
+
+@if ($data['featured_partners']->count() > 0)
+    <section class="section-name  padding-y-sm">
+        <div class="container">
+            <header class="section-heading">
+                <a href="#" class="btn btn-outline-primary float-right">See all</a>
+                <h5 class="section-title">Featured Partners</h5>
+            </header><!-- sect-heading -->
+            <div class="row">
+                @foreach ($data['featured_partners'] as $partner)
+                    @php
+                        $photo = UploadUtility::account_photo($partner->user_key_token , 'business-information/store-photo', 'store_photo');
+                    @endphp
+                    <div class="col-md-3">
+                        <a href="{{route('front-end.profile.partner.index', ['slug' => $partner->slug ])}}" class="card card-product-grid">
+                            <div class="img-wrap">
+                                <img src="{{$photo}}">
+                            </div>
+                            <div class="info-wrap text-center ">
+                                <p class="title text-truncate">
+                                    {{ucfirst($partner->name)}}
+                                    <small> <i class="fa fa-star text-warning"></i>{{Utility::get_partner_ratings($partner->id)}}</small>
+                                </p>
+                                <div><small>Products: {{number_format(Utility::count_products($partner->id) ,0)}}</small></div>
+                            </div>
+                        </a> <!-- card // -->
+                    </div>
+                @endforeach
+            </div>
+        </div><!-- container // -->
+    </section>
+@endif
         
 <section class="section-name  padding-y-sm">
     <div class="container">
@@ -158,6 +185,54 @@
             </div>
         </div>
     </div>
+</section>
+<section class="section-name padding-y-sm">
+    <div class="container">
+        <header class="section-heading">
+            <h5 class="section-title">How it works  </h5>
+        </header><!-- sect-heading -->
+        <div class="row">
+            <div class="col-md-4">
+                <article class="card-body">
+                    <figure class="text-center">
+                        <span>
+                            <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/1.png')}}">
+                        </span>
+                        <figcaption class="pt-4">
+                        <h5 class="title">Register</h5>
+                        <p>Register for an account with us or login via Facebook or Google. No sign-up fees required!</p>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </article> <!-- panel-lg.// -->
+            </div><!-- col // -->
+            <div class="col-md-4">
+                <article class="card-body">
+                    <figure class="text-center">
+                        <span>
+                            <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/2.png')}}">
+                        </span>
+                        <figcaption class="pt-4">
+                        <h5 class="title">Buy or Bid</h5>
+                        <p>You can either directly buy or bid on a product. "Buy now" guarantees you the item by paying at a fixed price. On the otherhand, bids give you the chance to get the item at a lower price.</p>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </article> <!-- panel-lg.// -->
+            </div> <!-- col // -->
+            <div class="col-md-4">
+                <article class="card-body">
+                    <figure class="text-center">
+                        <span>
+                            <img class="icon icon-lg rounded-circle" src="{{asset('images/default-photo/how-it-wroks/3.png')}}">
+                        </span>
+                        <figcaption class="pt-4">
+                        <h5 class="title">Pay and Pickup</h5>
+                        <p>Whether you chose the buy or bid, you will be able to use our array of payment options to complete the transaction. It's now time to pickup the item at your earliest convenience.</p>
+                        </figcaption>
+                    </figure> <!-- iconbox // -->
+                </article> <!-- panel-lg.// -->
+            </div> <!-- col // -->
+        </div>    
+    </div><!-- container // -->
 </section>
 <!-- ========================= SECTION  END// ========================= -->
 @endsection

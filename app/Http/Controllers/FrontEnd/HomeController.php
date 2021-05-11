@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Bid;
 use App\Model\ImageSetting;
+use QueryUtility;
 use Utility;
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
         $become_a_partner_section = Utility::image_settings('become_a_partner','become_a_partner_section');
         $elements                 = Utility::rescued_elements_computation('all');
         $decimal_places           = Utility::settings('elements_round_off');
+        $featured_partners        = self::featured_partners();
 
         $data = [
             'element_trees'            => number_format($elements['trees'], $decimal_places),
@@ -24,10 +26,24 @@ class HomeController extends Controller
             'advocacy_section_card'    => $advocacy_section_card,
             'advocacy_section_2'       => $advocacy_section_2,
             'become_a_partner_section' => $become_a_partner_section,
+            'featured_partners'        => $featured_partners,
         ];
 
-
         return view('front-end.home.index', compact('data'));
+    }
+
+    public function featured_partners(){
+
+		$filter = [];
+		$filter['select'] = [
+			'partners.*', 
+            'user_accounts.key_token as user_key_token'
+		];
+		$filter['where']['users.type']            = 'partner';
+		$filter['where']['partners.is_activated'] = 1;
+		$filter['where']['partners.is_featured']  = 1;
+
+		return QueryUtility::partners($filter)->limit(4)->get();
     }
 
     public function all_most_popular(){

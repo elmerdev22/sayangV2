@@ -7,6 +7,7 @@ use App\Model\EmailNotificationSetting;
 use App\Model\WebNotificationSetting;
 use App\Model\DescriptionSetting;
 use App\Model\ImageSetting;
+use App\Model\SocialMediaSetting;
 use Utility;
 use DB;
 class SettingsUtility{
@@ -415,6 +416,38 @@ class SettingsUtility{
             return $response;
         }
     }
+
+    public static function social_media_settings($key=null){
+        
+        $response = [
+            // Facebook
+            'facebook' => [
+                'icon' => 'fab fa-facebook',
+                'url' => '#',
+            ],
+            // twitter
+            'twitter' => [
+                'icon' => 'fab fa-twitter',
+                'url' => '#',
+            ],
+            // instagram
+            'instagram' => [
+                'icon' => 'fab fa-instagram',
+                'url' => '#',
+            ],
+            // youtube
+            'youtube' => [
+                'icon' => 'fab fa-youtube',
+                'url' => '#',
+            ],
+        ];
+
+        if($key){
+            return $response[$key];
+        }else{
+            return $response;
+        }
+    }
     
     public static function settings_set_default(){
         Setting::truncate();
@@ -589,6 +622,37 @@ class SettingsUtility{
                 $settings->arrangement    = $settings_value['arrangement'];
                 $settings->key_token      = Utility::generate_table_token('ImageSetting');
                 $save                     = $settings->save();
+                if(!$save){
+                    $success = false;
+                    break;
+                }
+            }
+        }catch(\Exception $e){
+            $success = false;
+            dd($e);
+        }
+
+        if($success){
+            DB::commit();
+            return $success;
+        }else{
+            DB::rollback();
+            return $success;
+        }
+    }
+    
+    public static function social_media_settings_set_default(){
+        SocialMediaSetting::truncate();
+        $success = true;
+
+        DB::beginTransaction();
+        try{
+            foreach(self::social_media_settings() as $settings_key => $settings_value){
+                $settings       = new SocialMediaSetting();
+                $settings->name = $settings_key;
+                $settings->icon = $settings_value['icon'];
+                $settings->url  = $settings_value['url'];
+                $save           = $settings->save();
                 if(!$save){
                     $success = false;
                     break;

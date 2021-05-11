@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label for="city">City* </label>
                             <select class="form-control" id="city" wire:model="city">
                                 <option value="">Select</option>
@@ -50,7 +50,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label for="barangay">Barangay* </label>
                             <select class="form-control" id="barangay" wire:model="barangay">
                                 <option value="">Select</option>
@@ -59,13 +59,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-4">
-                            <label for="business_address">Address*</label>
-                            <input type="text" class="form-control" id="business_address" wire:model.lazy="business_address" placeholder="Bldg., Street, Subdivision">
-                        </div>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label for="business_address">Address*</label>
+                    <input type="text" class="form-control" id="business_address" wire:model.lazy="business_address" placeholder="Bldg., Street, Subdivision">
+                </div>  
                 <div class="form-group">
                     <label for="map_address_link">Google Maps address link*</label>
                     <input type="text" class="form-control" id="map_address_link" wire:model.lazy="map_address_link" placeholder="Enter Google Maps address link">

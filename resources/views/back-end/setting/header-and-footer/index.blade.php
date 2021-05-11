@@ -22,6 +22,12 @@
             @livewire('back-end.setting.header-and-footer.index')
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- CONTENT HERE -->
+            @livewire('back-end.setting.header-and-footer.social-media.index')
+        </div>
+    </div>
     <!-- 
         NOTE: Always wrap the content in .row > .col-* 
     -->

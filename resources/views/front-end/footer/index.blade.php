@@ -22,10 +22,9 @@
                 <aside class="col-md col-12">
                     <h6 class="title">Social</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-                        <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-                        <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-                        <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                        @foreach (Utility::social_media_settings() as $row)
+                            <li><a href="{{$row->url}}"> <i class="{{$row->icon}}"></i> {{ucfirst($row->name)}} </a></li>
+                        @endforeach
                     </ul>
                 </aside>
                 <aside class="col-md col-12">

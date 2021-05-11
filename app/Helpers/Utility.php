@@ -26,6 +26,7 @@ use App\Model\DescriptionSetting;
 use App\Model\Notification;
 use App\Model\PartnerRating;
 use App\Model\ImageSetting;
+use App\Model\SocialMediaSetting;
 use Carbon\Carbon;
 use UploadUtility;
 use QueryUtility;
@@ -1104,5 +1105,9 @@ class Utility{
         }
 
         return $elements;
+    }
+
+    public static function social_media_settings(){
+        return SocialMediaSetting::where('status', true)->get();
     }
 }
