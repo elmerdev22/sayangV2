@@ -40,7 +40,7 @@ class Listing extends Component
     }
 
     public function clear_filter(){
-        $this->reset(['search', 'min_price', 'max_price', 'category', 'limit', 'sort_by', 'view_by', 'selected_category_id', 'selected_sub_category_id']);
+        $this->reset(['search', 'min_price', 'max_price', 'category', 'limit', 'sort_by', 'view_by', 'selected_category_id', 'selected_sub_category_id', 'partner_ids']);
         $this->resetPage();
     }
 
