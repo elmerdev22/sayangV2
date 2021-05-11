@@ -7,7 +7,7 @@
                     <h6 class="title">Categories</h6>
                 </a>
             </header>
-            <div class="filter-content collapse" id="collapse_1" style="">
+            <div class="filter-content collapse {{$partner_id ? 'show':''}}" id="collapse_1" style="">
                 <div class="card-body">
                     <ul class="list-menu">
                         <li>
@@ -66,7 +66,7 @@
                     <h6 class="title">Price range </h6>
                 </a>
             </header>
-            <div class="filter-content collapse" id="collapse_2" style="">
+            <div class="filter-content collapse {{$partner_id ? 'show':''}}" id="collapse_2" style="">
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -84,30 +84,40 @@
                 </div><!-- card-body.// -->
             </div>
         </article> <!-- filter-group .// -->
-        <article class="filter-group">
-            <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                    <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Partners</h6>
-                </a>
-            </header>
-            <div wire.ignore.self class="filter-content collapse" id="collapse_4" style="">
-                <div class="card-body">
-                    @forelse($this->partners() as $partner)
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" name="partners" class="custom-control-input" value="{{$partner->id}}">
-                            <div class="custom-control-label">{{$partner->name}}</div>
-                        </label>
-                    @empty
-                        <p>No partners at this moment.</p>
-                    @endforelse
-                    <br>
-                    <button type="button" wire:loading.attr="disabled" wire:target="" class="btn btn-block btn-primary" onclick="apply_partners()">
-                        Apply <span wire:loading wire:target="partner_ids" class="fas fa-spin fa-spinner"></span>
-                    </button>
+
+        @if (!$partner_id)
+            <!-- Location filter -->
+            @livewire('front-end.product.listing.location-filter')
+            <!-- Location filter \end. -->
+        @endif
+
+        @if (!$partner_id)
+            <article class="filter-group">
+                <header class="card-header">
+                    <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                        <i class="icon-control fa fa-chevron-down"></i>
+                        <h6 class="title">Partners</h6>
+                    </a>
+                </header>
+                <div wire.ignore.self class="filter-content collapse" id="collapse_4" style="">
+                    <div class="card-body">
+                        @forelse($this->partners() as $partner)
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" name="partners" class="custom-control-input" value="{{$partner->id}}">
+                                <div class="custom-control-label">{{$partner->name}}</div>
+                            </label>
+                        @empty
+                            <p class="text-center">No partners on this location.</p>
+                        @endforelse
+                        <br>
+                        <button type="button" wire:loading.attr="disabled" wire:target="" class="btn btn-block btn-primary" onclick="apply_partners()">
+                            Apply <span wire:loading wire:target="partner_ids" class="fas fa-spin fa-spinner"></span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </article> <!-- filter-group .// --> 
+            </article> <!-- filter-group .// --> 
+        @endif
+
         <article class="filter-group">
             <div class="filter-content">
                 <div class="card-body">
@@ -146,52 +156,6 @@
 
         @this.call('set_partners', partner_ids)
     }
+    
 </script>
 @endpush
-{{-- 
-<article class="filter-group">
-    <header class="card-header">
-        <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
-            <i class="icon-control fa fa-chevron-down"></i>
-            <h6 class="title">Location</h6>
-        </a>
-    </header>
-    <div wire:ignore.self class="filter-content collapse" id="collapse_3" style="">
-        <div class="card-body">
-            <div class="row mb-2">
-                <div class="col-12">
-                    <h6 class="card-title">Regions</h6>
-                    <select class="form-control" id="region" wire:model="region">
-                        <option value="">Select</option>
-                        @foreach($regions as $row)
-                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-12">
-                    <h6 class="card-title">Provinces</h6>
-                    <select class="form-control" id="province" wire:model="province">
-                        <option value="">Select</option>
-                        @foreach($provinces as $row)
-                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-12">
-                    <h6 class="card-title">City</h6>
-                    <select class="form-control" id="city" wire:model="city">
-                        <option value="">Select</option>
-                        @foreach($cities as $row)
-                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-</article> <!-- filter-group .// -->
---}}

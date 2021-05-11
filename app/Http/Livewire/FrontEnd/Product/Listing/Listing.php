@@ -17,12 +17,14 @@ class Listing extends Component
 	use WithPagination;
     public $min_price, $max_price, $search, $category, $limit=6, $sort_by='', $view_by='grid_view';
     public $selected_category_id, $selected_sub_category_id, $partner_id, $partner_ids = [];
+    public $region, $province, $city;
 
     protected $listeners = [
-        'set_filter'      => 'set_filter',
-        'set_price_range' => 'set_price_range',
-        'set_partners'    => 'set_partners',
-        'clear_filter'    => 'clear_filter'
+        'set_filter'       => 'set_filter',
+        'set_price_range'  => 'set_price_range',
+        'set_partners'     => 'set_partners',
+        'filter_locations' => 'filter_locations',
+        'clear_filter'     => 'clear_filter'
     ];
 
     public function mount($search, $partner_id, $category = null, $sub_category = null){
@@ -44,13 +46,23 @@ class Listing extends Component
         $this->resetPage();
     }
 
+    public function filter_locations($locations){
+        $this->region   = $locations['region'];
+        $this->province = $locations['province'];
+        $this->city     = $locations['city'];
+
+        $this->emit('loading');
+    }
+
     public function set_partners($partner_ids){
         $this->partner_ids = $partner_ids;
+        $this->emit('loading');
     }
 
     public function set_price_range($param){
         $this->min_price = $param['min_price'];
         $this->max_price = $param['max_price'];
+        $this->emit('loading');
     }
 
     public function set_filter($param){
@@ -63,6 +75,7 @@ class Listing extends Component
             $this->selected_category_id     = null;
         }
         $this->resetPage();
+        $this->emit('loading');
     }
 
     public function data(){
@@ -99,6 +112,12 @@ class Listing extends Component
         }
         else{
             if(!empty($this->partner_ids)){
+                $filter['where_in'][] = [
+                    'field'  => 'products.partner_id',
+                    'values' => $this->partner_ids
+                ];
+            }
+            else if(!empty($this->city) || !empty($this->province) || !empty($this->region)){
                 $filter['where_in'][] = [
                     'field'  => 'products.partner_id',
                     'values' => $this->partner_ids

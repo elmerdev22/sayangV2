@@ -16,7 +16,17 @@ class SearchFilter extends Component
 {
 
     public $search, $selected_category_id, $partner_id;
-    public $region, $province, $city, $barangay;
+    public $region, $province, $city;
+
+    protected $listeners = [
+        'filter_locations' => 'filter_locations'
+    ];
+
+    public function filter_locations($locations){
+        $this->region   = $locations['region'];
+        $this->province = $locations['province'];
+        $this->city     = $locations['city'];
+    }
 
     public function mount($search, $partner_id = null){
         $this->search     = $search;
@@ -35,10 +45,7 @@ class SearchFilter extends Component
 
     public function render(){
         $categories = $this->categories();
-        $regions    = $this->regions();
-        $provinces  = $this->provinces($this->region);
-        $cities     = $this->cities($this->province);
-        return view('livewire.front-end.product.listing.search-filter', compact('categories','regions', 'provinces', 'cities'));
+        return view('livewire.front-end.product.listing.search-filter', compact('categories'));
     }
 
     public function set_price_range($min_price, $max_price){
@@ -104,26 +111,6 @@ class SearchFilter extends Component
         return QueryUtility::product_posts($filter)->count();
     }
 
-    public function cities($province_id){
-        if($province_id){
-            return PhilippineCity::where('province_id', $province_id)->orderBy('name', 'asc')->get();
-        }else{
-            return [];
-        }
-    }
-
-    public function provinces($region_id){
-        if($region_id){
-            return PhilippineProvince::where('region_id', $region_id)->orderBy('name', 'asc')->get();
-        }else{
-            return [];
-        }
-    }
-
-    public function regions(){
-        return PhilippineRegion::orderBy('name', 'asc')->get();
-    }
-
     public function partners(){
         
 		$filter = [];
@@ -133,6 +120,21 @@ class SearchFilter extends Component
 		];
 		$filter['where']['users.type']            = 'partner';
 		$filter['where']['partners.is_activated'] = 1;
+        
+        if(!empty($this->city)){
+            $filter['where']['philippine_cities.id'] = $this->city;
+        }
+        else if(!empty($this->province)){
+            $filter['where']['philippine_provinces.id'] = $this->province;
+        }
+        else if(!empty($this->region)){
+            $filter['where']['philippine_regions.id'] = $this->region;
+        }
+
+        if(!empty($this->city) || !empty($this->province) || !empty($this->region)){
+            $partner_ids = QueryUtility::partners($filter)->pluck('id')->toArray();
+            $this->emit('set_partners', $partner_ids);
+        }
         
 		return QueryUtility::partners($filter)->get();
     }

@@ -155,11 +155,11 @@
 
     window.livewire.hook('beforeDomUpdate', () => {
         $('.countdown').countdown("destroy");
-        $.LoadingOverlay("show");
+        // $.LoadingOverlay("show");
     });
     
     window.livewire.hook('afterDomUpdate', () => {
-        $.LoadingOverlay("hide");
+        // $.LoadingOverlay("hide");
         $('.countdown').countdown("start");
     });
     
