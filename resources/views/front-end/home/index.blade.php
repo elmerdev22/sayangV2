@@ -110,7 +110,7 @@
                     @endphp
                     <div class="col-md-3">
                         <a href="{{route('front-end.profile.partner.index', ['slug' => $partner->slug ])}}" class="card card-product-grid">
-                            <div class="img-wrap">
+                            <div class="img-wrap p-5">
                                 <img src="{{$photo}}">
                             </div>
                             <div class="info-wrap text-center ">
