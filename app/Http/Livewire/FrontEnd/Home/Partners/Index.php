@@ -8,9 +8,20 @@ use QueryUtility;
 
 class Index extends Component
 {
-	use WithPagination;
+    use WithPagination;
+    
+    protected $listeners = [
+        'filter_locations' => 'filter_locations',
+    ];
+    
     public $search, $limit=6, $sort_by='';
 
+    public function filter_locations($locations){
+        $this->region   = $locations['region'];
+        $this->province = $locations['province'];
+        $this->city     = $locations['city'];
+    }
+    
     public function updatingSearch(){
 		$this->resetPage();
     }
@@ -24,6 +35,16 @@ class Index extends Component
 		];
 		$filter['where']['users.type']            = 'partner';
 		$filter['where']['partners.is_activated'] = 1;
+
+        if(!empty($this->city)){
+            $filter['where']['philippine_cities.id'] = $this->city;
+        }
+        else if(!empty($this->province)){
+            $filter['where']['philippine_provinces.id'] = $this->province;
+        }
+        else if(!empty($this->region)){
+            $filter['where']['philippine_regions.id'] = $this->region;
+        }
 
 		if($this->search){
 			$filter['or_where_like'] = $this->search;

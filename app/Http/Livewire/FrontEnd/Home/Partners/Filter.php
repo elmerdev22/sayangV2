@@ -6,8 +6,11 @@ use Livewire\Component;
 
 class Filter extends Component
 {
-    public function render()
-    {
+    public function render(){
         return view('livewire.front-end.home.partners.filter');
+    }
+
+    public function clear_filter(){
+        $this->emit('clear_filter');
     }
 }

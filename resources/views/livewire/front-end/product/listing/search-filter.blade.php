@@ -87,7 +87,7 @@
 
         @if (!$partner_id)
             <!-- Location filter -->
-            @livewire('front-end.product.listing.location-filter')
+            @livewire('front-end.product.listing.location-filter', ['collapse' => 'hide'])
             <!-- Location filter \end. -->
         @endif
 
@@ -99,7 +99,7 @@
                         <h6 class="title">Partners</h6>
                     </a>
                 </header>
-                <div wire.ignore.self class="filter-content collapse" id="collapse_4" style="">
+                <div wire:ignore.self class="filter-content collapse" id="collapse_4" style="">
                     <div class="card-body">
                         @forelse($this->partners() as $partner)
                             <label class="custom-control custom-checkbox">

@@ -137,7 +137,7 @@
     <div class="row justify-content-center">
         @if ($data->total() > 6 && $data->total() > $limit)
             <div class="col-12 mb-3 text-center">
-                <button wire:click="load_more" class="btn btn-primary" style="width: 200px;">Load More <span class="" wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
+                <button wire:click="load_more" class="btn btn-primary" style="width: 200px;">Load More <span wire:loading.class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></button>
             </div>
         @endif
     </div>

@@ -13,7 +13,11 @@ class LocationFilter extends Component
         'clear_filter'    => 'clear_filter'
     ];
 
-    public $region, $province, $city;
+    public $region, $province, $city, $collapse;
+
+    public function mount($collapse){
+        $this->collapse = $collapse;
+    }
 
     public function clear_filter(){
         $this->reset();

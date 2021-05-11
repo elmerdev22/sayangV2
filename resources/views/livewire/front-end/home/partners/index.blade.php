@@ -11,10 +11,6 @@
                     </button>
                 </div>
             </div>
-            <select class="form-control mr-2 my-1 " id="sort-by" wire:model="sort_by">
-                <option value="">Sort by</option>
-                <option value="name">Name</option>
-            </select>
         </div>
     </header><!-- sect-heading -->
     
@@ -57,17 +53,17 @@
         }
     });
     
-    window.livewire.hook('beforeDomUpdate', () => {
-        $.LoadingOverlay("show");
-    });
-    
-    window.livewire.hook('afterDomUpdate', () => {
-        $.LoadingOverlay("hide");
-    });
-    
     function search(){
         var search = $('#search').val();
         @this.set('search', search)
     }
+    
+    // window.livewire.hook('beforeDomUpdate', () => {
+    //     $.LoadingOverlay("show");
+    // });
+    
+    // window.livewire.hook('afterDomUpdate', () => {
+    //     $.LoadingOverlay("hide");
+    // });
 </script>
 @endpush

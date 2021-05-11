@@ -5,7 +5,7 @@
             <h6 class="title">Location</h6>
         </a>
     </header>
-    <div wire:ignore.self class="filter-content collapse" id="collapse_3" style="">
+    <div wire:ignore.self class="filter-content collapse {{$collapse == 'show' ? 'show' : ''}}" id="collapse_3" style="">
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col-12">
@@ -20,7 +20,7 @@
             </div>
             <div class="row mb-2">
                 <div class="col-12">
-                    <h6 class="card-title">Provinces</h6>
+                    <h6 class="card-title">Provinces <small><span wire:loading wire:target="region" class="fas fa-spin fa-spinner"></span></small></h6>
                     <select class="form-control" id="province" wire:model="province">
                         <option value="">Select</option>
                         @foreach($provinces as $row)
@@ -31,7 +31,7 @@
             </div>
             <div class="row mb-2">
                 <div class="col-12">
-                    <h6 class="card-title">City</h6>
+                    <h6 class="card-title">City <small><span wire:loading wire:target="province" class="fas fa-spin fa-spinner"></span></small></h6>
                     <select class="form-control" id="city" wire:model="city">
                         <option value="">Select</option>
                         @foreach($cities as $row)
