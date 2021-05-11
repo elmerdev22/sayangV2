@@ -4,9 +4,11 @@ namespace App\Http\Livewire\BackEnd\Setting\HelpCentre\Index;
 
 use Livewire\Component;
 use App\Model\HelpCentre;
+use Livewire\WithPagination;
 
 class Listing extends Component
 {
+	use WithPagination;
     protected $listeners = ['help-centre-listing' => '$refresh'];
 
     public $search;
@@ -20,6 +22,10 @@ class Listing extends Component
         return $data; 
     }
 
+	public function updatingSearch(){
+		$this->resetPage();
+	}
+    
     public function render()
     {
         $data = $this->data();
