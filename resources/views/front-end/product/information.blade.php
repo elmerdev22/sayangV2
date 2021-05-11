@@ -81,18 +81,6 @@
                                                 <strong> {{ucfirst($product->partner_name)}} </strong>
                                             </div>
                                             <a href="{{route('front-end.profile.partner.index', ['slug' => $product->partner_slug ])}}" class="btn btn-sm btn-outline-primary"><span class="fas fa-store"></span> View Shop</a>
-                                            {{-- @php
-                                                $store_hours = Utility::store_hours($product->partner_id);
-                                            @endphp
-                                            @if($store_hours['is_set'])
-                                            
-                                                <div class="text-muted">
-                                                    <small>{{$store_hours['open_time']}} - {{$store_hours['close_time']}}</small>
-                                                </div>
-                                                <div class="text-muted">
-                                                    <small>({{$store_hours['status']}})</small>
-                                                </div>
-                                            @endif --}}
                                         </div>
                                     </figure>
                                 </dt>

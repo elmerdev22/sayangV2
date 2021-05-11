@@ -46,6 +46,10 @@ class HomeController extends Controller
 		return QueryUtility::partners($filter)->limit(4)->get();
     }
 
+    public function partners(){
+        return view('front-end.home.partners.index');
+    }
+
     public function all_most_popular(){
         return view('front-end.home.all-most-popular.index');
     }

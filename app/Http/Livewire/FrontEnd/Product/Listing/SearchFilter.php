@@ -15,7 +15,7 @@ use Session;
 class SearchFilter extends Component
 {
 
-    public $search, $selected_category_id, $partner_id;
+    public $search, $selected_category_id, $partner_id, $partner_ids = [];
     public $region, $province, $city, $barangay;
 
     public function mount($search, $partner_id = null){
@@ -95,6 +95,14 @@ class SearchFilter extends Component
                 'values' => $partner_category_ids
             ];
         }
+        else{
+            if(!empty($this->partner_ids)){
+                $filter['where_in'][]             = [
+                    'field'  => 'products.partner_id',
+                    'values' => $this->partner_ids
+                ];
+            }
+        }
         
         $filter['available_quantity']            = true;
         return QueryUtility::product_posts($filter)->count();
@@ -118,5 +126,18 @@ class SearchFilter extends Component
 
     public function regions(){
         return PhilippineRegion::orderBy('name', 'asc')->get();
+    }
+
+    public function partners(){
+        
+		$filter = [];
+		$filter['select'] = [
+			'partners.name', 
+			'partners.id', 
+		];
+		$filter['where']['users.type']            = 'partner';
+		$filter['where']['partners.is_activated'] = 1;
+        
+		return QueryUtility::partners($filter)->get();
     }
 }

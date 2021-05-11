@@ -53,6 +53,11 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             'uses'  => $c.'@index'
         ]);
 
+        Route::get('/partners', [
+            'as' 	=> 'partners',
+            'uses'  => $c.'@partners'
+        ]);
+
         Route::get('/all-most-popular', [
             'as' 	=> 'all-most-popular',
             'uses'  => $c.'@all_most_popular'
@@ -152,7 +157,6 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
             ]);
 
         });
-
     });
 });
 

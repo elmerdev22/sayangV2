@@ -1,5 +1,4 @@
 <div>
-    
     <header class="border-bottom mb-4 pb-2">
         <div class="form-inline">
             <span class="mr-md-auto my-1">{{number_format($total_items,0)}} Items found </span>

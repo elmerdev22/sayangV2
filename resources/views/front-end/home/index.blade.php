@@ -100,7 +100,7 @@
     <section class="section-name  padding-y-sm">
         <div class="container">
             <header class="section-heading">
-                <a href="#" class="btn btn-outline-primary float-right">See all</a>
+                <a href="{{route('front-end.home.partners')}}" class="btn btn-outline-primary float-right">See all</a>
                 <h5 class="section-title">Featured Partners</h5>
             </header><!-- sect-heading -->
             <div class="row">
@@ -109,18 +109,13 @@
                         $photo = UploadUtility::account_photo($partner->user_key_token , 'business-information/store-photo', 'store_photo');
                     @endphp
                     <div class="col-md-3">
-                        <a href="{{route('front-end.profile.partner.index', ['slug' => $partner->slug ])}}" class="card card-product-grid">
-                            <div class="img-wrap p-5">
-                                <img src="{{$photo}}">
-                            </div>
-                            <div class="info-wrap text-center ">
-                                <p class="title text-truncate">
-                                    {{ucfirst($partner->name)}}
-                                    <small> <i class="fa fa-star text-warning"></i>{{Utility::get_partner_ratings($partner->id)}}</small>
-                                </p>
-                                <div><small>Products: {{number_format(Utility::count_products($partner->id) ,0)}}</small></div>
-                            </div>
-                        </a> <!-- card // -->
+                        @component('front-end.components.partners.grid')
+                            @slot('link', route('front-end.profile.partner.index', ['slug' => $partner->slug ]))
+                            @slot('photo', $photo)
+                            @slot('name', ucfirst($partner->name))
+                            @slot('ratings', Utility::get_partner_ratings($partner->id))
+                            @slot('products', number_format(Utility::count_products($partner->id) ,0))
+                        @endcomponent
                     </div>
                 @endforeach
             </div>
