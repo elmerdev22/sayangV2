@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Model\Product;
 use App\Model\Category;
 use App\Model\SubCategory;
+use App\Model\PhilippineRegion;
+use App\Model\PhilippineCity;
+use App\Model\PhilippineProvince;
 use QueryUtility;
 use Session;
 
@@ -13,6 +16,7 @@ class SearchFilter extends Component
 {
 
     public $search, $selected_category_id, $partner_id;
+    public $region, $province, $city, $barangay;
 
     public function mount($search, $partner_id = null){
         $this->search     = $search;
@@ -31,8 +35,10 @@ class SearchFilter extends Component
 
     public function render(){
         $categories = $this->categories();
-        
-        return view('livewire.front-end.product.listing.search-filter', compact('categories'));
+        $regions    = $this->regions();
+        $provinces  = $this->provinces($this->region);
+        $cities     = $this->cities($this->province);
+        return view('livewire.front-end.product.listing.search-filter', compact('categories','regions', 'provinces', 'cities'));
     }
 
     public function set_price_range($min_price, $max_price){
@@ -92,5 +98,25 @@ class SearchFilter extends Component
         
         $filter['available_quantity']            = true;
         return QueryUtility::product_posts($filter)->count();
+    }
+
+    public function cities($province_id){
+        if($province_id){
+            return PhilippineCity::where('province_id', $province_id)->orderBy('name', 'asc')->get();
+        }else{
+            return [];
+        }
+    }
+
+    public function provinces($region_id){
+        if($region_id){
+            return PhilippineProvince::where('region_id', $region_id)->orderBy('name', 'asc')->get();
+        }else{
+            return [];
+        }
+    }
+
+    public function regions(){
+        return PhilippineRegion::orderBy('name', 'asc')->get();
     }
 }

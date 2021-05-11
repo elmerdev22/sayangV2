@@ -10,7 +10,6 @@
             <div class="filter-content collapse show" id="collapse_1" style="">
                 <div class="card-body">
                     <ul class="list-menu">
-                        
                         <li>
                             <a  href="javascript:void(0);" wire:click="set_filter('')">
                                 All Categories <b class="badge badge-pill badge-light float-right">{{$this->product_count('') != 0 ? number_format($this->product_count(''), 0): ''}}</b>
@@ -62,12 +61,12 @@
         </article> <!-- filter-group  .// -->
         <article class="filter-group">
             <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
                     <i class="icon-control fa fa-chevron-down"></i>
                     <h6 class="title">Price range </h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_3" style="">
+            <div class="filter-content collapse show" id="collapse_2" style="">
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -85,37 +84,7 @@
                 </div><!-- card-body.// -->
             </div>
         </article> <!-- filter-group .// -->
-        {{-- <article class="filter-group">
-            <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                    <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Condition </h6>
-                </a>
-            </header>
-            <div class="filter-content collapse show" id="collapse_4" style="">
-                <div class="card-body">
-                    <label class="custom-control custom-radio">
-                        <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-                        <div class="custom-control-label">Any condition</div>
-                    </label>
-    
-                    <label class="custom-control custom-radio">
-                        <input type="radio" name="myfilter_radio" class="custom-control-input">
-                        <div class="custom-control-label">Brand new </div>
-                    </label>
-    
-                    <label class="custom-control custom-radio">
-                        <input type="radio" name="myfilter_radio" class="custom-control-input">
-                        <div class="custom-control-label">Used items</div>
-                    </label>
-    
-                    <label class="custom-control custom-radio">
-                        <input type="radio" name="myfilter_radio" class="custom-control-input">
-                        <div class="custom-control-label">Very old</div>
-                    </label>
-                </div><!-- card-body.// -->
-            </div>
-        </article> <!-- filter-group .// --> --}}
+        
         <article class="filter-group">
             <div class="filter-content">
                 <div class="card-body">
@@ -145,5 +114,69 @@
         @this.call('set_price_range', min_price, max_price)
     }
     
+    function apply_location(){
+
+    }
 </script>
 @endpush
+{{-- 
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Location</h6>
+        </a>
+    </header>
+    <div wire:ignore.self class="filter-content collapse" id="collapse_3" style="">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-12">
+                    <h6 class="card-title">Regions</h6>
+                    <select class="form-control" id="region" wire:model="region">
+                        <option value="">Select</option>
+                        @foreach($regions as $row)
+                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-12">
+                    <h6 class="card-title">Provinces</h6>
+                    <select class="form-control" id="province" wire:model="province">
+                        <option value="">Select</option>
+                        @foreach($provinces as $row)
+                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-12">
+                    <h6 class="card-title">City</h6>
+                    <select class="form-control" id="city" wire:model="city">
+                        <option value="">Select</option>
+                        @foreach($cities as $row)
+                            <option value="{{$row->id}}">{{ucfirst($row->name)}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</article> <!-- filter-group .// -->
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Partners</h6>
+        </a>
+    </header>
+    <div class="filter-content collapse" id="collapse_4" style="">
+        <div class="card-body">
+            <button type="button" wire:loading.attr="disabled" wire:target="" class="btn btn-block btn-primary" onclick="apply_location()">
+                Apply <span wire:loading wire:target="clear_filter" class="fas fa-spin fa-spinner"></span>
+            </button>
+        </div>
+    </div>
+</article> <!-- filter-group .// --> --}}

@@ -31,6 +31,12 @@
     <div class="row">
         <div class="col-12">
             <!-- CONTENT HERE -->
+            @livewire('back-end.setting.home.featured-partners.index')
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- CONTENT HERE -->
             @livewire('back-end.setting.home.become-a-partner-section.index')
         </div>
     </div>
