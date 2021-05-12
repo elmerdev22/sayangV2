@@ -26,7 +26,7 @@
                                         <small>{{ucfirst($row->partner_name)}}</small>
                                     </div>
                                     <div class="col-5 text-right">
-                                        @if(Utility::get_partner_ratings($row->partner_id) != 'No Ratings')
+                                        @if(Utility::get_partner_ratings($row->partner_id))
                                             <small class="fas fa-star text-warning"></small> 
                                             <small class="text-white">{{Utility::get_partner_ratings($row->partner_id)}}</small>
                                         @endif

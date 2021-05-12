@@ -477,7 +477,7 @@ class Utility{
             $stars[$star] = $count;
         }
         if(array_sum($stars) == 0){
-            return "No Ratings";
+            return null;
         }
         else{
             $data = ((5*$stars[5])+(4*$stars[4])+(3*$stars[3])+(2*$stars[2])+(1*$stars[1])) / ($stars[5]+$stars[4]+$stars[3]+$stars[2]+$stars[1]);
