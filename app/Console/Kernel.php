@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('ProductPost:Update')
             ->timezone('Asia/Manila')
             ->everyMinute();
+
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**
