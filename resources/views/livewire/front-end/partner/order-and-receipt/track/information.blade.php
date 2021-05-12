@@ -20,6 +20,12 @@
                 Payment @if($data->order_payment->status == 'paid' || $data->order_payment->payment_method == 'cash_on_pickup') <span class="badge badge-info">{{ucwords(str_replace('_', ' ', $data->order_payment->payment_method))}}</span> @endif
                 @if($data->order_bid) <span class="badge badge-primary">Order From Win Bid</span> @endif
             </h6>
+            @if($data->pickup_option)
+                <div>
+                    <b>Pickup Option:</b>
+                    <p>{{Utility::pickup_options()[$data->pickup_option]}}</p>
+                </div>
+            @endif
             @if($data->order_payment->status == 'paid')
                 <div>
                     <b>Billing No. :</b> {{$data->billing->billing_no}}

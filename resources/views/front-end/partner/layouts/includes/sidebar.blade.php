@@ -176,13 +176,23 @@
                         <li class="nav-item">
                             <a href="{{route('front-end.partner.notifications.activity')}}" class="nav-link {{Route::is('front-end.partner.notifications.activity') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Activity</p>
+                                <p>
+                                    Activity
+                                    @if (Utility::notification_count('activity') > 0)
+                                        <span class="badge badge-danger right">{{Utility::notification_count('activity')}}</span>
+                                    @endif
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('front-end.partner.notifications.index')}}" class="nav-link {{Route::is('front-end.partner.notifications.index') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
-                                <p>Order Updates</p>
+                                <p>
+                                    Order Updates
+                                    @if (Utility::notification_count('order_updates') > 0)
+                                        <span class="badge badge-danger right">{{Utility::notification_count('order_updates')}}</span>
+                                    @endif
+                                </p>
                             </a>
                         </li>
                     </ul>

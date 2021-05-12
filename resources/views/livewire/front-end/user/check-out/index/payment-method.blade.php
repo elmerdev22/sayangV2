@@ -1,5 +1,5 @@
 <div>
-    <article class="accordion" id="accordion_pay">
+    <article class="accordion mb-4" id="accordion_pay">
         <div class="card m-0">
             <header class="card-header">
                 <img src="{{asset('images/icons/payments/cash.jpg')}}" class="float-right" height="24"> 
@@ -17,12 +17,6 @@
                     </h6>
                 </label>
             </header>
-            <div id="pay_paynet" class="collapse {{$payment_method == 'cash_on_pickup' ? 'show':'' }}" data-parent="#accordion_pay" style="">
-            <div class="card-body">
-                <h5 class="mb-3"><b>Header</b></h5>
-                <p>Description here...</p>
-            </div> <!-- card body .// -->
-            </div> <!-- collapse .// -->
         </div> <!-- card.// -->
         <div class="card m-0">
             <header class="card-header">

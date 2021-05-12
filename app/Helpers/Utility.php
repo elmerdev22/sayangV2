@@ -1110,4 +1110,23 @@ class Utility{
     public static function social_media_settings(){
         return SocialMediaSetting::where('status', true)->get();
     }
+
+    public static function pickup_options(){
+        return [
+            'myself'              => 'I\'ll pick it up myself.',
+            'third_party_service' => 'I\'ll arrange my own pickup thru a third party service.'
+        ];
+    }
+
+    public static function notification_count($notification_type){
+        $auth    = Auth::user();
+        $account = UserAccount::where('user_id', $auth->id)->firstOrFail();
+
+        $data = Notification::where('user_account_id', $account->id)
+                ->where('notification_type', $notification_type)
+                ->where('is_read', 0)
+                ->count();
+
+        return number_format($data, 0);
+    }
 }

@@ -31,10 +31,13 @@
                     </div> <!-- card-body.// -->
                 </article> <!-- card.// -->
 
+                <h4 class="mb-3">Pickup Option</h4>
+                @livewire('front-end.user.check-out.index.pickup-option')
+
                 <h4 class="mb-3">Payment Method</h4>
                 @livewire('front-end.user.check-out.index.payment-method')
 
-                <div class="row pt-4">
+                <div class="row">
                     <div class="col-md-12">        
                         @livewire('front-end.user.check-out.index.continue-to-check-out')
                     </div>

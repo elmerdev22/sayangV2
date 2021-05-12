@@ -63,10 +63,20 @@
         <div class="collapse {{\Route::is('front-end.user.notifications.*') ? 'show':''}}" id="collapse3" style="">	
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <a href="{{route('front-end.user.notifications.index')}}" class="{{\Route::is('front-end.user.notifications.index') ? 'text-primary':'text-dark'}}">Order Updates</a>
+                    <a href="{{route('front-end.user.notifications.index')}}" class="{{\Route::is('front-end.user.notifications.index') ? 'text-primary':'text-dark'}}">
+                        Order Updates 
+                        @if (Utility::notification_count('order_updates') > 0)
+                            <span class="badge badge-danger float-right">{{Utility::notification_count('order_updates')}}</span>
+                        @endif
+                    </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{route('front-end.user.notifications.activity')}}" class="{{\Route::is('front-end.user.notifications.activity') ? 'text-primary':'text-dark'}}">Activity</a>
+                    <a href="{{route('front-end.user.notifications.activity')}}" class="{{\Route::is('front-end.user.notifications.activity') ? 'text-primary':'text-dark'}}">
+                        Activity
+                        @if (Utility::notification_count('activity') > 0)
+                            <span class="badge badge-danger float-right">{{Utility::notification_count('activity')}}</span>
+                        @endif
+                    </a>
                 </li>
             </ul>
         </div> <!-- collapse -filter-content  .// -->
