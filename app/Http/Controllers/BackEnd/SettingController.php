@@ -32,6 +32,10 @@ class SettingController extends Controller
     public function about() {
         return view('back-end.setting.about.index');
     }
+    
+    public function privacy_policy() {
+        return view('back-end.setting.privacy-policy.index');
+    }
 
     public function ratings() {
         return view('back-end.setting.ratings.index');

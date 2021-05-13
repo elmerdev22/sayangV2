@@ -114,6 +114,16 @@ Route::group(['as' => 'front-end.', 'namespace' => 'FrontEnd'], function(){
         
     });
 
+    Route::group(['as' => 'privacy-policy.'], function (){
+
+        $c = 'PrivacyPolicyController';
+        Route::get('/privacy-policy', [
+            'as' 	=> 'index',
+            'uses'  => $c.'@index'
+        ]);
+        
+    });
+
     Route::group(['prefix' => 'product', 'as' => 'product.', 'namespace' => 'Product'], function (){
         Route::group(['as' => 'information.'], function (){
             $c = 'InformationController';
@@ -276,10 +286,15 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function(){
                 'as'    => 'help-centre-edit',
                 'uses'  => $c.'@help_centre_edit'
             ]);
-
+            
             Route::get('/about', [
                 'as'    => 'about',
                 'uses'  => $c.'@about'
+            ]);
+
+            Route::get('/privacy-policy', [
+                'as'    => 'privacy-policy',
+                'uses'  => $c.'@privacy_policy'
             ]);
 
             Route::get('/ratings', [

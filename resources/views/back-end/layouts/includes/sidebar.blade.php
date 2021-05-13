@@ -159,6 +159,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('back-end.setting.privacy-policy')}}" class="nav-link {{Route::is('back-end.setting.privacy-policy') ? 'sayang-nav-link-active':''}}">
+                                <i class="nav-icon fas"></i>
+                                <p>Privacy Policy</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('back-end.setting.header-and-footer')}}" class="nav-link {{Route::is('back-end.setting.header-and-footer') ? 'sayang-nav-link-active':''}}">
                                 <i class="nav-icon fas"></i>
                                 <p>Header & Footer</p>
