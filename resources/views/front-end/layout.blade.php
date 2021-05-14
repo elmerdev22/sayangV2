@@ -6,7 +6,7 @@
 		<meta name="google-site-verification" content="-HWUlsFOSU3gKW4DOw8JQNULCmGEgTaYDortuF8_uzo" />
         @include('meta::manager', [
             'title'         => Utility::settings('app_name'),
-            'description'   => 'Sayang is a ecommerce and bidding shop.',
+            'description'   => Utility::settings('home_title'),
             'image'         => UploadUtility::content_photo('logo'),
         ])
 		<!-- CSRF Token -->
