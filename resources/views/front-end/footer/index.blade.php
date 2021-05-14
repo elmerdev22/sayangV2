@@ -7,8 +7,7 @@
                     <ul class="list-unstyled">
                         <li> <a href="{{route('front-end.about-us.index')}}">About us</a></li>
                         <li> <a href="{{route('front-end.privacy-policy.index')}}">Privacy Policy</a></li>
-                        <li> <a href="{{route('front-end.terms-and-conditions.index')}}">Terms & Condition (Partner)</a></li>
-                        <li> <a href="{{route('front-end.terms-and-conditions.partners')}}">Terms & Condition (User)</a></li>
+                        <li> <a href="{{route('front-end.terms-and-conditions.index')}}">Terms & Condition (User)</a></li>
                     </ul>
                 </aside>
                 <aside class="col-md col-12">
