@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4",
         "cviebrock/eloquent-sluggable": "^6.0",
+        "davmixcool/laravel-meta-manager": "^1.2",
         "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.18.35",

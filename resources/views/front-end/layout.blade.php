@@ -4,6 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="google-site-verification" content="-HWUlsFOSU3gKW4DOw8JQNULCmGEgTaYDortuF8_uzo" />
+        @include('meta::manager', [
+            'title'         => Utility::settings('app_name'),
+            'description'   => 'Sayang is a ecommerce and bidding shop.',
+            'image'         => UploadUtility::content_photo('logo'),
+        ])
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
