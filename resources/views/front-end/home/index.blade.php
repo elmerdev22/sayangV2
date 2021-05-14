@@ -75,7 +75,9 @@
                         <div class="card-img-overlay text-white">
                             <h5 class="card-title">{{$row->settings_name}}</h5>
                             <p class="card-text">{{$row->description}}</p>
-                            <a href="{{$row->redirect}}" class="btn btn-light">Discover</a>
+                            @if ($row->redirect)
+                                <a href="{{$row->redirect}}" class="btn btn-light">Discover</a>
+                            @endif
                         </div>
                     </div> 
                 </div> <!-- col.// -->
