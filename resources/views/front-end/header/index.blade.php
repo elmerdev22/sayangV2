@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('partner.register')}}"> Be a Partner <span class="fas fa-rocket"></span> </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/about-us')}}"> About Us <span class="fas fa-user"></span> </a>
+                    </li>
                 </ul>
                 <div class="d-flex justify-content-end">
                     @if (Auth::check() && Auth::user()->type == 'user')
@@ -81,7 +84,7 @@
                 <nav class="list-group list-group-flush">
                     
                     <a href="{{route('front-end.help-centre.index')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-question text-center" style="width: 10%;"></span> Help Centre</a>
-                    
+                    <a href="{{url('/about-us')}}" class="list-group-item {{\Route::is('front-end.help-centre.index') ? 'active':''}}"><span class="fas fa-user text-center" style="width: 10%;"></span> About Us</a>
                     @if(Utility::top_nav_validate_auth_verify())
                         <a href="{{route('front-end.product.list.index')}}" class="list-group-item {{\Route::is('front-end.product.list.index') ? 'active':''}}"><span class="fas fa-tag text-center" style="width: 10%;"></span> Products</a>
                     @endif
