@@ -3,9 +3,9 @@
 @section('content')
 @section('css')
 <!-- plugin: owl carousel  -->
-<link href="plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
-<link href="plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="{{asset('plugins/owlcarousel/assets/owl.carousel.css')}}" rel="stylesheet">
+<link href="{{asset('plugins/owlcarousel/assets/owl.theme.default.css')}}" rel="stylesheet">
+<link href="{{asset('template/assets/plugins/aos/aos.min.css')}}" rel="stylesheet">
 @endsection
 <!-- ========================= SECTION HERO ========================= -->
 <section class="section-intro ">
@@ -234,14 +234,14 @@
 <!-- ========================= SECTION  END// ========================= -->
 @endsection
 @section('js')
-<script src="plugins/owlcarousel/owl.carousel.min.js"></script>   
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{{asset('plugins/owlcarousel/owl.carousel.min.js')}}"></script>   
+<script src="{{asset('template/assets/plugins/aos/aos.min.js')}}"></script>
 <script>
     AOS.init({
         duration: 700, // values from 0 to 3000, with step 50ms
         once: true
     });
-  </script>
+</script>
 <script type="text/javascript">
     // jquery ready start
     $(document).ready(function() {
