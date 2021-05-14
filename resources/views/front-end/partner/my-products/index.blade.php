@@ -40,6 +40,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            Download sample format: <a href="{{asset('files/Import_products_format.xlsx')}}" download class="btn-link">click here</a> <i class="fas fa-hand-point-left"></i>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
